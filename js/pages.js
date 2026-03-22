@@ -43,40 +43,47 @@ function renderQuestsPage() {
   `;
 
   HUNTER.quests.forEach((q, i) => {
-    const catColor = { strength:'#00b4ff', cardio:'#00e5a0', nutrition:'#f0c040', mental:'#a855f7', lifestyle:'#ff6b35' }[q.category] || '#7aa0cc';
+    const catColor = {
+      strength: '#00b4ff', cardio: '#00e5a0', nutrition: '#f0c040',
+      mental: '#a855f7',   lifestyle: '#ff6b35', weekend: '#f0c040',
+      surprise: '#ff3355'
+    }[q.category] || '#7aa0cc';
+
+    const isSurprise = q.category === 'surprise';
+    const isWeekend  = q.category === 'weekend';
+
     html += `
-      <div class="quest-card ${q.done ? 'quest-done' : ''}" onclick="${q.done ? '' : `completeQuest(${i})`}" style="
-        background:var(--panel);
-        border:1px solid ${q.done ? 'rgba(0,229,160,0.3)' : 'var(--border)'};
-        border-radius:8px;
-        padding:12px 14px;
-        margin-bottom:8px;
-        display:flex;
-        align-items:center;
-        gap:12px;
-        cursor:${q.done ? 'default' : 'pointer'};
-        opacity:${q.done ? '0.55' : '1'};
-        transition:border-color 0.2s,opacity 0.2s;
-        position:relative;
-        overflow:hidden;
-      ">
-        ${q.done ? '' : `<div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,${catColor},transparent);opacity:0.4"></div>`}
+      <div class="quest-card ${q.done ? 'quest-done' : ''}"
+        onclick="${q.done ? `undoQuestConfirm(${i})` : `questConfirm(${i})`}"
+        style="
+          background:${isSurprise ? 'rgba(255,51,85,0.06)' : isWeekend ? 'rgba(240,192,64,0.06)' : 'var(--panel)'};
+          border:1px solid ${q.done ? 'rgba(0,229,160,0.3)' : isSurprise ? 'rgba(255,51,85,0.4)' : isWeekend ? 'rgba(240,192,64,0.35)' : 'var(--border)'};
+          border-radius:8px;padding:12px 14px;margin-bottom:8px;
+          display:flex;align-items:center;gap:12px;
+          cursor:pointer;
+          opacity:${q.done ? '0.6' : '1'};
+          transition:border-color 0.2s,opacity 0.2s;
+          position:relative;overflow:hidden;
+        ">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,${catColor},transparent);opacity:${q.done ? '0.2' : '0.5'}"></div>
         <div style="
-          width:36px;height:36px;border-radius:6px;
-          background:${q.done ? 'rgba(0,229,160,0.1)' : `rgba(${catColor.startsWith('#00b') ? '0,180,255' : catColor.startsWith('#00e') ? '0,229,160' : catColor.startsWith('#f0c') ? '240,192,64' : catColor.startsWith('#a85') ? '168,85,247' : '255,107,53'},0.1)`};
-          border:1px solid ${q.done ? 'rgba(0,229,160,0.4)' : catColor + '44'};
-          display:flex;align-items:center;justify-content:center;
-          font-size:18px;flex-shrink:0;
+          width:38px;height:38px;border-radius:6px;flex-shrink:0;
+          background:${q.done ? 'rgba(0,229,160,0.1)' : catColor + '18'};
+          border:1px solid ${q.done ? 'rgba(0,229,160,0.4)' : catColor + '55'};
+          display:flex;align-items:center;justify-content:center;font-size:18px;
         ">${q.done ? '✓' : q.icon}</div>
         <div style="flex:1;min-width:0">
           <div style="font-size:14px;font-weight:600;color:${q.done ? 'var(--text3)' : 'var(--text)'};text-decoration:${q.done ? 'line-through' : 'none'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${q.name}</div>
-          <div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap">
+          <div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap;align-items:center">
             <span class="stat-pill pill-accent">+${q.xp} XP</span>
             <span class="stat-pill" style="background:${catColor}18;border:1px solid ${catColor}44;color:${catColor}">${q.stat.toUpperCase()} ↑</span>
-            <span style="font-family:var(--font-mono);font-size:9px;color:var(--text3);padding:3px 0;letter-spacing:1px">${q.category.toUpperCase()}</span>
+            ${isSurprise ? `<span class="stat-pill pill-red">SURPRISE</span>` : ''}
+            ${isWeekend  ? `<span class="stat-pill pill-gold">WEEKEND</span>` : ''}
           </div>
         </div>
-        ${q.done ? '' : `<div style="font-size:18px;color:var(--border2)">›</div>`}
+        <div style="font-size:13px;color:${q.done ? 'var(--text3)' : 'var(--border2)'};flex-shrink:0">
+          ${q.done ? '↩' : '›'}
+        </div>
       </div>
     `;
   });
@@ -84,9 +91,8 @@ function renderQuestsPage() {
   html += `
     <div style="margin-top:16px;padding:12px;background:rgba(255,51,85,0.06);border:1px solid rgba(255,51,85,0.2);border-radius:6px;text-align:center">
       <div style="font-family:var(--font-mono);font-size:9px;color:var(--red);letter-spacing:2px;margin-bottom:2px">⚠ SYSTEM WARNING</div>
-      <div style="font-size:12px;color:var(--text3)">Incomplete quests reset at midnight. Weak hunters rest — <em>hunters train</em>.</div>
+      <div style="font-size:12px;color:var(--text3)">Incomplete quests reset at midnight. Tap a completed quest to undo it.</div>
     </div>
-
     <div style="margin-top:12px;padding:10px;background:var(--panel);border:1px solid var(--border);border-radius:6px;display:flex;justify-content:space-around;text-align:center">
       <div>
         <div style="font-family:var(--font-hud);font-size:18px;color:var(--gold)">${HUNTER.streakDays || 0}</div>
@@ -107,6 +113,55 @@ function renderQuestsPage() {
 
   el.innerHTML = html;
 }
+
+// ── QUEST CONFIRM POPUP ───────────────────────────────
+function questConfirm(index) {
+  const q = HUNTER.quests[index];
+  if (!q || q.done) return;
+
+  const overlay = document.createElement('div');
+  overlay.style.cssText = `position:fixed;inset:0;z-index:600;background:rgba(0,0,0,0.75);display:flex;align-items:flex-end;justify-content:center;padding-bottom:max(24px,env(safe-area-inset-bottom));backdrop-filter:blur(4px)`;
+  overlay.innerHTML = `
+    <div style="width:100%;max-width:420px;background:var(--bg2);border:1px solid var(--border);border-radius:16px 16px 12px 12px;padding:20px;animation:slideUp 0.25s ease">
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);letter-spacing:3px;margin-bottom:6px;text-align:center">QUEST COMPLETE?</div>
+      <div style="font-size:16px;font-weight:600;color:var(--text);text-align:center;margin-bottom:4px">${q.icon} ${q.name}</div>
+      <div style="text-align:center;margin-bottom:16px">
+        <span class="stat-pill pill-gold">+${q.xp} XP</span>
+      </div>
+      <div style="font-size:13px;color:var(--text3);text-align:center;margin-bottom:18px">Only mark this complete if you actually did it, hunter.</div>
+      <div style="display:flex;gap:10px">
+        <button style="flex:1;padding:13px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--text3);font-family:var(--font-hud);font-size:13px;letter-spacing:1px;cursor:pointer" onclick="this.closest('[style*=fixed]').remove()">CANCEL</button>
+        <button style="flex:2;padding:13px;background:rgba(0,180,255,0.15);border:1px solid var(--accent);border-radius:8px;color:var(--accent);font-family:var(--font-hud);font-size:13px;font-weight:600;letter-spacing:2px;cursor:pointer" onclick="this.closest('[style*=fixed]').remove();completeQuest(${index})">✓ COMPLETED</button>
+      </div>
+    </div>
+    <style>@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}</style>
+  `;
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+  document.body.appendChild(overlay);
+}
+
+// ── UNDO QUEST CONFIRM ────────────────────────────────
+function undoQuestConfirm(index) {
+  const q = HUNTER.quests[index];
+  if (!q || !q.done) return;
+
+  const overlay = document.createElement('div');
+  overlay.style.cssText = `position:fixed;inset:0;z-index:600;background:rgba(0,0,0,0.75);display:flex;align-items:flex-end;justify-content:center;padding-bottom:max(24px,env(safe-area-inset-bottom));backdrop-filter:blur(4px)`;
+  overlay.innerHTML = `
+    <div style="width:100%;max-width:420px;background:var(--bg2);border:1px solid var(--border);border-radius:16px 16px 12px 12px;padding:20px;animation:slideUp 0.25s ease">
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--red);letter-spacing:3px;margin-bottom:6px;text-align:center">UNDO QUEST?</div>
+      <div style="font-size:16px;font-weight:600;color:var(--text);text-align:center;margin-bottom:16px">${q.icon} ${q.name}</div>
+      <div style="font-size:13px;color:var(--text3);text-align:center;margin-bottom:18px">This will remove the XP you earned. Only undo if you marked it by mistake.</div>
+      <div style="display:flex;gap:10px">
+        <button style="flex:1;padding:13px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--text3);font-family:var(--font-hud);font-size:13px;letter-spacing:1px;cursor:pointer" onclick="this.closest('[style*=fixed]').remove()">KEEP IT</button>
+        <button style="flex:2;padding:13px;background:rgba(255,51,85,0.1);border:1px solid var(--red);border-radius:8px;color:var(--red);font-family:var(--font-hud);font-size:13px;font-weight:600;letter-spacing:2px;cursor:pointer" onclick="this.closest('[style*=fixed]').remove();undoQuest(${index})">↩ UNDO</button>
+      </div>
+    </div>
+  `;
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+  document.body.appendChild(overlay);
+}
+
 
 // renderNutritionPage and logSelectedFood moved to foodscanner.js
 
