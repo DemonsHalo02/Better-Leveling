@@ -22,36 +22,133 @@ const RANKS = [
 ];
 
 const QUEST_POOL = [
-  // Strength
-  { id: 'pushups',   name: 'Complete 100 push-ups',     xp: 35, stat: 'str',   category: 'strength',  icon: '💪' },
-  { id: 'pullups',   name: 'Do 50 pull-ups',            xp: 40, stat: 'str',   category: 'strength',  icon: '🏋️' },
-  { id: 'squats',    name: 'Complete 150 squats',        xp: 35, stat: 'str',   category: 'strength',  icon: '🦵' },
-  { id: 'plank',     name: 'Hold plank for 3 minutes',  xp: 25, stat: 'vit',   category: 'strength',  icon: '🧱' },
-  { id: 'dips',      name: 'Do 60 tricep dips',         xp: 30, stat: 'str',   category: 'strength',  icon: '💪' },
-  // Cardio
-  { id: 'run3k',     name: 'Run 3 km',                  xp: 40, stat: 'agi',   category: 'cardio',    icon: '🏃' },
-  { id: 'run5k',     name: 'Run 5 km',                  xp: 60, stat: 'agi',   category: 'cardio',    icon: '🏃' },
-  { id: 'jump',      name: '500 jump rope reps',        xp: 30, stat: 'agi',   category: 'cardio',    icon: '⚡' },
-  { id: 'bike',      name: 'Cycle 10 km',               xp: 45, stat: 'agi',   category: 'cardio',    icon: '🚴' },
-  { id: 'stairs',    name: 'Climb 30 flights of stairs',xp: 35, stat: 'vit',   category: 'cardio',    icon: '🪜' },
-  // Nutrition
-  { id: 'protein',   name: 'Hit 150g protein goal',     xp: 30, stat: 'vit',   category: 'nutrition', icon: '🥩' },
-  { id: 'water',     name: 'Drink 2.5L of water',       xp: 20, stat: 'vit',   category: 'nutrition', icon: '💧' },
-  { id: 'veggies',   name: 'Eat 5 servings of vegetables', xp: 25, stat: 'vit', category: 'nutrition', icon: '🥦' },
-  { id: 'nosugar',   name: 'Zero added sugar today',    xp: 35, stat: 'vit',   category: 'nutrition', icon: '🚫' },
-  { id: 'meal_prep', name: 'Prep meals for tomorrow',   xp: 25, stat: 'int',   category: 'nutrition', icon: '🍱' },
-  // Mental
-  { id: 'meditate',  name: 'Meditate for 15 minutes',   xp: 25, stat: 'int',   category: 'mental',    icon: '🧘' },
-  { id: 'journal',   name: 'Write in your journal',     xp: 20, stat: 'int',   category: 'mental',    icon: '📓' },
-  { id: 'read',      name: 'Read for 30 minutes',       xp: 25, stat: 'int',   category: 'mental',    icon: '📖' },
-  { id: 'gratitude', name: 'List 5 things you\'re grateful for', xp: 15, stat: 'int', category: 'mental', icon: '✨' },
-  { id: 'nophone',   name: 'No phone for 2 hours',      xp: 30, stat: 'sense', category: 'mental',    icon: '📵' },
-  // Lifestyle
-  { id: 'sleep',     name: 'Sleep by 10 PM',            xp: 30, stat: 'vit',   category: 'lifestyle', icon: '🌙' },
-  { id: 'morning',   name: 'Wake up before 6 AM',       xp: 35, stat: 'sense', category: 'lifestyle', icon: '🌅' },
-  { id: 'cold',      name: 'Take a cold shower',        xp: 25, stat: 'vit',   category: 'lifestyle', icon: '🚿' },
-  { id: 'steps',     name: 'Walk 10,000 steps',         xp: 35, stat: 'agi',   category: 'lifestyle', icon: '👟' },
-  { id: 'stretch',   name: 'Stretch for 20 minutes',    xp: 20, stat: 'agi',   category: 'lifestyle', icon: '🤸' },
+  // ── STRENGTH ─────────────────────────────────────────
+  { id: 'pushups100',   name: 'Complete 100 push-ups',           xp: 35, stat: 'str',   category: 'strength',  icon: '💪' },
+  { id: 'pushups50',    name: 'Complete 50 push-ups',            xp: 20, stat: 'str',   category: 'strength',  icon: '💪' },
+  { id: 'pullups50',    name: 'Do 50 pull-ups',                  xp: 40, stat: 'str',   category: 'strength',  icon: '🏋️' },
+  { id: 'pullups20',    name: 'Do 20 pull-ups',                  xp: 22, stat: 'str',   category: 'strength',  icon: '🏋️' },
+  { id: 'squats150',    name: 'Complete 150 squats',             xp: 35, stat: 'str',   category: 'strength',  icon: '🦵' },
+  { id: 'squats75',     name: 'Complete 75 squats',              xp: 20, stat: 'str',   category: 'strength',  icon: '🦵' },
+  { id: 'plank3',       name: 'Hold plank for 3 minutes',        xp: 25, stat: 'vit',   category: 'strength',  icon: '🧱' },
+  { id: 'plank5',       name: 'Hold plank for 5 minutes total',  xp: 35, stat: 'vit',   category: 'strength',  icon: '🧱' },
+  { id: 'dips60',       name: 'Do 60 tricep dips',               xp: 30, stat: 'str',   category: 'strength',  icon: '💪' },
+  { id: 'lunges100',    name: 'Do 100 walking lunges',           xp: 30, stat: 'str',   category: 'strength',  icon: '🦵' },
+  { id: 'burpees30',    name: 'Complete 30 burpees',             xp: 35, stat: 'str',   category: 'strength',  icon: '🔥' },
+  { id: 'burpees50',    name: 'Complete 50 burpees',             xp: 50, stat: 'str',   category: 'strength',  icon: '🔥' },
+  { id: 'crunches200',  name: 'Do 200 crunches',                 xp: 28, stat: 'str',   category: 'strength',  icon: '💪' },
+  { id: 'legpress',     name: 'Complete a full leg day workout', xp: 45, stat: 'str',   category: 'strength',  icon: '🏋️' },
+  { id: 'pushvariant',  name: 'Do 3 different push-up variations',xp:30, stat: 'str',   category: 'strength',  icon: '💪' },
+  { id: 'isometric',    name: 'Hold a wall sit for 3 minutes',   xp: 25, stat: 'vit',   category: 'strength',  icon: '🧱' },
+  { id: 'handstand',    name: 'Practice handstand for 5 min',    xp: 30, stat: 'str',   category: 'strength',  icon: '🤸' },
+  { id: 'muscleups',    name: 'Do 5 muscle-ups',                 xp: 45, stat: 'str',   category: 'strength',  icon: '🏋️' },
+  { id: 'armday',       name: 'Complete a full upper body session',xp:40, stat: 'str',   category: 'strength',  icon: '💪' },
+
+  // ── CARDIO ───────────────────────────────────────────
+  { id: 'run3k',        name: 'Run 3 km',                        xp: 40, stat: 'agi',   category: 'cardio',    icon: '🏃' },
+  { id: 'run5k',        name: 'Run 5 km',                        xp: 60, stat: 'agi',   category: 'cardio',    icon: '🏃' },
+  { id: 'run1k',        name: 'Run 1 km without stopping',       xp: 20, stat: 'agi',   category: 'cardio',    icon: '🏃' },
+  { id: 'run10k',       name: 'Run 10 km',                       xp: 90, stat: 'agi',   category: 'cardio',    icon: '🏃' },
+  { id: 'jump500',      name: '500 jump rope reps',              xp: 30, stat: 'agi',   category: 'cardio',    icon: '⚡' },
+  { id: 'jump1000',     name: '1,000 jump rope reps',            xp: 45, stat: 'agi',   category: 'cardio',    icon: '⚡' },
+  { id: 'bike10',       name: 'Cycle 10 km',                     xp: 45, stat: 'agi',   category: 'cardio',    icon: '🚴' },
+  { id: 'bike20',       name: 'Cycle 20 km',                     xp: 65, stat: 'agi',   category: 'cardio',    icon: '🚴' },
+  { id: 'stairs',       name: 'Climb 30 flights of stairs',      xp: 35, stat: 'vit',   category: 'cardio',    icon: '🪜' },
+  { id: 'hiit20',       name: 'Complete 20 min HIIT session',    xp: 45, stat: 'agi',   category: 'cardio',    icon: '🔥' },
+  { id: 'swim',         name: 'Swim for 30 minutes',             xp: 50, stat: 'agi',   category: 'cardio',    icon: '🏊' },
+  { id: 'sprint',       name: 'Do 10 x 100m sprints',           xp: 50, stat: 'agi',   category: 'cardio',    icon: '⚡' },
+  { id: 'walk8k',       name: 'Walk 8,000 steps',                xp: 25, stat: 'agi',   category: 'cardio',    icon: '👟' },
+  { id: 'walk12k',      name: 'Walk 12,000 steps',               xp: 40, stat: 'agi',   category: 'cardio',    icon: '👟' },
+  { id: 'shadowbox',    name: 'Shadow box for 15 minutes',       xp: 35, stat: 'agi',   category: 'cardio',    icon: '🥊' },
+  { id: 'dancing',      name: 'Dance for 30 minutes straight',   xp: 30, stat: 'agi',   category: 'cardio',    icon: '💃' },
+  { id: 'cardio45',     name: 'Do 45 min of any cardio',         xp: 50, stat: 'agi',   category: 'cardio',    icon: '🏃' },
+
+  // ── NUTRITION ────────────────────────────────────────
+  { id: 'protein150',   name: 'Hit 150g protein goal',           xp: 30, stat: 'vit',   category: 'nutrition', icon: '🥩' },
+  { id: 'protein120',   name: 'Hit 120g protein today',          xp: 22, stat: 'vit',   category: 'nutrition', icon: '🥩' },
+  { id: 'water2l',      name: 'Drink 2L of water',               xp: 15, stat: 'vit',   category: 'nutrition', icon: '💧' },
+  { id: 'water3l',      name: 'Drink 3L of water',               xp: 25, stat: 'vit',   category: 'nutrition', icon: '💧' },
+  { id: 'veggies5',     name: 'Eat 5 servings of vegetables',    xp: 25, stat: 'vit',   category: 'nutrition', icon: '🥦' },
+  { id: 'veggies3',     name: 'Eat 3 servings of vegetables',    xp: 15, stat: 'vit',   category: 'nutrition', icon: '🥦' },
+  { id: 'nosugar',      name: 'Zero added sugar today',          xp: 35, stat: 'vit',   category: 'nutrition', icon: '🚫' },
+  { id: 'nojunk',       name: 'No junk food or fast food today', xp: 30, stat: 'vit',   category: 'nutrition', icon: '🚫' },
+  { id: 'meal_prep',    name: 'Prep meals for tomorrow',         xp: 25, stat: 'int',   category: 'nutrition', icon: '🍱' },
+  { id: 'deficit',      name: 'Stay in a calorie deficit today', xp: 30, stat: 'vit',   category: 'nutrition', icon: '⚖️' },
+  { id: 'breakfast',    name: 'Eat a high-protein breakfast',    xp: 20, stat: 'vit',   category: 'nutrition', icon: '🍳' },
+  { id: 'noalcohol',    name: 'No alcohol today',                xp: 25, stat: 'vit',   category: 'nutrition', icon: '🚫' },
+  { id: 'fruit3',       name: 'Eat 3 different fruits today',    xp: 18, stat: 'vit',   category: 'nutrition', icon: '🍎' },
+  { id: 'intermittent', name: 'Fast for 16 hours (16:8)',        xp: 40, stat: 'vit',   category: 'nutrition', icon: '⏱️' },
+  { id: 'homecook',     name: 'Cook every meal at home today',   xp: 30, stat: 'int',   category: 'nutrition', icon: '👨‍🍳' },
+  { id: 'supplements',  name: 'Take all your supplements',       xp: 15, stat: 'vit',   category: 'nutrition', icon: '💊' },
+  { id: 'greens',       name: 'Drink a greens/veggie smoothie',  xp: 20, stat: 'vit',   category: 'nutrition', icon: '🥤' },
+  { id: 'omega3',       name: 'Eat an omega-3 rich meal',        xp: 18, stat: 'vit',   category: 'nutrition', icon: '🐟' },
+
+  // ── MENTAL ───────────────────────────────────────────
+  { id: 'meditate15',   name: 'Meditate for 15 minutes',         xp: 25, stat: 'int',   category: 'mental',    icon: '🧘' },
+  { id: 'meditate5',    name: 'Meditate for 5 minutes',          xp: 12, stat: 'int',   category: 'mental',    icon: '🧘' },
+  { id: 'meditate30',   name: 'Meditate for 30 minutes',         xp: 40, stat: 'int',   category: 'mental',    icon: '🧘' },
+  { id: 'journal',      name: 'Write in your journal',           xp: 20, stat: 'int',   category: 'mental',    icon: '📓' },
+  { id: 'journal3pg',   name: 'Write 3 full pages in journal',   xp: 35, stat: 'int',   category: 'mental',    icon: '📓' },
+  { id: 'read30',       name: 'Read for 30 minutes',             xp: 25, stat: 'int',   category: 'mental',    icon: '📖' },
+  { id: 'read60',       name: 'Read for 1 hour',                 xp: 40, stat: 'int',   category: 'mental',    icon: '📖' },
+  { id: 'gratitude',    name: 'List 5 things you are grateful for', xp: 15, stat: 'int', category: 'mental',   icon: '✨' },
+  { id: 'nophone2',     name: 'No phone for 2 hours',            xp: 30, stat: 'sense', category: 'mental',    icon: '📵' },
+  { id: 'nophone1',     name: 'No phone for 1 hour',             xp: 18, stat: 'sense', category: 'mental',    icon: '📵' },
+  { id: 'affirmations', name: 'Say 10 positive affirmations',    xp: 15, stat: 'int',   category: 'mental',    icon: '🌟' },
+  { id: 'visualize',    name: 'Visualize your goals for 10 min', xp: 20, stat: 'int',   category: 'mental',    icon: '🎯' },
+  { id: 'podcast',      name: 'Listen to a self-improvement podcast', xp: 20, stat: 'int', category: 'mental', icon: '🎧' },
+  { id: 'newsfast',     name: 'No news or social media today',   xp: 30, stat: 'sense', category: 'mental',    icon: '📵' },
+  { id: 'breathwork',   name: 'Do 10 min of breathwork',         xp: 22, stat: 'int',   category: 'mental',    icon: '💨' },
+  { id: 'learnone',     name: 'Learn one new thing today',       xp: 20, stat: 'int',   category: 'mental',    icon: '🧠' },
+  { id: 'reflect',      name: 'Do a 10-min evening reflection',  xp: 18, stat: 'int',   category: 'mental',    icon: '🌙' },
+  { id: 'studyskill',   name: 'Study a skill for 45 minutes',    xp: 35, stat: 'int',   category: 'mental',    icon: '📚' },
+  { id: 'deepwork',     name: 'Do 90 min of deep focused work',  xp: 45, stat: 'int',   category: 'mental',    icon: '🎯' },
+
+  // ── LIFESTYLE ────────────────────────────────────────
+  { id: 'sleep10',      name: 'Sleep by 10 PM',                  xp: 30, stat: 'vit',   category: 'lifestyle', icon: '🌙' },
+  { id: 'sleep11',      name: 'Sleep before 11 PM',              xp: 20, stat: 'vit',   category: 'lifestyle', icon: '🌙' },
+  { id: 'sleep8h',      name: 'Get 8 hours of sleep',            xp: 35, stat: 'vit',   category: 'lifestyle', icon: '💤' },
+  { id: 'morning6',     name: 'Wake up before 6 AM',             xp: 35, stat: 'sense', category: 'lifestyle', icon: '🌅' },
+  { id: 'morning7',     name: 'Wake up before 7 AM',             xp: 20, stat: 'sense', category: 'lifestyle', icon: '🌅' },
+  { id: 'cold',         name: 'Take a cold shower',              xp: 25, stat: 'vit',   category: 'lifestyle', icon: '🚿' },
+  { id: 'stretch20',    name: 'Stretch for 20 minutes',          xp: 20, stat: 'agi',   category: 'lifestyle', icon: '🤸' },
+  { id: 'sunlight',     name: 'Get 20 min of sunlight',          xp: 18, stat: 'vit',   category: 'lifestyle', icon: '☀️' },
+  { id: 'nap',          name: 'Take a 20-min power nap',         xp: 15, stat: 'vit',   category: 'lifestyle', icon: '💤' },
+  { id: 'declutter',    name: 'Clean and declutter one room',    xp: 25, stat: 'sense', category: 'lifestyle', icon: '🧹' },
+  { id: 'noscreenbeds', name: 'No screens 1 hour before bed',    xp: 25, stat: 'vit',   category: 'lifestyle', icon: '📵' },
+  { id: 'morningrout',  name: 'Complete full morning routine',   xp: 30, stat: 'sense', category: 'lifestyle', icon: '🌅' },
+  { id: 'outside',      name: 'Spend 30 min outside in nature',  xp: 20, stat: 'sense', category: 'lifestyle', icon: '🌿' },
+  { id: 'callsomeone',  name: 'Call a friend or family member',  xp: 18, stat: 'sense', category: 'lifestyle', icon: '📱' },
+  { id: 'organize',     name: 'Organize your schedule for tomorrow', xp: 20, stat: 'int', category: 'lifestyle', icon: '📅' },
+  { id: 'hobbywork',    name: 'Work on a hobby for 30 minutes',  xp: 22, stat: 'sense', category: 'lifestyle', icon: '🎨' },
+  { id: 'noprocessed',  name: 'Eat zero processed food today',   xp: 30, stat: 'vit',   category: 'lifestyle', icon: '🌿' },
+];
+
+// ── WEEKEND SPECIAL QUESTS (Saturday & Sunday only) ──
+const WEEKEND_QUEST_POOL = [
+  { id: 'wk_longrun',   name: 'Go on a long run (8km+)',         xp: 80, stat: 'agi',   category: 'weekend',   icon: '🏃' },
+  { id: 'wk_hike',      name: 'Go on a hike or long walk',       xp: 60, stat: 'agi',   category: 'weekend',   icon: '🥾' },
+  { id: 'wk_fullbody',  name: 'Complete a full body workout',    xp: 70, stat: 'str',   category: 'weekend',   icon: '💪' },
+  { id: 'wk_mealprep',  name: 'Meal prep for the whole week',    xp: 65, stat: 'vit',   category: 'weekend',   icon: '🍱' },
+  { id: 'wk_journal',   name: 'Write a full weekly review',      xp: 50, stat: 'int',   category: 'weekend',   icon: '📓' },
+  { id: 'wk_detox',     name: 'Full digital detox day',          xp: 75, stat: 'sense', category: 'weekend',   icon: '📵' },
+  { id: 'wk_sport',     name: 'Play a sport for 1 hour',         xp: 60, stat: 'agi',   category: 'weekend',   icon: '⚽' },
+  { id: 'wk_coldplunge',name: 'Take a 5-min cold plunge/shower', xp: 55, stat: 'vit',   category: 'weekend',   icon: '🧊' },
+  { id: 'wk_cook',      name: 'Cook a full healthy meal from scratch', xp: 45, stat: 'int', category: 'weekend', icon: '👨‍🍳' },
+  { id: 'wk_study2h',   name: 'Study or learn for 2 solid hours',xp: 60, stat: 'int',   category: 'weekend',   icon: '📚' },
+];
+
+// ── BONUS SURPRISE QUESTS (random chance each day) ───
+const SURPRISE_QUEST_POOL = [
+  { id: 'sur_200push',  name: '⚡ SURPRISE: 200 push-ups today!', xp: 80,  stat: 'str',   category: 'surprise',  icon: '⚡' },
+  { id: 'sur_icebath',  name: '⚡ SURPRISE: Ice bath challenge',  xp: 70,  stat: 'vit',   category: 'surprise',  icon: '🧊' },
+  { id: 'sur_sunrise',  name: '⚡ SURPRISE: Watch the sunrise',   xp: 50,  stat: 'sense', category: 'surprise',  icon: '🌅' },
+  { id: 'sur_nofood',   name: '⚡ SURPRISE: Fast until 2 PM',     xp: 60,  stat: 'vit',   category: 'surprise',  icon: '⏱️' },
+  { id: 'sur_10k',      name: '⚡ SURPRISE: Hit 10,000 steps',    xp: 65,  stat: 'agi',   category: 'surprise',  icon: '👟' },
+  { id: 'sur_nophone',  name: '⚡ SURPRISE: No phone all morning',xp: 55,  stat: 'sense', category: 'surprise',  icon: '📵' },
+  { id: 'sur_recruit',  name: '⚡ SURPRISE: Recruit someone to train with you', xp: 75, stat: 'sense', category: 'surprise', icon: '🤝' },
+  { id: 'sur_newexerc', name: '⚡ SURPRISE: Try a new exercise',  xp: 45,  stat: 'str',   category: 'surprise',  icon: '🏋️' },
+  { id: 'sur_compliment',name:'⚡ SURPRISE: Compliment 3 people genuinely', xp: 35, stat: 'sense', category: 'surprise', icon: '✨' },
+  { id: 'sur_gratlist', name: '⚡ SURPRISE: Write 10 things you are grateful for', xp: 40, stat: 'int', category: 'surprise', icon: '📓' },
 ];
 
 const FOOD_DB = [
@@ -231,23 +328,58 @@ function xpForLevel(level) {
 }
 
 function getDailyQuests() {
-  // Deterministic daily selection based on date
-  const today = new Date().toDateString();
+  const today    = new Date().toDateString();
+  const dow      = new Date().getDay(); // 0=Sun, 6=Sat
+  const isWeekend = dow === 0 || dow === 6;
+
+  // Seeded shuffle so same quests all day
   let seed = today.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-  const shuffled = [...QUEST_POOL].sort(() => {
+  function seededRand() {
     seed = (seed * 1103515245 + 12345) & 0x7fffffff;
-    return (seed % 3) - 1;
-  });
-  // Pick 2 strength/cardio, 1 nutrition, 1 mental, 1 lifestyle
+    return seed / 0x7fffffff;
+  }
+
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(seededRand() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
   const picks = [];
-  const cats = { strength: 0, cardio: 0, nutrition: 0, mental: 0, lifestyle: 0 };
-  const want  = { strength: 1, cardio: 1, nutrition: 1, mental: 1, lifestyle: 1 };
-  for (const q of shuffled) {
-    if ((cats[q.category] || 0) < (want[q.category] || 0)) {
+
+  // Always pick 1 surprise quest (10% chance on weekdays, 20% on weekends)
+  const surpriseChance = isWeekend ? 0.20 : 0.10;
+  if (seededRand() < surpriseChance) {
+    const surprises = shuffle(SURPRISE_QUEST_POOL);
+    picks.push({ ...surprises[0], done: false });
+  }
+
+  // Weekend: add 1 special weekend quest
+  if (isWeekend) {
+    const wkQuests = shuffle(WEEKEND_QUEST_POOL);
+    picks.push({ ...wkQuests[0], done: false });
+  }
+
+  // Fill remaining slots from main pool (always 5 total minimum)
+  const target = 5;
+  const want   = { strength: 1, cardio: 1, nutrition: 1, mental: 1, lifestyle: 1 };
+  const cats   = { strength: 0, cardio: 0, nutrition: 0, mental: 0, lifestyle: 0 };
+
+  // Reduce want counts for already-picked surprise/weekend slots
+  picks.forEach(p => { if (want[p.category] !== undefined) want[p.category]--; });
+
+  const shuffledMain = shuffle(QUEST_POOL);
+  for (const q of shuffledMain) {
+    if (picks.length >= target + (isWeekend ? 1 : 0)) break;
+    const remaining = (want[q.category] || 0) - (cats[q.category] || 0);
+    if (remaining > 0) {
       picks.push({ ...q, done: false });
       cats[q.category] = (cats[q.category] || 0) + 1;
     }
-    if (picks.length === 5) break;
   }
+
   return picks;
 }
