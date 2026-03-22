@@ -74,7 +74,7 @@ function refreshHUD() {
   const rank = getRank(HUNTER.level);
   document.getElementById('top-name').textContent = HUNTER.name.toUpperCase();
   document.getElementById('top-rank').textContent = rank.name;
-  document.getElementById('top-avatar').textContent = HUNTER.name.slice(0,2).toUpperCase();
+  document.getElementById('top-avatar').textContent = HUNTER.name.slice(0, 2).toUpperCase();
 }
 
 function showNotif(msg, type = 'default') {
@@ -94,6 +94,25 @@ function showLevelUp() {
 
 function closeLevelUp() {
   document.getElementById('levelup-overlay').classList.add('hidden');
+}
+
+function undoQuest(index) {
+  const q = HUNTER.quests[index];
+  if (!q || !q.done) return;
+  q.done = false;
+  // Subtract XP (can't go below 0 for current level)
+  HUNTER.xp = Math.max(0, HUNTER.xp - q.xp);
+  HUNTER.questsCompleted = Math.max(0, (HUNTER.questsCompleted || 1) - 1);
+  HUNTER.totalXPEarned = Math.max(0, (HUNTER.totalXPEarned || q.xp) - q.xp);
+  // Subtract stat point
+  if (q.stat && HUNTER.stats[q.stat]) {
+    HUNTER.stats[q.stat] = Math.max(10, HUNTER.stats[q.stat] - Math.max(1, Math.floor(q.xp / 20)));
+  }
+  persist();
+  refreshHUD();
+  renderQuestsPage();
+  renderStatusPage();
+  showNotif(`[ UNDO ] Quest unmarked — go earn it for real!`);
 }
 
 function completeQuest(index) {
@@ -122,7 +141,7 @@ function completeQuest(index) {
 }
 
 function addFoodEntry(food) {
-  HUNTER.foodLog.push({ ...food, time: new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }) });
+  HUNTER.foodLog.push({ ...food, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) });
   persist();
   renderNutritionPage();
 }
@@ -134,7 +153,7 @@ function logWorkout(type, durationMin, notes) {
     type, durationMin, notes,
     xpEarned,
     date: new Date().toLocaleDateString(),
-    time: new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }),
+    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
   };
   HUNTER.workouts = HUNTER.workouts || [];
   HUNTER.workouts.unshift(entry);
