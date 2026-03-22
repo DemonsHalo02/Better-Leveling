@@ -87,12 +87,9 @@ function launchApp(hunterData) {
   }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  const currentKey = getCurrentUser();
-  if (currentKey) {
-    const users = getUsers();
-    if (users[currentKey]) launchApp(users[currentKey]);
-  }
+window.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('login-pass').addEventListener('keydown', e => { if(e.key==='Enter') handleLogin(); });
   document.getElementById('login-user').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('login-pass').focus(); });
+  // Try to restore session from cloud or local
+  await restoreSession();
 });
