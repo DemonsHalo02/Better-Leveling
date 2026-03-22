@@ -330,12 +330,4 @@ function getBodyLogs() {
   catch { return []; }
 }
 
-// ===== MAIN RENDER =====
-function renderSelfImprovePage() {
-  const el = document.getElementById('page-improve');
-  el.innerHTML = '';
-  renderMoodTracker(el);
-  renderSleepTracker(el);
-  renderStudyTracker(el);
-  renderBodyMeasurements(el);
-}
+// renderSelfImprovePage moved to features.js — it now includes all trackers
