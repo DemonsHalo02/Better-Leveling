@@ -1,124 +1,166 @@
 // ============================================
-// SYSTEM — AUTHENTICATION
+// SYSTEM — PASSWORD GATE
+//
+// Only one password to get into the whole app.
+// Change APP_PASSWORD below to whatever you want.
+// Everyone who knows it shares the same hunter profile.
+//
+// TO CHANGE THE PASSWORD:
+// Edit the APP_PASSWORD value below, save the file,
+// and re-upload it to GitHub. That's it.
 // ============================================
 
-function getUsers() {
-  try { return JSON.parse(localStorage.getItem('sys_users') || '{}'); }
-  catch { return {}; }
+const APP_PASSWORD = 'DevilsForLife';  // ← CHANGE THIS
+
+// Session key — how long login lasts (in hours)
+const SESSION_HOURS = 72;
+
+// ── GATE CHECK ────────────────────────────────────────
+function handleGateLogin() {
+  const input = document.getElementById('gate-pass');
+  const err   = document.getElementById('gate-error');
+  const pass  = input?.value || '';
+
+  if (!pass) {
+    err.textContent = '[ ERROR ] Enter the passkey';
+    shakeCard();
+    return;
+  }
+
+  if (pass !== APP_PASSWORD) {
+    err.textContent = '[ DENIED ] Incorrect passkey';
+    input.value = '';
+    shakeCard();
+    // Lock out after 5 failed attempts
+    trackFailedAttempt();
+    return;
+  }
+
+  err.textContent = '';
+  saveSession();
+  launchApp(getHunterProfile());
 }
 
-function saveUsers(u) {
-  localStorage.setItem('sys_users', JSON.stringify(u));
+// ── SHAKE ANIMATION ───────────────────────────────────
+function shakeCard() {
+  const card = document.getElementById('login-card');
+  if (!card) return;
+  card.style.animation = 'none';
+  card.offsetHeight; // force reflow
+  card.style.animation = 'shake 0.4s ease';
+  if (!document.getElementById('shake-style')) {
+    const s = document.createElement('style');
+    s.id = 'shake-style';
+    s.textContent = `@keyframes shake {
+      0%,100%{transform:translateX(0)}
+      20%{transform:translateX(-10px)}
+      40%{transform:translateX(10px)}
+      60%{transform:translateX(-8px)}
+      80%{transform:translateX(8px)}
+    }`;
+    document.head.appendChild(s);
+  }
 }
 
-function getCurrentUser() {
-  try { return JSON.parse(localStorage.getItem('sys_current') || 'null'); }
-  catch { return null; }
+// ── BRUTE FORCE LOCKOUT ───────────────────────────────
+function trackFailedAttempt() {
+  const key  = 'sys_gate_fails';
+  const data = JSON.parse(localStorage.getItem(key) || '{"count":0,"since":0}');
+  const now  = Date.now();
+
+  // Reset counter after 10 minutes
+  if (now - data.since > 10 * 60 * 1000) {
+    data.count = 0;
+    data.since = now;
+  }
+
+  data.count++;
+  localStorage.setItem(key, JSON.stringify(data));
+
+  if (data.count >= 5) {
+    const err = document.getElementById('gate-error');
+    const btn = document.querySelector('[onclick="handleGateLogin()"]');
+    const input = document.getElementById('gate-pass');
+    const lockMins = 10;
+    if (err)   err.textContent   = `[ LOCKED ] Too many attempts. Wait ${lockMins} min.`;
+    if (btn)   btn.disabled      = true;
+    if (input) input.disabled    = true;
+
+    setTimeout(() => {
+      if (btn)   btn.disabled   = false;
+      if (input) input.disabled = false;
+      if (err)   err.textContent = '';
+      localStorage.removeItem(key);
+    }, lockMins * 60 * 1000);
+  }
 }
 
-function switchLoginTab(tab, el) {
-  document.querySelectorAll('.ltab').forEach(b => b.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('signin-form').style.display = tab === 'signin' ? 'block' : 'none';
-  document.getElementById('signup-form').style.display = tab === 'signup' ? 'block' : 'none';
-  document.getElementById('login-error').textContent = '';
-  document.getElementById('reg-error').textContent = '';
+// ── SESSION ───────────────────────────────────────────
+function saveSession() {
+  localStorage.setItem('sys_gate_session', JSON.stringify({
+    expires: Date.now() + SESSION_HOURS * 60 * 60 * 1000,
+  }));
 }
 
-function handleLogin() {
-  const name = document.getElementById('login-user').value.trim();
-  const pass = document.getElementById('login-pass').value;
-  const err  = document.getElementById('login-error');
-
-  if (!name || !pass) { err.textContent = '[ ERROR ] All fields required'; return; }
-
-  const users = getUsers();
-  if (!users[name.toLowerCase()]) { err.textContent = '[ ERROR ] Hunter not found'; return; }
-  if (users[name.toLowerCase()].password !== btoa(pass)) { err.textContent = '[ ERROR ] Invalid passkey'; return; }
-
-  localStorage.setItem('sys_current', JSON.stringify(name.toLowerCase()));
-  launchApp(users[name.toLowerCase()]);
+function hasValidSession() {
+  try {
+    const s = JSON.parse(localStorage.getItem('sys_gate_session') || 'null');
+    return s && s.expires > Date.now();
+  } catch { return false; }
 }
 
-function handleRegister() {
-  const name  = document.getElementById('reg-name').value.trim();
-  const pass  = document.getElementById('reg-pass').value;
-  const cls   = document.getElementById('reg-class').value;
-  const err   = document.getElementById('reg-error');
+function clearSession() {
+  localStorage.removeItem('sys_gate_session');
+}
 
-  if (!name || !pass) { err.textContent = '[ ERROR ] All fields required'; return; }
-  if (name.length < 2) { err.textContent = '[ ERROR ] Name too short'; return; }
-  if (pass.length < 4) { err.textContent = '[ ERROR ] Passkey too short (min 4)'; return; }
+// ── HUNTER PROFILE ────────────────────────────────────
+// Everyone uses the same shared hunter profile stored locally.
+// Progress, XP, quests etc. all save to this device.
+function getHunterProfile() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('sys_hunter_profile') || 'null');
+    if (saved) return saved;
+  } catch {}
 
-  const users = getUsers();
-  if (users[name.toLowerCase()]) { err.textContent = '[ ERROR ] Hunter already exists'; return; }
-
-  const bonus = CLASS_BONUSES[cls] || {};
-  const newHunter = {
-    name,
-    password: btoa(pass),
-    class: cls,
-    level: 1,
-    xp: 0,
-    stats: {
-      str:   10 + (bonus.str   || 0),
-      vit:   10 + (bonus.vit   || 0),
-      agi:   10 + (bonus.agi   || 0),
-      int:   10 + (bonus.int   || 0),
-      sense: 10 + (bonus.sense || 0),
-    },
-    quests: [],
-    questDate: '',
-    foodLog: [],
-    foodDate: '',
-    workouts: [],
+  // First time — create a fresh profile
+  return {
+    name:            'HUNTER',
+    class:           'fighter',
+    level:           1,
+    xp:              0,
+    stats:           { str: 10, vit: 10, agi: 10, int: 10, sense: 10 },
+    quests:          [],
+    questDate:       '',
+    foodLog:         [],
+    foodDate:        '',
+    workouts:        [],
     totalWorkoutMin: 0,
-    streakDays: 0,
-    lastActive: '',
+    streakDays:      0,
+    lastActive:      '',
     questsCompleted: 0,
-    totalXPEarned: 0,
+    totalXPEarned:   0,
+    paid:            true, // password = already authorized
+    createdAt:       new Date().toISOString(),
   };
-
-  users[name.toLowerCase()] = newHunter;
-  saveUsers(users);
-  localStorage.setItem('sys_current', JSON.stringify(name.toLowerCase()));
-  launchApp(newHunter);
-}
-
-function demoLogin() {
-  const demo = {
-    name: 'DEMO HUNTER',
-    class: 'fighter',
-    level: 7,
-    xp: 250,
-    stats: { str: 28, vit: 22, agi: 18, int: 15, sense: 14 },
-    quests: [],
-    questDate: '',
-    foodLog: [],
-    foodDate: '',
-    workouts: [],
-    totalWorkoutMin: 120,
-    streakDays: 3,
-    lastActive: '',
-    questsCompleted: 18,
-    totalXPEarned: 940,
-  };
-  localStorage.setItem('sys_current', JSON.stringify('__demo__'));
-  const users = getUsers();
-  users['__demo__'] = demo;
-  saveUsers(users);
-  launchApp(demo);
 }
 
 function saveCurrentHunter(data) {
-  const key = getCurrentUser();
-  if (!key) return;
-  const users = getUsers();
-  users[key] = { ...users[key], ...data };
-  saveUsers(users);
+  localStorage.setItem('sys_hunter_profile', JSON.stringify(data));
 }
 
+// getCurrentUser — returns a fixed key since there's only one profile
+function getCurrentUser() { return 'hunter'; }
+
+// ── LOGOUT ────────────────────────────────────────────
 function logout() {
-  localStorage.removeItem('sys_current');
+  clearSession();
   location.reload();
 }
+
+// ── STUBS (kept so other files don't break) ───────────
+function getUsers()    { return { hunter: getHunterProfile() }; }
+function saveUsers()   {} // no-op — saveCurrentHunter handles it
+function switchLoginTab() {}
+function handleLogin()    { handleGateLogin(); }
+function handleRegister() {}
+function demoLogin()      { launchApp(getHunterProfile()); }
