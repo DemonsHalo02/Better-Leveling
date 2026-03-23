@@ -50,7 +50,7 @@ function showPage(name, btn) {
   if (name === 'quests')    renderQuestsPage();
   if (name === 'nutrition') renderNutritionPage();
   if (name === 'workout')   renderWorkoutPage();
-  if (name === 'status')    renderStatusPage();
+  if (name === 'status')    { renderStatusPage(); if (typeof renderAdminPanel === 'function') renderAdminPanel(); }
   if (name === 'boss')      renderBossPage();
   if (name === 'skills')    renderSkillTree();
   if (name === 'army')      renderShadowArmy();
@@ -63,18 +63,33 @@ function launchApp(hunterData) {
   const hunter = loadHunter(hunterData);
   HUNTER = hunter;
 
+  // ── ACCESS GATE ──────────────────────────────────
+  // Returns false and shows paywall if access denied
+  if (!checkAccessGate(hunter)) return;
+
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app-screen').classList.remove('hidden');
 
   refreshHUD();
   renderQuestsPage();
   checkShadowUnlocks();
+  checkLoginStreakBonus();
+  if (typeof checkAllAchievements === 'function') setTimeout(() => checkAllAchievements(), 2000);
 
-  if (localStorage.getItem('sys_health_source')) {
-    setTimeout(() => { setHealthConnected(localStorage.getItem('sys_health_source')); loadSimulatedHealthData(); }, 1000);
+  // Check payment if returning from Stripe
+  if (window._checkPaymentOnLoad) {
+    window._checkPaymentOnLoad = false;
+    setTimeout(() => checkPaymentStatus(), 1000);
   }
 
-  // Play awakening intro for new hunters
+  if (localStorage.getItem('sys_health_source')) {
+    setTimeout(() => {
+      setHealthConnected(localStorage.getItem('sys_health_source'));
+      loadSimulatedHealthData();
+    }, 1000);
+  }
+
+  // Awakening intro for new hunters
   const isNew = !localStorage.getItem('sys_awakened_' + hunter.name.toLowerCase());
   if (isNew) {
     setTimeout(() => playAwakeningIntro(hunter.name, () => {
@@ -88,8 +103,25 @@ function launchApp(hunterData) {
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
-  document.getElementById('login-pass').addEventListener('keydown', e => { if(e.key==='Enter') handleLogin(); });
-  document.getElementById('login-user').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('login-pass').focus(); });
-  // Try to restore session from cloud or local
-  await restoreSession();
+  // Wire Enter key on password gate
+  const gateInput = document.getElementById('gate-pass');
+  if (gateInput) {
+    gateInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') handleGateLogin();
+    });
+    // Auto-focus the password field
+    setTimeout(() => gateInput.focus(), 400);
+  }
+
+  // Restore session if still valid (skip login screen)
+  if (hasValidSession()) {
+    launchApp(getHunterProfile());
+    return;
+  }
+
+  // Check payment return from Stripe
+  if (window._checkPaymentOnLoad) {
+    window._checkPaymentOnLoad = false;
+    setTimeout(() => checkPaymentStatus(), 1000);
+  }
 });
