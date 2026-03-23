@@ -18,8 +18,8 @@ const SESSION_HOURS = 72;
 // ── GATE CHECK ────────────────────────────────────────
 function handleGateLogin() {
   const input = document.getElementById('gate-pass');
-  const err   = document.getElementById('gate-error');
-  const pass  = input?.value || '';
+  const err = document.getElementById('gate-error');
+  const pass = input?.value || '';
 
   if (!pass) {
     err.textContent = '[ ERROR ] Enter the passkey';
@@ -64,9 +64,9 @@ function shakeCard() {
 
 // ── BRUTE FORCE LOCKOUT ───────────────────────────────
 function trackFailedAttempt() {
-  const key  = 'sys_gate_fails';
+  const key = 'sys_gate_fails';
   const data = JSON.parse(localStorage.getItem(key) || '{"count":0,"since":0}');
-  const now  = Date.now();
+  const now = Date.now();
 
   // Reset counter after 10 minutes
   if (now - data.since > 10 * 60 * 1000) {
@@ -82,14 +82,14 @@ function trackFailedAttempt() {
     const btn = document.querySelector('[onclick="handleGateLogin()"]');
     const input = document.getElementById('gate-pass');
     const lockMins = 10;
-    if (err)   err.textContent   = `[ LOCKED ] Too many attempts. Wait ${lockMins} min.`;
-    if (btn)   btn.disabled      = true;
-    if (input) input.disabled    = true;
+    if (err) err.textContent = `[ LOCKED ] Too many attempts. Wait ${lockMins} min.`;
+    if (btn) btn.disabled = true;
+    if (input) input.disabled = true;
 
     setTimeout(() => {
-      if (btn)   btn.disabled   = false;
+      if (btn) btn.disabled = false;
       if (input) input.disabled = false;
-      if (err)   err.textContent = '';
+      if (err) err.textContent = '';
       localStorage.removeItem(key);
     }, lockMins * 60 * 1000);
   }
@@ -120,32 +120,34 @@ function getHunterProfile() {
   try {
     const saved = JSON.parse(localStorage.getItem('sys_hunter_profile') || 'null');
     if (saved) return saved;
-  } catch {}
+  } catch { }
 
   // First time — create a fresh profile
   return {
-    name:            'HUNTER',
-    class:           'fighter',
-    level:           1,
-    xp:              0,
-    stats:           { str: 10, vit: 10, agi: 10, int: 10, sense: 10 },
-    quests:          [],
-    questDate:       '',
-    foodLog:         [],
-    foodDate:        '',
-    workouts:        [],
+    name: 'HUNTER',
+    class: 'fighter',
+    level: 1,
+    xp: 0,
+    stats: { str: 10, vit: 10, agi: 10, int: 10, sense: 10 },
+    quests: [],
+    questDate: '',
+    foodLog: [],
+    foodDate: '',
+    workouts: [],
     totalWorkoutMin: 0,
-    streakDays:      0,
-    lastActive:      '',
+    streakDays: 0,
+    lastActive: '',
     questsCompleted: 0,
-    totalXPEarned:   0,
-    paid:            true, // password = already authorized
-    createdAt:       new Date().toISOString(),
+    totalXPEarned: 0,
+    paid: true, // password = already authorized
+    createdAt: new Date().toISOString(),
   };
 }
 
 function saveCurrentHunter(data) {
   localStorage.setItem('sys_hunter_profile', JSON.stringify(data));
+  // Push to cloud if configured (defined in cloudsave.js)
+  if (typeof cloudSync === 'function') cloudSync(data);
 }
 
 // getCurrentUser — returns a fixed key since there's only one profile
@@ -158,9 +160,9 @@ function logout() {
 }
 
 // ── STUBS (kept so other files don't break) ───────────
-function getUsers()    { return { hunter: getHunterProfile() }; }
-function saveUsers()   {} // no-op — saveCurrentHunter handles it
-function switchLoginTab() {}
-function handleLogin()    { handleGateLogin(); }
-function handleRegister() {}
-function demoLogin()      { launchApp(getHunterProfile()); }
+function getUsers() { return { hunter: getHunterProfile() }; }
+function saveUsers() { } // no-op — saveCurrentHunter handles it
+function switchLoginTab() { }
+function handleLogin() { handleGateLogin(); }
+function handleRegister() { }
+function demoLogin() { launchApp(getHunterProfile()); }
