@@ -205,6 +205,13 @@ function renderWorkoutPage() {
   }
 
   el.innerHTML = html;
+
+  // Inject workout timer at top of page
+  if (typeof renderWorkoutTimer === 'function') {
+    const timerWrap = document.createElement('div');
+    renderWorkoutTimer(timerWrap);
+    el.insertBefore(timerWrap.firstElementChild?.parentElement || timerWrap, el.firstChild);
+  }
 }
 
 // ============================================
