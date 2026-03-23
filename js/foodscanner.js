@@ -12,7 +12,9 @@ function renderNutritionPage() {
   let totals = { cal: 0, protein: 0, carbs: 0, fat: 0 };
   log.forEach(f => { totals.cal += f.cal; totals.protein += f.protein; totals.carbs += f.carbs; totals.fat += f.fat; });
 
-  const goals = { cal: 2000, protein: 150, carbs: 250, fat: 65 };
+  const goals = typeof getMacroGoals === 'function'
+    ? getMacroGoals()
+    : { cal: 2000, protein: 150, carbs: 250, fat: 65 };
   const macros = [
     { label: 'CALORIES', val: totals.cal,     goal: goals.cal,     unit: 'kcal', color: '#00b4ff' },
     { label: 'PROTEIN',  val: totals.protein, goal: goals.protein, unit: 'g',    color: '#00e5a0' },
