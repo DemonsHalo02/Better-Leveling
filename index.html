@@ -18,6 +18,7 @@
 <div class="scanlines"></div>
 <div class="login-wrap" id="login-screen">
   <div class="login-glow-ring"></div>
+
   <div class="system-logo">
     <div class="logo-hex">
       <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
@@ -29,48 +30,30 @@
     <div class="logo-title">SYSTEM</div>
     <div class="logo-sub">HUNTER INTERFACE v3.0</div>
   </div>
+
   <div class="login-card" id="login-card">
     <div class="card-corner tl"></div><div class="card-corner tr"></div>
     <div class="card-corner bl"></div><div class="card-corner br"></div>
-    <div class="tabs-login">
-      <button class="ltab active" onclick="switchLoginTab('signin', this)">SIGN IN</button>
-      <button class="ltab" onclick="switchLoginTab('signup', this)">REGISTER</button>
+
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="font-size:32px;margin-bottom:8px">🔒</div>
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);letter-spacing:3px">ENTER ACCESS CODE</div>
     </div>
-    <div id="signin-form">
-      <div class="field-group">
-        <label class="field-label">HUNTER ID</label>
-        <input type="text" class="sys-input" id="login-user" placeholder="Enter your name..." autocomplete="username" />
-      </div>
-      <div class="field-group">
-        <label class="field-label">PASSKEY</label>
-        <input type="password" class="sys-input" id="login-pass" placeholder="••••••••" autocomplete="current-password" />
-      </div>
-      <div class="error-msg" id="login-error"></div>
-      <button class="btn-primary" onclick="handleLogin()"><span>ENTER THE SYSTEM</span><div class="btn-arrow">▶</div></button>
+
+    <div class="field-group">
+      <label class="field-label">PASSKEY</label>
+      <input type="password" class="sys-input" id="gate-pass"
+        placeholder="••••••••"
+        autocomplete="current-password"
+        style="font-size:20px;letter-spacing:6px;text-align:center" />
     </div>
-    <div id="signup-form" style="display:none">
-      <div class="field-group">
-        <label class="field-label">HUNTER NAME</label>
-        <input type="text" class="sys-input" id="reg-name" placeholder="Your hunter name..." />
-      </div>
-      <div class="field-group">
-        <label class="field-label">PASSKEY</label>
-        <input type="password" class="sys-input" id="reg-pass" placeholder="Create passkey..." />
-      </div>
-      <div class="field-group">
-        <label class="field-label">CLASS</label>
-        <select class="sys-input" id="reg-class">
-          <option value="fighter">Fighter — STR focused</option>
-          <option value="mage">Mage — INT focused</option>
-          <option value="assassin">Assassin — AGI focused</option>
-          <option value="tank">Tank — VIT focused</option>
-          <option value="ranger">Ranger — SENSE focused</option>
-        </select>
-      </div>
-      <div class="error-msg" id="reg-error"></div>
-      <button class="btn-primary" onclick="handleRegister()"><span>AWAKEN AS HUNTER</span><div class="btn-arrow">▶</div></button>
-    </div>
-    <div class="demo-note" onclick="demoLogin()">[ DEMO — Enter Without Account ]</div>
+
+    <div class="error-msg" id="gate-error" style="text-align:center"></div>
+
+    <button class="btn-primary" onclick="handleGateLogin()" style="margin-top:4px">
+      <span>ENTER THE SYSTEM</span>
+      <div class="btn-arrow">▶</div>
+    </button>
   </div>
 </div>
 <div class="app-wrap hidden" id="app-screen">
@@ -138,6 +121,7 @@
   </div>
 </div>
 <script src="js/data.js"></script>
+<script src="js/paywall.js"></script>
 <script src="js/cloudsave.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/engine.js"></script>
@@ -148,6 +132,7 @@
 <script src="js/army.js"></script>
 <script src="js/selfimprove.js"></script>
 <script src="js/features.js"></script>
+<script src="js/newfeatures.js"></script>
 <script src="js/guild.js"></script>
 <script src="js/awakening.js"></script>
 <script src="js/foodscanner.js"></script>
