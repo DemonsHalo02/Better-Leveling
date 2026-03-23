@@ -63,10 +63,7 @@ function launchApp(hunterData) {
   const hunter = loadHunter(hunterData);
   HUNTER = hunter;
 
-  // ── ACCESS GATE ──────────────────────────────────
-  // Returns false and shows paywall if access denied
-  if (!checkAccessGate(hunter)) return;
-
+  // Password gate already handled access — skip paywall check
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app-screen').classList.remove('hidden');
 
@@ -75,12 +72,6 @@ function launchApp(hunterData) {
   checkShadowUnlocks();
   checkLoginStreakBonus();
   if (typeof checkAllAchievements === 'function') setTimeout(() => checkAllAchievements(), 2000);
-
-  // Check payment if returning from Stripe
-  if (window._checkPaymentOnLoad) {
-    window._checkPaymentOnLoad = false;
-    setTimeout(() => checkPaymentStatus(), 1000);
-  }
 
   if (localStorage.getItem('sys_health_source')) {
     setTimeout(() => {
