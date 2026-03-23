@@ -21,7 +21,20 @@ function renderQuestsPage() {
   const total = HUNTER.quests.length;
   const pct = total ? Math.round((doneCount / total) * 100) : 0;
 
+  // Today's workout plan
+  const todayPlan = typeof getTodaysWorkout === 'function' ? getTodaysWorkout() : null;
+
   let html = `
+    ${typeof renderDailyQuote === 'function' ? renderDailyQuote() : ''}
+    ${todayPlan ? `
+      <div style="background:rgba(0,229,160,0.06);border:1px solid rgba(0,229,160,0.25);border-radius:6px;padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:10px">
+        <div style="font-size:20px">📅</div>
+        <div>
+          <div style="font-family:var(--font-mono);font-size:9px;color:var(--green);letter-spacing:2px">TODAY'S PLAN</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-top:2px">${todayPlan}</div>
+        </div>
+      </div>
+    ` : ''}
     <div class="sys-card" style="margin-bottom:14px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
         <div>
@@ -422,4 +435,6 @@ function toggleGoal(i) {
   localStorage.setItem(key, JSON.stringify(goals));
   if (goals[i].done) { addXP(20, 'int'); showNotif('[ GOAL ACHIEVED ] +20 XP', 'gold'); }
   renderGoals();
+  // Re-inject admin panel after goals re-render (it sits at top)
+  if (typeof renderAdminPanel === 'function') renderAdminPanel();
 }
