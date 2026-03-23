@@ -557,39 +557,5 @@ function renderFriendsSection(container) {
   `;
 }
 
-function addFriend() {
-  const name = document.getElementById('friend-input')?.value.trim();
-  if (!name) return;
-  if (name.toLowerCase() === getCurrentUser()) { showNotif("[ ERROR ] Can't add yourself"); return; }
-  const friends = getFriends();
-  if (friends.map(f => f.toLowerCase()).includes(name.toLowerCase())) { showNotif('[ ERROR ] Already added'); return; }
-  friends.push(name);
-  saveFriends(friends);
-  document.getElementById('friend-input').value = '';
-  showNotif(`[ FRIENDS ] ${name.toUpperCase()} added as accountability partner`);
-  renderSelfImprovePage();
-}
-
-function removeFriend(i) { const f = getFriends(); f.splice(i,1); saveFriends(f); renderSelfImprovePage(); }
-function getFriends() { try { return JSON.parse(localStorage.getItem('sys_friends_' + getCurrentUser()) || '[]'); } catch { return []; } }
-function saveFriends(f) { localStorage.setItem('sys_friends_' + getCurrentUser(), JSON.stringify(f)); }
-
-// ============================================
-// MASTER RENDER — Self Improve Page
-// ============================================
-function renderSelfImprovePage() {
-  const el = document.getElementById('page-improve');
-  el.innerHTML = '';
-  renderHydrationTracker(el);
-  renderHabitTracker(el);
-  renderSupplementTracker(el);
-  renderCalorieCalculator(el);
-  renderPRBoard(el);
-  renderWeeklyReview(el);
-  renderFriendsSection(el);
-  // Keep old trackers below
-  renderMoodTracker(el);
-  renderSleepTracker(el);
-  renderStudyTracker(el);
-  renderBodyMeasurements(el);
-}
+// renderSelfImprovePage moved to newfeatures.js (tabbed version)
+// Friends section removed
