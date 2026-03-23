@@ -58,14 +58,13 @@ const db = {
 // Called by saveCurrentHunter in auth.js — debounced 2s
 let _saveTimer = null;
 
-// Override saveCurrentHunter to also push to cloud
-const _localSaveCurrentHunter = saveCurrentHunter;
-function saveCurrentHunter(data) {
-  // Always save locally first (instant)
-  _localSaveCurrentHunter(data);
-  // Debounce cloud push
-  clearTimeout(_saveTimer);
-  _saveTimer = setTimeout(() => pushToCloud(data), 2000);
+// ── AUTO CLOUD SYNC ───────────────────────────────────
+// Called by saveCurrentHunter in auth.js after local save
+let _cloudSaveTimer = null;
+
+function cloudSync(data) {
+  clearTimeout(_cloudSaveTimer);
+  _cloudSaveTimer = setTimeout(() => pushToCloud(data), 2000);
 }
 
 async function pushToCloud(data) {
