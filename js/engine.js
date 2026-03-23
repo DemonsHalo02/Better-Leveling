@@ -210,15 +210,12 @@ function checkLoginStreakBonus() {
 }
 
 function undoQuest(index) {
-function completeQuest(index) {
   const q = HUNTER.quests[index];
   if (!q || !q.done) return;
   q.done = false;
-  // Subtract XP (can't go below 0 for current level)
   HUNTER.xp = Math.max(0, HUNTER.xp - q.xp);
   HUNTER.questsCompleted = Math.max(0, (HUNTER.questsCompleted || 1) - 1);
   HUNTER.totalXPEarned   = Math.max(0, (HUNTER.totalXPEarned   || q.xp) - q.xp);
-  // Subtract stat point
   if (q.stat && HUNTER.stats[q.stat]) {
     HUNTER.stats[q.stat] = Math.max(10, HUNTER.stats[q.stat] - Math.max(1, Math.floor(q.xp / 20)));
   }
@@ -226,15 +223,15 @@ function completeQuest(index) {
   refreshHUD();
   renderQuestsPage();
   renderStatusPage();
-  showNotif(`[ UNDO ] Quest unmarked — go earn it for real!`);
+  showNotif('[ UNDO ] Quest unmarked — go earn it for real!');
 }
+
 function completeQuest(index) {
   const q = HUNTER.quests[index];
   if (!q || q.done) return;
   q.done = true;
   HUNTER.questsCompleted = (HUNTER.questsCompleted || 0) + 1;
 
-  // Check all done
   const allDone = HUNTER.quests.every(q => q.done);
   if (allDone) {
     HUNTER.streakDays = (HUNTER.streakDays || 0) + 1;
