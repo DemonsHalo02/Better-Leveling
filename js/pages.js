@@ -17,15 +17,18 @@ function showPage(name, btn) {
 function renderQuestsPage() {
   const el = document.getElementById('page-quests');
   const today = new Date().toLocaleDateString('en-US', { weekday:'long', month:'short', day:'numeric' });
-  const doneCount = HUNTER.quests.filter(q => q.done).length;
-  const total = HUNTER.quests.length;
-  const pct = total ? Math.round((doneCount / total) * 100) : 0;
+  const doneCount  = HUNTER.quests.filter(q => q.done).length;
+  const total      = HUNTER.quests.length;
+  const goal       = typeof getSettings === 'function' ? (getSettings().dailyQuestGoal || 3) : 3;
+  const goalHit    = doneCount >= goal;
+  const goalPct    = Math.min(100, Math.round((doneCount / goal) * 100));
+  const showQuote  = typeof getSettings === 'function' ? getSettings().showQuote !== false : true;
 
   // Today's workout plan
   const todayPlan = typeof getTodaysWorkout === 'function' ? getTodaysWorkout() : null;
 
   let html = `
-    ${typeof renderDailyQuote === 'function' ? renderDailyQuote() : ''}
+    ${showQuote && typeof renderDailyQuote === 'function' ? renderDailyQuote() : ''}
     ${todayPlan ? `
       <div style="background:rgba(0,229,160,0.06);border:1px solid rgba(0,229,160,0.25);border-radius:6px;padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:10px">
         <div style="font-size:20px">📅</div>
@@ -42,14 +45,14 @@ function renderQuestsPage() {
           <div style="font-family:var(--font-ui);font-size:13px;color:var(--text2);margin-top:2px">${today}</div>
         </div>
         <div style="text-align:right">
-          <div style="font-family:var(--font-hud);font-size:22px;color:var(--accent)">${doneCount}<span style="font-size:13px;color:var(--text3)">/${total}</span></div>
-          <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">COMPLETED</div>
+          <div style="font-family:var(--font-hud);font-size:22px;color:${goalHit?'var(--green)':'var(--accent)'}">${doneCount}<span style="font-size:13px;color:var(--text3)">/${goal}</span><span style="font-size:11px;color:var(--text3)"> goal</span></div>
+          <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">${doneCount}/${total} TOTAL</div>
         </div>
       </div>
       <div style="height:4px;background:rgba(0,180,255,0.08);border-radius:2px;overflow:hidden;border:1px solid var(--border)">
-        <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:2px;transition:width 0.5s"></div>
+        <div style="height:100%;width:${goalPct}%;background:${goalHit?'linear-gradient(90deg,var(--green),#00ff88)':'linear-gradient(90deg,var(--accent2),var(--accent))'};border-radius:2px;transition:width 0.5s"></div>
       </div>
-      ${doneCount === total && total > 0 ? `<div style="text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--green);margin-top:8px;letter-spacing:2px">◆ ALL QUESTS CLEARED ◆</div>` : ''}
+      ${goalHit ? `<div style="text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--green);margin-top:8px;letter-spacing:2px">◆ DAILY GOAL REACHED — STREAK ACTIVE ◆</div>` : `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:6px">${goal - doneCount} more quest${goal-doneCount!==1?'s':''} to hit your daily goal</div>`}
     </div>
 
     <div class="section-head">ACTIVE QUESTS</div>
