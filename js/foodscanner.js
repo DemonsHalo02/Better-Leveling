@@ -92,6 +92,15 @@ function renderNutritionPage() {
           <button class="btn-secondary" onclick="openGallery()">GALLERY</button>
         </div>
 
+        <div style="padding:8px 10px;background:rgba(240,192,64,0.06);border:1px solid rgba(240,192,64,0.2);border-radius:6px;margin-bottom:10px">
+          <div style="font-family:var(--font-mono);font-size:9px;color:var(--gold);letter-spacing:1px;margin-bottom:3px">⚠ REQUIRES API KEY</div>
+          <div style="font-size:11px;color:var(--text3);line-height:1.5">
+            The AI food scanner needs an Anthropic API key to work. Open <code style="color:var(--accent)">js/foodscanner.js</code>, find <code style="color:var(--accent)">'x-api-key': ''</code> and paste your key between the quotes.<br>
+            Get a key free at <span style="color:var(--accent)">console.anthropic.com</span>.<br>
+            Or use <strong style="color:var(--text)">🔍 SEARCH</strong> or <strong style="color:var(--text)">✏️ MANUAL</strong> mode instead — they work without any key.
+          </div>
+        </div>
+
         <!-- AI result card (hidden until scan) -->
         <div id="scan-result" style="display:none"></div>
       </div>
@@ -251,8 +260,14 @@ async function handleFoodPhoto(input) {
     try {
       await scanFoodWithAI(base64Data, mimeType);
     } catch (err) {
+      console.error('Food scan error:', err);
       if (analyzing) analyzing.style.display = 'none';
-      showScanError('Could not analyze image. Try manual entry.');
+      showScanError(
+        err.message?.includes('401') ? 'API key required. Use Search or Manual mode instead.' :
+        err.message?.includes('403') ? 'API access denied. Use Search or Manual mode instead.' :
+        err.message?.includes('CORS') || err.message?.includes('Failed to fetch') ? 'Network blocked. Use Search or Manual mode instead.' :
+        'Could not analyze image. Try Search or Manual entry.'
+      );
     }
   };
   reader.readAsDataURL(file);
@@ -290,9 +305,14 @@ Rules:
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': '',
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true',
+    },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 1000,
       messages: [{
         role: 'user',
