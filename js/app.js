@@ -57,6 +57,7 @@ function showPage(name, btn) {
   if (name === 'inventory') renderInventory();
   if (name === 'guild')     renderGuildPage();
   if (name === 'improve')   renderSelfImprovePage();
+  if (name === 'settings')  renderSettingsPage();
 }
 
 function launchApp(hunterData) {
@@ -68,6 +69,7 @@ function launchApp(hunterData) {
   document.getElementById('app-screen').classList.remove('hidden');
 
   refreshHUD();
+  initSettings();
   renderQuestsPage();
   checkShadowUnlocks();
   checkLoginStreakBonus();
