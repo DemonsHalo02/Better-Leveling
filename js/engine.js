@@ -232,16 +232,27 @@ function completeQuest(index) {
   q.done = true;
   HUNTER.questsCompleted = (HUNTER.questsCompleted || 0) + 1;
 
-  const allDone = HUNTER.quests.every(q => q.done);
-  if (allDone) {
+  // Use settings goal (default 3) for streak, not total quest count
+  const goal     = typeof getSettings === 'function' ? (getSettings().dailyQuestGoal || 3) : 3;
+  const doneCount = HUNTER.quests.filter(x => x.done).length;
+  const goalHit   = doneCount >= goal;
+  const allDone   = HUNTER.quests.every(x => x.done);
+
+  addXP(q.xp, q.stat);
+
+  if (goalHit && doneCount === goal) {
+    // Just hit the goal threshold — award streak bonus
     HUNTER.streakDays = (HUNTER.streakDays || 0) + 1;
-    addXP(q.xp, q.stat);
     setTimeout(() => {
       addXP(75, null);
-      showNotif('[ SYSTEM ] ALL QUESTS COMPLETE! +75 BONUS XP', 'gold');
+      showNotif(`[ SYSTEM ] ${goal} QUESTS DONE! +75 BONUS XP`, 'gold');
     }, 600);
-  } else {
-    addXP(q.xp, q.stat);
+  } else if (allDone && doneCount > goal) {
+    // Completed every single quest (bonus for overachievers)
+    setTimeout(() => {
+      addXP(50, null);
+      showNotif('[ SYSTEM ] ALL QUESTS CLEARED! +50 EXTRA XP', 'gold');
+    }, 600);
   }
 
   showNotif(`[ QUEST COMPLETE ] +${q.xp} XP · ${q.stat.toUpperCase()} ↑`);
