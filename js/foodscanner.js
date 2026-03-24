@@ -307,7 +307,7 @@ Rules:
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': '',
+      'x-api-key': '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',
       'anthropic-version': '2023-06-01',
       'anthropic-dangerous-direct-browser-access': 'true',
     },
