@@ -201,11 +201,88 @@ function saveSupplements(s) { localStorage.setItem('sys_supps_hunter',JSON.strin
 
 // ── FASTING ───────────────────────────────────────────
 function renderFastingContent() {
-  const fast=getFastData(),now=Date.now();
-  if(fast.active){const el=Math.floor((now-fast.startTime)/1000),goal=fast.goalHours*3600,pct=Math.min(100,Math.round((el/goal)*100)),h=Math.floor(el/3600),m=Math.floor((el%3600)/60),done=el>=goal;
-    return`<div style="text-align:center;margin-bottom:14px"><div style="font-family:var(--font-hud);font-size:40px;color:${done?'var(--green)':'var(--accent)'}">${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}</div><div style="font-family:var(--font-mono);font-size:10px;color:var(--text3)">/ ${fast.goalHours}:00 GOAL</div></div><div style="height:6px;background:rgba(0,180,255,0.08);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin-bottom:14px"><div style="height:100%;width:${pct}%;background:${done?'var(--green)':'linear-gradient(90deg,var(--accent2),var(--accent))'};border-radius:3px;transition:width 1s"></div></div>${done?`<button class="btn-primary" onclick="endFast(true)"><span>✓ COMPLETE</span></button>`:`<button class="btn-danger" style="width:100%" onclick="endFast(false)">BREAK FAST</button>`}`;
+  const fast = getFastData();
+  const now  = Date.now();
+
+  if (fast.active) {
+    const elapsed  = Math.floor((now - fast.startTime) / 1000);
+    const goal     = (fast.goalHours || 16) * 3600;
+    const pct      = Math.min(100, Math.round((elapsed / goal) * 100));
+    const hours    = Math.floor(elapsed / 3600);
+    const mins     = Math.floor((elapsed % 3600) / 60);
+    const done     = elapsed >= goal;
+
+    // Start a live update timer
+    clearInterval(window._fastInterval);
+    window._fastInterval = setInterval(() => {
+      const e2  = Math.floor((Date.now() - fast.startTime) / 1000);
+      const h2  = Math.floor(e2 / 3600);
+      const m2  = Math.floor((e2 % 3600) / 60);
+      const p2  = Math.min(100, Math.round((e2 / goal) * 100));
+      const d2  = e2 >= goal;
+      const tEl = document.getElementById('fast-timer-disp');
+      const bEl = document.getElementById('fast-bar-fill');
+      const pEl = document.getElementById('fast-pct-disp');
+      if (!tEl) { clearInterval(window._fastInterval); return; }
+      tEl.textContent = `${String(h2).padStart(2,'0')}:${String(m2).padStart(2,'0')}`;
+      tEl.style.color = d2 ? 'var(--green)' : 'var(--accent)';
+      if (bEl) { bEl.style.width = p2 + '%'; bEl.style.background = d2 ? 'var(--green)' : 'linear-gradient(90deg,var(--accent2),var(--accent))'; }
+      if (pEl) pEl.textContent = p2 + '%';
+    }, 1000);
+
+    return `
+      <div style="text-align:center;margin-bottom:14px">
+        <div style="font-family:var(--font-mono);font-size:9px;color:${done?'var(--green)':'var(--gold)'};letter-spacing:2px;margin-bottom:6px">
+          ${done ? '✓ FAST COMPLETE — TAP BELOW' : 'FAST IN PROGRESS'}
+        </div>
+        <div id="fast-timer-disp" style="font-family:var(--font-hud);font-size:48px;color:${done?'var(--green)':'var(--accent)'};letter-spacing:4px;line-height:1">
+          ${String(hours).padStart(2,'0')}:${String(mins).padStart(2,'0')}
+        </div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--text3);margin-top:4px">
+          / ${fast.goalHours}:00 goal · <span id="fast-pct-disp">${pct}%</span>
+        </div>
+      </div>
+      <div style="height:8px;background:rgba(0,180,255,0.08);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:16px">
+        <div id="fast-bar-fill" style="height:100%;width:${pct}%;background:${done?'var(--green)':'linear-gradient(90deg,var(--accent2),var(--accent))'};border-radius:4px;transition:width 1s"></div>
+      </div>
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);text-align:center;margin-bottom:10px">
+        Started: ${new Date(fast.startTime).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})} · ${new Date(fast.startTime).toLocaleDateString()}
+      </div>
+      ${done
+        ? `<button class="btn-primary" onclick="endFast(true)"><span>✓ COMPLETE FAST</span><div class="btn-arrow">▶</div></button>`
+        : `<button class="btn-danger" style="width:100%" onclick="endFast(false)">BREAK FAST EARLY</button>`
+      }
+    `;
   }
-  return`<div style="margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-bottom:8px">FASTING GOAL</div><div style="display:flex;gap:6px;flex-wrap:wrap">${[12,14,16,18,20,24].map(h=>`<button onclick="selectFastGoal(${h})" style="padding:7px 14px;border-radius:20px;cursor:pointer;font-family:var(--font-mono);font-size:11px;background:${fast.selectedGoal===h?'rgba(0,180,255,0.2)':'var(--bg3)'};border:1px solid ${fast.selectedGoal===h?'var(--accent)':'var(--border)'};color:${fast.selectedGoal===h?'var(--accent)':'var(--text3)'}">${h}h</button>`).join('')}</div></div><button class="btn-primary" onclick="startFast()"><span>BEGIN FAST</span><div class='btn-arrow'>▶</div></button>${fast.lastCompleted?`<div style="font-family:var(--font-mono);font-size:9px;color:var(--green);text-align:center;margin-top:10px">Last: ${fast.lastCompleted}</div>`:''}`;
+
+  // Clear any stale interval
+  clearInterval(window._fastInterval);
+
+  return `
+    <div style="margin-bottom:12px">
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-bottom:8px;letter-spacing:1px">SELECT FASTING GOAL</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        ${[12,14,16,18,20,24].map(h => `
+          <button onclick="selectFastGoal(${h})" style="
+            padding:8px 14px;border-radius:20px;cursor:pointer;
+            font-family:var(--font-mono);font-size:11px;
+            background:${(fast.selectedGoal||16)===h?'rgba(0,180,255,0.2)':'var(--bg3)'};
+            border:1px solid ${(fast.selectedGoal||16)===h?'var(--accent)':'var(--border)'};
+            color:${(fast.selectedGoal||16)===h?'var(--accent)':'var(--text3)'}
+          ">${h}h</button>
+        `).join('')}
+      </div>
+    </div>
+    <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-bottom:12px;line-height:1.6">
+      A ${fast.selectedGoal||16}-hour fast earns <strong style="color:var(--gold)">+${Math.round((fast.selectedGoal||16)*4)} XP</strong> on completion.
+    </div>
+    <button class="btn-primary" onclick="startFast()"><span>▶ BEGIN FAST</span><div class="btn-arrow">▶</div></button>
+    ${fast.lastCompleted ? `
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--green);text-align:center;margin-top:10px">
+        ✓ Last completed: ${fast.lastCompleted}
+      </div>
+    ` : ''}
+  `;
 }
 function selectFastGoal(h){const d=getFastData();d.selectedGoal=h;saveFastData(d);renderSelfImprovePage();}
 function startFast(){const d=getFastData();d.active=true;d.startTime=Date.now();d.goalHours=d.selectedGoal||16;saveFastData(d);showNotif(`[ FASTING ] ${d.goalHours}h fast started`);renderSelfImprovePage();}
