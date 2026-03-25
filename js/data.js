@@ -17,8 +17,42 @@ const RANKS = [
   { lvl: 20, name: 'B-RANK HUNTER',    color: '#a78bfa' },
   { lvl: 30, name: 'A-RANK HUNTER',    color: '#f59e0b' },
   { lvl: 50, name: 'S-RANK HUNTER',    color: '#f0c040' },
-  { lvl: 75, name: 'NATIONAL HUNTER',  color: '#ff6b35' },
-  { lvl: 99, name: 'SHADOW MONARCH',   color: '#a855f7' },
+  { lvl: 70, name: 'NATIONAL HUNTER',  color: '#ff6b35' },
+  { lvl: 90, name: 'SHADOW MONARCH',   color: '#a855f7' },
+];
+
+// ── ELITE QUEST POOL (B-rank and above only) ─────────
+// These are harder challenges that unlock at level 20+
+const ELITE_QUEST_POOL = [
+  // B-Rank (level 20+)
+  { id:'b_400push',    name:'Complete 400 push-ups today',             xp:90,  stat:'str',   category:'strength',  icon:'💪', minLevel:20 },
+  { id:'b_10k_run',    name:'Run 10km without stopping',               xp:100, stat:'agi',   category:'cardio',    icon:'🏃', minLevel:20 },
+  { id:'b_24fast',     name:'Complete a 24-hour fast',                 xp:120, stat:'vit',   category:'nutrition', icon:'⏱️', minLevel:20 },
+  { id:'b_2h_meditate',name:'Meditate for 2 hours total today',        xp:90,  stat:'int',   category:'mental',    icon:'🧘', minLevel:20 },
+  { id:'b_3am',        name:'Wake up at 3AM and train',                xp:100, stat:'sense', category:'lifestyle', icon:'🌙', minLevel:20 },
+  // A-Rank (level 30+)
+  { id:'a_1000reps',   name:'1,000 total reps in one session',         xp:130, stat:'str',   category:'strength',  icon:'🔥', minLevel:30 },
+  { id:'a_halfmarathon',name:'Run a half marathon (21km)',             xp:160, stat:'agi',   category:'cardio',    icon:'🏃', minLevel:30 },
+  { id:'a_nofood_36',  name:'Fast for 36 hours',                       xp:150, stat:'vit',   category:'nutrition', icon:'⏱️', minLevel:30 },
+  { id:'a_bookday',    name:'Read an entire book in one day',          xp:130, stat:'int',   category:'mental',    icon:'📖', minLevel:30 },
+  { id:'a_sunrise_train', name:'Wake up before sunrise and train outdoors', xp:120, stat:'sense', category:'lifestyle', icon:'🌅', minLevel:30 },
+  // S-Rank (level 50+)
+  { id:'s_2000reps',   name:'2,000 total reps across the day',         xp:180, stat:'str',   category:'strength',  icon:'⚔️', minLevel:50 },
+  { id:'s_marathon',   name:'Run a full marathon (42km)',               xp:220, stat:'agi',   category:'cardio',    icon:'🏃', minLevel:50 },
+  { id:'s_48fast',     name:'Complete a 48-hour fast',                 xp:200, stat:'vit',   category:'nutrition', icon:'⏱️', minLevel:50 },
+  { id:'s_notech',     name:'Full technology detox — 24 hours',        xp:180, stat:'sense', category:'mental',    icon:'📵', minLevel:50 },
+  { id:'s_iceplunge',  name:'Take 5 ice-cold plunges in one day',      xp:160, stat:'vit',   category:'lifestyle', icon:'🧊', minLevel:50 },
+  // National Hunter (level 70+)
+  { id:'n_ironman',    name:'Train for 3+ hours without stopping',     xp:280, stat:'str',   category:'strength',  icon:'👑', minLevel:70 },
+  { id:'n_50k',        name:'Complete a 50km run or walk',             xp:300, stat:'agi',   category:'cardio',    icon:'👑', minLevel:70 },
+  { id:'n_72fast',     name:'Complete a 72-hour fast (3 days)',        xp:280, stat:'vit',   category:'nutrition', icon:'👑', minLevel:70 },
+  { id:'n_masterclass', name:'Complete a full online course in one day',  xp:260, stat:'int',   category:'mental',    icon:'👑', minLevel:70 },
+  { id:'n_routine',    name:'Complete your full perfect day routine',   xp:250, stat:'sense', category:'lifestyle', icon:'👑', minLevel:70 },
+  // Shadow Monarch (level 90+)
+  { id:'sm_godmode',   name:'1 hour workout + 10km run + 30min meditate', xp:400, stat:'str', category:'strength', icon:'🦋', minLevel:90 },
+  { id:'sm_ultrafast', name:'Complete a 5-day fast (water only)',      xp:500, stat:'vit',   category:'nutrition', icon:'🦋', minLevel:90 },
+  { id:'sm_ascend',    name:'Train, read, meditate, journal all in one day', xp:380, stat:'int', category:'mental', icon:'🦋', minLevel:90 },
+  { id:'sm_rise',      name:'5AM wake-up, train, cold plunge 7 days straight', xp:450, stat:'sense', category:'lifestyle', icon:'🦋', minLevel:90 },
 ];
 
 const QUEST_POOL = [
@@ -329,55 +363,60 @@ function xpForLevel(level) {
 
 function getDailyQuests() {
   const today    = new Date().toDateString();
-  const dow      = new Date().getDay(); // 0=Sun, 6=Sat
+  const dow      = new Date().getDay();
   const isWeekend = dow === 0 || dow === 6;
+  const level    = (typeof HUNTER !== 'undefined' && HUNTER?.level) || 1;
 
-  // Seeded shuffle so same quests all day
-  let seed = today.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+  let seed = today.split('').reduce((a,c) => a + c.charCodeAt(0), 0);
   function seededRand() {
     seed = (seed * 1103515245 + 12345) & 0x7fffffff;
     return seed / 0x7fffffff;
   }
-
   function shuffle(arr) {
     const a = [...arr];
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(seededRand() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
+    for (let i = a.length-1; i > 0; i--) {
+      const j = Math.floor(seededRand() * (i+1));
+      [a[i],a[j]] = [a[j],a[i]];
     }
     return a;
   }
 
   const picks = [];
 
-  // Always pick 1 surprise quest (10% chance on weekdays, 20% on weekends)
-  const surpriseChance = isWeekend ? 0.20 : 0.10;
-  if (seededRand() < surpriseChance) {
+  // Surprise quest (10% weekday, 20% weekend)
+  if (seededRand() < (isWeekend ? 0.20 : 0.10)) {
     const surprises = shuffle(SURPRISE_QUEST_POOL);
     picks.push({ ...surprises[0], done: false });
   }
 
-  // Weekend: add 1 special weekend quest
+  // Weekend special quest
   if (isWeekend) {
-    const wkQuests = shuffle(WEEKEND_QUEST_POOL);
-    picks.push({ ...wkQuests[0], done: false });
+    const wk = shuffle(WEEKEND_QUEST_POOL);
+    picks.push({ ...wk[0], done: false });
   }
 
-  // Fill remaining slots from main pool (always 5 total minimum)
-  const target = 5;
-  const want   = { strength: 1, cardio: 1, nutrition: 1, mental: 1, lifestyle: 1 };
-  const cats   = { strength: 0, cardio: 0, nutrition: 0, mental: 0, lifestyle: 0 };
+  // Elite quest for B-rank+ (level 20+)
+  if (level >= 20) {
+    const eligible = ELITE_QUEST_POOL.filter(q => level >= q.minLevel);
+    if (eligible.length > 0) {
+      const elite = shuffle(eligible);
+      picks.push({ ...elite[0], done: false });
+    }
+  }
 
-  // Reduce want counts for already-picked surprise/weekend slots
-  picks.forEach(p => { if (want[p.category] !== undefined) want[p.category]--; });
+  // Fill remaining slots from main pool (always 5 base quests minimum)
+  const target = 5;
+  const want   = { strength:1, cardio:1, nutrition:1, mental:1, lifestyle:1 };
+  const cats   = {};
+  picks.forEach(p => { if (want[p.category] !== undefined) want[p.category] = Math.max(0, (want[p.category]||1)-1); });
 
   const shuffledMain = shuffle(QUEST_POOL);
   for (const q of shuffledMain) {
-    if (picks.length >= target + (isWeekend ? 1 : 0)) break;
-    const remaining = (want[q.category] || 0) - (cats[q.category] || 0);
-    if (remaining > 0) {
+    if (picks.length >= target + (isWeekend ? 1 : 0) + (level >= 20 ? 1 : 0)) break;
+    const rem = (want[q.category]||0) - (cats[q.category]||0);
+    if (rem > 0) {
       picks.push({ ...q, done: false });
-      cats[q.category] = (cats[q.category] || 0) + 1;
+      cats[q.category] = (cats[q.category]||0) + 1;
     }
   }
 
