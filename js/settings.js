@@ -346,7 +346,7 @@ function removeFriend(i) {
 
 // ── PAYPAL ────────────────────────────────────────────
 function openPayPal() {
-  const url = 'paypal.me/DemonsHalo02';
+  const url = 'https://www.paypal.com/paypalme/DemonsHalo02';
   window.open(url, '_blank');
 }
 
