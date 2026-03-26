@@ -2,13 +2,6 @@
 // SYSTEM — HEALTH TRACKING (Rebuilt)
 // ============================================
 
-let motionActive = false;
-let stepCount = 0;
-let lastAccel = { x: 0, y: 0, z: 0 };
-let lastStepTime = 0;
-const STEP_THRESHOLD = 1.15;
-const STEP_COOLDOWN = 280;
-
 // ============================================
 // WORKOUT PAGE RENDERER
 // ============================================
