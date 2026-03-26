@@ -6,67 +6,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="mobile-web-app-capable" content="yes">
   <title>Better Leveling</title>
-
-  <!-- Global / app-wide styles -->
+  <!-- Link both CSS files -->
   <link rel="stylesheet" href="css/global.css">
-
-  <!-- Login page styles -->
   <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
 
+  <!-- CANVAS BACKGROUND -->
   <canvas id="bg-canvas"></canvas>
 
   <!-- LOGIN SCREEN -->
-  <div id="login-screen" class="login-wrap">
-    <!-- Glowing ring behind card -->
+  <div id="login-screen" class="login-card">
     <div class="login-glow-ring"></div>
 
-    <div class="login-card">
-      <!-- Logo -->
-      <div class="system-logo">
-        <div class="logo-hex"></div>
-        <div class="logo-title">BETTER LEVELING</div>
-        <div class="logo-sub">HUNTER INTERFACE</div>
-      </div>
-
-      <!-- Name Field -->
-      <div class="field-group">
-        <label class="field-label" for="gate-pass">Enter Your Name</label>
-        <input id="gate-pass" class="sys-input" placeholder="Type your name..." />
-      </div>
-
-      <!-- Start Button -->
-      <button class="btn-primary" onclick="handleGateLogin()">Start</button>
-
-      <!-- Error / Demo Note -->
-      <div class="error-msg" id="login-error"></div>
-      <div class="demo-note" onclick="demoLogin()">Use Demo Account</div>
+    <div class="system-logo">
+      <div class="logo-hex"></div>
+      <div class="logo-title">Better Leveling</div>
+      <div class="logo-sub">Solo Leveling UI</div>
     </div>
+
+    <div class="section-head">Enter Your Name</div>
+    <input id="gate-pass" class="sys-input" placeholder="Type your name..." />
+    <button class="btn-primary" onclick="handleGateLogin()">Start</button>
   </div>
 
-  <!-- APP SCREEN -->
-  <div id="app-screen" class="hidden">
+  <!-- MAIN APP SCREEN -->
+  <div id="app-screen" class="app-wrap hidden">
 
-    <!-- NAV -->
-    <nav>
+    <!-- NAV TABS -->
+    <nav class="nav-tabs">
       <button class="nav-tab" onclick="showPage('quests', this)">Quests</button>
       <button class="nav-tab" onclick="showPage('train', this)">Train</button>
       <button class="nav-tab" onclick="showPage('nutrition', this)">Nutrition</button>
       <button class="nav-tab" onclick="showPage('settings', this)">Settings</button>
     </nav>
 
-    <!-- PAGES -->
-    <div id="page-quests" class="page"></div>
-    <div id="page-train" class="page"></div>
-    <div id="page-nutrition" class="page"></div>
-    <div id="page-settings" class="page"></div>
+    <!-- PAGES WRAPPER -->
+    <div class="pages-wrap">
+      <div id="page-quests" class="page"></div>
+      <div id="page-train" class="page"></div>
+      <div id="page-nutrition" class="page"></div>
+      <div id="page-settings" class="page"></div>
+    </div>
 
   </div>
 
+  <!-- SCRIPTS -->
   <script src="js/settings.js"></script>
   <script src="js/app.js"></script>
-</body>
 
+</body>
 </html>
