@@ -8,56 +8,33 @@
 // 💧 HYDRATION TRACKER + REMINDERS (UNIT-AWARE)
 // ============================================
 function renderHydrationTracker(container) {
-  const settings = getSettings();
+  const today = new Date().toLocaleDateString();
+  const data = getHydrationData(); // your saved cups
+  const settings = (typeof HUNTER !== 'undefined' && HUNTER.settings) ? HUNTER.settings : { units: 'metric' };
   const isMetric = settings.units === 'metric';
 
-  const today = new Date().toLocaleDateString();
-  const data = getHydrationData();
-  const cups = data.date === today ? (data.cups || 0) : 0;
+  // Cups logged today
+  const cups = (data.date === today) ? (data.cups || 0) : 0;
 
-  // Set goal based on metric/imperial
-  const goalCups = 8; // standard for metric (~2L)
-  const goalFlOz = 64; // 8 cups x 8 fl oz
+  // Goal: 8 cups (~2L)
+  const goalCups = 8;
 
-  // Display values
-  const displayCups = isMetric ? cups : cups * 8; // 1 cup = 8 fl oz
-  const goalDisplay = isMetric ? 2000 : goalFlOz; // ml vs fl oz
+  // Convert to proper units
+  const factor = isMetric ? 240 : 8; // 1 cup = 240ml metric, 8 fl oz imperial
+  const unitLabel = isMetric ? 'ml' : 'oz';
+  const displayCups = cups * (factor / 1); // ml or oz
+  const displayGoal = goalCups * (factor / 1);
+
   const pct = Math.min(100, Math.round((cups / goalCups) * 100));
-  const volumeDisplay = isMetric ? cups * 250 : cups * 8; // ml or fl oz
-
-  if (data.date !== today) saveHydrationData(0);
 
   container.innerHTML = `
     <div class="section-head">HYDRATION</div>
     <div class="sys-card">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px">
-        <div style="position:relative;width:64px;height:64px;flex-shrink:0">
-          <svg viewBox="0 0 64 64" style="width:64px;height:64px">
-            <circle cx="32" cy="32" r="28" fill="none" stroke="rgba(0,180,255,0.1)" stroke-width="6"/>
-            <circle cx="32" cy="32" r="28" fill="none" stroke="#00b4ff" stroke-width="6"
-              stroke-dasharray="${2 * Math.PI * 28}" stroke-dashoffset="${2 * Math.PI * 28 * (1 - pct / 100)}"
-              stroke-linecap="round" transform="rotate(-90 32 32)" style="transition:stroke-dashoffset 0.4s"/>
-            <text x="32" y="36" text-anchor="middle" font-family="Orbitron" font-size="13" font-weight="700" fill="#00b4ff">${cups}</text>
-          </svg>
-        </div>
-        <div style="flex:1">
-          <div style="font-family:var(--font-hud);font-size:20px;color:var(--accent)">${volumeDisplay}${isMetric ? 'ml' : ' fl oz'} <span style="font-size:12px;color:var(--text3)">/ ${goalDisplay}${isMetric ? 'ml' : ' fl oz'}</span></div>
-          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:2px">${displayCups}/${isMetric ? goalCups : goalFlOz} ${isMetric ? 'CUPS TODAY' : 'fl oz TODAY'}</div>
-          ${cups >= goalCups
-      ? `<div style="font-family:var(--font-mono);font-size:9px;color:var(--green);margin-top:3px">✓ HYDRATION GOAL MET</div>`
-      : `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:3px">${goalCups - cups} ${isMetric ? 'cups' : 'fl oz'} to go</div>`
-    }
-        </div>
+      <div class="hydration-bar" style="position:relative;height:22px;background:var(--panel);border-radius:6px;overflow:hidden;border:1px solid var(--border)">
+        <div class="hydration-fill" style="width:${pct}%;height:100%;background:var(--accent)"></div>
       </div>
-      <div style="display:flex;gap:6px;margin-bottom:10px">
-        ${[1, 2, 3, 4, 5, 6, 7, 8].map(n => `
-          <div style="flex:1;height:28px;background:${n <= cups ? 'rgba(0,180,255,0.35)' : 'rgba(0,180,255,0.06)'};border:1px solid ${n <= cups ? 'var(--accent)' : 'var(--border)'};border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px">${n <= cups ? '💧' : ''}</div>
-        `).join('')}
-      </div>
-      <div style="display:flex;gap:8px">
-        <button class="btn-primary" style="flex:2" onclick="addCup()"><span>+ ADD ${isMetric ? 'CUP (250ml)' : '8 fl oz'}</span></button>
-        <button class="btn-secondary" onclick="removeCup()">−</button>
-        ${!data.reminderOn ? `<button class="btn-secondary" onclick="startHydrationReminder()" title="Reminders">🔔</button>` : `<button class="btn-gold" onclick="stopHydrationReminder()" title="Stop reminders">🔕</button>`}
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--text3);margin-top:4px;text-align:right">
+        ${displayCups.toFixed(0)} ${unitLabel} / ${displayGoal.toFixed(0)} ${unitLabel}
       </div>
     </div>
   `;
