@@ -31,20 +31,47 @@ function renderHydrationTracker(container) {
           </svg>
         </div>
         <div style="flex:1">
-          <div style="font-family:var(--font-hud);font-size:20px;color:var(--accent)">${ml}ml <span style="font-size:12px;color:var(--text3)">/ 2000ml</span></div>
-          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:2px">${cups}/${goal} CUPS TODAY</div>
-          ${cups >= goal ? `<div style="font-family:var(--font-mono);font-size:9px;color:var(--green);margin-top:3px">✓ HYDRATION GOAL MET</div>` : `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:3px">${goal - cups} cups to go</div>`}
+          <div style="font-family:var(--font-hud);font-size:20px;color:var(--accent)">
+            ${ml}ml <span style="font-size:12px;color:var(--text3)">/ 2000ml</span>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:2px">
+            ${cups}/${goal} CUPS TODAY
+          </div>
+          ${cups >= goal
+      ? `<div style="font-family:var(--font-mono);font-size:9px;color:var(--green);margin-top:3px">✓ HYDRATION GOAL MET</div>`
+      : `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:3px">${goal - cups} cups to go</div>`
+    }
         </div>
       </div>
+
       <div style="display:flex;gap:6px;margin-bottom:10px">
         ${[1, 2, 3, 4, 5, 6, 7, 8].map(n => `
-          <div style="flex:1;height:28px;background:${n <= cups ? 'rgba(0,180,255,0.35)' : 'rgba(0,180,255,0.06)'};border:1px solid ${n <= cups ? 'var(--accent)' : 'var(--border)'};border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px">${n <= cups ? '💧' : ''}</div>
+          <div style="flex:1;height:28px;background:${n <= cups ? 'rgba(0,180,255,0.35)' : 'rgba(0,180,255,0.06)'};border:1px solid ${n <= cups ? 'var(--accent)' : 'var(--border)'};border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px">
+            ${n <= cups ? '💧' : ''}
+          </div>
         `).join('')}
       </div>
-      <div style="display:flex;gap:8px">
-        <button class="btn-primary" style="flex:2" onclick="addCup()"><span>+ ADD CUP (250ml)</span></button>
+
+      <div style="display:flex;gap:8px;margin-bottom:8px">
+        <button class="btn-primary" style="flex:2" onclick="addCup()">
+          <span>+ ADD CUP (250ml)</span>
+        </button>
         <button class="btn-secondary" onclick="removeCup()">−</button>
-        ${!data.reminderOn ? `<button class="btn-secondary" onclick="startHydrationReminder()" title="Reminders">🔔</button>` : `<button class="btn-gold" onclick="stopHydrationReminder()" title="Stop reminders">🔕</button>`}
+        ${!data.reminderOn
+      ? `<button class="btn-secondary" onclick="startHydrationReminder()" title="Reminders">🔔</button>`
+      : `<button class="btn-gold" onclick="stopHydrationReminder()" title="Stop reminders">🔕</button>`
+    }
+      </div>
+
+      <!-- NEW MANUAL WATER INPUT -->
+      <div style="display:flex;gap:6px;margin-top:6px">
+        <input 
+          id="manualWaterInput"
+          type="number"
+          placeholder="Enter ml (e.g. 1000)"
+          style="flex:1;padding:6px;border-radius:4px;border:1px solid var(--border);background:rgba(0,0,0,0.2);color:white;font-size:12px"
+        />
+        <button class="btn-primary" onclick="addManualWater()">ADD</button>
       </div>
     </div>
   `;
@@ -60,7 +87,6 @@ function addCup() {
   const newCups = Math.min(20, cups + 1);
   saveHydrationData(newCups);
 
-  // Give XP ONLY when the goal is reached for the first time
   if (cups < goal && newCups >= goal) {
     addXP(20, 'vit');
     showNotif('[ HYDRATION ] Daily goal reached! +20 XP', 'gold');
@@ -68,6 +94,37 @@ function addCup() {
     showNotif(`[ HYDRATION ] ${newCups} cups / ${goal}`);
   }
 
+  renderSelfImprovePage();
+}
+
+function addManualWater() {
+  const input = document.getElementById('manualWaterInput');
+  if (!input) return;
+
+  const mlAdded = parseInt(input.value);
+  if (!mlAdded || mlAdded <= 0) {
+    showNotif('[ HYDRATION ] Enter a valid ml amount');
+    return;
+  }
+
+  const cupsToAdd = mlAdded / 250;
+
+  const data = getHydrationData();
+  const today = new Date().toLocaleDateString();
+  const currentCups = data.date === today ? (data.cups || 0) : 0;
+  const goal = 8;
+
+  const newCups = Math.min(20, currentCups + cupsToAdd);
+  saveHydrationData(newCups);
+
+  if (currentCups < goal && newCups >= goal) {
+    addXP(20, 'vit');
+    showNotif('[ HYDRATION ] Daily goal reached! +20 XP', 'gold');
+  } else {
+    showNotif(`[ HYDRATION ] +${mlAdded}ml added`);
+  }
+
+  input.value = '';
   renderSelfImprovePage();
 }
 
@@ -80,18 +137,27 @@ function removeCup() {
 }
 
 function startHydrationReminder() {
-  if (!('Notification' in window)) { showNotif('[ INFO ] Notifications not supported in this browser'); return; }
+  if (!('Notification' in window)) {
+    showNotif('[ INFO ] Notifications not supported in this browser');
+    return;
+  }
+
   Notification.requestPermission().then(perm => {
     if (perm === 'granted') {
       const data = getHydrationData();
       data.reminderOn = true;
       localStorage.setItem('sys_hydration_' + getCurrentUser(), JSON.stringify(data));
+
       window._hydrationTimer = setInterval(() => {
         const d = getHydrationData();
         if ((d.cups || 0) < 8) {
-          new Notification('💧 SYSTEM', { body: 'Time to drink water, Hunter! Stay hydrated.', icon: '/icon-192.png' });
+          new Notification('💧 SYSTEM', {
+            body: 'Time to drink water, Hunter! Stay hydrated.',
+            icon: '/icon-192.png'
+          });
         }
-      }, 60 * 60 * 1000); // every hour
+      }, 60 * 60 * 1000);
+
       showNotif('[ REMINDERS ] Hydration reminders on — every hour');
       renderSelfImprovePage();
     } else {
@@ -110,8 +176,11 @@ function stopHydrationReminder() {
 }
 
 function getHydrationData() {
-  try { return JSON.parse(localStorage.getItem('sys_hydration_' + getCurrentUser()) || '{}'); }
-  catch { return {}; }
+  try {
+    return JSON.parse(localStorage.getItem('sys_hydration_' + getCurrentUser()) || '{}');
+  } catch {
+    return {};
+  }
 }
 
 function saveHydrationData(cups) {
