@@ -771,3 +771,205 @@ body.dark-mode .pages-wrap {
   padding: 10px;
   border-radius: 8px;
 }
+
+/* ===============================
+   FOOD TRACKER STYLES
+   =============================== */
+
+/* Macro Tracker Card */
+.macro-card {
+  padding: 16px;
+  background: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.macro-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.macro-label {
+  width: 80px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 0.9em;
+}
+
+.macro-track {
+  flex: 1;
+  height: 12px;
+  background: #333;
+  border-radius: 6px;
+  margin: 0 10px;
+  overflow: hidden;
+}
+
+.macro-fill {
+  height: 100%;
+  border-radius: 6px 0 0 6px;
+  transition: width 0.3s ease-in-out;
+}
+
+.macro-val {
+  font-size: 0.85em;
+  color: #ddd;
+  width: 80px;
+  text-align: right;
+}
+
+/* Food Card */
+.food-card {
+  padding: 16px;
+  background: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Mode Buttons */
+.food-mode-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.food-mode-btn {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.2s ease;
+}
+
+.food-mode-btn.active {
+  background: #00b4ff;
+  color: #000;
+}
+
+/* Food Search Results */
+.food-results {
+  margin-top: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  border-radius: 8px;
+  background: #2a2a2a;
+  padding: 4px;
+}
+
+.food-result-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.food-result-row:hover {
+  background: #333;
+}
+
+/* Food Log */
+.food-log-card {
+  padding: 16px;
+  background: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.food-log-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #333;
+}
+
+.food-log-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.food-name {
+  font-weight: bold;
+  color: #fff;
+}
+
+.food-macros {
+  font-size: 0.8em;
+  color: #bbb;
+}
+
+.food-cal {
+  font-weight: bold;
+  color: #00e5a0;
+}
+
+/* Input Fields */
+.sys-input {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background: #2a2a2a;
+  color: #fff;
+  font-size: 0.9em;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #00b4ff;
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: #0095d1;
+}
+
+.btn-secondary {
+  background: #555;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: #777;
+}
+
+/* Barcode Scanner Box */
+#barcode-scanner {
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 0.9em;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+
+  .macro-label,
+  .macro-val {
+    width: 60px;
+    font-size: 0.8em;
+  }
+
+  .food-mode-btn {
+    font-size: 0.8em;
+  }
+}
