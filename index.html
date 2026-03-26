@@ -4,92 +4,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Better Leveling</title>
-
-  <!-- Favicon (optional, fix paths if needed) -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- Canvas Background -->
-  <style>
-    #bg-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .page {
-      display: none;
-      padding: 20px;
-    }
-
-    .page.active {
-      display: block;
-    }
-
-    .nav-tab.active {
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <!-- Background Canvas -->
+
   <canvas id="bg-canvas"></canvas>
 
-  <!-- Login Screen -->
+  <!-- LOGIN SCREEN -->
   <div id="login-screen">
-    <h1>Welcome, Hunter</h1>
-    <input id="gate-pass" type="text" placeholder="Enter your name">
-    <button onclick="handleGateLogin()">Enter</button>
+    <input id="gate-pass" placeholder="Enter pass" />
   </div>
 
-  <!-- Main App Screen -->
+  <!-- APP SCREEN -->
   <div id="app-screen" class="hidden">
-    <!-- Navigation Tabs -->
+
+    <!-- NAV -->
     <nav>
       <button class="nav-tab" onclick="showPage('quests', this)">Quests</button>
       <button class="nav-tab" onclick="showPage('train', this)">Train</button>
       <button class="nav-tab" onclick="showPage('nutrition', this)">Nutrition</button>
-      <button class="nav-tab" onclick="showPage('workout', this)">Workout</button>
-      <button class="nav-tab" onclick="showPage('status', this)">Status</button>
-      <button class="nav-tab" onclick="showPage('boss', this)">Boss</button>
-      <button class="nav-tab" onclick="showPage('skills', this)">Skills</button>
-      <button class="nav-tab" onclick="showPage('army', this)">Army</button>
-      <button class="nav-tab" onclick="showPage('inventory', this)">Inventory</button>
-      <button class="nav-tab" onclick="showPage('guild', this)">Guild</button>
-      <button class="nav-tab" onclick="showPage('improve', this)">Improve</button>
       <button class="nav-tab" onclick="showPage('settings', this)">Settings</button>
     </nav>
 
-    <!-- Pages -->
+    <!-- PAGES -->
     <div id="page-quests" class="page"></div>
     <div id="page-train" class="page"></div>
     <div id="page-nutrition" class="page"></div>
-    <div id="page-workout" class="page"></div>
-    <div id="page-status" class="page"></div>
-    <div id="page-boss" class="page"></div>
-    <div id="page-skills" class="page"></div>
-    <div id="page-army" class="page"></div>
-    <div id="page-inventory" class="page"></div>
-    <div id="page-guild" class="page"></div>
-    <div id="page-improve" class="page"></div>
     <div id="page-settings" class="page"></div>
+
   </div>
 
-  <!-- Scripts -->
-  <script src="settings.js"></script>
-  <script src="pages.js"></script>
-  <script src="app.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/app.js"></script>
 </body>
 
 </html>
