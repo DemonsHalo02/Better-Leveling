@@ -104,7 +104,7 @@ function inputToKg(val) {
 }
 
 // ── SETTINGS PAGE ─────────────────────────────────────
-function renderSettingsPage() {
+window.renderSettingsPage = function () {
   const el = document.getElementById('page-settings');
   if (!el) return;
   const s = getSettings();
