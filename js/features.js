@@ -11,7 +11,8 @@ function renderHydrationTracker(container) {
   const today = new Date().toLocaleDateString();
   const data = getHydrationData();
   const cups = data.date === today ? (data.cups || 0) : 0;
-  const goal = 8; // 8 cups = ~2L
+  const goalMl = getSettings().waterGoal || 2000;
+  const goal = Math.max(1, Math.round(goalMl / 250));
   const pct = Math.min(100, Math.round((cups / goal) * 100));
   const ml = cups * 250;
 
@@ -32,7 +33,7 @@ function renderHydrationTracker(container) {
         </div>
         <div style="flex:1">
           <div style="font-family:var(--font-hud);font-size:20px;color:var(--accent)">
-            ${ml}ml <span style="font-size:12px;color:var(--text3)">/ 2000ml</span>
+            ${ml}ml <span style="font-size:12px;color:var(--text3)">/ ${goalMl}ml</span>
           </div>
           <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:2px">
             ${cups}/${goal} CUPS TODAY
@@ -45,7 +46,7 @@ function renderHydrationTracker(container) {
       </div>
 
       <div style="display:flex;gap:6px;margin-bottom:10px">
-        ${[1, 2, 3, 4, 5, 6, 7, 8].map(n => `
+        ${Array.from({ length: goal }, (_, i) => i + 1).map(n => `
           <div style="flex:1;height:28px;background:${n <= cups ? 'rgba(0,180,255,0.35)' : 'rgba(0,180,255,0.06)'};border:1px solid ${n <= cups ? 'var(--accent)' : 'var(--border)'};border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px">
             ${n <= cups ? '💧' : ''}
           </div>
@@ -82,9 +83,10 @@ function addCup() {
   const today = new Date().toLocaleDateString();
 
   const cups = data.date === today ? (data.cups || 0) : 0;
-  const goal = 8;
+  const goal = Math.max(1, Math.round((getSettings().waterGoal || 2000) / 250));
+  const maxCups = goal + 10; // allows drinking beyond goal
+  const newCups = Math.min(maxCups, cups + 1);
 
-  const newCups = Math.min(20, cups + 1);
   saveHydrationData(newCups);
 
   if (cups < goal && newCups >= goal) {
@@ -112,9 +114,10 @@ function addManualWater() {
   const data = getHydrationData();
   const today = new Date().toLocaleDateString();
   const currentCups = data.date === today ? (data.cups || 0) : 0;
-  const goal = 8;
+  const goal = Math.max(1, Math.round((getSettings().waterGoal || 2000) / 250));
+  const maxCups = goal + 10;
+  const newCups = Math.min(maxCups, currentCups + cupsToAdd);
 
-  const newCups = Math.min(20, currentCups + cupsToAdd);
   saveHydrationData(newCups);
 
   if (currentCups < goal && newCups >= goal) {
