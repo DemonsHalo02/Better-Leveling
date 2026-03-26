@@ -1,12 +1,11 @@
 // ============================================
-// SYSTEM — SETTINGS MODULE (Styled HUD Version)
+// SYSTEM — SETTINGS MODULE (Manual Only Version)
 // ============================================
 
 const Settings = (() => {
   const defaults = {
     darkMode: false,
     notifications: true,
-    autoSyncHealth: false,
     macroSpeed: 50,
   };
 
@@ -42,7 +41,6 @@ const Settings = (() => {
   function updateUI() {
     document.getElementById("setting-darkMode").checked = settings.darkMode;
     document.getElementById("setting-notifications").checked = settings.notifications;
-    document.getElementById("setting-autoSyncHealth").checked = settings.autoSyncHealth;
     document.getElementById("setting-macroSpeed").value = settings.macroSpeed;
     document.getElementById("macroSpeedValue").textContent = settings.macroSpeed;
 
@@ -71,11 +69,6 @@ const Settings = (() => {
       save();
     });
 
-    document.getElementById("setting-autoSyncHealth").addEventListener("change", e => {
-      settings.autoSyncHealth = e.target.checked;
-      save();
-    });
-
     document.getElementById("setting-macroSpeed").addEventListener("input", e => {
       settings.macroSpeed = parseInt(e.target.value, 10);
       document.getElementById("macroSpeedValue").textContent = settings.macroSpeed;
@@ -89,7 +82,7 @@ const Settings = (() => {
   function init() {
     if (!settingsContainer) return;
 
-    // Inject styled HUD HTML
+    // Inject styled HUD HTML WITHOUT Auto-Sync Health
     settingsContainer.innerHTML = `
       <div class="sys-card">
         <div class="section-head">App Settings</div>
@@ -106,14 +99,6 @@ const Settings = (() => {
           <label class="setting-label">Enable Notifications</label>
           <label class="pill-green">
             <input type="checkbox" id="setting-notifications" style="margin-right:6px;">
-            Toggle
-          </label>
-        </div>
-
-        <div class="field-group">
-          <label class="setting-label">Auto-Sync Health</label>
-          <label class="pill-purple">
-            <input type="checkbox" id="setting-autoSyncHealth" style="margin-right:6px;">
             Toggle
           </label>
         </div>
