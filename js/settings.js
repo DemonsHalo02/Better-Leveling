@@ -358,8 +358,8 @@ function removeFriend(i) {
 
 // ── PAYPAL ────────────────────────────────────────────
 function openPayPal() {
-  const url = 'https://www.paypal.com/paypalme/nickcrosson021';
-  window.open(url, '_blank');
+  const url = 'https://www.paypal.com/paypalme/DemonsHalo02';
+  window.open(url, '_blank', 'noopener,noreferrer') || (window.location.href = url);
 }
 
 // ── DATA EXPORT / IMPORT / RESET ──────────────────────
