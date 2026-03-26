@@ -2,6 +2,7 @@
 // FOOD SYSTEM — SEARCH + MANUAL + LIST + BARCODE
 // ============================================
 
+// Track barcode scanner state
 let barcodeActive = false;
 
 // ===== MAIN PAGE RENDER =====
@@ -9,6 +10,7 @@ function renderNutritionPage() {
   const el = document.getElementById("page-nutrition");
   const log = HUNTER.foodLog || [];
 
+  // Calculate totals
   let totals = { cal: 0, protein: 0, carbs: 0, fat: 0 };
   log.forEach(f => {
     totals.cal += f.cal;
@@ -28,13 +30,15 @@ function renderNutritionPage() {
     { label: "FAT", val: totals.fat, goal: goals.fat, unit: "g", color: "#ff6b35" },
   ];
 
+  // Food list options
   const foodOptions = FOOD_DB.map((f, i) =>
     `<option value="${i}">${f.name} · ${f.cal} kcal</option>`
   ).join("");
 
+  // HTML structure
   let html = `
   <div class="section-head">MACRO TRACKER</div>
-  <div class="sys-card">
+  <div class="sys-card macro-card">
   `;
 
   macros.forEach(m => {
@@ -53,9 +57,9 @@ function renderNutritionPage() {
   html += `</div>
 
   <div class="section-head">LOG FOOD</div>
-  <div class="sys-card">
+  <div class="sys-card food-card">
 
-  <div style="display:flex;gap:6px;margin-bottom:12px">
+  <div class="food-mode-buttons">
     <button class="food-mode-btn active" id="mode-search" onclick="switchFoodMode('search')">🔍 SEARCH</button>
     <button class="food-mode-btn" id="mode-manual" onclick="switchFoodMode('manual')">✏️ MANUAL</button>
     <button class="food-mode-btn" id="mode-list" onclick="switchFoodMode('list')">📋 LIST</button>
@@ -65,13 +69,12 @@ function renderNutritionPage() {
   <!-- SEARCH -->
   <div id="food-mode-search">
     <input type="text" class="sys-input" id="food-search-input"
-      placeholder="Search food..."
-      oninput="filterFoodSearch(this.value)" />
-    <div id="food-search-results"></div>
+      placeholder="Search food..." oninput="filterFoodSearch(this.value)" />
+    <div id="food-search-results" class="food-results"></div>
   </div>
 
   <!-- MANUAL -->
-  <div id="food-mode-manual" style="display:none">
+  <div id="food-mode-manual" style="display:none" class="food-manual">
     <input class="sys-input" id="manual-name" placeholder="Food name">
     <input class="sys-input" id="manual-cal" type="number" placeholder="Calories">
     <input class="sys-input" id="manual-protein" type="number" placeholder="Protein">
@@ -81,7 +84,7 @@ function renderNutritionPage() {
   </div>
 
   <!-- LIST -->
-  <div id="food-mode-list" style="display:none">
+  <div id="food-mode-list" style="display:none" class="food-list-mode">
     <select class="sys-input" id="food-select">
       <option value="">Choose food...</option>
       ${foodOptions}
@@ -90,33 +93,40 @@ function renderNutritionPage() {
   </div>
 
   <!-- BARCODE -->
-  <div id="food-mode-barcode" style="display:none">
+  <div id="food-mode-barcode" style="display:none" class="food-barcode-mode">
     <div id="barcode-scanner"
       style="width:100%;height:260px;border:1px solid var(--border);border-radius:8px;margin-bottom:10px">
     </div>
-    <button class="btn-primary" onclick="startBarcodeScanner()">START SCAN</button>
+    <div style="display:flex;gap:8px;">
+      <button class="btn-primary" onclick="startBarcodeScanner()">START SCAN</button>
+      <button class="btn-secondary" onclick="stopBarcodeScanner()">STOP SCAN</button>
+    </div>
+    <div style="margin-top:6px;font-size:0.9em;color:#888">Tip: Allow camera permissions</div>
   </div>
 
   </div>
 
   <div class="section-head">TODAY'S LOG</div>
+  <div class="sys-card food-log-card">
   `;
 
   if (log.length === 0) {
-    html += `<div style="text-align:center;padding:20px">NO FOOD LOGGED</div>`;
+    html += `<div style="text-align:center;padding:20px;color:#999">NO FOOD LOGGED</div>`;
   } else {
     log.slice().reverse().forEach(f => {
       html += `
       <div class="food-log-row">
-        <div>
-          <div>${f.name}</div>
-          <div>P:${f.protein}g C:${f.carbs}g F:${f.fat}g</div>
+        <div class="food-log-info">
+          <div class="food-name">${f.name}</div>
+          <div class="food-macros">P:${f.protein}g · C:${f.carbs}g · F:${f.fat}g</div>
         </div>
-        <div>${f.cal} kcal</div>
+        <div class="food-cal">${f.cal} kcal</div>
       </div>
       `;
     });
   }
+
+  html += `</div>`;
 
   el.innerHTML = html;
 }
@@ -147,8 +157,8 @@ function filterFoodSearch(query) {
     const index = FOOD_DB.indexOf(f);
     return `
       <div class="food-result-row" onclick="logFoodByIndex(${index})">
-        <div>${f.name}</div>
-        <div>${f.cal} kcal</div>
+        <div class="food-name">${f.name}</div>
+        <div class="food-cal">${f.cal} kcal</div>
       </div>
     `;
   }).join("");
@@ -194,7 +204,6 @@ function logSelectedFood() {
 // ============================================
 // BARCODE SCANNER
 // ============================================
-
 function startBarcodeScanner() {
   if (barcodeActive) return;
 
@@ -207,21 +216,14 @@ function startBarcodeScanner() {
     inputStream: {
       type: "LiveStream",
       target: scanner,
-      constraints: {
-        facingMode: "environment"
-      }
+      constraints: { facingMode: "environment" }
     },
-    decoder: {
-      readers: [
-        "upc_reader",
-        "ean_reader",
-        "ean_8_reader"
-      ]
-    }
+    decoder: { readers: ["upc_reader", "ean_reader", "ean_8_reader"] }
   }, function (err) {
     if (err) {
-      console.error(err);
+      console.error("Quagga init error:", err);
       showNotif("[ CAMERA ERROR ]");
+      barcodeActive = false;
       return;
     }
     Quagga.start();
@@ -236,11 +238,7 @@ function startBarcodeScanner() {
 
 function stopBarcodeScanner() {
   if (!barcodeActive) return;
-
-  try {
-    Quagga.stop();
-  } catch { }
-
+  try { Quagga.stop(); } catch { }
   barcodeActive = false;
 }
 
@@ -249,10 +247,7 @@ async function lookupBarcode(barcode) {
   showNotif("[ SCANNING PRODUCT ]");
 
   try {
-    const res = await fetch(
-      `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`
-    );
-
+    const res = await fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode}.json`);
     const data = await res.json();
 
     if (!data.product) {
@@ -261,7 +256,6 @@ async function lookupBarcode(barcode) {
     }
 
     const product = data.product;
-
     const food = {
       name: product.product_name || "Unknown Food",
       cal: Math.round(product.nutriments?.energy_kcal_100g || 0),
