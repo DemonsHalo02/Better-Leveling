@@ -1,16 +1,5 @@
 // ============================================
 // SYSTEM — HEALTH TRACKING (Rebuilt)
-//
-// WHAT THIS FILE DOES:
-// 1. Real step counting via iPhone motion sensor
-// 2. Manual health data entry that saves + awards XP
-// 3. Full Capacitor setup guide for true HealthKit
-//
-// WHY NOT DIRECT APPLE HEALTH:
-// Safari cannot read HealthKit. Apple only allows
-// native iOS apps to access it. This file gives you
-// everything possible in a web app, plus a clear
-// path to go fully native when you're ready.
 // ============================================
 
 let motionActive = false;
@@ -34,45 +23,6 @@ function renderWorkoutPage() {
   ).join('');
 
   let html = `
-
-    <!-- STEP COUNTER -->
-    <div class="section-head">STEP TRACKER</div>
-    <div class="sys-card" id="step-card">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-        <div style="font-size:32px">👟</div>
-        <div style="flex:1">
-          <div style="font-size:14px;font-weight:600;color:var(--text)">Motion Step Counter</div>
-          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:2px" id="step-status-text">
-            ${motionActive ? 'TRACKING ACTIVE' : 'Uses your iPhone motion sensor — tap to start'}
-          </div>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
-        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center">
-          <div style="font-family:var(--font-hud);font-size:22px;color:var(--green)" id="live-steps">${stepCount.toLocaleString()}</div>
-          <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">STEPS</div>
-        </div>
-        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center">
-          <div style="font-family:var(--font-hud);font-size:22px;color:var(--accent)" id="live-dist">${(stepCount * 0.0008).toFixed(2)}</div>
-          <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">KM EST.</div>
-        </div>
-        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center">
-          <div style="font-family:var(--font-hud);font-size:22px;color:var(--gold)" id="live-cal-steps">${Math.round(stepCount * 0.04)}</div>
-          <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">KCAL EST.</div>
-        </div>
-      </div>
-      ${motionActive
-      ? `<button class="btn-danger" style="width:100%" onclick="stopMotionTracking()">⏹ STOP TRACKING</button>`
-      : `<button class="btn-primary" onclick="requestMotionPermission()"><span>▶ START STEP TRACKING</span></button>`
-    }
-      <div style="margin-top:10px;padding:8px;background:rgba(0,180,255,0.05);border:1px solid rgba(0,180,255,0.15);border-radius:6px">
-        <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);line-height:1.7">
-          Every 1,000 steps = +15 XP &nbsp;·&nbsp; 10,000 steps = +50 BONUS XP<br>
-          Keep this page open while walking for best accuracy.
-        </div>
-      </div>
-    </div>
-
     <!-- MANUAL HEALTH ENTRY -->
     <div class="section-head">LOG TODAY'S HEALTH DATA</div>
     <div class="sys-card">
@@ -135,41 +85,6 @@ function renderWorkoutPage() {
       </button>
     </div>
 
-    <!-- NATIVE HEALTHKIT UPGRADE -->
-    <div class="section-head">WANT REAL APPLE HEALTH SYNC?</div>
-    <div class="sys-card" style="border-color:rgba(240,192,64,0.3)">
-      <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px">
-        <div style="font-size:24px">🍎</div>
-        <div>
-          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px">Native HealthKit</div>
-          <div style="font-size:12px;color:var(--text3);line-height:1.6">
-            Safari can't read Apple Health — that's Apple's limitation, not a bug in this app.
-            To get automatic live sync of all your Health data, the app needs to be wrapped as a native iPhone app using <strong style="color:var(--accent)">Capacitor</strong> (free tool).
-          </div>
-        </div>
-      </div>
-      <div style="font-family:var(--font-mono);font-size:9px;color:var(--gold);letter-spacing:2px;margin-bottom:8px">SETUP STEPS (needs a Mac)</div>
-      ${[
-      ['1', 'Install Node.js', 'Download from nodejs.org'],
-      ['2', 'Install Capacitor', 'Terminal: npm install -g @capacitor/cli'],
-      ['3', 'Init your app', 'npx cap init "SYSTEM" com.yourname.system'],
-      ['4', 'Add iOS', 'npx cap add ios'],
-      ['5', 'Install HealthKit plugin', 'npm install @perfood/capacitor-healthkit'],
-      ['6', 'Sync & open Xcode', 'npx cap sync ios && npx cap open ios'],
-      ['7', 'Add HealthKit capability', 'Xcode → Signing & Capabilities → + → HealthKit'],
-      ['8', 'Add permission text', 'Info.plist → NSHealthShareUsageDescription'],
-      ['9', 'Build to iPhone', 'Connect iPhone → Xcode → ▶ Run'],
-    ].map(([num, step, detail]) => `
-        <div style="display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--border)">
-          <div style="font-family:var(--font-hud);font-size:11px;color:var(--accent);width:16px;flex-shrink:0">${num}</div>
-          <div>
-            <div style="font-size:12px;font-weight:600;color:var(--text)">${step}</div>
-            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:1px">${detail}</div>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-
     <!-- HISTORY -->
     <div class="section-head">TRAINING STATS</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
@@ -212,77 +127,6 @@ function renderWorkoutPage() {
     renderWorkoutTimer(timerWrap);
     el.insertBefore(timerWrap.firstElementChild?.parentElement || timerWrap, el.firstChild);
   }
-}
-
-// ============================================
-// MOTION TRACKING
-// ============================================
-async function requestMotionPermission() {
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  if (isIOS && typeof DeviceMotionEvent?.requestPermission === 'function') {
-    try {
-      const perm = await DeviceMotionEvent.requestPermission();
-      if (perm === 'granted') { startMotionTracking(); }
-      else { showNotif('[ DENIED ] Motion permission needed for step tracking'); }
-    } catch { showNotif('[ ERROR ] Could not request motion permission'); }
-  } else {
-    startMotionTracking();
-  }
-}
-
-function startMotionTracking() {
-  if (motionActive) return;
-  motionActive = true;
-  const saved = getStepData();
-  const today = new Date().toLocaleDateString();
-  stepCount = saved.date === today ? (saved.steps || 0) : 0;
-  window.addEventListener('devicemotion', onMotion);
-  showNotif('[ TRACKING ] Step counter active — keep app open');
-  window._stepInterval = setInterval(() => { updateLiveStepDisplay(); saveStepData(); }, 3000);
-  renderWorkoutPage();
-}
-
-function stopMotionTracking() {
-  motionActive = false;
-  window.removeEventListener('devicemotion', onMotion);
-  clearInterval(window._stepInterval);
-  saveStepData();
-  showNotif(`[ STOPPED ] ${stepCount.toLocaleString()} steps recorded`);
-  renderWorkoutPage();
-}
-
-function onMotion(e) {
-  const accel = e.accelerationIncludingGravity;
-  if (!accel) return;
-  const mag = Math.sqrt((accel.x || 0) ** 2 + (accel.y || 0) ** 2 + (accel.z || 0) ** 2);
-  const prev = Math.sqrt(lastAccel.x ** 2 + lastAccel.y ** 2 + lastAccel.z ** 2);
-  const delta = Math.abs(mag - prev);
-  const now = Date.now();
-  if (delta > STEP_THRESHOLD && now - lastStepTime > STEP_COOLDOWN) {
-    stepCount++;
-    lastStepTime = now;
-    if (stepCount % 1000 === 0) { addXP(15, 'agi'); showNotif(`[ STEPS ] ${stepCount.toLocaleString()} steps! +15 XP`); }
-    if (stepCount === 10000) { addXP(50, 'agi'); showNotif('[ MILESTONE ] 10,000 steps! +50 BONUS XP', 'gold'); }
-  }
-  lastAccel = { x: accel.x || 0, y: accel.y || 0, z: accel.z || 0 };
-}
-
-function updateLiveStepDisplay() {
-  const s = document.getElementById('live-steps');
-  const d = document.getElementById('live-dist');
-  const c = document.getElementById('live-cal-steps');
-  if (s) s.textContent = stepCount.toLocaleString();
-  if (d) d.textContent = (stepCount * 0.0008).toFixed(2);
-  if (c) c.textContent = Math.round(stepCount * 0.04);
-}
-
-function saveStepData() {
-  localStorage.setItem('sys_steps_' + getCurrentUser(), JSON.stringify({ date: new Date().toLocaleDateString(), steps: stepCount }));
-}
-
-function getStepData() {
-  try { return JSON.parse(localStorage.getItem('sys_steps_' + getCurrentUser()) || '{}'); }
-  catch { return {}; }
 }
 
 // ============================================
@@ -358,10 +202,4 @@ function setHealthConnected(source) {
   const label = document.getElementById('watch-label');
   if (dot) dot.classList.add('connected');
   if (label) label.textContent = 'ACTIVE';
-}
-
-function connectAppleHealth() {
-  const btn = document.querySelector('.nav-tab[onclick*="workout"]');
-  showPage('workout', btn);
-  showNotif('[ SYSTEM ] Health tracking opened');
 }
