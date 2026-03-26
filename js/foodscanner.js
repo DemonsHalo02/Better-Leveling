@@ -1,20 +1,146 @@
 // ============================================
 // SYSTEM — FOOD SCANNER
-// Text Search + Manual Entry
+// Barcode Scanner + Text Search + Manual Entry
 // ============================================
 
-// ===== MAIN NUTRITION PAGE RENDERER =====
+// ============================================
+// SYSTEM — FOOD SCANNER + HYDRATION + UNITS
+// ============================================
+
 function renderNutritionPage() {
   const el = document.getElementById('page-nutrition');
   const log = HUNTER.foodLog || [];
-  const settings = (typeof HUNTER !== 'undefined' && HUNTER.settings) ? HUNTER.settings : { units: 'metric' };
+  const settings = window.HUNTER?.settings || { units: 'metric' }; // fallback
   const isMetric = settings.units === 'metric';
 
-  // Totals
+  // Convert totals for display
   let totals = { cal: 0, protein: 0, carbs: 0, fat: 0 };
   log.forEach(f => { totals.cal += f.cal; totals.protein += f.protein; totals.carbs += f.carbs; totals.fat += f.fat; });
 
-  // Barcode button (search panel)
+  const goals = typeof getMacroGoals === 'function'
+    ? getMacroGoals()
+    : { cal: 2000, protein: 150, carbs: 250, fat: 65 };
+
+  // ===== Convert for display if imperial =====
+  const displayTotals = {
+    cal: totals.cal,
+    protein: isMetric ? totals.protein : (totals.protein / 28.3495).toFixed(1),
+    carbs: isMetric ? totals.carbs : (totals.carbs / 28.3495).toFixed(1),
+    fat: isMetric ? totals.fat : (totals.fat / 28.3495).toFixed(1),
+  };
+  const displayGoals = {
+    cal: goals.cal,
+    protein: isMetric ? goals.protein : (goals.protein / 28.3495).toFixed(1),
+    carbs: isMetric ? goals.carbs : (goals.carbs / 28.3495).toFixed(1),
+    fat: isMetric ? goals.fat : (goals.fat / 28.3495).toFixed(1),
+  };
+
+  const macros = [
+    { label: 'CALORIES', val: displayTotals.cal, goal: displayGoals.cal, unit: 'kcal', color: '#00b4ff' },
+    { label: 'PROTEIN', val: displayTotals.protein, goal: displayGoals.protein, unit: isMetric ? 'g' : 'oz', color: '#00e5a0' },
+    { label: 'CARBS', val: displayTotals.carbs, goal: displayGoals.carbs, unit: isMetric ? 'g' : 'oz', color: '#f0c040' },
+    { label: 'FAT', val: displayTotals.fat, goal: displayGoals.fat, unit: isMetric ? 'g' : 'oz', color: '#ff6b35' },
+  ];
+
+  const foodOptions = FOOD_DB.map((f, i) => {
+    const p = isMetric ? f.protein : (f.protein / 28.3495).toFixed(1);
+    return `<option value="${i}">${f.name} · ${f.cal}kcal · P:${p}${isMetric ? 'g' : 'oz'}</option>`;
+  }).join('');
+
+  let html = `
+    <!-- MACRO TRACKER -->
+    <div class="section-head">MACRO TRACKER</div>
+    <div class="sys-card">
+  `;
+  macros.forEach(m => {
+    const pct = Math.min(100, Math.round((m.val / m.goal) * 100));
+    const over = m.val > m.goal;
+    html += `
+      <div class="macro-row">
+        <div class="macro-label">${m.label}</div>
+        <div class="macro-track"><div class="macro-fill" style="width:${pct}%;background:${over ? 'var(--red)' : m.color}"></div></div>
+        <div class="macro-val">${m.val}/${m.goal}${m.unit}</div>
+      </div>
+    `;
+  });
+  html += `</div>`;
+
+  // ===== LOG FOOD SECTION =====
+  html += `
+    <div class="section-head">LOG FOOD</div>
+    <div class="sys-card">
+      <!-- MODE TABS -->
+      <div style="display:flex;gap:4px;margin-bottom:14px;background:rgba(0,0,0,0.2);padding:3px;border-radius:6px;border:1px solid var(--border)">
+        <button class="food-mode-btn" id="mode-search" onclick="switchFoodMode('search')" style="flex:1;padding:7px 4px;">🔍 SEARCH</button>
+        <button class="food-mode-btn" id="mode-manual" onclick="switchFoodMode('manual')" style="flex:1;padding:7px 4px;">✏️ MANUAL</button>
+        <button class="food-mode-btn" id="mode-list"   onclick="switchFoodMode('list')"   style="flex:1;padding:7px 4px;">📋 LIST</button>
+      </div>
+
+      <!-- SEARCH MODE -->
+      <div id="food-mode-search" style="display:none">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);letter-spacing:2px;margin-bottom:8px">TYPE TO SEARCH 100+ FOODS</div>
+        <input type="text" class="sys-input" id="food-search-input"
+          placeholder="e.g. chicken, pernil, tacos..."
+          oninput="filterFoodSearch(this.value)"
+          style="margin-bottom:8px" />
+        <div id="food-search-results" style="max-height:240px;overflow-y:auto;display:flex;flex-direction:column;gap:4px"></div>
+      </div>
+
+      <!-- MANUAL ENTRY MODE -->
+      <div id="food-mode-manual" style="display:none">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);letter-spacing:2px;margin-bottom:10px">ENTER FOOD DETAILS MANUALLY</div>
+        <div style="margin-bottom:8px">
+          <label>FOOD NAME</label>
+          <input type="text" class="sys-input" id="manual-name" placeholder="e.g. Arroz con Pollo" />
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+          <div><label>CALORIES</label><input type="number" class="sys-input" id="manual-cal" placeholder="e.g. 420" /></div>
+          <div><label>PROTEIN (${isMetric ? 'g' : 'oz'})</label><input type="number" class="sys-input" id="manual-protein" placeholder="e.g. 35" /></div>
+          <div><label>CARBS (${isMetric ? 'g' : 'oz'})</label><input type="number" class="sys-input" id="manual-carbs" placeholder="e.g. 45" /></div>
+          <div><label>FAT (${isMetric ? 'g' : 'oz'})</label><input type="number" class="sys-input" id="manual-fat" placeholder="e.g. 10" /></div>
+        </div>
+        <button class="btn-primary" onclick="logManualFood()"><span>LOG FOOD</span><div class="btn-arrow">▶</div></button>
+      </div>
+
+      <!-- LIST MODE -->
+      <div id="food-mode-list" style="display:none">
+        <select class="sys-input" id="food-select" style="margin-bottom:10px">
+          <option value="">Choose food...</option>
+          ${foodOptions}
+        </select>
+        <button class="btn-primary" onclick="logSelectedFood()"><span>LOG FOOD</span><div class="btn-arrow">▶</div></button>
+      </div>
+    </div>
+  `;
+
+  // ===== TODAY'S LOG =====
+  html += `<div class="section-head">TODAY'S LOG</div>`;
+  if (log.length === 0) {
+    html += `<div style="text-align:center;padding:20px;color:var(--text3)">NO FOOD LOGGED YET</div>`;
+  } else {
+    log.slice().reverse().forEach(f => {
+      const isAI = f.source === 'ai';
+      const displayProtein = isMetric ? f.protein : (f.protein / 28.3495).toFixed(1);
+      const displayCarbs = isMetric ? f.carbs : (f.carbs / 28.3495).toFixed(1);
+      const displayFat = isMetric ? f.fat : (f.fat / 28.3495).toFixed(1);
+      html += `
+        <div style="background:var(--panel);border:1px solid ${isAI ? 'rgba(168,85,247,0.4)' : 'var(--border)'};border-radius:6px;padding:10px 12px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:6px">
+              <div style="font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${f.name}</div>
+              ${isAI ? `<span style="font-size:8px;color:#a855f7;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);padding:1px 5px;border-radius:3px;flex-shrink:0">AI</span>` : ''}
+            </div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:2px">${f.time} · P:${displayProtein}${isMetric ? 'g' : 'oz'} C:${displayCarbs}${isMetric ? 'g' : 'oz'} F:${displayFat}${isMetric ? 'g' : 'oz'}</div>
+          </div>
+          <div style="font-family:var(--font-hud);font-size:14px;color:var(--gold);flex-shrink:0;margin-left:8px">${f.cal}<span style="font-size:9px;color:var(--text3)">kcal</span></div>
+        </div>
+      `;
+    });
+  }
+
+  el.innerHTML = html;
+
+  // Add barcode button if not present
   setTimeout(() => {
     const searchPanel = document.getElementById('food-mode-search');
     if (!searchPanel) return;
@@ -28,100 +154,6 @@ function renderNutritionPage() {
       searchPanel.prepend(btn);
     }
   }, 50);
-
-  const goals = typeof getMacroGoals === 'function'
-    ? getMacroGoals()
-    : { cal: 2000, protein: 150, carbs: 250, fat: 65 };
-
-  // Convert totals for display if needed
-  const displayTotals = {
-    cal: totals.cal,
-    protein: totals.protein,
-    carbs: totals.carbs,
-    fat: totals.fat
-  };
-
-  const macros = [
-    { label: 'CALORIES', val: displayTotals.cal, goal: goals.cal, unit: 'kcal', color: '#00b4ff' },
-    { label: 'PROTEIN', val: displayTotals.protein, goal: goals.protein, unit: 'g', color: '#00e5a0' },
-    { label: 'CARBS', val: displayTotals.carbs, goal: goals.carbs, unit: 'g', color: '#f0c040' },
-    { label: 'FAT', val: displayTotals.fat, goal: goals.fat, unit: 'g', color: '#ff6b35' },
-  ];
-
-  const foodOptions = FOOD_DB.map((f, i) => {
-    // Display macros in grams/kcal (no conversion needed), but we could later add oz if serving size is used
-    return `<option value="${i}">${f.name} · ${f.cal}kcal · P:${f.protein}g</option>`;
-  }).join('');
-
-  // (HTML generation same as before)
-  let html = `
-    <!-- MACRO TRACKER -->
-    <div class="section-head">MACRO TRACKER</div>
-    <div class="sys-card">
-  `;
-
-  macros.forEach(m => {
-    const pct = Math.min(100, Math.round((m.val / m.goal) * 100));
-    const over = m.val > m.goal;
-    html += `
-      <div class="macro-row">
-        <div class="macro-label">${m.label}</div>
-        <div class="macro-track"><div class="macro-fill" style="width:${pct}%;background:${over ? 'var(--red)' : m.color}"></div></div>
-        <div class="macro-val">${m.val}/${m.goal}${m.unit}</div>
-      </div>
-    `;
-  });
-
-  // ... (keep your log food section / modes as before, no changes to layout)
-
-  // TODAY'S LOG
-  html += `<div class="section-head">TODAY'S LOG</div>`;
-  if (log.length === 0) {
-    html += `<div style="text-align:center;padding:20px;color:var(--text3);font-family:var(--font-mono);font-size:11px;letter-spacing:2px">NO FOOD LOGGED YET</div>`;
-  } else {
-    log.slice().reverse().forEach(f => {
-      const isAI = f.source === 'ai';
-
-      html += `
-        <div style="background:var(--panel);border:1px solid ${isAI ? 'rgba(168,85,247,0.4)' : 'var(--border)'};border-radius:6px;padding:10px 12px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">
-          <div style="flex:1;min-width:0">
-            <div style="display:flex;align-items:center;gap:6px">
-              <div style="font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${f.name}</div>
-              ${isAI ? `<span style="font-family:var(--font-mono);font-size:8px;color:#a855f7;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);padding:1px 5px;border-radius:3px;flex-shrink:0">AI</span>` : ''}
-            </div>
-            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:2px">${f.time} · P:${f.protein}g C:${f.carbs}g F:${f.fat}g</div>
-          </div>
-          <div style="font-family:var(--font-hud);font-size:14px;color:var(--gold);flex-shrink:0;margin-left:8px">${f.cal}<span style="font-size:9px;color:var(--text3)">kcal</span></div>
-        </div>
-      `;
-    });
-  }
-
-  el.innerHTML = html;
-
-  // Add spinner CSS if not present
-  if (!document.getElementById('scanner-styles')) {
-    const style = document.createElement('style');
-    style.id = 'scanner-styles';
-    style.textContent = `
-      .scan-spinner {
-        width: 32px; height: 32px;
-        border: 2px solid rgba(0,180,255,0.2);
-        border-top-color: var(--accent);
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
-      }
-      @keyframes spin { to { transform: rotate(360deg); } }
-      .food-result-row {
-        display:flex;align-items:center;gap:10px;
-        padding:9px 10px;
-        background:var(--panel);border:1px solid var(--border);
-        border-radius:6px;cursor:pointer;transition:border-color 0.15s;
-      }
-      .food-result-row:hover { border-color: var(--accent); }
-    `;
-    document.head.appendChild(style);
-  }
 }
 
 // ===== BARCODE SCANNER =====
