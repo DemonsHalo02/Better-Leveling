@@ -14,7 +14,6 @@ const DEFAULT_SETTINGS = {
   vibration: true,
   streakReminder: true,
   calorieGoal: 2000,
-  waterGoal: 2000,
   friends: [],
 };
 
@@ -240,17 +239,6 @@ function renderSettingsPage() {
         <input type="number" class="sys-input" id="set-cal"
           value="${s.calorieGoal || 2000}" inputmode="numeric" style="flex:1"/>
         <button class="btn-secondary" onclick="applySetting('calorieGoal',parseInt(document.getElementById('set-cal').value)||2000)">SAVE</button>
-      </div>
-    </div>
-
-    <!-- HYDRATION -->
-    <div class="section-head">HYDRATION</div>
-    <div class="sys-card" style="margin-bottom:10px">
-      <label class="setting-label">DAILY WATER GOAL (ML)</label>
-      <div style="display:flex;gap:8px">
-        <input type="number" class="sys-input" id="set-water"
-          value="${s.waterGoal || 2000}" inputmode="numeric" style="flex:1"/>
-        <button class="btn-secondary" onclick="applySetting('waterGoal',parseInt(document.getElementById('set-water').value)||2000)">SAVE</button>
       </div>
     </div>
 
