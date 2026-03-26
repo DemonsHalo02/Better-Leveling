@@ -7,22 +7,22 @@ function showPage(name, btn) {
   document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
   btn.classList.add('active');
-  if (name === 'quests')    renderQuestsPage();
+  if (name === 'quests') renderQuestsPage();
   if (name === 'nutrition') renderNutritionPage();
-  if (name === 'workout')   renderWorkoutPage();
-  if (name === 'status')    renderStatusPage();
+  if (name === 'workout') renderWorkoutPage();
+  if (name === 'status') renderStatusPage();
 }
 
 // ===== QUESTS PAGE =====
 function renderQuestsPage() {
   const el = document.getElementById('page-quests');
-  const today = new Date().toLocaleDateString('en-US', { weekday:'long', month:'short', day:'numeric' });
-  const doneCount  = HUNTER.quests.filter(q => q.done).length;
-  const total      = HUNTER.quests.length;
-  const goal       = typeof getSettings === 'function' ? (getSettings().dailyQuestGoal || 3) : 3;
-  const goalHit    = doneCount >= goal;
-  const goalPct    = Math.min(100, Math.round((doneCount / goal) * 100));
-  const showQuote  = typeof getSettings === 'function' ? getSettings().showQuote !== false : true;
+  const today = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+  const doneCount = HUNTER.quests.filter(q => q.done).length;
+  const total = HUNTER.quests.length;
+  const goal = typeof getSettings === 'function' ? (getSettings().dailyQuestGoal || 3) : 3;
+  const goalHit = doneCount >= goal;
+  const goalPct = Math.min(100, Math.round((doneCount / goal) * 100));
+  const showQuote = typeof getSettings === 'function' ? getSettings().showQuote !== false : true;
 
   // Today's workout plan
   const todayPlan = typeof getTodaysWorkout === 'function' ? getTodaysWorkout() : null;
@@ -45,14 +45,14 @@ function renderQuestsPage() {
           <div style="font-family:var(--font-ui);font-size:13px;color:var(--text2);margin-top:2px">${today}</div>
         </div>
         <div style="text-align:right">
-          <div style="font-family:var(--font-hud);font-size:22px;color:${goalHit?'var(--green)':'var(--accent)'}">${doneCount}<span style="font-size:13px;color:var(--text3)">/${goal}</span><span style="font-size:11px;color:var(--text3)"> goal</span></div>
+          <div style="font-family:var(--font-hud);font-size:22px;color:${goalHit ? 'var(--green)' : 'var(--accent)'}">${doneCount}<span style="font-size:13px;color:var(--text3)">/${goal}</span><span style="font-size:11px;color:var(--text3)"> goal</span></div>
           <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">${doneCount}/${total} TOTAL</div>
         </div>
       </div>
       <div style="height:4px;background:rgba(0,180,255,0.08);border-radius:2px;overflow:hidden;border:1px solid var(--border)">
-        <div style="height:100%;width:${goalPct}%;background:${goalHit?'linear-gradient(90deg,var(--green),#00ff88)':'linear-gradient(90deg,var(--accent2),var(--accent))'};border-radius:2px;transition:width 0.5s"></div>
+        <div style="height:100%;width:${goalPct}%;background:${goalHit ? 'linear-gradient(90deg,var(--green),#00ff88)' : 'linear-gradient(90deg,var(--accent2),var(--accent))'};border-radius:2px;transition:width 0.5s"></div>
       </div>
-      ${goalHit ? `<div style="text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--green);margin-top:8px;letter-spacing:2px">◆ DAILY GOAL REACHED — STREAK ACTIVE ◆</div>` : `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:6px">${goal - doneCount} more quest${goal-doneCount!==1?'s':''} to hit your daily goal</div>`}
+      ${goalHit ? `<div style="text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--green);margin-top:8px;letter-spacing:2px">◆ DAILY GOAL REACHED — STREAK ACTIVE ◆</div>` : `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:6px">${goal - doneCount} more quest${goal - doneCount !== 1 ? 's' : ''} to hit your daily goal</div>`}
     </div>
 
     <div class="section-head">ACTIVE QUESTS</div>
@@ -61,12 +61,12 @@ function renderQuestsPage() {
   HUNTER.quests.forEach((q, i) => {
     const catColor = {
       strength: '#00b4ff', cardio: '#00e5a0', nutrition: '#f0c040',
-      mental: '#a855f7',   lifestyle: '#ff6b35', weekend: '#f0c040',
+      mental: '#a855f7', lifestyle: '#ff6b35', weekend: '#f0c040',
       surprise: '#ff3355'
     }[q.category] || '#7aa0cc';
 
     const isSurprise = q.category === 'surprise';
-    const isWeekend  = q.category === 'weekend';
+    const isWeekend = q.category === 'weekend';
 
     html += `
       <div class="quest-card ${q.done ? 'quest-done' : ''}"
@@ -94,7 +94,7 @@ function renderQuestsPage() {
             <span class="stat-pill pill-accent">+${q.xp} XP</span>
             <span class="stat-pill" style="background:${catColor}18;border:1px solid ${catColor}44;color:${catColor}">${q.stat.toUpperCase()} ↑</span>
             ${isSurprise ? `<span class="stat-pill pill-red">SURPRISE</span>` : ''}
-            ${isWeekend  ? `<span class="stat-pill pill-gold">WEEKEND</span>` : ''}
+            ${isWeekend ? `<span class="stat-pill pill-gold">WEEKEND</span>` : ''}
           </div>
         </div>
         <div style="font-size:13px;color:${q.done ? 'var(--text3)' : 'var(--border2)'};flex-shrink:0">
@@ -192,37 +192,6 @@ function renderWorkoutPage() {
   ).join('');
 
   let html = `
-    <div class="section-head">HEALTH CONNECT</div>
-    <div class="sys-card" id="health-card">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-        <div style="font-size:28px">⌚</div>
-        <div style="flex:1">
-          <div style="font-size:14px;font-weight:600;color:var(--text)">Device Sync</div>
-          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:2px" id="health-status-text">Connect Apple Health or Google Fit</div>
-        </div>
-      </div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn-gold" onclick="connectAppleHealth()" id="apple-btn">🍎 Apple Health</button>
-        <button class="btn-secondary" onclick="connectGoogleFit()" id="google-btn">🔄 Google Fit</button>
-      </div>
-      <div id="health-data-panel" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center">
-          <div>
-            <div style="font-family:var(--font-hud);font-size:18px;color:var(--green)" id="sync-steps">—</div>
-            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">STEPS</div>
-          </div>
-          <div>
-            <div style="font-family:var(--font-hud);font-size:18px;color:var(--accent)" id="sync-hr">—</div>
-            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">HEART RATE</div>
-          </div>
-          <div>
-            <div style="font-family:var(--font-hud);font-size:18px;color:var(--gold)" id="sync-cal">—</div>
-            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">KCAL BURNED</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="section-head">LOG WORKOUT</div>
     <div class="sys-card">
       <div style="margin-bottom:10px">
@@ -283,7 +252,7 @@ function renderWorkoutPage() {
 
 function updateXPPreview() {
   const type = document.getElementById('wk-type')?.value;
-  const dur  = parseInt(document.getElementById('wk-dur')?.value);
+  const dur = parseInt(document.getElementById('wk-dur')?.value);
   const prev = document.getElementById('xp-preview');
   if (!prev) return;
   if (type && dur > 0) {
@@ -296,8 +265,8 @@ function updateXPPreview() {
 }
 
 function submitWorkout() {
-  const type  = document.getElementById('wk-type').value;
-  const dur   = parseInt(document.getElementById('wk-dur').value);
+  const type = document.getElementById('wk-type').value;
+  const dur = parseInt(document.getElementById('wk-dur').value);
   const notes = document.getElementById('wk-notes').value.trim();
   if (!type || isNaN(dur) || dur < 1) { showNotif('[ ERROR ] Enter a valid duration'); return; }
   logWorkout(type, dur, notes);
@@ -314,11 +283,11 @@ function renderStatusPage() {
   const totalStats = Object.values(stats).reduce((a, b) => a + b, 0);
 
   const statDefs = [
-    { key: 'str',   label: 'STRENGTH',    color: '#00b4ff', icon: '⚔️' },
-    { key: 'vit',   label: 'VITALITY',    color: '#00e5a0', icon: '🛡️' },
-    { key: 'agi',   label: 'AGILITY',     color: '#f0c040', icon: '⚡' },
-    { key: 'int',   label: 'INTELLIGENCE',color: '#a855f7', icon: '🧠' },
-    { key: 'sense', label: 'SENSE',        color: '#ff6b35', icon: '👁️' },
+    { key: 'str', label: 'STRENGTH', color: '#00b4ff', icon: '⚔️' },
+    { key: 'vit', label: 'VITALITY', color: '#00e5a0', icon: '🛡️' },
+    { key: 'agi', label: 'AGILITY', color: '#f0c040', icon: '⚡' },
+    { key: 'int', label: 'INTELLIGENCE', color: '#a855f7', icon: '🧠' },
+    { key: 'sense', label: 'SENSE', color: '#ff6b35', icon: '👁️' },
   ];
 
   const maxStat = Math.max(...Object.values(stats));
@@ -368,10 +337,10 @@ function renderStatusPage() {
   `;
 
   const achievements = [
-    { label: 'Quests Done',   val: HUNTER.questsCompleted || 0,           icon: '◈', color: 'var(--accent)' },
-    { label: 'Day Streak',    val: HUNTER.streakDays || 0,                 icon: '🔥', color: 'var(--red)' },
-    { label: 'Hours Trained', val: Math.round((HUNTER.totalWorkoutMin||0)/60), icon: '⏱',  color: 'var(--green)' },
-    { label: 'Total XP',      val: HUNTER.totalXPEarned || 0,              icon: '⚡', color: 'var(--gold)' },
+    { label: 'Quests Done', val: HUNTER.questsCompleted || 0, icon: '◈', color: 'var(--accent)' },
+    { label: 'Day Streak', val: HUNTER.streakDays || 0, icon: '🔥', color: 'var(--red)' },
+    { label: 'Hours Trained', val: Math.round((HUNTER.totalWorkoutMin || 0) / 60), icon: '⏱', color: 'var(--green)' },
+    { label: 'Total XP', val: HUNTER.totalXPEarned || 0, icon: '⚡', color: 'var(--gold)' },
   ];
 
   achievements.forEach(a => {
