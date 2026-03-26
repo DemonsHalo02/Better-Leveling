@@ -186,13 +186,3 @@ function submitWorkout() {
   document.getElementById('wk-notes').value = '';
   document.getElementById('xp-preview').textContent = '';
 }
-
-// ============================================
-// WATCH DOT
-// ============================================
-function setHealthConnected(source) {
-  const dot = document.getElementById('watch-dot');
-  const label = document.getElementById('watch-label');
-  if (dot) dot.classList.add('connected');
-  if (label) label.textContent = 'ACTIVE';
-}
