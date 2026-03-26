@@ -1,10 +1,11 @@
 // ============================================
-// SYSTEM — APP BOOTSTRAP v3 + WATER REMINDERS
+// SYSTEM — APP BOOTSTRAP v4 (Clean)
 // ============================================
 
 // ====== BACKGROUND CANVAS ======
 (function initCanvas() {
   const canvas = document.getElementById('bg-canvas');
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let W, H, particles = [];
 
@@ -15,9 +16,13 @@
     const count = Math.floor((W * H) / 14000);
     for (let i = 0; i < count; i++) {
       particles.push({
-        x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.2 + 0.3,
-        vx: (Math.random() - 0.5) * 0.15, vy: (Math.random() - 0.5) * 0.15,
-        alpha: Math.random() * 0.4 + 0.1, blue: Math.random() > 0.7
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.2 + 0.3,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        alpha: Math.random() * 0.4 + 0.1,
+        blue: Math.random() > 0.7
       });
     }
   }
@@ -47,24 +52,26 @@
 function showPage(name, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
+  const page = document.getElementById('page-' + name);
+  if (!page) return;
+  page.classList.add('active');
   if (btn) btn.classList.add('active');
 
-  if (name === 'quests') renderQuestsPage();
-  if (name === 'nutrition') renderNutritionPage();
-  if (name === 'workout') renderWorkoutPage();
-  if (name === 'status') { renderStatusPage(); if (typeof renderAdminPanel === 'function') renderAdminPanel(); }
-  if (name === 'boss') renderBossPage();
-  if (name === 'skills') renderSkillTree();
-  if (name === 'army') renderShadowArmy();
-  if (name === 'inventory') renderInventory();
-  if (name === 'guild') renderGuildPage();
-  if (name === 'improve') renderSelfImprovePage();
-  if (name === 'settings') renderSettingsPage();
-}
-
-function initSettings() {
-  Settings.init();
+  // Render page content
+  switch (name) {
+    case 'quests': renderQuestsPage(); break;
+    case 'train': renderTrainPage(); break;
+    case 'nutrition': renderNutritionPage(); break;
+    case 'workout': renderWorkoutPage(); break;
+    case 'status': renderStatusPage(); break;
+    case 'boss': renderBossPage(); break;
+    case 'skills': renderSkillTree(); break;
+    case 'army': renderShadowArmy(); break;
+    case 'inventory': renderInventory(); break;
+    case 'guild': renderGuildPage(); break;
+    case 'improve': renderSelfImprovePage(); break;
+    case 'settings': Settings.init(); break; // fixed
+  }
 }
 
 // ====== APP LAUNCH ======
@@ -76,19 +83,14 @@ function launchApp(hunterData) {
   document.getElementById('app-screen').classList.remove('hidden');
 
   refreshHUD();
-  initSettings();
-  renderQuestsPage();
+  Settings.init();      // replaced initSettings()
+  renderQuestsPage();   // default page
   checkShadowUnlocks();
   checkLoginStreakBonus();
-  if (typeof checkAllAchievements === 'function') setTimeout(() => checkAllAchievements(), 2000);
+  if (typeof checkAllAchievements === 'function') setTimeout(checkAllAchievements, 2000);
 
-  if (localStorage.getItem('sys_health_source')) {
-    setTimeout(() => {
-      setHealthConnected(localStorage.getItem('sys_health_source'));
-      loadSimulatedHealthData();
-    }, 1000);
-  }
-
+  // No more Apple/Google or health auto-sync
+  // New user intro
   const isNew = !localStorage.getItem('sys_awakened_' + hunter.name.toLowerCase());
   if (isNew) {
     setTimeout(() => playAwakeningIntro(hunter.name, () => {
@@ -100,7 +102,6 @@ function launchApp(hunterData) {
     }), 300);
   }
 
-  // Initialize water reminders
   initWaterReminders();
 }
 
@@ -112,89 +113,5 @@ window.addEventListener('DOMContentLoaded', async () => {
     setTimeout(() => gateInput.focus(), 400);
   }
 
-  if (hasValidSession()) {
-    launchApp(getHunterProfile());
-    return;
-  }
-
-  if (window._checkPaymentOnLoad) {
-    window._checkPaymentOnLoad = false;
-    setTimeout(() => checkPaymentStatus(), 1000);
-  }
+  if (hasValidSession()) launchApp(getHunterProfile());
 });
-
-// ============================================
-// WATER REMINDERS & GOAL SYSTEM
-// ============================================
-let waterGoal = parseInt(localStorage.getItem('waterGoal')) || 64; // default 64oz
-let waterReminderTimes = JSON.parse(localStorage.getItem('waterTimes')) || ["09:00", "14:00", "18:00"];
-
-function initWaterReminders() {
-  const waterGoalInput = document.getElementById('water-goal-input');
-  const waterGoalVal = document.getElementById('water-goal-val');
-  const waterTimesList = document.getElementById('water-times-list');
-
-  // Display current goal
-  if (waterGoalInput) {
-    waterGoalInput.value = waterGoal;
-    waterGoalVal.textContent = waterGoal;
-    waterGoalInput.addEventListener('change', () => {
-      waterGoal = parseInt(waterGoalInput.value);
-      waterGoalVal.textContent = waterGoal;
-      localStorage.setItem('waterGoal', waterGoal);
-    });
-  }
-
-  function renderWaterTimes() {
-    if (!waterTimesList) return;
-    waterTimesList.innerHTML = '';
-    waterReminderTimes.forEach((time, idx) => {
-      const div = document.createElement('div');
-      div.className = 'calc-row';
-      div.innerHTML = `
-        <input type="time" value="${time}" onchange="updateWaterTime(${idx}, this.value)">
-        <button onclick="removeWaterTime(${idx})">❌</button>
-      `;
-      waterTimesList.appendChild(div);
-    });
-  }
-
-  window.addWaterTime = () => {
-    waterReminderTimes.push("09:00");
-    localStorage.setItem('waterTimes', JSON.stringify(waterReminderTimes));
-    renderWaterTimes();
-  };
-
-  window.updateWaterTime = (idx, value) => {
-    waterReminderTimes[idx] = value;
-    localStorage.setItem('waterTimes', JSON.stringify(waterReminderTimes));
-  };
-
-  window.removeWaterTime = (idx) => {
-    waterReminderTimes.splice(idx, 1);
-    localStorage.setItem('waterTimes', JSON.stringify(waterReminderTimes));
-    renderWaterTimes();
-  };
-
-  renderWaterTimes();
-
-  // Request Notification permission
-  if ("Notification" in window && Notification.permission !== "granted") {
-    Notification.requestPermission();
-  }
-
-  // Check reminders every minute
-  setInterval(() => {
-    if (!("Notification" in window)) return;
-    const now = new Date();
-    const currentTime = now.toTimeString().substring(0, 5); // "HH:MM"
-    waterReminderTimes.forEach(time => {
-      if (time === currentTime) {
-        new Notification("💧 Time to drink water!", {
-          body: `Daily goal: ${waterGoal} oz`,
-          icon: "icons/water.png"
-        });
-      }
-    });
-  }, 60000);
-}
