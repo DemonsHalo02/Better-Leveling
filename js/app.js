@@ -1,5 +1,5 @@
 // ============================================
-// SYSTEM — APP BOOTSTRAP v4 (Clean)
+// SYSTEM — APP BOOTSTRAP v3 + WATER REMINDERS
 // ============================================
 
 // ====== BACKGROUND CANVAS ======
@@ -16,13 +16,9 @@
     const count = Math.floor((W * H) / 14000);
     for (let i = 0; i < count; i++) {
       particles.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        r: Math.random() * 1.2 + 0.3,
-        vx: (Math.random() - 0.5) * 0.15,
-        vy: (Math.random() - 0.5) * 0.15,
-        alpha: Math.random() * 0.4 + 0.1,
-        blue: Math.random() > 0.7
+        x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.2 + 0.3,
+        vx: (Math.random() - 0.5) * 0.15, vy: (Math.random() - 0.5) * 0.15,
+        alpha: Math.random() * 0.4 + 0.1, blue: Math.random() > 0.7
       });
     }
   }
@@ -50,68 +46,59 @@
 
 // ====== PAGE NAVIGATION ======
 function showPage(name, btn) {
+  const pageEl = document.getElementById('page-' + name);
+  if (!pageEl) return console.warn(`Page '${name}' not found`);
+
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
-  const page = document.getElementById('page-' + name);
-  if (!page) return;
-  page.classList.add('active');
+
+  pageEl.classList.add('active');
   if (btn) btn.classList.add('active');
 
-  // Render page content
-  switch (name) {
-    case 'quests': renderQuestsPage(); break;
-    case 'train': renderTrainPage(); break;
-    case 'nutrition': renderNutritionPage(); break;
-    case 'workout': renderWorkoutPage(); break;
-    case 'status': renderStatusPage(); break;
-    case 'boss': renderBossPage(); break;
-    case 'skills': renderSkillTree(); break;
-    case 'army': renderShadowArmy(); break;
-    case 'inventory': renderInventory(); break;
-    case 'guild': renderGuildPage(); break;
-    case 'improve': renderSelfImprovePage(); break;
-    case 'settings': Settings.init(); break; // fixed
-  }
+  // Render page functions
+  if (name === 'quests' && typeof renderQuestsPage === 'function') renderQuestsPage();
+  if (name === 'train' && typeof renderTrainPage === 'function') renderTrainPage();
+  if (name === 'nutrition' && typeof renderNutritionPage === 'function') renderNutritionPage();
+  if (name === 'workout' && typeof renderWorkoutPage === 'function') renderWorkoutPage();
+  if (name === 'status' && typeof renderStatusPage === 'function') renderStatusPage();
+  if (name === 'boss' && typeof renderBossPage === 'function') renderBossPage();
+  if (name === 'skills' && typeof renderSkillTree === 'function') renderSkillTree();
+  if (name === 'army' && typeof renderShadowArmy === 'function') renderShadowArmy();
+  if (name === 'inventory' && typeof renderInventory === 'function') renderInventory();
+  if (name === 'guild' && typeof renderGuildPage === 'function') renderGuildPage();
+  if (name === 'improve' && typeof renderSelfImprovePage === 'function') renderSelfImprovePage();
+  if (name === 'settings') Settings.init();
 }
 
 // ====== APP LAUNCH ======
 function launchApp(hunterData) {
-  const hunter = loadHunter(hunterData);
-  HUNTER = hunter;
+  const hunter = loadHunter ? loadHunter(hunterData) : { name: 'Player' };
+  window.HUNTER = hunter;
 
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app-screen').classList.remove('hidden');
+  const loginScreen = document.getElementById('login-screen');
+  const appScreen = document.getElementById('app-screen');
+  if (loginScreen) loginScreen.style.display = 'none';
+  if (appScreen) appScreen.classList.remove('hidden');
 
-  refreshHUD();
-  Settings.init();      // replaced initSettings()
-  renderQuestsPage();   // default page
-  checkShadowUnlocks();
-  checkLoginStreakBonus();
-  if (typeof checkAllAchievements === 'function') setTimeout(checkAllAchievements, 2000);
+  // Init settings
+  Settings.init();
 
-  // No more Apple/Google or health auto-sync
-  // New user intro
-  const isNew = !localStorage.getItem('sys_awakened_' + hunter.name.toLowerCase());
-  if (isNew) {
-    setTimeout(() => playAwakeningIntro(hunter.name, () => {
-      showSystemMessage([
-        { text: 'WELCOME TO THE SYSTEM', color: 'var(--accent)', size: 13, delay: 0 },
-        { text: hunter.name.toUpperCase(), color: 'var(--gold)', size: 28, delay: 600 },
-        { text: 'YOUR JOURNEY BEGINS NOW', color: 'var(--text2)', size: 11, delay: 1400 },
-      ]);
-    }), 300);
-  }
+  // Render default page
+  showPage('quests');
 
-  initWaterReminders();
+  // Water reminders
+  if (typeof initWaterReminders === 'function') initWaterReminders();
 }
 
 // ====== DOM READY ======
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('DOMContentLoaded', () => {
   const gateInput = document.getElementById('gate-pass');
   if (gateInput) {
     gateInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleGateLogin(); });
     setTimeout(() => gateInput.focus(), 400);
   }
 
-  if (hasValidSession()) launchApp(getHunterProfile());
+  if (hasValidSession && hasValidSession()) {
+    launchApp(getHunterProfile ? getHunterProfile() : {});
+  }
 });
