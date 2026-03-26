@@ -5,42 +5,56 @@
 // ============================================
 
 const DEFAULT_SETTINGS = {
-  units: 'metric',           // metric or imperial
+  units: 'metric',
   dailyQuestGoal: 3,
-  waterGoal: 2000,           // ml
-  calorieGoal: 2000,
-  accentColor: 'blue',       // blue, green, gold, purple, red
+  accentColor: 'blue',
   hunterName: 'HUNTER',
-  compactMode: false,
   showQuote: true,
+  compactMode: false,
   vibration: true,
   streakReminder: true,
+  calorieGoal: 2000,
+  waterGoal: 2000,
+  friends: [],
 };
 
-// ── STORAGE ────────────────────────────────────────
+// ── STORAGE ───────────────────────────────────────────
 function getSettings() {
   try {
     const saved = JSON.parse(localStorage.getItem('bl_settings') || 'null');
-    return { ...DEFAULT_SETTINGS, ...(saved || {}) };
-  } catch {
-    return { ...DEFAULT_SETTINGS };
-  }
+    // also try old key
+    const old = !saved && JSON.parse(localStorage.getItem('sys_settings') || 'null');
+    return { ...DEFAULT_SETTINGS, ...(saved || old || {}) };
+  } catch { return { ...DEFAULT_SETTINGS }; }
 }
 
 function saveSettings(partial) {
   const s = { ...getSettings(), ...partial };
-  if (s.units === 'metric') { s.weightUnit = 'kg'; s.distanceUnit = 'km'; }
-  if (s.units === 'imperial') { s.weightUnit = 'lbs'; s.distanceUnit = 'mi'; }
+  if (partial.units === 'metric') { s.weightUnit = 'kg'; s.distanceUnit = 'km'; }
+  if (partial.units === 'imperial') { s.weightUnit = 'lbs'; s.distanceUnit = 'mi'; }
   localStorage.setItem('bl_settings', JSON.stringify(s));
   applySettings(s);
+  // Update guild with new name if changed
+  if (partial.hunterName) updateGuildScore();
   return s;
 }
 
-// ── APPLY SETTINGS TO DOM ─────────────────────────
+function applySetting(key, value) {
+  saveSettings({ [key]: value });
+  renderSettingsPage();
+  if (key === 'dailyQuestGoal') renderQuestsPage();
+  if (key === 'accentColor' || key === 'compactMode') { }
+  if (key === 'hunterName') {
+    const el = document.getElementById('top-name');
+    if (el) el.textContent = String(value).toUpperCase();
+    if (HUNTER) HUNTER.name = String(value);
+    persist();
+  }
+}
+
+// ── APPLY TO DOM ──────────────────────────────────────
 function applySettings(s) {
   s = s || getSettings();
-
-  // Accent Colors
   const colors = {
     blue: ['#00b4ff', '#005fff'],
     green: ['#00e5a0', '#00a870'],
@@ -51,40 +65,13 @@ function applySettings(s) {
   const [a, a2] = colors[s.accentColor] || colors.blue;
   document.documentElement.style.setProperty('--accent', a);
   document.documentElement.style.setProperty('--accent2', a2);
-
-  // Compact mode styling
   document.documentElement.style.setProperty('--card-padding', s.compactMode ? '10px' : '14px');
-
-  // Hunter name update
-  const nameEl = document.getElementById('top-name');
-  if (nameEl) nameEl.textContent = s.hunterName.toUpperCase();
-
-  // Units update for hydration, etc.
-  safeRenderHydration();
-}
-
-// ── SAFE RENDER HELPERS ─────────────────────────────
-function safeRenderHydration() {
-  try {
-    if (typeof renderHydrationTracker === 'function')
-      renderHydrationTracker(document.getElementById('page-improve'));
-  } catch (e) { console.warn(e); }
-}
-
-function safeRenderQuests() {
-  try {
-    if (typeof renderQuestsPage === 'function')
-      renderQuestsPage();
-  } catch (e) { console.warn(e); }
-}
-
-// ── APPLY SINGLE SETTING ───────────────────────────
-function applySetting(key, value) {
-  saveSettings({ [key]: value });
-  renderSettingsPage();
-
-  if (key === 'dailyQuestGoal') safeRenderQuests();
-  if (key === 'units') safeRenderHydration();
+  // Update name in HUD
+  if (s.hunterName) {
+    const el = document.getElementById('top-name');
+    if (el) el.textContent = s.hunterName.toUpperCase();
+    if (HUNTER) HUNTER.name = s.hunterName;
+  }
 }
 
 // ── SETTINGS PAGE RENDER ───────────────────────────
@@ -137,9 +124,6 @@ function initSettings() {
   applySettings(getSettings());
   renderSettingsPage();
 }
-
-// Initialize on load
-initSettings();
 
 // ── UNIT HELPERS ──────────────────────────────────────
 function weightLabel() { return getSettings().units === 'imperial' ? 'lbs' : 'kg'; }
@@ -472,3 +456,5 @@ function resetAllData() {
   showNotif('[ RESET ] Cleared — reloading...');
   setTimeout(() => location.reload(), 1200);
 }
+
+initSettings();
