@@ -22,10 +22,13 @@ const DEFAULT_SETTINGS = {
 function getSettings() {
   try {
     const saved = JSON.parse(localStorage.getItem('bl_settings') || 'null');
-    // also try old key
     const old = !saved && JSON.parse(localStorage.getItem('sys_settings') || 'null');
-    return { ...DEFAULT_SETTINGS, ...(saved || old || {}) };
-  } catch { return { ...DEFAULT_SETTINGS }; }
+    const s = { ...DEFAULT_SETTINGS, ...(saved || old || {}) };
+    if (!Array.isArray(s.friends)) s.friends = [];
+    return s;
+  } catch {
+    return { ...DEFAULT_SETTINGS, friends: [] };
+  }
 }
 
 function saveSettings(partial) {
