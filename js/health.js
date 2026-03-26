@@ -1,7 +1,10 @@
 // ============================================
 // SYSTEM — HEALTH TRACKING (Rebuilt)
-// Manual health data entry + workout logging
+// Manual + step tracker UI (no auto iPhone/Google tracking)
 // ============================================
+
+// Step counter variables (manual only)
+let stepCount = 0;
 
 // ============================================
 // WORKOUT PAGE RENDERER
@@ -18,16 +21,50 @@ function renderWorkoutPage() {
 
   let html = `
 
+    <!-- STEP COUNTER (MANUAL) -->
+    <div class="section-head">STEP TRACKER</div>
+    <div class="sys-card" id="step-card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+        <div style="font-size:32px">👟</div>
+        <div style="flex:1">
+          <div style="font-size:14px;font-weight:600;color:var(--text)">Step Tracker</div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:2px" id="step-status-text">
+            Enter your steps manually below
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center">
+          <div style="font-family:var(--font-hud);font-size:22px;color:var(--green)" id="live-steps">${stepCount.toLocaleString()}</div>
+          <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">STEPS</div>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center">
+          <div style="font-family:var(--font-hud);font-size:22px;color:var(--accent)" id="live-dist">${(stepCount * 0.0008).toFixed(2)}</div>
+          <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">KM EST.</div>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center">
+          <div style="font-family:var(--font-hud);font-size:22px;color:var(--gold)" id="live-cal-steps">${Math.round(stepCount * 0.04)}</div>
+          <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">KCAL EST.</div>
+        </div>
+      </div>
+      <div style="margin-top:10px;padding:8px;background:rgba(0,180,255,0.05);border:1px solid rgba(0,180,255,0.15);border-radius:6px">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);line-height:1.7">
+          Every 1,000 steps = +15 XP &nbsp;·&nbsp; 10,000 steps = +50 BONUS XP<br>
+          Enter steps manually for tracking.
+        </div>
+      </div>
+    </div>
+
     <!-- MANUAL HEALTH ENTRY -->
     <div class="section-head">LOG TODAY'S HEALTH DATA</div>
     <div class="sys-card">
       <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);letter-spacing:1px;margin-bottom:10px;line-height:1.7">
-        Open your Apple Health app → Summary tab → check today's numbers → enter them here to earn XP.
+        Enter today's numbers manually to earn XP.
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
         <div>
           <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);letter-spacing:1px;display:block;margin-bottom:4px">STEPS TODAY</label>
-          <input type="number" class="sys-input" id="h-steps" placeholder="e.g. 8432" inputmode="numeric" value="${healthData.steps || ''}" oninput="previewHealthXP()" />
+          <input type="number" class="sys-input" id="h-steps" placeholder="e.g. 8432" inputmode="numeric" value="${healthData.steps || ''}" oninput="previewHealthXP(); updateStepDisplay();" />
         </div>
         <div>
           <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);letter-spacing:1px;display:block;margin-bottom:4px">RESTING HR (BPM)</label>
@@ -46,17 +83,6 @@ function renderWorkoutPage() {
       <button class="btn-primary" onclick="saveManualHealthData()">
         <span>SAVE HEALTH DATA</span><div class="btn-arrow">▶</div>
       </button>
-      ${healthData.date === new Date().toLocaleDateString() ? `
-        <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
-          <div style="font-family:var(--font-mono);font-size:9px;color:var(--green);letter-spacing:2px;margin-bottom:8px">✓ LOGGED TODAY</div>
-          <div style="display:flex;flex-wrap:wrap;gap:8px">
-            ${healthData.steps ? `<span class="stat-pill pill-green">👟 ${Number(healthData.steps).toLocaleString()}</span>` : ''}
-            ${healthData.hr ? `<span class="stat-pill pill-accent">❤️ ${healthData.hr} BPM</span>` : ''}
-            ${healthData.calories ? `<span class="stat-pill pill-gold">🔥 ${Number(healthData.calories).toLocaleString()} kcal</span>` : ''}
-            ${healthData.activeMin ? `<span class="stat-pill pill-purple">⚡ ${healthData.activeMin} min</span>` : ''}
-          </div>
-        </div>
-      ` : ''}
     </div>
 
     <!-- LOG WORKOUT -->
@@ -79,46 +105,24 @@ function renderWorkoutPage() {
         <span>SUBMIT WORKOUT</span><div class="btn-arrow">▶</div>
       </button>
     </div>
-
-    <!-- HISTORY -->
-    <div class="section-head">TRAINING STATS</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-      <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center">
-        <div style="font-family:var(--font-hud);font-size:22px;color:var(--accent)">${Math.floor(totalMin / 60)}h ${totalMin % 60}m</div>
-        <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">TOTAL TRAINED</div>
-      </div>
-      <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center">
-        <div style="font-family:var(--font-hud);font-size:22px;color:var(--gold)">${workouts.length}</div>
-        <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">SESSIONS</div>
-      </div>
-    </div>
-
-    <div class="section-head">WORKOUT HISTORY</div>
   `;
-
-  if (workouts.length === 0) {
-    html += `<div style="text-align:center;padding:20px;color:var(--text3);font-family:var(--font-mono);font-size:11px;letter-spacing:2px">NO WORKOUTS LOGGED YET</div>`;
-  } else {
-    workouts.slice(0, 15).forEach(w => {
-      const wt = WORKOUT_TYPES.find(t => t.id === w.type);
-      html += `
-        <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:10px 12px;margin-bottom:6px;display:flex;align-items:center;gap:10px">
-          <div style="font-size:22px">${wt?.icon || '💪'}</div>
-          <div style="flex:1">
-            <div style="font-size:13px;font-weight:600;color:var(--text)">${wt?.name || w.type}</div>
-            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:2px">${w.date} · ${w.durationMin} min${w.notes ? ' · ' + w.notes : ''}</div>
-          </div>
-          <span class="stat-pill pill-gold">+${w.xpEarned} XP</span>
-        </div>
-      `;
-    });
-  }
 
   el.innerHTML = html;
 }
 
 // ============================================
-// MANUAL HEALTH DATA
+// HELPER TO UPDATE STEP DISPLAY
+// ============================================
+function updateStepDisplay() {
+  const val = parseInt(document.getElementById('h-steps')?.value) || 0;
+  stepCount = val;
+  document.getElementById('live-steps').textContent = stepCount.toLocaleString();
+  document.getElementById('live-dist').textContent = (stepCount * 0.0008).toFixed(2);
+  document.getElementById('live-cal-steps').textContent = Math.round(stepCount * 0.04);
+}
+
+// ============================================
+// MANUAL HEALTH DATA + XP
 // ============================================
 function previewHealthXP() {
   const steps = parseInt(document.getElementById('h-steps')?.value) || 0;
@@ -141,6 +145,7 @@ function saveManualHealthData() {
   const activeMin = parseInt(document.getElementById('h-active')?.value) || 0;
   if (!steps && !hr && !calories && !activeMin) { showNotif('[ ERROR ] Enter at least one value'); return; }
   localStorage.setItem('sys_health_manual_' + getCurrentUser(), JSON.stringify({ date: new Date().toLocaleDateString(), steps, hr, calories, activeMin }));
+  updateStepDisplay(); // update UI
   let xp = 0, statKey = 'vit';
   if (steps >= 10000) { xp += 50; statKey = 'agi'; } else if (steps >= 7500) { xp += 35; statKey = 'agi'; } else if (steps >= 5000) { xp += 20; statKey = 'agi'; } else if (steps >= 2500) { xp += 10; statKey = 'agi'; }
   if (hr > 0 && hr < 70) xp += 15;
