@@ -1,0 +1,182 @@
+/* ============================================
+   LOGIN STYLES
+   ============================================ */
+.login-wrap {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 24px;
+    background: var(--bg);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 360px;
+    background: rgba(8, 25, 46, 0.9);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    backdrop-filter: blur(16px);
+    animation: card-in 0.6s ease 0.2s both;
+}
+
+.login-card .sys-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: rgba(8, 25, 46, 0.8);
+    color: var(--text);
+    font-size: 14px;
+}
+
+.login-card .btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, rgba(0, 95, 255, 0.3), rgba(0, 180, 255, 0.2));
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.login-card .btn-primary:hover {
+    background: rgba(0, 180, 255, 0.25);
+}
+
+@keyframes card-in {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   GLOBAL APP STYLES
+   ============================================ */
+:root {
+    --bg: #040c18;
+    --bg2: #071426;
+    --bg3: #0a1e38;
+    --panel: #08192e;
+    --border: #0f3060;
+    --border2: #1a4a8a;
+    --accent: #00b4ff;
+    --accent2: #005fff;
+    --gold: #f0c040;
+    --green: #00e5a0;
+    --red: #ff3355;
+    --purple: #a855f7;
+    --text: #c8e0ff;
+    --text2: #7aa0cc;
+    --text3: #3a6080;
+    --glow: rgba(0, 180, 255, 0.25);
+    --font-ui: 'Rajdhani', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
+    --font-hud: 'Orbitron', sans-serif;
+}
+
+/* App Layout */
+body,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: var(--font-ui);
+    color: var(--text);
+    background: var(--bg);
+    overflow: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* App Card Elements */
+.app-card,
+.sys-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+/* App Inputs & Buttons */
+.app-card .sys-input,
+.sys-card .sys-input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: rgba(7, 20, 38, 0.8);
+    color: var(--text);
+}
+
+.app-card .btn-primary,
+.sys-card .btn-primary {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, rgba(0, 95, 255, 0.3), rgba(0, 180, 255, 0.2));
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* Nav Tabs */
+.nav-tab {
+    flex: 1;
+    padding: 10px 4px 8px;
+    background: transparent;
+    border: none;
+    color: var(--text3);
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nav-tab.active {
+    color: var(--accent);
+}
+
+.nav-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--accent);
+}
+
+/* Pages */
+.page {
+    display: none;
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    padding: 16px;
+}
+
+.page.active {
+    display: block;
+}
