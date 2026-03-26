@@ -6,7 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="mobile-web-app-capable" content="yes">
   <title>Better Leveling</title>
-  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Global / app-wide styles -->
+  <link rel="stylesheet" href="css/global.css">
+
+  <!-- Login page styles -->
+  <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
@@ -14,8 +19,31 @@
   <canvas id="bg-canvas"></canvas>
 
   <!-- LOGIN SCREEN -->
-  <div id="login-screen">
-    <input id="gate-pass" placeholder="Enter pass" />
+  <div id="login-screen" class="login-wrap">
+    <!-- Glowing ring behind card -->
+    <div class="login-glow-ring"></div>
+
+    <div class="login-card">
+      <!-- Logo -->
+      <div class="system-logo">
+        <div class="logo-hex"></div>
+        <div class="logo-title">BETTER LEVELING</div>
+        <div class="logo-sub">HUNTER INTERFACE</div>
+      </div>
+
+      <!-- Name Field -->
+      <div class="field-group">
+        <label class="field-label" for="gate-pass">Enter Your Name</label>
+        <input id="gate-pass" class="sys-input" placeholder="Type your name..." />
+      </div>
+
+      <!-- Start Button -->
+      <button class="btn-primary" onclick="handleGateLogin()">Start</button>
+
+      <!-- Error / Demo Note -->
+      <div class="error-msg" id="login-error"></div>
+      <div class="demo-note" onclick="demoLogin()">Use Demo Account</div>
+    </div>
   </div>
 
   <!-- APP SCREEN -->
