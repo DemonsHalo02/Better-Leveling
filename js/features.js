@@ -140,6 +140,14 @@ function removeCup() {
 }
 
 function startHydrationReminder() {
+  // Detect iOS
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+  if (isIOS && !isStandalone) {
+    showNotif('[ INFO ] On iPhone, reminders only work if the app is added to the home screen', 'gold');
+  }
+
   if (!('Notification' in window)) {
     showNotif('[ INFO ] Notifications not supported in this browser');
     return;
@@ -153,13 +161,13 @@ function startHydrationReminder() {
 
       window._hydrationTimer = setInterval(() => {
         const d = getHydrationData();
-        if ((d.cups || 0) < 8) {
+        if ((d.cups || 0) < (getSettings().waterGoal || 2000) / 250) {
           new Notification('💧 SYSTEM', {
-            body: 'Time to drink water, Hunter! Stay hydrated.',
+            body: 'Time to drink water! Stay hydrated.',
             icon: '/icon-192.png'
           });
         }
-      }, 60 * 60 * 1000);
+      }, 60 * 60 * 1000); // every hour
 
       showNotif('[ REMINDERS ] Hydration reminders on — every hour');
       renderSelfImprovePage();
@@ -191,6 +199,45 @@ function saveHydrationData(cups) {
   data.date = new Date().toLocaleDateString();
   data.cups = cups;
   localStorage.setItem('sys_hydration_' + getCurrentUser(), JSON.stringify(data));
+}
+
+// ============================================
+// ✅ IOS Home Screen Install
+// ============================================
+function promptAddToHomeScreen() {
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+  // Only show if on iOS and not already installed
+  if (isIOS && !isStandalone) {
+    // Check if we've already shown it
+    if (localStorage.getItem('ios_a2hs_prompt_shown')) return;
+
+    const ov = document.createElement('div');
+    ov.style.cssText = `
+      position:fixed;bottom:20px;left:20px;right:20px;
+      background:var(--bg2);border:1px solid var(--accent);
+      border-radius:12px;padding:16px;z-index:1000;
+      display:flex;align-items:center;gap:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3);
+      font-family:var(--font-mono);font-size:13px;color:var(--text);
+    `;
+    ov.innerHTML = `
+      <div style="flex:1">
+        💧 For hydration reminders to work on iPhone, add this app to your home screen:
+        <br><strong>Tap ⬆️ → Add to Home Screen</strong>
+      </div>
+      <button style="
+        background:var(--accent);color:#fff;border:none;padding:6px 12px;
+        border-radius:6px;font-weight:600;cursor:pointer;font-size:12px;
+      ">Got it</button>
+    `;
+    const btn = ov.querySelector('button');
+    btn.addEventListener('click', () => {
+      ov.remove();
+      localStorage.setItem('ios_a2hs_prompt_shown', '1');
+    });
+    document.body.appendChild(ov);
+  }
 }
 
 // ============================================
@@ -638,3 +685,5 @@ function renderFriendsSection(container) {
     </div>
   `;
 }
+
+promptAddToHomeScreen();
