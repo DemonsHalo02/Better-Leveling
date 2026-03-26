@@ -63,6 +63,10 @@ function showPage(name, btn) {
   if (name === 'settings') renderSettingsPage();
 }
 
+function initSettings() {
+  Settings.init();
+}
+
 // ====== APP LAUNCH ======
 function launchApp(hunterData) {
   const hunter = loadHunter(hunterData);
