@@ -1,9 +1,7 @@
 // ============================================
-// BETTER LEVELING — SETTINGS v4
-// Fully working settings page, safe stubs for hydration, guild, quests
+// SETTINGS.JS — Fixed for Working Settings Page
 // ============================================
 
-// DEFAULT SETTINGS
 const DEFAULT_SETTINGS = {
   units: 'metric',
   dailyQuestGoal: 3,
@@ -18,7 +16,7 @@ const DEFAULT_SETTINGS = {
   friends: [],
 };
 
-// ── STORAGE ──────────────────────────────────────
+// ── STORAGE ───────────────────────────────────────────
 function getSettings() {
   try {
     const saved = JSON.parse(localStorage.getItem('bl_settings') || 'null');
@@ -30,21 +28,25 @@ function getSettings() {
 
 function saveSettings(partial) {
   const s = { ...getSettings(), ...partial };
-  if (partial.units === 'metric') { s.weightUnit = 'kg'; s.distanceUnit = 'km'; }
-  if (partial.units === 'imperial') { s.weightUnit = 'lbs'; s.distanceUnit = 'mi'; }
+  if (s.units === 'metric') { s.weightUnit = 'kg'; s.distanceUnit = 'km'; }
+  if (s.units === 'imperial') { s.weightUnit = 'lbs'; s.distanceUnit = 'mi'; }
   localStorage.setItem('bl_settings', JSON.stringify(s));
-  applySettings(s);
+  applySettings(s); // safe now
   return s;
 }
 
 function applySetting(key, value) {
-  saveSettings({ [key]: value });
+  const s = saveSettings({ [key]: value });
   renderSettingsPage();
-  renderQuestsPage();
-  renderGuildPage();
+  if (key === 'dailyQuestGoal') safeRenderQuests();
+  if (key === 'units') safeRenderHydration(); // update hydration display
+  if (key === 'hunterName') {
+    const el = document.getElementById('top-name');
+    if (el) el.textContent = String(value).toUpperCase();
+  }
 }
 
-// ── APPLY SETTINGS ───────────────────────────────
+// ── APPLY SETTINGS TO DOM ─────────────────────────────
 function applySettings(s) {
   s = s || getSettings();
   const colors = {
@@ -60,92 +62,54 @@ function applySettings(s) {
   document.documentElement.style.setProperty('--card-padding', s.compactMode ? '10px' : '14px');
 }
 
-// ── UNIT HELPERS ──────────────────────────────────
+// ── SAFE RENDER HELPERS ─────────────────────────────
+function safeRenderHydration() {
+  try { if (typeof renderHydrationTracker === 'function') renderHydrationTracker(document.getElementById('page-improve')); } catch(e){console.warn(e);}
+}
+
+function safeRenderQuests() {
+  try { if (typeof renderQuestsPage === 'function') renderQuestsPage(); } catch(e){console.warn(e);}
+}
+
+// ── UNIT HELPERS ──────────────────────────────────────
 function weightLabel() { return getSettings().units === 'imperial' ? 'lbs' : 'kg'; }
 function distLabel() { return getSettings().units === 'imperial' ? 'mi' : 'km'; }
 function heightLabel() { return getSettings().units === 'imperial' ? 'ft/in' : 'cm'; }
 
-// ── SETTINGS PAGE ─────────────────────────────────
+// ── SETTINGS PAGE ─────────────────────────────────────
 function renderSettingsPage() {
   const el = document.getElementById('page-settings');
   if (!el) return;
   const s = getSettings();
-
   el.innerHTML = `
-    <h2 style="color:var(--accent)">Settings</h2>
-
+    <h2>SETTINGS</h2>
     <div>
-      <label>Hunter Name:</label>
-      <input type="text" id="set-name" value="${s.hunterName}" />
-      <button onclick="applySetting('hunterName', document.getElementById('set-name').value.trim()||'HUNTER')">SAVE</button>
+      <label>Hunter Name</label>
+      <input id="set-name" value="${s.hunterName}" />
+      <button onclick="applySetting('hunterName', document.getElementById('set-name').value)">SAVE</button>
     </div>
-
     <div>
-      <label>Units:</label>
-      <button onclick="applySetting('units','metric')">METRIC</button>
-      <button onclick="applySetting('units','imperial')">IMPERIAL</button>
-      <p>Current: ${weightLabel()} · ${distLabel()} · ${heightLabel()}</p>
+      <label>Units</label>
+      <button onclick="applySetting('units','metric')">Metric</button>
+      <button onclick="applySetting('units','imperial')">Imperial</button>
     </div>
-
     <div>
-      <label>Daily Quest Goal:</label>
-      ${[1,2,3,4,5].map(n => `<button onclick="applySetting('dailyQuestGoal',${n})">${n}</button>`).join('')}
-      <p>${s.dailyQuestGoal} quest${s.dailyQuestGoal!==1?'s':''} for streak</p>
+      <label>Daily Quest Goal</label>
+      <input type="number" id="set-quest" value="${s.dailyQuestGoal}" min="1" max="10" />
+      <button onclick="applySetting('dailyQuestGoal', parseInt(document.getElementById('set-quest').value))">SAVE</button>
     </div>
-
     <div>
-      <label>Hydration Goal (ml):</label>
+      <label>Water Goal (ml)</label>
       <input type="number" id="set-water" value="${s.waterGoal}" />
-      <button onclick="applySetting('waterGoal',parseInt(document.getElementById('set-water').value)||2000)">SAVE</button>
-    </div>
-
-    <div>
-      <label>Friends:</label>
-      <div id="friend-list">${(s.friends || []).map((f,i)=>`<div>${f} <button onclick="removeFriend(${i})">×</button></div>`).join('')}</div>
-      <input type="text" id="friend-input-set" placeholder="Add friend"/>
-      <button onclick="addFriendFromSettings()">ADD</button>
+      <button onclick="applySetting('waterGoal', parseInt(document.getElementById('set-water').value))">SAVE</button>
     </div>
   `;
 }
 
-// ── FRIENDS ──────────────────────────────────────
-function addFriendFromSettings() {
-  const input = document.getElementById('friend-input-set');
-  const name = input.value.trim();
-  if (!name) return;
-  const s = getSettings();
-  if ((s.friends||[]).some(f=>f.toLowerCase()===name.toLowerCase())) return alert('Already added');
-  s.friends = [...(s.friends||[]), name];
-  saveSettings({ friends: s.friends });
-  input.value = '';
-  renderSettingsPage();
-}
-
-function removeFriend(i) {
-  const s = getSettings();
-  s.friends.splice(i,1);
-  saveSettings({ friends: s.friends });
-  renderSettingsPage();
-}
-
-// ── SAFE STUB PAGES ──────────────────────────────
-function renderQuestsPage() {
-  const el = document.getElementById('page-daily-quests');
-  if (!el) return;
-  el.innerHTML = `<h2 style="color:var(--accent)">Daily Quests</h2><p>Daily goal: ${getSettings().dailyQuestGoal} quest${getSettings().dailyQuestGoal!==1?'s':''}</p>`;
-}
-
-function renderGuildPage() {
-  const el = document.getElementById('page-guild');
-  if (!el) return;
-  const friends = getSettings().friends || [];
-  el.innerHTML = `<h2 style="color:var(--accent)">Friends / Guild</h2>${friends.length ? friends.map(f=>`<div>${f}</div>`).join('') : '<p>No friends added yet</p>'}`;
-}
-
-// ── INIT ─────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', ()=>{
+// ── INIT SETTINGS ─────────────────────────────────────
+function initSettings() {
   applySettings(getSettings());
   renderSettingsPage();
-  renderQuestsPage();
-  renderGuildPage();
-});
+}
+
+initSettings();
