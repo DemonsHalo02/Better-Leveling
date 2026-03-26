@@ -66,11 +66,23 @@ function applySettings(s) {
   document.documentElement.style.setProperty('--accent', a);
   document.documentElement.style.setProperty('--accent2', a2);
   document.documentElement.style.setProperty('--card-padding', s.compactMode ? '10px' : '14px');
-  // Update name in HUD
-  if (s.hunterName) {
+
+  saveSettings(s);
+  renderSettingsPage();
+
+  // Re-render affected pages
+  if (key === 'units') {
+    renderHydrationTracker(document.getElementById('page-selfimprove'));
+    renderNutritionPage(); // your food tracker page
+    renderStatsPage();     // any page showing weight/distance
+  }
+
+  if (key === 'dailyQuestGoal') renderQuestsPage();
+  if (key === 'hunterName') {
     const el = document.getElementById('top-name');
-    if (el) el.textContent = s.hunterName.toUpperCase();
-    if (HUNTER) HUNTER.name = s.hunterName;
+    if (el) el.textContent = String(value).toUpperCase();
+    if (HUNTER) HUNTER.name = String(value);
+    persist();
   }
 }
 
