@@ -5,20 +5,29 @@
 // ============================================
 
 // ============================================
-// 💧 HYDRATION TRACKER + REMINDERS
+// 💧 HYDRATION TRACKER + REMINDERS (UNIT-AWARE)
 // ============================================
 function renderHydrationTracker(container) {
+  const settings = getSettings();
+  const isMetric = settings.units === 'metric';
+
   const today = new Date().toLocaleDateString();
   const data = getHydrationData();
   const cups = data.date === today ? (data.cups || 0) : 0;
-  const goalMl = getSettings().waterGoal || 2000;
-  const goal = Math.max(1, Math.round(goalMl / 250));
-  const pct = Math.min(100, Math.round((cups / goal) * 100));
-  const ml = cups * 250;
+
+  // Set goal based on metric/imperial
+  const goalCups = 8; // standard for metric (~2L)
+  const goalFlOz = 64; // 8 cups x 8 fl oz
+
+  // Display values
+  const displayCups = isMetric ? cups : cups * 8; // 1 cup = 8 fl oz
+  const goalDisplay = isMetric ? 2000 : goalFlOz; // ml vs fl oz
+  const pct = Math.min(100, Math.round((cups / goalCups) * 100));
+  const volumeDisplay = isMetric ? cups * 250 : cups * 8; // ml or fl oz
 
   if (data.date !== today) saveHydrationData(0);
 
-  container.innerHTML += `
+  container.innerHTML = `
     <div class="section-head">HYDRATION</div>
     <div class="sys-card">
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px">
@@ -32,70 +41,57 @@ function renderHydrationTracker(container) {
           </svg>
         </div>
         <div style="flex:1">
-          <div style="font-family:var(--font-hud);font-size:20px;color:var(--accent)">
-            ${ml}ml <span style="font-size:12px;color:var(--text3)">/ ${goalMl}ml</span>
-          </div>
-          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:2px">
-            ${cups}/${goal} CUPS TODAY
-          </div>
-          ${cups >= goal
+          <div style="font-family:var(--font-hud);font-size:20px;color:var(--accent)">${volumeDisplay}${isMetric ? 'ml' : ' fl oz'} <span style="font-size:12px;color:var(--text3)">/ ${goalDisplay}${isMetric ? 'ml' : ' fl oz'}</span></div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:2px">${displayCups}/${isMetric ? goalCups : goalFlOz} ${isMetric ? 'CUPS TODAY' : 'fl oz TODAY'}</div>
+          ${cups >= goalCups
       ? `<div style="font-family:var(--font-mono);font-size:9px;color:var(--green);margin-top:3px">✓ HYDRATION GOAL MET</div>`
-      : `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:3px">${goal - cups} cups to go</div>`
+      : `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:3px">${goalCups - cups} ${isMetric ? 'cups' : 'fl oz'} to go</div>`
     }
         </div>
       </div>
-
       <div style="display:flex;gap:6px;margin-bottom:10px">
-        ${Array.from({ length: goal }, (_, i) => i + 1).map(n => `
-          <div style="flex:1;height:28px;background:${n <= cups ? 'rgba(0,180,255,0.35)' : 'rgba(0,180,255,0.06)'};border:1px solid ${n <= cups ? 'var(--accent)' : 'var(--border)'};border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px">
-            ${n <= cups ? '💧' : ''}
-          </div>
+        ${[1, 2, 3, 4, 5, 6, 7, 8].map(n => `
+          <div style="flex:1;height:28px;background:${n <= cups ? 'rgba(0,180,255,0.35)' : 'rgba(0,180,255,0.06)'};border:1px solid ${n <= cups ? 'var(--accent)' : 'var(--border)'};border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px">${n <= cups ? '💧' : ''}</div>
         `).join('')}
       </div>
-
-      <div style="display:flex;gap:8px;margin-bottom:8px">
-        <button class="btn-primary" style="flex:2" onclick="addCup()">
-          <span>+ ADD CUP (250ml)</span>
-        </button>
+      <div style="display:flex;gap:8px">
+        <button class="btn-primary" style="flex:2" onclick="addCup()"><span>+ ADD ${isMetric ? 'CUP (250ml)' : '8 fl oz'}</span></button>
         <button class="btn-secondary" onclick="removeCup()">−</button>
-        ${!data.reminderOn
-      ? `<button class="btn-secondary" onclick="startHydrationReminder()" title="Reminders">🔔</button>`
-      : `<button class="btn-gold" onclick="stopHydrationReminder()" title="Stop reminders">🔕</button>`
-    }
-      </div>
-
-      <!-- NEW MANUAL WATER INPUT -->
-      <div style="display:flex;gap:6px;margin-top:6px">
-        <input 
-          id="manualWaterInput"
-          type="number"
-          placeholder="Enter ml (e.g. 1000)"
-          style="flex:1;padding:6px;border-radius:4px;border:1px solid var(--border);background:rgba(0,0,0,0.2);color:white;font-size:12px"
-        />
-        <button class="btn-primary" onclick="addManualWater()">ADD</button>
+        ${!data.reminderOn ? `<button class="btn-secondary" onclick="startHydrationReminder()" title="Reminders">🔔</button>` : `<button class="btn-gold" onclick="stopHydrationReminder()" title="Stop reminders">🔕</button>`}
       </div>
     </div>
   `;
 }
 
+// Update addCup/removeCup to respect metric/imperial units
 function addCup() {
+  const settings = getSettings();
+  const isMetric = settings.units === 'metric';
   const data = getHydrationData();
   const today = new Date().toLocaleDateString();
+  let cups = data.date === today ? (data.cups || 0) : 0;
 
-  const cups = data.date === today ? (data.cups || 0) : 0;
-  const goal = Math.max(1, Math.round((getSettings().waterGoal || 2000) / 250));
-  const maxCups = goal + 10; // allows drinking beyond goal
-  const newCups = Math.min(maxCups, cups + 1);
+  const increment = 1; // always 1 "cup"
+  cups += increment;
+  saveHydrationData(cups);
 
-  saveHydrationData(newCups);
-
-  if (cups < goal && newCups >= goal) {
+  // XP logic
+  const goal = 8;
+  if (cups - increment < goal && cups >= goal) {
     addXP(20, 'vit');
     showNotif('[ HYDRATION ] Daily goal reached! +20 XP', 'gold');
   } else {
-    showNotif(`[ HYDRATION ] ${newCups} cups / ${goal}`);
+    showNotif(`[ HYDRATION ] ${cups} cups / ${goal}`);
   }
 
+  renderSelfImprovePage();
+}
+
+function removeCup() {
+  const data = getHydrationData();
+  const today = new Date().toLocaleDateString();
+  const cups = data.date === today ? Math.max(0, (data.cups || 0) - 1) : 0;
+  saveHydrationData(cups);
   renderSelfImprovePage();
 }
 
@@ -128,14 +124,6 @@ function addManualWater() {
   }
 
   input.value = '';
-  renderSelfImprovePage();
-}
-
-function removeCup() {
-  const data = getHydrationData();
-  const today = new Date().toLocaleDateString();
-  const cups = data.date === today ? Math.max(0, (data.cups || 0) - 1) : 0;
-  saveHydrationData(cups);
   renderSelfImprovePage();
 }
 
