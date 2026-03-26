@@ -8,12 +8,12 @@
 // 💧 HYDRATION TRACKER + REMINDERS
 // ============================================
 function renderHydrationTracker(container) {
-  const today    = new Date().toLocaleDateString();
-  const data     = getHydrationData();
-  const cups     = data.date === today ? (data.cups || 0) : 0;
-  const goal     = 8; // 8 cups = ~2L
-  const pct      = Math.min(100, Math.round((cups / goal) * 100));
-  const ml       = cups * 250;
+  const today = new Date().toLocaleDateString();
+  const data = getHydrationData();
+  const cups = data.date === today ? (data.cups || 0) : 0;
+  const goal = 8; // 8 cups = ~2L
+  const pct = Math.min(100, Math.round((cups / goal) * 100));
+  const ml = cups * 250;
 
   if (data.date !== today) saveHydrationData(0);
 
@@ -25,7 +25,7 @@ function renderHydrationTracker(container) {
           <svg viewBox="0 0 64 64" style="width:64px;height:64px">
             <circle cx="32" cy="32" r="28" fill="none" stroke="rgba(0,180,255,0.1)" stroke-width="6"/>
             <circle cx="32" cy="32" r="28" fill="none" stroke="#00b4ff" stroke-width="6"
-              stroke-dasharray="${2*Math.PI*28}" stroke-dashoffset="${2*Math.PI*28*(1-pct/100)}"
+              stroke-dasharray="${2 * Math.PI * 28}" stroke-dashoffset="${2 * Math.PI * 28 * (1 - pct / 100)}"
               stroke-linecap="round" transform="rotate(-90 32 32)" style="transition:stroke-dashoffset 0.4s"/>
             <text x="32" y="36" text-anchor="middle" font-family="Orbitron" font-size="13" font-weight="700" fill="#00b4ff">${cups}</text>
           </svg>
@@ -37,7 +37,7 @@ function renderHydrationTracker(container) {
         </div>
       </div>
       <div style="display:flex;gap:6px;margin-bottom:10px">
-        ${[1,2,3,4,5,6,7,8].map(n => `
+        ${[1, 2, 3, 4, 5, 6, 7, 8].map(n => `
           <div style="flex:1;height:28px;background:${n <= cups ? 'rgba(0,180,255,0.35)' : 'rgba(0,180,255,0.06)'};border:1px solid ${n <= cups ? 'var(--accent)' : 'var(--border)'};border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px">${n <= cups ? '💧' : ''}</div>
         `).join('')}
       </div>
@@ -51,20 +51,30 @@ function renderHydrationTracker(container) {
 }
 
 function addCup() {
-  const data  = getHydrationData();
+  const data = getHydrationData();
   const today = new Date().toLocaleDateString();
-  const cups  = data.date === today ? (data.cups || 0) : 0;
+
+  const cups = data.date === today ? (data.cups || 0) : 0;
+  const goal = 8;
+
   const newCups = Math.min(20, cups + 1);
   saveHydrationData(newCups);
-  if (newCups === 8) { addXP(20, 'vit'); showNotif('[ HYDRATION ] Goal reached! +20 XP', 'gold'); }
-  else showNotif(`[ HYDRATION ] ${newCups} cups / 8`);
+
+  // Give XP ONLY when the goal is reached for the first time
+  if (cups < goal && newCups >= goal) {
+    addXP(20, 'vit');
+    showNotif('[ HYDRATION ] Daily goal reached! +20 XP', 'gold');
+  } else {
+    showNotif(`[ HYDRATION ] ${newCups} cups / ${goal}`);
+  }
+
   renderSelfImprovePage();
 }
 
 function removeCup() {
-  const data  = getHydrationData();
+  const data = getHydrationData();
   const today = new Date().toLocaleDateString();
-  const cups  = data.date === today ? Math.max(0, (data.cups || 0) - 1) : 0;
+  const cups = data.date === today ? Math.max(0, (data.cups || 0) - 1) : 0;
   saveHydrationData(cups);
   renderSelfImprovePage();
 }
@@ -116,7 +126,7 @@ function saveHydrationData(cups) {
 // ============================================
 function renderHabitTracker(container) {
   const habits = getHabits();
-  const today  = new Date().toLocaleDateString();
+  const today = new Date().toLocaleDateString();
 
   container.innerHTML += `
     <div class="section-head">HABIT TRACKER</div>
@@ -124,9 +134,9 @@ function renderHabitTracker(container) {
       ${habits.length === 0 ? `
         <div style="text-align:center;padding:16px;font-family:var(--font-mono);font-size:10px;color:var(--text3);letter-spacing:1px">NO HABITS YET — ADD YOUR FIRST ONE</div>
       ` : habits.map((h, i) => {
-        const doneToday = h.log?.includes(today);
-        const streak    = calcHabitStreak(h.log || []);
-        return `
+    const doneToday = h.log?.includes(today);
+    const streak = calcHabitStreak(h.log || []);
+    return `
           <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)">
             <div onclick="toggleHabit(${i})" style="
               width:26px;height:26px;border-radius:6px;flex-shrink:0;cursor:pointer;
@@ -139,17 +149,17 @@ function renderHabitTracker(container) {
               <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:2px">🔥 ${streak} day streak</div>
             </div>
             <div style="display:flex;gap:4px">
-              ${[-3,-2,-1,0].map(offset => {
-                const d = new Date(); d.setDate(d.getDate() + offset);
-                const ds = d.toLocaleDateString();
-                const done = h.log?.includes(ds);
-                return `<div style="width:10px;height:10px;border-radius:2px;background:${done ? 'var(--green)' : 'var(--border)'}"></div>`;
-              }).join('')}
+              ${[-3, -2, -1, 0].map(offset => {
+      const d = new Date(); d.setDate(d.getDate() + offset);
+      const ds = d.toLocaleDateString();
+      const done = h.log?.includes(ds);
+      return `<div style="width:10px;height:10px;border-radius:2px;background:${done ? 'var(--green)' : 'var(--border)'}"></div>`;
+    }).join('')}
             </div>
             <button onclick="deleteHabit(${i})" style="background:transparent;border:none;color:var(--text3);font-size:14px;cursor:pointer;padding:4px">×</button>
           </div>
         `;
-      }).join('')}
+  }).join('')}
       <div style="margin-top:10px;display:flex;gap:8px">
         <input type="text" id="habit-name-input" class="sys-input" placeholder="New habit name..." style="flex:1" />
         <select id="habit-icon-input" class="sys-input" style="width:56px">
@@ -177,7 +187,7 @@ function addHabit() {
 
 function toggleHabit(i) {
   const habits = getHabits();
-  const today  = new Date().toLocaleDateString();
+  const today = new Date().toLocaleDateString();
   if (!habits[i].log) habits[i].log = [];
   if (habits[i].log.includes(today)) {
     habits[i].log = habits[i].log.filter(d => d !== today);
@@ -201,7 +211,7 @@ function calcHabitStreak(log) {
   if (!log.length) return 0;
   let streak = 0, d = new Date();
   while (true) {
-    if (log.includes(d.toLocaleDateString())) { streak++; d.setDate(d.getDate()-1); }
+    if (log.includes(d.toLocaleDateString())) { streak++; d.setDate(d.getDate() - 1); }
     else break;
   }
   return streak;
@@ -221,8 +231,8 @@ function renderPRBoard(container) {
     <div class="section-head">PERSONAL RECORDS</div>
     <div class="sys-card">
       ${prs.length === 0
-        ? `<div style="text-align:center;padding:16px;font-family:var(--font-mono);font-size:10px;color:var(--text3)">NO PRs YET — LOG YOUR FIRST RECORD</div>`
-        : prs.map((pr, i) => `
+      ? `<div style="text-align:center;padding:16px;font-family:var(--font-mono);font-size:10px;color:var(--text3)">NO PRs YET — LOG YOUR FIRST RECORD</div>`
+      : prs.map((pr, i) => `
           <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)">
             <div style="font-size:20px">🏆</div>
             <div style="flex:1">
@@ -233,7 +243,7 @@ function renderPRBoard(container) {
             <button onclick="deletePR(${i})" style="background:transparent;border:none;color:var(--text3);font-size:14px;cursor:pointer">×</button>
           </div>
         `).join('')
-      }
+    }
       <div style="margin-top:12px;font-family:var(--font-mono);font-size:9px;color:var(--text3);letter-spacing:2px;margin-bottom:8px">LOG NEW PR</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
         <input type="text" class="sys-input" id="pr-exercise" placeholder="Exercise (e.g. Bench Press)" style="grid-column:1/-1"/>
@@ -250,8 +260,8 @@ function renderPRBoard(container) {
 
 function addPR() {
   const exercise = document.getElementById('pr-exercise')?.value.trim();
-  const value    = document.getElementById('pr-value')?.value.trim();
-  const unit     = document.getElementById('pr-unit')?.value.trim() || 'reps';
+  const value = document.getElementById('pr-value')?.value.trim();
+  const unit = document.getElementById('pr-unit')?.value.trim() || 'reps';
   const category = document.getElementById('pr-category')?.value;
   if (!exercise || !value) { showNotif('[ ERROR ] Fill in exercise and value'); return; }
   const prs = getPRs();
@@ -259,11 +269,11 @@ function addPR() {
   savePRs(prs);
   addXP(25, 'str');
   showNotif(`[ NEW PR ] ${exercise}: ${value}${unit} · +25 XP`, 'gold');
-  ['pr-exercise','pr-value','pr-unit'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  ['pr-exercise', 'pr-value', 'pr-unit'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
   renderSelfImprovePage();
 }
 
-function deletePR(i) { const prs = getPRs(); prs.splice(i,1); savePRs(prs); renderSelfImprovePage(); }
+function deletePR(i) { const prs = getPRs(); prs.splice(i, 1); savePRs(prs); renderSelfImprovePage(); }
 function getPRs() { try { return JSON.parse(localStorage.getItem('sys_prs_' + getCurrentUser()) || '[]'); } catch { return []; } }
 function savePRs(p) { localStorage.setItem('sys_prs_' + getCurrentUser(), JSON.stringify(p)); }
 
@@ -280,40 +290,40 @@ function renderCalorieCalculator(container) {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
         <div>
           <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">AGE</label>
-          <input type="number" class="sys-input" id="calc-age" placeholder="e.g. 25" inputmode="numeric" value="${saved.age||''}" />
+          <input type="number" class="sys-input" id="calc-age" placeholder="e.g. 25" inputmode="numeric" value="${saved.age || ''}" />
         </div>
         <div>
           <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">WEIGHT (kg)</label>
-          <input type="number" class="sys-input" id="calc-weight" placeholder="e.g. 85" inputmode="decimal" step="0.1" value="${saved.weight||''}" />
+          <input type="number" class="sys-input" id="calc-weight" placeholder="e.g. 85" inputmode="decimal" step="0.1" value="${saved.weight || ''}" />
         </div>
         <div>
           <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">HEIGHT (cm)</label>
-          <input type="number" class="sys-input" id="calc-height" placeholder="e.g. 178" inputmode="numeric" value="${saved.height||''}" />
+          <input type="number" class="sys-input" id="calc-height" placeholder="e.g. 178" inputmode="numeric" value="${saved.height || ''}" />
         </div>
         <div>
           <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">SEX</label>
           <select class="sys-input" id="calc-sex">
-            <option value="m" ${saved.sex==='m'?'selected':''}>Male</option>
-            <option value="f" ${saved.sex==='f'?'selected':''}>Female</option>
+            <option value="m" ${saved.sex === 'm' ? 'selected' : ''}>Male</option>
+            <option value="f" ${saved.sex === 'f' ? 'selected' : ''}>Female</option>
           </select>
         </div>
       </div>
       <div style="margin-bottom:10px">
         <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">ACTIVITY LEVEL</label>
         <select class="sys-input" id="calc-activity">
-          <option value="1.2"  ${saved.activity==='1.2' ?'selected':''}>Sedentary (desk job, no exercise)</option>
-          <option value="1.375"${saved.activity==='1.375'?'selected':''}>Light (1-3 workouts/week)</option>
-          <option value="1.55" ${saved.activity==='1.55' ?'selected':''}>Moderate (4-5 workouts/week)</option>
-          <option value="1.725"${saved.activity==='1.725'?'selected':''}>Active (daily intense workouts)</option>
-          <option value="1.9"  ${saved.activity==='1.9'  ?'selected':''}>Very Active (athlete / physical job)</option>
+          <option value="1.2"  ${saved.activity === '1.2' ? 'selected' : ''}>Sedentary (desk job, no exercise)</option>
+          <option value="1.375"${saved.activity === '1.375' ? 'selected' : ''}>Light (1-3 workouts/week)</option>
+          <option value="1.55" ${saved.activity === '1.55' ? 'selected' : ''}>Moderate (4-5 workouts/week)</option>
+          <option value="1.725"${saved.activity === '1.725' ? 'selected' : ''}>Active (daily intense workouts)</option>
+          <option value="1.9"  ${saved.activity === '1.9' ? 'selected' : ''}>Very Active (athlete / physical job)</option>
         </select>
       </div>
       <div style="margin-bottom:12px">
         <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">GOAL</label>
         <select class="sys-input" id="calc-goal">
-          <option value="cut"  ${saved.goal==='cut'  ?'selected':''}>Lose weight (500 kcal deficit)</option>
-          <option value="maint"${saved.goal==='maint'?'selected':''}>Maintain weight</option>
-          <option value="bulk" ${saved.goal==='bulk' ?'selected':''}>Build muscle (250 kcal surplus)</option>
+          <option value="cut"  ${saved.goal === 'cut' ? 'selected' : ''}>Lose weight (500 kcal deficit)</option>
+          <option value="maint"${saved.goal === 'maint' ? 'selected' : ''}>Maintain weight</option>
+          <option value="bulk" ${saved.goal === 'bulk' ? 'selected' : ''}>Build muscle (250 kcal surplus)</option>
         </select>
       </div>
       <button class="btn-primary" onclick="calculateCalories()"><span>CALCULATE</span><div class="btn-arrow">▶</div></button>
@@ -323,12 +333,12 @@ function renderCalorieCalculator(container) {
 }
 
 function calculateCalories() {
-  const age      = parseInt(document.getElementById('calc-age')?.value);
-  const weight   = parseFloat(document.getElementById('calc-weight')?.value);
-  const height   = parseInt(document.getElementById('calc-height')?.value);
-  const sex      = document.getElementById('calc-sex')?.value;
+  const age = parseInt(document.getElementById('calc-age')?.value);
+  const weight = parseFloat(document.getElementById('calc-weight')?.value);
+  const height = parseInt(document.getElementById('calc-height')?.value);
+  const sex = document.getElementById('calc-sex')?.value;
   const activity = parseFloat(document.getElementById('calc-activity')?.value);
-  const goal     = document.getElementById('calc-goal')?.value;
+  const goal = document.getElementById('calc-goal')?.value;
 
   if (!age || !weight || !height) { showNotif('[ ERROR ] Fill in all fields'); return; }
 
@@ -337,13 +347,13 @@ function calculateCalories() {
     ? (10 * weight) + (6.25 * height) - (5 * age) + 5
     : (10 * weight) + (6.25 * height) - (5 * age) - 161;
 
-  const tdee   = Math.round(bmr * activity);
+  const tdee = Math.round(bmr * activity);
   const adjust = goal === 'cut' ? -500 : goal === 'bulk' ? 250 : 0;
   const target = tdee + adjust;
   const protein = Math.round(weight * 2.2); // 1g per lb
-  const fat     = Math.round(target * 0.25 / 9);
-  const carbs   = Math.round((target - protein*4 - fat*9) / 4);
-  const weekly  = goal === 'cut' ? '~0.5kg fat loss/week' : goal === 'bulk' ? '~0.25kg muscle/week' : 'maintenance';
+  const fat = Math.round(target * 0.25 / 9);
+  const carbs = Math.round((target - protein * 4 - fat * 9) / 4);
+  const weekly = goal === 'cut' ? '~0.5kg fat loss/week' : goal === 'bulk' ? '~0.25kg muscle/week' : 'maintenance';
 
   // Save for prefill next time
   localStorage.setItem('sys_calgoals_' + getCurrentUser(), JSON.stringify({
@@ -358,8 +368,8 @@ function calculateCalories() {
           <div style="font-family:var(--font-hud);font-size:22px;color:var(--accent)">${tdee}</div>
           <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">TDEE (MAINTENANCE)</div>
         </div>
-        <div style="background:var(--bg3);border:1px solid ${goal==='cut'?'var(--green)':goal==='bulk'?'var(--gold)':'var(--accent)'};border-radius:6px;padding:10px;text-align:center">
-          <div style="font-family:var(--font-hud);font-size:22px;color:${goal==='cut'?'var(--green)':goal==='bulk'?'var(--gold)':'var(--accent)'}">${target}</div>
+        <div style="background:var(--bg3);border:1px solid ${goal === 'cut' ? 'var(--green)' : goal === 'bulk' ? 'var(--gold)' : 'var(--accent)'};border-radius:6px;padding:10px;text-align:center">
+          <div style="font-family:var(--font-hud);font-size:22px;color:${goal === 'cut' ? 'var(--green)' : goal === 'bulk' ? 'var(--gold)' : 'var(--accent)'}">${target}</div>
           <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">DAILY TARGET</div>
         </div>
       </div>
@@ -379,23 +389,23 @@ function getCalGoals() { try { return JSON.parse(localStorage.getItem('sys_calgo
 // 💊 SUPPLEMENT TRACKER
 // ============================================
 const DEFAULT_SUPPLEMENTS = [
-  { name: 'Creatine',       dose: '5g',    time: 'Any time',     icon: '⚡' },
+  { name: 'Creatine', dose: '5g', time: 'Any time', icon: '⚡' },
   { name: 'Protein Powder', dose: '1 scoop', time: 'Post-workout', icon: '💪' },
-  { name: 'Vitamin D3',     dose: '2000 IU', time: 'Morning',     icon: '☀️' },
-  { name: 'Omega-3',        dose: '2 caps',  time: 'With meal',   icon: '🐟' },
-  { name: 'Magnesium',      dose: '400mg',   time: 'Night',       icon: '🌙' },
+  { name: 'Vitamin D3', dose: '2000 IU', time: 'Morning', icon: '☀️' },
+  { name: 'Omega-3', dose: '2 caps', time: 'With meal', icon: '🐟' },
+  { name: 'Magnesium', dose: '400mg', time: 'Night', icon: '🌙' },
 ];
 
 function renderSupplementTracker(container) {
   const supps = getSupplements();
-  const today  = new Date().toLocaleDateString();
+  const today = new Date().toLocaleDateString();
 
   container.innerHTML += `
     <div class="section-head">SUPPLEMENTS</div>
     <div class="sys-card">
       ${supps.map((s, i) => {
-        const taken = s.log?.includes(today);
-        return `
+    const taken = s.log?.includes(today);
+    return `
           <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)">
             <div onclick="toggleSupplement(${i})" style="
               width:26px;height:26px;border-radius:6px;flex-shrink:0;cursor:pointer;
@@ -411,7 +421,7 @@ function renderSupplementTracker(container) {
             <button onclick="deleteSupplement(${i})" style="background:transparent;border:none;color:var(--text3);font-size:14px;cursor:pointer">×</button>
           </div>
         `;
-      }).join('')}
+  }).join('')}
       <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
         <input type="text" id="supp-name" class="sys-input" placeholder="Supplement name" style="flex:2;min-width:120px"/>
         <input type="text" id="supp-dose" class="sys-input" placeholder="Dose" style="flex:1;min-width:80px"/>
@@ -443,12 +453,12 @@ function addSupplement() {
   renderSelfImprovePage();
 }
 
-function deleteSupplement(i) { const s = getSupplements(); s.splice(i,1); saveSupplements(s); renderSelfImprovePage(); }
+function deleteSupplement(i) { const s = getSupplements(); s.splice(i, 1); saveSupplements(s); renderSelfImprovePage(); }
 function getSupplements() {
   try {
     const saved = JSON.parse(localStorage.getItem('sys_supps_' + getCurrentUser()) || 'null');
-    return saved || DEFAULT_SUPPLEMENTS.map(s => ({...s, log: []}));
-  } catch { return DEFAULT_SUPPLEMENTS.map(s => ({...s, log: []})); }
+    return saved || DEFAULT_SUPPLEMENTS.map(s => ({ ...s, log: [] }));
+  } catch { return DEFAULT_SUPPLEMENTS.map(s => ({ ...s, log: [] })); }
 }
 function saveSupplements(s) { localStorage.setItem('sys_supps_' + getCurrentUser(), JSON.stringify(s)); }
 
@@ -471,7 +481,7 @@ function renderWeeklyReview(container) {
       ` : `
         <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-bottom:6px">HOW WAS THIS WEEK?</div>
         <div style="display:flex;gap:6px;margin-bottom:10px">
-          ${[1,2,3,4,5].map(n => `<button id="star-${n}" onclick="setWeekRating(${n})" style="flex:1;padding:8px;background:transparent;border:1px solid var(--border);border-radius:6px;font-size:18px;cursor:pointer">⭐</button>`).join('')}
+          ${[1, 2, 3, 4, 5].map(n => `<button id="star-${n}" onclick="setWeekRating(${n})" style="flex:1;padding:8px;background:transparent;border:1px solid var(--border);border-radius:6px;font-size:18px;cursor:pointer">⭐</button>`).join('')}
         </div>
         <textarea id="weekly-review-text" style="
           width:100%;min-height:120px;background:rgba(7,20,38,0.8);
@@ -490,7 +500,7 @@ function renderWeeklyReview(container) {
 
 function setWeekRating(n) {
   window._weekRating = n;
-  [1,2,3,4,5].forEach(i => {
+  [1, 2, 3, 4, 5].forEach(i => {
     const btn = document.getElementById('star-' + i);
     if (btn) btn.style.background = i <= n ? 'rgba(240,192,64,0.2)' : 'transparent';
   });
@@ -512,7 +522,7 @@ function getWeekKey() {
   const d = new Date();
   const startOfYear = new Date(d.getFullYear(), 0, 1);
   const week = Math.ceil(((d - startOfYear) / 86400000 + startOfYear.getDay() + 1) / 7);
-  return `${d.getFullYear()}-W${String(week).padStart(2,'0')}`;
+  return `${d.getFullYear()}-W${String(week).padStart(2, '0')}`;
 }
 
 function getWeeklyReviews() { try { return JSON.parse(localStorage.getItem('sys_reviews_' + getCurrentUser()) || '[]'); } catch { return []; } }
@@ -522,7 +532,7 @@ function getWeeklyReviews() { try { return JSON.parse(localStorage.getItem('sys_
 // ============================================
 function renderFriendsSection(container) {
   const friends = getFriends();
-  const scores  = JSON.parse(localStorage.getItem('sys_guild') || '{}');
+  const scores = JSON.parse(localStorage.getItem('sys_guild') || '{}');
 
   container.innerHTML += `
     <div class="section-head">ACCOUNTABILITY PARTNERS</div>
@@ -531,21 +541,21 @@ function renderFriendsSection(container) {
         Add a friend's hunter name to follow their progress and compete on the leaderboard.
       </div>
       ${friends.length === 0
-        ? `<div style="text-align:center;padding:12px;font-family:var(--font-mono);font-size:10px;color:var(--text3)">NO PARTNERS YET</div>`
-        : friends.map((name, i) => {
-            const score = scores[name.toLowerCase()];
-            return `
+      ? `<div style="text-align:center;padding:12px;font-family:var(--font-mono);font-size:10px;color:var(--text3)">NO PARTNERS YET</div>`
+      : friends.map((name, i) => {
+        const score = scores[name.toLowerCase()];
+        return `
               <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)">
-                <div style="width:34px;height:34px;border-radius:6px;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:var(--font-hud);font-size:12px;color:#fff">${name.slice(0,2).toUpperCase()}</div>
+                <div style="width:34px;height:34px;border-radius:6px;background:linear-gradient(135deg,var(--accent2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:var(--font-hud);font-size:12px;color:#fff">${name.slice(0, 2).toUpperCase()}</div>
                 <div style="flex:1">
                   <div style="font-size:13px;font-weight:600;color:var(--text)">${name.toUpperCase()}</div>
-                  ${score ? `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">LV ${score.level} · ${score.rank} · ${(score.totalXP||0).toLocaleString()} XP</div>` : `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">Not seen on this device yet</div>`}
+                  ${score ? `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">LV ${score.level} · ${score.rank} · ${(score.totalXP || 0).toLocaleString()} XP</div>` : `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">Not seen on this device yet</div>`}
                 </div>
                 <button onclick="removeFriend(${i})" style="background:transparent;border:none;color:var(--text3);font-size:14px;cursor:pointer">×</button>
               </div>
             `;
-          }).join('')
-      }
+      }).join('')
+    }
       <div style="margin-top:10px;display:flex;gap:8px">
         <input type="text" id="friend-input" class="sys-input" placeholder="Enter hunter name..." style="flex:1"/>
         <button class="btn-secondary" onclick="addFriend()">ADD</button>
@@ -556,6 +566,3 @@ function renderFriendsSection(container) {
     </div>
   `;
 }
-
-// renderSelfImprovePage moved to newfeatures.js (tabbed version)
-// Friends section removed
