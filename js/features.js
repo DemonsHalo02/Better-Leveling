@@ -5,165 +5,89 @@
 // ============================================
 
 // ============================================
-// 💧 HYDRATION TRACKER + REMINDERS (UNIT-AWARE)
+// HYDRATION TRACKER — FULL MODULE
 // ============================================
-function renderHydrationTracker(container) {
-  const today = new Date().toLocaleDateString();
-  const data = getHydrationData(); // your saved cups
-  const settings = (typeof HUNTER !== 'undefined' && HUNTER.settings) ? HUNTER.settings : { units: 'metric' };
+
+window.HUNTER = window.HUNTER || {};
+HUNTER.todayHydration = HUNTER.todayHydration || 0;
+HUNTER.settings = HUNTER.settings || { units: 'metric', hydrationGoal: 2000 }; // ml by default
+
+// ── SETTINGS ───────────────────────────────
+function getSettings() {
+  return HUNTER.settings;
+}
+
+function updateUnit(unit) {
+  HUNTER.settings.units = unit; // 'metric' or 'imperial'
+  renderHydrationTracker();     // update tracker immediately
+  renderNutritionPage();        // if using macros page that depends on units
+}
+
+// ── HYDRATION GOAL ─────────────────────────
+function getHydrationGoal() {
+  const settings = getSettings();
+  return settings.units === 'metric'
+    ? settings.hydrationGoal
+    : (settings.hydrationGoal / 29.5735).toFixed(1); // ml -> oz
+}
+
+// ── LOG WATER ──────────────────────────────
+function logWater(cups = 1) {
+  const settings = getSettings();
+  let amountMl = cups * 250; // 1 cup default = 250ml
+
+  if (settings.units !== 'metric') {
+    // User is logging in oz, convert to ml for storage
+    amountMl = cups * 29.5735;
+  }
+
+  HUNTER.todayHydration += amountMl;
+  renderHydrationTracker();
+  showNotif(`[ HYDRATION LOGGED ] ${cups} ${settings.units === 'metric' ? 'cups (~250ml each)' : 'oz'}`);
+}
+
+// ── RENDER TRACKER ─────────────────────────
+function renderHydrationTracker(containerId = 'hydration-tracker') {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const settings = getSettings();
   const isMetric = settings.units === 'metric';
+  const storedMl = HUNTER.todayHydration || 0;
 
-  // Cups logged today
-  const cups = (data.date === today) ? (data.cups || 0) : 0;
+  // Convert to display units
+  const displayAmount = isMetric
+    ? storedMl
+    : (storedMl / 29.5735).toFixed(1);
 
-  // Goal: 8 cups (~2L)
-  const goalCups = 8;
-
-  // Convert to proper units
-  const factor = isMetric ? 240 : 8; // 1 cup = 240ml metric, 8 fl oz imperial
-  const unitLabel = isMetric ? 'ml' : 'oz';
-  const displayCups = cups * (factor / 1); // ml or oz
-  const displayGoal = goalCups * (factor / 1);
-
-  const pct = Math.min(100, Math.round((cups / goalCups) * 100));
+  const goal = getHydrationGoal();
+  const pct = Math.min(100, Math.round((displayAmount / goal) * 100));
 
   container.innerHTML = `
-    <div class="section-head">HYDRATION</div>
-    <div class="sys-card">
-      <div class="hydration-bar" style="position:relative;height:22px;background:var(--panel);border-radius:6px;overflow:hidden;border:1px solid var(--border)">
-        <div class="hydration-fill" style="width:${pct}%;height:100%;background:var(--accent)"></div>
-      </div>
-      <div style="font-family:var(--font-mono);font-size:11px;color:var(--text3);margin-top:4px;text-align:right">
-        ${displayCups.toFixed(0)} ${unitLabel} / ${displayGoal.toFixed(0)} ${unitLabel}
-      </div>
+    <div style="margin-bottom:4px;font-size:11px;font-family:var(--font-mono);color:var(--text3)">
+      HYDRATION: ${displayAmount} ${isMetric ? 'ml' : 'oz'} / ${goal} ${isMetric ? 'ml' : 'oz'}
+    </div>
+    <div style="width:100%;height:12px;background:var(--panel);border-radius:6px;overflow:hidden">
+      <div style="width:${pct}%;height:100%;background:#00b4ff"></div>
+    </div>
+    <div style="margin-top:6px;display:flex;gap:6px">
+      <button class="btn-primary" onclick="logWater(1)">+1 ${isMetric ? 'cup' : 'oz'}</button>
+      <button class="btn-primary" onclick="logWater(2)">+2 ${isMetric ? 'cups' : 'oz'}</button>
+      <button class="btn-primary" onclick="logWater(4)">+4 ${isMetric ? 'cups' : 'oz'}</button>
     </div>
   `;
 }
 
-// Update addCup/removeCup to respect metric/imperial units
-function addCup() {
-  const settings = getSettings();
-  const isMetric = settings.units === 'metric';
-  const data = getHydrationData();
-  const today = new Date().toLocaleDateString();
-  let cups = data.date === today ? (data.cups || 0) : 0;
-
-  const increment = 1; // always 1 "cup"
-  cups += increment;
-  saveHydrationData(cups);
-
-  // XP logic
-  const goal = 8;
-  if (cups - increment < goal && cups >= goal) {
-    addXP(20, 'vit');
-    showNotif('[ HYDRATION ] Daily goal reached! +20 XP', 'gold');
-  } else {
-    showNotif(`[ HYDRATION ] ${cups} cups / ${goal}`);
-  }
-
-  renderSelfImprovePage();
+// ── RESET HYDRATION ────────────────────────
+function resetHydration() {
+  HUNTER.todayHydration = 0;
+  renderHydrationTracker();
+  showNotif('[ HYDRATION RESET ]');
 }
 
-function removeCup() {
-  const data = getHydrationData();
-  const today = new Date().toLocaleDateString();
-  const cups = data.date === today ? Math.max(0, (data.cups || 0) - 1) : 0;
-  saveHydrationData(cups);
-  renderSelfImprovePage();
-}
-
-function addManualWater() {
-  const input = document.getElementById('manualWaterInput');
-  if (!input) return;
-
-  const mlAdded = parseInt(input.value);
-  if (!mlAdded || mlAdded <= 0) {
-    showNotif('[ HYDRATION ] Enter a valid ml amount');
-    return;
-  }
-
-  const cupsToAdd = mlAdded / 250;
-
-  const data = getHydrationData();
-  const today = new Date().toLocaleDateString();
-  const currentCups = data.date === today ? (data.cups || 0) : 0;
-  const goal = Math.max(1, Math.round((getSettings().waterGoal || 2000) / 250));
-  const maxCups = goal + 10;
-  const newCups = Math.min(maxCups, currentCups + cupsToAdd);
-
-  saveHydrationData(newCups);
-
-  if (currentCups < goal && newCups >= goal) {
-    addXP(20, 'vit');
-    showNotif('[ HYDRATION ] Daily goal reached! +20 XP', 'gold');
-  } else {
-    showNotif(`[ HYDRATION ] +${mlAdded}ml added`);
-  }
-
-  input.value = '';
-  renderSelfImprovePage();
-}
-
-function startHydrationReminder() {
-  // Detect iOS
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-
-  if (isIOS && !isStandalone) {
-    showNotif('[ INFO ] On iPhone, reminders only work if the app is added to the home screen', 'gold');
-  }
-
-  if (!('Notification' in window)) {
-    showNotif('[ INFO ] Notifications not supported in this browser');
-    return;
-  }
-
-  Notification.requestPermission().then(perm => {
-    if (perm === 'granted') {
-      const data = getHydrationData();
-      data.reminderOn = true;
-      localStorage.setItem('sys_hydration_' + getCurrentUser(), JSON.stringify(data));
-
-      window._hydrationTimer = setInterval(() => {
-        const d = getHydrationData();
-        if ((d.cups || 0) < (getSettings().waterGoal || 2000) / 250) {
-          new Notification('💧 SYSTEM', {
-            body: 'Time to drink water! Stay hydrated.',
-            icon: '/icon-192.png'
-          });
-        }
-      }, 60 * 60 * 1000); // every hour
-
-      showNotif('[ REMINDERS ] Hydration reminders on — every hour');
-      renderSelfImprovePage();
-    } else {
-      showNotif('[ INFO ] Allow notifications to enable reminders');
-    }
-  });
-}
-
-function stopHydrationReminder() {
-  clearInterval(window._hydrationTimer);
-  const data = getHydrationData();
-  data.reminderOn = false;
-  localStorage.setItem('sys_hydration_' + getCurrentUser(), JSON.stringify(data));
-  showNotif('[ REMINDERS ] Hydration reminders off');
-  renderSelfImprovePage();
-}
-
-function getHydrationData() {
-  try {
-    return JSON.parse(localStorage.getItem('sys_hydration_' + getCurrentUser()) || '{}');
-  } catch {
-    return {};
-  }
-}
-
-function saveHydrationData(cups) {
-  const data = getHydrationData();
-  data.date = new Date().toLocaleDateString();
-  data.cups = cups;
-  localStorage.setItem('sys_hydration_' + getCurrentUser(), JSON.stringify(data));
+// ── NOTIFICATION HELPER ───────────────────
+function showNotif(msg) {
+  console.log(msg); // replace with your UI toast or notification
 }
 
 // ============================================
