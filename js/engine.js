@@ -41,6 +41,51 @@ function persist() {
   saveCurrentHunter(HUNTER);
 }
 
+// ── QUEST SKIP ────────────────────────────────────────
+// 1 skip token per week — resets every Monday
+function getSkipData() {
+  try { return JSON.parse(localStorage.getItem('bl_quest_skip') || '{}'); }
+  catch { return {}; }
+}
+
+function getWeekKey_skip() {
+  const d   = new Date();
+  const day = d.getDay(); // 0=Sun
+  const monday = new Date(d);
+  monday.setDate(d.getDate() - ((day + 6) % 7));
+  return monday.toLocaleDateString();
+}
+
+function canSkipQuest() {
+  const data    = getSkipData();
+  const weekKey = getWeekKey_skip();
+  return (data.weekKey !== weekKey) || (data.used !== true);
+}
+
+function skipQuest(index) {
+  if (!canSkipQuest()) {
+    showNotif('[ SYSTEM ] Skip token already used this week');
+    return;
+  }
+  const q = HUNTER.quests[index];
+  if (!q || q.done || q.skipped) return;
+
+  // Mark as skipped
+  q.skipped = true;
+  q.done    = false;
+
+  // Consume token
+  localStorage.setItem('bl_quest_skip', JSON.stringify({
+    weekKey: getWeekKey_skip(),
+    used:    true,
+    questName: q.name,
+  }));
+
+  persist();
+  renderQuestsPage();
+  showNotif(`[ SKIP ] "${q.name}" skipped — token used for this week`);
+}
+
 function addXP(amount, statKey) {
   HUNTER.xp += amount;
   HUNTER.totalXPEarned = (HUNTER.totalXPEarned || 0) + amount;
@@ -262,17 +307,19 @@ function completeQuest(index) {
 }
 
 function addFoodEntry(food) {
-  HUNTER.foodLog.push({ ...food, time: new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }) });
+  const entry = { ...food, _id: Date.now() + Math.random().toString(36).slice(2,6), time: new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }) };
+  HUNTER.foodLog.push(entry);
   persist();
   renderNutritionPage();
 }
 
-function logWorkout(type, durationMin, notes) {
+function logWorkout(type, durationMin, notes, distance) {
   const wt = WORKOUT_TYPES.find(w => w.id === type);
   const xpEarned = Math.round((wt?.xpPerMin || 1) * durationMin);
   const entry = {
     type, durationMin, notes,
     xpEarned,
+    distance: distance || null,
     date: new Date().toLocaleDateString(),
     time: new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }),
   };
