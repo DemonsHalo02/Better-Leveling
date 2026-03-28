@@ -7,40 +7,18 @@
 // ============================================
 
 // ── UNIT HELPERS ──────────────────────────────────────
-function getIsImperial() {
-  return typeof getSettings === 'function' && getSettings().units === 'imperial';
-}
-function mlToDisplay(ml) {
-  if (getIsImperial()) return (ml * 0.033814).toFixed(1) + ' fl oz';
-  return ml + 'ml';
-}
-function getWaterGoalMl() {
-  const s = typeof getSettings === 'function' ? getSettings() : {};
-  const goalL = s.waterGoalLiters || 2; // stored as litres
-  return goalL * 1000;
-}
-function getWaterGoalDisplay() { return mlToDisplay(getWaterGoalMl()); }
-function getCupSizeMl()        { return getIsImperial() ? 237 : 250; } // 8 fl oz ≈ 237ml
-function getCupSizeDisplay()   { return mlToDisplay(getCupSizeMl()); }
-function getVolumeUnit()       { return getIsImperial() ? 'fl oz' : 'ml'; }
-function getWaterCupGoal()     { return Math.ceil(getWaterGoalMl() / getCupSizeMl()); }
-
-// Body weight display (from body logs)
-function kgToDisplay(kg) {
-  if (kg == null) return '—';
-  return getIsImperial() ? (kg * 2.20462).toFixed(1) + ' lbs' : kg + ' kg';
-}
-function kmToDisplay(km) {
-  if (km == null) return '—';
-  return getIsImperial() ? (km * 0.621371).toFixed(2) + ' mi' : km + ' km';
-}
+// settings.js (loaded first) defines the master versions of:
+//   isImperial, mlToDisplay, litersToDisplay, getWaterGoalMl,
+//   getWaterGoalDisplay, getCupSizeMl, getCupSizeDisplay,
+//   getVolumeUnit, getWaterCupGoal, toDisplayWeight, toDisplayDistance
+// These aliases keep this file working if those ever aren't defined yet.
+function getIsImperial()   { return typeof isImperial       === 'function' ? isImperial()       : false; }
+function kgToDisplay(kg)   { return typeof toDisplayWeight  === 'function' ? toDisplayWeight(kg)  : (kg??'—')+' kg'; }
+function kmToDisplay(km)   { return typeof toDisplayDistance=== 'function' ? toDisplayDistance(km): (km??'—')+' km'; }
 function cmToDisplay(cm) {
   if (cm == null) return '—';
-  if (getIsImperial()) {
-    const totalIn = Math.round(cm / 2.54);
-    return `${Math.floor(totalIn/12)}' ${totalIn%12}"`;
-  }
-  return cm + ' cm';
+  if (getIsImperial()) { const i=Math.round(cm/2.54); return `${Math.floor(i/12)}'${i%12}"`; }
+  return cm+' cm';
 }
 
 // ── NUTRITION PAGE ────────────────────────────────────
