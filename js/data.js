@@ -338,6 +338,87 @@ const FOOD_DB = [
   { name: '🇵🇷 Maví / Fermented Bark Drink (240ml)', cal: 55,  protein: 0,  carbs: 13, fat: 0  },
   { name: '🇵🇷 Piragua / Shaved Ice (1)',             cal: 70,  protein: 0,  carbs: 18, fat: 0  },
   { name: '🇵🇷 Parcha / Passionfruit Juice (240ml)', cal: 60,  protein: 1,  carbs: 15, fat: 0  },
+
+  // ══════════════════════════════════════════
+  // 🇯🇵 JAPANESE FOODS
+  // ══════════════════════════════════════════
+
+  // Proteins
+  { name: '🇯🇵 Salmon Sashimi (100g)',               cal: 142, protein: 20, carbs: 0,  fat: 6  },
+  { name: '🇯🇵 Tuna Sashimi (100g)',                 cal: 108, protein: 23, carbs: 0,  fat: 1  },
+  { name: '🇯🇵 Yellowtail / Hamachi (100g)',          cal: 146, protein: 21, carbs: 0,  fat: 6  },
+  { name: '🇯🇵 Chicken Teriyaki (100g)',              cal: 175, protein: 26, carbs: 7,  fat: 5  },
+  { name: '🇯🇵 Beef Teriyaki (100g)',                 cal: 210, protein: 24, carbs: 8,  fat: 9  },
+  { name: '🇯🇵 Tonkatsu / Pork Cutlet (100g)',        cal: 280, protein: 22, carbs: 12, fat: 16 },
+  { name: '🇯🇵 Karaage / Fried Chicken (100g)',       cal: 250, protein: 22, carbs: 10, fat: 13 },
+  { name: '🇯🇵 Yakitori x2 skewers',                 cal: 130, protein: 18, carbs: 4,  fat: 4  },
+  { name: '🇯🇵 Gyoza / Dumplings x6',                cal: 240, protein: 12, carbs: 24, fat: 10 },
+  { name: '🇯🇵 Edamame (100g shelled)',               cal: 121, protein: 11, carbs: 9,  fat: 5  },
+  { name: '🇯🇵 Tofu Firm (100g)',                     cal: 76,  protein: 8,  carbs: 2,  fat: 4  },
+  { name: '🇯🇵 Tofu Silken (100g)',                   cal: 55,  protein: 5,  carbs: 2,  fat: 3  },
+  { name: '🇯🇵 Miso Salmon (100g)',                   cal: 168, protein: 22, carbs: 4,  fat: 7  },
+  { name: '🇯🇵 Tamago / Egg Omelette (1 piece)',      cal: 75,  protein: 4,  carbs: 8,  fat: 3  },
+  { name: '🇯🇵 Ebi / Shrimp Tempura x2',              cal: 180, protein: 12, carbs: 16, fat: 7  },
+
+  // Sushi & Rolls
+  { name: '🇯🇵 Salmon Nigiri x2',                    cal: 130, protein: 10, carbs: 18, fat: 3  },
+  { name: '🇯🇵 Tuna Nigiri x2',                      cal: 120, protein: 11, carbs: 18, fat: 1  },
+  { name: '🇯🇵 Shrimp Nigiri x2',                    cal: 110, protein: 9,  carbs: 18, fat: 1  },
+  { name: '🇯🇵 California Roll (8 pieces)',           cal: 255, protein: 9,  carbs: 38, fat: 7  },
+  { name: '🇯🇵 Spicy Tuna Roll (8 pieces)',           cal: 290, protein: 16, carbs: 34, fat: 9  },
+  { name: '🇯🇵 Dragon Roll (8 pieces)',               cal: 360, protein: 15, carbs: 42, fat: 13 },
+  { name: '🇯🇵 Rainbow Roll (8 pieces)',              cal: 310, protein: 18, carbs: 36, fat: 9  },
+  { name: '🇯🇵 Cucumber Roll (8 pieces)',             cal: 136, protein: 4,  carbs: 30, fat: 0  },
+  { name: '🇯🇵 Avocado Roll (8 pieces)',              cal: 200, protein: 4,  carbs: 30, fat: 7  },
+  { name: '🇯🇵 Hand Roll / Temaki (1)',               cal: 140, protein: 8,  carbs: 18, fat: 4  },
+
+  // Bases & Carbs
+  { name: '🇯🇵 Sushi Rice (100g)',                   cal: 175, protein: 3,  carbs: 39, fat: 0  },
+  { name: '🇯🇵 White Rice Steamed (100g)',            cal: 130, protein: 3,  carbs: 28, fat: 0  },
+  { name: '🇯🇵 Onigiri / Rice Ball (1)',              cal: 170, protein: 4,  carbs: 36, fat: 0  },
+  { name: '🇯🇵 Soba Noodles Cooked (100g)',           cal: 113, protein: 6,  carbs: 24, fat: 0  },
+  { name: '🇯🇵 Udon Noodles Cooked (100g)',           cal: 105, protein: 3,  carbs: 22, fat: 0  },
+  { name: '🇯🇵 Ramen Noodles Cooked (100g)',          cal: 138, protein: 5,  carbs: 27, fat: 1  },
+  { name: '🇯🇵 Mochi (1 piece)',                      cal: 95,  protein: 1,  carbs: 22, fat: 0  },
+
+  // Soups & Hot Dishes
+  { name: '🇯🇵 Miso Soup (1 bowl)',                   cal: 40,  protein: 3,  carbs: 4,  fat: 1  },
+  { name: '🇯🇵 Tonkotsu Ramen (1 bowl)',              cal: 480, protein: 26, carbs: 55, fat: 16 },
+  { name: '🇯🇵 Shoyu Ramen (1 bowl)',                 cal: 380, protein: 20, carbs: 52, fat: 9  },
+  { name: '🇯🇵 Miso Ramen (1 bowl)',                  cal: 420, protein: 22, carbs: 54, fat: 12 },
+  { name: '🇯🇵 Chicken Udon (1 bowl)',                cal: 350, protein: 22, carbs: 50, fat: 6  },
+  { name: '🇯🇵 Zaru Soba / Cold Soba (1 serving)',    cal: 280, protein: 14, carbs: 55, fat: 1  },
+  { name: '🇯🇵 Sukiyaki (1 serving)',                 cal: 380, protein: 28, carbs: 30, fat: 14 },
+  { name: '🇯🇵 Shabu-Shabu Beef (100g)',              cal: 190, protein: 22, carbs: 2,  fat: 10 },
+  { name: '🇯🇵 Oyakodon / Chicken Egg Bowl',          cal: 480, protein: 30, carbs: 55, fat: 12 },
+  { name: '🇯🇵 Katsudon / Pork Bowl',                 cal: 560, protein: 28, carbs: 65, fat: 18 },
+
+  // Sauces, Sides & Condiments
+  { name: '🇯🇵 Soy Sauce (1 tbsp)',                   cal: 10,  protein: 1,  carbs: 1,  fat: 0  },
+  { name: '🇯🇵 Ponzu Sauce (1 tbsp)',                 cal: 15,  protein: 1,  carbs: 3,  fat: 0  },
+  { name: '🇯🇵 Teriyaki Sauce (1 tbsp)',              cal: 30,  protein: 1,  carbs: 6,  fat: 0  },
+  { name: '🇯🇵 Sesame Oil (1 tsp)',                   cal: 40,  protein: 0,  carbs: 0,  fat: 4  },
+  { name: '🇯🇵 Pickled Ginger (15g)',                 cal: 8,   protein: 0,  carbs: 2,  fat: 0  },
+  { name: '🇯🇵 Wasabi (1 tsp)',                       cal: 10,  protein: 0,  carbs: 2,  fat: 0  },
+  { name: '🇯🇵 Nori / Seaweed Sheet (1)',             cal: 10,  protein: 1,  carbs: 1,  fat: 0  },
+  { name: '🇯🇵 Wakame Seaweed Salad (100g)',          cal: 45,  protein: 3,  carbs: 7,  fat: 1  },
+
+  // Snacks & Desserts
+  { name: '🇯🇵 Pocky (1 box, 70g)',                   cal: 340, protein: 5,  carbs: 52, fat: 12 },
+  { name: '🇯🇵 Pretz (1 box, 60g)',                   cal: 270, protein: 5,  carbs: 46, fat: 8  },
+  { name: '🇯🇵 Japanese Milk Bread (1 slice)',         cal: 120, protein: 4,  carbs: 20, fat: 3  },
+  { name: '🇯🇵 Matcha Ice Cream (1 scoop)',            cal: 160, protein: 3,  carbs: 22, fat: 7  },
+  { name: '🇯🇵 Dorayaki (1 piece)',                   cal: 190, protein: 4,  carbs: 38, fat: 3  },
+  { name: '🇯🇵 Taiyaki (1 piece)',                    cal: 180, protein: 4,  carbs: 36, fat: 3  },
+  { name: '🇯🇵 Anmitsu (1 serving)',                  cal: 220, protein: 3,  carbs: 50, fat: 1  },
+
+  // Full Meals
+  { name: '🍱 JP: Salmon Teriyaki + Rice',             cal: 480, protein: 36, carbs: 52, fat: 12 },
+  { name: '🍱 JP: Chicken Karaage Bento',              cal: 550, protein: 32, carbs: 58, fat: 18 },
+  { name: '🍱 JP: Sashimi Platter (8 pieces)',         cal: 250, protein: 36, carbs: 2,  fat: 8  },
+  { name: '🍱 JP: Veggie Soba Bowl',                   cal: 320, protein: 12, carbs: 60, fat: 3  },
+  { name: '🍱 JP: Tofu Miso Bowl (lean)',              cal: 280, protein: 16, carbs: 38, fat: 6  },
+  { name: '🍱 JP: Gyudon / Beef Rice Bowl',            cal: 520, protein: 28, carbs: 60, fat: 16 },
 ];
 
 const WORKOUT_TYPES = [
