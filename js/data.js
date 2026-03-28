@@ -419,6 +419,123 @@ const FOOD_DB = [
   { name: '🍱 JP: Veggie Soba Bowl',                   cal: 320, protein: 12, carbs: 60, fat: 3  },
   { name: '🍱 JP: Tofu Miso Bowl (lean)',              cal: 280, protein: 16, carbs: 38, fat: 6  },
   { name: '🍱 JP: Gyudon / Beef Rice Bowl',            cal: 520, protein: 28, carbs: 60, fat: 16 },
+
+  // ══════════════════════════════════════════
+  // 🇰🇷 KOREAN FOODS
+  // ══════════════════════════════════════════
+
+  // Proteins
+  { name: '🇰🇷 Bulgogi / BBQ Beef (100g)',             cal: 185, protein: 26, carbs: 5,  fat: 7  },
+  { name: '🇰🇷 Samgyeopsal / Pork Belly (100g)',        cal: 295, protein: 17, carbs: 0,  fat: 25 },
+  { name: '🇰🇷 Dakgalbi / Spicy Chicken (100g)',        cal: 155, protein: 24, carbs: 6,  fat: 4  },
+  { name: '🇰🇷 Galbi / Short Ribs (100g)',              cal: 250, protein: 22, carbs: 4,  fat: 16 },
+  { name: '🇰🇷 Dak Breast / Chicken Breast (100g)',     cal: 130, protein: 27, carbs: 0,  fat: 2  },
+  { name: '🇰🇷 Japchae Beef (1 serving)',               cal: 320, protein: 14, carbs: 48, fat: 8  },
+  { name: '🇰🇷 Sundubu Jjigae / Tofu Stew (1 bowl)',    cal: 210, protein: 16, carbs: 10, fat: 10 },
+  { name: '🇰🇷 Doenjang Jjigae / Soybean Stew (1 bowl)',cal: 190, protein: 14, carbs: 12, fat: 7  },
+  { name: '🇰🇷 Kimchi Jjigae / Kimchi Stew (1 bowl)',   cal: 240, protein: 18, carbs: 14, fat: 10 },
+  { name: '🇰🇷 Haemul Pajeon / Seafood Pancake (1)',    cal: 280, protein: 14, carbs: 32, fat: 10 },
+  { name: '🇰🇷 Tteokbokki / Rice Cakes (1 serving)',    cal: 280, protein: 6,  carbs: 56, fat: 4  },
+  { name: '🇰🇷 Sundubu Tofu (100g firm)',               cal: 76,  protein: 8,  carbs: 2,  fat: 4  },
+
+  // Rice, Noodles & Bases
+  { name: '🇰🇷 Bibimbap Bowl (mixed rice)',              cal: 490, protein: 22, carbs: 72, fat: 12 },
+  { name: '🇰🇷 Bibimbap Lean (no egg, light sauce)',     cal: 380, protein: 18, carbs: 62, fat: 6  },
+  { name: '🇰🇷 Steamed Rice (100g)',                     cal: 130, protein: 3,  carbs: 28, fat: 0  },
+  { name: '🇰🇷 Naengmyeon / Cold Noodles (1 serving)',   cal: 340, protein: 12, carbs: 68, fat: 3  },
+  { name: '🇰🇷 Ramyeon / Korean Instant Noodles (1 pkg)',cal: 460, protein: 10, carbs: 68, fat: 16 },
+  { name: '🇰🇷 Gimbap Roll (1 roll, 6 pieces)',          cal: 310, protein: 12, carbs: 52, fat: 6  },
+  { name: '🇰🇷 Tuna Gimbap (1 roll)',                    cal: 340, protein: 16, carbs: 52, fat: 8  },
+
+  // Sides & Banchan
+  { name: '🇰🇷 Kimchi (100g)',                          cal: 15,  protein: 1,  carbs: 3,  fat: 0  },
+  { name: '🇰🇷 Kongnamul / Bean Sprouts (100g)',         cal: 30,  protein: 3,  carbs: 4,  fat: 0  },
+  { name: '🇰🇷 Sigeumchi / Spinach Namul (100g)',        cal: 25,  protein: 3,  carbs: 3,  fat: 0  },
+  { name: '🇰🇷 Gamja Jorim / Braised Potato (100g)',     cal: 120, protein: 2,  carbs: 24, fat: 2  },
+  { name: '🇰🇷 Eomuk / Fish Cake (1 skewer)',            cal: 90,  protein: 7,  carbs: 10, fat: 2  },
+  { name: '🇰🇷 Hobak Jeon / Zucchini Pancake (100g)',    cal: 110, protein: 4,  carbs: 14, fat: 4  },
+
+  // Sauces & Condiments
+  { name: '🇰🇷 Gochujang (1 tbsp)',                     cal: 45,  protein: 1,  carbs: 9,  fat: 0  },
+  { name: '🇰🇷 Doenjang / Soybean Paste (1 tbsp)',       cal: 30,  protein: 2,  carbs: 4,  fat: 1  },
+  { name: '🇰🇷 Ssamjang / Wrap Sauce (1 tbsp)',          cal: 35,  protein: 1,  carbs: 5,  fat: 1  },
+  { name: '🇰🇷 Sesame Oil (1 tsp)',                      cal: 40,  protein: 0,  carbs: 0,  fat: 4  },
+
+  // Full Meals
+  { name: '🍱 KR: Bulgogi Bowl + Rice',                  cal: 520, protein: 34, carbs: 58, fat: 14 },
+  { name: '🍱 KR: Lean Chicken Bibimbap',                cal: 420, protein: 32, carbs: 52, fat: 8  },
+  { name: '🍱 KR: Sundubu Jjigae + Rice',                cal: 380, protein: 20, carbs: 52, fat: 10 },
+  { name: '🍱 KR: Samgyeopsal Wrap x3',                  cal: 450, protein: 22, carbs: 18, fat: 28 },
+  { name: '🍱 KR: Gimbap + Kimchi',                      cal: 340, protein: 13, carbs: 56, fat: 6  },
+
+  // Snacks & Drinks
+  { name: '🇰🇷 Hotteok / Sweet Pancake (1)',              cal: 180, protein: 3,  carbs: 36, fat: 4  },
+  { name: '🇰🇷 Bungeoppang / Fish-Shaped Cake (1)',       cal: 160, protein: 3,  carbs: 32, fat: 3  },
+  { name: '🇰🇷 Sikhye / Sweet Rice Drink (240ml)',        cal: 100, protein: 1,  carbs: 25, fat: 0  },
+  { name: '🇰🇷 Banana Milk (200ml)',                      cal: 130, protein: 4,  carbs: 22, fat: 3  },
+
+  // ══════════════════════════════════════════
+  // 🇮🇹 ITALIAN FOODS
+  // ══════════════════════════════════════════
+
+  // Proteins
+  { name: '🇮🇹 Grilled Chicken Breast (100g)',           cal: 165, protein: 31, carbs: 0,  fat: 3  },
+  { name: '🇮🇹 Italian Sausage / Salsiccia (100g)',       cal: 290, protein: 16, carbs: 2,  fat: 25 },
+  { name: '🇮🇹 Prosciutto (30g)',                         cal: 70,  protein: 8,  carbs: 0,  fat: 4  },
+  { name: '🇮🇹 Salami (30g)',                              cal: 105, protein: 6,  carbs: 0,  fat: 9  },
+  { name: '🇮🇹 Grilled Branzino / Sea Bass (100g)',        cal: 97,  protein: 19, carbs: 0,  fat: 2  },
+  { name: '🇮🇹 Grilled Swordfish (100g)',                  cal: 121, protein: 20, carbs: 0,  fat: 4  },
+  { name: '🇮🇹 Veal Scaloppine (100g)',                    cal: 160, protein: 28, carbs: 2,  fat: 4  },
+  { name: '🇮🇹 Meatballs in Marinara x3',                  cal: 280, protein: 20, carbs: 14, fat: 14 },
+
+  // Pasta
+  { name: '🇮🇹 Spaghetti Bolognese (1 serving)',          cal: 540, protein: 28, carbs: 64, fat: 16 },
+  { name: '🇮🇹 Pasta Marinara (1 serving)',               cal: 380, protein: 12, carbs: 70, fat: 6  },
+  { name: '🇮🇹 Fettuccine Alfredo (1 serving)',           cal: 620, protein: 20, carbs: 68, fat: 28 },
+  { name: '🇮🇹 Penne Arrabbiata (1 serving)',             cal: 410, protein: 12, carbs: 72, fat: 8  },
+  { name: '🇮🇹 Pasta Carbonara (1 serving)',              cal: 580, protein: 24, carbs: 62, fat: 24 },
+  { name: '🇮🇹 Pasta Primavera (1 serving)',              cal: 420, protein: 14, carbs: 68, fat: 10 },
+  { name: '🇮🇹 Pasta Cooked (100g)',                      cal: 158, protein: 6,  carbs: 31, fat: 1  },
+
+  // Pizza
+  { name: '🇮🇹 Pizza Margherita (1 slice)',               cal: 250, protein: 11, carbs: 32, fat: 9  },
+  { name: '🇮🇹 Pizza Pepperoni (1 slice)',                 cal: 298, protein: 13, carbs: 32, fat: 13 },
+  { name: '🇮🇹 Pizza Quattro Formaggi (1 slice)',          cal: 320, protein: 15, carbs: 30, fat: 16 },
+  { name: '🇮🇹 Pizza Napoletana (1 slice)',                cal: 270, protein: 12, carbs: 34, fat: 9  },
+  { name: '🇮🇹 Thin Crust Pizza (1 slice)',                cal: 190, protein: 9,  carbs: 24, fat: 7  },
+
+  // Soups & Risotto
+  { name: '🇮🇹 Minestrone Soup (1 bowl)',                 cal: 140, protein: 6,  carbs: 24, fat: 3  },
+  { name: '🇮🇹 Ribollita / Tuscan Stew (1 bowl)',         cal: 210, protein: 8,  carbs: 32, fat: 5  },
+  { name: '🇮🇹 Risotto ai Funghi (1 serving)',            cal: 420, protein: 10, carbs: 68, fat: 12 },
+  { name: '🇮🇹 Risotto Chicken (1 serving)',              cal: 480, protein: 24, carbs: 62, fat: 14 },
+
+  // Breads & Sides
+  { name: '🇮🇹 Focaccia (100g)',                          cal: 270, protein: 7,  carbs: 44, fat: 8  },
+  { name: '🇮🇹 Ciabatta (1 slice, 50g)',                   cal: 130, protein: 4,  carbs: 25, fat: 1  },
+  { name: '🇮🇹 Garlic Bread (1 slice)',                    cal: 150, protein: 3,  carbs: 20, fat: 7  },
+  { name: '🇮🇹 Bruschetta (2 pieces)',                     cal: 180, protein: 5,  carbs: 28, fat: 6  },
+  { name: '🇮🇹 Caprese Salad (1 serving)',                 cal: 220, protein: 14, carbs: 6,  fat: 16 },
+  { name: '🇮🇹 Antipasto Platter (1 serving)',             cal: 350, protein: 18, carbs: 12, fat: 26 },
+  { name: '🇮🇹 Arancini / Rice Ball (1)',                  cal: 220, protein: 6,  carbs: 32, fat: 8  },
+
+  // Cheese & Dairy
+  { name: '🇮🇹 Mozzarella Fresh (30g)',                   cal: 80,  protein: 6,  carbs: 1,  fat: 6  },
+  { name: '🇮🇹 Parmigiano Reggiano (20g)',                 cal: 80,  protein: 7,  carbs: 0,  fat: 6  },
+  { name: '🇮🇹 Ricotta (100g)',                            cal: 174, protein: 11, carbs: 3,  fat: 13 },
+  { name: '🇮🇹 Burrata (100g)',                            cal: 230, protein: 14, carbs: 2,  fat: 19 },
+
+  // Desserts
+  { name: '🇮🇹 Tiramisu (1 slice)',                        cal: 310, protein: 6,  carbs: 30, fat: 18 },
+  { name: '🇮🇹 Gelato (1 scoop)',                          cal: 130, protein: 2,  carbs: 22, fat: 4  },
+  { name: '🇮🇹 Cannoli (1 piece)',                         cal: 220, protein: 4,  carbs: 26, fat: 11 },
+  { name: '🇮🇹 Panna Cotta (1 serving)',                   cal: 260, protein: 4,  carbs: 24, fat: 16 },
+
+  // Full Meals
+  { name: '🍱 IT: Chicken + Pasta Marinara',               cal: 520, protein: 40, carbs: 52, fat: 12 },
+  { name: '🍱 IT: Grilled Fish + Vegetables',              cal: 320, protein: 34, carbs: 18, fat: 8  },
+  { name: '🍱 IT: Lean Pasta Primavera',                   cal: 420, protein: 14, carbs: 68, fat: 10 },
+  { name: '🍱 IT: Caprese + Grilled Chicken',              cal: 380, protein: 42, carbs: 8,  fat: 18 },
 ];
 
 const WORKOUT_TYPES = [
