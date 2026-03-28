@@ -2,27 +2,46 @@
 // SYSTEM — PAGE RENDERERS
 // ============================================
 
+function skipQuestConfirm(idx) {
+  const q = HUNTER.quests[idx];
+  if (!q) return;
+  if (typeof showBottomSheet !== 'function') {
+    if (confirm('Skip "' + q.name + '"? Uses your weekly token.')) skipQuest(idx);
+    return;
+  }
+  const html = '<div style="text-align:center;padding:8px 0">'
+    + '<div style="font-size:36px;margin-bottom:10px">⏭️</div>'
+    + '<div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px">' + q.name + '</div>'
+    + '<div style="font-family:var(--font-mono);font-size:10px;color:var(--gold);margin-bottom:6px">Uses your weekly skip token</div>'
+    + '<div style="font-size:12px;color:var(--text3);margin-bottom:20px;line-height:1.6">You get 1 skip per week, resets every Monday.<br>The quest is removed from your daily goal count.</div>'
+    + '<div style="display:flex;gap:10px">'
+    + '<button onclick="closeBottomSheet()" style="flex:1;padding:13px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--text3);font-family:var(--font-hud);font-size:12px;cursor:pointer">CANCEL</button>'
+    + '<button onclick="closeBottomSheet();skipQuest(' + idx + ')" style="flex:2;padding:13px;background:rgba(240,192,64,0.15);border:1px solid var(--gold);border-radius:8px;color:var(--gold);font-family:var(--font-hud);font-size:13px;font-weight:700;cursor:pointer">⏭ SKIP IT</button>'
+    + '</div></div>';
+  showBottomSheet('Skip Quest?', html);
+}
+
 function showPage(name, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
   btn.classList.add('active');
-  if (name === 'quests') renderQuestsPage();
+  if (name === 'quests')    renderQuestsPage();
   if (name === 'nutrition') renderNutritionPage();
-  if (name === 'workout') renderWorkoutPage();
-  if (name === 'status') renderStatusPage();
+  if (name === 'workout')   renderWorkoutPage();
+  if (name === 'status')    renderStatusPage();
 }
 
 // ===== QUESTS PAGE =====
 function renderQuestsPage() {
   const el = document.getElementById('page-quests');
-  const today = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
-  const doneCount = HUNTER.quests.filter(q => q.done).length;
-  const total = HUNTER.quests.length;
-  const goal = typeof getSettings === 'function' ? (getSettings().dailyQuestGoal || 3) : 3;
-  const goalHit = doneCount >= goal;
-  const goalPct = Math.min(100, Math.round((doneCount / goal) * 100));
-  const showQuote = typeof getSettings === 'function' ? getSettings().showQuote !== false : true;
+  const today = new Date().toLocaleDateString('en-US', { weekday:'long', month:'short', day:'numeric' });
+  const doneCount  = HUNTER.quests.filter(q => q.done).length;
+  const total      = HUNTER.quests.length;
+  const goal       = typeof getSettings === 'function' ? (getSettings().dailyQuestGoal || 3) : 3;
+  const goalHit    = doneCount >= goal;
+  const goalPct    = Math.min(100, Math.round((doneCount / goal) * 100));
+  const showQuote  = typeof getSettings === 'function' ? getSettings().showQuote !== false : true;
 
   // Today's workout plan
   const todayPlan = typeof getTodaysWorkout === 'function' ? getTodaysWorkout() : null;
@@ -45,60 +64,92 @@ function renderQuestsPage() {
           <div style="font-family:var(--font-ui);font-size:13px;color:var(--text2);margin-top:2px">${today}</div>
         </div>
         <div style="text-align:right">
-          <div style="font-family:var(--font-hud);font-size:22px;color:${goalHit ? 'var(--green)' : 'var(--accent)'}">${doneCount}<span style="font-size:13px;color:var(--text3)">/${goal}</span><span style="font-size:11px;color:var(--text3)"> goal</span></div>
+          <div style="font-family:var(--font-hud);font-size:22px;color:${goalHit?'var(--green)':'var(--accent)'}">${doneCount}<span style="font-size:13px;color:var(--text3)">/${goal}</span><span style="font-size:11px;color:var(--text3)"> goal</span></div>
           <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">${doneCount}/${total} TOTAL</div>
         </div>
       </div>
       <div style="height:4px;background:rgba(0,180,255,0.08);border-radius:2px;overflow:hidden;border:1px solid var(--border)">
-        <div style="height:100%;width:${goalPct}%;background:${goalHit ? 'linear-gradient(90deg,var(--green),#00ff88)' : 'linear-gradient(90deg,var(--accent2),var(--accent))'};border-radius:2px;transition:width 0.5s"></div>
+        <div style="height:100%;width:${goalPct}%;background:${goalHit?'linear-gradient(90deg,var(--green),#00ff88)':'linear-gradient(90deg,var(--accent2),var(--accent))'};border-radius:2px;transition:width 0.5s"></div>
       </div>
-      ${goalHit ? `<div style="text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--green);margin-top:8px;letter-spacing:2px">◆ DAILY GOAL REACHED — STREAK ACTIVE ◆</div>` : `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:6px">${goal - doneCount} more quest${goal - doneCount !== 1 ? 's' : ''} to hit your daily goal</div>`}
+      ${goalHit ? '<div style="text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--green);margin-top:8px;letter-spacing:2px">◆ DAILY GOAL REACHED — STREAK ACTIVE ◆</div>' : '<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:6px">' + (goal - doneCount) + ' more quest' + (goal-doneCount!==1?'s':'') + ' to hit your daily goal</div>'}
     </div>
+  `;
 
-    <div class="section-head">ACTIVE QUESTS</div>
+  const skipAvailable = typeof canSkipQuest === 'function' ? canSkipQuest() : false;
+  const skipData      = typeof getSkipData  === 'function' ? getSkipData()  : {};
+
+  html += `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);letter-spacing:2px">ACTIVE QUESTS</div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <div style="font-size:16px">${skipAvailable ? '⏭️' : '🔒'}</div>
+        <div style="font-family:var(--font-mono);font-size:9px;color:${skipAvailable?'var(--gold)':'var(--text3)'}">
+          ${skipAvailable ? 'SKIP AVAILABLE' : 'SKIP USED THIS WEEK'}
+        </div>
+      </div>
+    </div>
   `;
 
   HUNTER.quests.forEach((q, i) => {
+    if (q.skipped) {
+      html += `
+        <div style="
+          border-radius:8px;padding:12px 14px;margin-bottom:8px;
+          background:rgba(0,0,0,0.15);
+          border:1px solid var(--border);
+          display:flex;align-items:center;gap:12px;
+          opacity:0.45;
+        ">
+          <div style="width:38px;height:38px;border-radius:6px;flex-shrink:0;background:rgba(122,160,204,0.1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px">⏭️</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:14px;font-weight:600;color:var(--text3);text-decoration:line-through;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${q.name}</div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:4px">SKIPPED · Weekly token used</div>
+          </div>
+        </div>
+      `;
+      return;
+    }
     const catColor = {
       strength: '#00b4ff', cardio: '#00e5a0', nutrition: '#f0c040',
-      mental: '#a855f7', lifestyle: '#ff6b35', weekend: '#f0c040',
+      mental: '#a855f7',   lifestyle: '#ff6b35', weekend: '#f0c040',
       surprise: '#ff3355'
     }[q.category] || '#7aa0cc';
 
     const isSurprise = q.category === 'surprise';
-    const isWeekend = q.category === 'weekend';
+    const isWeekend  = q.category === 'weekend';
 
     html += `
       <div class="quest-card ${q.done ? 'quest-done' : ''}"
-        onclick="${q.done ? `undoQuestConfirm(${i})` : `questConfirm(${i})`}"
         style="
           background:${isSurprise ? 'rgba(255,51,85,0.06)' : isWeekend ? 'rgba(240,192,64,0.06)' : 'var(--panel)'};
           border:1px solid ${q.done ? 'rgba(0,229,160,0.3)' : isSurprise ? 'rgba(255,51,85,0.4)' : isWeekend ? 'rgba(240,192,64,0.35)' : 'var(--border)'};
           border-radius:8px;padding:12px 14px;margin-bottom:8px;
           display:flex;align-items:center;gap:12px;
-          cursor:pointer;
           opacity:${q.done ? '0.6' : '1'};
           transition:border-color 0.2s,opacity 0.2s;
           position:relative;overflow:hidden;
         ">
         <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,${catColor},transparent);opacity:${q.done ? '0.2' : '0.5'}"></div>
-        <div style="
-          width:38px;height:38px;border-radius:6px;flex-shrink:0;
+        <div onclick="${q.done ? 'undoQuestConfirm('+i+')' : 'questConfirm('+i+')'}" style="
+          width:38px;height:38px;border-radius:6px;flex-shrink:0;cursor:pointer;
           background:${q.done ? 'rgba(0,229,160,0.1)' : catColor + '18'};
           border:1px solid ${q.done ? 'rgba(0,229,160,0.4)' : catColor + '55'};
           display:flex;align-items:center;justify-content:center;font-size:18px;
         ">${q.done ? '✓' : q.icon}</div>
-        <div style="flex:1;min-width:0">
+        <div onclick="${q.done ? 'undoQuestConfirm('+i+')' : 'questConfirm('+i+')'}" style="flex:1;min-width:0;cursor:pointer">
           <div style="font-size:14px;font-weight:600;color:${q.done ? 'var(--text3)' : 'var(--text)'};text-decoration:${q.done ? 'line-through' : 'none'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${q.name}</div>
           <div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap;align-items:center">
             <span class="stat-pill pill-accent">+${q.xp} XP</span>
             <span class="stat-pill" style="background:${catColor}18;border:1px solid ${catColor}44;color:${catColor}">${q.stat.toUpperCase()} ↑</span>
-            ${isSurprise ? `<span class="stat-pill pill-red">SURPRISE</span>` : ''}
-            ${isWeekend ? `<span class="stat-pill pill-gold">WEEKEND</span>` : ''}
+            ${isSurprise ? '<span class="stat-pill pill-red">SURPRISE</span>' : ''}
+            ${isWeekend  ? '<span class="stat-pill pill-gold">WEEKEND</span>'  : ''}
           </div>
         </div>
-        <div style="font-size:13px;color:${q.done ? 'var(--text3)' : 'var(--border2)'};flex-shrink:0">
-          ${q.done ? '↩' : '›'}
+        <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0">
+          <div onclick="${q.done ? 'undoQuestConfirm('+i+')' : 'questConfirm('+i+')'}" style="font-size:13px;color:${q.done ? 'var(--text3)' : 'var(--border2)'};cursor:pointer">
+            ${q.done ? '↩' : '›'}
+          </div>
+          ${!q.done && skipAvailable ? '<div onclick="skipQuestConfirm('+i+')" title="Skip (1/week)" style="font-size:12px;color:var(--text3);cursor:pointer;padding:2px;opacity:0.6" onmouseover="this.style.opacity=1;this.style.color=\'var(--gold)\'" onmouseout="this.style.opacity=0.6;this.style.color=\'var(--text3)\'">⏭</div>' : ''}
         </div>
       </div>
     `;
@@ -192,6 +243,37 @@ function renderWorkoutPage() {
   ).join('');
 
   let html = `
+    <div class="section-head">HEALTH CONNECT</div>
+    <div class="sys-card" id="health-card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+        <div style="font-size:28px">⌚</div>
+        <div style="flex:1">
+          <div style="font-size:14px;font-weight:600;color:var(--text)">Device Sync</div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:2px" id="health-status-text">Connect Apple Health or Google Fit</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn-gold" onclick="connectAppleHealth()" id="apple-btn">🍎 Apple Health</button>
+        <button class="btn-secondary" onclick="connectGoogleFit()" id="google-btn">🔄 Google Fit</button>
+      </div>
+      <div id="health-data-panel" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center">
+          <div>
+            <div style="font-family:var(--font-hud);font-size:18px;color:var(--green)" id="sync-steps">—</div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">STEPS</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-hud);font-size:18px;color:var(--accent)" id="sync-hr">—</div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">HEART RATE</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-hud);font-size:18px;color:var(--gold)" id="sync-cal">—</div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">KCAL BURNED</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="section-head">LOG WORKOUT</div>
     <div class="sys-card">
       <div style="margin-bottom:10px">
@@ -252,7 +334,7 @@ function renderWorkoutPage() {
 
 function updateXPPreview() {
   const type = document.getElementById('wk-type')?.value;
-  const dur = parseInt(document.getElementById('wk-dur')?.value);
+  const dur  = parseInt(document.getElementById('wk-dur')?.value);
   const prev = document.getElementById('xp-preview');
   if (!prev) return;
   if (type && dur > 0) {
@@ -265,8 +347,8 @@ function updateXPPreview() {
 }
 
 function submitWorkout() {
-  const type = document.getElementById('wk-type').value;
-  const dur = parseInt(document.getElementById('wk-dur').value);
+  const type  = document.getElementById('wk-type').value;
+  const dur   = parseInt(document.getElementById('wk-dur').value);
   const notes = document.getElementById('wk-notes').value.trim();
   if (!type || isNaN(dur) || dur < 1) { showNotif('[ ERROR ] Enter a valid duration'); return; }
   logWorkout(type, dur, notes);
@@ -283,11 +365,11 @@ function renderStatusPage() {
   const totalStats = Object.values(stats).reduce((a, b) => a + b, 0);
 
   const statDefs = [
-    { key: 'str', label: 'STRENGTH', color: '#00b4ff', icon: '⚔️' },
-    { key: 'vit', label: 'VITALITY', color: '#00e5a0', icon: '🛡️' },
-    { key: 'agi', label: 'AGILITY', color: '#f0c040', icon: '⚡' },
-    { key: 'int', label: 'INTELLIGENCE', color: '#a855f7', icon: '🧠' },
-    { key: 'sense', label: 'SENSE', color: '#ff6b35', icon: '👁️' },
+    { key: 'str',   label: 'STRENGTH',    color: '#00b4ff', icon: '⚔️' },
+    { key: 'vit',   label: 'VITALITY',    color: '#00e5a0', icon: '🛡️' },
+    { key: 'agi',   label: 'AGILITY',     color: '#f0c040', icon: '⚡' },
+    { key: 'int',   label: 'INTELLIGENCE',color: '#a855f7', icon: '🧠' },
+    { key: 'sense', label: 'SENSE',        color: '#ff6b35', icon: '👁️' },
   ];
 
   const maxStat = Math.max(...Object.values(stats));
@@ -337,10 +419,10 @@ function renderStatusPage() {
   `;
 
   const achievements = [
-    { label: 'Quests Done', val: HUNTER.questsCompleted || 0, icon: '◈', color: 'var(--accent)' },
-    { label: 'Day Streak', val: HUNTER.streakDays || 0, icon: '🔥', color: 'var(--red)' },
-    { label: 'Hours Trained', val: Math.round((HUNTER.totalWorkoutMin || 0) / 60), icon: '⏱', color: 'var(--green)' },
-    { label: 'Total XP', val: HUNTER.totalXPEarned || 0, icon: '⚡', color: 'var(--gold)' },
+    { label: 'Quests Done',   val: HUNTER.questsCompleted || 0,           icon: '◈', color: 'var(--accent)' },
+    { label: 'Day Streak',    val: HUNTER.streakDays || 0,                 icon: '🔥', color: 'var(--red)' },
+    { label: 'Hours Trained', val: Math.round((HUNTER.totalWorkoutMin||0)/60), icon: '⏱',  color: 'var(--green)' },
+    { label: 'Total XP',      val: HUNTER.totalXPEarned || 0,              icon: '⚡', color: 'var(--gold)' },
   ];
 
   achievements.forEach(a => {
