@@ -285,7 +285,6 @@ function renderCalMacroCalculator() {
   const saved = getCalGoals();
   const imp   = getIsImperial();
   const wUnit = imp ? 'lbs' : 'kg';
-  const hUnit = imp ? 'ft (e.g. 5.9)' : 'cm';
 
   return `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
@@ -297,17 +296,28 @@ function renderCalMacroCalculator() {
         <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">WEIGHT (${wUnit})</label>
         <input type="number" class="sys-input" id="calc-weight" value="${saved.weight||''}" placeholder="${imp?'180':'82'}" inputmode="decimal" step="0.1"/>
       </div>
-      <div>
-        <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">HEIGHT (${hUnit})</label>
-        <input type="number" class="sys-input" id="calc-height" value="${saved.height||''}" placeholder="${imp?'5.9':'178'}" inputmode="decimal" step="${imp?'0.1':'1'}"/>
-      </div>
-      <div>
-        <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">SEX</label>
-        <select class="sys-input" id="calc-sex">
-          <option value="m" ${saved.sex==='m'?'selected':''}>Male</option>
-          <option value="f" ${saved.sex==='f'?'selected':''}>Female</option>
-        </select>
-      </div>
+      ${imp ? `
+        <div>
+          <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">HEIGHT (feet)</label>
+          <input type="number" class="sys-input" id="calc-height-ft" value="${saved.heightFt||''}" placeholder="5" inputmode="numeric" min="3" max="8"/>
+        </div>
+        <div>
+          <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">HEIGHT (inches)</label>
+          <input type="number" class="sys-input" id="calc-height-in" value="${saved.heightIn||''}" placeholder="10" inputmode="numeric" min="0" max="11"/>
+        </div>
+      ` : `
+        <div style="grid-column:span 2">
+          <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">HEIGHT (cm)</label>
+          <input type="number" class="sys-input" id="calc-height-cm" value="${saved.heightCm||''}" placeholder="178" inputmode="numeric"/>
+        </div>
+      `}
+    </div>
+    <div style="margin-bottom:8px">
+      <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">SEX</label>
+      <select class="sys-input" id="calc-sex">
+        <option value="m" ${saved.sex==='m'?'selected':''}>Male</option>
+        <option value="f" ${saved.sex==='f'?'selected':''}>Female</option>
+      </select>
     </div>
     <div style="margin-bottom:8px">
       <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">ACTIVITY LEVEL</label>
@@ -323,7 +333,7 @@ function renderCalMacroCalculator() {
       <label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:4px">GOAL</label>
       <div style="display:flex;gap:6px">
         ${[['cut','Lose Fat'],['maint','Maintain'],['bulk','Build Muscle']].map(([val,lbl])=>`
-          <button onclick="document.querySelectorAll('.cgoal-btn').forEach(x=>x.style.background='var(--bg3)');document.querySelectorAll('.cgoal-btn').forEach(x=>x.style.borderColor='var(--border)');this.style.background='rgba(0,180,255,0.18)';this.style.borderColor='var(--accent)';window._calcGoal='${val}'"
+          <button onclick="document.querySelectorAll('.cgoal-btn').forEach(x=>{x.style.background='var(--bg3)';x.style.borderColor='var(--border)';x.style.color='var(--text3)'});this.style.background='rgba(0,180,255,0.18)';this.style.borderColor='var(--accent)';this.style.color='var(--accent)';window._calcGoal='${val}'"
             class="cgoal-btn" style="flex:1;padding:9px 4px;border-radius:6px;cursor:pointer;font-family:var(--font-ui);font-size:12px;font-weight:600;
             background:${(saved.goal||'cut')===val?'rgba(0,180,255,0.18)':'var(--bg3)'};
             border:1px solid ${(saved.goal||'cut')===val?'var(--accent)':'var(--border)'};
@@ -338,48 +348,63 @@ function renderCalMacroCalculator() {
 }
 
 function runCalMacroCalc() {
-  const imp    = getIsImperial();
-  const age    = parseInt(document.getElementById('calc-age')?.value);
-  const wRaw   = parseFloat(document.getElementById('calc-weight')?.value);
-  const hRaw   = parseFloat(document.getElementById('calc-height')?.value);
-  const sex    = document.getElementById('calc-sex')?.value;
-  const act    = parseFloat(document.getElementById('calc-activity')?.value);
-  const goal   = window._calcGoal || document.querySelector('.cgoal-btn[style*="rgba(0,180,255"]')?.dataset?.val || 'cut';
+  const imp  = getIsImperial();
+  const age  = parseInt(document.getElementById('calc-age')?.value);
+  const wRaw = parseFloat(document.getElementById('calc-weight')?.value);
+  const sex  = document.getElementById('calc-sex')?.value || 'm';
+  const act  = parseFloat(document.getElementById('calc-activity')?.value) || 1.55;
+  const goal = window._calcGoal || (getCalGoals().goal || 'cut');
 
-  if (!age || !wRaw || !hRaw) { showNotif('[ ERROR ] Fill in all fields'); return; }
+  // Read height — separate fields for imperial, single cm field for metric
+  let hCm;
+  if (imp) {
+    const ft = parseInt(document.getElementById('calc-height-ft')?.value) || 0;
+    const inches = parseInt(document.getElementById('calc-height-in')?.value) || 0;
+    if (!ft) { showNotif('[ ERROR ] Enter height in feet'); return; }
+    hCm = Math.round((ft * 12 + inches) * 2.54); // total inches → cm
+  } else {
+    hCm = parseFloat(document.getElementById('calc-height-cm')?.value) || 0;
+    if (!hCm) { showNotif('[ ERROR ] Enter height in cm'); return; }
+  }
 
-  // Convert to metric for Mifflin-St Jeor
-  const wKg  = imp ? wRaw / 2.20462 : wRaw;
-  const hCm  = imp ? hRaw * 30.48   : hRaw; // ft → cm
-  const bmr  = sex === 'm'
+  if (!age || !wRaw || !hCm) { showNotif('[ ERROR ] Fill in all fields'); return; }
+
+  // Always compute in metric (Mifflin-St Jeor)
+  const wKg = imp ? wRaw / 2.20462 : wRaw;
+  const bmr = sex === 'm'
     ? 10*wKg + 6.25*hCm - 5*age + 5
     : 10*wKg + 6.25*hCm - 5*age - 161;
-  const tdee = Math.round(bmr * act);
-  const adj  = goal === 'cut' ? -500 : goal === 'bulk' ? 250 : 0;
-  const target = tdee + adj;
 
-  // Macro split: 30% protein, 40% carbs, 30% fat (adjusted for goal)
-  const proteinPct = goal === 'cut' ? 0.35 : goal === 'bulk' ? 0.30 : 0.30;
+  if (bmr < 800 || bmr > 5000) {
+    showNotif('[ ERROR ] Check your values — result looks wrong'); return;
+  }
+
+  const tdee   = Math.round(bmr * act);
+  const adj    = goal === 'cut' ? -500 : goal === 'bulk' ? 250 : 0;
+  const target = Math.max(1200, tdee + adj);
+
+  const proteinPct = goal === 'cut' ? 0.35 : 0.30;
   const protein    = Math.round((target * proteinPct) / 4);
   const fat        = Math.round((target * 0.25) / 9);
   const carbs      = Math.round((target - protein*4 - fat*9) / 4);
-  const weekly     = goal === 'cut' ? '~0.5kg fat loss/week' : goal === 'bulk' ? '~0.25kg muscle/week' : 'Maintenance';
+  const weekly     = goal === 'cut' ? '~0.5kg/week loss' : goal === 'bulk' ? '~0.25kg/week gain' : 'Maintenance';
 
-  // Save to calorie goals AND settings
+  // Save inputs for next time
   localStorage.setItem('sys_calgoals_hunter', JSON.stringify({
-    age, weight: wRaw, height: hRaw, sex, activity: String(act), goal
+    age, weight: wRaw,
+    heightCm: imp ? undefined : hCm,
+    heightFt: imp ? parseInt(document.getElementById('calc-height-ft')?.value)||0 : undefined,
+    heightIn: imp ? parseInt(document.getElementById('calc-height-in')?.value)||0 : undefined,
+    sex, activity: String(act), goal,
   }));
-  if (typeof getMacroGoals === 'function' && typeof localStorage !== 'undefined') {
-    localStorage.setItem('sys_macro_goals', JSON.stringify({ cal: target, protein, carbs, fat }));
-  }
-  if (typeof saveSettings === 'function') {
-    saveSettings({ calorieGoal: target });
-  }
+  // Apply to macro goals
+  localStorage.setItem('sys_macro_goals', JSON.stringify({ cal: target, protein, carbs, fat }));
+  if (typeof saveSettings === 'function') saveSettings({ calorieGoal: target });
 
   const res = document.getElementById('calc-result-food');
   if (res) res.innerHTML = `
     <div style="border-top:1px solid var(--border);padding-top:12px">
-      <div style="font-family:var(--font-mono);font-size:9px;color:var(--green);letter-spacing:2px;margin-bottom:10px">✓ GOALS UPDATED AUTOMATICALLY</div>
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--green);letter-spacing:2px;margin-bottom:10px">✓ GOALS APPLIED TO MACRO TRACKER</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
         <div style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px;text-align:center">
           <div style="font-family:var(--font-hud);font-size:18px;color:var(--text3)">${tdee}</div>
@@ -399,9 +424,8 @@ function runCalMacroCalc() {
     </div>
   `;
 
-  showNotif('[ CALCULATOR ] Goals applied to macro tracker!', 'gold');
-  // Re-render macros immediately
-  setTimeout(() => renderNutritionPage(), 500);
+  showNotif('[ CALCULATOR ] Targets applied to macro tracker!', 'gold');
+  setTimeout(() => renderNutritionPage(), 400);
 }
 
 function getCalGoals() {
