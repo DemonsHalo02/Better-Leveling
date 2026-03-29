@@ -277,6 +277,12 @@ function completeQuest(index) {
   q.done = true;
   HUNTER.questsCompleted = (HUNTER.questsCompleted || 0) + 1;
 
+  // Log to quest history
+  logQuestHistory(q);
+
+  // Damage the weekly boss
+  if (typeof damageBoss === 'function') damageBoss(q.xp);
+
   // Use settings goal (default 3) for streak, not total quest count
   const goal     = typeof getSettings === 'function' ? (getSettings().dailyQuestGoal || 3) : 3;
   const doneCount = HUNTER.quests.filter(x => x.done).length;
@@ -286,14 +292,12 @@ function completeQuest(index) {
   addXP(q.xp, q.stat);
 
   if (goalHit && doneCount === goal) {
-    // Just hit the goal threshold — award streak bonus
     HUNTER.streakDays = (HUNTER.streakDays || 0) + 1;
     setTimeout(() => {
       addXP(75, null);
       showNotif(`[ SYSTEM ] ${goal} QUESTS DONE! +75 BONUS XP`, 'gold');
     }, 600);
   } else if (allDone && doneCount > goal) {
-    // Completed every single quest (bonus for overachievers)
     setTimeout(() => {
       addXP(50, null);
       showNotif('[ SYSTEM ] ALL QUESTS CLEARED! +50 EXTRA XP', 'gold');
@@ -304,6 +308,24 @@ function completeQuest(index) {
   persist();
   renderQuestsPage();
   renderStatusPage();
+}
+
+// ── QUEST HISTORY LOG ─────────────────────────────────
+function logQuestHistory(q) {
+  try {
+    const history = JSON.parse(localStorage.getItem('bl_quest_history') || '[]');
+    history.unshift({
+      name: q.name,
+      icon: q.icon || '◈',
+      xp:   q.xp,
+      stat: q.stat,
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    });
+    // Keep last 200 entries
+    if (history.length > 200) history.length = 200;
+    localStorage.setItem('bl_quest_history', JSON.stringify(history));
+  } catch {}
 }
 
 function addFoodEntry(food) {
