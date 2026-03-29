@@ -201,6 +201,18 @@ function renderNutritionPage() {
 
       <!-- MANUAL -->
       <div id="food-mode-manual" style="display:none">
+        <!-- Meal time selector -->
+        <div style="display:flex;gap:6px;margin-bottom:10px">
+          ${['🌅 Breakfast','☀️ Lunch','🌙 Dinner','🍎 Snack'].map(label => {
+            const [icon, name] = label.split(' ');
+            return `<button onclick="selectMealTime('${name}',this)" class="meal-time-btn" style="
+              flex:1;padding:6px 2px;border-radius:6px;cursor:pointer;
+              background:var(--bg3);border:1px solid var(--border);
+              color:var(--text3);font-family:var(--font-mono);font-size:9px;
+              display:flex;flex-direction:column;align-items:center;gap:2px;
+            "><span style="font-size:14px">${icon}</span>${name}</button>`;
+          }).join('')}
+        </div>
         <input type="text" class="sys-input" id="manual-name" placeholder="Food name..." style="margin-bottom:8px"/>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
           <div>
@@ -249,19 +261,40 @@ function renderNutritionPage() {
   if (log.length === 0) {
     html += `<div style="text-align:center;padding:20px;color:var(--text3);font-family:var(--font-mono);font-size:11px">NO FOOD LOGGED YET</div>`;
   } else {
-    log.slice().reverse().forEach(f => {
+    // Group by meal time
+    const mealOrder = ['Breakfast','Lunch','Dinner','Snack'];
+    const grouped = {};
+    log.forEach(f => {
+      const meal = f.mealTime || 'Snack';
+      if (!grouped[meal]) grouped[meal] = [];
+      grouped[meal].push(f);
+    });
+
+    mealOrder.forEach(meal => {
+      if (!grouped[meal] || grouped[meal].length === 0) return;
+      const mealTotal = grouped[meal].reduce((a,f) => a + (f.cal||0), 0);
       html += `
-        <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:10px 12px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">
-          <div style="flex:1;min-width:0">
-            <div style="font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${f.name}</div>
-            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:2px">${f.time||''} · P:${f.protein||0}g C:${f.carbs||0}g F:${f.fat||0}g</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-            <div style="font-family:var(--font-hud);font-size:14px;color:var(--gold)">${f.cal||0}<span style="font-size:9px;color:var(--text3)">kcal</span></div>
-            <button onclick="removeFoodEntry('${f._id||''}')" style="background:transparent;border:none;color:var(--text3);font-size:14px;cursor:pointer;padding:2px 4px">×</button>
-          </div>
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);letter-spacing:2px;margin-bottom:6px;display:flex;align-items:center;gap:6px">
+          <span>${MEAL_ICONS[meal]||'🍽️'}</span>
+          <span>${meal.toUpperCase()}</span>
+          <span style="color:var(--gold)">${mealTotal} kcal</span>
         </div>
       `;
+      grouped[meal].forEach(f => {
+        html += `
+          <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:10px 12px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">
+            <div style="flex:1;min-width:0">
+              <div style="font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${f.name}</div>
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:2px">${f.time||''} · P:${f.protein||0}g C:${f.carbs||0}g F:${f.fat||0}g</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+              <div style="font-family:var(--font-hud);font-size:14px;color:var(--gold)">${f.cal||0}<span style="font-size:9px;color:var(--text3)">kcal</span></div>
+              <button onclick="removeFoodEntry('${f._id||''}')" style="background:transparent;border:none;color:var(--text3);font-size:14px;cursor:pointer;padding:2px 4px">×</button>
+            </div>
+          </div>
+        `;
+      });
+      html += `<div style="margin-bottom:10px"></div>`;
     });
     html += `
       <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:10px 12px;margin-top:4px">
@@ -538,6 +571,34 @@ function switchFoodMode(mode) {
   if (mode !== 'barcode') stopBarcodeCamera();
 }
 
+// ── MEAL TIME ─────────────────────────────────────────
+let _currentMealTime = null;
+
+function selectMealTime(name, btn) {
+  _currentMealTime = name;
+  document.querySelectorAll('.meal-time-btn').forEach(b => {
+    b.style.background = 'var(--bg3)';
+    b.style.borderColor = 'var(--border)';
+    b.style.color = 'var(--text3)';
+  });
+  if (btn) {
+    btn.style.background = 'rgba(0,180,255,0.15)';
+    btn.style.borderColor = 'var(--accent)';
+    btn.style.color = 'var(--accent)';
+  }
+}
+
+function getAutoMealTime() {
+  if (_currentMealTime) return _currentMealTime;
+  const h = new Date().getHours();
+  if (h >= 5  && h < 11) return 'Breakfast';
+  if (h >= 11 && h < 15) return 'Lunch';
+  if (h >= 17 && h < 21) return 'Dinner';
+  return 'Snack';
+}
+
+const MEAL_ICONS = { Breakfast:'🌅', Lunch:'☀️', Dinner:'🌙', Snack:'🍎' };
+
 // ── FOOD SEARCH ───────────────────────────────────────
 function filterFoodSearch(query) {
   const container = document.getElementById('food-search-results');
@@ -566,7 +627,7 @@ function filterFoodSearch(query) {
 function logFoodByIndex(index) {
   const food = FOOD_DB[index];
   if (!food) return;
-  addFoodEntry({ ...food, source:'search' });
+  addFoodEntry({ ...food, mealTime: getAutoMealTime(), source:'search' });
   showNotif(`[ FOOD ] ${food.name} logged`);
   const inp = document.getElementById('food-search-input');
   if (inp) inp.value = '';
@@ -581,17 +642,18 @@ function logManualFood() {
   const fat     = parseInt(document.getElementById('manual-fat')?.value)     || 0;
   if (!name)  { showNotif('[ ERROR ] Enter a food name'); return; }
   if (cal < 1){ showNotif('[ ERROR ] Enter calories');    return; }
-  addFoodEntry({ name, cal, protein, carbs, fat, source:'manual' });
+  addFoodEntry({ name, cal, protein, carbs, fat, mealTime: getAutoMealTime(), source:'manual' });
   showNotif(`[ FOOD ] ${name} logged`);
   ['manual-name','manual-cal','manual-protein','manual-carbs','manual-fat']
     .forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+  _currentMealTime = null;
 }
 
 function logSelectedFood() {
   const sel = document.getElementById('food-select');
   const idx = parseInt(sel?.value);
   if (isNaN(idx)) { showNotif('[ SYSTEM ] Select a food item'); return; }
-  addFoodEntry({ ...FOOD_DB[idx], source:'list' });
+  addFoodEntry({ ...FOOD_DB[idx], mealTime: getAutoMealTime(), source:'list' });
   showNotif(`[ FOOD ] ${FOOD_DB[idx].name} logged`);
   if (sel) sel.value = '';
 }
