@@ -178,7 +178,185 @@ function renderQuestsPage() {
     </div>
   `;
 
+  // Weekly boss health bar
+  html += renderWeeklyBossBar();
+
+  // Quest history (last 5)
+  html += renderQuestHistoryPreview();
+
   el.innerHTML = html;
+}
+
+// ── WEEKLY BOSS HEALTH BAR ─────────────────────────────
+const WEEKLY_BOSSES = [
+  { name: 'THE IRON GIANT',    color: '#60a5fa', icon: '🗿', maxHp: 2000, rank: 'B' },
+  { name: 'THE SHADOW LURKER', color: '#a855f7', icon: '👁',  maxHp: 2500, rank: 'A' },
+  { name: 'THE CRIMSON BEAST', color: '#ff3355', icon: '🔥', maxHp: 3500, rank: 'S' },
+  { name: 'THE VOID TYRANT',   color: '#ff6b35', icon: '👑', maxHp: 5000, rank: 'National' },
+  { name: 'SHADOW SOVEREIGN',  color: '#a855f7', icon: '🦋', maxHp: 9999, rank: 'Shadow Monarch' },
+];
+
+function getWeekBossData() {
+  const weekKey = _getWeekKey();
+  try {
+    const d = JSON.parse(localStorage.getItem('bl_week_boss') || '{}');
+    if (d.weekKey !== weekKey) {
+      // New week — pick next boss
+      const prev = d.bossIndex || 0;
+      const next = { weekKey, bossIndex: (prev + 1) % WEEKLY_BOSSES.length, hp: WEEKLY_BOSSES[(prev+1)%WEEKLY_BOSSES.length].maxHp, defeated: false };
+      localStorage.setItem('bl_week_boss', JSON.stringify(next));
+      return next;
+    }
+    return d;
+  } catch {
+    const d = { weekKey, bossIndex: 0, hp: WEEKLY_BOSSES[0].maxHp, defeated: false };
+    localStorage.setItem('bl_week_boss', JSON.stringify(d));
+    return d;
+  }
+}
+
+function _getWeekKey() {
+  const d = new Date(), s = new Date(d.getFullYear(), 0, 1);
+  const w = Math.ceil(((d - s) / 86400000 + s.getDay() + 1) / 7);
+  return `${d.getFullYear()}-W${String(w).padStart(2,'0')}`;
+}
+
+function damageBoss(xpDealt) {
+  const data = getWeekBossData();
+  if (data.defeated) return;
+  const boss = WEEKLY_BOSSES[data.bossIndex];
+  const dmg  = Math.round(xpDealt * 1.5); // XP → damage
+  data.hp    = Math.max(0, data.hp - dmg);
+  if (data.hp <= 0) {
+    data.hp = 0;
+    data.defeated = true;
+    localStorage.setItem('bl_week_boss', JSON.stringify(data));
+    // Award boss defeat bonus
+    setTimeout(() => {
+      addXP(boss.maxHp / 10, 'str');
+      showNotif(`[ BOSS DEFEATED ] ${boss.name}! +${Math.round(boss.maxHp/10)} XP`, 'gold');
+      if (navigator.vibrate) navigator.vibrate([200,100,200,100,400]);
+    }, 800);
+  } else {
+    localStorage.setItem('bl_week_boss', JSON.stringify(data));
+  }
+}
+
+function renderWeeklyBossBar() {
+  const data    = getWeekBossData();
+  const boss    = WEEKLY_BOSSES[data.bossIndex];
+  const pct     = Math.round((data.hp / boss.maxHp) * 100);
+  const dmgDone = boss.maxHp - data.hp;
+  const defeated = data.defeated || data.hp <= 0;
+
+  return `
+    <div style="
+      margin-top:14px;padding:14px;
+      background:${defeated ? 'rgba(0,229,160,0.06)' : 'rgba(255,51,85,0.06)'};
+      border:1px solid ${defeated ? 'rgba(0,229,160,0.3)' : 'rgba(255,51,85,0.3)'};
+      border-radius:8px;position:relative;overflow:hidden;
+    ">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,${boss.color},transparent)"></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <div style="font-size:22px;${defeated?'filter:grayscale(1)':''}">${boss.icon}</div>
+        <div style="flex:1">
+          <div style="font-family:var(--font-mono);font-size:8px;color:${boss.color};letter-spacing:2px;margin-bottom:2px">
+            [ WEEKLY BOSS · ${boss.rank}-RANK ]
+          </div>
+          <div style="font-family:var(--font-hud);font-size:14px;color:${defeated?'var(--text3)':boss.color};letter-spacing:1px">
+            ${boss.name}${defeated?' — DEFEATED':''}
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-family:var(--font-hud);font-size:14px;color:${defeated?'var(--green)':'var(--red)'}">
+            ${defeated ? '✓' : data.hp.toLocaleString()}
+          </div>
+          <div style="font-family:var(--font-mono);font-size:8px;color:var(--text3)">
+            ${defeated ? 'SLAIN' : '/ '+boss.maxHp.toLocaleString()+' HP'}
+          </div>
+        </div>
+      </div>
+      <!-- HP bar -->
+      <div style="height:8px;background:rgba(0,0,0,0.3);border-radius:4px;overflow:hidden;margin-bottom:6px;border:1px solid rgba(255,255,255,0.05)">
+        <div style="
+          height:100%;
+          width:${pct}%;
+          background:${defeated ? 'var(--green)' : pct > 60 ? boss.color : pct > 30 ? 'var(--gold)' : 'var(--red)'};
+          border-radius:4px;
+          transition:width 0.6s ease;
+          box-shadow:0 0 8px ${boss.color}66;
+        "></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:9px;color:var(--text3)">
+        <span>${defeated ? 'Boss defeated this week! New boss Monday.' : `${pct}% HP remaining`}</span>
+        <span>${dmgDone.toLocaleString()} dmg dealt</span>
+      </div>
+      ${!defeated ? `
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:5px;text-align:center">
+          Complete quests to deal damage · Defeat for +${Math.round(boss.maxHp/10)} XP reward
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+// ── QUEST HISTORY PREVIEW ─────────────────────────────
+function renderQuestHistoryPreview() {
+  const history = getQuestHistory().slice(0, 5);
+  if (history.length === 0) return '';
+
+  return `
+    <div style="margin-top:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);letter-spacing:2px">RECENT COMPLETIONS</div>
+        <button onclick="showFullQuestHistory()" style="background:transparent;border:none;color:var(--accent);font-family:var(--font-mono);font-size:9px;cursor:pointer;letter-spacing:1px">VIEW ALL →</button>
+      </div>
+      ${history.map(q => `
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)">
+          <div style="font-size:15px;width:22px;text-align:center;flex-shrink:0">${q.icon}</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${q.name}</div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">${q.date} · ${q.time}</div>
+          </div>
+          <span class="stat-pill pill-gold" style="flex-shrink:0">+${q.xp} XP</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function getQuestHistory() {
+  try { return JSON.parse(localStorage.getItem('bl_quest_history') || '[]'); }
+  catch { return []; }
+}
+
+function showFullQuestHistory() {
+  const history = getQuestHistory();
+  if (history.length === 0) { showNotif('No quest history yet'); return; }
+
+  // Group by date
+  const byDate = {};
+  history.forEach(q => {
+    if (!byDate[q.date]) byDate[q.date] = [];
+    byDate[q.date].push(q);
+  });
+
+  const content = Object.entries(byDate).slice(0, 14).map(([date, quests]) => `
+    <div style="margin-bottom:12px">
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:2px;margin-bottom:6px">${date}</div>
+      ${quests.map(q => `
+        <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)">
+          <div style="font-size:14px;width:20px;text-align:center;flex-shrink:0">${q.icon}</div>
+          <div style="flex:1;font-size:12px;color:var(--text)">${q.name}</div>
+          <span class="stat-pill pill-gold">+${q.xp}</span>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+
+  if (typeof showBottomSheet === 'function') {
+    showBottomSheet(`Quest History (${history.length} total)`, content);
+  }
 }
 
 // ── QUEST CONFIRM POPUP ───────────────────────────────
