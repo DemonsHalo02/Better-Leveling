@@ -12,7 +12,6 @@ const SHADOW_SOLDIERS = [
   { id: 'beru',    name: 'Beru',    title: 'Marshal',   req: { level: 50           }, icon: '🦋',  color: '#f0c040', power: 9999 },
 ];
 
-// ===== SHADOW ARMY PAGE =====
 function renderShadowArmy() {
   const el = document.getElementById('page-army');
   const raised = getRaisedShadows();
@@ -84,7 +83,145 @@ function renderShadowArmy() {
     `;
   });
 
+  // Shadow Army Missions
+  html += renderArmyMissions(raised);
+
   el.innerHTML = html;
+}
+
+// ── SHADOW ARMY MISSIONS ──────────────────────────────
+const ARMY_MISSIONS = [
+  { id: 'patrol',    name: 'Shadow Patrol',     icon: '🌑', duration: 1,  xp: 30,  stat: 'sense', desc: 'Send soldiers to patrol the gate. Returns in 1 hour.',   minSoldiers: 1 },
+  { id: 'hunt',      name: 'Monster Hunt',       icon: '⚔️', duration: 3,  xp: 80,  stat: 'str',   desc: 'Hunt low-rank monsters for training. Returns in 3 hours.', minSoldiers: 2 },
+  { id: 'dungeon',   name: 'Dungeon Sweep',       icon: '🗝️', duration: 6,  xp: 160, stat: 'agi',   desc: 'Clear a dungeon while you rest. Returns in 6 hours.',      minSoldiers: 3 },
+  { id: 'raid',      name: 'Midnight Raid',       icon: '🔥', duration: 12, xp: 320, stat: 'str',   desc: 'Full assault on enemy territory. Returns in 12 hours.',   minSoldiers: 4 },
+  { id: 'conquest',  name: 'Shadow Conquest',     icon: '👑', duration: 24, xp: 700, stat: 'sense', desc: 'Full-day conquest mission. Returns in 24 hours.',          minSoldiers: 6 },
+];
+
+function getArmyMissionData() {
+  try { return JSON.parse(localStorage.getItem('bl_army_mission') || 'null'); }
+  catch { return null; }
+}
+
+function renderArmyMissions(raised) {
+  const active = getArmyMissionData();
+  const now    = Date.now();
+
+  // Check if active mission is complete
+  let missionReady = false;
+  if (active && now >= active.endsAt) missionReady = true;
+
+  let html = `
+    <div class="section-head" style="margin-top:4px">SHADOW MISSIONS</div>
+  `;
+
+  if (active && !missionReady) {
+    // Mission in progress
+    const mission   = ARMY_MISSIONS.find(m => m.id === active.missionId);
+    const remaining = active.endsAt - now;
+    const hrs  = Math.floor(remaining / 3600000);
+    const mins = Math.floor((remaining % 3600000) / 60000);
+    const pct  = Math.round(((active.endsAt - active.startedAt - remaining) / (active.endsAt - active.startedAt)) * 100);
+
+    html += `
+      <div style="background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.3);border-radius:8px;padding:14px;margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <div style="font-size:24px">${mission?.icon || '🌑'}</div>
+          <div style="flex:1">
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--purple);letter-spacing:2px">MISSION IN PROGRESS</div>
+            <div style="font-family:var(--font-hud);font-size:14px;color:var(--text);margin-top:2px">${mission?.name || active.missionId}</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-family:var(--font-hud);font-size:16px;color:var(--gold)">${hrs}h ${mins}m</div>
+            <div style="font-family:var(--font-mono);font-size:8px;color:var(--text3)">remaining</div>
+          </div>
+        </div>
+        <div style="height:6px;background:rgba(0,0,0,0.3);border-radius:3px;overflow:hidden">
+          <div style="height:100%;width:${pct}%;background:var(--purple);border-radius:3px;transition:width 1s"></div>
+        </div>
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:5px">
+          ${active.soldiers} soldiers deployed · Returns +${mission?.xp || 0} XP
+        </div>
+      </div>
+    `;
+  } else if (missionReady) {
+    // Mission complete — claim reward
+    const mission = ARMY_MISSIONS.find(m => m.id === active.missionId);
+    html += `
+      <div style="background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.3);border-radius:8px;padding:14px;margin-bottom:10px;text-align:center">
+        <div style="font-size:32px;margin-bottom:6px">${mission?.icon || '🌑'}</div>
+        <div style="font-family:var(--font-hud);font-size:14px;color:var(--green);margin-bottom:4px">${mission?.name || 'Mission'} Complete!</div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-bottom:12px">
+          Your shadows have returned with rewards.
+        </div>
+        <button class="btn-primary" onclick="claimMissionReward()">
+          <span>⚔️ CLAIM +${mission?.xp || 0} XP</span><div class="btn-arrow">▶</div>
+        </button>
+      </div>
+    `;
+  } else {
+    // Show available missions
+    if (raised.length === 0) {
+      html += `<div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);text-align:center;padding:16px">Raise shadow soldiers to unlock missions.</div>`;
+    } else {
+      html += `<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-bottom:10px">You have ${raised.length} soldier${raised.length!==1?'s':''} available. Select a mission:</div>`;
+      ARMY_MISSIONS.forEach(m => {
+        const canRun = raised.length >= m.minSoldiers;
+        html += `
+          <div onclick="${canRun ? `sendOnMission('${m.id}')` : ''}" style="
+            display:flex;align-items:center;gap:12px;padding:11px 12px;margin-bottom:6px;
+            background:${canRun ? 'rgba(168,85,247,0.06)' : 'rgba(0,0,0,0.1)'};
+            border:1px solid ${canRun ? 'rgba(168,85,247,0.3)' : 'var(--border)'};
+            border-radius:8px;cursor:${canRun ? 'pointer' : 'default'};
+            opacity:${canRun ? '1' : '0.45'};
+          ">
+            <div style="font-size:22px">${m.icon}</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:600;color:${canRun?'var(--text)':'var(--text3)'}">
+                ${m.name}
+                <span style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-left:4px">${m.duration}h</span>
+              </div>
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:2px">${m.desc}</div>
+              <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:2px">
+                Needs ${m.minSoldiers} soldier${m.minSoldiers!==1?'s':''}${!canRun?' · Need '+(m.minSoldiers-raised.length)+' more':''}
+              </div>
+            </div>
+            <span class="stat-pill pill-gold">+${m.xp} XP</span>
+          </div>
+        `;
+      });
+    }
+  }
+
+  return html + '</div>';
+}
+
+function sendOnMission(missionId) {
+  const raised  = getRaisedShadows();
+  const mission = ARMY_MISSIONS.find(m => m.id === missionId);
+  if (!mission || raised.length < mission.minSoldiers) return;
+
+  const now = Date.now();
+  const data = {
+    missionId,
+    soldiers:  raised.length,
+    startedAt: now,
+    endsAt:    now + mission.duration * 3600000,
+  };
+  localStorage.setItem('bl_army_mission', JSON.stringify(data));
+  showNotif(`[ MISSION ] ${mission.name} started — returns in ${mission.duration}h`);
+  renderShadowArmy();
+}
+
+function claimMissionReward() {
+  const active  = getArmyMissionData();
+  if (!active) return;
+  const mission = ARMY_MISSIONS.find(m => m.id === active.missionId);
+  if (!mission) return;
+  addXP(mission.xp, mission.stat);
+  showNotif(`[ MISSION ] ${mission.name} complete! +${mission.xp} XP`, 'gold');
+  localStorage.removeItem('bl_army_mission');
+  renderShadowArmy();
 }
 
 function checkSoldierReq(req) {
