@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -10,142 +9,139 @@
   <link rel="manifest" href="manifest.json" />
   <title>Better Leveling — Hunter Interface</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;600;700;900&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/login.css" />
 </head>
-
 <body>
-  <canvas id="bg-canvas"></canvas>
-  <div class="scanlines"></div>
-  <div class="login-wrap" id="login-screen">
-    <div class="login-glow-ring"></div>
+<canvas id="bg-canvas"></canvas>
+<div class="scanlines"></div>
+<div class="login-wrap" id="login-screen">
+  <div class="login-glow-ring"></div>
 
-    <div class="system-logo">
-      <div class="logo-hex">
-        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="40,4 72,22 72,58 40,76 8,58 8,22" fill="none" stroke="#00b4ff" stroke-width="1.5"
-            opacity="0.6" />
-          <polygon points="40,12 64,26 64,54 40,68 16,54 16,26" fill="none" stroke="#00b4ff" stroke-width="0.8"
-            opacity="0.3" />
-          <text x="40" y="46" text-anchor="middle" font-family="Orbitron" font-size="14" font-weight="700"
-            fill="#00b4ff">SYS</text>
-        </svg>
-      </div>
-      <div class="logo-title">BETTER LEVELING</div>
-      <div class="logo-sub">HUNTER INTERFACE v1.0</div>
+  <div class="system-logo">
+    <div class="logo-hex">
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="40,4 72,22 72,58 40,76 8,58 8,22" fill="none" stroke="#00b4ff" stroke-width="1.5" opacity="0.6"/>
+        <polygon points="40,12 64,26 64,54 40,68 16,54 16,26" fill="none" stroke="#00b4ff" stroke-width="0.8" opacity="0.3"/>
+        <text x="40" y="46" text-anchor="middle" font-family="Orbitron" font-size="14" font-weight="700" fill="#00b4ff">SYS</text>
+      </svg>
+    </div>
+    <div class="logo-title">BETTER LEVELING</div>
+    <div class="logo-sub">HUNTER INTERFACE v3.0</div>
+  </div>
+
+  <div class="login-card" id="login-card">
+    <div class="card-corner tl"></div><div class="card-corner tr"></div>
+    <div class="card-corner bl"></div><div class="card-corner br"></div>
+
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="font-size:32px;margin-bottom:8px">🔒</div>
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);letter-spacing:3px">ENTER ACCESS CODE</div>
     </div>
 
-    <div class="login-card" id="login-card">
-      <div class="card-corner tl"></div>
-      <div class="card-corner tr"></div>
-      <div class="card-corner bl"></div>
-      <div class="card-corner br"></div>
+    <div class="field-group">
+      <label class="field-label">PASSKEY</label>
+      <input type="password" class="sys-input" id="gate-pass"
+        placeholder="••••••••"
+        autocomplete="current-password"
+        style="font-size:20px;letter-spacing:6px;text-align:center" />
+    </div>
 
-      <div style="text-align:center;margin-bottom:20px">
-        <div style="font-size:32px;margin-bottom:8px">🔒</div>
-        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);letter-spacing:3px">ENTER ACCESS CODE
-        </div>
+    <div class="error-msg" id="gate-error" style="text-align:center"></div>
+
+    <button class="btn-primary" onclick="handleGateLogin()" style="margin-top:4px">
+      <span>ENTER THE SYSTEM</span>
+      <div class="btn-arrow">▶</div>
+    </button>
+  </div>
+</div>
+<div class="app-wrap hidden" id="app-screen">
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="hunter-avatar" id="top-avatar">JK</div>
+      <div>
+        <div class="hunter-name" id="top-name">HUNTER</div>
+        <div class="hunter-rank" id="top-rank">E-RANK</div>
       </div>
-
-      <div class="field-group">
-        <label class="field-label">PASSKEY</label>
-        <input type="password" class="sys-input" id="gate-pass" placeholder="••••••••" autocomplete="current-password"
-          style="font-size:20px;letter-spacing:6px;text-align:center" />
+    </div>
+    <div class="top-bar-right">
+      <div id="hud-gold" style="font-family:var(--font-hud);font-size:12px;color:var(--gold);letter-spacing:1px;cursor:pointer" onclick="showPage('shop',document.querySelector('[onclick*=shop]'))">🪙 0</div>
+      <div class="watch-status" id="watch-dot" onclick="connectAppleHealth()">
+        <span class="watch-dot-icon">⌚</span>
+        <span class="watch-label" id="watch-label">SYNC</span>
       </div>
-
-      <div class="error-msg" id="gate-error" style="text-align:center"></div>
-
-      <button class="btn-primary" onclick="handleGateLogin()" style="margin-top:4px">
-        <span>ENTER THE SYSTEM</span>
-        <div class="btn-arrow">▶</div>
-      </button>
+      <button class="icon-btn" onclick="logout()">⏻</button>
     </div>
   </div>
-  <div class="app-wrap hidden" id="app-screen">
-    <div class="top-bar">
-      <div class="top-bar-left">
-        <div class="hunter-avatar" id="top-avatar">JK</div>
-        <div>
-          <div class="hunter-name" id="top-name">HUNTER</div>
-          <div class="hunter-rank" id="top-rank">E-RANK</div>
-        </div>
-      </div>
-      <div class="top-bar-right">
-        <button class="icon-btn" onclick="logout()">⏻</button>
-      </div>
+  <div class="xp-section">
+    <div class="xp-labels">
+      <span class="xp-lv">LV <span id="lv-num">1</span></span>
+      <span class="xp-nums"><span id="xp-cur">0</span> / <span id="xp-max">100</span> XP</span>
     </div>
-    <div class="xp-section">
-      <div class="xp-labels">
-        <span class="xp-lv">LV <span id="lv-num">1</span></span>
-        <span class="xp-nums"><span id="xp-cur">0</span> / <span id="xp-max">100</span> XP</span>
-      </div>
-      <div class="xp-track">
-        <div class="xp-bar" id="xp-bar" style="width:0%"></div>
-        <div class="xp-shine"></div>
-      </div>
-    </div>
-    <div class="nav-tabs">
-      <button class="nav-tab active" onclick="showPage('quests',this)"><span class="nav-icon">◈</span>QUESTS</button>
-      <button class="nav-tab" onclick="showPage('nutrition',this)"><span class="nav-icon">◈</span>FOOD</button>
-      <button class="nav-tab" onclick="showPage('workout',this)"><span class="nav-icon">◈</span>TRAIN</button>
-      <button class="nav-tab" onclick="showPage('improve',this)"><span class="nav-icon">◈</span>MIND</button>
-    </div>
-    <div class="nav-tabs" style="border-top:none">
-      <button class="nav-tab" onclick="showPage('boss',this)"><span class="nav-icon">⚔️</span>RAIDS</button>
-      <button class="nav-tab" onclick="showPage('skills',this)"><span class="nav-icon">🌟</span>SKILLS</button>
-      <button class="nav-tab" onclick="showPage('army',this)"><span class="nav-icon">🌑</span>ARMY</button>
-      <button class="nav-tab" onclick="showPage('inventory',this)"><span class="nav-icon">🎒</span>INV</button>
-      <button class="nav-tab" onclick="showPage('guild',this)"><span class="nav-icon">🏆</span>GUILD</button>
-      <button class="nav-tab" onclick="showPage('status',this)"><span class="nav-icon">👤</span>STATUS</button>
-      <button class="nav-tab" onclick="showPage('settings',this)"><span class="nav-icon">⚙️</span>SET</button>
-    </div>
-    <div class="pages-wrap">
-      <div id="page-quests" class="page active"></div>
-      <div id="page-nutrition" class="page"></div>
-      <div id="page-workout" class="page"></div>
-      <div id="page-improve" class="page"></div>
-      <div id="page-boss" class="page"></div>
-      <div id="page-skills" class="page"></div>
-      <div id="page-army" class="page"></div>
-      <div id="page-inventory" class="page"></div>
-      <div id="page-guild" class="page"></div>
-      <div id="page-status" class="page"></div>
-      <div id="page-settings" class="page"></div>
+    <div class="xp-track">
+      <div class="xp-bar" id="xp-bar" style="width:0%"></div>
+      <div class="xp-shine"></div>
     </div>
   </div>
-  <div class="sys-notif" id="sys-notif"></div>
-  <div class="levelup-overlay hidden" id="levelup-overlay">
-    <div class="levelup-box">
-      <div class="levelup-hex"><svg viewBox="0 0 120 120">
-          <polygon points="60,6 108,33 108,87 60,114 12,87 12,33" fill="none" stroke="#00b4ff" stroke-width="2" />
-        </svg></div>
-      <div class="levelup-title">LEVEL UP</div>
-      <div class="levelup-lv" id="levelup-lv">LEVEL 2</div>
-      <div class="levelup-rank" id="levelup-rank">E-RANK HUNTER</div>
-      <button class="btn-primary" onclick="closeLevelUp()" style="margin-top:20px">CONTINUE</button>
-    </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('quests',this)"><span class="nav-icon">◈</span>QUESTS</button>
+    <button class="nav-tab" onclick="showPage('nutrition',this)"><span class="nav-icon">◈</span>FOOD</button>
+    <button class="nav-tab" onclick="showPage('workout',this)"><span class="nav-icon">◈</span>TRAIN</button>
+    <button class="nav-tab" onclick="showPage('improve',this)"><span class="nav-icon">◈</span>MIND</button>
   </div>
-  <script src="js/data.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/cloudsave.js"></script>
-  <script src="js/settings.js"></script>
-  <script src="js/engine.js"></script>
-  <script src="js/pages.js"></script>
-  <script src="js/health.js"></script>
-  <script src="js/boss.js"></script>
-  <script src="js/skills.js"></script>
-  <script src="js/army.js"></script>
-  <script src="js/selfimprove.js"></script>
-  <script src="js/features.js"></script>
-  <script src="js/newfeatures.js"></script>
-  <script src="js/guild.js"></script>
-  <script src="js/awakening.js"></script>
-  <script src="js/foodscanner.js"></script>
-  <script src="js/paywall.js"></script>
-  <script src="js/app.js"></script>
+  <div class="nav-tabs" style="border-top:none">
+    <button class="nav-tab" onclick="showPage('boss',this)"><span class="nav-icon">⚔️</span>RAIDS</button>
+    <button class="nav-tab" onclick="showPage('skills',this)"><span class="nav-icon">🌟</span>SKILLS</button>
+    <button class="nav-tab" onclick="showPage('army',this)"><span class="nav-icon">🌑</span>ARMY</button>
+    <button class="nav-tab" onclick="showPage('inventory',this)"><span class="nav-icon">🎒</span>INV</button>
+    <button class="nav-tab" onclick="showPage('guild',this)"><span class="nav-icon">🏆</span>GUILD</button>
+    <button class="nav-tab" onclick="showPage('status',this)"><span class="nav-icon">👤</span>STATUS</button>
+    <button class="nav-tab" onclick="showPage('shop',this)"><span class="nav-icon">🪙</span>SHOP</button>
+    <button class="nav-tab" onclick="showPage('settings',this)"><span class="nav-icon">⚙️</span>SET</button>
+  </div>
+  <div class="pages-wrap">
+    <div id="page-quests" class="page active"></div>
+    <div id="page-nutrition" class="page"></div>
+    <div id="page-workout" class="page"></div>
+    <div id="page-improve" class="page"></div>
+    <div id="page-boss" class="page"></div>
+    <div id="page-skills" class="page"></div>
+    <div id="page-army" class="page"></div>
+    <div id="page-inventory" class="page"></div>
+    <div id="page-guild" class="page"></div>
+    <div id="page-status" class="page"></div>
+    <div id="page-shop" class="page"></div>
+    <div id="page-settings" class="page"></div>
+  </div>
+</div>
+<div class="sys-notif" id="sys-notif"></div>
+<div class="levelup-overlay hidden" id="levelup-overlay">
+  <div class="levelup-box">
+    <div class="levelup-hex"><svg viewBox="0 0 120 120"><polygon points="60,6 108,33 108,87 60,114 12,87 12,33" fill="none" stroke="#00b4ff" stroke-width="2"/></svg></div>
+    <div class="levelup-title">LEVEL UP</div>
+    <div class="levelup-lv" id="levelup-lv">LEVEL 2</div>
+    <div class="levelup-rank" id="levelup-rank">E-RANK HUNTER</div>
+    <button class="btn-primary" onclick="closeLevelUp()" style="margin-top:20px">CONTINUE</button>
+  </div>
+</div>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cloudsave.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/pages.js"></script>
+<script src="js/health.js"></script>
+<script src="js/boss.js"></script>
+<script src="js/skills.js"></script>
+<script src="js/army.js"></script>
+<script src="js/selfimprove.js"></script>
+<script src="js/features.js"></script>
+<script src="js/newfeatures.js"></script>
+<script src="js/guild.js"></script>
+<script src="js/awakening.js"></script>
+<script src="js/foodscanner.js"></script>
+<script src="js/paywall.js"></script>
+<script src="js/app.js"></script>
 </body>
-
 </html>
