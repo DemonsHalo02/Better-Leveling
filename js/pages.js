@@ -710,3 +710,384 @@ function toggleGoal(i) {
   // Re-inject admin panel after goals re-render (it sits at top)
   if (typeof renderAdminPanel === 'function') renderAdminPanel();
 }
+
+// ============================================
+// SYSTEM SHOP
+// Spend gold earned from daily quest goals
+// ============================================
+
+const SHOP_ITEMS = [
+  {
+    id:    'class_token',
+    name:  'Class Change Token',
+    desc:  'Change your hunter class to any of the 5 classes. Stats will be recalculated.',
+    icon:  '🎭',
+    cost:  50,
+    type:  'token',
+    color: '#a855f7',
+    rare:  'EPIC',
+  },
+  {
+    id:    'xp_boost',
+    name:  'XP Booster (×2 for 24h)',
+    desc:  'Double all XP earned from quests for the next 24 hours.',
+    icon:  '⚡',
+    cost:  30,
+    type:  'consumable',
+    color: '#f0c040',
+    rare:  'RARE',
+  },
+  {
+    id:    'extra_skip',
+    name:  'Extra Quest Skip',
+    desc:  'Get one additional quest skip to use this week on top of your weekly token.',
+    icon:  '⏭️',
+    cost:  20,
+    type:  'consumable',
+    color: '#00b4ff',
+    rare:  'UNCOMMON',
+  },
+  {
+    id:    'stat_reset',
+    name:  'Stat Reset Scroll',
+    desc:  'Redistribute all your bonus stat points freely.',
+    icon:  '📜',
+    cost:  40,
+    type:  'token',
+    color: '#00e5a0',
+    rare:  'EPIC',
+  },
+  {
+    id:    'name_change',
+    name:  'Hunter Name Change',
+    desc:  'Change your hunter display name and leaderboard identity.',
+    icon:  '✏️',
+    cost:  15,
+    type:  'token',
+    color: '#60a5fa',
+    rare:  'UNCOMMON',
+  },
+  {
+    id:    'gold_quest',
+    name:  'Bonus Gold Quest',
+    desc:  'Add a special bonus quest today worth +20 gold on completion.',
+    icon:  '🏆',
+    cost:  10,
+    type:  'consumable',
+    color: '#ff6b35',
+    rare:  'COMMON',
+  },
+  {
+    id:    'streak_shield',
+    name:  'Streak Shield',
+    desc:  'Protect your streak for 1 day if you miss your daily goal.',
+    icon:  '🛡️',
+    cost:  25,
+    type:  'consumable',
+    color: '#00b4ff',
+    rare:  'RARE',
+  },
+];
+
+const RARE_COLORS = {
+  COMMON:   '#7aa0cc',
+  UNCOMMON: '#00e5a0',
+  RARE:     '#60a5fa',
+  EPIC:     '#a855f7',
+};
+
+function renderShopPage() {
+  const el   = document.getElementById('page-shop');
+  if (!el) return;
+  const gold = getGold();
+  const owned = getOwnedItems();
+
+  el.innerHTML = `
+    <!-- GOLD BALANCE -->
+    <div style="
+      background:rgba(240,192,64,0.08);border:1px solid rgba(240,192,64,0.3);
+      border-radius:10px;padding:16px;margin-bottom:14px;
+      display:flex;align-items:center;justify-content:space-between;
+    ">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--gold);letter-spacing:3px;margin-bottom:4px">YOUR BALANCE</div>
+        <div style="font-family:var(--font-hud);font-size:32px;color:var(--gold)">🪙 ${gold.toLocaleString()}</div>
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:2px">Earn 10 🪙 per daily goal · 5 🪙 for full clear</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">ITEMS OWNED</div>
+        <div style="font-family:var(--font-hud);font-size:22px;color:var(--text)">${Object.values(owned).reduce((a,b)=>a+b,0)}</div>
+      </div>
+    </div>
+
+    <!-- OWNED ITEMS -->
+    ${Object.keys(owned).length > 0 ? `
+      <div class="section-head">YOUR ITEMS</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+        ${Object.entries(owned).map(([id, qty]) => {
+          const item = SHOP_ITEMS.find(s => s.id === id);
+          if (!item || qty <= 0) return '';
+          return `
+            <div style="
+              display:flex;align-items:center;gap:12px;padding:12px;
+              background:${item.color}10;border:1px solid ${item.color}44;border-radius:8px;
+            ">
+              <div style="font-size:24px">${item.icon}</div>
+              <div style="flex:1">
+                <div style="font-size:13px;font-weight:600;color:var(--text)">${item.name}</div>
+                <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:2px">× ${qty} owned</div>
+              </div>
+              <button onclick="useShopItem('${id}')" style="
+                padding:8px 14px;background:${item.color}22;border:1px solid ${item.color};
+                border-radius:6px;color:${item.color};font-family:var(--font-hud);
+                font-size:11px;cursor:pointer;letter-spacing:1px;
+              ">USE</button>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    ` : ''}
+
+    <!-- SHOP ITEMS -->
+    <div class="section-head">SYSTEM SHOP</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      ${SHOP_ITEMS.map(item => {
+        const canAfford = gold >= item.cost;
+        const rColor    = RARE_COLORS[item.rare] || '#7aa0cc';
+        return `
+          <div style="
+            background:${item.color}08;
+            border:1px solid ${item.color}30;
+            border-radius:10px;padding:14px;
+            position:relative;overflow:hidden;
+          ">
+            <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,${item.color},transparent)"></div>
+            <div style="display:flex;align-items:flex-start;gap:12px">
+              <div style="
+                width:44px;height:44px;border-radius:8px;flex-shrink:0;
+                background:${item.color}18;border:1px solid ${item.color}44;
+                display:flex;align-items:center;justify-content:center;font-size:22px;
+              ">${item.icon}</div>
+              <div style="flex:1;min-width:0">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
+                  <div style="font-size:14px;font-weight:600;color:var(--text)">${item.name}</div>
+                  <span style="font-family:var(--font-mono);font-size:8px;color:${rColor};padding:1px 5px;border:1px solid ${rColor}44;border-radius:3px">${item.rare}</span>
+                </div>
+                <div style="font-size:12px;color:var(--text3);line-height:1.5;margin-bottom:10px">${item.desc}</div>
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <div style="font-family:var(--font-hud);font-size:16px;color:var(--gold)">🪙 ${item.cost}</div>
+                  <button onclick="buyShopItem('${item.id}')" style="
+                    padding:9px 18px;border-radius:7px;cursor:${canAfford?'pointer':'not-allowed'};
+                    background:${canAfford?item.color+'22':'rgba(0,0,0,0.2)'};
+                    border:1px solid ${canAfford?item.color:'var(--border)'};
+                    color:${canAfford?item.color:'var(--text3)'};
+                    font-family:var(--font-hud);font-size:12px;font-weight:600;letter-spacing:1px;
+                    opacity:${canAfford?'1':'0.5'};
+                  ">${canAfford ? 'BUY' : 'NOT ENOUGH 🪙'}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+
+    <div style="margin-top:14px;padding:10px;background:rgba(0,180,255,0.04);border:1px solid rgba(0,180,255,0.15);border-radius:6px">
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);letter-spacing:2px;margin-bottom:4px">HOW TO EARN GOLD</div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.7">
+        🪙 <strong style="color:var(--text)">+10</strong> when you hit your daily quest goal<br>
+        🪙 <strong style="color:var(--text)">+5</strong> when you clear every single quest<br>
+        More ways to earn gold coming soon.
+      </div>
+    </div>
+  `;
+}
+
+function getOwnedItems() {
+  try { return JSON.parse(localStorage.getItem('bl_shop_owned') || '{}'); }
+  catch { return {}; }
+}
+function saveOwnedItems(o) { localStorage.setItem('bl_shop_owned', JSON.stringify(o)); }
+
+function buyShopItem(id) {
+  const item = SHOP_ITEMS.find(s => s.id === id);
+  if (!item) return;
+  if (getGold() < item.cost) { showNotif('[ SHOP ] Not enough gold!'); return; }
+
+  const html = '<div style="text-align:center;padding:8px 0">'
+    + '<div style="font-size:40px;margin-bottom:10px">' + item.icon + '</div>'
+    + '<div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px">' + item.name + '</div>'
+    + '<div style="font-size:12px;color:var(--text3);margin-bottom:14px;line-height:1.5">' + item.desc + '</div>'
+    + '<div style="font-family:var(--font-hud);font-size:18px;color:var(--gold);margin-bottom:16px">🪙 ' + item.cost + ' gold</div>'
+    + '<div style="display:flex;gap:10px">'
+    + '<button onclick="closeBottomSheet()" style="flex:1;padding:13px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--text3);font-family:var(--font-hud);font-size:12px;cursor:pointer">CANCEL</button>'
+    + '<button onclick="closeBottomSheet();confirmBuy(\'' + id + '\')" style="flex:2;padding:13px;background:rgba(240,192,64,0.15);border:1px solid var(--gold);border-radius:8px;color:var(--gold);font-family:var(--font-hud);font-size:13px;font-weight:700;cursor:pointer">🪙 CONFIRM PURCHASE</button>'
+    + '</div></div>';
+
+  if (typeof showBottomSheet === 'function') showBottomSheet('Purchase Item', html);
+}
+
+function confirmBuy(id) {
+  const item = SHOP_ITEMS.find(s => s.id === id);
+  if (!item) return;
+  if (!spendGold(item.cost)) { showNotif('[ SHOP ] Not enough gold!'); return; }
+
+  const owned = getOwnedItems();
+  owned[id]   = (owned[id] || 0) + 1;
+  saveOwnedItems(owned);
+
+  refreshGoldHUD();
+  showNotif('[ SHOP ] ' + item.name + ' purchased! Check Your Items.', 'gold');
+  if (typeof renderShopPage === 'function') renderShopPage();
+}
+
+function useShopItem(id) {
+  const owned = getOwnedItems();
+  if (!owned[id] || owned[id] <= 0) return;
+
+  if (id === 'class_token')   { useClassToken();   return; }
+  if (id === 'xp_boost')      { useXPBoost();      return; }
+  if (id === 'extra_skip')    { useExtraSkip();    return; }
+  if (id === 'stat_reset')    { useStatReset();    return; }
+  if (id === 'name_change')   { useNameChange();   return; }
+  if (id === 'gold_quest')    { useGoldQuest();    return; }
+  if (id === 'streak_shield') { useStreakShield(); return; }
+}
+
+function _consumeItem(id) {
+  const owned = getOwnedItems();
+  if (!owned[id] || owned[id] <= 0) return false;
+  owned[id]--;
+  if (owned[id] <= 0) delete owned[id];
+  saveOwnedItems(owned);
+  return true;
+}
+
+// ── ITEM EFFECTS ──────────────────────────────────────
+function useClassToken() {
+  const classes = [
+    { id:'fighter',  icon:'⚔️',  name:'Fighter',  desc:'STR focused — high attack power' },
+    { id:'mage',     icon:'🔮',  name:'Mage',     desc:'INT focused — mental mastery' },
+    { id:'assassin', icon:'🗡️', name:'Assassin', desc:'AGI focused — speed and precision' },
+    { id:'tank',     icon:'🛡️', name:'Tank',     desc:'VIT focused — endurance and defense' },
+    { id:'ranger',   icon:'🏹',  name:'Ranger',   desc:'SENSE focused — awareness and balance' },
+  ];
+  const html = '<div style="margin-bottom:4px">'
+    + '<div style="font-family:var(--font-mono);font-size:9px;color:var(--purple);letter-spacing:2px;text-align:center;margin-bottom:12px">SELECT YOUR NEW CLASS</div>'
+    + classes.map(c => `
+        <div onclick="closeBottomSheet();confirmClassChange('${c.id}')" style="
+          display:flex;align-items:center;gap:12px;padding:12px;margin-bottom:6px;
+          background:var(--bg3);border:1px solid var(--border);border-radius:8px;cursor:pointer;
+        " onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="font-size:24px;width:36px;text-align:center">${c.icon}</div>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:var(--text)">${c.name}</div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3)">${c.desc}</div>
+          </div>
+        </div>
+      `).join('')
+    + '</div>';
+  if (typeof showBottomSheet === 'function') showBottomSheet('Class Change Token 🎭', html);
+}
+
+function confirmClassChange(newClass) {
+  if (!_consumeItem('class_token')) return;
+  HUNTER.class = newClass;
+  // Apply class stat bonuses
+  if (typeof CLASS_BONUSES !== 'undefined' && CLASS_BONUSES[newClass]) {
+    const bonus = CLASS_BONUSES[newClass];
+    Object.entries(bonus).forEach(([stat, val]) => {
+      HUNTER.stats[stat] = Math.max(10, (HUNTER.stats[stat] || 10) + val);
+    });
+  }
+  persist();
+  refreshHUD();
+  if (typeof renderStatusPage === 'function') renderStatusPage();
+  showNotif('[ CLASS CHANGE ] You are now a ' + newClass.toUpperCase() + '!', 'gold');
+  renderShopPage();
+}
+
+function useXPBoost() {
+  if (!_consumeItem('xp_boost')) return;
+  const expires = Date.now() + 86400000; // 24h
+  localStorage.setItem('bl_xp_boost', String(expires));
+  showNotif('[ BOOST ] XP ×2 active for 24 hours!', 'gold');
+  renderShopPage();
+}
+
+function getXPMultiplier() {
+  try {
+    const exp = parseInt(localStorage.getItem('bl_xp_boost') || '0');
+    return (exp && Date.now() < exp) ? 2 : 1;
+  } catch { return 1; }
+}
+
+function useExtraSkip() {
+  if (!_consumeItem('extra_skip')) return;
+  // Grant +1 extra skip this week
+  const data    = typeof getSkipData === 'function' ? getSkipData() : {};
+  const weekKey = typeof getWeekKey_skip === 'function' ? getWeekKey_skip() : '';
+  data.weekKey  = weekKey;
+  data.used     = false; // reset so they can use it again
+  localStorage.setItem('bl_quest_skip', JSON.stringify(data));
+  showNotif('[ SKIP ] Extra skip token granted!', 'gold');
+  if (typeof renderQuestsPage === 'function') renderQuestsPage();
+  renderShopPage();
+}
+
+function useStatReset() {
+  if (!_consumeItem('stat_reset')) return;
+  // Reset all stats to base 10 and let player know to visit Status
+  Object.keys(HUNTER.stats).forEach(k => { HUNTER.stats[k] = 10; });
+  persist();
+  showNotif('[ RESET ] Stats reset to base 10. Earn XP to rebuild!', 'gold');
+  renderShopPage();
+}
+
+function useNameChange() {
+  if (typeof showBottomSheet !== 'function') return;
+  const html = '<div>'
+    + '<label style="font-family:var(--font-mono);font-size:9px;color:var(--text3);display:block;margin-bottom:8px;letter-spacing:2px">NEW HUNTER NAME</label>'
+    + '<input type="text" id="shop-name-input" class="sys-input" placeholder="Enter new name..." maxlength="20" style="margin-bottom:14px"/>'
+    + '<button onclick="const n=document.getElementById(\'shop-name-input\')?.value.trim();if(!n)return;closeBottomSheet();applyNameChange(n);" style="width:100%;padding:13px;background:rgba(96,165,250,0.15);border:1px solid #60a5fa;border-radius:8px;color:#60a5fa;font-family:var(--font-hud);font-size:13px;cursor:pointer">✓ CONFIRM</button>'
+    + '</div>';
+  showBottomSheet('Hunter Name Change ✏️', html);
+}
+
+function applyNameChange(newName) {
+  if (!_consumeItem('name_change')) return;
+  if (typeof saveSettings === 'function') saveSettings({ hunterName: newName });
+  if (HUNTER) HUNTER.name = newName;
+  persist();
+  refreshHUD();
+  showNotif('[ NAME ] Hunter name changed to ' + newName.toUpperCase() + '!', 'gold');
+  renderShopPage();
+}
+
+function useGoldQuest() {
+  if (!_consumeItem('gold_quest')) return;
+  // Add a special gold quest to today's list
+  if (HUNTER && HUNTER.quests) {
+    HUNTER.quests.push({
+      id:       'gold_quest_' + Date.now(),
+      name:     '🏆 Bonus: Complete any physical activity (20 min)',
+      xp:       40,
+      stat:     'str',
+      category: 'strength',
+      icon:     '🏆',
+      done:     false,
+      goldReward: 20,
+    });
+    persist();
+    if (typeof renderQuestsPage === 'function') renderQuestsPage();
+    showNotif('[ BONUS ] Gold quest added to today\'s list!', 'gold');
+  }
+  renderShopPage();
+}
+
+function useStreakShield() {
+  if (!_consumeItem('streak_shield')) return;
+  localStorage.setItem('bl_streak_shield', String(Date.now() + 86400000));
+  showNotif('[ SHIELD ] Streak protected for 24 hours!', 'gold');
+  renderShopPage();
+}
