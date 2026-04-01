@@ -601,6 +601,12 @@ function getDailyQuests() {
     return a;
   }
 
+  // Alt quests (id ends in 'alt' or is listed as an altId somewhere) should
+  // never appear as primary quests — they only show as swap targets.
+  const altIds = new Set(QUEST_POOL.filter(q => q.altId).map(q => q.altId));
+  // Main pool = quests that are NOT pure alternatives
+  const mainPool = QUEST_POOL.filter(q => !altIds.has(q.id));
+
   const picks = [];
 
   // Surprise quest (10% weekday, 20% weekend)
@@ -624,13 +630,13 @@ function getDailyQuests() {
     }
   }
 
-  // Fill remaining slots from main pool (always 5 base quests minimum)
+  // Fill remaining slots from main pool (5 base quests minimum)
   const target = 5;
   const want   = { strength:1, cardio:1, nutrition:1, mental:1, lifestyle:1 };
   const cats   = {};
   picks.forEach(p => { if (want[p.category] !== undefined) want[p.category] = Math.max(0, (want[p.category]||1)-1); });
 
-  const shuffledMain = shuffle(QUEST_POOL);
+  const shuffledMain = shuffle(mainPool);
   for (const q of shuffledMain) {
     if (picks.length >= target + (isWeekend ? 1 : 0) + (level >= 20 ? 1 : 0)) break;
     const rem = (want[q.category]||0) - (cats[q.category]||0);
