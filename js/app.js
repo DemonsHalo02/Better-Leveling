@@ -58,6 +58,7 @@ function showPage(name, btn) {
   if (name === 'guild')     renderGuildPage();
   if (name === 'improve')   renderSelfImprovePage();
   if (name === 'settings')  renderSettingsPage();
+  if (name === 'shop')      renderShopPage();
 }
 
 function launchApp(hunterData) {
