@@ -2,6 +2,45 @@
 // SYSTEM — PAGE RENDERERS
 // ============================================
 
+// ── SWAP QUEST TO NO-EQUIPMENT ALTERNATIVE ────────────
+function swapQuestAlternative(index) {
+  const q = HUNTER.quests[index];
+  if (!q || q.done || !q.altId) return;
+
+  const alt = (typeof QUEST_POOL !== 'undefined' ? QUEST_POOL : [])
+    .find(p => p.id === q.altId);
+  if (!alt) { showNotif('[ ERROR ] Alternative not found'); return; }
+
+  const html = '<div style="text-align:center;padding:8px 0">'
+    + '<div style="font-size:32px;margin-bottom:10px">🔄</div>'
+    + '<div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);letter-spacing:2px;margin-bottom:8px">NO-EQUIPMENT ALTERNATIVE</div>'
+    + '<div style="font-size:13px;color:var(--text3);text-decoration:line-through;margin-bottom:4px">' + q.name + '</div>'
+    + '<div style="font-size:11px;color:var(--text3);margin-bottom:8px">→ swap to →</div>'
+    + '<div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px">' + alt.name + '</div>'
+    + '<span class="stat-pill pill-gold" style="display:inline-flex;margin-bottom:14px">+' + alt.xp + ' XP</span>'
+    + '<div style="font-size:12px;color:var(--text3);margin-bottom:18px;line-height:1.5">Same XP, no equipment needed.<br>One swap per quest.</div>'
+    + '<div style="display:flex;gap:10px">'
+    + '<button onclick="closeBottomSheet()" style="flex:1;padding:13px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--text3);font-family:var(--font-hud);font-size:12px;cursor:pointer">CANCEL</button>'
+    + '<button onclick="closeBottomSheet();confirmQuestSwap(' + index + ')" style="flex:2;padding:13px;background:rgba(240,192,64,0.15);border:1px solid var(--gold);border-radius:8px;color:var(--gold);font-family:var(--font-hud);font-size:13px;font-weight:700;cursor:pointer">🔄 SWAP</button>'
+    + '</div></div>';
+
+  if (typeof showBottomSheet === 'function') {
+    showBottomSheet('No Equipment? Swap Quest', html);
+  }
+}
+
+function confirmQuestSwap(index) {
+  const q = HUNTER.quests[index];
+  if (!q || !q.altId) return;
+  const alt = (typeof QUEST_POOL !== 'undefined' ? QUEST_POOL : [])
+    .find(p => p.id === q.altId);
+  if (!alt) return;
+  HUNTER.quests[index] = { ...alt, done: false, swapped: true, altId: null, needsEquip: false };
+  persist();
+  renderQuestsPage();
+  showNotif('[ SWAP ] Quest swapped — no equipment needed!');
+}
+
 function skipQuestConfirm(idx) {
   const q = HUNTER.quests[idx];
   if (!q) return;
@@ -150,6 +189,7 @@ function renderQuestsPage() {
             ${q.done ? '↩' : '›'}
           </div>
           ${!q.done && skipAvailable ? '<div onclick="skipQuestConfirm('+i+')" title="Skip (1/week)" style="font-size:12px;color:var(--text3);cursor:pointer;padding:2px;opacity:0.6" onmouseover="this.style.opacity=1;this.style.color=\'var(--gold)\'" onmouseout="this.style.opacity=0.6;this.style.color=\'var(--text3)\'">⏭</div>' : ''}
+          ${!q.done && q.needsEquip && q.altId ? '<div onclick="swapQuestAlternative('+i+')" title="No equipment? Swap for alternative" style="font-size:12px;cursor:pointer;padding:2px;color:var(--gold);opacity:0.7" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">🔄</div>' : ''}
         </div>
       </div>
     `;
