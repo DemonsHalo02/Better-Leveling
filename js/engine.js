@@ -87,16 +87,20 @@ function skipQuest(index) {
 }
 
 function addXP(amount, statKey) {
-  HUNTER.xp += amount;
-  HUNTER.totalXPEarned = (HUNTER.totalXPEarned || 0) + amount;
+  // Apply XP boost if active
+  const mult = typeof getXPMultiplier === 'function' ? getXPMultiplier() : 1;
+  const finalAmount = mult > 1 ? Math.round(amount * mult) : amount;
+
+  HUNTER.xp += finalAmount;
+  HUNTER.totalXPEarned = (HUNTER.totalXPEarned || 0) + finalAmount;
 
   // Record for XP history graph
-  if (typeof recordDailyXP === 'function') recordDailyXP(amount);
+  if (typeof recordDailyXP === 'function') recordDailyXP(finalAmount);
 
   if (statKey && HUNTER.stats[statKey] !== undefined) {
-    HUNTER.stats[statKey] += Math.max(1, Math.floor(amount / 20));
+    HUNTER.stats[statKey] += Math.max(1, Math.floor(finalAmount / 20));
   }
-  HUNTER.stats.sense += Math.floor(amount / 40);
+  HUNTER.stats.sense += Math.floor(finalAmount / 40);
 
   // Track rank BEFORE leveling
   const rankBefore = getRank(HUNTER.level).name;
@@ -139,9 +143,11 @@ function refreshHUD() {
   document.getElementById('xp-bar').style.width = pct + '%';
 
   const rank = getRank(HUNTER.level);
-  document.getElementById('top-name').textContent = HUNTER.name.toUpperCase();
+  document.getElementById('top-name').textContent = (typeof getSettings === 'function' ? getSettings().hunterName : HUNTER.name).toUpperCase();
   document.getElementById('top-rank').textContent = rank.name;
   document.getElementById('top-avatar').textContent = HUNTER.name.slice(0,2).toUpperCase();
+
+  refreshGoldHUD();
 }
 
 function showNotif(msg, type = 'default') {
@@ -271,6 +277,36 @@ function undoQuest(index) {
   showNotif('[ UNDO ] Quest unmarked — go earn it for real!');
 }
 
+// ── GOLD CURRENCY ─────────────────────────────────────
+function getGold() {
+  try { return parseInt(localStorage.getItem('bl_gold') || '0'); }
+  catch { return 0; }
+}
+function addGold(amount) {
+  const current = getGold();
+  const next    = current + amount;
+  localStorage.setItem('bl_gold', String(next));
+  showGoldPop(amount);
+  return next;
+}
+function spendGold(amount) {
+  const current = getGold();
+  if (current < amount) return false;
+  localStorage.setItem('bl_gold', String(current - amount));
+  return true;
+}
+function showGoldPop(amount) {
+  const el = document.createElement('div');
+  el.style.cssText = 'position:fixed;top:80px;right:16px;font-family:var(--font-hud);font-size:15px;font-weight:700;color:#f0c040;pointer-events:none;z-index:1000;text-shadow:0 0 10px rgba(240,192,64,0.6);animation:xp-pop 1.4s ease forwards';
+  el.textContent = '+' + amount + ' 🪙';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1400);
+}
+function refreshGoldHUD() {
+  const el = document.getElementById('hud-gold');
+  if (el) el.textContent = '🪙 ' + getGold().toLocaleString();
+}
+
 function completeQuest(index) {
   const q = HUNTER.quests[index];
   if (!q || q.done) return;
@@ -283,8 +319,7 @@ function completeQuest(index) {
   // Damage the weekly boss
   if (typeof damageBoss === 'function') damageBoss(q.xp);
 
-  // Use settings goal (default 3) for streak, not total quest count
-  const goal     = typeof getSettings === 'function' ? (getSettings().dailyQuestGoal || 3) : 3;
+  const goal      = typeof getSettings === 'function' ? (getSettings().dailyQuestGoal || 3) : 3;
   const doneCount = HUNTER.quests.filter(x => x.done).length;
   const goalHit   = doneCount >= goal;
   const allDone   = HUNTER.quests.every(x => x.done);
@@ -293,14 +328,19 @@ function completeQuest(index) {
 
   if (goalHit && doneCount === goal) {
     HUNTER.streakDays = (HUNTER.streakDays || 0) + 1;
+    // Award gold for hitting daily goal
     setTimeout(() => {
       addXP(75, null);
-      showNotif(`[ SYSTEM ] ${goal} QUESTS DONE! +75 BONUS XP`, 'gold');
+      addGold(10);
+      refreshGoldHUD();
+      showNotif(`[ SYSTEM ] ${goal} QUESTS DONE! +75 XP · +10 🪙`, 'gold');
     }, 600);
   } else if (allDone && doneCount > goal) {
     setTimeout(() => {
       addXP(50, null);
-      showNotif('[ SYSTEM ] ALL QUESTS CLEARED! +50 EXTRA XP', 'gold');
+      addGold(5);
+      refreshGoldHUD();
+      showNotif('[ SYSTEM ] ALL QUESTS CLEARED! +50 XP · +5 🪙', 'gold');
     }, 600);
   }
 
