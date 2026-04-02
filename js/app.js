@@ -59,6 +59,7 @@ function showPage(name, btn) {
   if (name === 'improve')   renderSelfImprovePage();
   if (name === 'settings')  renderSettingsPage();
   if (name === 'shop')      renderShopPage();
+  if (name === 'converter') renderConverterPage();
 }
 
 function launchApp(hunterData) {
