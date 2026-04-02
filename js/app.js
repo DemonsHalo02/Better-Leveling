@@ -40,12 +40,20 @@
   resize(); createParticles(); draw();
 })();
 
-// Extended showPage to handle new pages
+// Extended showPage to handle all pages
 function showPage(name, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
+  const pageEl = document.getElementById('page-' + name);
+  if (pageEl) pageEl.classList.add('active');
   if (btn) btn.classList.add('active');
+
+  // Pages in MORE menu — keep MORE button highlighted when on them
+  const morePages = ['boss','skills','army','inventory','guild','status','shop','converter','settings'];
+  if (morePages.includes(name)) {
+    const moreBtn = document.getElementById('nav-more-btn');
+    if (moreBtn) moreBtn.classList.add('active');
+  }
 
   if (name === 'quests')    renderQuestsPage();
   if (name === 'nutrition') renderNutritionPage();
@@ -60,6 +68,98 @@ function showPage(name, btn) {
   if (name === 'settings')  renderSettingsPage();
   if (name === 'shop')      renderShopPage();
   if (name === 'converter') renderConverterPage();
+}
+
+// ── MORE MENU ─────────────────────────────────────────
+const MORE_MENU_ITEMS = [
+  { page:'boss',      icon:'⚔️',  label:'Raids',     desc:'Boss raids & dungeons',      color:'#ff3355' },
+  { page:'skills',    icon:'🌟',  label:'Skills',    desc:'Skill tree & abilities',     color:'#f0c040' },
+  { page:'army',      icon:'🌑',  label:'Army',      desc:'Shadow soldiers & missions', color:'#a855f7' },
+  { page:'inventory', icon:'🎒',  label:'Inventory', desc:'Items & equipment',          color:'#60a5fa' },
+  { page:'guild',     icon:'🏆',  label:'Guild',     desc:'Leaderboard & friends',      color:'#f0c040' },
+  { page:'status',    icon:'👤',  label:'Status',    desc:'Stats & profile',            color:'#00e5a0' },
+  { page:'shop',      icon:'🪙',  label:'Shop',      desc:'Spend gold, buy items',      color:'#f0c040' },
+  { page:'converter', icon:'🔄',  label:'Units',     desc:'Metric/imperial converter',  color:'#00b4ff' },
+  { page:'settings',  icon:'⚙️',  label:'Settings',  desc:'Preferences & data',         color:'#7aa0cc' },
+];
+
+function openMoreMenu() {
+  document.getElementById('more-menu-overlay')?.remove();
+
+  const ov = document.createElement('div');
+  ov.id = 'more-menu-overlay';
+  ov.style.cssText = [
+    'position:fixed;inset:0;z-index:500',
+    'background:rgba(4,12,24,0.96)',
+    'display:flex;flex-direction:column',
+    'padding:0 0 max(16px,env(safe-area-inset-bottom))',
+    'animation:mmSlideUp 0.22s cubic-bezier(0.32,0.72,0,1)',
+  ].join(';');
+
+  const gold = typeof getGold === 'function' ? getGold() : 0;
+
+  ov.innerHTML = `
+    <style>@keyframes mmSlideUp{from{transform:translateY(100%)}to{transform:none}}</style>
+
+    <!-- Header -->
+    <div style="
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 20px 12px;
+      border-bottom:1px solid rgba(0,180,255,0.15);
+      flex-shrink:0;
+    ">
+      <div>
+        <div style="font-family:var(--font-hud);font-size:16px;color:var(--accent);letter-spacing:2px">HUNTER MENU</div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:2px">🪙 ${gold.toLocaleString()} gold</div>
+      </div>
+      <button onclick="closeMoreMenu()" style="
+        width:36px;height:36px;border-radius:50%;
+        background:rgba(255,255,255,0.06);border:1px solid var(--border);
+        color:var(--text);font-size:18px;cursor:pointer;
+        display:flex;align-items:center;justify-content:center;
+      ">✕</button>
+    </div>
+
+    <!-- Grid -->
+    <div style="
+      flex:1;overflow-y:auto;
+      display:grid;grid-template-columns:1fr 1fr 1fr;
+      gap:10px;padding:14px 16px;
+      -webkit-overflow-scrolling:touch;
+    ">
+      ${MORE_MENU_ITEMS.map(item => `
+        <button onclick="closeMoreMenu();showPage('${item.page}',document.getElementById('nav-more-btn'))" style="
+          display:flex;flex-direction:column;align-items:center;justify-content:center;
+          gap:6px;padding:14px 8px;
+          background:${item.color}0e;
+          border:1px solid ${item.color}33;
+          border-radius:12px;cursor:pointer;
+          transition:border-color 0.15s,background 0.15s;
+        "
+        onmouseover="this.style.background='${item.color}22';this.style.borderColor='${item.color}77'"
+        onmouseout="this.style.background='${item.color}0e';this.style.borderColor='${item.color}33'"
+        >
+          <div style="font-size:26px;line-height:1">${item.icon}</div>
+          <div style="font-family:var(--font-hud);font-size:11px;color:var(--text);letter-spacing:1px">${item.label.toUpperCase()}</div>
+          <div style="font-family:var(--font-mono);font-size:8px;color:var(--text3);text-align:center;line-height:1.4">${item.desc}</div>
+        </button>
+      `).join('')}
+    </div>
+  `;
+
+  // Tap backdrop to close
+  ov.addEventListener('click', e => { if (e.target === ov) closeMoreMenu(); });
+  document.body.appendChild(ov);
+}
+
+function closeMoreMenu() {
+  const ov = document.getElementById('more-menu-overlay');
+  if (!ov) return;
+  ov.style.animation = 'mmSlideDown 0.2s ease forwards';
+  const s = document.createElement('style');
+  s.textContent = '@keyframes mmSlideDown{to{transform:translateY(100%)}}';
+  document.head.appendChild(s);
+  setTimeout(() => ov.remove(), 200);
 }
 
 function launchApp(hunterData) {
