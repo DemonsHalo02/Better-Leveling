@@ -263,6 +263,11 @@ function renderSettingsPage() {
       <div style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-top:8px;line-height:1.6">
         Affects: food log · water tracker · body measurements · workout distances · calorie calculator
       </div>
+      <button onclick="showPage('converter',document.querySelector('[onclick*=converter]'))" style="
+        width:100%;margin-top:10px;padding:9px;
+        background:transparent;border:1px dashed var(--border2);
+        border-radius:6px;color:var(--text3);font-family:var(--font-ui);font-size:12px;cursor:pointer
+      ">🔄 Open Unit Converter & Calculator →</button>
     </div>
 
     <!-- DAILY QUEST GOAL -->
