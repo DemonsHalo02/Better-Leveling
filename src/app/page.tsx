@@ -9,21 +9,21 @@ import BarcodeScanner from "@/components/Scanner/BarcodeScanner";
 import NutritionTracker from "@/components/Nutrition/NutritionTracker";
 import GroceryGuide from "@/components/Nutrition/GroceryGuide";
 import WeightAndPrTracker from "@/components/Tracking/WeightAndPrTracker";
-import { Shield, Sparkles } from "lucide-react";
+import { Shield } from "lucide-react";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabType>("quests");
 
   return (
-    <div className="min-h-screen bg-system-dark text-white flex flex-col font-sans selection:bg-system-blue selection:text-system-dark">
+    <div className="min-h-screen bg-[#050811] text-zinc-100 flex flex-col font-sans selection:bg-system-blue selection:text-black">
       {/* Top Hunter Status Bar */}
       <HunterStatusBar />
 
-      {/* Navigation Tab Bar */}
+      {/* Navigation Tab Bar (Top on Desktop, Fixed Bottom on Mobile) */}
       <SystemSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 py-8">
+      {/* Main Content Area - pb-28 on mobile prevents bottom nav overlap */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-8 pb-28 md:pb-12">
         <div className="animate-in fade-in duration-300">
           {activeTab === "quests" && (
             <DailyQuestDashboard onNavigate={(tab) => setActiveTab(tab)} />
@@ -42,8 +42,8 @@ export default function Home() {
         </div>
       </main>
 
-      {/* System Footer */}
-      <footer className="w-full bg-system-panel/50 border-t border-white/5 py-6 px-4 mt-auto">
+      {/* System Footer - hidden on small mobile screens to keep app feeling clean */}
+      <footer className="hidden sm:block w-full bg-system-panel/50 border-t border-white/5 py-6 px-4 mt-auto">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-mono">
           <div className="flex items-center gap-2">
             <Shield className="w-4 h-4 text-system-blue" />

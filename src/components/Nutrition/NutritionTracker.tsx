@@ -112,17 +112,17 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
           <button
             onClick={() => onNavigate('scanner')}
-            className="flex items-center gap-2 px-5 py-3 rounded-xl bg-system-blue text-system-dark font-black uppercase text-xs tracking-wider shadow-glow-blue hover:bg-white transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-black font-black uppercase text-xs sm:text-sm tracking-wider shadow-glow-blue hover:bg-white transition-all min-h-[44px]"
           >
             <span>Scan Barcode</span>
             <ArrowRight className="w-4 h-4" />
           </button>
           <button
             onClick={() => setShowManualModal(true)}
-            className="flex items-center gap-2 px-5 py-3 rounded-xl bg-system-card border border-system-cyan/40 text-system-cyan font-bold uppercase text-xs tracking-wider hover:bg-system-blue/20 transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-system-card border border-system-cyan/40 text-system-cyan font-bold uppercase text-xs sm:text-sm tracking-wider hover:bg-system-blue/20 transition-all min-h-[44px]"
           >
             <Plus className="w-4 h-4" />
             <span>Manual Entry</span>
@@ -130,8 +130,8 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
         </div>
       </div>
 
-      {/* Macro Rings Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Macro Rings Grid - 2x2 on mobile, 4x1 on desktop */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         
         {/* Calories Card */}
         <div className="bg-system-panel p-5 rounded-2xl border border-system-blue/30 space-y-3">
@@ -288,10 +288,11 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
                   <label className="text-xs font-bold text-zinc-400 uppercase">Calories (kcal)</label>
                   <input
                     type="number"
+                    inputMode="decimal"
                     placeholder="e.g. 550"
                     value={manualCals}
                     onChange={(e) => setManualCals(e.target.value)}
-                    className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-2.5 mt-1 text-sm font-mono font-bold text-white focus:outline-none focus:border-system-blue"
+                    className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-3 mt-1 text-sm font-mono font-bold text-white focus:outline-none focus:border-system-blue shadow-inner"
                     required
                   />
                 </div>
@@ -299,10 +300,11 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
                   <label className="text-xs font-bold text-system-cyan uppercase">Protein (g)</label>
                   <input
                     type="number"
+                    inputMode="decimal"
                     placeholder="e.g. 50"
                     value={manualProt}
                     onChange={(e) => setManualProt(e.target.value)}
-                    className="w-full bg-system-dark border border-system-cyan/40 rounded-xl px-4 py-2.5 mt-1 text-sm font-mono font-bold text-system-cyan focus:outline-none focus:border-system-cyan"
+                    className="w-full bg-system-dark border border-system-cyan/40 rounded-xl px-4 py-3 mt-1 text-sm font-mono font-bold text-system-cyan focus:outline-none focus:border-system-cyan shadow-inner"
                     required
                   />
                 </div>
@@ -313,35 +315,37 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
                   <label className="text-xs font-bold text-zinc-400 uppercase">Carbs (g)</label>
                   <input
                     type="number"
+                    inputMode="decimal"
                     placeholder="e.g. 60"
                     value={manualCarbs}
                     onChange={(e) => setManualCarbs(e.target.value)}
-                    className="w-full bg-system-dark border border-white/10 rounded-xl px-4 py-2.5 mt-1 text-sm font-mono text-white focus:outline-none"
+                    className="w-full bg-system-dark border border-white/10 rounded-xl px-4 py-3 mt-1 text-sm font-mono text-white focus:outline-none shadow-inner"
                   />
                 </div>
                 <div>
                   <label className="text-xs font-bold text-zinc-400 uppercase">Fat (g)</label>
                   <input
                     type="number"
+                    inputMode="decimal"
                     placeholder="e.g. 10"
                     value={manualFat}
                     onChange={(e) => setManualFat(e.target.value)}
-                    className="w-full bg-system-dark border border-white/10 rounded-xl px-4 py-2.5 mt-1 text-sm font-mono text-white focus:outline-none"
+                    className="w-full bg-system-dark border border-white/10 rounded-xl px-4 py-3 mt-1 text-sm font-mono text-white focus:outline-none shadow-inner"
                   />
                 </div>
               </div>
 
-              <div className="flex gap-2 pt-2">
+              <div className="flex gap-3 pt-3">
                 <button
                   type="button"
                   onClick={() => setShowManualModal(false)}
-                  className="flex-1 py-3 rounded-xl bg-system-card text-zinc-400 hover:text-white font-bold text-xs uppercase"
+                  className="flex-1 py-3.5 rounded-xl bg-system-card text-zinc-400 hover:text-white font-bold text-xs sm:text-sm uppercase min-h-[44px] transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-3 rounded-xl bg-system-blue text-system-dark hover:bg-white font-black text-xs uppercase shadow-glow-blue transition-all"
+                  className="flex-1 py-3.5 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-black hover:bg-white font-black text-xs sm:text-sm uppercase shadow-glow-blue transition-all min-h-[44px]"
                 >
                   Add Meal (+50 XP)
                 </button>

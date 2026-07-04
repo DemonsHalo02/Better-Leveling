@@ -11,70 +11,115 @@ interface SystemSidebarProps {
 }
 
 export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebarProps) {
-  const navItems: { id: TabType; label: string; icon: React.ReactNode; badge?: string }[] = [
+  const navItems: { id: TabType; label: string; mobileLabel: string; icon: React.ReactNode; badge?: string }[] = [
     {
       id: 'quests',
       label: 'Daily Quests',
+      mobileLabel: 'Quests',
       icon: <ShieldAlert className="w-5 h-5" />,
-      badge: 'Active'
+      badge: 'Live'
     },
     {
       id: 'workouts',
       label: '6-Day PPL (PF)',
+      mobileLabel: 'Workout',
       icon: <Dumbbell className="w-5 h-5" />
     },
     {
       id: 'scanner',
       label: 'Barcode Scanner',
+      mobileLabel: 'Scanner',
       icon: <ScanLine className="w-5 h-5" />,
-      badge: 'Live'
+      badge: 'Cam'
     },
     {
       id: 'weight',
       label: 'Weight & PRs',
+      mobileLabel: 'Weight',
       icon: <TrendingDown className="w-5 h-5" />
     },
     {
       id: 'grocery',
       label: 'ME Grocery Guide',
+      mobileLabel: 'Grocery',
       icon: <ShoppingBag className="w-5 h-5" />
     }
   ];
 
   return (
-    <nav className="w-full bg-system-panel/80 backdrop-blur-md border-b border-system-blue/20 sticky top-[65px] z-40 px-4 py-2">
-      <div className="max-w-7xl mx-auto flex items-center justify-between md:justify-center gap-2 overflow-x-auto no-scrollbar">
-        {navItems.map((item) => {
-          const isActive = activeTab === item.id;
-          return (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id)}
-              className={`group relative flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm tracking-wider uppercase transition-all duration-300 whitespace-nowrap ${
-                isActive
-                  ? 'bg-system-blue text-system-dark shadow-glow-blue font-black scale-105'
-                  : 'text-zinc-400 hover:text-white hover:bg-system-card border border-transparent hover:border-system-blue/30'
-              }`}
-            >
-              <span className={`transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}>
-                {item.icon}
-              </span>
-              <span>{item.label}</span>
-              {item.badge && (
-                <span
-                  className={`text-[10px] px-1.5 py-0.5 rounded font-mono uppercase ${
-                    isActive
-                      ? 'bg-system-dark text-system-blue font-black'
-                      : 'bg-system-blue/20 text-system-cyan border border-system-blue/30'
-                  }`}
-                >
-                  {item.badge}
+    <>
+      {/* Desktop / Tablet Navigation (Top Bar) */}
+      <nav className="hidden md:block w-full bg-[#050811]/80 backdrop-blur-xl border-b border-system-blue/20 sticky top-[68px] z-40 px-4 py-2.5 shadow-lg">
+        <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 overflow-x-auto no-scrollbar">
+          {navItems.map((item) => {
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                className={`group relative flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-mono font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 whitespace-nowrap ${
+                  isActive
+                    ? 'bg-gradient-to-r from-system-blue to-system-cyan text-black shadow-glow-blue font-black scale-105'
+                    : 'text-zinc-400 hover:text-white hover:bg-system-card border border-transparent hover:border-system-blue/30'
+                }`}
+              >
+                <span className={`transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}>
+                  {item.icon}
                 </span>
-              )}
-            </button>
-          );
-        })}
-      </div>
-    </nav>
+                <span>{item.label}</span>
+                {item.badge && (
+                  <span
+                    className={`text-[9px] px-1.5 py-0.5 rounded font-mono uppercase ${
+                      isActive
+                        ? 'bg-black text-system-blue font-black shadow-sm'
+                        : 'bg-system-blue/20 text-system-cyan border border-system-blue/30'
+                    }`}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+
+      {/* Mobile Fixed Bottom Navigation Bar */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#050811]/95 backdrop-blur-2xl border-t border-system-blue/30 px-1.5 py-1.5 shadow-[0_-10px_30px_rgba(0,0,0,0.9)]">
+        <div className="grid grid-cols-5 gap-1 max-w-lg mx-auto">
+          {navItems.map((item) => {
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                className={`relative flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all duration-200 select-none ${
+                  isActive
+                    ? 'text-system-cyan bg-system-blue/15 font-black shadow-[0_0_12px_rgba(0,240,255,0.25)]'
+                    : 'text-zinc-500 hover:text-zinc-300 active:bg-white/5 font-medium'
+                }`}
+              >
+                {/* Active top neon indicator */}
+                {isActive && (
+                  <span className="absolute top-0 left-1/4 right-1/4 h-0.5 bg-system-cyan rounded-full shadow-glow-blue animate-pulse" />
+                )}
+                
+                <div className={`relative transition-transform duration-200 mb-1 ${isActive ? 'scale-110 text-system-cyan drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]' : ''}`}>
+                  {item.icon}
+                  {item.badge && (
+                    <span className="absolute -top-1 -right-2.5 bg-system-purple text-white text-[8px] font-mono px-1 rounded-full border border-black font-bold leading-tight">
+                      {item.badge}
+                    </span>
+                  )}
+                </div>
+                <span className={`text-[10px] font-mono tracking-tight leading-none ${isActive ? 'font-black text-white' : ''}`}>
+                  {item.mobileLabel}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+    </>
   );
 }

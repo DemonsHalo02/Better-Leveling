@@ -172,13 +172,13 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
             setScannedResult(null);
             setErrorMsg(null);
           }}
-          className={`flex items-center gap-2 px-6 py-3.5 rounded-xl font-black uppercase text-xs tracking-widest transition-all ${
+          className={`w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-black uppercase text-xs sm:text-sm tracking-widest transition-all min-h-[44px] ${
             scannerActive
               ? 'bg-red-500 text-white shadow-lg'
-              : 'bg-system-blue text-system-dark hover:bg-white shadow-glow-blue'
+              : 'bg-gradient-to-r from-system-blue to-system-cyan text-black hover:bg-white shadow-glow-blue'
           }`}
         >
-          <Camera className="w-4 h-4" />
+          <Camera className="w-4 h-4 sm:w-5 sm:h-5" />
           <span>{scannerActive ? 'Close Camera' : 'Activate Camera Scanner'}</span>
         </button>
       </div>
@@ -193,7 +193,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
           <div id="reader" className="w-full max-w-md bg-black/60 rounded-xl overflow-hidden border border-system-blue/40 p-2" />
           <button
             onClick={() => setScannerActive(false)}
-            className="text-xs text-zinc-400 hover:text-white uppercase font-bold"
+            className="text-xs text-zinc-400 hover:text-white uppercase font-bold py-2 px-4 min-h-[44px]"
           >
             Cancel Scanning
           </button>
@@ -214,12 +214,12 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
               placeholder="Search e.g. 'Chicken', 'Greek Yogurt', 'Eggs', 'Oats', or paste UPC code..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-3 font-mono text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-system-blue"
+              className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-3.5 font-mono text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-system-blue shadow-inner"
             />
           </div>
           <button
             type="submit"
-            className="px-6 py-3 rounded-xl bg-system-card border border-system-blue/50 text-system-cyan font-bold uppercase text-xs tracking-wider hover:bg-system-blue hover:text-system-dark transition-all"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-system-card border border-system-blue/50 text-system-cyan font-bold uppercase text-xs sm:text-sm tracking-wider hover:bg-system-blue hover:text-black transition-all min-h-[44px]"
           >
             Search Food
           </button>

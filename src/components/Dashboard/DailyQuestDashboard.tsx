@@ -382,27 +382,28 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               <div className="relative">
                 <input
                   type="number"
+                  inputMode="decimal"
                   step="0.1"
                   placeholder="e.g. 241.5"
                   value={newWeightInput}
                   onChange={(e) => setNewWeightInput(e.target.value)}
-                  className="w-full bg-system-dark border border-system-blue/50 rounded-xl px-4 py-3 font-mono text-xl font-bold text-white focus:outline-none focus:border-system-blue"
+                  className="w-full bg-system-dark border border-system-blue/50 rounded-xl px-4 py-3.5 font-mono text-xl font-bold text-white focus:outline-none focus:border-system-blue shadow-inner"
                   autoFocus
                   required
                 />
-                <span className="absolute right-4 top-3.5 text-zinc-400 font-mono font-bold">lbs</span>
+                <span className="absolute right-4 top-4 text-zinc-400 font-mono font-bold">lbs</span>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-3 pt-1">
                 <button
                   type="button"
                   onClick={() => setShowWeightModal(false)}
-                  className="flex-1 py-2.5 rounded-xl bg-system-card text-zinc-400 hover:text-white font-bold text-xs uppercase"
+                  className="flex-1 py-3 rounded-xl bg-system-card text-zinc-400 hover:text-white font-bold text-xs sm:text-sm uppercase min-h-[44px] transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 rounded-xl bg-system-blue text-system-dark hover:bg-white font-black text-xs uppercase shadow-glow-blue transition-all"
+                  className="flex-1 py-3 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-black hover:bg-white font-black text-xs sm:text-sm uppercase shadow-glow-blue transition-all min-h-[44px]"
                 >
                   Submit (+100 XP)
                 </button>

@@ -205,40 +205,40 @@ export default function WorkoutQuestView() {
                 </div>
 
                 {/* Sets & Weight Input Action */}
-                <div className="flex flex-wrap items-center justify-between sm:justify-end gap-4 w-full lg:w-auto border-t lg:border-t-0 pt-3 lg:pt-0 border-white/10">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between sm:justify-end gap-3 sm:gap-4 w-full lg:w-auto border-t lg:border-t-0 pt-3.5 lg:pt-0 border-white/10">
                   
                   {/* Weight / Reps Input */}
                   {!currentDayWorkout.isRestDay && (
-                    <div className="flex items-center gap-2 bg-system-dark px-3 py-1.5 rounded-xl border border-white/10">
-                      <span className="text-[10px] text-zinc-400 font-bold uppercase">Weight:</span>
+                    <div className="flex items-center justify-between sm:justify-start gap-2 bg-system-dark px-3.5 py-2 rounded-xl border border-white/10 shadow-inner">
+                      <span className="text-xs text-zinc-400 font-bold uppercase font-mono">Weight / Reps:</span>
                       <input
                         type="text"
-                        placeholder="e.g. 185 lbs"
+                        placeholder="e.g. 185 lbs x 8"
                         value={weightVal}
                         onChange={(e) => handleWeightChange(exercise.id, e.target.value)}
-                        className="w-24 bg-transparent text-xs font-mono font-bold text-white focus:outline-none placeholder:text-zinc-600 text-right"
+                        className="w-36 bg-transparent text-xs sm:text-sm font-mono font-bold text-white focus:outline-none placeholder:text-zinc-600 text-right"
                       />
                     </div>
                   )}
 
                   {/* Set Checkboxes */}
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
                     <button
                       onClick={() => handleSetToggle(exercise.id, exercise.sets)}
-                      className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${
+                      className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-3 sm:py-2.5 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider transition-all min-h-[44px] ${
                         isComplete
-                          ? 'bg-green-500/20 text-green-400 border border-green-500 hover:bg-green-500/30 font-black'
-                          : 'bg-system-blue/10 text-system-cyan border border-system-blue/50 hover:bg-system-blue hover:text-system-dark'
+                          ? 'bg-green-500/20 text-green-400 border border-green-500 hover:bg-green-500/30 font-black shadow-[0_0_15px_rgba(0,255,136,0.3)]'
+                          : 'bg-gradient-to-r from-system-blue/20 to-system-cyan/20 text-system-cyan border border-system-blue hover:bg-system-blue hover:text-black shadow-glow-blue font-black'
                       }`}
                     >
                       {isComplete ? (
                         <>
-                          <CheckCircle2 className="w-4 h-4" />
+                          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                           <span>Cleared ({exercise.sets}/{exercise.sets})</span>
                         </>
                       ) : (
                         <>
-                          <Circle className="w-4 h-4" />
+                          <Circle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                           <span>Log Set ({doneSets}/{exercise.sets})</span>
                         </>
                       )}

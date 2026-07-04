@@ -172,7 +172,7 @@ export default function WeightAndPrTracker() {
 
       {/* Strength PR Vault */}
       <div className="bg-system-panel p-6 rounded-2xl border border-white/10 space-y-6">
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
           <div>
             <h3 className="text-base font-black text-white uppercase tracking-widest flex items-center gap-2">
               <Trophy className="w-5 h-5 text-system-gold" /> Hunter Strength PR Vault
@@ -181,7 +181,7 @@ export default function WeightAndPrTracker() {
           </div>
           <button
             onClick={() => setShowPrModal(true)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-system-gold text-system-dark font-black uppercase text-xs tracking-wider hover:bg-white transition-all shadow-glow-gold"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-system-gold text-system-dark font-black uppercase text-xs sm:text-sm tracking-wider hover:bg-white transition-all shadow-glow-gold min-h-[44px]"
           >
             <Plus className="w-4 h-4" />
             <span>Add New PR</span>
@@ -193,8 +193,8 @@ export default function WeightAndPrTracker() {
             <div key={pr.id} className="bg-system-dark p-5 rounded-xl border border-system-blue/30 relative overflow-hidden group hover:border-system-blue transition-all">
               <div className="absolute top-0 right-0 w-20 h-20 bg-system-blue/5 rounded-full -mr-10 -mt-10 pointer-events-none group-hover:scale-150 transition-transform" />
               <div className="text-[10px] text-zinc-500 font-mono uppercase mb-1">{pr.date}</div>
-              <h4 className="text-sm font-bold text-white line-clamp-1">{pr.exercise}</h4>
-              <div className="text-2xl font-black text-system-cyan font-mono mt-2 text-glow">
+              <div className="text-sm font-bold text-white line-clamp-1">{pr.exercise}</div>
+              <div className="text-2xl font-black text-system-gold font-mono mt-2">
                 {pr.weightLbs} <span className="text-xs font-normal text-zinc-400">lbs</span>
               </div>
               <div className="text-xs font-mono text-zinc-400 mt-0.5">
@@ -224,7 +224,7 @@ export default function WeightAndPrTracker() {
                   placeholder="e.g. Smith Machine Bench Press"
                   value={prExercise}
                   onChange={(e) => setPrExercise(e.target.value)}
-                  className="w-full bg-system-dark border border-system-gold/40 rounded-xl px-4 py-2.5 mt-1 text-sm text-white focus:outline-none focus:border-system-gold"
+                  className="w-full bg-system-dark border border-system-gold/40 rounded-xl px-4 py-3 mt-1 text-sm text-white focus:outline-none focus:border-system-gold shadow-inner"
                   required
                 />
               </div>
@@ -234,10 +234,11 @@ export default function WeightAndPrTracker() {
                   <label className="text-xs font-bold text-zinc-400 uppercase">Weight (lbs)</label>
                   <input
                     type="number"
+                    inputMode="decimal"
                     placeholder="e.g. 205"
                     value={prWeight}
                     onChange={(e) => setPrWeight(e.target.value)}
-                    className="w-full bg-system-dark border border-system-gold/40 rounded-xl px-4 py-2.5 mt-1 text-sm font-mono font-bold text-white focus:outline-none"
+                    className="w-full bg-system-dark border border-system-gold/40 rounded-xl px-4 py-3 mt-1 text-sm font-mono font-bold text-white focus:outline-none shadow-inner"
                     required
                   />
                 </div>
@@ -245,26 +246,27 @@ export default function WeightAndPrTracker() {
                   <label className="text-xs font-bold text-zinc-400 uppercase">Reps Performed</label>
                   <input
                     type="number"
+                    inputMode="numeric"
                     placeholder="e.g. 6"
                     value={prReps}
                     onChange={(e) => setPrReps(e.target.value)}
-                    className="w-full bg-system-dark border border-white/10 rounded-xl px-4 py-2.5 mt-1 text-sm font-mono font-bold text-white focus:outline-none"
+                    className="w-full bg-system-dark border border-white/10 rounded-xl px-4 py-3 mt-1 text-sm font-mono font-bold text-white focus:outline-none shadow-inner"
                     required
                   />
                 </div>
               </div>
 
-              <div className="flex gap-2 pt-2">
+              <div className="flex gap-3 pt-3">
                 <button
                   type="button"
                   onClick={() => setShowPrModal(false)}
-                  className="flex-1 py-2.5 rounded-xl bg-system-card text-zinc-400 hover:text-white font-bold text-xs uppercase"
+                  className="flex-1 py-3.5 rounded-xl bg-system-card text-zinc-400 hover:text-white font-bold text-xs sm:text-sm uppercase min-h-[44px] transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 rounded-xl bg-system-gold text-system-dark hover:bg-white font-black text-xs uppercase shadow-glow-gold transition-all"
+                  className="flex-1 py-3.5 rounded-xl bg-system-gold text-system-dark hover:bg-white font-black text-xs sm:text-sm uppercase shadow-glow-gold transition-all min-h-[44px]"
                 >
                   Save PR (+150 XP)
                 </button>
