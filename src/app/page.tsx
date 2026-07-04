@@ -9,6 +9,7 @@ import BarcodeScanner from "@/components/Scanner/BarcodeScanner";
 import NutritionTracker from "@/components/Nutrition/NutritionTracker";
 import GroceryGuide from "@/components/Nutrition/GroceryGuide";
 import WeightAndPrTracker from "@/components/Tracking/WeightAndPrTracker";
+import MembershipPortal from "@/components/Membership/MembershipPortal";
 import { Shield } from "lucide-react";
 
 export default function Home() {
@@ -17,7 +18,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#050811] text-zinc-100 flex flex-col font-sans selection:bg-system-blue selection:text-black">
       {/* Top Hunter Status Bar */}
-      <HunterStatusBar />
+      <HunterStatusBar onNavigate={(tab) => setActiveTab(tab as TabType)} />
 
       {/* Navigation Tab Bar (Top on Desktop, Fixed Bottom on Mobile) */}
       <SystemSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -39,6 +40,7 @@ export default function Home() {
           )}
           {activeTab === "weight" && <WeightAndPrTracker />}
           {activeTab === "grocery" && <GroceryGuide />}
+          {activeTab === "membership" && <MembershipPortal />}
         </div>
       </main>
 

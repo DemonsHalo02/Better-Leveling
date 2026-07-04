@@ -2,13 +2,22 @@
 
 import React, { useEffect, useState } from 'react';
 import { loadHunterState, HunterState } from '@/lib/hunter-system';
-import { Shield, Zap, Flame, Award, Heart, Activity, Sparkles } from 'lucide-react';
+import { Shield, Zap, Flame, Award, Heart, Activity, Sparkles, Crown } from 'lucide-react';
 
-export default function HunterStatusBar() {
+interface HunterStatusBarProps {
+  onNavigate?: (tab: string) => void;
+}
+
+export default function HunterStatusBar({ onNavigate }: HunterStatusBarProps) {
   const [state, setState] = useState<HunterState | null>(null);
+  const [vipTier, setVipTier] = useState<string>("E-Rank Free");
 
   useEffect(() => {
     setState(loadHunterState());
+    if (typeof window !== "undefined") {
+      const savedTier = localStorage.getItem("hunter_vip_tier");
+      if (savedTier) setVipTier(savedTier);
+    }
 
     const handleStateChange = (e: Event) => {
       const customEvent = e as CustomEvent<HunterState>;
@@ -66,11 +75,26 @@ export default function HunterStatusBar() {
               <span className="text-sm sm:text-base font-black text-white font-mono text-glow leading-none">{state.level}</span>
             </div>
 
-            {/* Rank Badge */}
-            <div className={`px-2.5 sm:px-3 py-1 rounded-lg border text-[10px] sm:text-xs font-black tracking-widest uppercase font-mono flex items-center gap-1 ${getRankColor(state.rank)}`}>
-              <Award className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
-              <span>{state.rank}</span>
-            </div>
+            {/* Rank Badge / VIP Account Button */}
+            <button
+              onClick={() => onNavigate?.('membership')}
+              className={`px-2.5 sm:px-3 py-1 rounded-lg border text-[10px] sm:text-xs font-black tracking-widest uppercase font-mono flex items-center gap-1.5 transition-all hover:scale-105 cursor-pointer ${
+                vipTier === "S-Rank VIP Guild" ? "bg-system-gold text-black border-system-gold shadow-glow-gold" : getRankColor(state.rank)
+              }`}
+              title="Click to manage Hunter Guild Account & VIP Membership"
+            >
+              {vipTier === "S-Rank VIP Guild" ? (
+                <>
+                  <Crown className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-black flex-shrink-0 animate-bounce" />
+                  <span>VIP GUILD</span>
+                </>
+              ) : (
+                <>
+                  <Award className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
+                  <span>{state.rank}</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
 
