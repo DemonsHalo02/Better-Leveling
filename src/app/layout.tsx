@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Nick Crosson Official Art",
-  description: "Exclusive high-resolution comic and art projects by Nick Crosson.",
+  title: "Better Leveling v2 | Shadow Monarch Fitness & Health Tracker",
+  description: "Solo Leveling themed fitness, weight loss, nutrition, and gym tracker app. Tailored for Planet Fitness Lewiston, ME and local Auburn/Lewiston grocers.",
 };
 
 export default function RootLayout({
@@ -24,9 +24,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-system-dark text-white selection:bg-system-blue selection:text-system-dark min-h-screen`}
       >
         {children}
       </body>
