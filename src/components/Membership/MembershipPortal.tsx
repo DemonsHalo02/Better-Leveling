@@ -44,17 +44,23 @@ export default function MembershipPortal() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // PayPal & Membership state
+  // PayPal Business Subscriptions state
   const [paypalEmail, setPaypalEmail] = useState("nick@betterleveling.com");
+  const [monthlyPlanId, setMonthlyPlanId] = useState("P-EXAMPLE_VIP_MONTHLY");
+  const [yearlyPlanId, setYearlyPlanId] = useState("P-EXAMPLE_VIP_ANNUAL");
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
   const [isEditingPaypal, setIsEditingPaypal] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Load saved PayPal business account
+      // Load saved PayPal business subscriptions config
       const savedPaypal = localStorage.getItem("pf_business_paypal");
       if (savedPaypal) setPaypalEmail(savedPaypal);
+      const savedMonthlyPlan = localStorage.getItem("pf_paypal_monthly_plan");
+      if (savedMonthlyPlan) setMonthlyPlanId(savedMonthlyPlan);
+      const savedYearlyPlan = localStorage.getItem("pf_paypal_yearly_plan");
+      if (savedYearlyPlan) setYearlyPlanId(savedYearlyPlan);
 
       // Load local hunter user
       const savedUser = localStorage.getItem("hunter_current_user");
@@ -200,9 +206,30 @@ export default function MembershipPortal() {
   };
 
   const getPaypalCheckoutUrl = () => {
+    const currentPlan = billingCycle === "monthly" ? monthlyPlanId : yearlyPlanId;
+    // If user pasted a full URL (like a PayPal Hosted Subscription link from Subscriptions tab)
+    if (currentPlan.startsWith("http")) {
+      return currentPlan;
+    }
+    // If user pasted a Plan ID from PayPal Subscriptions tab (e.g., P-1234567890)
+    if (currentPlan.startsWith("P-") && currentPlan !== "P-EXAMPLE_VIP_MONTHLY" && currentPlan !== "P-EXAMPLE_VIP_ANNUAL") {
+      return `https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=${encodeURIComponent(currentPlan)}`;
+    }
+    // Standard subscription link fallback
     const amount = billingCycle === "monthly" ? "9.99" : "89.99";
     const itemName = billingCycle === "monthly" ? "S-Rank VIP Guild Membership (Monthly)" : "S-Rank VIP Guild Membership (Annual Save 25%)";
     return `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick-subscriptions&business=${encodeURIComponent(paypalEmail)}&item_name=${encodeURIComponent(itemName)}&a3=${amount}&p3=1&t3=${billingCycle === "monthly" ? "M" : "Y"}&currency_code=USD`;
+  };
+
+  const savePaypalConfig = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (typeof window !== "undefined") {
+      localStorage.setItem("pf_business_paypal", paypalEmail);
+      localStorage.setItem("pf_paypal_monthly_plan", monthlyPlanId);
+      localStorage.setItem("pf_paypal_yearly_plan", yearlyPlanId);
+      setIsEditingPaypal(false);
+      alert(`✅ PayPal Business Subscriptions Configuration saved successfully!`);
+    }
   };
 
   return (
@@ -222,37 +249,61 @@ export default function MembershipPortal() {
               Awaken Your <span className="text-system-gold">Shadow Monarch</span> VIP Status
             </h2>
             <p className="text-zinc-300 text-sm leading-relaxed">
-              Sign up or log in to sync your 242 lbs → 170 lbs transformation journey across devices. Upgrade to the <strong className="text-system-gold">S-Rank VIP Guild Membership</strong> linked to your business PayPal account for cloud backups, unlimited AI scanning, and elite coaching perks!
+              Sign up or log in to sync your 242 lbs → 170 lbs transformation journey across devices. Upgrade to the <strong className="text-system-gold">S-Rank VIP Guild Membership</strong> using your <strong className="text-system-cyan">PayPal Business Subscriptions</strong> tab for cloud backups, unlimited AI scanning, and elite coaching perks!
             </p>
           </div>
 
-          <div className="bg-system-dark/90 p-4 rounded-xl border border-white/10 w-full md:w-auto min-w-[260px]">
-            <div className="text-[11px] text-zinc-400 font-bold uppercase font-mono mb-1 flex items-center justify-between">
-              <span>Linked PayPal Business Account:</span>
+          <div className="bg-system-dark/90 p-4 rounded-xl border border-white/10 w-full md:w-auto min-w-[280px]">
+            <div className="text-[11px] text-zinc-400 font-bold uppercase font-mono mb-2 flex items-center justify-between">
+              <span className="flex items-center gap-1.5"><CreditCard className="w-3.5 h-3.5 text-system-blue" /> PayPal Subscriptions Config</span>
               <button
                 onClick={() => setIsEditingPaypal(!isEditingPaypal)}
-                className="text-system-cyan hover:underline text-[10px]"
+                className="text-system-cyan hover:underline text-[10px] bg-system-blue/10 px-2 py-0.5 rounded border border-system-blue/30 font-mono font-bold"
               >
-                {isEditingPaypal ? "Close" : "Change Email"}
+                {isEditingPaypal ? "Close" : "Configure Plans"}
               </button>
             </div>
             {isEditingPaypal ? (
-              <form onSubmit={savePaypalEmail} className="flex gap-1 mt-1">
-                <input
-                  type="email"
-                  value={paypalEmail}
-                  onChange={(e) => setPaypalEmail(e.target.value)}
-                  className="bg-black border border-system-blue rounded px-2 py-1 text-xs text-white font-mono flex-1 focus:outline-none"
-                  required
-                />
-                <button type="submit" className="bg-system-blue text-black font-bold px-2 py-1 rounded text-xs">
-                  Save
+              <form onSubmit={savePaypalConfig} className="space-y-2 text-xs font-mono mt-2">
+                <div>
+                  <label className="text-[10px] text-zinc-400 block mb-0.5">Business Account Email:</label>
+                  <input
+                    type="email"
+                    value={paypalEmail}
+                    onChange={(e) => setPaypalEmail(e.target.value)}
+                    className="w-full bg-black border border-system-blue rounded px-2 py-1 text-white text-xs focus:outline-none"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="text-[10px] text-zinc-400 block mb-0.5">Monthly Plan ID / Link (from Subscriptions Tab):</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. P-1234567890 or https://..."
+                    value={monthlyPlanId}
+                    onChange={(e) => setMonthlyPlanId(e.target.value)}
+                    className="w-full bg-black border border-system-gold/60 rounded px-2 py-1 text-system-gold text-xs focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="text-[10px] text-zinc-400 block mb-0.5">Yearly Plan ID / Link:</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. P-0987654321 or https://..."
+                    value={yearlyPlanId}
+                    onChange={(e) => setYearlyPlanId(e.target.value)}
+                    className="w-full bg-black border border-system-gold/60 rounded px-2 py-1 text-system-gold text-xs focus:outline-none"
+                  />
+                </div>
+                <button type="submit" className="w-full bg-system-gold text-black font-black py-1.5 rounded text-xs mt-1 uppercase">
+                  Save PayPal Plan IDs
                 </button>
               </form>
             ) : (
-              <div className="text-xs font-mono font-bold text-system-gold flex items-center gap-1.5 break-all">
-                <CreditCard className="w-4 h-4 text-system-blue flex-shrink-0" />
-                <span>{paypalEmail}</span>
+              <div className="space-y-1 font-mono text-xs">
+                <div className="text-zinc-300 truncate"><span className="text-zinc-500">Business:</span> {paypalEmail}</div>
+                <div className="text-system-gold truncate"><span className="text-zinc-500">Monthly Plan:</span> {monthlyPlanId}</div>
+                <div className="text-system-cyan truncate"><span className="text-zinc-500">Yearly Plan:</span> {yearlyPlanId}</div>
               </div>
             )}
           </div>
@@ -595,8 +646,8 @@ export default function MembershipPortal() {
             <div className="flex items-center gap-3">
               <Shield className="w-6 h-6 text-system-blue flex-shrink-0" />
               <div>
-                <div className="font-bold text-white uppercase">Linked Business Account Security</div>
-                <div className="text-[11px]">All membership transactions are encrypted and processed securely by PayPal via <span className="text-system-cyan font-mono">{paypalEmail}</span>.</div>
+                <div className="font-bold text-white uppercase">Linked Business Subscriptions Security</div>
+                <div className="text-[11px]">All subscription transactions are encrypted and processed securely by PayPal Business Subscriptions via <span className="text-system-cyan font-mono">{paypalEmail}</span>.</div>
               </div>
             </div>
             <span className="text-[10px] font-mono bg-system-blue/10 text-system-cyan px-2 py-1 rounded border border-system-blue/30 whitespace-nowrap">
@@ -605,6 +656,31 @@ export default function MembershipPortal() {
           </div>
         </div>
 
+      </div>
+
+      {/* PayPal Business Subscriptions Guide */}
+      <div className="bg-gradient-to-r from-system-card via-system-panel to-system-dark p-6 rounded-2xl border border-system-blue/40 shadow-lg space-y-3">
+        <div className="flex items-center gap-2 text-system-cyan font-bold uppercase text-xs font-mono tracking-wider">
+          <CreditCard className="w-4 h-4 text-system-blue animate-pulse" />
+          <span>How to Link Your PayPal Business Subscriptions Tab</span>
+        </div>
+        <p className="text-xs text-zinc-300 leading-relaxed">
+          Your app is now natively wired to accept payments through your official <strong className="text-white">PayPal Business Subscriptions</strong> tab! Follow these 3 easy steps to activate real recurring billing:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs">
+          <div className="bg-black/50 p-3.5 rounded-xl border border-white/5 space-y-1">
+            <div className="font-bold text-system-gold font-mono">1. Open Subscriptions Tab</div>
+            <div className="text-[11px] text-zinc-400">Log in to your PayPal Business account → navigate to <strong className="text-zinc-200">Pay & Get Paid</strong> → click on <strong className="text-zinc-200">Subscriptions</strong>.</div>
+          </div>
+          <div className="bg-black/50 p-3.5 rounded-xl border border-white/5 space-y-1">
+            <div className="font-bold text-system-cyan font-mono">2. Create S-Rank Plans</div>
+            <div className="text-[11px] text-zinc-400">Click <strong className="text-zinc-200">Create Plan</strong>. Set one plan for <strong className="text-zinc-200">$9.99/mo</strong> (Monthly) and one for <strong className="text-zinc-200">$89.99/yr</strong> (Yearly).</div>
+          </div>
+          <div className="bg-black/50 p-3.5 rounded-xl border border-white/5 space-y-1">
+            <div className="font-bold text-green-400 font-mono">3. Copy & Paste Plan IDs</div>
+            <div className="text-[11px] text-zinc-400">Copy the generated <strong className="text-zinc-200">Plan ID</strong> (starts with <span className="text-system-gold font-mono">P-</span>) or payment link and paste it into the <strong className="text-zinc-200">Configure Plans</strong> box above!</div>
+          </div>
+        </div>
       </div>
 
     </div>
