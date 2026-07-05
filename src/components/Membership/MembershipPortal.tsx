@@ -46,8 +46,8 @@ export default function MembershipPortal() {
 
   // PayPal Business Subscriptions state
   const [paypalEmail, setPaypalEmail] = useState("nick@betterleveling.com");
-  const [monthlyPlanId, setMonthlyPlanId] = useState("P-EXAMPLE_VIP_MONTHLY");
-  const [yearlyPlanId, setYearlyPlanId] = useState("P-EXAMPLE_VIP_ANNUAL");
+  const [monthlyPlanId, setMonthlyPlanId] = useState("P-9YP26432WY575283BNJEZ6GQ");
+  const [yearlyPlanId, setYearlyPlanId] = useState("P-5XP014252D7812136NJEZ6XA");
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
   const [isEditingPaypal, setIsEditingPaypal] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
@@ -273,7 +273,7 @@ export default function MembershipPortal() {
       return currentPlan;
     }
     // If user pasted a Plan ID from PayPal Subscriptions tab (e.g., P-1234567890)
-    if (currentPlan.startsWith("P-") && currentPlan !== "P-EXAMPLE_VIP_MONTHLY" && currentPlan !== "P-EXAMPLE_VIP_ANNUAL") {
+    if (currentPlan.startsWith("P-")) {
       return `https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=${encodeURIComponent(currentPlan)}`;
     }
     // Standard subscription link fallback
