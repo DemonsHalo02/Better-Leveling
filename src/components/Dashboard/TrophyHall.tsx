@@ -59,7 +59,7 @@ export default function TrophyHall() {
       if (savedMeals) {
         try {
           const mealList = JSON.parse(savedMeals);
-          if (mealList.length > 0) setHasMeals(true);
+          if (Array.isArray(mealList) && mealList.length > 0) setHasMeals(true);
         } catch {
           // ignore
         }

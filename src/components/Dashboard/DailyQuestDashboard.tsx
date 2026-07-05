@@ -28,7 +28,20 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
   const targetDate = new Date('2027-12-31').getTime();
   const todayTime = new Date().getTime();
   const daysRemaining = Math.max(0, Math.round((targetDate - todayTime) / (1000 * 60 * 60 * 24)));
-  const currentWeight = state.weightHistory[state.weightHistory.length - 1]?.weight || 242;
+  let currentWeight = state.profile?.currentWeight || 242;
+  if (typeof window !== 'undefined') {
+    try {
+      const savedWeights = localStorage.getItem('pf_weight_history');
+      if (savedWeights) {
+        const parsed = JSON.parse(savedWeights);
+        if (Array.isArray(parsed) && parsed.length > 0 && typeof parsed[parsed.length - 1]?.weight === 'number') {
+          currentWeight = parsed[parsed.length - 1].weight;
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }
   const lbsLost = Math.max(0, 242 - currentWeight);
   const raidProgress = Math.min(100, Math.max(5, Math.round((lbsLost / 72) * 100)));
 
