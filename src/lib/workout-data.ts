@@ -47,7 +47,7 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "Weekly Prep",
         equipment: "Kitchen / Walmart Auburn",
-        coachTip: "Pre-cook your Pollo Guisado (chicken stew), Chuletas, rice & beans, and stock up on Café Bustelo K-Cups so your Puerto Rican cutting diet stays under $50 all week!"
+        coachTip: "Pre-cook your fresh Pollo Guisado (chicken stew), Chuletas, rice & beans, and stock up on Café Bustelo K-Cups so your Puerto Rican cutting diet stays under $50 all week!"
       }
     ]
   },

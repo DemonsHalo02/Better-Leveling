@@ -35,18 +35,18 @@ export interface MealPrepPlan {
 export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-1",
-    upc: "078742371195", // Great Value Chicken Breast
-    name: "Great Value Boneless Skinless Chicken Breast (3 lb bag)",
+    upc: "078742371195", // Fresh Chicken Breast Family Pack
+    name: "Freshness Guaranteed Fresh Boneless Skinless Chicken Breasts (~3 lb tray)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
+    brand: "Freshness Guaranteed",
     category: "Protein",
-    priceEst: "$9.47 (3 lb frozen bag)",
+    priceEst: "$7.44 (~3 lb family pack tray at $2.48/lb)",
     calories: 120,
     protein: 26,
     carbs: 0,
     fat: 1.5,
     servingSize: "4 oz (112g)",
-    coachNote: "The primary lean muscle-building staple. Season generously with Goya Adobo and Sazón for authentic Boricua flavor without calories."
+    coachNote: "Fresh, never frozen chicken breast! Cooks much tenderer and faster than frozen. Season with Adobo and Sazón for authentic Pollo Guisado."
   },
   {
     id: "g-2",
@@ -191,8 +191,8 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     title: "The Boricua Cutting Blueprint (~2,065 kcal)",
     targetDailyCalories: 2065,
     targetDailyProtein: 194,
-    estCostPerWeek: "$47.85 total at Auburn Walmart",
-    description: "Authentic Puerto Rican style cutting plan using 100% verified Auburn ME Walmart staples! Loaded with Pollo Guisado, Chuletas, Arroz con Habichuelas, and Café Bustelo K-Cups—all strictly under your $50 budget limit using 0-cal spray!",
+    estCostPerWeek: "$45.82 total at Auburn Walmart",
+    description: "Authentic Puerto Rican style cutting plan using 100% verified Auburn ME Walmart staples! Loaded with fresh Pollo Guisado, Chuletas, Arroz con Habichuelas, and Café Bustelo K-Cups—all strictly under your $50 budget limit using 0-cal spray!",
     meals: [
       {
         name: "Breakfast: Boricua Spiced Scramble & Café Bustelo K-Cup",
@@ -209,10 +209,10 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 15
       },
       {
-        name: "Lunch: Pollo Guisado (Boricua Spiced Chicken) & Rice",
+        name: "Lunch: Pollo Guisado (Boricua Spiced Fresh Chicken) & Rice",
         time: "12:30 PM",
         ingredients: [
-          "8 oz Great Value Chicken Breast seasoned with Goya Adobo & Sazón, seared in 0-Calorie Spray (240 kcal, 52g p)",
+          "8 oz Freshness Guaranteed Fresh Chicken Breast seasoned with Goya Adobo & Sazón, seared in 0-Calorie Spray (240 kcal, 52g p)",
           "1.5 cups cooked Great Value White Rice (300 kcal, 6g p, 68g c)",
           "1/2 cup Great Value Black Beans (Habichuelas Negras) stewed with Sazón (110 kcal, 7g p, 20g c)"
         ],
