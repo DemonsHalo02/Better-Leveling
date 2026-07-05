@@ -212,6 +212,21 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "3/4 cup (170g)",
     coachNote: "Incredible protein-to-calorie ratio. Mix with a dash of cinnamon or sweetener for a high-protein anabolic snack to hit your protein targets."
+  },
+  {
+    id: "g-13",
+    upc: "000000040659", // Fresh Green Plantains
+    name: "Fresh Green Plantains / Plátanos Verdes (4 Pack / ~4 Plantains)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Fresh Produce",
+    category: "Carbs",
+    priceEst: "$2.72 (4 Plantains at ~$0.68 ea)",
+    calories: 150,
+    protein: 1,
+    carbs: 38,
+    fat: 0,
+    servingSize: "1 Plantain (170g)",
+    coachNote: "Classic Puerto Rican green plantains! Peel, slice into coins, boil slightly, smash, and pan-sear in 0-calorie cooking spray for crispy, authentic Tostones a la Plancha."
   }
 ];
 
@@ -221,8 +236,8 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     title: "The Boricua Cutting Blueprint (~2,150 kcal)",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$49.14 total at Auburn Walmart",
-    description: "Authentic Puerto Rican style cutting plan with upgraded 5 lb fresh chicken & 5 lb rice! Features sweet Puerto Rican Café con Leche, Pollo Guisado, Chuletas, and Arroz con Habichuelas—all strictly under your $50 budget limit ($49.14 total)!",
+    estCostPerWeek: "$51.86 total at Auburn Walmart",
+    description: "Authentic Puerto Rican style cutting plan with upgraded 5 lb fresh chicken, 5 lb rice, and crispy green Tostones a la Plancha! SCHEDULE NOTE: Shop your list at Auburn Walmart and cook your meal prep every MONDAY; begin eating your prepped meals on TUESDAY!",
     meals: [
       {
         name: "Breakfast: Sweet Boricua Café con Leche & Spiced Scramble",
@@ -238,16 +253,17 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 16
       },
       {
-        name: "Lunch: Pollo Guisado (Boricua Spiced Fresh Chicken) & Rice",
+        name: "Lunch: Pollo Guisado & Crispy Tostones a la Plancha",
         time: "12:30 PM",
         ingredients: [
           "8 oz Freshness Guaranteed Fresh Chicken Breast (from upgraded 5 lb pack!) seasoned with Adobo & Sazón, seared in 0-Cal Spray (240 kcal, 52g p)",
-          "1.5 cups cooked Great Value White Rice (from 5 lb bag!) (300 kcal, 6g p, 68g c)",
+          "1/2 Smashed Green Plantain pan-seared in 0-Calorie Spray into crispy Tostones a la Plancha (75 kcal, 19g c)",
+          "1 cup cooked Great Value White Rice (from 5 lb bag!) (200 kcal, 4g p, 45g c)",
           "1/2 cup Great Value Black Beans (Habichuelas Negras) stewed with Sazón (110 kcal, 7g p, 20g c)"
         ],
-        calories: 650,
-        protein: 65,
-        carbs: 88,
+        calories: 625,
+        protein: 63,
+        carbs: 83,
         fat: 4
       },
       {

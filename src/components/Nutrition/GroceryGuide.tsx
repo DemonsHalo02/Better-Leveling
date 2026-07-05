@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AUBURN_LEWISTON_GROCERY_ITEMS, MEAL_PREP_PLANS, GroceryItem } from '@/lib/grocery-data';
-import { ShoppingBag, CheckCircle2, Circle, Utensils, DollarSign, MapPin, Sparkles, Award } from 'lucide-react';
+import { ShoppingBag, CheckCircle2, Circle, Utensils, DollarSign, MapPin, Sparkles, Award, RotateCcw, Calendar } from 'lucide-react';
 
 export default function GroceryGuide() {
   const [selectedStore, setSelectedStore] = useState<string>('All Stores');
@@ -10,8 +10,44 @@ export default function GroceryGuide() {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<'items' | 'plans'>('items');
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Calculate current week key (Monday base)
+      const now = new Date();
+      const day = now.getDay();
+      const diff = now.getDate() - day + (day === 0 ? -6 : 1);
+      const monday = new Date(now.setDate(diff));
+      const currentWeekKey = `${monday.getFullYear()}-${monday.getMonth()}-${monday.getDate()}`;
+
+      const savedWeekKey = localStorage.getItem('pf_grocery_week_key');
+      if (savedWeekKey && savedWeekKey !== currentWeekKey) {
+        // Auto-reset on new Monday week!
+        localStorage.removeItem('pf_grocery_checked');
+        localStorage.setItem('pf_grocery_week_key', currentWeekKey);
+        setCheckedItems({});
+      } else {
+        const saved = localStorage.getItem('pf_grocery_checked');
+        if (saved) setCheckedItems(JSON.parse(saved));
+        if (!savedWeekKey) localStorage.setItem('pf_grocery_week_key', currentWeekKey);
+      }
+    }
+  }, []);
+
   const handleToggleCheck = (id: string) => {
-    setCheckedItems(prev => ({ ...prev, [id]: !prev[id] }));
+    setCheckedItems(prev => {
+      const updated = { ...prev, [id]: !prev[id] };
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('pf_grocery_checked', JSON.stringify(updated));
+      }
+      return updated;
+    });
+  };
+
+  const handleManualReset = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('pf_grocery_checked');
+    }
+    setCheckedItems({});
   };
 
   const filteredItems = AUBURN_LEWISTON_GROCERY_ITEMS.filter(item => {
@@ -19,6 +55,10 @@ export default function GroceryGuide() {
     const matchCat = selectedCategory === 'All' || item.category === selectedCategory;
     return matchStore && matchCat;
   });
+
+  const totalItemsCount = AUBURN_LEWISTON_GROCERY_ITEMS.length;
+  const checkedCount = Object.values(checkedItems).filter(Boolean).length;
+  const progressPct = totalItemsCount > 0 ? Math.round((checkedCount / totalItemsCount) * 100) : 0;
 
   const stores = ['All Stores', 'Walmart Supercenter (Auburn, ME)', "Shaw's (Auburn/Lewiston)", 'Hannaford (Lewiston/Auburn)'];
   const categories = ['All', 'Protein', 'Carbs', 'Produce', 'Essentials'];
@@ -37,7 +77,7 @@ export default function GroceryGuide() {
             Hunter Grocery Companion
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            High-protein, authentic Puerto Rican style staples priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly prep under $50! Includes Keurig K-Cup coffee, Sazón, Sofrito, and 0-calorie cooking spray.
+            High-protein, authentic Puerto Rican style staples priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly prep under budget! Includes Keurig K-Cup coffee, Sazón, Tostones, and 0-calorie cooking spray.
           </p>
         </div>
 
@@ -67,6 +107,46 @@ export default function GroceryGuide() {
 
       {activeTab === 'items' ? (
         <>
+          {/* Monday Prep Shopping Progress Banner */}
+          <div className="bg-system-card p-5 rounded-2xl border border-system-blue/30 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="bg-system-blue text-system-dark text-[10px] font-black uppercase px-2 py-0.5 rounded">
+                  Weekly Monday Prep
+                </span>
+                <span className="text-xs text-system-cyan font-mono flex items-center gap-1">
+                  <Calendar className="w-3.5 h-3.5" /> Shop Monday | Eat Tuesday
+                </span>
+              </div>
+              <h3 className="text-lg font-black text-white uppercase tracking-wide">
+                Auburn Walmart Shopping Cart ({checkedCount}/{totalItemsCount} Checked)
+              </h3>
+              <p className="text-xs text-zinc-400">
+                Check off items as you put them in your cart! List automatically resets every Monday morning for your weekly prep.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end">
+              <div className="w-32 bg-black/50 p-2 rounded-xl border border-white/10 hidden sm:block">
+                <div className="flex justify-between text-[10px] font-mono font-bold mb-1">
+                  <span className="text-zinc-400">Cart Progress</span>
+                  <span className="text-system-cyan">{progressPct}%</span>
+                </div>
+                <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-system-blue to-system-cyan rounded-full transition-all duration-300" style={{ width: `${progressPct}%` }} />
+                </div>
+              </div>
+
+              <button
+                onClick={handleManualReset}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-system-dark hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition-all text-xs font-bold uppercase tracking-wider whitespace-nowrap"
+              >
+                <RotateCcw className="w-3.5 h-3.5 text-system-gold" />
+                <span>Reset List for Monday</span>
+              </button>
+            </div>
+          </div>
+
           {/* Store & Category Filters */}
           <div className="space-y-3 bg-system-panel p-5 rounded-2xl border border-white/10">
             {/* Store Filter */}

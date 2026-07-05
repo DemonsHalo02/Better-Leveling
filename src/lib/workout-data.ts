@@ -42,12 +42,12 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sun-2",
-        name: "Hydration & Weekly Boricua Meal Prep",
+        name: "Active Recovery & Hydration Protocol",
         targetGroup: "Full Body",
         sets: 1,
-        reps: "Weekly Prep",
-        equipment: "Kitchen / Walmart Auburn",
-        coachTip: "Pre-cook your fresh Pollo Guisado (chicken stew), Chuletas, rice & beans, and stock up on Café Bustelo K-Cups & milk for sweet Café con Leche so your Puerto Rican cutting diet stays under $50 all week!"
+        reps: "1 Gallon Water",
+        equipment: "Water Jug / Stretching Mat",
+        coachTip: "Hydrate heavily and rest your muscles! Your Auburn Walmart shopping and meal prep cooking session starts tomorrow on Monday."
       }
     ]
   },
@@ -113,6 +113,15 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
         reps: "12-15 reps",
         equipment: "Cable Tower (High Pulley)",
         coachTip: "Step forward away from machine, lean torso forward, and extend elbows overhead for deep long-head stretch."
+      },
+      {
+        id: "mon-7",
+        name: "Weekly Boricua Meal Prep & Auburn Walmart Run",
+        targetGroup: "Full Body",
+        sets: 1,
+        reps: "Weekly Prep",
+        equipment: "Walmart Auburn & Kitchen",
+        coachTip: "Shop your grocery list at Auburn Walmart and pre-cook your Pollo Guisado, Chuletas, Tostones & Rice today (Monday)! Your actual eating cycle for these prepped meals begins tomorrow on Tuesday."
       }
     ]
   },
