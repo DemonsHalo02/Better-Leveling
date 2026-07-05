@@ -50,7 +50,6 @@ export default function MembershipPortal() {
   const [monthlyPlanId, setMonthlyPlanId] = useState("P-9YP26432WY575283BNJEZ6GQ");
   const [yearlyPlanId, setYearlyPlanId] = useState("P-5XP014252D7812136NJEZ6XA");
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
-  const [isEditingPaypal, setIsEditingPaypal] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [isCloudSyncing, setIsCloudSyncing] = useState(false);
 
@@ -314,17 +313,6 @@ export default function MembershipPortal() {
     return `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick-subscriptions&business=${encodeURIComponent(paypalEmail)}&item_name=${encodeURIComponent(itemName)}&a3=${amount}&p3=1&t3=${billingCycle === "monthly" ? "M" : "Y"}&currency_code=USD`;
   };
 
-  const savePaypalConfig = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (typeof window !== "undefined") {
-      localStorage.setItem("pf_business_paypal", paypalEmail);
-      localStorage.setItem("pf_paypal_monthly_plan", monthlyPlanId);
-      localStorage.setItem("pf_paypal_yearly_plan", yearlyPlanId);
-      setIsEditingPaypal(false);
-      alert(`✅ PayPal Business Subscriptions Configuration saved successfully!`);
-    }
-  };
-
   return (
     <div className="space-y-8 pb-12 animate-in fade-in duration-300">
       
@@ -342,63 +330,8 @@ export default function MembershipPortal() {
               Awaken Your <span className="text-system-gold">Shadow Monarch</span> VIP Status
             </h2>
             <p className="text-zinc-300 text-sm leading-relaxed">
-              Sign up or log in to sync your 242 lbs → 170 lbs transformation journey across devices. Upgrade to the <strong className="text-system-gold">S-Rank VIP Guild Membership</strong> using your <strong className="text-system-cyan">PayPal Business Subscriptions</strong> tab for cloud backups, unlimited AI scanning, and elite coaching perks!
+              Sign up or log in to sync your 242 lbs → 170 lbs transformation journey across devices. Upgrade to the <strong className="text-system-gold">S-Rank VIP Guild Membership</strong> with PayPal for real-time cloud backups, unlimited AI scanning, and elite coaching perks!
             </p>
-          </div>
-
-          <div className="bg-system-dark/90 p-4 rounded-xl border border-white/10 w-full md:w-auto min-w-[280px]">
-            <div className="text-[11px] text-zinc-400 font-bold uppercase font-mono mb-2 flex items-center justify-between">
-              <span className="flex items-center gap-1.5"><CreditCard className="w-3.5 h-3.5 text-system-blue" /> PayPal Subscriptions Config</span>
-              <button
-                onClick={() => setIsEditingPaypal(!isEditingPaypal)}
-                className="text-system-cyan hover:underline text-[10px] bg-system-blue/10 px-2 py-0.5 rounded border border-system-blue/30 font-mono font-bold"
-              >
-                {isEditingPaypal ? "Close" : "Configure Plans"}
-              </button>
-            </div>
-            {isEditingPaypal ? (
-              <form onSubmit={savePaypalConfig} className="space-y-2 text-xs font-mono mt-2">
-                <div>
-                  <label className="text-[10px] text-zinc-400 block mb-0.5">Business Account Email:</label>
-                  <input
-                    type="email"
-                    value={paypalEmail}
-                    onChange={(e) => setPaypalEmail(e.target.value)}
-                    className="w-full bg-black border border-system-blue rounded px-2 py-1 text-white text-xs focus:outline-none"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="text-[10px] text-zinc-400 block mb-0.5">Monthly Plan ID / Link (from Subscriptions Tab):</label>
-                  <input
-                    type="text"
-                    placeholder="e.g. P-1234567890 or https://..."
-                    value={monthlyPlanId}
-                    onChange={(e) => setMonthlyPlanId(e.target.value)}
-                    className="w-full bg-black border border-system-gold/60 rounded px-2 py-1 text-system-gold text-xs focus:outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="text-[10px] text-zinc-400 block mb-0.5">Yearly Plan ID / Link:</label>
-                  <input
-                    type="text"
-                    placeholder="e.g. P-0987654321 or https://..."
-                    value={yearlyPlanId}
-                    onChange={(e) => setYearlyPlanId(e.target.value)}
-                    className="w-full bg-black border border-system-gold/60 rounded px-2 py-1 text-system-gold text-xs focus:outline-none"
-                  />
-                </div>
-                <button type="submit" className="w-full bg-system-gold text-black font-black py-1.5 rounded text-xs mt-1 uppercase">
-                  Save PayPal Plan IDs
-                </button>
-              </form>
-            ) : (
-              <div className="space-y-1 font-mono text-xs">
-                <div className="text-zinc-300 truncate"><span className="text-zinc-500">Business:</span> {paypalEmail}</div>
-                <div className="text-system-gold truncate"><span className="text-zinc-500">Monthly Plan:</span> {monthlyPlanId}</div>
-                <div className="text-system-cyan truncate"><span className="text-zinc-500">Yearly Plan:</span> {yearlyPlanId}</div>
-              </div>
-            )}
           </div>
         </div>
       </div>
