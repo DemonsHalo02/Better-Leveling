@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { loadHunterState, saveHunterState, triggerLevelUpCelebration, HunterState } from '@/lib/hunter-system';
-import { Trophy, Crown, Award, Shield, Flame, CheckCircle2, Lock, Sparkles, Star, Dumbbell, Zap } from 'lucide-react';
+import { Trophy, Crown, Award, Shield, Flame, CheckCircle2, Lock, Sparkles, Star, Dumbbell, Zap, Share2, Copy, X } from 'lucide-react';
 
 interface TrophyItem {
   id: string;
@@ -21,6 +21,8 @@ export default function TrophyHall() {
   const [userEmail, setUserEmail] = useState<string>('');
   const [hasPr200, setHasPr200] = useState<boolean>(false);
   const [hasMeals, setHasMeals] = useState<boolean>(false);
+  const [showShareCard, setShowShareCard] = useState<boolean>(false);
+  const [shareCopied, setShareCopied] = useState<boolean>(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -155,6 +157,14 @@ export default function TrophyHall() {
     }
   };
 
+  const handleCopyShareCard = () => {
+    if (!hunterState) return;
+    const text = `👑 [BETTER LEVELING v2 - S-RANK HUNTER GUILD CARD]\n⚔️ Hunter: ${hunterState.profile.name}\n🛡️ Title: ${equippedTitle || 'Awakened Hunter'}\n⚡ Level: ${hunterState.level} | STR: ${hunterState.stats.str}\n🔥 Streak: ${hunterState.streakDays} Days\n🥩 Nutrition Blueprint: 2,150 kcal / 206g Protein (Boricua Style)\n📍 Sector: Planet Fitness Lewiston & Auburn ME`;
+    navigator.clipboard.writeText(text);
+    setShareCopied(true);
+    setTimeout(() => setShareCopied(false), 3000);
+  };
+
   return (
     <div className="space-y-8 pb-12 animate-in fade-in duration-300">
       
@@ -174,18 +184,89 @@ export default function TrophyHall() {
           </p>
         </div>
 
-        <div className="bg-system-dark/90 border border-system-gold/50 p-4 rounded-xl flex items-center gap-4 shadow-lg relative z-10 min-w-[240px]">
-          <div className="w-12 h-12 rounded-xl bg-system-gold/20 border border-system-gold flex items-center justify-center text-system-gold shadow-glow-gold flex-shrink-0">
-            <Award className="w-6 h-6" />
-          </div>
-          <div>
-            <div className="text-[10px] font-mono text-zinc-400 uppercase">Currently Equipped Title:</div>
-            <div className="text-sm font-black text-system-gold uppercase font-mono tracking-wide">
-              {equippedTitle || 'Awakened Hunter'}
+        <div className="flex flex-col sm:flex-row md:flex-col items-stretch sm:items-center md:items-end gap-3 relative z-10 min-w-[260px]">
+          <div className="bg-system-dark/90 border border-system-gold/50 p-4 rounded-xl flex items-center gap-4 shadow-lg w-full">
+            <div className="w-12 h-12 rounded-xl bg-system-gold/20 border border-system-gold flex items-center justify-center text-system-gold shadow-glow-gold flex-shrink-0">
+              <Award className="w-6 h-6" />
+            </div>
+            <div>
+              <div className="text-[10px] font-mono text-zinc-400 uppercase">Currently Equipped Title:</div>
+              <div className="text-sm font-black text-system-gold uppercase font-mono tracking-wide">
+                {equippedTitle || 'Awakened Hunter'}
+              </div>
             </div>
           </div>
+
+          <button
+            onClick={() => setShowShareCard(true)}
+            className="w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-system-dark font-black uppercase text-xs tracking-wider shadow-glow-blue hover:from-white hover:to-white transition-all flex items-center justify-center gap-2"
+          >
+            <Share2 className="w-4 h-4" />
+            <span>Generate Guild Card</span>
+          </button>
         </div>
       </div>
+
+      {/* Share Card Modal */}
+      {showShareCard && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 sm:p-8 rounded-3xl border-2 border-system-gold shadow-glow-gold max-w-md w-full relative space-y-6">
+            <button
+              onClick={() => setShowShareCard(false)}
+              className="absolute top-5 right-5 text-zinc-400 hover:text-white p-1 rounded-lg bg-system-dark border border-white/10"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="text-center space-y-2">
+              <div className="inline-block px-3 py-1 rounded-full bg-system-gold/20 border border-system-gold text-system-gold font-mono text-xs font-bold uppercase tracking-widest">
+                S-Rank VIP Hunter Guild Card
+              </div>
+              <h3 className="text-2xl font-black text-white uppercase font-display tracking-wide">
+                {hunterState.profile.name}
+              </h3>
+              <div className="text-sm font-bold text-system-cyan uppercase tracking-wider font-mono">
+                {equippedTitle || 'Awakened Hunter'} | Level {hunterState.level}
+              </div>
+            </div>
+
+            <div className="bg-system-dark p-4 rounded-2xl border border-white/10 space-y-3 font-mono text-xs">
+              <div className="flex items-center justify-between border-b border-white/5 pb-2">
+                <span className="text-zinc-400">Strength Stat:</span>
+                <span className="text-system-cyan font-bold text-sm">{hunterState.stats.str} STR</span>
+              </div>
+              <div className="flex items-center justify-between border-b border-white/5 pb-2">
+                <span className="text-zinc-400">Discipline Streak:</span>
+                <span className="text-system-gold font-bold text-sm">{hunterState.streakDays} Days</span>
+              </div>
+              <div className="flex items-center justify-between border-b border-white/5 pb-2">
+                <span className="text-zinc-400">Cutting Blueprint:</span>
+                <span className="text-white font-bold">2,150 kcal / 206g Protein</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-zinc-400">Training Sector:</span>
+                <span className="text-green-400 font-bold">Planet Fitness Lewiston</span>
+              </div>
+            </div>
+
+            <p className="text-[11px] text-zinc-400 text-center italic">
+              "Arise. Transform from 242 lbs to 170 lbs with Boricua discipline and relentless iron."
+            </p>
+
+            <button
+              onClick={handleCopyShareCard}
+              className={`w-full py-3.5 rounded-xl font-black uppercase text-xs tracking-widest transition-all flex items-center justify-center gap-2 ${
+                shareCopied
+                  ? 'bg-green-500 text-white shadow-lg'
+                  : 'bg-gradient-to-r from-system-gold to-yellow-400 text-system-dark hover:from-white hover:to-white shadow-glow-gold'
+              }`}
+            >
+              <Copy className="w-4 h-4" />
+              <span>{shareCopied ? 'Guild Card Copied!' : 'Copy Shareable Stats'}</span>
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Trophies Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

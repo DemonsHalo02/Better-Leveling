@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { AUBURN_LEWISTON_GROCERY_ITEMS, GroceryItem } from '@/lib/grocery-data';
 import { awardXp, loadHunterState, saveHunterState } from '@/lib/hunter-system';
-import { ScanLine, Search, CheckCircle, AlertCircle, Camera, X, PlusCircle, Utensils, Sparkles } from 'lucide-react';
+import { ScanLine, Search, CheckCircle, AlertCircle, Camera, X, PlusCircle, Utensils, Sparkles, ShoppingBag, CheckCircle2 } from 'lucide-react';
 
 interface BarcodeScannerProps {
   onFoodLogged?: () => void;
@@ -17,6 +17,8 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [customServings, setCustomServings] = useState<number>(1);
+  const [isInGroceryList, setIsInGroceryList] = useState<boolean>(false);
+  const [checkedInGrocery, setCheckedInGrocery] = useState<boolean>(false);
   const scannerRef = useRef<Html5QrcodeScanner | null>(null);
 
   useEffect(() => {
@@ -45,13 +47,73 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
     }
   }, [scannerActive]);
 
+  useEffect(() => {
+    if (scannedResult && typeof window !== 'undefined') {
+      const savedCustom = localStorage.getItem('pf_custom_grocery_items');
+      const customList: GroceryItem[] = savedCustom ? JSON.parse(savedCustom) : [];
+      const allLocal = [...AUBURN_LEWISTON_GROCERY_ITEMS, ...customList];
+      const match = allLocal.some(item => item.id === scannedResult.id || item.upc === scannedResult.upc);
+      setIsInGroceryList(match);
+
+      const savedChecked = localStorage.getItem('pf_grocery_checked');
+      if (savedChecked) {
+        try {
+          const checkedMap = JSON.parse(savedChecked);
+          setCheckedInGrocery(!!checkedMap[scannedResult.id]);
+        } catch {
+          setCheckedInGrocery(false);
+        }
+      } else {
+        setCheckedInGrocery(false);
+      }
+    }
+  }, [scannedResult]);
+
+  const handleToggleGroceryCheck = () => {
+    if (!scannedResult || typeof window !== 'undefined') return;
+    const savedChecked = localStorage.getItem('pf_grocery_checked');
+    const checkedMap = savedChecked ? JSON.parse(savedChecked) : {};
+    const nextState = !checkedInGrocery;
+    checkedMap[scannedResult.id] = nextState;
+    localStorage.setItem('pf_grocery_checked', JSON.stringify(checkedMap));
+    setCheckedInGrocery(nextState);
+    alert(nextState ? `✅ Checked off "${scannedResult.name}" from your ME Grocery Guide list!` : `Removed checkmark for "${scannedResult.name}".`);
+  };
+
+  const handleSaveToGroceryList = () => {
+    if (!scannedResult || typeof window !== 'undefined') return;
+    const savedCustom = localStorage.getItem('pf_custom_grocery_items');
+    const customList: GroceryItem[] = savedCustom ? JSON.parse(savedCustom) : [];
+    
+    if (!customList.some(i => i.id === scannedResult.id || i.upc === scannedResult.upc)) {
+      const newItem: GroceryItem = {
+        ...scannedResult,
+        store: "Walmart Supercenter (Auburn, ME)",
+        priceEst: "$3.98 (Est. Walmart Price)",
+        coachNote: "Added from live Barcode Scanner for weekly Boricua cutting prep."
+      };
+      const updated = [newItem, ...customList];
+      localStorage.setItem('pf_custom_grocery_items', JSON.stringify(updated));
+      setIsInGroceryList(true);
+      alert(`🛒 Added "${scannedResult.name}" to your Auburn Walmart Grocery Guide!`);
+    } else {
+      alert(`This item is already in your Grocery Guide!`);
+    }
+  };
+
   const handleBarcodeScanned = async (upc: string) => {
     setLoading(true);
     setErrorMsg(null);
     setScannedResult(null);
 
     // 1. Check local Auburn/Lewiston database first
-    const localMatch = AUBURN_LEWISTON_GROCERY_ITEMS.find(item => item.upc === upc || item.id === upc);
+    let customList: GroceryItem[] = [];
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('pf_custom_grocery_items');
+      if (saved) try { customList = JSON.parse(saved); } catch {}
+    }
+    const allLocal = [...AUBURN_LEWISTON_GROCERY_ITEMS, ...customList];
+    const localMatch = allLocal.find(item => item.upc === upc || item.id === upc);
     if (localMatch) {
       setScannedResult(localMatch);
       setLoading(false);
@@ -98,7 +160,13 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
     setErrorMsg(null);
 
     const q = searchQuery.toLowerCase().trim();
-    const match = AUBURN_LEWISTON_GROCERY_ITEMS.find(
+    let customList: GroceryItem[] = [];
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('pf_custom_grocery_items');
+      if (saved) try { customList = JSON.parse(saved); } catch {}
+    }
+    const allLocal = [...AUBURN_LEWISTON_GROCERY_ITEMS, ...customList];
+    const match = allLocal.find(
       item => item.name.toLowerCase().includes(q) || item.brand.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)
     );
 
@@ -107,7 +175,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
       setLoading(false);
     } else {
       setErrorMsg(`No direct local match for "${searchQuery}". Showing closest high-protein recommendation!`);
-      setScannedResult(AUBURN_LEWISTON_GROCERY_ITEMS[0]); // fallback to chicken
+      setScannedResult(allLocal[0]); // fallback to chicken
       setLoading(false);
     }
   };
@@ -246,7 +314,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
         </div>
       </div>
 
-      {/* Error Notice */}
+      {/* Error display */}
       {errorMsg && (
         <div className="bg-red-500/10 border border-red-500/40 p-4 rounded-xl flex items-center gap-3 text-red-400 text-xs">
           <AlertCircle className="w-5 h-5 flex-shrink-0" />
@@ -325,18 +393,45 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
           </div>
 
           {/* Coach Note & Log Action */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-2">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-2 border-t border-white/5">
             <p className="text-xs text-zinc-300 leading-relaxed max-w-xl">
               <strong className="text-system-gold">Coach's Advice:</strong> {scannedResult.coachNote}
             </p>
 
-            <button
-              onClick={handleLogFood}
-              className="w-full md:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-system-dark font-black uppercase tracking-widest text-sm shadow-glow-blue hover:from-white hover:to-white transition-all transform hover:scale-105 flex items-center justify-center gap-2"
-            >
-              <PlusCircle className="w-5 h-5" />
-              <span>Log to Daily Quest (+{Math.round(scannedResult.calories * customServings)} kcal)</span>
-            </button>
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+              {isInGroceryList ? (
+                <button
+                  type="button"
+                  onClick={handleToggleGroceryCheck}
+                  className={`w-full sm:w-auto px-5 py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs transition-all flex items-center justify-center gap-2 border ${
+                    checkedInGrocery
+                      ? 'bg-green-500/20 text-green-400 border-green-500/50 hover:bg-green-500/30'
+                      : 'bg-system-dark text-zinc-300 border-white/20 hover:border-system-cyan hover:text-white'
+                  }`}
+                >
+                  <CheckCircle2 className={`w-4 h-4 ${checkedInGrocery ? 'text-green-400' : 'text-zinc-400'}`} />
+                  <span>{checkedInGrocery ? 'Checked Off in Guide' : 'Check Off from Guide'}</span>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleSaveToGroceryList}
+                  className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-system-dark hover:bg-system-blue/20 text-system-cyan font-bold uppercase tracking-wider text-xs border border-system-blue/40 transition-all flex items-center justify-center gap-2 shadow-sm"
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  <span>+ Save to Walmart List</span>
+                </button>
+              )}
+
+              <button
+                type="button"
+                onClick={handleLogFood}
+                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-system-dark font-black uppercase tracking-widest text-xs shadow-glow-blue hover:from-white hover:to-white transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+              >
+                <PlusCircle className="w-4 h-4" />
+                <span>Log to Daily Quest (+{Math.round(scannedResult.calories * customServings)} kcal)</span>
+              </button>
+            </div>
           </div>
         </div>
       )}

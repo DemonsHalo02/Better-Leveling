@@ -25,6 +25,13 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
 
   if (!state) return null;
 
+  const targetDate = new Date('2027-12-31').getTime();
+  const todayTime = new Date().getTime();
+  const daysRemaining = Math.max(0, Math.round((targetDate - todayTime) / (1000 * 60 * 60 * 24)));
+  const currentWeight = state.weightHistory[state.weightHistory.length - 1]?.weight || 242;
+  const lbsLost = Math.max(0, 242 - currentWeight);
+  const raidProgress = Math.min(100, Math.max(5, Math.round((lbsLost / 72) * 100)));
+
   const handleStatUpgrade = (stat: 'str' | 'agi' | 'vit' | 'int' | 'per') => {
     allocateStatPoint(stat);
   };
@@ -86,6 +93,57 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
             >
               <Utensils className="w-4 h-4" />
               Scan Meal Barcode
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ⚔️ Boss Raid 170 LB Cutting Countdown Deck */}
+      <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-card p-6 rounded-2xl border-2 border-system-gold/60 shadow-glow-gold relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-80 h-full bg-gradient-to-l from-system-gold/10 to-transparent pointer-events-none" />
+        
+        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-2 flex-1">
+            <div className="flex items-center gap-2">
+              <span className="bg-system-gold text-system-dark font-black text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded shadow-sm">
+                👑 S-Rank Boss Raid Directive
+              </span>
+              <span className="text-xs font-mono text-system-cyan">Target: 170 LBS by Dec 31, 2027</span>
+            </div>
+            <h3 className="text-2xl font-black text-white uppercase tracking-wider flex flex-wrap items-center gap-2">
+              <span>The 170 LB Shredded Transformation</span>
+              <span className="text-sm font-mono font-bold text-system-gold">({daysRemaining} Days Left)</span>
+            </h3>
+            <p className="text-xs text-zinc-300 max-w-2xl leading-relaxed">
+              Every clean meal prep and every PR at Planet Fitness Lewiston chops HP off this boss raid. Stay consistent on the Boricua cutting diet to avoid loose skin and emerge at peak definition!
+            </p>
+
+            {/* Boss HP Bar */}
+            <div className="pt-2">
+              <div className="flex items-center justify-between text-xs font-mono font-bold mb-1.5">
+                <span className="text-zinc-400">Start: 242 LBS</span>
+                <span className="text-system-gold animate-pulse">Current: {currentWeight} LBS (-{lbsLost} lbs lost)</span>
+                <span className="text-system-cyan">Goal: 170 LBS</span>
+              </div>
+              <div className="w-full h-4 bg-system-dark rounded-full overflow-hidden border border-system-gold/40 p-0.5 shadow-inner">
+                <div 
+                  className="h-full bg-gradient-to-r from-system-blue via-system-cyan to-system-gold rounded-full transition-all duration-1000 shadow-glow-gold"
+                  style={{ width: `${raidProgress}%` }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-system-dark/80 p-4 rounded-xl border border-system-gold/40 text-center min-w-[160px] flex flex-col justify-center">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Raid Completion</div>
+            <div className="text-3xl font-black text-system-gold font-mono my-1 text-glow-gold">
+              {raidProgress}%
+            </div>
+            <button
+              onClick={() => setShowWeightModal(true)}
+              className="mt-2 w-full py-1.5 px-3 rounded-lg bg-system-gold text-system-dark font-black text-xs uppercase tracking-wider hover:bg-white transition-all shadow-sm"
+            >
+              Log Weigh-In
             </button>
           </div>
         </div>
@@ -284,7 +342,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                   </span>
                   <span className="text-xs font-mono text-system-gold">+200 XP</span>
                 </div>
-                <h4 className="text-base font-black text-white uppercase">2,650 kcal | 190g Protein</h4>
+                <h4 className="text-base font-black text-white uppercase">2,150 kcal | 206g Protein</h4>
                 <p className="text-xs text-zinc-400 mt-1">High protein prevents muscle loss & loose skin during your cut.</p>
               </div>
               <button
