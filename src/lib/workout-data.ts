@@ -1,7 +1,7 @@
 export interface Exercise {
   id: string;
   name: string;
-  targetGroup: 'Chest' | 'Back' | 'Shoulders' | 'Biceps' | 'Triceps' | 'Legs' | 'Abs' | 'Full Body';
+  targetGroup: 'Chest' | 'Back' | 'Shoulders' | 'Biceps' | 'Triceps' | 'Forearms' | 'Legs' | 'Abs' | 'Full Body';
   sets: number;
   reps: string;
   equipment: string;
@@ -178,6 +178,15 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
         reps: "12-15 reps",
         equipment: "Dumbbells",
         coachTip: "Neutral palm-facing-in grip. Targets the brachialis and forearm thickness to make arms look massive from all angles."
+      },
+      {
+        id: "tue-7",
+        name: "Behind-the-Back Cable / Dumbbell Wrist Curls",
+        targetGroup: "Forearms",
+        sets: 4,
+        reps: "15-20 reps",
+        equipment: "Low Cable Pulley or Dumbbells",
+        coachTip: "Let the bar/weight roll down to your fingertips at the bottom of each rep, then curl your wrists up hard and squeeze inner forearms for 1 second."
       }
     ]
   },
@@ -373,6 +382,15 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
         reps: "12-15 reps",
         equipment: "Low Pulley with Rope Attachment",
         coachTip: "Keep wrists straight and thumbs pointing up. Constant cable tension creates incredible bicep pump."
+      },
+      {
+        id: "fri-7",
+        name: "Reverse-Grip EZ-Bar / Cable Curls & Wrist Extensions",
+        targetGroup: "Forearms",
+        sets: 4,
+        reps: "12-15 reps",
+        equipment: "Pre-fixed Barbell or Straight Cable Bar",
+        coachTip: "Grip the bar overhand (palms facing down). Keeps constant tension on the brachioradialis and forearm extensors for thick, vascular Popeye forearms!"
       }
     ]
   },
