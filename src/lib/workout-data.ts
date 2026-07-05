@@ -28,7 +28,7 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
     splitName: "System Restoration / Mana Recharge",
     isRestDay: true,
     questTitle: "[Daily Quest] Active Recovery & Preparation",
-    description: "The System requires a mana recharge day. No workout lifting quests today! Use this time for light stretching, meal prepping at Auburn Walmart / Shaw's / Hannaford, drinking 1 gallon of water, and logging your weekly weigh-in.",
+    description: "The System requires a mana recharge day. No workout lifting quests today! Use this time for light stretching, prepping your under-$50 Puerto Rican style meals at Auburn Walmart, drinking 1 gallon of water, and logging your weekly weigh-in.",
     xpReward: 250,
     exercises: [
       {
@@ -47,7 +47,7 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "Weekly Prep",
         equipment: "Kitchen / Walmart Auburn",
-        coachTip: "Pre-cook your store brand chicken breast, rice, and vegetables so your High-Protein Quest is effortless all week."
+        coachTip: "Pre-cook your Puerto Rican Pollo Guisado, Picadillo de Pavo, rice, and habichuelas so your High-Protein Boricua Quest is effortless all week."
       }
     ]
   },
