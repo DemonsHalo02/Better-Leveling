@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { loadHunterState, saveHunterState, awardXp } from '@/lib/hunter-system';
+import { loadHunterState, saveHunterState, awardXp, triggerLevelUpCelebration } from '@/lib/hunter-system';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, Area, AreaChart } from 'recharts';
 import { TrendingDown, Trophy, Plus, Award, Shield, Flame, Target, Calendar } from 'lucide-react';
 
@@ -26,9 +26,16 @@ export default function WeightAndPrTracker() {
   const [prExercise, setPrExercise] = useState('');
   const [prWeight, setPrWeight] = useState('');
   const [prReps, setPrReps] = useState('');
+  const [hunterStr, setHunterStr] = useState<number>(10);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      const updateStr = () => {
+        setHunterStr(loadHunterState().stats.str);
+      };
+      updateStr();
+      window.addEventListener('hunterStateChanged', updateStr);
+
       // Load weight history
       const savedWeights = localStorage.getItem('pf_weight_history');
       if (savedWeights) {
@@ -82,7 +89,12 @@ export default function WeightAndPrTracker() {
       localStorage.setItem('pf_strength_prs', JSON.stringify(updated));
     }
 
+    const state = loadHunterState();
+    state.stats.str += 1;
+    saveHunterState(state);
     awardXp(150, 'str');
+    triggerLevelUpCelebration();
+
     setShowPrModal(false);
     setPrExercise('');
     setPrWeight('');
@@ -188,17 +200,55 @@ export default function WeightAndPrTracker() {
           </button>
         </div>
 
+        {/* STR Stat Level Up Progress Box */}
+        <div className="bg-system-card p-4 rounded-xl border border-system-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-system-gold/20 border border-system-gold/50 flex items-center justify-center font-black text-xl text-system-gold shadow-glow-gold">
+              {hunterStr}
+            </div>
+            <div>
+              <div className="text-xs font-bold text-system-gold uppercase tracking-wider flex items-center gap-1.5">
+                <span>STR (Strength) Attribute Level</span>
+                <span className="text-[10px] bg-system-gold/20 px-1.5 py-0.2 rounded font-mono text-white">+1 Per PR</span>
+              </div>
+              <p className="text-xs text-zinc-400">Every personal record logged at Lewiston Planet Fitness increases your STR stat by +1 and awards 150 XP!</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 text-xs font-mono uppercase bg-black/40 px-3.5 py-2 rounded-lg border border-white/10 text-system-cyan whitespace-nowrap">
+            <Trophy className="w-4 h-4 text-system-gold" />
+            <span>Next Rank: {hunterStr + (5 - (hunterStr % 5 || 5))} STR</span>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {prs.map((pr) => (
-            <div key={pr.id} className="bg-system-dark p-5 rounded-xl border border-system-blue/30 relative overflow-hidden group hover:border-system-blue transition-all">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-system-blue/5 rounded-full -mr-10 -mt-10 pointer-events-none group-hover:scale-150 transition-transform" />
-              <div className="text-[10px] text-zinc-500 font-mono uppercase mb-1">{pr.date}</div>
-              <div className="text-sm font-bold text-white line-clamp-1">{pr.exercise}</div>
-              <div className="text-2xl font-black text-system-gold font-mono mt-2">
-                {pr.weightLbs} <span className="text-xs font-normal text-zinc-400">lbs</span>
+            <div key={pr.id} className="bg-system-dark p-5 rounded-xl border border-system-blue/30 relative overflow-hidden group hover:border-system-blue transition-all flex flex-col justify-between">
+              <div>
+                <div className="absolute top-0 right-0 w-20 h-20 bg-system-blue/5 rounded-full -mr-10 -mt-10 pointer-events-none group-hover:scale-150 transition-transform" />
+                <div className="text-[10px] text-zinc-500 font-mono uppercase mb-1">{pr.date}</div>
+                <div className="text-sm font-bold text-white line-clamp-1">{pr.exercise}</div>
+                <div className="text-2xl font-black text-system-gold font-mono mt-2">
+                  {pr.weightLbs} <span className="text-xs font-normal text-zinc-400">lbs</span>
+                </div>
+                <div className="text-xs font-mono text-zinc-400 mt-0.5">
+                  x {pr.reps} {pr.reps === 1 ? 'Rep' : 'Reps'} (Max Effort)
+                </div>
               </div>
-              <div className="text-xs font-mono text-zinc-400 mt-0.5">
-                x {pr.reps} {pr.reps === 1 ? 'Rep' : 'Reps'} (Max Effort)
+
+              <div className="mt-4 pt-3 border-t border-white/5 flex flex-wrap items-center gap-1.5">
+                <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded bg-system-gold/20 text-system-gold border border-system-gold/40">
+                  💪 +1 STR LEVEL
+                </span>
+                {pr.weightLbs >= 200 && (
+                  <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/40 animate-pulse">
+                    🔥 200+ LB IRON BEAST
+                  </span>
+                )}
+                {pr.weightLbs >= 150 && pr.weightLbs < 200 && (
+                  <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded bg-blue-500/20 text-system-cyan border border-system-blue/40">
+                    ⚡ ELITE LIFT
+                  </span>
+                )}
               </div>
             </div>
           ))}

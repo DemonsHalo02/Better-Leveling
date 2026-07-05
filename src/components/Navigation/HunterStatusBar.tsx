@@ -59,7 +59,9 @@ export default function HunterStatusBar({ onNavigate }: HunterStatusBarProps) {
             <div>
               <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-system-blue font-mono font-bold flex items-center gap-1.5 leading-none mb-1">
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-system-blue animate-ping" />
-                SYSTEM AWAKENING
+                <span className="text-system-gold font-black">{state.title || "AWAKENED HUNTER"}</span>
+                <span className="text-zinc-500">|</span>
+                <span>SYSTEM ACTIVE</span>
               </div>
               <h1 className="text-sm sm:text-lg font-black tracking-wider text-white uppercase font-display flex items-center gap-1.5">
                 <span>BETTER LEVELING</span>

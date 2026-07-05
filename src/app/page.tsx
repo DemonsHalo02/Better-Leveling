@@ -10,6 +10,7 @@ import NutritionTracker from "@/components/Nutrition/NutritionTracker";
 import GroceryGuide from "@/components/Nutrition/GroceryGuide";
 import WeightAndPrTracker from "@/components/Tracking/WeightAndPrTracker";
 import MembershipPortal from "@/components/Membership/MembershipPortal";
+import TrophyHall from "@/components/Dashboard/TrophyHall";
 import { Shield } from "lucide-react";
 
 export default function Home() {
@@ -40,6 +41,7 @@ export default function Home() {
           )}
           {activeTab === "weight" && <WeightAndPrTracker />}
           {activeTab === "grocery" && <GroceryGuide />}
+          {activeTab === "trophies" && <TrophyHall />}
           {activeTab === "membership" && <MembershipPortal />}
         </div>
       </main>

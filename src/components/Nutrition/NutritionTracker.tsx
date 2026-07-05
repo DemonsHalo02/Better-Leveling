@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { loadHunterState, saveHunterState, awardXp } from '@/lib/hunter-system';
-import { Utensils, Plus, Trash2, CheckCircle2, Flame, Award, ArrowRight, ShieldCheck } from 'lucide-react';
+import { loadHunterState, saveHunterState, awardXp, triggerLevelUpCelebration } from '@/lib/hunter-system';
+import { Utensils, Plus, Trash2, CheckCircle2, Flame, Award, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { TabType } from '../Navigation/SystemSidebar';
 
 interface LoggedMeal {
@@ -86,10 +86,39 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
   const totalCarbs = meals.reduce((acc, m) => acc + m.carbs, 0);
   const totalFat = meals.reduce((acc, m) => acc + m.fat, 0);
 
-  const calGoal = 2650;
-  const protGoal = 190;
-  const carbGoal = 280;
-  const fatGoal = 85;
+  const calGoal = 2150;
+  const protGoal = 206;
+  const carbGoal = 220;
+  const fatGoal = 55;
+
+  const boricuaQuickMeals = [
+    { name: "Breakfast: Sweet Boricua Café con Leche & Scramble", cals: 420, prot: 24, carbs: 40, fat: 16, time: "8:00 AM", icon: "☕" },
+    { name: "Lunch: Pollo Guisado & Crispy Tostones", cals: 625, prot: 63, carbs: 83, fat: 4, time: "12:30 PM", icon: "🍌" },
+    { name: "Afternoon Perk: Iced Café con Leche & Greek Yogurt", cals: 320, prot: 35, carbs: 30, fat: 1, time: "4:00 PM", icon: "🥛" },
+    { name: "Dinner: Chuletas A la Plancha & Beans", cals: 650, prot: 57, carbs: 65, fat: 16, time: "7:30 PM", icon: "🥩" },
+    { name: "Nighttime Recovery: Anabolic Casein Snack", cals: 180, prot: 25, carbs: 8, fat: 0, time: "10:30 PM", icon: "🌙" },
+  ];
+
+  const handleQuickLog = (item: typeof boricuaQuickMeals[0]) => {
+    const newMeal: LoggedMeal = {
+      id: Date.now().toString() + Math.random().toString(36).substring(2, 5),
+      name: item.name,
+      calories: item.cals,
+      protein: item.prot,
+      carbs: item.carbs,
+      fat: item.fat,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+    const updated = [...meals, newMeal];
+    saveMealsToStorage(updated);
+
+    awardXp(75, 'int');
+    const state = loadHunterState();
+    if (!state.completedQuestsToday.calories) state.completedQuestsToday.calories = true;
+    if (!state.completedQuestsToday.protein) state.completedQuestsToday.protein = true;
+    saveHunterState(state);
+    triggerLevelUpCelebration();
+  };
 
   const calPct = Math.min(100, Math.floor((totalCals / calGoal) * 100));
   const protPct = Math.min(100, Math.floor((totalProt / protGoal) * 100));
@@ -130,13 +159,56 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
         </div>
       </div>
 
+      {/* 1-Click Boricua Meal Prep Quick-Log Deck */}
+      <div className="bg-system-panel p-6 rounded-2xl border border-system-blue/40 shadow-glow-blue space-y-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
+          <div>
+            <h3 className="text-base font-black text-white uppercase tracking-wider flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-system-gold animate-pulse" /> ⚡ 1-Click Boricua Meal Prep Quick-Log Deck
+            </h3>
+            <p className="text-xs text-zinc-400">Instantly log your prepped Puerto Rican meals with 1 click to fill your HP & Mana bars!</p>
+          </div>
+          <span className="text-[10px] bg-system-blue/20 text-system-cyan border border-system-blue/40 px-2.5 py-1 rounded font-mono font-bold whitespace-nowrap">
+            +75 INT XP Per Meal
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {boricuaQuickMeals.map((item, idx) => (
+            <button
+              key={idx}
+              onClick={() => handleQuickLog(item)}
+              className="bg-system-dark hover:bg-system-card p-4 rounded-xl border border-white/10 hover:border-system-cyan transition-all text-left flex items-start justify-between gap-3 group shadow-md hover:shadow-glow-blue/30"
+            >
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">{item.icon}</span>
+                  <span className="text-xs font-mono text-system-gold">{item.time}</span>
+                </div>
+                <h4 className="text-xs font-bold text-white group-hover:text-system-cyan transition-colors line-clamp-1">
+                  {item.name}
+                </h4>
+                <div className="text-[11px] font-mono text-zinc-400 flex items-center gap-2">
+                  <span className="text-white font-bold">{item.cals} kcal</span>
+                  <span>|</span>
+                  <span className="text-system-cyan font-bold">{item.prot}g P</span>
+                </div>
+              </div>
+              <div className="w-8 h-8 rounded-lg bg-system-blue/10 group-hover:bg-system-blue text-system-cyan group-hover:text-black flex items-center justify-center transition-all flex-shrink-0 mt-1">
+                <Plus className="w-4 h-4" />
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Macro Rings Grid - 2x2 on mobile, 4x1 on desktop */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         
-        {/* Calories Card */}
+        {/* Calories Card (Mana Bar) */}
         <div className="bg-system-panel p-5 rounded-2xl border border-system-blue/30 space-y-3">
           <div className="flex justify-between items-center text-xs font-bold uppercase text-zinc-400">
-            <span>Calories</span>
+            <span>⚡ Mana Fuel (Cals)</span>
             <span className="text-system-cyan font-mono">{calPct}%</span>
           </div>
           <div className="text-2xl font-black text-white font-mono text-glow">
@@ -155,18 +227,18 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
           </div>
         </div>
 
-        {/* Protein Card */}
-        <div className="bg-system-panel p-5 rounded-2xl border border-system-cyan/40 space-y-3 shadow-glow-blue/20">
+        {/* Protein Card (HP Armor Bar) */}
+        <div className="bg-system-panel p-5 rounded-2xl border border-green-500/40 space-y-3 shadow-glow-blue/20">
           <div className="flex justify-between items-center text-xs font-bold uppercase text-zinc-400">
-            <span>Protein</span>
-            <span className="text-system-cyan font-mono">{protPct}%</span>
+            <span className="text-green-400">💖 HP Armor (Prot)</span>
+            <span className="text-green-400 font-mono">{protPct}%</span>
           </div>
-          <div className="text-2xl font-black text-system-cyan font-mono">
+          <div className="text-2xl font-black text-green-400 font-mono">
             {totalProt}g <span className="text-xs font-normal text-zinc-400">/ {protGoal}g</span>
           </div>
           <div className="w-full h-2.5 bg-black/60 rounded-full overflow-hidden border border-white/10">
             <div 
-              className="h-full bg-system-cyan rounded-full transition-all duration-500 shadow-glow-blue"
+              className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full transition-all duration-500 shadow-glow-blue"
               style={{ width: `${protPct}%` }}
             />
           </div>
