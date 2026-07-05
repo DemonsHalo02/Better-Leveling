@@ -4,7 +4,7 @@ export interface GroceryItem {
   name: string;
   store: 'Walmart Supercenter (Auburn, ME)' | "Shaw's (Auburn/Lewiston)" | 'Hannaford (Lewiston/Auburn)' | 'All Stores';
   brand: string;
-  category: 'Protein' | 'Carbs' | 'Fats' | 'Produce' | 'Essentials';
+  category: 'Protein' | 'Carbs' | 'Fats' | 'Produce' | 'Essentials' | 'Toiletries / Non-Grocery';
   priceEst: string;
   calories: number;
   protein: number; // in grams
@@ -227,6 +227,66 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Plantain (170g)",
     coachNote: "Classic Puerto Rican green plantains! Peel, slice into coins, boil slightly, smash, and pan-sear in 0-calorie cooking spray for crispy, authentic Tostones a la Plancha."
+  },
+  {
+    id: "g-14",
+    upc: "068113117468", // Equate Body Wash
+    name: "Equate Men's 3-in-1 Body Wash, Shampoo & Conditioner (32 fl oz)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Equate / Walmart",
+    category: "Toiletries / Non-Grocery",
+    priceEst: "$4.48 (32 fl oz bottle)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1 wash",
+    coachNote: "Essential post-workout hygiene for Planet Fitness Lewiston training sessions. Keeps hair and skin clean without paying brand-name markups."
+  },
+  {
+    id: "g-15",
+    upc: "035000521013", // Colgate Toothpaste
+    name: "Colgate Total Clean Mint Paste Toothpaste (two 5.1 oz tubes)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Colgate",
+    category: "Toiletries / Non-Grocery",
+    priceEst: "$6.98 (2-pack)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1 brush",
+    coachNote: "Daily oral hygiene essential. Universally stocked in aisle A-12 at Auburn Walmart Supercenter."
+  },
+  {
+    id: "g-16",
+    upc: "078742352880", // Great Value Bath Tissue
+    name: "Great Value Ultra Gentle Bath Tissue / Toilet Paper (12 Mega Rolls)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Toiletries / Non-Grocery",
+    priceEst: "$10.98 (12 Mega Rolls = 48 Regular Rolls)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1 roll",
+    coachNote: "Household non-grocery essential. Great Value bulk pricing keeps your weekly Monday shopping trip well within budget."
+  },
+  {
+    id: "g-17",
+    upc: "078742013891", // BlenderBottle / Shaker Bottle
+    name: "Equate 28 oz Shaker Bottle with Wire Whisk Ball",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Equate",
+    category: "Toiletries / Non-Grocery",
+    priceEst: "$5.98 (28 oz shaker)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1 bottle",
+    coachNote: "Crucial gym accessory for mixing your daily whey protein shakes smoothly after intense lifting sessions at PF Lewiston."
   }
 ];
 

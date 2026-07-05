@@ -117,7 +117,7 @@ export default function GroceryGuide() {
   const progressPct = totalItemsCount > 0 ? Math.round((checkedCount / totalItemsCount) * 100) : 0;
 
   const stores = ['All Stores', 'Walmart Supercenter (Auburn, ME)', "Shaw's (Auburn/Lewiston)", 'Hannaford (Lewiston/Auburn)'];
-  const categories = ['All', 'Protein', 'Carbs', 'Produce', 'Essentials'];
+  const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery'];
 
   return (
     <div className="space-y-8 pb-12">
@@ -261,6 +261,7 @@ export default function GroceryGuide() {
                         <option value="Fats">Fats</option>
                         <option value="Produce">Produce</option>
                         <option value="Essentials">Essentials</option>
+                        <option value="Toiletries / Non-Grocery">Toiletries / Non-Grocery</option>
                       </select>
                     </div>
                   </div>
@@ -392,10 +393,19 @@ export default function GroceryGuide() {
 
                       <div className="flex items-center gap-3 text-xs font-mono text-zinc-400 pt-1">
                         <span className="text-system-gold font-bold">{item.priceEst}</span>
-                        <span>|</span>
-                        <span className="text-system-cyan font-bold">{item.protein}g Protein</span>
-                        <span>|</span>
-                        <span>{item.calories} kcal</span>
+                        {item.category === 'Toiletries / Non-Grocery' ? (
+                          <>
+                            <span>|</span>
+                            <span className="text-purple-300 font-bold">🧴 Household Essential</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>|</span>
+                            <span className="text-system-cyan font-bold">{item.protein}g Protein</span>
+                            <span>|</span>
+                            <span>{item.calories} kcal</span>
+                          </>
+                        )}
                       </div>
 
                       <p className="text-xs text-zinc-400 leading-relaxed pt-1.5 border-t border-white/5 mt-2">
@@ -405,7 +415,11 @@ export default function GroceryGuide() {
                   </div>
 
                   <div className="flex flex-col items-end gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded bg-system-dark text-zinc-300 border border-white/10 whitespace-nowrap">
+                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border whitespace-nowrap ${
+                      item.category === 'Toiletries / Non-Grocery'
+                        ? 'bg-purple-500/20 text-purple-300 border-purple-500/40 shadow-sm'
+                        : 'bg-system-dark text-zinc-300 border-white/10'
+                    }`}>
                       {item.category}
                     </span>
                     {item.id.startsWith('custom-') && (
