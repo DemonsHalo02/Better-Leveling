@@ -2,13 +2,21 @@
 
 import React, { useState, useEffect } from 'react';
 import { AUBURN_LEWISTON_GROCERY_ITEMS, MEAL_PREP_PLANS, GroceryItem } from '@/lib/grocery-data';
-import { ShoppingBag, CheckCircle2, Circle, Utensils, DollarSign, MapPin, Sparkles, Award, RotateCcw, Calendar } from 'lucide-react';
+import { ShoppingBag, CheckCircle2, Circle, Utensils, DollarSign, MapPin, Sparkles, Award, RotateCcw, Calendar, Plus, Trash2 } from 'lucide-react';
 
 export default function GroceryGuide() {
   const [selectedStore, setSelectedStore] = useState<string>('All Stores');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<'items' | 'plans'>('items');
+
+  const [customItems, setCustomItems] = useState<GroceryItem[]>([]);
+  const [showAddModal, setShowAddModal] = useState<boolean>(false);
+  const [customName, setCustomName] = useState('');
+  const [customStore, setCustomStore] = useState<GroceryItem['store']>('Walmart Supercenter (Auburn, ME)');
+  const [customCategory, setCustomCategory] = useState<GroceryItem['category']>('Essentials');
+  const [customPrice, setCustomPrice] = useState('');
+  const [customNote, setCustomNote] = useState('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -30,6 +38,11 @@ export default function GroceryGuide() {
         if (saved) setCheckedItems(JSON.parse(saved));
         if (!savedWeekKey) localStorage.setItem('pf_grocery_week_key', currentWeekKey);
       }
+
+      const savedCustom = localStorage.getItem('pf_custom_grocery_items');
+      if (savedCustom) {
+        try { setCustomItems(JSON.parse(savedCustom)); } catch {}
+      }
     }
   }, []);
 
@@ -50,13 +63,56 @@ export default function GroceryGuide() {
     setCheckedItems({});
   };
 
-  const filteredItems = AUBURN_LEWISTON_GROCERY_ITEMS.filter(item => {
+  const handleAddCustomItem = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!customName.trim() || !customPrice.trim()) return;
+
+    const newItem: GroceryItem = {
+      id: `custom-${Date.now()}`,
+      upc: "000000000000",
+      name: customName.trim(),
+      store: customStore,
+      brand: "Custom Entry",
+      category: customCategory,
+      priceEst: customPrice.trim().startsWith('$') ? customPrice.trim() : `$${customPrice.trim()}`,
+      calories: 0,
+      protein: 0,
+      carbs: 0,
+      fat: 0,
+      servingSize: "1 unit",
+      coachNote: customNote.trim() || "Custom added item for weekly Boricua prep."
+    };
+
+    const updated = [newItem, ...customItems];
+    setCustomItems(updated);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('pf_custom_grocery_items', JSON.stringify(updated));
+    }
+
+    setShowAddModal(false);
+    setCustomName('');
+    setCustomPrice('');
+    setCustomNote('');
+  };
+
+  const handleRemoveCustomItem = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const updated = customItems.filter(item => item.id !== id);
+    setCustomItems(updated);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('pf_custom_grocery_items', JSON.stringify(updated));
+    }
+  };
+
+  const allItems = [...AUBURN_LEWISTON_GROCERY_ITEMS, ...customItems];
+
+  const filteredItems = allItems.filter(item => {
     const matchStore = selectedStore === 'All Stores' || item.store === selectedStore;
     const matchCat = selectedCategory === 'All' || item.category === selectedCategory;
     return matchStore && matchCat;
   });
 
-  const totalItemsCount = AUBURN_LEWISTON_GROCERY_ITEMS.length;
+  const totalItemsCount = allItems.length;
   const checkedCount = Object.values(checkedItems).filter(Boolean).length;
   const progressPct = totalItemsCount > 0 ? Math.round((checkedCount / totalItemsCount) * 100) : 0;
 
@@ -126,7 +182,7 @@ export default function GroceryGuide() {
               </p>
             </div>
 
-            <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end">
+            <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-between md:justify-end">
               <div className="w-32 bg-black/50 p-2 rounded-xl border border-white/10 hidden sm:block">
                 <div className="flex justify-between text-[10px] font-mono font-bold mb-1">
                   <span className="text-zinc-400">Cart Progress</span>
@@ -138,14 +194,120 @@ export default function GroceryGuide() {
               </div>
 
               <button
+                onClick={() => setShowAddModal(true)}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-black font-black uppercase tracking-wider text-xs shadow-glow-blue hover:bg-white transition-all min-h-[38px]"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Item</span>
+              </button>
+
+              <button
                 onClick={handleManualReset}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-system-dark hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition-all text-xs font-bold uppercase tracking-wider whitespace-nowrap"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-system-dark hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition-all text-xs font-bold uppercase tracking-wider whitespace-nowrap min-h-[38px]"
               >
                 <RotateCcw className="w-3.5 h-3.5 text-system-gold" />
-                <span>Reset List for Monday</span>
+                <span>Reset List</span>
               </button>
             </div>
           </div>
+
+          {/* Add Custom Item Modal */}
+          {showAddModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+              <div className="bg-system-panel border border-system-blue rounded-2xl p-6 max-w-md w-full space-y-4 shadow-glow-blue">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-black text-white uppercase flex items-center gap-2">
+                    <ShoppingBag className="w-5 h-5 text-system-blue" /> Add Custom Grocery Item
+                  </h3>
+                  <button onClick={() => setShowAddModal(false)} className="text-zinc-400 hover:text-white text-sm font-bold">✕</button>
+                </div>
+
+                <form onSubmit={handleAddCustomItem} className="space-y-4 text-left">
+                  <div>
+                    <label className="text-xs font-bold text-zinc-400 uppercase">Item Name</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Extra Adobo / Greek Yogurt"
+                      value={customName}
+                      onChange={(e) => setCustomName(e.target.value)}
+                      className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-3 mt-1 text-sm text-white focus:outline-none focus:border-system-cyan shadow-inner"
+                      required
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-xs font-bold text-zinc-400 uppercase">Store Location</label>
+                      <select
+                        value={customStore}
+                        onChange={(e) => setCustomStore(e.target.value as any)}
+                        className="w-full bg-system-dark border border-white/10 rounded-xl px-3 py-3 mt-1 text-xs font-bold text-white focus:outline-none shadow-inner"
+                      >
+                        <option value="Walmart Supercenter (Auburn, ME)">Walmart (Auburn)</option>
+                        <option value="Shaw's (Auburn/Lewiston)">Shaw's</option>
+                        <option value="Hannaford (Lewiston/Auburn)">Hannaford</option>
+                        <option value="All Stores">All Stores</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="text-xs font-bold text-zinc-400 uppercase">Category</label>
+                      <select
+                        value={customCategory}
+                        onChange={(e) => setCustomCategory(e.target.value as any)}
+                        className="w-full bg-system-dark border border-white/10 rounded-xl px-3 py-3 mt-1 text-xs font-bold text-white focus:outline-none shadow-inner"
+                      >
+                        <option value="Protein">Protein</option>
+                        <option value="Carbs">Carbs</option>
+                        <option value="Fats">Fats</option>
+                        <option value="Produce">Produce</option>
+                        <option value="Essentials">Essentials</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-xs font-bold text-zinc-400 uppercase">Est. Price</label>
+                      <input
+                        type="text"
+                        placeholder="e.g. $3.48"
+                        value={customPrice}
+                        onChange={(e) => setCustomPrice(e.target.value)}
+                        className="w-full bg-system-dark border border-white/10 rounded-xl px-4 py-3 mt-1 text-sm font-mono font-bold text-white focus:outline-none shadow-inner"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs font-bold text-zinc-400 uppercase">Coach Note / Why</label>
+                      <input
+                        type="text"
+                        placeholder="e.g. For Monday Boricua prep"
+                        value={customNote}
+                        onChange={(e) => setCustomNote(e.target.value)}
+                        className="w-full bg-system-dark border border-white/10 rounded-xl px-4 py-3 mt-1 text-sm text-white focus:outline-none shadow-inner"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 pt-3">
+                    <button
+                      type="button"
+                      onClick={() => setShowAddModal(false)}
+                      className="flex-1 py-3.5 rounded-xl bg-system-card text-zinc-400 hover:text-white font-bold text-xs sm:text-sm uppercase transition-colors min-h-[44px]"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="flex-1 py-3.5 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-black hover:bg-white font-black text-xs sm:text-sm uppercase shadow-glow-blue transition-all min-h-[44px]"
+                    >
+                      Save to List
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
 
           {/* Store & Category Filters */}
           <div className="space-y-3 bg-system-panel p-5 rounded-2xl border border-white/10">
@@ -242,9 +404,21 @@ export default function GroceryGuide() {
                     </div>
                   </div>
 
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded bg-system-dark text-zinc-300 border border-white/10 whitespace-nowrap">
-                    {item.category}
-                  </span>
+                  <div className="flex flex-col items-end gap-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded bg-system-dark text-zinc-300 border border-white/10 whitespace-nowrap">
+                      {item.category}
+                    </span>
+                    {item.id.startsWith('custom-') && (
+                      <button
+                        type="button"
+                        onClick={(e) => handleRemoveCustomItem(item.id, e)}
+                        className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/20 transition-all shadow-sm"
+                        title="Delete custom item"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
                 </div>
               );
             })}
