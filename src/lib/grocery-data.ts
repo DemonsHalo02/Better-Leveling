@@ -35,36 +35,141 @@ export interface MealPrepPlan {
 export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-1",
-    upc: "078742371195", // Great Value Chicken
+    upc: "078742371195", // Great Value Chicken Breast
     name: "Great Value Boneless Skinless Chicken Breast",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Protein",
-    priceEst: "$9.94 (3 lb family pack - $3.31/lb)",
+    priceEst: "$9.94 (3 lb bag / ~48 oz)",
     calories: 120,
     protein: 26,
     carbs: 0,
     fat: 1.5,
     servingSize: "4 oz (112g)",
-    coachNote: "Your primary lean muscle builder. Marinate with Adobo, Sazón, and garlic for mouthwatering Puerto Rican Pollo Guisado."
+    coachNote: "The primary muscle-building protein staple for your Pollo Guisado (Puerto Rican chicken stew) or grilled seasoned chicken."
   },
   {
     id: "g-2",
-    upc: "078742123459", // Ground Turkey / Pork
-    name: "Great Value 93% Lean Ground Turkey",
+    upc: "074471014309", // Cafe Bustelo K-Cups
+    name: "Café Bustelo Espresso Style Coffee K-Cup Pods",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
-    category: "Protein",
-    priceEst: "$4.48 (1 lb pack)",
-    calories: 160,
-    protein: 22,
+    brand: "Café Bustelo",
+    category: "Essentials",
+    priceEst: "$8.98 (12 Count Box)",
+    calories: 0,
+    protein: 0,
     carbs: 0,
-    fat: 8,
-    servingSize: "4 oz (112g raw)",
-    coachNote: "Make high-protein, lean Picadillo estilo boricua! Sauté with onions, peppers, and tomato sauce over medium heat using 0-cal spray."
+    fat: 0,
+    servingSize: "1 K-Cup Pod (8 fl oz)",
+    coachNote: "Authentic Puerto Rican dark roast espresso in Keurig K-Cups. Zero calories black. Perfect morning and pre-workout energy booster!"
   },
   {
     id: "g-3",
+    upc: "041331031301", // Goya Sazon
+    name: "Goya Sazón with Coriander & Annatto (Culantro y Achiote)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Goya",
+    category: "Essentials",
+    priceEst: "$3.18 (20 Packet Box)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1/4 Packet (1g)",
+    coachNote: "The essential Puerto Rican seasoning secret. Adds golden color and incredible savory flavor to rice, beans, and chicken with zero calories!"
+  },
+  {
+    id: "g-4",
+    upc: "041331039802", // Goya Sofrito
+    name: "Goya Sofrito Cooking Base (Tomato, Garlic & Cilantro)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Goya",
+    category: "Essentials",
+    priceEst: "$2.98 (12 oz jar)",
+    calories: 15,
+    protein: 0,
+    carbs: 3,
+    fat: 0,
+    servingSize: "1 Tbsp (15g)",
+    coachNote: "Authentic aromatic blend of peppers, onions, garlic, and cilantro. Only 15 calories per spoonful transforms chicken and beans into a Boricua feast!"
+  },
+  {
+    id: "g-5",
+    upc: "078742351234", // 0 Calorie Cooking Spray
+    name: "Great Value Canola Oil 0 Calorie Cooking Spray",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$2.12 (8 oz aerosol can)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "0.25 sec spray (0.25g)",
+    coachNote: "Zero-calorie non-stick cooking spray for searing Chuletas (pork chops), eggs, and plantains without adding hidden liquid oil calories!"
+  },
+  {
+    id: "g-6",
+    upc: "078742211234", // Bone-In Pork Chops (Chuletas)
+    name: "All Natural Bone-In Assorted Pork Chops (Chuletas)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value / All Natural",
+    category: "Protein",
+    priceEst: "$7.48 (~2.5 lb tray)",
+    calories: 170,
+    protein: 23,
+    carbs: 0,
+    fat: 8,
+    servingSize: "4 oz (112g raw)",
+    coachNote: "Traditional Puerto Rican Chuletas! Marinate with Sofrito and Sazón, then pan-sear using 0-calorie cooking spray for a mouthwatering high-protein dinner."
+  },
+  {
+    id: "g-7",
+    upc: "041331102544", // Goya Pink Beans
+    name: "Goya Pink Beans (Habichuelas Rosadas)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Goya",
+    category: "Carbs",
+    priceEst: "$2.36 (Two 15.5 oz cans)",
+    calories: 110,
+    protein: 7,
+    carbs: 20,
+    fat: 0.5,
+    servingSize: "1/2 cup (130g)",
+    coachNote: "Simmered with Sazón and Sofrito for classic Puerto Rican Habichuelas Guisadas. Rich in fiber and slow-digesting plant protein."
+  },
+  {
+    id: "g-8",
+    upc: "000000004068", // Fresh Plantains
+    name: "Fresh Green or Yellow Plantains (Plátanos)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Fresh Produce",
+    category: "Produce",
+    priceEst: "$2.72 (4 whole plantains)",
+    calories: 180,
+    protein: 2,
+    carbs: 47,
+    fat: 0.5,
+    servingSize: "1 medium plantain (150g)",
+    coachNote: "Slice and air-fry or pan-sear with 0-calorie cooking spray to make healthy low-fat Tostones (savory green plantains) or Maduros (sweet yellow plantains)!"
+  },
+  {
+    id: "g-9",
+    upc: "078742352217", // Great Value Jasmine Rice
+    name: "Great Value Long Grain Jasmine or White Rice",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Carbs",
+    priceEst: "$2.48 (3 lb bag)",
+    calories: 160,
+    protein: 3,
+    carbs: 36,
+    fat: 0,
+    servingSize: "1/4 cup dry (45g)",
+    coachNote: "The base for Arroz con Habichuelas. Fast-digesting clean carbohydrates to fuel your heavy lifting sessions at Planet Fitness Lewiston."
+  },
+  {
+    id: "g-10",
     upc: "078742221612", // Great Value Eggs
     name: "Great Value Large Grade A White Eggs",
     store: "Walmart Supercenter (Auburn, ME)",
@@ -76,235 +181,82 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 5,
     servingSize: "1 Egg (50g)",
-    coachNote: "Make breakfast Revoltillo al estilo boricua! Scramble with peppers, onions, and Adobo in zero-calorie cooking spray."
-  },
-  {
-    id: "g-4",
-    upc: "078742352217", // Great Value Rice
-    name: "Great Value Long Grain White or Jasmine Rice",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
-    category: "Carbs",
-    priceEst: "$3.48 (5 lb bag)",
-    calories: 160,
-    protein: 3,
-    carbs: 36,
-    fat: 0,
-    servingSize: "1/4 cup dry (45g)",
-    coachNote: "Clean, fast-digesting carbohydrates. Pair with Pollo Guisado and Habichuelas 90 minutes before your workout for maximum pump."
-  },
-  {
-    id: "g-5",
-    upc: "078742370129", // Red Kidney Beans (3 cans)
-    name: "Great Value Dark Red Kidney Beans (Habichuelas - 3 Cans)",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
-    category: "Carbs",
-    priceEst: "$2.64 ($0.88 per 15 oz can x 3)",
-    calories: 110,
-    protein: 7,
-    carbs: 20,
-    fat: 0.5,
-    servingSize: "1/2 cup (130g)",
-    coachNote: "Essential for Habichuelas Guisadas! Packed with fiber and slow-digesting complex carbs that keep you full and energized."
-  },
-  {
-    id: "g-6",
-    upc: "078742098764", // Sweet / Green Plantains
-    name: "Great Value Sweet Plantains (Maduros) or Green Plantains",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value / Goya",
-    category: "Carbs",
-    priceEst: "$2.48 (11 oz bag or fresh)",
-    calories: 140,
-    protein: 1,
-    carbs: 32,
-    fat: 2,
-    servingSize: "1/2 cup (85g)",
-    coachNote: "Authentic Puerto Rican staple! Air fry or bake using zero-calorie spray instead of deep frying to enjoy Tostones or Maduros guilt-free."
-  },
-  {
-    id: "g-7",
-    upc: "078742136039", // Greek Yogurt / Milk
-    name: "Great Value Plain Nonfat Greek Yogurt or Low-Fat Milk",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
-    category: "Protein",
-    priceEst: "$3.54 (32 oz tub)",
-    calories: 90,
-    protein: 16,
-    carbs: 6,
-    fat: 0,
-    servingSize: "3/4 cup (170g)",
-    coachNote: "High-protein anabolic hack! Use as a creamy base for your morning Café con Leche smoothie or as a high-protein dip for maduros."
-  },
-  {
-    id: "g-8",
-    upc: "078742232427", // Oats
-    name: "Great Value Old Fashioned Oats",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
-    category: "Carbs",
-    priceEst: "$3.98 (42 oz canister)",
-    calories: 150,
-    protein: 5,
-    carbs: 27,
-    fat: 2.5,
-    servingSize: "1/2 cup dry (40g)",
-    coachNote: "Make Avena Estilo Boricua! Cook with cinnamon, vanilla extract, and protein powder for an authentic, anabolic Puerto Rican breakfast."
-  },
-  {
-    id: "g-9",
-    upc: "074471000501", // Café Bustelo
-    name: "Café Bustelo Dark Roast Espresso Ground Coffee",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Café Bustelo / Great Value",
-    category: "Essentials",
-    priceEst: "$3.98 (10 oz brick)",
-    calories: 5,
-    protein: 0,
-    carbs: 1,
-    fat: 0,
-    servingSize: "1 tbsp ground (6g)",
-    coachNote: "Authentic Puerto Rican espresso! Prepare Café con Leche style using low-fat milk or whey protein and zero-calorie sweetener for clean morning energy."
-  },
-  {
-    id: "g-10",
-    upc: "078742010834", // Zero Cal Cooking Spray
-    name: "Great Value Canola Zero Calorie Cooking Spray",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
-    category: "Essentials",
-    priceEst: "$2.24 (8 oz aerosol can)",
-    calories: 0,
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    servingSize: "1 spray (0.25G)",
-    coachNote: "Essential 0-calorie hack for frying Tostones, sautéing sofrito, and searing chicken or turkey without adding unnecessary oil calories."
-  },
-  {
-    id: "g-11",
-    upc: "041331031307", // Adobo Goya
-    name: "Goya Adobo All-Purpose Seasoning with Cumin",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Goya",
-    category: "Essentials",
-    priceEst: "$1.98 (8 oz bottle)",
-    calories: 0,
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    servingSize: "1/4 tsp (1g)",
-    coachNote: "The foundation of Puerto Rican flavor! Zero calories, zero sugar. Generously season your meats, eggs, and habichuelas."
-  },
-  {
-    id: "g-12",
-    upc: "041331030010", // Sazón Goya
-    name: "Goya Sazón with Coriander & Annatto (Culantro y Achiote)",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Goya",
-    category: "Essentials",
-    priceEst: "$1.68 (8 packet box)",
-    calories: 0,
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    servingSize: "1 packet (5g)",
-    coachNote: "Gives your Pollo Guisado, Picadillo, and yellow rice that vibrant Puerto Rican color and authentic savory taste for zero calories."
-  },
-  {
-    id: "g-13",
-    upc: "078742088884", // Peppers & Onions Sofrito base
-    name: "Great Value Frozen Peppers & Onions Blend (Sofrito Base)",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
-    category: "Produce",
-    priceEst: "$2.48 (16 oz bag)",
-    calories: 25,
-    protein: 1,
-    carbs: 5,
-    fat: 0,
-    servingSize: "3/4 cup (85g)",
-    coachNote: "Zero-prep instant sofrito base! Sauté with garlic and Sazón using 0-cal spray to build rich flavor for all your stews and beans."
+    coachNote: "Bioavailable whole protein with essential healthy fats. Scramble with Sofrito and 0-calorie spray for a Boricua spiced breakfast!"
   }
 ];
 
 export const MEAL_PREP_PLANS: MealPrepPlan[] = [
   {
     id: "plan-1",
-    title: "Puerto Rican High-Protein Cutting Blueprint (~2,650 kcal)",
-    targetDailyCalories: 2650,
-    targetDailyProtein: 195,
-    estCostPerWeek: "$45.38 total at Auburn Walmart",
-    description: "Designed specifically for your 242 lb -> 170 lb goal. Enjoy authentic Puerto Rican flavors (Pollo Guisado, Picadillo, Habichuelas, and Café con Leche) prepared with zero-calorie spray and budget staples under $50!",
+    title: "The Boricua Cutting Blueprint (~2,065 kcal)",
+    targetDailyCalories: 2065,
+    targetDailyProtein: 194,
+    estCostPerWeek: "$44.72 total at Auburn Walmart",
+    description: "Authentic Puerto Rican style cutting plan for your 242 lb -> 170 lb goal. Packed with Pollo Guisado, Chuletas, Tostones/Maduros, and Café Bustelo K-Cups—100% under your $50 budget limit using 0-cal cooking spray!",
     meals: [
       {
-        name: "Breakfast: Avena Boricua & Café con Leche",
+        name: "Breakfast: Boricua Power Scramble & Café Bustelo K-Cup",
         time: "8:00 AM",
         ingredients: [
-          "1 cup Great Value Old Fashioned Oats cooked with cinnamon & vanilla (300 kcal, 10g p)",
-          "1 scoop Whey Protein Powder mixed into oats (120 kcal, 24g p)",
-          "1 large mug Café Bustelo Espresso with 1/2 cup low-fat milk/yogurt & zero-cal sweetener (60 kcal, 6g p)",
-          "2 Great Value Large Eggs scrambled (Revoltillo) using zero-cal cooking spray (140 kcal, 12g p)"
+          "1 Café Bustelo Espresso Style K-Cup brewed in Keurig (0 kcal, 0g p)",
+          "Optional: splash of almond milk or milk in coffee (15 kcal)",
+          "3 Great Value Large Eggs scrambled in 0-Calorie Cooking Spray with 1 tsp Goya Sofrito (220 kcal, 18g p)",
+          "1/2 cup Jasmine or White Rice seasoned with pinch of Sazón (150 kcal, 3g p, 34g c)"
         ],
-        calories: 620,
-        protein: 52,
-        carbs: 64,
-        fat: 14
+        calories: 385,
+        protein: 21,
+        carbs: 35,
+        fat: 15
       },
       {
-        name: "Lunch: Pollo Guisado con Arroz y Habichuelas",
+        name: "Lunch: Pollo Guisado (Puerto Rican Stewed Chicken) & Rice",
         time: "12:30 PM",
         ingredients: [
-          "8 oz Great Value Chicken Breast stewed with Sazón, Adobo & garlic (240 kcal, 52g p)",
-          "1.5 cups cooked Great Value White or Jasmine Rice (300 kcal, 68g c)",
-          "3/4 cup Great Value Habichuelas Guisadas (seasoned red kidney beans) (150 kcal, 9g p)",
-          "Sautéed with Great Value Peppers & Onions sofrito in 0-cal cooking spray (25 kcal, 1g p)"
+          "8 oz Great Value Chicken Breast simmered with Goya Sofrito, Sazón, and garlic (240 kcal, 52g p)",
+          "1.5 cups cooked Great Value Rice (300 kcal, 6g p, 68g c)",
+          "1/2 cup Goya Pink Beans (Habichuelas Rosadas) stewed with Sazón (110 kcal, 7g p, 20g c)"
         ],
-        calories: 715,
-        protein: 64,
-        carbs: 98,
+        calories: 650,
+        protein: 65,
+        carbs: 88,
         fat: 4
       },
       {
-        name: "Pre / Post Workout Snack: Maduros con Dip Anabólico",
-        time: "4:30 PM",
+        name: "Afternoon Perk: 2nd Café Bustelo K-Cup & Maduros Bowl",
+        time: "4:00 PM",
         ingredients: [
-          "1 cup Sweet Plantains (Maduros or Tostones) air-fried with zero-cal spray (280 kcal, 2g p, 64g c)",
-          "1 cup Great Value Nonfat Greek Yogurt mixed with vanilla/cinnamon (120 kcal, 22g p)",
-          "1 oz almonds or walnuts on the side (170 kcal, 6g p, 14g f)"
+          "1 Café Bustelo Espresso Style K-Cup brewed iced or hot (0 kcal)",
+          "1.5 cups Great Value Plain Nonfat Greek Yogurt (180 kcal, 32g p)",
+          "1/2 sweet yellow plantain (Maduro) sliced & pan-seared with 0-Calorie Cooking Spray and cinnamon (110 kcal, 1g p, 28g c)"
         ],
-        calories: 570,
-        protein: 30,
-        carbs: 70,
-        fat: 16
+        calories: 290,
+        protein: 33,
+        carbs: 38,
+        fat: 1
       },
       {
-        name: "Dinner: Picadillo de Pavo al Estilo Boricua",
+        name: "Dinner: Chuletas A la Plancha (Seared Pork Chops) & Tostones",
         time: "7:30 PM",
         ingredients: [
-          "7 oz Great Value 93% Lean Ground Turkey cooked with Sazón, Adobo & sofrito (280 kcal, 38g p)",
-          "1 cup cooked Great Value White or Jasmine Rice (200 kcal, 45g c)",
-          "1/2 cup Habichuelas Coloradas (red kidney beans) (100 kcal, 6g p)",
-          "Side salad or extra peppers & onions sautéed in 0-cal spray (30 kcal, 1g p)"
+          "8 oz Lean Bone-In Pork Chop (Chuleta) marinated in Sazón & Sofrito, seared in 0-Calorie Cooking Spray (340 kcal, 46g p, 16g f)",
+          "1 whole Green Plantain sliced into rounds, smashed into Tostones and air-fried with 0-Calorie Cooking Spray & sea salt (180 kcal, 2g p, 42g c)",
+          "2 cups steamed side veggies or spinach salad (40 kcal, 2g p)"
         ],
-        calories: 610,
-        protein: 45,
-        carbs: 68,
-        fat: 12
+        calories: 560,
+        protein: 50,
+        carbs: 48,
+        fat: 18
       },
       {
-        name: "Nighttime Recovery: Revoltillo Ligero o Yogurt Proteico",
+        name: "Nighttime Recovery: Casein & Cinnamon Snack",
         time: "10:30 PM",
         ingredients: [
-          "3/4 cup Great Value Greek Yogurt topped with cinnamon or 1 Casein Shake (90 kcal, 16g p)",
-          "Optional: Decaf Café Bustelo or herbal tea with zero-cal sweetener (5 kcal)"
+          "1 cup Lucerne 2% Cottage Cheese or Protein Shake with a dash of cinnamon & vanilla (180 kcal, 25g p)"
         ],
-        calories: 95,
-        protein: 16,
-        carbs: 6,
-        fat: 0
+        calories: 180,
+        protein: 25,
+        carbs: 8,
+        fat: 5
       }
     ]
   }

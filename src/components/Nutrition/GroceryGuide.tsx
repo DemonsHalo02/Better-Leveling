@@ -37,7 +37,7 @@ export default function GroceryGuide() {
             Hunter Grocery Companion
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            High-protein Puerto Rican style staples (Café Bustelo, Adobo, Sazón, Pollo Guisado, and 0-cal cooking spray) priced specifically at Auburn, Maine Walmart Supercenter to keep your entire weekly prep under $50!
+            High-protein, authentic Puerto Rican style staples priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly prep under $50! Includes Keurig K-Cup coffee, Sazón, Sofrito, and 0-calorie cooking spray.
           </p>
         </div>
 
