@@ -35,36 +35,66 @@ export interface MealPrepPlan {
 export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-1",
-    upc: "078742371195", // Fresh Chicken Breast Family Pack
-    name: "Freshness Guaranteed Fresh Boneless Skinless Chicken Breasts (~3 lb tray)",
+    upc: "078742371195", // Fresh Chicken Breast Family Pack (5 lb)
+    name: "Freshness Guaranteed Fresh Boneless Skinless Chicken Breasts (~5 lb Family Pack)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Freshness Guaranteed",
     category: "Protein",
-    priceEst: "$7.44 (~3 lb family pack tray at $2.48/lb)",
+    priceEst: "$12.40 (~5 lb family pack tray at $2.48/lb)",
     calories: 120,
     protein: 26,
     carbs: 0,
     fat: 1.5,
     servingSize: "4 oz (112g)",
-    coachNote: "Fresh, never frozen chicken breast! Cooks much tenderer and faster than frozen. Season with Adobo and Sazón for authentic Pollo Guisado."
+    coachNote: "Upgraded 5 lb fresh family pack for maximum protein! Fresh chicken cooks tender and fast. Season with Adobo & Sazón for authentic Pollo Guisado."
   },
   {
     id: "g-2",
-    upc: "074471014309", // Cafe Bustelo K-Cups 24ct
-    name: "Café Bustelo Espresso Style Coffee K-Cup Pods (24 Count Box)",
+    upc: "074471014309", // Cafe Bustelo K-Cups 12ct
+    name: "Café Bustelo Espresso Style Coffee K-Cup Pods (10/12 Count Box)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Café Bustelo",
     category: "Essentials",
-    priceEst: "$15.18 (24 Count Box)",
+    priceEst: "$8.98 (10-12 Count Box)",
     calories: 0,
     protein: 0,
     carbs: 0,
     fat: 0,
     servingSize: "1 K-Cup Pod (8 fl oz)",
-    coachNote: "Authentic Puerto Rican dark roast espresso in Keurig K-Cups! Zero calories black. 24 pods guarantee your morning and pre-workout energy all week."
+    coachNote: "Authentic Puerto Rican dark roast espresso in Keurig K-Cups! Combine with milk and sweetener for a sweet, traditional Café con Leche."
   },
   {
     id: "g-3",
+    upc: "078742351888", // Great Value Milk
+    name: "Great Value Milk (Half Gallon / 64 fl oz)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$1.72 (Half Gallon)",
+    calories: 130,
+    protein: 8,
+    carbs: 12,
+    fat: 5,
+    servingSize: "1 cup (8 fl oz)",
+    coachNote: "Essential for making authentic, creamy Puerto Rican Café con Leche every morning and afternoon!"
+  },
+  {
+    id: "g-4",
+    upc: "078742351999", // Zero Calorie Sweetener / Sugar Packets
+    name: "Great Value Zero Calorie Sweetener or Sugar Packets (100 Count Box)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$1.98 (100 Count Box)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1 Packet (1g)",
+    coachNote: "The secret to getting that traditional sweet Puerto Rican Café con Leche taste without adding unwanted sugar calories!"
+  },
+  {
+    id: "g-5",
     upc: "041331031301", // Goya Sazon
     name: "Goya Sazón with Coriander & Annatto (Culantro y Achiote, 8 ct)",
     store: "Walmart Supercenter (Auburn, ME)",
@@ -79,7 +109,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     coachNote: "The essential Puerto Rican seasoning secret! Adds golden color and savory garlic/annatto flavor to rice, beans, and chicken with zero calories."
   },
   {
-    id: "g-4",
+    id: "g-6",
     upc: "041331039802", // Goya Adobo
     name: "Goya Adobo All-Purpose Seasoning with Pepper (8 oz jar)",
     store: "Walmart Supercenter (Auburn, ME)",
@@ -94,7 +124,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     coachNote: "The #1 Boricua all-purpose seasoning! Garlic, oregano, and black pepper blend that flavors Chuletas and Pollo Guisado with zero calories."
   },
   {
-    id: "g-5",
+    id: "g-7",
     upc: "078742351234", // 0 Calorie Cooking Spray
     name: "Great Value Canola Oil 0 Calorie Cooking Spray (8 oz can)",
     store: "Walmart Supercenter (Auburn, ME)",
@@ -109,7 +139,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     coachNote: "Zero-calorie non-stick cooking spray for searing Chuletas (pork chops), chicken, and eggs without adding hidden liquid oil calories!"
   },
   {
-    id: "g-6",
+    id: "g-8",
     upc: "078742211234", // Bone-In Pork Chops (Chuletas)
     name: "All Natural Bone-In Assorted Pork Chops (Chuletas, ~2 lb tray)",
     store: "Walmart Supercenter (Auburn, ME)",
@@ -124,7 +154,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     coachNote: "Traditional Puerto Rican Chuletas! Season with Adobo and Sazón, then pan-sear using 0-calorie cooking spray for a mouthwatering high-protein dinner."
   },
   {
-    id: "g-7",
+    id: "g-9",
     upc: "078742351883", // Great Value Black Beans
     name: "Great Value Black Beans / Habichuelas Negras (Two 15.25 oz cans)",
     store: "Walmart Supercenter (Auburn, ME)",
@@ -139,22 +169,22 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     coachNote: "Classic Puerto Rican Habichuelas Negras! Simmered with Sazón and Adobo. Universally stocked at Auburn Walmart and loaded with fiber and plant protein."
   },
   {
-    id: "g-8",
-    upc: "078742352217", // Great Value White Rice
-    name: "Great Value Long Grain White Rice (3 lb bag)",
+    id: "g-10",
+    upc: "078742352217", // Great Value White Rice 5 lb
+    name: "Great Value Long Grain White Rice (5 lb bag)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Carbs",
-    priceEst: "$2.48 (3 lb bag)",
+    priceEst: "$3.34 (5 lb bag)",
     calories: 160,
     protein: 3,
     carbs: 36,
     fat: 0,
     servingSize: "1/4 cup dry (45g)",
-    coachNote: "The base for Arroz con Habichuelas. Fast-digesting clean carbohydrates to fuel your heavy lifting sessions at Planet Fitness Lewiston."
+    coachNote: "Upgraded 5 lb bag! The base for Arroz con Habichuelas. Fast-digesting clean carbohydrates to fuel your heavy lifting sessions at Planet Fitness Lewiston."
   },
   {
-    id: "g-9",
+    id: "g-11",
     upc: "078742221612", // Great Value Eggs
     name: "Great Value Large Grade A White Eggs (18 Count Carton)",
     store: "Walmart Supercenter (Auburn, ME)",
@@ -169,7 +199,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     coachNote: "Bioavailable whole protein with essential healthy fats. Scramble with Adobo and 0-calorie cooking spray for a Boricua spiced breakfast!"
   },
   {
-    id: "g-10",
+    id: "g-12",
     upc: "078742136039", // Great Value Greek Yogurt
     name: "Great Value Plain Nonfat Greek Yogurt (32 oz tub)",
     store: "Walmart Supercenter (Auburn, ME)",
@@ -181,39 +211,38 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 6,
     fat: 0,
     servingSize: "3/4 cup (170g)",
-    coachNote: "Incredible protein-to-calorie ratio. Mix with a dash of cinnamon or sweetener for a high-protein anabolic snack to hit your 194g target."
+    coachNote: "Incredible protein-to-calorie ratio. Mix with a dash of cinnamon or sweetener for a high-protein anabolic snack to hit your protein targets."
   }
 ];
 
 export const MEAL_PREP_PLANS: MealPrepPlan[] = [
   {
     id: "plan-1",
-    title: "The Boricua Cutting Blueprint (~2,065 kcal)",
-    targetDailyCalories: 2065,
-    targetDailyProtein: 194,
-    estCostPerWeek: "$45.82 total at Auburn Walmart",
-    description: "Authentic Puerto Rican style cutting plan using 100% verified Auburn ME Walmart staples! Loaded with fresh Pollo Guisado, Chuletas, Arroz con Habichuelas, and Café Bustelo K-Cups—all strictly under your $50 budget limit using 0-cal spray!",
+    title: "The Boricua Cutting Blueprint (~2,150 kcal)",
+    targetDailyCalories: 2150,
+    targetDailyProtein: 206,
+    estCostPerWeek: "$49.14 total at Auburn Walmart",
+    description: "Authentic Puerto Rican style cutting plan with upgraded 5 lb fresh chicken & 5 lb rice! Features sweet Puerto Rican Café con Leche, Pollo Guisado, Chuletas, and Arroz con Habichuelas—all strictly under your $50 budget limit ($49.14 total)!",
     meals: [
       {
-        name: "Breakfast: Boricua Spiced Scramble & Café Bustelo K-Cup",
+        name: "Breakfast: Sweet Boricua Café con Leche & Spiced Scramble",
         time: "8:00 AM",
         ingredients: [
-          "1 Café Bustelo Espresso Style K-Cup brewed in Keurig (0 kcal, 0g p)",
-          "Optional: splash of milk or zero-cal sweetener in coffee (15 kcal)",
+          "1 Café Bustelo K-Cup brewed with 1/3 cup Great Value Milk & 2 zero-cal sweetener packets for sweet Café con Leche! (50 kcal, 3g p)",
           "3 Great Value Large Eggs scrambled in 0-Calorie Cooking Spray with pinch of Goya Adobo (220 kcal, 18g p)",
           "1/2 cup Great Value White Rice seasoned with pinch of Sazón (150 kcal, 3g p, 34g c)"
         ],
-        calories: 385,
-        protein: 21,
-        carbs: 35,
-        fat: 15
+        calories: 420,
+        protein: 24,
+        carbs: 40,
+        fat: 16
       },
       {
         name: "Lunch: Pollo Guisado (Boricua Spiced Fresh Chicken) & Rice",
         time: "12:30 PM",
         ingredients: [
-          "8 oz Freshness Guaranteed Fresh Chicken Breast seasoned with Goya Adobo & Sazón, seared in 0-Calorie Spray (240 kcal, 52g p)",
-          "1.5 cups cooked Great Value White Rice (300 kcal, 6g p, 68g c)",
+          "8 oz Freshness Guaranteed Fresh Chicken Breast (from upgraded 5 lb pack!) seasoned with Adobo & Sazón, seared in 0-Cal Spray (240 kcal, 52g p)",
+          "1.5 cups cooked Great Value White Rice (from 5 lb bag!) (300 kcal, 6g p, 68g c)",
           "1/2 cup Great Value Black Beans (Habichuelas Negras) stewed with Sazón (110 kcal, 7g p, 20g c)"
         ],
         calories: 650,
@@ -222,16 +251,16 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 4
       },
       {
-        name: "Afternoon Perk: 2nd Café Bustelo K-Cup & Protein Bowl",
+        name: "Afternoon Perk: Sweet Iced Café con Leche & Protein Bowl",
         time: "4:00 PM",
         ingredients: [
-          "1 Café Bustelo Espresso Style K-Cup brewed iced or hot (0 kcal)",
+          "1 Café Bustelo K-Cup over ice with splash of Milk & sweetener for a 2nd sweet Café con Leche (30 kcal, 2g p)",
           "1.5 cups Great Value Plain Nonfat Greek Yogurt (180 kcal, 32g p)",
-          "1/2 cup cooked rice or side carbs flavored with cinnamon & sweetener (110 kcal, 1g p, 25g c)"
+          "1/2 cup cooked white rice seasoned with cinnamon & sweetener (110 kcal, 1g p, 25g c)"
         ],
-        calories: 290,
-        protein: 33,
-        carbs: 25,
+        calories: 320,
+        protein: 35,
+        carbs: 30,
         fat: 1
       },
       {
