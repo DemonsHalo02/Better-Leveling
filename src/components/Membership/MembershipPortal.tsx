@@ -762,31 +762,6 @@ export default function MembershipPortal() {
 
       </div>
 
-      {/* PayPal Business Subscriptions Guide */}
-      <div className="bg-gradient-to-r from-system-card via-system-panel to-system-dark p-6 rounded-2xl border border-system-blue/40 shadow-lg space-y-3">
-        <div className="flex items-center gap-2 text-system-cyan font-bold uppercase text-xs font-mono tracking-wider">
-          <CreditCard className="w-4 h-4 text-system-blue animate-pulse" />
-          <span>How to Link Your PayPal Business Subscriptions Tab</span>
-        </div>
-        <p className="text-xs text-zinc-300 leading-relaxed">
-          Your app is now natively wired to accept payments through your official <strong className="text-white">PayPal Business Subscriptions</strong> tab! Follow these 3 easy steps to activate real recurring billing:
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs">
-          <div className="bg-black/50 p-3.5 rounded-xl border border-white/5 space-y-1">
-            <div className="font-bold text-system-gold font-mono">1. Open Subscriptions Tab</div>
-            <div className="text-[11px] text-zinc-400">Log in to your PayPal Business account → navigate to <strong className="text-zinc-200">Pay & Get Paid</strong> → click on <strong className="text-zinc-200">Subscriptions</strong>.</div>
-          </div>
-          <div className="bg-black/50 p-3.5 rounded-xl border border-white/5 space-y-1">
-            <div className="font-bold text-system-cyan font-mono">2. Create S-Rank Plans</div>
-            <div className="text-[11px] text-zinc-400">Click <strong className="text-zinc-200">Create Plan</strong>. Set one plan for <strong className="text-zinc-200">$9.99/mo</strong> (Monthly) and one for <strong className="text-zinc-200">$89.99/yr</strong> (Yearly).</div>
-          </div>
-          <div className="bg-black/50 p-3.5 rounded-xl border border-white/5 space-y-1">
-            <div className="font-bold text-green-400 font-mono">3. Copy & Paste Plan IDs</div>
-            <div className="text-[11px] text-zinc-400">Copy the generated <strong className="text-zinc-200">Plan ID</strong> (starts with <span className="text-system-gold font-mono">P-</span>) or payment link and paste it into the <strong className="text-zinc-200">Configure Plans</strong> box above!</div>
-          </div>
-        </div>
-      </div>
-
     </div>
   );
 }
