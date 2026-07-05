@@ -227,6 +227,21 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Plantain (170g)",
     coachNote: "Classic Puerto Rican green plantains! Peel, slice into coins, boil slightly, smash, and pan-sear in 0-calorie cooking spray for crispy, authentic Tostones a la Plancha."
+  },
+  {
+    id: "g-14",
+    upc: "078742231268", // Great Value Purified Water
+    name: "Great Value Purified Drinking Water (40 Pack, 16.9 fl oz bottles)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$5.48 (40 pack)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1 bottle (500ml)",
+    coachNote: "Crucial hydration staple for Planet Fitness Lewiston lifting sessions and completing your daily water intake quest!"
   }
 ];
 
@@ -250,6 +265,9 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   { name: "Equate Complete Multivitamin Tablets for Men (100 ct)", category: "Toiletries / Non-Grocery", price: "$8.98", note: "Daily micronutrient insurance." },
   { name: "Degree Men Dry Protection Antiperspirant Deodorant (2.7 oz)", category: "Toiletries / Non-Grocery", price: "$3.48", note: "All-day sweat and odor protection for lifting sessions." },
   // Groceries & Staples
+  { name: "Great Value Purified Drinking Water (40 Pack, 16.9 fl oz bottles)", category: "Essentials", price: "$5.48", note: "Crucial hydration staple for gym sessions and daily water quest." },
+  { name: "Great Value Purified Drinking Water (24 Pack, 16.9 fl oz bottles)", category: "Essentials", price: "$3.98", note: "Convenient 24-pack for weekly hydration." },
+  { name: "Great Value Purified Water (1 Gallon Jug)", category: "Essentials", price: "$1.28", note: "Convenient daily gallon jug to effortlessly hit your daily water quest." },
   { name: "Great Value Large Grade A Eggs (12 Count)", category: "Protein", price: "$2.98", note: "High-biological value breakfast protein." },
   { name: "Great Value Old Fashioned Rolled Oats (42 oz canister)", category: "Carbs", price: "$3.98", note: "Slow-digesting complex carbs for morning energy." },
   { name: "Fresh Bananas (~1 lb bunch / ~3-4 bananas)", category: "Produce", price: "$0.58", note: "Quick potassium and pre-workout carbohydrates." },
@@ -263,7 +281,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     title: "The Boricua Cutting Blueprint (~2,150 kcal)",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$51.86 total at Auburn Walmart",
+    estCostPerWeek: "$57.34 total at Auburn Walmart (includes 40-pk Water)",
     description: "Authentic Puerto Rican style cutting plan with upgraded 5 lb fresh chicken, 5 lb rice, and crispy green Tostones a la Plancha! SCHEDULE NOTE: Shop your list at Auburn Walmart and cook your meal prep every MONDAY; begin eating your prepped meals on TUESDAY!",
     meals: [
       {
