@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { AUBURN_LEWISTON_GROCERY_ITEMS, MEAL_PREP_PLANS, GroceryItem } from '@/lib/grocery-data';
+import { AUBURN_LEWISTON_GROCERY_ITEMS, MEAL_PREP_PLANS, GroceryItem, WALMART_QUICK_SELECT_ITEMS } from '@/lib/grocery-data';
 import { ShoppingBag, CheckCircle2, Circle, Utensils, DollarSign, MapPin, Sparkles, Award, RotateCcw, Calendar, Plus, Trash2 } from 'lucide-react';
 
 export default function GroceryGuide() {
@@ -112,9 +112,21 @@ export default function GroceryGuide() {
     return matchStore && matchCat;
   });
 
+  const extractPrice = (priceStr: string): number => {
+    if (!priceStr) return 0;
+    const match = priceStr.match(/\$(\d+(\.\d+)?)/);
+    if (match && match[1]) {
+      return parseFloat(match[1]);
+    }
+    return 0;
+  };
+
   const totalItemsCount = allItems.length;
   const checkedCount = Object.values(checkedItems).filter(Boolean).length;
   const progressPct = totalItemsCount > 0 ? Math.round((checkedCount / totalItemsCount) * 100) : 0;
+
+  const totalEstPrice = allItems.reduce((sum, item) => sum + extractPrice(item.priceEst), 0);
+  const checkedEstPrice = allItems.filter(item => checkedItems[item.id]).reduce((sum, item) => sum + extractPrice(item.priceEst), 0);
 
   const stores = ['All Stores', 'Walmart Supercenter (Auburn, ME)', "Shaw's (Auburn/Lewiston)", 'Hannaford (Lewiston/Auburn)'];
   const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery'];
@@ -183,6 +195,14 @@ export default function GroceryGuide() {
             </div>
 
             <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+              <div className="bg-system-dark/90 p-2 rounded-xl border border-system-gold/40 shadow-inner flex flex-col justify-center min-w-[120px]">
+                <div className="text-[10px] font-mono font-bold text-zinc-400 uppercase">Est. Cart Cost</div>
+                <div className="text-xs sm:text-sm font-black text-system-gold font-mono flex items-center gap-1">
+                  <span>${checkedEstPrice.toFixed(2)}</span>
+                  <span className="text-[10px] text-zinc-500 font-normal">/ ${totalEstPrice.toFixed(2)}</span>
+                </div>
+              </div>
+
               <div className="w-32 bg-black/50 p-2 rounded-xl border border-white/10 hidden sm:block">
                 <div className="flex justify-between text-[10px] font-mono font-bold mb-1">
                   <span className="text-zinc-400">Cart Progress</span>
@@ -223,6 +243,41 @@ export default function GroceryGuide() {
                 </div>
 
                 <form onSubmit={handleAddCustomItem} className="space-y-4 text-left">
+                  <div className="bg-system-dark/80 p-3.5 rounded-xl border border-system-blue/30 space-y-2">
+                    <label className="text-xs font-bold text-system-cyan uppercase flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5" /> ⚡ Auburn Walmart Quick-Select Catalog
+                    </label>
+                    <select
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        if (!val) return;
+                        const found = WALMART_QUICK_SELECT_ITEMS.find(i => i.name === val);
+                        if (found) {
+                          setCustomName(found.name);
+                          setCustomCategory(found.category);
+                          setCustomPrice(found.price);
+                          setCustomNote(found.note);
+                          setCustomStore("Walmart Supercenter (Auburn, ME)");
+                        }
+                      }}
+                      defaultValue=""
+                      className="w-full bg-black/60 border border-system-blue/40 rounded-lg px-3 py-2 text-xs text-white font-mono focus:outline-none focus:border-system-blue"
+                    >
+                      <option value="">-- Pick a Walmart item or type custom below --</option>
+                      <optgroup label="🧴 Toiletries & Household Essentials">
+                        {WALMART_QUICK_SELECT_ITEMS.filter(i => i.category === 'Toiletries / Non-Grocery').map(i => (
+                          <option key={i.name} value={i.name}>{i.name} ({i.price})</option>
+                        ))}
+                      </optgroup>
+                      <optgroup label="🛒 Groceries & Protein Staples">
+                        {WALMART_QUICK_SELECT_ITEMS.filter(i => i.category !== 'Toiletries / Non-Grocery').map(i => (
+                          <option key={i.name} value={i.name}>{i.name} ({i.price})</option>
+                        ))}
+                      </optgroup>
+                    </select>
+                    <p className="text-[10px] text-zinc-400">Selecting an item auto-fills name, Auburn Walmart location, price, and category!</p>
+                  </div>
+
                   <div>
                     <label className="text-xs font-bold text-zinc-400 uppercase">Item Name</label>
                     <input
@@ -347,66 +402,138 @@ export default function GroceryGuide() {
                 </button>
               ))}
             </div>
+
+            {/* Auburn Walmart Quick-Select Strip */}
+            <div className="bg-system-card p-4 rounded-2xl border border-system-blue/40 shadow-inner flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-system-blue animate-ping" />
+                <span className="text-xs font-black uppercase tracking-wider text-white">⚡ Auburn Walmart Quick-Select Catalog:</span>
+              </div>
+              <div className="flex items-center gap-2 w-full sm:w-auto flex-1 max-w-xl">
+                <select
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (!val) return;
+                    const found = WALMART_QUICK_SELECT_ITEMS.find(i => i.name === val);
+                    if (found) {
+                      const newItem: GroceryItem = {
+                        id: `custom-${Date.now()}`,
+                        upc: "000000000000",
+                        name: found.name,
+                        store: "Walmart Supercenter (Auburn, ME)",
+                        brand: "Walmart / Equate / Great Value",
+                        category: found.category,
+                        priceEst: found.price,
+                        calories: 0,
+                        protein: 0,
+                        carbs: 0,
+                        fat: 0,
+                        servingSize: "1 unit",
+                        coachNote: found.note
+                      };
+                      const updated = [newItem, ...customItems];
+                      setCustomItems(updated);
+                      if (typeof window !== 'undefined') {
+                        localStorage.setItem('pf_custom_grocery_items', JSON.stringify(updated));
+                      }
+                      e.target.value = "";
+                    }
+                  }}
+                  defaultValue=""
+                  className="w-full bg-system-dark border border-system-blue/50 rounded-xl px-3 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-system-cyan shadow-sm"
+                >
+                  <option value="">-- Pick an item to instantly add to your Walmart list --</option>
+                  <optgroup label="🧴 Toiletries & Household Essentials">
+                    {WALMART_QUICK_SELECT_ITEMS.filter(i => i.category === 'Toiletries / Non-Grocery').map(i => (
+                      <option key={i.name} value={i.name}>+ Add {i.name} ({i.price})</option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="🛒 Groceries & Protein Staples">
+                    {WALMART_QUICK_SELECT_ITEMS.filter(i => i.category !== 'Toiletries / Non-Grocery').map(i => (
+                      <option key={i.name} value={i.name}>+ Add {i.name} ({i.price})</option>
+                    ))}
+                  </optgroup>
+                </select>
+                <button
+                  onClick={() => setShowAddModal(true)}
+                  className="px-3 py-2.5 rounded-xl bg-system-panel hover:bg-white/10 text-system-cyan border border-system-blue/40 text-xs font-bold whitespace-nowrap transition-all"
+                >
+                  + Custom
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* Grocery Items List */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {filteredItems.map((item) => {
-              const isChecked = checkedItems[item.id] || false;
-              return (
-                <div
-                  key={item.id}
-                  onClick={() => handleToggleCheck(item.id)}
-                  className={`cursor-pointer rounded-2xl p-5 border transition-all duration-200 flex items-start justify-between gap-4 ${
-                    isChecked
-                      ? 'bg-system-panel/40 border-green-500/40 opacity-75'
-                      : 'bg-system-panel border-system-blue/30 hover:border-system-blue shadow-md'
-                  }`}
-                >
-                  <div className="flex items-start gap-3.5 flex-1">
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleToggleCheck(item.id);
-                      }}
-                      className={`mt-0.5 transition-colors ${isChecked ? 'text-green-400' : 'text-zinc-500 hover:text-system-cyan'}`}
-                    >
-                      {isChecked ? <CheckCircle2 className="w-5 h-5" /> : <Circle className="w-5 h-5" />}
-                    </button>
+            {filteredItems.length === 0 ? (
+              <div className="bg-system-panel p-8 rounded-2xl border border-white/10 text-center space-y-3 col-span-1 md:col-span-2">
+                <ShoppingBag className="w-10 h-10 text-system-blue mx-auto opacity-50" />
+                <h3 className="text-base font-bold text-white">No Items in "{selectedCategory}" Yet</h3>
+                <p className="text-xs text-zinc-400 max-w-md mx-auto">
+                  You removed the pre-loaded items so you can add exactly what you need! Pick an item from the Auburn Walmart Quick-Select Catalog above or click "+ Add Item" to add your own.
+                </p>
+              </div>
+            ) : (
+              filteredItems.map((item) => {
+                const isChecked = checkedItems[item.id] || false;
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => handleToggleCheck(item.id)}
+                    className={`cursor-pointer rounded-2xl p-5 border transition-all duration-200 flex items-start justify-between gap-4 ${
+                      isChecked
+                        ? 'bg-system-panel/40 border-green-500/40 opacity-75'
+                        : 'bg-system-panel border-system-blue/30 hover:border-system-blue shadow-md'
+                    }`}
+                  >
+                    <div className="flex items-start gap-3.5 flex-1">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleToggleCheck(item.id);
+                        }}
+                        className={`mt-0.5 transition-colors ${isChecked ? 'text-green-400' : 'text-zinc-500 hover:text-system-cyan'}`}
+                      >
+                        {isChecked ? <CheckCircle2 className="w-5 h-5" /> : <Circle className="w-5 h-5" />}
+                      </button>
 
-                    <div className="space-y-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className={`text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded ${
-                          item.store.includes('Walmart') ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40' :
-                          item.store.includes("Shaw's") ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40' :
-                          'bg-green-500/20 text-green-300 border border-green-500/40'
-                        }`}>
-                          {item.brand}
-                        </span>
-                        <span className="text-[10px] font-mono text-zinc-400">{item.store}</span>
-                      </div>
+                      <div className="space-y-1">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className={`text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded ${
+                            item.store.includes('Walmart') ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40' :
+                            item.store.includes("Shaw's") ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40' :
+                            'bg-green-500/20 text-green-300 border border-green-500/40'
+                          }`}>
+                            {item.brand}
+                          </span>
+                          <span className="text-[10px] font-mono text-zinc-400">{item.store}</span>
+                        </div>
 
-                      <h4 className={`text-base font-bold ${isChecked ? 'line-through text-zinc-400' : 'text-white'}`}>
-                        {item.name}
-                      </h4>
+                        <h4 className={`text-base font-bold ${isChecked ? 'line-through text-zinc-400' : 'text-white'}`}>
+                          {item.name}
+                        </h4>
 
-                      <div className="flex items-center gap-3 text-xs font-mono text-zinc-400 pt-1">
-                        <span className="text-system-gold font-bold">{item.priceEst}</span>
-                        {item.category === 'Toiletries / Non-Grocery' ? (
-                          <>
-                            <span>|</span>
-                            <span className="text-purple-300 font-bold">🧴 Household Essential</span>
-                          </>
-                        ) : (
-                          <>
-                            <span>|</span>
-                            <span className="text-system-cyan font-bold">{item.protein}g Protein</span>
-                            <span>|</span>
-                            <span>{item.calories} kcal</span>
-                          </>
-                        )}
-                      </div>
+                        <div className="flex flex-wrap items-center gap-2.5 text-xs font-mono text-zinc-400 pt-1">
+                          <span className="bg-system-gold/15 text-system-gold font-bold text-xs sm:text-sm px-2.5 py-0.5 rounded border border-system-gold/40 shadow-sm flex items-center gap-1">
+                            <DollarSign className="w-3.5 h-3.5 inline text-system-gold" />
+                            <span>{item.priceEst.startsWith('$') ? item.priceEst.replace('$', '') : item.priceEst}</span>
+                          </span>
+                          {item.category === 'Toiletries / Non-Grocery' ? (
+                            <>
+                              <span>|</span>
+                              <span className="text-purple-300 font-bold">🧴 Household Essential</span>
+                            </>
+                          ) : (
+                            <>
+                              <span>|</span>
+                              <span className="text-system-cyan font-bold">{item.protein}g Protein</span>
+                              <span>|</span>
+                              <span>{item.calories} kcal</span>
+                            </>
+                          )}
+                        </div>
 
                       <p className="text-xs text-zinc-400 leading-relaxed pt-1.5 border-t border-white/5 mt-2">
                         <strong className="text-system-cyan">Why Buy:</strong> {item.coachNote}
@@ -435,7 +562,7 @@ export default function GroceryGuide() {
                   </div>
                 </div>
               );
-            })}
+            }))}
           </div>
         </>
       ) : (

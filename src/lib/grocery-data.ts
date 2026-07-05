@@ -227,67 +227,34 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Plantain (170g)",
     coachNote: "Classic Puerto Rican green plantains! Peel, slice into coins, boil slightly, smash, and pan-sear in 0-calorie cooking spray for crispy, authentic Tostones a la Plancha."
-  },
-  {
-    id: "g-14",
-    upc: "068113117468", // Equate Body Wash
-    name: "Equate Men's 3-in-1 Body Wash, Shampoo & Conditioner (32 fl oz)",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Equate / Walmart",
-    category: "Toiletries / Non-Grocery",
-    priceEst: "$4.48 (32 fl oz bottle)",
-    calories: 0,
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    servingSize: "1 wash",
-    coachNote: "Essential post-workout hygiene for Planet Fitness Lewiston training sessions. Keeps hair and skin clean without paying brand-name markups."
-  },
-  {
-    id: "g-15",
-    upc: "035000521013", // Colgate Toothpaste
-    name: "Colgate Total Clean Mint Paste Toothpaste (two 5.1 oz tubes)",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Colgate",
-    category: "Toiletries / Non-Grocery",
-    priceEst: "$6.98 (2-pack)",
-    calories: 0,
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    servingSize: "1 brush",
-    coachNote: "Daily oral hygiene essential. Universally stocked in aisle A-12 at Auburn Walmart Supercenter."
-  },
-  {
-    id: "g-16",
-    upc: "078742352880", // Great Value Bath Tissue
-    name: "Great Value Ultra Gentle Bath Tissue / Toilet Paper (12 Mega Rolls)",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
-    category: "Toiletries / Non-Grocery",
-    priceEst: "$10.98 (12 Mega Rolls = 48 Regular Rolls)",
-    calories: 0,
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    servingSize: "1 roll",
-    coachNote: "Household non-grocery essential. Great Value bulk pricing keeps your weekly Monday shopping trip well within budget."
-  },
-  {
-    id: "g-17",
-    upc: "078742013891", // BlenderBottle / Shaker Bottle
-    name: "Equate 28 oz Shaker Bottle with Wire Whisk Ball",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Equate",
-    category: "Toiletries / Non-Grocery",
-    priceEst: "$5.98 (28 oz shaker)",
-    calories: 0,
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    servingSize: "1 bottle",
-    coachNote: "Crucial gym accessory for mixing your daily whey protein shakes smoothly after intense lifting sessions at PF Lewiston."
   }
+];
+
+export interface WalmartPresetItem {
+  name: string;
+  category: 'Protein' | 'Carbs' | 'Fats' | 'Produce' | 'Essentials' | 'Toiletries / Non-Grocery';
+  price: string;
+  note: string;
+}
+
+export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
+  // Toiletries & Household
+  { name: "Equate Men's 3-in-1 Body Wash, Shampoo & Conditioner (32 fl oz)", category: "Toiletries / Non-Grocery", price: "$4.48", note: "Essential post-workout hygiene for Planet Fitness Lewiston sessions." },
+  { name: "Colgate Total Clean Mint Toothpaste (2-pack)", category: "Toiletries / Non-Grocery", price: "$6.98", note: "Daily oral hygiene essential from aisle A-12." },
+  { name: "Great Value Ultra Gentle Toilet Paper (12 Mega Rolls)", category: "Toiletries / Non-Grocery", price: "$10.98", note: "Household budget bulk staple." },
+  { name: "Equate 28 oz Protein Shaker Bottle with Wire Whisk Ball", category: "Toiletries / Non-Grocery", price: "$5.98", note: "Essential for mixing whey protein shakes smoothly after lifting." },
+  { name: "Great Value Everyday Paper Towels (6 Rolls)", category: "Toiletries / Non-Grocery", price: "$6.98", note: "Kitchen cleanup and meal prep essential." },
+  { name: "Great Value Tall Kitchen Trash Bags (13 Gallon, 40 ct)", category: "Toiletries / Non-Grocery", price: "$6.48", note: "Kitchen sanitation essential." },
+  { name: "Dawn Ultra Dishwashing Liquid Dish Soap (18 fl oz)", category: "Toiletries / Non-Grocery", price: "$3.28", note: "Degreasing formula for cleaning meal prep containers." },
+  { name: "Equate Ibuprofen Pain Reliever Tablets (200 mg, 100 ct)", category: "Toiletries / Non-Grocery", price: "$2.48", note: "Post-workout muscle recovery aid." },
+  { name: "Equate Complete Multivitamin Tablets for Men (100 ct)", category: "Toiletries / Non-Grocery", price: "$8.98", note: "Daily micronutrient insurance." },
+  { name: "Degree Men Dry Protection Antiperspirant Deodorant (2.7 oz)", category: "Toiletries / Non-Grocery", price: "$3.48", note: "All-day sweat and odor protection for lifting sessions." },
+  // Groceries & Staples
+  { name: "Great Value Large Grade A Eggs (12 Count)", category: "Protein", price: "$2.98", note: "High-biological value breakfast protein." },
+  { name: "Great Value Old Fashioned Rolled Oats (42 oz canister)", category: "Carbs", price: "$3.98", note: "Slow-digesting complex carbs for morning energy." },
+  { name: "Fresh Bananas (~1 lb bunch / ~3-4 bananas)", category: "Produce", price: "$0.58", note: "Quick potassium and pre-workout carbohydrates." },
+  { name: "Great Value Frozen Broccoli Florets (12 oz bag)", category: "Produce", price: "$1.18", note: "Easy steamed micronutrients and fiber." },
+  { name: "Great Value Whole Milk (1 Gallon)", category: "Protein", price: "$3.88", note: "Classic calcium and protein for coffee or shakes." }
 ];
 
 export const MEAL_PREP_PLANS: MealPrepPlan[] = [
