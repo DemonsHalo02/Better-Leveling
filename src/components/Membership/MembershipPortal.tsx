@@ -66,7 +66,12 @@ export default function MembershipPortal() {
       const savedUser = localStorage.getItem("hunter_current_user");
       if (savedUser) {
         try {
-          setCurrentUser(JSON.parse(savedUser));
+          const parsed = JSON.parse(savedUser);
+          if (parsed.email?.toLowerCase() === "ncrossonofficial06@gmail.com") {
+            parsed.tier = "S-Rank VIP Guild";
+            localStorage.setItem("hunter_vip_tier", "S-Rank VIP Guild");
+          }
+          setCurrentUser(parsed);
         } catch (e) {
           console.error("Error parsing user", e);
         }
@@ -75,11 +80,15 @@ export default function MembershipPortal() {
       // Check Firebase Auth observer
       const unsubscribe = auth.onAuthStateChanged((user: FirebaseUser | null) => {
         if (user) {
+          const isNickAdmin = user.email?.toLowerCase() === "ncrossonofficial06@gmail.com";
+          if (isNickAdmin) {
+            localStorage.setItem("hunter_vip_tier", "S-Rank VIP Guild");
+          }
           const updatedUser: LocalAuthUser = {
             uid: user.uid,
             email: user.email || "hunter@sololeveling.com",
-            displayName: user.displayName || "Shadow Monarch",
-            tier: (localStorage.getItem("hunter_vip_tier") as "E-Rank Free" | "S-Rank VIP Guild") || "E-Rank Free",
+            displayName: user.displayName || (isNickAdmin ? "Shadow Monarch Nick" : "Shadow Monarch"),
+            tier: isNickAdmin ? "S-Rank VIP Guild" : ((localStorage.getItem("hunter_vip_tier") as "E-Rank Free" | "S-Rank VIP Guild") || "E-Rank Free"),
           };
           setCurrentUser(updatedUser);
           localStorage.setItem("hunter_current_user", JSON.stringify(updatedUser));
@@ -105,6 +114,58 @@ export default function MembershipPortal() {
     setLoading(true);
 
     try {
+      if (email.trim().toLowerCase() === "ncrossonofficial06@gmail.com") {
+        if (password !== "Charminlikeasnake06!") {
+          throw new Error("⚠️ Incorrect secret password for Creator Admin account!");
+        }
+        // Try Firebase auth just in case
+        try {
+          if (isSignUp) {
+            const cred = await createUserWithEmailAndPassword(auth, email, password);
+            await updateProfile(cred.user, { displayName: displayName.trim() || "Shadow Monarch Nick" });
+          } else {
+            await signInWithEmailAndPassword(auth, email, password);
+          }
+        } catch (firebaseErr: any) {
+          console.warn("Firebase admin login offline or already exists, proceeding:", firebaseErr);
+        }
+
+        const adminName = displayName.trim() || "Shadow Monarch Nick";
+        const adminUser: LocalAuthUser = {
+          uid: "admin-shadow-monarch-001",
+          email: "ncrossonofficial06@gmail.com",
+          displayName: adminName,
+          tier: "S-Rank VIP Guild",
+        };
+
+        setCurrentUser(adminUser);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("hunter_current_user", JSON.stringify(adminUser));
+          localStorage.setItem("hunter_vip_tier", "S-Rank VIP Guild");
+        }
+
+        // Update hunter state with Admin Perks
+        const hunterState = loadHunterState();
+        hunterState.profile.name = adminName;
+        hunterState.profile.title = "Shadow Monarch (Creator Admin)";
+        hunterState.profile.level = Math.max(hunterState.profile.level, 100);
+        hunterState.profile.rank = "S-Rank";
+        hunterState.statPoints += 25;
+        saveHunterState(hunterState);
+
+        // Trigger celebration
+        confetti({
+          particleCount: 250,
+          spread: 120,
+          origin: { y: 0.5 },
+          colors: ["#ffd700", "#00f0ff", "#7000ff", "#ff0055"],
+        });
+
+        alert(`👑 ARISE, CREATOR ADMIN NICK! S-Rank VIP Guild Membership unlocked forever. Welcome back!`);
+        setLoading(false);
+        return;
+      }
+
       if (isSignUp) {
         if (!displayName.trim()) {
           throw new Error("Please enter your Hunter Name.");
