@@ -1,7 +1,6 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
 
 const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
 const hasValidKey = apiKey && typeof apiKey === "string" && apiKey.length > 10 && apiKey !== "demo-key";
@@ -18,13 +17,11 @@ const firebaseConfig = {
 let app: any;
 let auth: any;
 let db: any;
-let storage: any;
 
 try {
   app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
   auth = getAuth(app);
   db = getFirestore(app);
-  storage = getStorage(app);
 } catch (err) {
   console.warn("Firebase SSR/offline fallback active:", err);
   auth = {
@@ -32,8 +29,7 @@ try {
     currentUser: null
   };
   db = {};
-  storage = {};
 }
 
-export { auth, db, storage };
+export { auth, db };
 export default app;
