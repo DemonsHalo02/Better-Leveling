@@ -10,6 +10,7 @@ import {
   User as FirebaseUser,
 } from "firebase/auth";
 import { loadHunterState, saveHunterState, awardXp } from "@/lib/hunter-system";
+import { syncHunterToCloud, restoreHunterFromCloud } from "@/lib/cloud-sync";
 import {
   Shield,
   Crown,
@@ -51,6 +52,7 @@ export default function MembershipPortal() {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
   const [isEditingPaypal, setIsEditingPaypal] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [isCloudSyncing, setIsCloudSyncing] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -72,26 +74,43 @@ export default function MembershipPortal() {
             localStorage.setItem("hunter_vip_tier", "S-Rank VIP Guild");
           }
           setCurrentUser(parsed);
+          if (parsed.email) {
+            restoreHunterFromCloud(parsed.email).then((cloudData) => {
+              if (cloudData && cloudData.tier) {
+                parsed.tier = cloudData.tier;
+                setCurrentUser({ ...parsed });
+              }
+            });
+          }
         } catch (e) {
           console.error("Error parsing user", e);
         }
       }
 
       // Check Firebase Auth observer
-      const unsubscribe = auth.onAuthStateChanged((user: FirebaseUser | null) => {
-        if (user) {
-          const isNickAdmin = user.email?.toLowerCase() === "ncrossonofficial06@gmail.com";
+      const unsubscribe = auth.onAuthStateChanged(async (user: FirebaseUser | null) => {
+        if (user && user.email) {
+          const isNickAdmin = user.email.toLowerCase() === "ncrossonofficial06@gmail.com";
           if (isNickAdmin) {
             localStorage.setItem("hunter_vip_tier", "S-Rank VIP Guild");
           }
+          const cloudData = await restoreHunterFromCloud(user.email);
+          const activeTier = isNickAdmin
+            ? "S-Rank VIP Guild"
+            : (cloudData?.tier || (localStorage.getItem("hunter_vip_tier") as "E-Rank Free" | "S-Rank VIP Guild") || "E-Rank Free");
+
           const updatedUser: LocalAuthUser = {
             uid: user.uid,
-            email: user.email || "hunter@sololeveling.com",
+            email: user.email,
             displayName: user.displayName || (isNickAdmin ? "Shadow Monarch Nick" : "Shadow Monarch"),
-            tier: isNickAdmin ? "S-Rank VIP Guild" : ((localStorage.getItem("hunter_vip_tier") as "E-Rank Free" | "S-Rank VIP Guild") || "E-Rank Free"),
+            tier: activeTier,
           };
           setCurrentUser(updatedUser);
           localStorage.setItem("hunter_current_user", JSON.stringify(updatedUser));
+          localStorage.setItem("hunter_vip_tier", activeTier);
+          
+          // Auto sync back to ensure both devices are in sync
+          syncHunterToCloud(user.email, updatedUser.displayName, activeTier);
         }
       });
 
@@ -234,6 +253,18 @@ export default function MembershipPortal() {
     }
   };
 
+  const handleManualCloudSync = async () => {
+    if (!currentUser) return;
+    setIsCloudSyncing(true);
+    const success = await syncHunterToCloud(currentUser.email, currentUser.displayName, currentUser.tier);
+    setIsCloudSyncing(false);
+    if (success) {
+      alert("⚡ Cloud Sync Successful! Your membership & stats are backed up to Firebase Firestore across devices.");
+    } else {
+      alert("⚠️ Stored offline backup in local browser cache. Configure Firebase database in Cloudflare for live multi-device sync!");
+    }
+  };
+
   const handleActivateVIP = () => {
     if (!currentUser) {
       alert("⚠️ Please Sign In or Register a Hunter account first before upgrading to S-Rank VIP!");
@@ -246,6 +277,7 @@ export default function MembershipPortal() {
       localStorage.setItem("hunter_current_user", JSON.stringify(upgraded));
       localStorage.setItem("hunter_vip_tier", "S-Rank VIP Guild");
     }
+    syncHunterToCloud(upgraded.email, upgraded.displayName, "S-Rank VIP Guild");
 
     // Award XP and Stat points
     awardXp(1000, "str");
@@ -436,13 +468,24 @@ export default function MembershipPortal() {
                   </div>
                 </div>
 
-                <button
-                  onClick={handleSignOut}
-                  className="w-full py-3 rounded-xl bg-system-card hover:bg-red-500/20 border border-red-500/40 text-red-400 hover:text-red-300 font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 min-h-[44px]"
-                >
-                  <LogOut className="w-4 h-4" />
-                  <span>Sign Out of System</span>
-                </button>
+                <div className="space-y-2">
+                  <button
+                    onClick={handleManualCloudSync}
+                    disabled={isCloudSyncing}
+                    className="w-full py-3 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan hover:from-system-cyan hover:to-system-blue text-black font-black text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-glow-blue min-h-[44px]"
+                  >
+                    <Zap className={`w-4 h-4 fill-black ${isCloudSyncing ? "animate-spin" : ""}`} />
+                    <span>{isCloudSyncing ? "Syncing to Cloud..." : "⚡ Force Cloud Save (Backup Now)"}</span>
+                  </button>
+
+                  <button
+                    onClick={handleSignOut}
+                    className="w-full py-3 rounded-xl bg-system-card hover:bg-red-500/20 border border-red-500/40 text-red-400 hover:text-red-300 font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 min-h-[44px]"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    <span>Sign Out of System</span>
+                  </button>
+                </div>
               </div>
             ) : (
               /* Auth Form (Sign In / Sign Up) */
