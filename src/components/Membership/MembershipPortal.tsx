@@ -27,6 +27,7 @@ import {
   Award,
 } from "lucide-react";
 import confetti from "canvas-confetti";
+import VipPremiumShowcase from "./VipPremiumShowcase";
 
 interface LocalAuthUser {
   uid: string;
@@ -335,6 +336,15 @@ export default function MembershipPortal() {
           </div>
         </div>
       </div>
+
+      {/* S-Rank VIP Premium Suite & Showcase */}
+      <VipPremiumShowcase
+        userTier={currentUser?.tier || "E-Rank Free"}
+        onUpgradeClick={() => {
+          const el = document.getElementById("paypal-checkout-section");
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }}
+      />
 
       {/* Success Toast */}
       {showSuccessToast && (

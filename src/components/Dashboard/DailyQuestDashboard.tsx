@@ -5,6 +5,7 @@ import { loadHunterState, saveHunterState, awardXp, allocateStatPoint, updateWei
 import { getTodayWorkout } from '@/lib/workout-data';
 import { Shield, Zap, Flame, Award, Dumbbell, Utensils, Droplets, Scale, CheckCircle2, Circle, PlusCircle, Sparkles, ArrowRight, Trash2, Settings } from 'lucide-react';
 import { TabType } from '../Navigation/SystemSidebar';
+import MotivationOracle from './MotivationOracle';
 
 interface DailyQuestDashboardProps {
   onNavigate: (tab: TabType) => void;
@@ -181,6 +182,9 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
           </div>
         </div>
       </div>
+
+      {/* General Feature & VIP Teaser: Daily Motivation Oracle */}
+      <MotivationOracle onNavigate={(tab) => onNavigate(tab as TabType)} />
 
       {/* Grid: Stat Sheet & Today's Workout Quest */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

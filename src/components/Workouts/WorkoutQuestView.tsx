@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { PLANET_FITNESS_PPL_ROUTINE, WorkoutDay, Exercise } from '@/lib/workout-data';
 import { awardXp, loadHunterState, saveHunterState } from '@/lib/hunter-system';
 import { Dumbbell, CheckCircle2, Circle, Trophy, Info, Sparkles, MapPin, Zap } from 'lucide-react';
+import RestTimerBar from './RestTimerBar';
 
 export default function WorkoutQuestView() {
   const [selectedDay, setSelectedDay] = useState<number>(new Date().getDay()); // default today
@@ -157,6 +158,9 @@ export default function WorkoutQuestView() {
           )}
         </div>
       </div>
+
+      {/* General Feature: Rest & Recovery Timer Stopwatch */}
+      {!currentDayWorkout.isRestDay && <RestTimerBar />}
 
       {/* Exercises List */}
       <div className="space-y-4">
