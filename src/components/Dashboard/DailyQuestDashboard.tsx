@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { loadHunterState, saveHunterState, awardXp, allocateStatPoint, updateWeight, HunterState } from '@/lib/hunter-system';
+import { loadHunterState, saveHunterState, awardXp, allocateStatPoint, updateWeight, addCustomQuest, toggleCustomQuest, deleteCustomQuest, HunterState } from '@/lib/hunter-system';
 import { getTodayWorkout } from '@/lib/workout-data';
-import { Shield, Zap, Flame, Award, Dumbbell, Utensils, Droplets, Scale, CheckCircle2, Circle, PlusCircle, Sparkles, ArrowRight } from 'lucide-react';
+import { Shield, Zap, Flame, Award, Dumbbell, Utensils, Droplets, Scale, CheckCircle2, Circle, PlusCircle, Sparkles, ArrowRight, Trash2, Settings } from 'lucide-react';
 import { TabType } from '../Navigation/SystemSidebar';
 
 interface DailyQuestDashboardProps {
@@ -14,6 +14,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
   const [state, setState] = useState<HunterState | null>(null);
   const [newWeightInput, setNewWeightInput] = useState<string>('');
   const [showWeightModal, setShowWeightModal] = useState(false);
+  const [customQuestTitle, setCustomQuestTitle] = useState<string>('');
   const todayWorkout = getTodayWorkout();
 
   useEffect(() => {
@@ -25,10 +26,13 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
 
   if (!state) return null;
 
-  const targetDate = new Date('2027-12-31').getTime();
+  const targetDateStr = state.profile?.targetDate || '2027-12-31';
+  const targetDate = new Date(targetDateStr).getTime();
   const todayTime = new Date().getTime();
   const daysRemaining = Math.max(0, Math.round((targetDate - todayTime) / (1000 * 60 * 60 * 24)));
-  let currentWeight = state.profile?.currentWeight || 242;
+  const startWeight = state.profile?.startWeight || 242;
+  const targetWeight = state.profile?.targetWeight || 170;
+  let currentWeight = state.profile?.currentWeight || startWeight;
   if (typeof window !== 'undefined') {
     try {
       const savedWeights = localStorage.getItem('pf_weight_history');
@@ -42,8 +46,9 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
       // ignore
     }
   }
-  const lbsLost = Math.max(0, 242 - currentWeight);
-  const raidProgress = Math.min(100, Math.max(5, Math.round((lbsLost / 72) * 100)));
+  const lbsLost = Math.max(0, Number((startWeight - currentWeight).toFixed(1)));
+  const totalLossNeeded = Math.max(1, startWeight - targetWeight);
+  const raidProgress = Math.min(100, Math.max(5, Math.round((lbsLost / totalLossNeeded) * 100)));
 
   const handleStatUpgrade = (stat: 'str' | 'agi' | 'vit' | 'int' | 'per') => {
     allocateStatPoint(stat);
@@ -71,6 +76,21 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
     }
   };
 
+  const handleAddCustomQuestSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!customQuestTitle.trim()) return;
+    addCustomQuest(customQuestTitle.trim(), 100);
+    setCustomQuestTitle('');
+  };
+
+  const handleToggleCustomQuest = (id: string) => {
+    toggleCustomQuest(id);
+  };
+
+  const handleDeleteCustomQuest = (id: string) => {
+    deleteCustomQuest(id);
+  };
+
   return (
     <div className="space-y-8 pb-12">
       
@@ -88,7 +108,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               Arise, <span className="text-system-blue">{state.profile.name}</span>.
             </h2>
             <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
-              Your mission is clear: transform from 242 lbs down to a shredded, muscular <span className="text-system-cyan font-bold">170 lbs by Dec 31, 2027</span>. Complete your daily quests to level up your real-life stats and build impressive density at Planet Fitness Lewiston!
+              Your mission is clear: transform from {startWeight} lbs down to a shredded, muscular <span className="text-system-cyan font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Complete your daily quests to level up your real-life stats and build impressive density at {state.profile.gymName || 'Planet Fitness Lewiston'}!
             </p>
           </div>
 
@@ -111,7 +131,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
         </div>
       </div>
 
-      {/* ⚔️ Boss Raid 170 LB Cutting Countdown Deck */}
+      {/* ⚔️ Boss Raid Cutting Countdown Deck */}
       <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-card p-6 rounded-2xl border-2 border-system-gold/60 shadow-glow-gold relative overflow-hidden">
         <div className="absolute top-0 right-0 w-80 h-full bg-gradient-to-l from-system-gold/10 to-transparent pointer-events-none" />
         
@@ -121,22 +141,22 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               <span className="bg-system-gold text-system-dark font-black text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded shadow-sm">
                 👑 S-Rank Boss Raid Directive
               </span>
-              <span className="text-xs font-mono text-system-cyan">Target: 170 LBS by Dec 31, 2027</span>
+              <span className="text-xs font-mono text-system-cyan">Target: {targetWeight} LBS by {new Date(targetDateStr).toLocaleDateString()}</span>
             </div>
             <h3 className="text-2xl font-black text-white uppercase tracking-wider flex flex-wrap items-center gap-2">
-              <span>The 170 LB Shredded Transformation</span>
+              <span>The {targetWeight} LB Shredded Transformation</span>
               <span className="text-sm font-mono font-bold text-system-gold">({daysRemaining} Days Left)</span>
             </h3>
             <p className="text-xs text-zinc-300 max-w-2xl leading-relaxed">
-              Every clean meal prep and every PR at Planet Fitness Lewiston chops HP off this boss raid. Stay consistent on the Boricua cutting diet to avoid loose skin and emerge at peak definition!
+              Every clean meal prep and every PR at {state.profile.gymName || 'Planet Fitness Lewiston'} chops HP off this boss raid. Stay consistent on the {state.profile.dietName || 'Boricua cutting diet'} to avoid loose skin and emerge at peak definition!
             </p>
 
             {/* Boss HP Bar */}
             <div className="pt-2">
               <div className="flex items-center justify-between text-xs font-mono font-bold mb-1.5">
-                <span className="text-zinc-400">Start: 242 LBS</span>
+                <span className="text-zinc-400">Start: {startWeight} LBS</span>
                 <span className="text-system-gold animate-pulse">Current: {currentWeight} LBS (-{lbsLost} lbs lost)</span>
-                <span className="text-system-cyan">Goal: 170 LBS</span>
+                <span className="text-system-cyan">Goal: {targetWeight} LBS</span>
               </div>
               <div className="w-full h-4 bg-system-dark rounded-full overflow-hidden border border-system-gold/40 p-0.5 shadow-inner">
                 <div 
@@ -355,7 +375,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                   </span>
                   <span className="text-xs font-mono text-system-gold">+200 XP</span>
                 </div>
-                <h4 className="text-base font-black text-white uppercase">2,150 kcal | 206g Protein</h4>
+                <h4 className="text-base font-black text-white uppercase">{state.profile.dailyCalorieGoal || 2150} kcal | {state.profile.dailyProteinGoal || 206}g Protein</h4>
                 <p className="text-xs text-zinc-400 mt-1">High protein prevents muscle loss & loose skin during your cut.</p>
               </div>
               <button
@@ -398,7 +418,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                   <span className="text-xs font-mono text-system-gold">+100 XP</span>
                 </div>
                 <h4 className="text-base font-black text-white uppercase">Current: {state.profile.currentWeight} lbs</h4>
-                <p className="text-xs text-zinc-400 mt-1">Target: <span className="text-system-cyan font-bold">170 lbs</span> (~0.92 lbs/wk pace).</p>
+                <p className="text-xs text-zinc-400 mt-1">Target: <span className="text-system-cyan font-bold">{targetWeight} lbs</span> (~0.92 lbs/wk pace).</p>
               </div>
               {state.completedQuestsToday.weighIn ? (
                 <div className="mt-4 w-full py-2 rounded-xl bg-green-500/20 border border-green-500/40 text-green-400 text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1.5">
@@ -418,6 +438,95 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
 
           </div>
 
+          {/* Custom Quests & Personal Goals Section */}
+          <div className="bg-gradient-to-br from-system-panel to-system-dark p-6 rounded-2xl border border-system-gold/40 shadow-xl space-y-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="bg-system-gold/20 text-system-gold font-black text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded border border-system-gold/30">
+                    🎯 Personal Directives
+                  </span>
+                  <span className="text-xs font-mono text-zinc-400">Custom Hunter Goals</span>
+                </div>
+                <h3 className="text-lg md:text-xl font-black text-white uppercase tracking-wider mt-1 flex items-center gap-2">
+                  <span>My Custom Daily Quests</span>
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => onNavigate('settings')}
+                className="px-3.5 py-1.5 rounded-xl bg-system-card hover:bg-system-blue/20 border border-system-blue/40 text-system-cyan text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
+              >
+                <Settings className="w-3.5 h-3.5 animate-spin-slow" />
+                <span>Manage Profile & Goals</span>
+              </button>
+            </div>
+
+            <form onSubmit={handleAddCustomQuestSubmit} className="flex flex-col sm:flex-row gap-2.5">
+              <input
+                type="text"
+                value={customQuestTitle}
+                onChange={(e) => setCustomQuestTitle(e.target.value)}
+                placeholder="Add a new custom goal or daily task (e.g., Read 15 mins, 10k steps, Stretching)..."
+                className="flex-1 bg-system-dark border border-system-gold/40 rounded-xl px-4 py-2.5 text-white font-bold text-xs sm:text-sm focus:outline-none focus:border-system-gold transition-all"
+              />
+              <button
+                type="submit"
+                className="px-5 py-2.5 rounded-xl bg-system-gold text-system-dark hover:bg-white font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-glow-gold flex-shrink-0 cursor-pointer"
+              >
+                <PlusCircle className="w-4 h-4" />
+                <span>Add Goal (+100 XP)</span>
+              </button>
+            </form>
+
+            {(!state.customQuests || state.customQuests.length === 0) ? (
+              <div className="text-center py-6 bg-system-dark/50 rounded-xl border border-dashed border-white/10">
+                <p className="text-xs text-zinc-400 font-mono">No custom quests added yet! Create your own personal goals above to gain bonus XP every day!</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {state.customQuests.map((q) => (
+                  <div
+                    key={q.id}
+                    onClick={() => handleToggleCustomQuest(q.id)}
+                    className={`p-3.5 rounded-xl border flex items-center justify-between gap-3 cursor-pointer transition-all transform hover:scale-[1.01] ${
+                      q.completed
+                        ? 'bg-green-500/10 border-green-500/40 text-green-300 shadow-[0_0_15px_rgba(34,197,94,0.15)]'
+                        : 'bg-system-card/90 border-white/10 hover:border-system-gold/50 text-white'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 overflow-hidden">
+                      {q.completed ? (
+                        <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
+                      ) : (
+                        <Circle className="w-5 h-5 text-zinc-500 flex-shrink-0" />
+                      )}
+                      <span className={`text-xs sm:text-sm font-bold truncate ${q.completed ? 'line-through text-zinc-400' : 'text-white'}`}>
+                        {q.title}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <span className="text-[10px] font-mono font-black text-system-gold bg-system-gold/10 px-2 py-0.5 rounded border border-system-gold/20">
+                        +{q.xpReward || 100} XP
+                      </span>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteCustomQuest(q.id);
+                        }}
+                        className="p-1 text-zinc-500 hover:text-red-400 transition-colors cursor-pointer"
+                        title="Delete custom goal"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
           {/* Coach's Loose Skin Prevention & Bodybuilding Box */}
           <div className="rounded-2xl bg-gradient-to-r from-system-card via-system-panel to-system-dark p-6 border border-system-cyan/30 flex flex-col md:flex-row items-start md:items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-system-blue/10 border border-system-blue flex items-center justify-center flex-shrink-0">
@@ -429,7 +538,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 <span className="text-[10px] font-mono bg-system-blue/20 text-system-cyan px-2 py-0.5 rounded">Golden Standard Pace</span>
               </h4>
               <p className="text-xs text-zinc-300 leading-relaxed">
-                You are on track to reach <span className="text-white font-bold">170 lbs by Dec 31, 2027</span>. Why is this ~1 lb/week pace so vital? When you lose weight gradually while hitting <span className="text-system-cyan font-bold">190g of protein</span> and lifting heavy on this 6-day PPL split, your 20-year-old skin naturally retracts over the newly built muscle underneath. You will build a rock-hard physique without sagging skin!
+                You are on track to reach <span className="text-white font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Why is this ~1 lb/week pace so vital? When you lose weight gradually while hitting <span className="text-system-cyan font-bold">{state.profile.dailyProteinGoal || 206}g of protein</span> and lifting heavy on this 6-day PPL split, your 20-year-old skin naturally retracts over the newly built muscle underneath. You will build a rock-hard physique without sagging skin!
               </p>
             </div>
           </div>

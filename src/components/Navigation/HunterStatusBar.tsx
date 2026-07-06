@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { loadHunterState, HunterState } from '@/lib/hunter-system';
-import { Shield, Zap, Flame, Award, Heart, Activity, Sparkles, Crown } from 'lucide-react';
+import { Shield, Zap, Flame, Award, Heart, Activity, Sparkles, Crown, Settings } from 'lucide-react';
 
 interface HunterStatusBarProps {
   onNavigate?: (tab: string) => void;
@@ -139,6 +139,16 @@ export default function HunterStatusBar({ onNavigate }: HunterStatusBarProps) {
             <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-system-gold animate-bounce" />
             <span>{state.streakDays}d <span className="hidden sm:inline">Streak</span></span>
           </div>
+
+          {/* Settings Button */}
+          <button
+            onClick={() => onNavigate?.('settings')}
+            className="flex items-center gap-1 sm:gap-1.5 bg-system-panel/80 hover:bg-system-blue/20 px-2.5 sm:px-3 py-1 rounded-lg border border-system-blue/40 text-[11px] sm:text-xs font-mono font-bold text-system-cyan shadow-sm transition-all hover:scale-105 cursor-pointer whitespace-nowrap"
+            title="System Settings & Goals"
+          >
+            <Settings className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-system-blue animate-spin-slow" />
+            <span className="hidden sm:inline">Settings</span>
+          </button>
 
           {/* Available Stat Points Alert */}
           {state.stats.availablePoints > 0 && (

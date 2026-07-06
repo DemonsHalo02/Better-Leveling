@@ -1,9 +1,9 @@
 "use client";
 
 import React from 'react';
-import { ShieldAlert, Dumbbell, ScanLine, TrendingDown, ShoppingBag, Crown, Trophy } from 'lucide-react';
+import { ShieldAlert, Dumbbell, ScanLine, TrendingDown, ShoppingBag, Crown, Trophy, Settings } from 'lucide-react';
 
-export type TabType = 'quests' | 'workouts' | 'scanner' | 'weight' | 'grocery' | 'membership' | 'trophies';
+export type TabType = 'quests' | 'workouts' | 'scanner' | 'weight' | 'grocery' | 'membership' | 'trophies' | 'settings';
 
 interface SystemSidebarProps {
   activeTab: TabType;
@@ -50,6 +50,13 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
       mobileLabel: 'Trophies',
       icon: <Trophy className="w-5 h-5 text-system-gold animate-pulse" />,
       badge: 'XP'
+    },
+    {
+      id: 'settings',
+      label: 'System Settings',
+      mobileLabel: 'Settings',
+      icon: <Settings className="w-5 h-5 text-system-blue" />,
+      badge: 'NEW'
     },
     {
       id: 'membership',

@@ -13,6 +13,13 @@ export interface HunterStats {
   availablePoints: number;
 }
 
+export interface CustomQuest {
+  id: string;
+  title: string;
+  xpReward: number;
+  completed: boolean;
+}
+
 export interface UserProfile {
   name: string;
   age: number;
@@ -25,6 +32,8 @@ export interface UserProfile {
   dailyProteinGoal: number;
   dailyCarbGoal: number;
   dailyFatGoal: number;
+  gymName?: string;
+  dietName?: string;
 }
 
 export interface HunterState {
@@ -46,6 +55,7 @@ export interface HunterState {
     hydration: boolean;
     weighIn: boolean;
   };
+  customQuests?: CustomQuest[];
 }
 
 const DEFAULT_STATE: HunterState = {
@@ -67,17 +77,19 @@ const DEFAULT_STATE: HunterState = {
     availablePoints: 0,
   },
   profile: {
-    name: "Shadow Monarch",
+    name: "Nick Crosson",
     age: 20,
     heightInches: 70, // 5'10"
     startWeight: 242,
     currentWeight: 242,
     targetWeight: 170,
     targetDate: "2027-12-31",
-    dailyCalorieGoal: 2650,
-    dailyProteinGoal: 190,
-    dailyCarbGoal: 280,
-    dailyFatGoal: 85,
+    dailyCalorieGoal: 2150,
+    dailyProteinGoal: 206,
+    dailyCarbGoal: 200,
+    dailyFatGoal: 60,
+    gymName: "Planet Fitness Lewiston",
+    dietName: "Boricua Cutting Blueprint",
   },
   completedQuestsToday: {
     workout: false,
@@ -86,6 +98,7 @@ const DEFAULT_STATE: HunterState = {
     hydration: false,
     weighIn: false,
   },
+  customQuests: [],
 };
 
 const STORAGE_KEY = 'better_leveling_v2_state';
@@ -237,5 +250,50 @@ export function updateWeight(newWeight: number): HunterState {
   } else {
     saveHunterState(state);
   }
+  return state;
+}
+
+export function addCustomQuest(title: string, xpReward: number = 100): HunterState {
+  const state = loadHunterState();
+  if (!state.customQuests) state.customQuests = [];
+  state.customQuests.push({
+    id: `quest-${Date.now()}`,
+    title,
+    xpReward,
+    completed: false,
+  });
+  saveHunterState(state);
+  return state;
+}
+
+export function toggleCustomQuest(id: string): HunterState {
+  const state = loadHunterState();
+  if (!state.customQuests) return state;
+  const quest = state.customQuests.find(q => q.id === id);
+  if (quest) {
+    if (!quest.completed) {
+      quest.completed = true;
+      saveHunterState(state);
+      awardXp(quest.xpReward || 100, 'per');
+    } else {
+      quest.completed = false;
+      saveHunterState(state);
+    }
+  }
+  return state;
+}
+
+export function deleteCustomQuest(id: string): HunterState {
+  const state = loadHunterState();
+  if (!state.customQuests) return state;
+  state.customQuests = state.customQuests.filter(q => q.id !== id);
+  saveHunterState(state);
+  return state;
+}
+
+export function updateUserProfile(updates: Partial<UserProfile>): HunterState {
+  const state = loadHunterState();
+  state.profile = { ...state.profile, ...updates };
+  saveHunterState(state);
   return state;
 }
