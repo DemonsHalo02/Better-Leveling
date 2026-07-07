@@ -53,6 +53,7 @@ export default function MembershipPortal() {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [isCloudSyncing, setIsCloudSyncing] = useState(false);
+  const [isEditingPaypal, setIsEditingPaypal] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -82,9 +83,7 @@ export default function MembershipPortal() {
               }
             });
           }
-        } catch (e) {
-          console.error("Error parsing user", e);
-        }
+        } catch {}
       }
 
       // Check Firebase Auth observer
@@ -166,10 +165,10 @@ export default function MembershipPortal() {
         // Update hunter state with Admin Perks
         const hunterState = loadHunterState();
         hunterState.profile.name = adminName;
-        hunterState.profile.title = "Shadow Monarch (Creator Admin)";
-        hunterState.profile.level = Math.max(hunterState.profile.level, 100);
-        hunterState.profile.rank = "S-Rank";
-        hunterState.statPoints += 25;
+        hunterState.title = "Shadow Monarch (Creator Admin)";
+        hunterState.level = Math.max(hunterState.level, 100);
+        hunterState.rank = "Shadow Monarch";
+        hunterState.stats.availablePoints += 25;
         saveHunterState(hunterState);
 
         // Trigger celebration

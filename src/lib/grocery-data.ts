@@ -4,7 +4,7 @@ export interface GroceryItem {
   name: string;
   store: 'Walmart Supercenter (Auburn, ME)' | "Shaw's (Auburn/Lewiston)" | 'Hannaford (Lewiston/Auburn)' | 'All Stores';
   brand: string;
-  category: 'Protein' | 'Carbs' | 'Fats' | 'Produce' | 'Essentials' | 'Toiletries / Non-Grocery';
+  category: 'Protein' | 'Carbs' | 'Fats' | 'Produce' | 'Essentials' | 'Toiletries / Non-Grocery' | 'Seasonings & Spices';
   priceEst: string;
   calories: number;
   protein: number; // in grams
@@ -71,19 +71,19 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   },
   {
     id: "g-3",
-    upc: "078742351888", // Great Value Milk
-    name: "Great Value Milk (Half Gallon / 64 fl oz)",
+    upc: "025293004136",
+    name: "Silk Original Soy Milk (Half Gallon / 64 fl oz)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
+    brand: "Silk",
     category: "Essentials",
-    priceEst: "$1.78 (Half Gallon)",
-    calories: 130,
+    priceEst: "$3.97 (Half Gallon)",
+    calories: 110,
     protein: 8,
-    carbs: 12,
-    fat: 5,
+    carbs: 9,
+    fat: 4.5,
     servingSize: "1 cup (8 fl oz)",
-    coachNote: "Essential for making authentic, creamy Puerto Rican Café con Leche every morning and afternoon!",
-    cuisine: ["Puerto Rico"]
+    coachNote: "100% dairy-free & lactose-free! High protein (8g/cup) creamy base for making Café con Leche, Dirty Matcha Lattes, and Dirty Chai Lattes without stomach discomfort!",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-4",
@@ -259,7 +259,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tsp (2g / 1 espresso shot equivalent)",
     coachNote: "Essential instant coffee roast! Dissolve 1-2 tsp in hot water to create the espresso shot required for your authentic Chinese Dirty Matcha Lattes and Mexican Café de Olla!",
-    cuisine: ["China", "Mexico"]
+    cuisine: ["China", "Korea", "Mexico"]
   },
   {
     id: "g-15",
@@ -306,8 +306,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 1,
     fat: 2.5,
     servingSize: "1 cup (8 fl oz)",
-    coachNote: "Low-calorie creamy base for mixing Chinese and Japanese Dirty Matcha Lattes without sugar crashes.",
-    cuisine: ["China", "Japan"]
+    coachNote: "Low-calorie creamy base for mixing Dirty Matcha Lattes (optional alternative to Silk Soy Milk).",
+    cuisine: []
   },
   {
     id: "g-18",
@@ -322,8 +322,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 5,
     fat: 0,
     servingSize: "1 tbsp (15g)",
-    coachNote: "Essential spicy metabolism-boosting chili sauce staple stocked at Auburn Walmart for Korean Bulgogi bowls and egg scrambles.",
-    cuisine: ["Korea"]
+    coachNote: "Essential spicy metabolism-boosting chili sauce staple stocked at Auburn Walmart for Chinese stir-fries, Korean Bulgogi bowls and egg scrambles.",
+    cuisine: ["China", "Korea"]
   },
   {
     id: "g-19",
@@ -403,7 +403,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 2.5,
     servingSize: "1/2 cup dry (40g)",
     coachNote: "Slow-digesting complex carbs for morning energy or mixing into afternoon Greek yogurt power bowls.",
-    cuisine: []
+    cuisine: ["China", "Korea", "Mexico"]
   },
   {
     id: "g-24",
@@ -435,7 +435,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "3 tbsp (46g)",
     coachNote: "Pure protein booster! Mix 1/2 cup into your morning whole egg scrambles to add 13g of clean protein without extra fat calories.",
-    cuisine: ["China", "Japan", "Mexico"]
+    cuisine: ["China", "Korea", "Japan", "Mexico"]
   },
   {
     id: "g-26",
@@ -468,12 +468,140 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     servingSize: "2 tbsp (30g)",
     coachNote: "The zesty Mexican secret! Chunky Salsa for morning Huevos Rancheros and fresh avocado for citrus Pollo Asado street tacos.",
     cuisine: ["Mexico"]
+  },
+  {
+    id: "g-28",
+    upc: "025484000148",
+    name: "Nasoya Authentic Korean Spicy Kimchi (14 oz cup)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Nasoya",
+    category: "Produce",
+    priceEst: "$4.98 (14 oz refrigerated cup)",
+    calories: 15,
+    protein: 1,
+    carbs: 2,
+    fat: 0,
+    servingSize: "2 tbsp (28g)",
+    coachNote: "Authentic probiotic-rich Korean kimchi! Fermented napa cabbage loaded with gut-healthy bacteria for digestion and immune support. Essential side dish for Bulgogi bowls.",
+    cuisine: ["Korea"]
+  },
+  {
+    id: "g-29",
+    upc: "072310000292",
+    name: "Tazo / Bigelow Classic Spiced Chai Tea Bags (20 ct box)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Tazo / Bigelow",
+    category: "Essentials",
+    priceEst: "$3.48 (20 ct box)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1 Tea Bag (8 fl oz brewed)",
+    coachNote: "Premium spiced chai tea for Korean Dirty Chai Lattes! Brew strong, add a shot of dissolved instant coffee and Silk soy milk for an authentic warming Dirty Chai without lactose!",
+    cuisine: ["Korea"]
+  },
+  {
+    id: "g-30",
+    upc: "078742100108",
+    name: "Great Value Garlic Powder (3.4 oz bottle)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$1.08 (3.4 oz bottle)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1/4 tsp (0.7g)",
+    coachNote: "Essential all-purpose seasoning! Used across every single meal plan for searing chicken, beef, eggs, and stir-fries with zero calories.",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+  },
+  {
+    id: "g-31",
+    upc: "078742100207",
+    name: "Great Value Ground Ginger (1.5 oz bottle)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$2.32 (1.5 oz bottle)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1/4 tsp (0.5g)",
+    coachNote: "Essential Asian cooking spice! Adds warming heat to Chinese stir-fries, Korean Bulgogi marinades, and Japanese teriyaki glazes.",
+    cuisine: ["China", "Korea", "Japan"]
+  },
+  {
+    id: "g-32",
+    upc: "078742100306",
+    name: "Great Value Ground Cinnamon (2.5 oz bottle)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$1.27 (2.5 oz bottle)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1/4 tsp (0.7g)",
+    coachNote: "Sweet warming spice for Dirty Chai Lattes, Café con Leche, Café de Olla, Greek Yogurt bowls, and cinnamon oatmeal with zero calories!",
+    cuisine: ["Korea", "Puerto Rico", "Mexico"]
+  },
+  {
+    id: "g-33",
+    upc: "078742100405",
+    name: "Great Value Ground Cumin (2.5 oz bottle)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$1.37 (2.5 oz bottle)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1/4 tsp (0.5g)",
+    coachNote: "Essential earthy Mexican spice for authentic Pollo Asado, fajita chicken, and Huevos Rancheros seasoning.",
+    cuisine: ["Mexico"]
+  },
+  {
+    id: "g-34",
+    upc: "078742100504",
+    name: "Great Value Chili Powder (3 oz bottle)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$1.08 (3 oz bottle)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1/4 tsp (0.7g)",
+    coachNote: "Smoky heat for Mexican fajita seasoning, Szechuan-style Chinese stir-fries, and spicy egg scrambles.",
+    cuisine: ["Mexico", "China"]
+  },
+  {
+    id: "g-35",
+    upc: "078742100603",
+    name: "Great Value Onion Powder (3.25 oz bottle)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$1.08 (3.25 oz bottle)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1/4 tsp (0.7g)",
+    coachNote: "Savory all-purpose onion seasoning for Korean Bulgogi marinades, Puerto Rican Adobo chicken, and Mexican fajita spice blends.",
+    cuisine: ["Korea", "Puerto Rico", "Mexico"]
   }
 ];
 
 export interface WalmartPresetItem {
   name: string;
-  category: 'Protein' | 'Carbs' | 'Fats' | 'Produce' | 'Essentials' | 'Toiletries / Non-Grocery';
+  category: 'Protein' | 'Carbs' | 'Fats' | 'Produce' | 'Essentials' | 'Toiletries / Non-Grocery' | 'Seasonings & Spices';
   price: string;
   note: string;
 }
@@ -491,22 +619,42 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   { name: "Equate Ibuprofen Pain Reliever Tablets (200 mg, 100 ct)", category: "Toiletries / Non-Grocery", price: "$2.48", note: "Post-workout muscle recovery aid." },
   { name: "Equate Complete Multivitamin Tablets for Men (100 ct)", category: "Toiletries / Non-Grocery", price: "$8.98", note: "Daily micronutrient insurance." },
   { name: "Degree Men Dry Protection Antiperspirant Deodorant (2.7 oz)", category: "Toiletries / Non-Grocery", price: "$3.48", note: "All-day sweat and odor protection for lifting sessions." },
-  // Groceries & Staples
-  { name: "Great Value Purified Drinking Water (40 Pack, 16.9 fl oz bottles)", category: "Essentials", price: "$5.48", note: "Crucial hydration staple for gym sessions and daily water quest." },
-  { name: "Great Value Purified Drinking Water (24 Pack, 16.9 fl oz bottles)", category: "Essentials", price: "$3.98", note: "Convenient 24-pack for weekly hydration." },
-  { name: "Great Value Purified Water (1 Gallon Jug)", category: "Essentials", price: "$1.28", note: "Convenient daily gallon jug to effortlessly hit your daily water quest." },
-  { name: "Great Value / Lipton Green Tea & Matcha Blend Bags (40 ct box)", category: "Essentials", price: "$2.98", note: "Essential Auburn Walmart antioxidant green tea & matcha staple for making clean Dirty Matcha Lattes!" },
-  { name: "Great Value 100% Green Tea Bags (40 ct)", category: "Essentials", price: "$1.98", note: "Traditional Japanese and Korean metabolism tea staple. Enjoy hot or iced with zero calories." },
-  { name: "Great Value Unsweetened Almond Milk (Half Gallon / 64 fl oz)", category: "Essentials", price: "$2.48", note: "Low-calorie (30 kcal/cup) creamy base for mixing Dirty Matcha Lattes and protein shakes." },
-  { name: "Great Value Sriracha Chili Sauce or Chili Garlic Sauce (17 fl oz bottle)", category: "Essentials", price: "$2.98", note: "Essential spicy metabolism-boosting chili sauce staple stocked at Auburn Walmart." },
-  { name: "Great Value Soy Sauce (15 fl oz bottle)", category: "Essentials", price: "$1.48", note: "Essential savory seasoning for Chinese stir-fries, Korean Bulgogi, and Japanese rice bowls." },
-  { name: "Great Value White Corn Tortillas (30 ct)", category: "Carbs", price: "$1.98", note: "Authentic Mexican street taco and fajita staple with slow-digesting corn carbs." },
-  { name: "Great Value Black Beans / Pinto Beans (15.25 oz can)", category: "Carbs", price: "$0.84", note: "Essential fiber and slow carbs for Puerto Rican and Mexican meal prep." },
-  { name: "Great Value Large Grade A Eggs (18 Count Carton)", category: "Protein", price: "$3.48", note: "High-biological value breakfast protein." },
+  // Seasonings, Spices, Sauces & Beverages
+  { name: "Great Value Garlic Powder (3.4 oz bottle)", category: "Seasonings & Spices", price: "$1.08", note: "Essential zero-calorie savory garlic seasoning." },
+  { name: "Great Value Onion Powder (3.25 oz bottle)", category: "Seasonings & Spices", price: "$1.08", note: "Essential zero-calorie savory onion seasoning." },
+  { name: "Great Value Ground Ginger (1.5 oz bottle)", category: "Seasonings & Spices", price: "$2.32", note: "Warming Asian spice for Bulgogi and stir-fries." },
+  { name: "Great Value Ground Cinnamon (2.5 oz bottle)", category: "Seasonings & Spices", price: "$1.27", note: "Sweet warming spice for Dirty Chai Lattes and oatmeal." },
+  { name: "Great Value Ground Cumin (2.5 oz bottle)", category: "Seasonings & Spices", price: "$1.37", note: "Earthy Mexican spice for Pollo Asado and fajitas." },
+  { name: "Great Value Chili Powder (3 oz bottle)", category: "Seasonings & Spices", price: "$1.08", note: "Smoky heat for fajitas and stir-fries." },
+  { name: "Goya Sazón with Coriander & Annatto (8 ct)", category: "Seasonings & Spices", price: "$1.88", note: "Authentic Puerto Rican seasoning with zero calories." },
+  { name: "Goya Adobo All-Purpose Seasoning (8 oz jar)", category: "Seasonings & Spices", price: "$2.18", note: "The #1 Boricua garlic and pepper all-purpose seasoning." },
+  { name: "Great Value Soy Sauce (15 fl oz bottle)", category: "Seasonings & Spices", price: "$1.48", note: "Savory seasoning for Chinese stir-fries and Korean Bulgogi." },
+  { name: "Great Value Sriracha Chili Sauce (17 fl oz bottle)", category: "Seasonings & Spices", price: "$2.98", note: "Spicy metabolism-boosting chili sauce staple." },
+  { name: "Nasoya Authentic Korean Spicy Kimchi (14 oz cup)", category: "Seasonings & Spices", price: "$4.98", note: "Probiotic gut health & authentic Korean Bulgogi side." },
+  { name: "Great Value Classic Roast Instant Coffee (4 oz jar)", category: "Seasonings & Spices", price: "$2.48", note: "Dissolve 1 tsp for espresso shots in Dirty Matcha and Dirty Chai Lattes!" },
+  { name: "Café Bustelo Dark Roast Espresso (4 oz)", category: "Seasonings & Spices", price: "$3.48", note: "Authentic Boricua espresso for Café con Leche." },
+  { name: "Tazo / Bigelow Classic Spiced Chai Tea Bags (20 ct)", category: "Seasonings & Spices", price: "$3.48", note: "Spiced chai tea for Korean Dirty Chai Lattes!" },
+  { name: "Great Value / Lipton Green Tea & Matcha Blend Bags (40 ct)", category: "Seasonings & Spices", price: "$2.98", note: "Essential antioxidant tea for Dirty Matcha Lattes." },
+  { name: "Great Value 100% Green Tea Bags (40 ct)", category: "Seasonings & Spices", price: "$1.98", note: "Traditional Japanese and Korean metabolism tea." },
+  { name: "Great Value 0-Calorie Canola Oil Cooking Spray", category: "Seasonings & Spices", price: "$2.24", note: "Fat-free searing and egg scrambling." },
+  { name: "Great Value Zero Calorie Sweetener Packets (100 ct)", category: "Seasonings & Spices", price: "$2.18", note: "Sweetens tea, lattes, and yogurt with zero sugar calories." },
+  // Groceries & Protein Staples
+  { name: "Fresh Chicken Breasts (~4.7 lb Family Tray)", category: "Protein", price: "$12.60", note: "Primary lean protein staple (~4.7 to 6 lb tray)." },
+  { name: "Great Value Large Grade A White Eggs (36 Count Tray)", category: "Protein", price: "$6.84", note: "36 eggs guaranteed (3 eggs/day + extras!)." },
+  { name: "All Natural Lean Ground Beef 93/7 (~1 lb roll)", category: "Protein", price: "$6.48", note: "Essential for Bulgogi bowls and beef stir-fries." },
+  { name: "Great Value Plain Nonfat Greek Yogurt (32 oz tub)", category: "Protein", price: "$3.98", note: "Incredible protein-to-calorie ratio for afternoon casein." },
+  { name: "Silk Original Soy Milk (Half Gallon / 64 fl oz)", category: "Essentials", price: "$3.97", note: "100% dairy-free and lactose-free! High protein (8g/cup) creamy latte base." },
+  { name: "Great Value Chunk Light Tuna in Water (4 Pack)", category: "Protein", price: "$3.68", note: "High protein, zero-carb lean fish staple." },
+  { name: "Great Value 100% Liquid Egg Whites (32 oz carton)", category: "Protein", price: "$3.48", note: "Pure protein booster for morning scrambles." },
+  { name: "All Natural Bone-In Assorted Pork Chops (~1.3 lb tray)", category: "Protein", price: "$4.44", note: "Traditional Puerto Rican Chuletas." },
   { name: "Great Value Old Fashioned Rolled Oats (42 oz canister)", category: "Carbs", price: "$3.98", note: "Slow-digesting complex carbs for morning energy." },
-  { name: "Fresh Bananas (~1 lb bunch / ~3-4 bananas)", category: "Produce", price: "$1.58", note: "Quick potassium and pre-workout carbohydrates." },
+  { name: "Fresh Green Plantains (4 Pack)", category: "Carbs", price: "$2.32", note: "Crispy authentic Tostones a la Plancha." },
+  { name: "Great Value White Corn Tortillas (30 ct)", category: "Carbs", price: "$1.98", note: "Authentic Mexican street taco and fajita staple." },
+  { name: "Great Value Black Beans (Two 15.25 oz cans)", category: "Carbs", price: "$1.68", note: "Essential fiber and slow carbs." },
+  { name: "Fresh Bananas (~1 lb bunch)", category: "Produce", price: "$1.58", note: "Quick potassium and pre-workout carbohydrates." },
+  { name: "Great Value Long Grain White Rice (2 lb bag)", category: "Carbs", price: "$1.48", note: "Clean fast-digesting carbohydrates." },
   { name: "Great Value Frozen Broccoli Florets (12 oz bag)", category: "Produce", price: "$1.16", note: "Easy steamed micronutrients and fiber." },
-  { name: "Great Value Whole Milk (1 Gallon)", category: "Protein", price: "$3.88", note: "Classic calcium and protein for coffee or shakes." }
+  { name: "Great Value Chunky Salsa & Fresh Avocados", category: "Produce", price: "$2.48", note: "The zesty Mexican secret for morning Huevos Rancheros." }
 ];
 
 export const MEAL_PREP_PLANS: MealPrepPlan[] = [
@@ -518,14 +666,14 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ Most Important & Featured",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$49.86 total at Auburn Walmart (Under $50 Budget!)",
-    description: "High-efficiency Chinese cuisine cutting plan featuring traditional metabolism-boosting Oolong/Green Tea, plus the iconic Dirty Matcha Latte (instant coffee/espresso shot + pure green tea matcha + unsweetened almond milk) for clean afternoon focus without sugar crashes! SCHEDULE: Shop Auburn Walmart under $50 and prep MONDAY; eat TUESDAY!",
+    estCostPerWeek: "$58.81 total at Auburn Walmart (Full Kitchen Stocking w/ Spices)",
+    description: "High-efficiency Chinese cuisine cutting plan featuring traditional metabolism-boosting Oolong/Green Tea, plus the iconic Dirty Matcha Latte (instant coffee/espresso shot + pure green tea matcha + Silk Soy Milk) for clean afternoon focus without sugar crashes! SCHEDULE: Shop Auburn Walmart and prep MONDAY; eat TUESDAY!",
     meals: [
       {
         name: "Breakfast: Dirty Matcha Latte & Green Scallion Egg Scramble",
         time: "8:00 AM",
         ingredients: [
-          "1 Dirty Matcha Latte: Dissolved instant coffee/espresso shot mixed with 1 tsp Great Value / Lipton Matcha Blend, 1 cup Unsweetened Almond Milk & 1 0-cal sweetener packet! (45 kcal, 2g p)",
+          "1 Dirty Matcha Latte: Dissolved instant coffee/espresso shot mixed with 1 tsp Great Value / Lipton Matcha Blend, 1 cup Silk Soy Milk & 1 0-cal sweetener packet! (45 kcal, 2g p)",
           "3 Large Eggs & 1/2 cup egg whites scrambled with fresh scallions & drops of soy sauce in 0-Cal Spray (260 kcal, 26g p)",
           "1 cup cooked Jasmine / White Rice seasoned with sesame seasoning (200 kcal, 4g p, 45g c)"
         ],
@@ -552,7 +700,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         name: "Afternoon Tea & Energy: 2nd Dirty Matcha Latte & Protein Bowl",
         time: "4:00 PM",
         ingredients: [
-          "2nd Dirty Matcha Latte over ice: Pure green tea matcha + instant coffee/espresso + unsweetened almond milk (45 kcal, 2g p)",
+          "2nd Dirty Matcha Latte over ice: Pure green tea matcha + instant coffee/espresso + Silk Soy Milk (45 kcal, 2g p)",
           "1.5 cups Plain Nonfat Greek Yogurt sweetened with vanilla & sweetener (180 kcal, 32g p)",
           "1/2 cup oats or rice crispy cereal mixed in for clean pre-workout carbs (150 kcal, 4g p, 30g c)"
         ],
@@ -596,14 +744,14 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Boricua Authentic",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$46.49 total at Auburn Walmart (Under $50 Budget!)",
-    description: "Authentic Puerto Rican style cutting plan with upgraded fresh chicken, pork chops, rice, and crispy green Tostones a la Plancha! Optimized with bulk staples so your entire cart stays well under $50! Shop MONDAY; eat TUESDAY!",
+    estCostPerWeek: "$52.70 total at Auburn Walmart (Full Kitchen Stocking w/ Spices)",
+    description: "Authentic Puerto Rican style cutting plan with upgraded fresh chicken, pork chops, rice, and crispy green Tostones a la Plancha! Optimized with bulk staples and seasonings so your weekly replenishment stays well under $50! Shop MONDAY; eat TUESDAY!",
     meals: [
       {
         name: "Breakfast: Sweet Boricua Café con Leche & Spiced Scramble",
         time: "8:00 AM",
         ingredients: [
-          "1 Café Bustelo K-Cup brewed with 1/3 cup Great Value Milk & 2 zero-cal sweetener packets for sweet Café con Leche! (50 kcal, 3g p)",
+          "1 Café Bustelo K-Cup brewed with 1/3 cup Silk Soy Milk & 2 zero-cal sweetener packets for sweet Café con Leche! (50 kcal, 3g p)",
           "3 Great Value Large Eggs scrambled in 0-Calorie Cooking Spray with pinch of Goya Adobo (220 kcal, 18g p)",
           "1/2 cup Great Value White Rice seasoned with pinch of Sazón (150 kcal, 3g p, 34g c)"
         ],
@@ -630,7 +778,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         name: "Afternoon Perk: Sweet Iced Café con Leche & Protein Bowl",
         time: "4:00 PM",
         ingredients: [
-          "1 Café Bustelo K-Cup over ice with splash of Milk & sweetener for a 2nd sweet Café con Leche (30 kcal, 2g p)",
+          "1 Café Bustelo K-Cup over ice with splash of Soy Milk & sweetener for a 2nd sweet Café con Leche (30 kcal, 2g p)",
           "1.5 cups Great Value Plain Nonfat Greek Yogurt (180 kcal, 32g p)",
           "1/2 cup cooked white rice seasoned with cinnamon & sweetener (110 kcal, 1g p, 25g c)"
         ],
@@ -673,20 +821,20 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "K-Fit High Protein",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$48.37 total at Auburn Walmart (Under $50 Budget!)",
-    description: "Korean K-Fit style recomposition plan utilizing probiotic-rich kimchi, spicy gochujang, and tender bulgogi marinades. Designed for extreme muscle definition and gut health while keeping your Walmart cart strictly under $50!",
+    estCostPerWeek: "$71.24 total at Auburn Walmart (Full Kitchen Stocking w/ Spices)",
+    description: "Korean K-Fit style recomposition plan utilizing probiotic-rich Nasoya kimchi, spicy gochujang, and tender bulgogi marinades with warming Dirty Chai Lattes (chai tea + espresso shot + Silk Soy Milk)! Designed for extreme muscle definition and gut health.",
     meals: [
       {
-        name: "Breakfast: Seoul Black Coffee & Soy-Glazed Egg Scramble",
+        name: "Breakfast: Seoul Dirty Chai Latte & Soy-Glazed Egg Scramble",
         time: "8:00 AM",
         ingredients: [
-          "1 Hot Americano / Black Coffee (0 kcal)",
-          "3 Large Eggs & 3 oz tofu scrambled with scallions & sesame-soy drops (280 kcal, 24g p)",
+          "1 Dirty Chai Latte: Brew 1 Tazo / Bigelow Spiced Chai tea bag strong, dissolve 1 tsp instant coffee, add 1/2 cup Silk Soy Milk & 1 sweetener packet! (65 kcal, 4g p)",
+          "3 Large Eggs scrambled with scallions, soy sauce & garlic powder in 0-Cal Spray (220 kcal, 18g p)",
           "1 cup cooked White Rice with spicy kimchi on the side (220 kcal, 4g p, 48g c)"
         ],
-        calories: 500,
-        protein: 28,
-        carbs: 48,
+        calories: 505,
+        protein: 26,
+        carbs: 52,
         fat: 16
       },
       {
@@ -694,7 +842,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         time: "12:30 PM",
         ingredients: [
           "8 oz Fresh Chicken Breast seared in Korean soy-garlic-gochujang marinade (260 kcal, 54g p)",
-          "1/2 cup Bibigo Spicy Kimchi for gut health & probiotics (25 kcal, 2g p)",
+          "1/2 cup Nasoya Spicy Kimchi for gut health & probiotics (25 kcal, 2g p)",
           "1 cup cooked White Rice (200 kcal, 4g p, 45g c)",
           "1 cup steamed broccoli / spinach (30 kcal, 2g p)"
         ],
@@ -704,17 +852,17 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 4
       },
       {
-        name: "Afternoon Snack: Iced Green Tea & Gochujang Protein Bowl",
+        name: "Afternoon Snack: Iced Dirty Chai Latte & Protein Bowl",
         time: "4:00 PM",
         ingredients: [
-          "1 Iced Green Tea with lemon (0 kcal)",
-          "1.5 cups Plain Greek Yogurt with honey & cinnamon (190 kcal, 32g p)",
+          "1 Iced Dirty Chai Latte: Brew chai tea, add 1 tsp instant coffee, 1/2 cup Silk Soy Milk over ice (65 kcal, 4g p)",
+          "1.5 cups Plain Greek Yogurt with cinnamon & sweetener (180 kcal, 32g p)",
           "1/2 cup rolled oats or rice cereal (150 kcal, 4g p, 30g c)"
         ],
-        calories: 340,
-        protein: 36,
+        calories: 395,
+        protein: 40,
         carbs: 35,
-        fat: 3
+        fat: 5
       },
       {
         name: "Dinner: Korean BBQ Spiced Chicken Thighs & Breasts",
@@ -750,7 +898,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Clean Samurai Shred",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$42.88 total at Auburn Walmart (Under $50 Budget!)",
+    estCostPerWeek: "$51.45 total at Auburn Walmart (Full Kitchen Stocking w/ Spices)",
     description: "Ultra-clean Japanese cuisine blueprint emphasizing ginger-teriyaki seared proteins, edamame fiber, and antioxidant green tea. Engineered for rapid body fat loss and peak physical recovery under $50 total!",
     meals: [
       {
@@ -784,7 +932,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         name: "Afternoon Snack: Iced Matcha Latte & Protein Bowl",
         time: "4:00 PM",
         ingredients: [
-          "1 Iced Matcha Green Tea Latte made with almond milk & zero-cal sweetener (35 kcal, 1g p)",
+          "1 Iced Matcha Green Tea Latte made with Silk Soy Milk & zero-cal sweetener (35 kcal, 1g p)",
           "1.5 cups Plain Greek Yogurt with vanilla extract (180 kcal, 32g p)",
           "1/2 cup rice crispy cereal (130 kcal, 2g p, 28g c)"
         ],
@@ -827,7 +975,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Street Style Shred",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$45.66 total at Auburn Walmart (Under $50 Budget!)",
+    estCostPerWeek: "$56.38 total at Auburn Walmart (Full Kitchen Stocking w/ Spices)",
     description: "Vibrant Mexican street-style cutting plan featuring citrus-lime Pollo Asado, black beans, corn tortillas, and spiced Café de Olla! Maximum flavor and protein satisfaction while keeping your budget comfortably under $50!",
     meals: [
       {

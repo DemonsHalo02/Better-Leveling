@@ -577,8 +577,13 @@ export default function GroceryGuide() {
                       <option key={i.name} value={i.name}>+ Add {i.name} ({i.price})</option>
                     ))}
                   </optgroup>
-                  <optgroup label="🛒 Groceries & Protein Staples">
-                    {WALMART_QUICK_SELECT_ITEMS.filter(i => i.category !== 'Toiletries / Non-Grocery').map(i => (
+                  <optgroup label="🌶️ Seasonings, Spices, Teas & Sauces">
+                    {WALMART_QUICK_SELECT_ITEMS.filter(i => i.category === 'Seasonings & Spices').map(i => (
+                      <option key={i.name} value={i.name}>+ Add {i.name} ({i.price})</option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="🥩 Groceries, Drinks & Protein Staples">
+                    {WALMART_QUICK_SELECT_ITEMS.filter(i => i.category !== 'Toiletries / Non-Grocery' && i.category !== 'Seasonings & Spices').map(i => (
                       <option key={i.name} value={i.name}>+ Add {i.name} ({i.price})</option>
                     ))}
                   </optgroup>
