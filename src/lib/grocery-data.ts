@@ -234,18 +234,18 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   },
   {
     id: "g-14",
-    upc: "078742231268", // Great Value Purified Water
-    name: "Great Value Purified Drinking Water (40 Pack, 16.9 fl oz bottles)",
+    upc: "078742231268", // Instant Coffee for Dirty Matcha
+    name: "Great Value Classic Roast Instant Coffee / Espresso (8 oz jar)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Essentials",
-    priceEst: "$5.48 (40 pack)",
+    priceEst: "$3.98 (8 oz jar ~110 servings)",
     calories: 0,
     protein: 0,
     carbs: 0,
     fat: 0,
-    servingSize: "1 bottle (500ml)",
-    coachNote: "Crucial hydration staple for Planet Fitness Lewiston lifting sessions and completing your daily water intake quest!",
+    servingSize: "1 tsp (2g / 1 espresso shot equivalent)",
+    coachNote: "Essential instant coffee / espresso roast! Dissolve 1-2 tsp in hot water to create the espresso shot required for your authentic Chinese & Japanese Dirty Matcha Lattes!",
     cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
@@ -442,13 +442,13 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
     estCostPerWeek: "$44.50 total at Auburn Walmart (Under $50 Budget!)",
-    description: "High-efficiency Chinese cuisine cutting plan featuring traditional metabolism-boosting Oolong/Green Tea, plus the iconic Dirty Matcha Latte (espresso shot + pure green tea matcha + unsweetened almond milk) for clean afternoon focus without sugar crashes! SCHEDULE: Shop Auburn Walmart under $50 and prep MONDAY; eat TUESDAY!",
+    description: "High-efficiency Chinese cuisine cutting plan featuring traditional metabolism-boosting Oolong/Green Tea, plus the iconic Dirty Matcha Latte (instant coffee/espresso shot + pure green tea matcha + unsweetened almond milk) for clean afternoon focus without sugar crashes! SCHEDULE: Shop Auburn Walmart under $50 and prep MONDAY; eat TUESDAY!",
     meals: [
       {
         name: "Breakfast: Dirty Matcha Latte & Green Scallion Egg Scramble",
         time: "8:00 AM",
         ingredients: [
-          "1 Dirty Matcha Latte: Brewed espresso shot mixed with 1 tsp Jade Leaf Matcha Powder, 1 cup Unsweetened Almond Milk & 1 0-cal sweetener packet! (45 kcal, 2g p)",
+          "1 Dirty Matcha Latte: Dissolved instant coffee/espresso shot mixed with 1 tsp Jade Leaf Matcha Powder, 1 cup Unsweetened Almond Milk & 1 0-cal sweetener packet! (45 kcal, 2g p)",
           "3 Large Eggs & 1/2 cup egg whites scrambled with fresh scallions & drops of soy sauce in 0-Cal Spray (260 kcal, 26g p)",
           "1 cup cooked Jasmine / White Rice seasoned with sesame seasoning (200 kcal, 4g p, 45g c)"
         ],
@@ -475,7 +475,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         name: "Afternoon Tea & Energy: 2nd Dirty Matcha Latte & Protein Bowl",
         time: "4:00 PM",
         ingredients: [
-          "2nd Dirty Matcha Latte over ice: Pure green tea matcha + espresso + unsweetened almond milk (45 kcal, 2g p)",
+          "2nd Dirty Matcha Latte over ice: Pure green tea matcha + instant coffee/espresso + unsweetened almond milk (45 kcal, 2g p)",
           "1.5 cups Plain Nonfat Greek Yogurt sweetened with vanilla & sweetener (180 kcal, 32g p)",
           "1/2 cup oats or rice crispy cereal mixed in for clean pre-workout carbs (150 kcal, 4g p, 30g c)"
         ],
