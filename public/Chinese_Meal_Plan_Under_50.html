@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>China: Green Tea & Dirty Matcha Shred Blueprint (~2,150 kcal) - Printable PDF</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap');
+
+    :root {
+      --primary: #00f0ff;
+      --gold: #ffd700;
+      --dark: #0a0e17;
+      --card: #131b2e;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--dark);
+      color: var(--text);
+      margin: 0;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #131b2e 0%, #0d1322 100%);
+      border: 2px solid rgba(0, 240, 255, 0.3);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 240, 255, 0.1);
+    }
+
+    .header {
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 25px;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .sub-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold);
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0 0 15px 0;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+    }
+
+    .stats-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .stat-pill {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .stat-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-pill.cost {
+      border-color: rgba(255, 215, 0, 0.5);
+    }
+    .stat-pill.cost .stat-value {
+      color: var(--gold);
+    }
+
+    .description {
+      font-size: 14px;
+      color: #cbd5e1;
+      background: rgba(0, 240, 255, 0.05);
+      border-left: 4px solid var(--primary);
+      padding: 15px 20px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 35px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #fff;
+      margin-top: 35px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2::before {
+      content: '⚡';
+      font-size: 18px;
+    }
+
+    .meal-card {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 18px;
+      transition: border-color 0.2s;
+    }
+
+    .meal-card:hover {
+      border-color: rgba(0, 240, 255, 0.4);
+    }
+
+    .meal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .meal-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .time-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(0, 240, 255, 0.15);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .meal-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .macros-box {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--gold);
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #e2e8f0;
+    }
+
+    li {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .grocery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .grocery-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 15px;
+      border-radius: 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .checkbox {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--primary);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .item-name {
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .item-price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--gold);
+    }
+
+    .print-btn-bar {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background: linear-gradient(90deg, #00f0ff, #0080ff);
+      color: #000;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.8);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Print Specific Styles */
+    @media print {
+      body {
+        background-color: #fff;
+        color: #000;
+        padding: 0;
+      }
+      .container {
+        background: #fff;
+        border: none;
+        box-shadow: none;
+        padding: 20px 0;
+        max-width: 100%;
+      }
+      .print-btn-bar {
+        display: none;
+      }
+      h1, h2, .meal-name, .item-name {
+        color: #000;
+        text-shadow: none;
+      }
+      .sub-badge {
+        color: #d97706;
+        background: #fef3c7;
+        border-color: #f59e0b;
+      }
+      .stat-pill {
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+      }
+      .stat-value {
+        color: #0284c7;
+      }
+      .stat-pill.cost .stat-value {
+        color: #15803d;
+      }
+      .description {
+        background: #f1f5f9;
+        color: #334155;
+        border-color: #0284c7;
+      }
+      .meal-card {
+        background: #fff;
+        border: 1px solid #cbd5e1;
+        page-break-inside: avoid;
+      }
+      .time-badge {
+        background: #e0f2fe;
+        color: #0369a1;
+      }
+      .macros-box {
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        color: #15803d;
+      }
+      ul {
+        color: #1e293b;
+      }
+      .grocery-item {
+        background: #fff;
+        border: 1px solid #cbd5e1;
+      }
+      .item-price {
+        color: #15803d;
+      }
+      .checkbox {
+        border-color: #475569;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="print-btn-bar">
+      <button class="btn" onclick="window.print()">
+        🖨️ Save as PDF / Print Template
+      </button>
+    </div>
+
+    <div class="header">
+      <div class="sub-badge">👑 S-Rank Hunter Recomposition Protocol</div>
+      <h1>🇨🇳 China: Green Tea & Dirty Matcha Shred Blueprint</h1>
+      
+      <div class="description">
+        High-efficiency Chinese cuisine cutting plan featuring traditional metabolism-boosting Oolong/Green Tea, plus the iconic <strong>Dirty Matcha Latte</strong> (espresso shot + pure green tea matcha + unsweetened almond milk) for clean afternoon focus without sugar crashes!
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat-pill cost">
+          <div class="stat-label">Estimated Weekly Cost</div>
+          <div class="stat-value">💰 $44.50 at Auburn Walmart</div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-label">Daily Calories</div>
+          <div class="stat-value">🔥 2,150 kcal</div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-label">Daily Protein</div>
+          <div class="stat-value">💪 206g Protein</div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-label">Target Goal</div>
+          <div class="stat-value">🎯 170 LBS by Dec 31, 2027</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>📋 Daily 5-Meal Timeline & Ingredients</h2>
+
+    <div class="meal-card">
+      <div class="meal-header">
+        <div class="meal-title-wrap">
+          <span class="time-badge">8:00 AM</span>
+          <span class="meal-name">Breakfast: Dirty Matcha Latte & Green Scallion Egg Scramble</span>
+        </div>
+        <div class="macros-box">505 kcal | 32g Protein</div>
+      </div>
+      <ul>
+        <li><strong>1 Dirty Matcha Latte:</strong> Brewed espresso shot mixed with 1 tsp Jade Leaf Matcha Powder, 1 cup Unsweetened Almond Milk & 1 zero-cal sweetener packet! (45 kcal, 2g p)</li>
+        <li><strong>Spiced Scramble:</strong> 3 Large Eggs & 1/2 cup egg whites scrambled with fresh scallions & drops of soy sauce in 0-Cal Cooking Spray (260 kcal, 26g p)</li>
+        <li><strong>Complex Carbs:</strong> 1 cup cooked Jasmine / White Rice seasoned with sesame seasoning (200 kcal, 4g p, 45g c)</li>
+      </ul>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-header">
+        <div class="meal-title-wrap">
+          <span class="time-badge">12:30 PM</span>
+          <span class="meal-name">Lunch: Szechuan Honey-Soy Glazed Chicken Breast & Broccoli</span>
+        </div>
+        <div class="macros-box">505 kcal | 61g Protein</div>
+      </div>
+      <ul>
+        <li><strong>Power Protein:</strong> 8 oz Fresh Chicken Breast seared in wok/skillet with garlic, soy sauce, ginger & chili flakes (260 kcal, 54g p)</li>
+        <li><strong>Micronutrients:</strong> 1.5 cups steamed Great Value Frozen Broccoli florets (45 kcal, 3g p)</li>
+        <li><strong>Clean Energy:</strong> 1 cup cooked Jasmine White Rice (from 5 lb family bag!) (200 kcal, 4g p, 45g c)</li>
+        <li><strong>Metabolism Boost:</strong> 1 cup hot Oolong or Green Tea (0 kcal)</li>
+      </ul>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-header">
+        <div class="meal-title-wrap">
+          <span class="time-badge">4:00 PM</span>
+          <span class="meal-name">Afternoon Tea & Energy: 2nd Dirty Matcha Latte & Protein Bowl</span>
+        </div>
+        <div class="macros-box">375 kcal | 38g Protein</div>
+      </div>
+      <ul>
+        <li><strong>Afternoon Focus:</strong> 2nd Dirty Matcha Latte over ice: Pure green tea matcha + espresso + unsweetened almond milk (45 kcal, 2g p)</li>
+        <li><strong>Anabolic Base:</strong> 1.5 cups Plain Nonfat Greek Yogurt sweetened with vanilla & sweetener (180 kcal, 32g p)</li>
+        <li><strong>Pre-Workout Crunch:</strong> 1/2 cup oats or rice crispy cereal mixed in for clean lifting fuel (150 kcal, 4g p, 30g c)</li>
+      </ul>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-header">
+        <div class="meal-title-wrap">
+          <span class="time-badge">7:30 PM</span>
+          <span class="meal-name">Dinner: Beef & Broccoli Stir-Fry over Steamed Rice</span>
+        </div>
+        <div class="macros-box">550 kcal | 54g Protein</div>
+      </div>
+      <ul>
+        <li><strong>Savory Wok Protein:</strong> 7 oz Lean Flank Steak or Ground Lean Beef seared with soy sauce, garlic & ginger (320 kcal, 48g p, 12g f)</li>
+        <li><strong>Greens:</strong> 1 cup steamed broccoli florets (30 kcal, 2g p)</li>
+        <li><strong>Clean Carbs:</strong> 1 cup cooked Jasmine White Rice (200 kcal, 4g p, 45g c)</li>
+        <li><strong>Digestive Tea:</strong> Hot Jasmine Green Tea cup (0 kcal)</li>
+      </ul>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-header">
+        <div class="meal-title-wrap">
+          <span class="time-badge">10:30 PM</span>
+          <span class="meal-name">Nighttime Recovery: Green Tea Infused Casein Snack</span>
+        </div>
+        <div class="macros-box">215 kcal | 21g Protein</div>
+      </div>
+      <ul>
+        <li><strong>Overnight Recovery:</strong> 1 cup Plain Greek Yogurt or Whey/Casein Shake blended with pinch of matcha powder & sweetener (215 kcal, 21g p)</li>
+      </ul>
+    </div>
+
+    <h2>🛒 Weekly Auburn Walmart Grocery Checklist (Under $50)</h2>
+    <p style="font-size: 13px; color: var(--muted); margin-bottom: 15px;">Shop your list at Auburn Walmart every Monday and cook your meal prep in bulk; begin eating Tuesday!</p>
+
+    <div class="grocery-grid">
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Jade Leaf Green Tea Matcha Powder (1 oz)</div>
+          <div class="item-price">$6.98 • Essential for Dirty Matcha Lattes</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Green Tea / Oolong Bags (40 ct)</div>
+          <div class="item-price">$2.48 • Daily metabolism & digestion tea</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Silk Unsweetened Almond Milk (Half Gal)</div>
+          <div class="item-price">$3.28 • Creamy 30 kcal base for lattes/shakes</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Fresh Chicken Breasts (~5 lb Family Pack)</div>
+          <div class="item-price">$12.40 • Primary bulk lean protein staple</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Soy Sauce & Teriyaki Marinade</div>
+          <div class="item-price">$1.98 • Savory wok seasoning staple</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Large Grade A Eggs (12 ct)</div>
+          <div class="item-price">$2.98 • High biological breakfast protein</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Plain Nonfat Greek Yogurt (32 oz)</div>
+          <div class="item-price">$3.98 • Anabolic afternoon & bedtime casein</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Jasmine / White Rice (5 lb bag)</div>
+          <div class="item-price">$3.34 • Clean daily complex carbohydrates</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Frozen Broccoli Florets (2x 12 oz)</div>
+          <div class="item-price">$2.36 • Steamed micronutrients & fiber</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Purified Water (24 Pack)</div>
+          <div class="item-price">$3.98 • Gym & daily hydration quest</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <strong>BETTER LEVELING V2 - S-RANK HUNTER SYSTEM</strong><br>
+      Created for Hunter Nick Crosson (ncrossonofficial06@gmail.com)<br>
+      Target Weight: 170 LBS by Dec 31, 2027 • Planet Fitness Lewiston Protocol
+    </div>
+  </div>
+
+</body>
+</html>

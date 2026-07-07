@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { AUBURN_LEWISTON_GROCERY_ITEMS, MEAL_PREP_PLANS, GroceryItem, WALMART_QUICK_SELECT_ITEMS } from '@/lib/grocery-data';
-import { ShoppingBag, CheckCircle2, Circle, Utensils, DollarSign, MapPin, Sparkles, Award, RotateCcw, Calendar, Plus, Trash2 } from 'lucide-react';
+import { ShoppingBag, CheckCircle2, Circle, Utensils, DollarSign, MapPin, Sparkles, Award, RotateCcw, Calendar, Plus, Trash2, Printer, Mail, ExternalLink } from 'lucide-react';
+
 
 export default function GroceryGuide() {
   const [selectedStore, setSelectedStore] = useState<string>('All Stores');
@@ -131,6 +132,32 @@ export default function GroceryGuide() {
 
   const stores = ['All Stores', 'Walmart Supercenter (Auburn, ME)', "Shaw's (Auburn/Lewiston)", 'Hannaford (Lewiston/Auburn)'];
   const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery'];
+
+  const handlePrintPlan = (plan: typeof MEAL_PREP_PLANS[0]) => {
+    const slugMap: Record<string, string> = {
+      'China': '/Chinese_Meal_Plan_Under_50.html',
+      'Korea': '/Korean_Meal_Plan_Under_50.html',
+      'Japan': '/Japanese_Meal_Plan_Under_50.html',
+      'Puerto Rico': '/Puerto_Rico_Meal_Plan_Under_50.html',
+      'Mexico': '/Mexican_Meal_Plan_Under_50.html',
+    };
+    const url = slugMap[plan.country] || '/Chinese_Meal_Plan_Under_50.html';
+    window.open(url, '_blank');
+  };
+
+  const handleEmailPlan = (plan: typeof MEAL_PREP_PLANS[0]) => {
+    const subject = encodeURIComponent('Better Leveling v2 - ' + plan.title + ' (Under $50)');
+    const bodyText = 'Hunter Nick Crosson,\n\nHere is your S-Rank Meal Prep Template for ' + plan.country + ':\n\n' +
+      'PLAN: ' + plan.title + '\n' +
+      'EST. COST: ' + plan.estCostPerWeek + '\n' +
+      'TARGET MACROS: ' + plan.targetDailyCalories + ' kcal | ' + plan.targetDailyProtein + 'g Protein\n\n' +
+      'DESCRIPTION:\n' + plan.description + '\n\n' +
+      'DAILY TIMELINE:\n' +
+      plan.meals.map(m => '[' + m.time + '] ' + m.name + ' (' + m.calories + ' kcal, ' + m.protein + 'g protein)\nIngredients:\n' + m.ingredients.map(i => '- ' + i).join('\n')).join('\n\n') +
+      '\n\nStay disciplined and conquer your 170 LB target!';
+    
+    window.location.href = 'mailto:ncrossonofficial06@gmail.com?subject=' + subject + '&body=' + encodeURIComponent(bodyText);
+  };
 
   return (
     <div className="space-y-8 pb-12">
@@ -672,6 +699,29 @@ export default function GroceryGuide() {
                     </div>
                   </div>
                 ))}
+              </div>
+
+              {/* Card Action Bar (Print / Save PDF & Email) */}
+              <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+                <div className="text-xs font-mono text-zinc-400">
+                  ⚡ Want a physical copy or offline reference?
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    onClick={() => handleEmailPlan(plan)}
+                    className="flex items-center gap-2 bg-system-dark hover:bg-white/10 text-zinc-200 hover:text-white px-3.5 py-2 rounded-xl text-xs font-bold font-mono border border-white/10 transition-all cursor-pointer"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-system-cyan" />
+                    <span>📧 Email Template</span>
+                  </button>
+                  <button
+                    onClick={() => handlePrintPlan(plan)}
+                    className="flex items-center gap-2 bg-system-blue/20 hover:bg-system-blue text-system-cyan hover:text-system-dark px-4 py-2 rounded-xl text-xs font-black font-mono border border-system-blue/40 hover:shadow-glow-blue transition-all cursor-pointer"
+                  >
+                    <Printer className="w-3.5 h-3.5" />
+                    <span>🖨️ Print / Save as PDF</span>
+                  </button>
+                </div>
               </div>
             </div>
           ))}
