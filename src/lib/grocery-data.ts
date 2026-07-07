@@ -152,11 +152,11 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-8",
     upc: "078742211234", // Bone-In Pork Chops (Chuletas)
-    name: "All Natural Bone-In Assorted Pork Chops (Chuletas, ~2 lb tray)",
+    name: "All Natural Bone-In Assorted Pork Chops (Chuletas, ~1.5 lb tray)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "All Natural / Walmart",
     category: "Protein",
-    priceEst: "$5.96 (~2 lb tray at $2.98/lb)",
+    priceEst: "$4.44 (~1.5 lb tray at $2.96/lb)",
     calories: 170,
     protein: 23,
     carbs: 0,
@@ -227,7 +227,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "3/4 cup (170g)",
     coachNote: "Incredible protein-to-calorie ratio. Mix with a dash of cinnamon or sweetener for a high-protein anabolic snack to hit your protein targets.",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Korea", "Japan", "Mexico"]
   },
   {
     id: "g-13",
@@ -364,7 +364,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Produce",
-    priceEst: "$1.18 (12 oz bag)",
+    priceEst: "$1.52 (12 oz bag)",
     calories: 30,
     protein: 2,
     carbs: 5,
@@ -403,7 +403,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 2.5,
     servingSize: "1/2 cup dry (40g)",
     coachNote: "Slow-digesting complex carbs for morning energy or mixing into afternoon Greek yogurt power bowls.",
-    cuisine: ["China", "Korea", "Japan", "Mexico"]
+    cuisine: []
   }
 ];
 
@@ -609,7 +609,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "K-Fit High Protein",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$48.20 total at Auburn Walmart (Under $50 Budget!)",
+    estCostPerWeek: "$41.20 total at Auburn Walmart (Under $50 Budget!)",
     description: "Korean K-Fit style recomposition plan utilizing probiotic-rich kimchi, spicy gochujang, and tender bulgogi marinades. Designed for extreme muscle definition and gut health while keeping your Walmart cart strictly under $50!",
     meals: [
       {
@@ -686,7 +686,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Clean Samurai Shred",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$47.90 total at Auburn Walmart (Under $50 Budget!)",
+    estCostPerWeek: "$46.48 total at Auburn Walmart (Under $50 Budget!)",
     description: "Ultra-clean Japanese cuisine blueprint emphasizing ginger-teriyaki seared proteins, edamame fiber, and antioxidant green tea. Engineered for rapid body fat loss and peak physical recovery under $50 total!",
     meals: [
       {
@@ -763,7 +763,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Street Style Shred",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$45.60 total at Auburn Walmart (Under $50 Budget!)",
+    estCostPerWeek: "$37.26 total at Auburn Walmart (Under $50 Budget!)",
     description: "Vibrant Mexican street-style cutting plan featuring citrus-lime Pollo Asado, black beans, corn tortillas, and spiced Café de Olla! Maximum flavor and protein satisfaction while keeping your budget comfortably under $50!",
     meals: [
       {

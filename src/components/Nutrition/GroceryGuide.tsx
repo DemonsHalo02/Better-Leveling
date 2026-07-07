@@ -158,12 +158,12 @@ export default function GroceryGuide() {
     return 0;
   };
 
-  const totalItemsCount = allItems.length;
-  const checkedCount = Object.values(checkedItems).filter(Boolean).length;
+  const totalItemsCount = filteredItems.length;
+  const checkedCount = filteredItems.filter(item => checkedItems[item.id]).length;
   const progressPct = totalItemsCount > 0 ? Math.round((checkedCount / totalItemsCount) * 100) : 0;
 
-  const totalEstPrice = allItems.reduce((sum, item) => sum + extractPrice(item.priceEst), 0);
-  const checkedEstPrice = allItems.filter(item => checkedItems[item.id]).reduce((sum, item) => sum + extractPrice(item.priceEst), 0);
+  const totalEstPrice = filteredItems.reduce((sum, item) => sum + extractPrice(item.priceEst), 0);
+  const checkedEstPrice = filteredItems.filter(item => checkedItems[item.id]).reduce((sum, item) => sum + extractPrice(item.priceEst), 0);
 
   const stores = ['All Stores', 'Walmart Supercenter (Auburn, ME)', "Shaw's (Auburn/Lewiston)", 'Hannaford (Lewiston/Auburn)'];
   const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery', '🍱 Meal Prep Templates'];
