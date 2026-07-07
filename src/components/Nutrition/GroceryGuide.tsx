@@ -112,7 +112,7 @@ export default function GroceryGuide() {
   const filteredItems = allItems.filter(item => {
     const matchStore = selectedStore === 'All Stores' || item.store === selectedStore;
     const matchCat = selectedCategory === 'All' || selectedCategory === '🍱 Meal Prep Templates' || item.category === selectedCategory;
-    const matchTemplate = selectedAisleTemplate === 'All' || !item.cuisine || item.cuisine.includes(selectedAisleTemplate);
+    const matchTemplate = selectedAisleTemplate === 'All' || (item.cuisine ? item.cuisine.includes(selectedAisleTemplate) : item.id.startsWith('custom-'));
     return matchStore && matchCat && matchTemplate;
   });
 
@@ -445,8 +445,9 @@ export default function GroceryGuide() {
                     key={tpl}
                     onClick={() => {
                       setSelectedAisleTemplate(tpl);
-                      if (tpl !== 'All' && selectedCategory === '🍱 Meal Prep Templates') {
+                      if (tpl !== 'All') {
                         setSelectedCategory('All');
+                        setSelectedStore('All Stores');
                       }
                     }}
                     className={`px-3.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
@@ -566,9 +567,8 @@ export default function GroceryGuide() {
                       <button
                         onClick={() => {
                           setSelectedAisleTemplate(plan.country);
-                          if (selectedCategory === '🍱 Meal Prep Templates') {
-                            setSelectedCategory('All');
-                          }
+                          setSelectedCategory('All');
+                          setSelectedStore('All Stores');
                         }}
                         className={`w-full py-2 rounded-xl text-xs font-bold font-mono transition-all flex items-center justify-center gap-1.5 ${
                           selectedAisleTemplate === plan.country
@@ -818,6 +818,18 @@ export default function GroceryGuide() {
                   ⚡ Want a physical copy or offline reference?
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    onClick={() => {
+                      setSelectedAisleTemplate(plan.country);
+                      setActiveTab('items');
+                      setSelectedCategory('All');
+                      setSelectedStore('All Stores');
+                    }}
+                    className="flex items-center gap-2 bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-system-dark px-3.5 py-2 rounded-xl text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all cursor-pointer"
+                  >
+                    <ShoppingBag className="w-3.5 h-3.5" />
+                    <span>🛒 Filter Aisle List To This Plan</span>
+                  </button>
                   <button
                     onClick={() => handleEmailPlan(plan)}
                     className="flex items-center gap-2 bg-system-dark hover:bg-white/10 text-zinc-200 hover:text-white px-3.5 py-2 rounded-xl text-xs font-bold font-mono border border-white/10 transition-all cursor-pointer"

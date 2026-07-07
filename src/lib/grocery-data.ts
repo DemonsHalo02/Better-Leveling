@@ -50,7 +50,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 1.5,
     servingSize: "4 oz (112g)",
-    coachNote: "Upgraded 5 lb fresh family pack for maximum protein! Fresh chicken cooks tender and fast. Season with Adobo & Sazón for authentic Pollo Guisado."
+    coachNote: "Upgraded 5 lb fresh family pack for maximum protein! Fresh chicken cooks tender and fast. Season with Adobo & Sazón for authentic Pollo Guisado.",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-2",
@@ -65,7 +66,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1 K-Cup Pod (8 fl oz)",
-    coachNote: "Authentic Puerto Rican dark roast espresso in Keurig K-Cups! Combine with milk and sweetener for a sweet, traditional Café con Leche."
+    coachNote: "Authentic Puerto Rican dark roast espresso in Keurig K-Cups! Combine with milk and sweetener for a sweet, traditional Café con Leche.",
+    cuisine: ["Puerto Rico"]
   },
   {
     id: "g-3",
@@ -80,7 +82,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 12,
     fat: 5,
     servingSize: "1 cup (8 fl oz)",
-    coachNote: "Essential for making authentic, creamy Puerto Rican Café con Leche every morning and afternoon!"
+    coachNote: "Essential for making authentic, creamy Puerto Rican Café con Leche every morning and afternoon!",
+    cuisine: ["Puerto Rico"]
   },
   {
     id: "g-4",
@@ -95,7 +98,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1 Packet (1g)",
-    coachNote: "The secret to getting that traditional sweet Puerto Rican Café con Leche taste without adding unwanted sugar calories!"
+    coachNote: "The secret to getting that traditional sweet Puerto Rican Café con Leche taste without adding unwanted sugar calories!",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-5",
@@ -110,7 +114,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1/4 Packet (1g)",
-    coachNote: "The essential Puerto Rican seasoning secret! Adds golden color and savory garlic/annatto flavor to rice, beans, and chicken with zero calories."
+    coachNote: "The essential Puerto Rican seasoning secret! Adds golden color and savory garlic/annatto flavor to rice, beans, and chicken with zero calories.",
+    cuisine: ["Puerto Rico"]
   },
   {
     id: "g-6",
@@ -125,7 +130,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1/4 tsp (1g)",
-    coachNote: "The #1 Boricua all-purpose seasoning! Garlic, oregano, and black pepper blend that flavors Chuletas and Pollo Guisado with zero calories."
+    coachNote: "The #1 Boricua all-purpose seasoning! Garlic, oregano, and black pepper blend that flavors Chuletas and Pollo Guisado with zero calories.",
+    cuisine: ["Puerto Rico"]
   },
   {
     id: "g-7",
@@ -140,7 +146,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "0.25 sec spray (0.25g)",
-    coachNote: "Zero-calorie non-stick cooking spray for searing Chuletas (pork chops), chicken, and eggs without adding hidden liquid oil calories!"
+    coachNote: "Zero-calorie non-stick cooking spray for searing Chuletas (pork chops), chicken, and eggs without adding hidden liquid oil calories!",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-8",
@@ -155,7 +162,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 8,
     servingSize: "4 oz (112g raw)",
-    coachNote: "Traditional Puerto Rican Chuletas! Season with Adobo and Sazón, then pan-sear using 0-calorie cooking spray for a mouthwatering high-protein dinner."
+    coachNote: "Traditional Puerto Rican Chuletas! Season with Adobo and Sazón, then pan-sear using 0-calorie cooking spray for a mouthwatering high-protein dinner.",
+    cuisine: ["Puerto Rico"]
   },
   {
     id: "g-9",
@@ -170,7 +178,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 20,
     fat: 0.5,
     servingSize: "1/2 cup (130g)",
-    coachNote: "Classic Puerto Rican Habichuelas Negras! Simmered with Sazón and Adobo. Universally stocked at Auburn Walmart and loaded with fiber and plant protein."
+    coachNote: "Classic Puerto Rican Habichuelas Negras! Simmered with Sazón and Adobo. Universally stocked at Auburn Walmart and loaded with fiber and plant protein.",
+    cuisine: ["Puerto Rico", "Mexico"]
   },
   {
     id: "g-10",
@@ -185,7 +194,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 36,
     fat: 0,
     servingSize: "1/4 cup dry (45g)",
-    coachNote: "Upgraded 5 lb bag! The base for Arroz con Habichuelas. Fast-digesting clean carbohydrates to fuel your heavy lifting sessions at Planet Fitness Lewiston."
+    coachNote: "Upgraded 5 lb bag! The base for Arroz con Habichuelas. Fast-digesting clean carbohydrates to fuel your heavy lifting sessions at Planet Fitness Lewiston.",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-11",
@@ -200,7 +210,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 5,
     servingSize: "1 Egg (50g)",
-    coachNote: "Bioavailable whole protein with essential healthy fats. Scramble with Adobo and 0-calorie cooking spray for a Boricua spiced breakfast!"
+    coachNote: "Bioavailable whole protein with essential healthy fats. Scramble with Adobo and 0-calorie cooking spray for a Boricua spiced breakfast!",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-12",
@@ -215,7 +226,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 6,
     fat: 0,
     servingSize: "3/4 cup (170g)",
-    coachNote: "Incredible protein-to-calorie ratio. Mix with a dash of cinnamon or sweetener for a high-protein anabolic snack to hit your protein targets."
+    coachNote: "Incredible protein-to-calorie ratio. Mix with a dash of cinnamon or sweetener for a high-protein anabolic snack to hit your protein targets.",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-13",
@@ -230,7 +242,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 38,
     fat: 0,
     servingSize: "1 Plantain (170g)",
-    coachNote: "Classic Puerto Rican green plantains! Peel, slice into coins, boil slightly, smash, and pan-sear in 0-calorie cooking spray for crispy, authentic Tostones a la Plancha."
+    coachNote: "Classic Puerto Rican green plantains! Peel, slice into coins, boil slightly, smash, and pan-sear in 0-calorie cooking spray for crispy, authentic Tostones a la Plancha.",
+    cuisine: ["Puerto Rico"]
   },
   {
     id: "g-14",
