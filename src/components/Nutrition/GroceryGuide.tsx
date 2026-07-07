@@ -258,8 +258,8 @@ export default function GroceryGuide() {
             </div>
 
             <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-between md:justify-end">
-              <div className="bg-system-dark/90 p-2 rounded-xl border border-system-gold/40 shadow-inner flex flex-col justify-center min-w-[120px]">
-                <div className="text-[10px] font-mono font-bold text-zinc-400 uppercase">Est. Cart Cost</div>
+              <div className="bg-system-dark/90 p-2 rounded-xl border border-system-gold/40 shadow-inner flex flex-col justify-center min-w-[130px]">
+                <div className="text-[10px] font-mono font-bold text-zinc-400 uppercase">Est. Cost (Cart / List)</div>
                 <div className="text-xs sm:text-sm font-black text-system-gold font-mono flex items-center gap-1">
                   <span>${checkedEstPrice.toFixed(2)}</span>
                   <span className="text-[10px] text-zinc-500 font-normal">/ ${totalEstPrice.toFixed(2)}</span>
@@ -627,46 +627,6 @@ export default function GroceryGuide() {
             </div>
           )}
 
-          {/* Active Aisle Checklist Total Price & Budget Summary Bar */}
-          <div className="bg-gradient-to-r from-system-panel via-system-dark to-system-panel p-5 rounded-2xl border-2 border-system-gold/60 shadow-glow-gold flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-system-gold/20 border border-system-gold/40 flex items-center justify-center text-2xl shadow-inner shrink-0">
-                💰
-              </div>
-              <div>
-                <div className="text-xs font-mono font-bold uppercase text-zinc-400 tracking-wider flex flex-wrap items-center gap-1.5">
-                  <span>Estimated Total Checklist Price</span>
-                  {selectedAisleTemplate !== 'All' && (
-                    <span className="text-system-cyan font-black bg-system-cyan/10 px-2 py-0.5 rounded border border-system-cyan/30">
-                      ({selectedAisleTemplate} Plan)
-                    </span>
-                  )}
-                </div>
-                <div className="text-xl sm:text-2xl font-black text-white font-mono flex flex-wrap items-center gap-2 mt-1">
-                  <span className="text-system-gold">${totalEstPrice.toFixed(2)}</span>
-                  <span className={`text-xs px-2.5 py-1 rounded font-bold font-sans tracking-wide uppercase ${
-                    totalEstPrice <= 50
-                      ? 'bg-green-500/20 text-green-300 border border-green-500/40 shadow-sm'
-                      : 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/40 shadow-sm'
-                  }`}>
-                    {totalEstPrice <= 50 ? `✅ Under $50 Budget (Save $${(50 - totalEstPrice).toFixed(2)})` : `⚠️ Over $50 Weekly Budget`}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 bg-black/50 px-4 py-3 rounded-xl border border-white/10 text-xs font-mono w-full sm:w-auto justify-between sm:justify-start shrink-0">
-              <div>
-                <span className="text-zinc-500 block text-[10px] uppercase font-bold">Total Items</span>
-                <span className="text-white font-black text-sm">{totalItemsCount} items</span>
-              </div>
-              <div className="border-l border-white/10 pl-4">
-                <span className="text-zinc-500 block text-[10px] uppercase font-bold">In Your Cart</span>
-                <span className="text-system-cyan font-black text-sm">${checkedEstPrice.toFixed(2)} ({checkedCount} checked)</span>
-              </div>
-            </div>
-          </div>
-
           {/* Grocery Items List */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {filteredItems.length === 0 ? (
@@ -765,13 +725,6 @@ export default function GroceryGuide() {
               );
             }))}
           </div>
-
-          {filteredItems.length > 0 && (
-            <div className="bg-system-dark/90 p-4 rounded-xl border border-system-gold/40 flex flex-col sm:flex-row justify-between items-center gap-2 font-mono text-sm shadow-inner">
-              <span className="text-zinc-300 font-bold">🛒 Total Estimated Aisle Checklist Cost ({totalItemsCount} items):</span>
-              <span className="text-system-gold font-black text-lg">${totalEstPrice.toFixed(2)}</span>
-            </div>
-          )}
         </>
       ) : (
         /* Meal Prep Plans Tab */
