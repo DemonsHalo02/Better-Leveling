@@ -39,28 +39,28 @@ export interface MealPrepPlan {
 export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-1",
-    upc: "078742371195", // Fresh Chicken Breast Family Pack (~3 lb)
-    name: "Freshness Guaranteed Fresh Boneless Skinless Chicken Breasts (~3 lb Family Tray)",
+    upc: "078742371195", // Fresh Chicken Breast Family Pack (~4.7 lb)
+    name: "Freshness Guaranteed Fresh Boneless Skinless Chicken Breasts (~4.7 lb Family Tray)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Freshness Guaranteed",
     category: "Protein",
-    priceEst: "$8.04 (~3 lb family tray at $2.68/lb)",
+    priceEst: "$12.60 (~4.7 lb family tray at $2.68/lb)",
     calories: 120,
     protein: 26,
     carbs: 0,
     fat: 1.5,
     servingSize: "4 oz (112g)",
-    coachNote: "Upgraded fresh family tray for maximum protein! Fresh chicken cooks tender and fast. Season with Adobo & Sazón for authentic Pollo Guisado.",
+    coachNote: "Upgraded fresh family tray (~4.7 to 6 lb size available at Auburn Walmart) for maximum protein! Fresh chicken cooks tender and fast. Season with Adobo & Sazón for authentic Pollo Guisado.",
     cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-2",
     upc: "074471014309", // Cafe Bustelo Espresso Roast
-    name: "Café Bustelo Espresso Vacuum Packed Brick (10 oz can / brick)",
+    name: "Café Bustelo Espresso Instant Coffee / K-Cups (4 oz jar / box)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Café Bustelo",
     category: "Essentials",
-    priceEst: "$4.98 (10 oz brick/can)",
+    priceEst: "$3.48 (4 oz jar / box)",
     calories: 0,
     protein: 0,
     carbs: 0,
@@ -152,11 +152,11 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-8",
     upc: "078742211234", // Bone-In Pork Chops (Chuletas)
-    name: "All Natural Bone-In Assorted Pork Chops (Chuletas, ~1.5 lb tray)",
+    name: "All Natural Bone-In Assorted Pork Chops (Chuletas, ~1.3 lb tray)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "All Natural / Walmart",
     category: "Protein",
-    priceEst: "$5.22 (~1.5 lb tray at $3.48/lb)",
+    priceEst: "$4.44 (~1.3 lb tray at $3.48/lb)",
     calories: 170,
     protein: 23,
     carbs: 0,
@@ -183,18 +183,18 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   },
   {
     id: "g-10",
-    upc: "078742352217", // Great Value White Rice 5 lb
-    name: "Great Value Long Grain White Rice (5 lb bag)",
+    upc: "078742352217", // Great Value White Rice 2 lb
+    name: "Great Value Long Grain White Rice (2 lb bag)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Carbs",
-    priceEst: "$3.34 (5 lb bag)",
+    priceEst: "$1.48 (2 lb bag ~20 servings)",
     calories: 160,
     protein: 3,
     carbs: 36,
     fat: 0,
     servingSize: "1/4 cup dry (45g)",
-    coachNote: "Upgraded 5 lb family bag! Clean fast-digesting carbohydrates to fuel your heavy lifting sessions at Planet Fitness Lewiston.",
+    coachNote: "Convenient 2 lb bag! Clean fast-digesting carbohydrates to fuel your heavy lifting sessions at Planet Fitness Lewiston.",
     cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
@@ -248,11 +248,11 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-14",
     upc: "078742231268", // Instant Coffee for Dirty Matcha
-    name: "Great Value Classic Roast Instant Coffee (8 oz jar)",
+    name: "Great Value Classic Roast Instant Coffee (4 oz jar)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Essentials",
-    priceEst: "$4.48 (8 oz jar ~110 servings)",
+    priceEst: "$2.48 (4 oz jar ~55 servings)",
     calories: 0,
     protein: 0,
     carbs: 0,
@@ -428,7 +428,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Protein",
-    priceEst: "$4.18 (32 oz carton ~20 servings)",
+    priceEst: "$3.48 (32 oz carton ~20 servings)",
     calories: 25,
     protein: 5,
     carbs: 0,
@@ -540,7 +540,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         ingredients: [
           "8 oz Fresh Chicken Breast seared in wok/skillet with garlic, soy sauce, ginger & chili flakes (260 kcal, 54g p)",
           "1.5 cups steamed Great Value Frozen Broccoli florets (45 kcal, 3g p)",
-          "1 cup cooked Jasmine White Rice (from 5 lb bag!) (200 kcal, 4g p, 45g c)",
+          "1 cup cooked Jasmine White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
           "1 cup hot Oolong or Green Tea (0 kcal, metabolism boost)"
         ],
         calories: 505,
@@ -596,7 +596,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Boricua Authentic",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$46.66 total at Auburn Walmart (Under $50 Budget!)",
+    estCostPerWeek: "$46.49 total at Auburn Walmart (Under $50 Budget!)",
     description: "Authentic Puerto Rican style cutting plan with upgraded fresh chicken, pork chops, rice, and crispy green Tostones a la Plancha! Optimized with bulk staples so your entire cart stays well under $50! Shop MONDAY; eat TUESDAY!",
     meals: [
       {
@@ -616,9 +616,9 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         name: "Lunch: Pollo Guisado & Crispy Tostones a la Plancha",
         time: "12:30 PM",
         ingredients: [
-          "8 oz Freshness Guaranteed Fresh Chicken Breast (from upgraded 5 lb pack!) seasoned with Adobo & Sazón, seared in 0-Cal Spray (240 kcal, 52g p)",
+          "8 oz Freshness Guaranteed Fresh Chicken Breast (from upgraded 4.7 lb family pack!) seasoned with Adobo & Sazón, seared in 0-Cal Spray (240 kcal, 52g p)",
           "1/2 Smashed Green Plantain pan-seared in 0-Calorie Spray into crispy Tostones a la Plancha (75 kcal, 19g c)",
-          "1 cup cooked Great Value White Rice (from 5 lb bag!) (200 kcal, 4g p, 45g c)",
+          "1 cup cooked Great Value White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
           "1/2 cup Great Value Black Beans (Habichuelas Negras) stewed with Sazón (110 kcal, 7g p, 20g c)"
         ],
         calories: 625,
@@ -673,7 +673,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "K-Fit High Protein",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$48.56 total at Auburn Walmart (Under $50 Budget!)",
+    estCostPerWeek: "$48.37 total at Auburn Walmart (Under $50 Budget!)",
     description: "Korean K-Fit style recomposition plan utilizing probiotic-rich kimchi, spicy gochujang, and tender bulgogi marinades. Designed for extreme muscle definition and gut health while keeping your Walmart cart strictly under $50!",
     meals: [
       {
@@ -750,7 +750,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Clean Samurai Shred",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$44.56 total at Auburn Walmart (Under $50 Budget!)",
+    estCostPerWeek: "$42.88 total at Auburn Walmart (Under $50 Budget!)",
     description: "Ultra-clean Japanese cuisine blueprint emphasizing ginger-teriyaki seared proteins, edamame fiber, and antioxidant green tea. Engineered for rapid body fat loss and peak physical recovery under $50 total!",
     meals: [
       {
@@ -827,7 +827,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Street Style Shred",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$41.42 total at Auburn Walmart (Under $50 Budget!)",
+    estCostPerWeek: "$45.66 total at Auburn Walmart (Under $50 Budget!)",
     description: "Vibrant Mexican street-style cutting plan featuring citrus-lime Pollo Asado, black beans, corn tortillas, and spiced Café de Olla! Maximum flavor and protein satisfaction while keeping your budget comfortably under $50!",
     meals: [
       {
