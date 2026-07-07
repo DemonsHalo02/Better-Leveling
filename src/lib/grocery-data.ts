@@ -216,17 +216,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-12",
     upc: "078742136039", // Great Value Greek Yogurt
-    name: "Great Value Plain Nonfat Greek Yogurt (32 oz tub)",
+    name: "Great Value Plain Nonfat Greek Yogurt (Four 32 oz tubs / 128 oz total)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Protein",
-    priceEst: "$3.98 (32 oz tub)",
+    priceEst: "$15.92 (Four 32 oz tubs / 128 oz total)",
     calories: 90,
     protein: 16,
     carbs: 6,
     fat: 0,
-    servingSize: "3/4 cup (170g)",
-    coachNote: "Incredible protein-to-calorie ratio. Mix with a dash of cinnamon or sweetener for a high-protein anabolic snack to hit your protein targets.",
+    servingSize: "3/4 cup (170g / 6 oz)",
+    coachNote: "Four tubs (128 oz / 16 cups total) guaranteed! Provides enough Greek yogurt for your 1.5 cup (12 oz) afternoon snack AND 1 cup (8 oz) bedtime casein recovery snack every single day for the entire week!",
     cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
@@ -642,7 +642,7 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   { name: "Fresh Chicken Breasts (~4.7 lb Family Tray)", category: "Protein", price: "$12.60", note: "Primary lean protein staple (~4.7 to 6 lb tray)." },
   { name: "Great Value Large Grade A White Eggs (36 Count Tray)", category: "Protein", price: "$6.84", note: "36 eggs guaranteed (3 eggs/day + extras!)." },
   { name: "All Natural Lean Ground Beef 93/7 (~1 lb roll)", category: "Protein", price: "$6.48", note: "Essential for Bulgogi bowls and beef stir-fries." },
-  { name: "Great Value Plain Nonfat Greek Yogurt (32 oz tub)", category: "Protein", price: "$3.98", note: "Incredible protein-to-calorie ratio for afternoon casein." },
+  { name: "Great Value Plain Nonfat Greek Yogurt (Four 32 oz tubs / 128 oz total)", category: "Protein", price: "$15.92", note: "Four tubs (128 oz / 16 cups total) guaranteed for 7 days of afternoon & bedtime protein snacks!" },
   { name: "Silk Original Soy Milk (Half Gallon / 64 fl oz)", category: "Essentials", price: "$3.97", note: "100% dairy-free and lactose-free! High protein (8g/cup) creamy latte base." },
   { name: "Great Value Chunk Light Tuna in Water (4 Pack)", category: "Protein", price: "$3.68", note: "High protein, zero-carb lean fish staple." },
   { name: "Great Value 100% Liquid Egg Whites (32 oz carton)", category: "Protein", price: "$3.48", note: "Pure protein booster for morning scrambles." },
@@ -666,7 +666,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ Most Important & Featured",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$58.81 total at Auburn Walmart (Full Kitchen Stocking w/ Spices)",
+    estCostPerWeek: "$70.75 total at Auburn Walmart (Full Kitchen Stocking w/ 4 Tubs Yogurt)",
     description: "High-efficiency Chinese cuisine cutting plan featuring traditional metabolism-boosting Oolong/Green Tea, plus the iconic Dirty Matcha Latte (instant coffee/espresso shot + pure green tea matcha + Silk Soy Milk) for clean afternoon focus without sugar crashes! SCHEDULE: Shop Auburn Walmart and prep MONDAY; eat TUESDAY!",
     meals: [
       {
@@ -744,7 +744,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Boricua Authentic",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$52.70 total at Auburn Walmart (Full Kitchen Stocking w/ Spices)",
+    estCostPerWeek: "$64.64 total at Auburn Walmart (Full Kitchen Stocking w/ 4 Tubs Yogurt)",
     description: "Authentic Puerto Rican style cutting plan with upgraded fresh chicken, pork chops, rice, and crispy green Tostones a la Plancha! Optimized with bulk staples and seasonings so your weekly replenishment stays well under $50! Shop MONDAY; eat TUESDAY!",
     meals: [
       {
@@ -821,7 +821,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "K-Fit High Protein",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$71.24 total at Auburn Walmart (Full Kitchen Stocking w/ Spices)",
+    estCostPerWeek: "$83.18 total at Auburn Walmart (Full Kitchen Stocking w/ 4 Tubs Yogurt)",
     description: "Korean K-Fit style recomposition plan utilizing probiotic-rich Nasoya kimchi, spicy gochujang, and tender bulgogi marinades with warming Dirty Chai Lattes (chai tea + espresso shot + Silk Soy Milk)! Designed for extreme muscle definition and gut health.",
     meals: [
       {
@@ -898,7 +898,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Clean Samurai Shred",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$51.45 total at Auburn Walmart (Full Kitchen Stocking w/ Spices)",
+    estCostPerWeek: "$63.39 total at Auburn Walmart (Full Kitchen Stocking w/ 4 Tubs Yogurt)",
     description: "Ultra-clean Japanese cuisine blueprint emphasizing ginger-teriyaki seared proteins, edamame fiber, and antioxidant green tea. Engineered for rapid body fat loss and peak physical recovery under $50 total!",
     meals: [
       {
@@ -975,7 +975,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Street Style Shred",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$56.38 total at Auburn Walmart (Full Kitchen Stocking w/ Spices)",
+    estCostPerWeek: "$68.32 total at Auburn Walmart (Full Kitchen Stocking w/ 4 Tubs Yogurt)",
     description: "Vibrant Mexican street-style cutting plan featuring citrus-lime Pollo Asado, black beans, corn tortillas, and spiced Café de Olla! Maximum flavor and protein satisfaction while keeping your budget comfortably under $50!",
     meals: [
       {
