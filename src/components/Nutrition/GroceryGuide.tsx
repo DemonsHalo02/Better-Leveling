@@ -51,6 +51,14 @@ export default function GroceryGuide() {
       if (savedHidden) {
         try { setHiddenItemIds(JSON.parse(savedHidden)); } catch {}
       }
+      const savedAisleTemplate = localStorage.getItem('pf_selected_aisle_template');
+      if (savedAisleTemplate) {
+        setSelectedAisleTemplate(savedAisleTemplate);
+      }
+      const savedCountryPlan = localStorage.getItem('pf_selected_country_plan');
+      if (savedCountryPlan) {
+        setSelectedCountryPlan(savedCountryPlan);
+      }
     }
   }, []);
 
@@ -66,11 +74,19 @@ export default function GroceryGuide() {
 
   const handleManualReset = () => {
     if (typeof window !== 'undefined') {
+      localStorage.removeItem('pf_selected_aisle_template');
+      localStorage.removeItem('pf_selected_country_plan');
       localStorage.removeItem('pf_grocery_checked');
       localStorage.removeItem('pf_hidden_grocery_items');
+      localStorage.removeItem('pf_custom_grocery_items');
     }
+    setSelectedAisleTemplate('All');
+    setSelectedCountryPlan('All');
+    setSelectedCategory('All');
+    setSelectedStore('All Stores');
     setCheckedItems({});
     setHiddenItemIds([]);
+    setCustomItems([]);
   };
 
   const handleSelectTemplate = (country: string) => {
@@ -83,9 +99,25 @@ export default function GroceryGuide() {
     setHiddenItemIds([]);
     setCheckedItems({});
     if (typeof window !== 'undefined') {
+      if (country === 'All') {
+        localStorage.removeItem('pf_selected_aisle_template');
+      } else {
+        localStorage.setItem('pf_selected_aisle_template', country);
+      }
       localStorage.removeItem('pf_custom_grocery_items');
       localStorage.removeItem('pf_hidden_grocery_items');
       localStorage.removeItem('pf_grocery_checked');
+    }
+  };
+
+  const handleSelectCountryPlan = (country: string) => {
+    setSelectedCountryPlan(country);
+    if (typeof window !== 'undefined') {
+      if (country === 'All') {
+        localStorage.removeItem('pf_selected_country_plan');
+      } else {
+        localStorage.setItem('pf_selected_country_plan', country);
+      }
     }
   };
 
@@ -286,10 +318,11 @@ export default function GroceryGuide() {
 
               <button
                 onClick={handleManualReset}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-system-dark hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition-all text-xs font-bold uppercase tracking-wider whitespace-nowrap min-h-[38px]"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-system-dark hover:bg-red-500/20 text-zinc-300 hover:text-white border border-system-gold/40 hover:border-red-500 transition-all text-xs font-bold uppercase tracking-wider whitespace-nowrap min-h-[38px] shadow-glow-gold cursor-pointer"
+                title="Reset selected template, custom items, hidden items, and checkmarks back to default"
               >
                 <RotateCcw className="w-3.5 h-3.5 text-system-gold" />
-                <span>Reset List</span>
+                <span>Reset Template & List</span>
               </button>
             </div>
           </div>
@@ -488,6 +521,14 @@ export default function GroceryGuide() {
                   </button>
                 );
               })}
+              <button
+                onClick={handleManualReset}
+                className="px-3.5 py-1 rounded-lg text-xs font-bold bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/30 transition-all flex items-center gap-1.5 ml-auto cursor-pointer"
+                title="Reset template filter and restore full shopping checklist"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>🔄 Reset Template & List</span>
+              </button>
             </div>
 
             {/* Auburn Walmart Quick-Select Strip */}
@@ -751,7 +792,7 @@ export default function GroceryGuide() {
               ].map((c) => (
                 <button
                   key={c.name}
-                  onClick={() => setSelectedCountryPlan(c.name)}
+                  onClick={() => handleSelectCountryPlan(c.name)}
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
                     selectedCountryPlan === c.name
                       ? 'bg-system-blue text-system-dark shadow-glow-blue scale-105'
@@ -761,6 +802,14 @@ export default function GroceryGuide() {
                   {c.label}
                 </button>
               ))}
+              <button
+                onClick={handleManualReset}
+                className="px-3.5 py-1.5 rounded-xl text-xs font-bold font-mono bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/30 transition-all cursor-pointer flex items-center gap-1.5 ml-auto"
+                title="Reset all cuisine filters and restore defaults"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>🔄 Reset All / Clear Template</span>
+              </button>
             </div>
           </div>
 
