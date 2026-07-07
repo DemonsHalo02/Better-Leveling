@@ -9,6 +9,7 @@ export default function GroceryGuide() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<'items' | 'plans'>('items');
+  const [selectedCountryPlan, setSelectedCountryPlan] = useState<string>('All');
 
   const [customItems, setCustomItems] = useState<GroceryItem[]>([]);
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
@@ -568,21 +569,67 @@ export default function GroceryGuide() {
       ) : (
         /* Meal Prep Plans Tab */
         <div className="space-y-6">
-          {MEAL_PREP_PLANS.map((plan) => (
-            <div key={plan.id} className="bg-system-panel p-6 rounded-2xl border border-system-blue/40 shadow-glow-blue space-y-6">
+          {/* Country Selector Bar */}
+          <div className="bg-system-panel p-4 rounded-2xl border border-system-blue/30 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-black uppercase tracking-widest text-system-gold bg-system-gold/10 px-3 py-1 rounded-lg border border-system-gold/30">
+                💰 All Plans Guaranteed Under $50
+              </span>
+              <span className="text-xs font-mono text-zinc-400 hidden md:inline">
+                Select your preferred cuisine:
+              </span>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2">
+              {[
+                { name: 'All', label: '🌐 All Cuisines' },
+                { name: 'China', label: '🇨🇳 China (⭐ Featured)' },
+                { name: 'Korea', label: '🇰🇷 Korea' },
+                { name: 'Japan', label: '🇯🇵 Japan' },
+                { name: 'Puerto Rico', label: '🇵🇷 Puerto Rico' },
+                { name: 'Mexico', label: '🇲🇽 Mexico' },
+              ].map((c) => (
+                <button
+                  key={c.name}
+                  onClick={() => setSelectedCountryPlan(c.name)}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                    selectedCountryPlan === c.name
+                      ? 'bg-system-blue text-system-dark shadow-glow-blue scale-105'
+                      : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10'
+                  }`}
+                >
+                  {c.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {MEAL_PREP_PLANS.filter(p => selectedCountryPlan === 'All' || p.country === selectedCountryPlan).map((plan) => (
+            <div key={plan.id} className="bg-system-panel p-6 rounded-2xl border border-system-blue/40 shadow-glow-blue space-y-6 animate-in fade-in duration-300">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/10 pb-4">
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-mono text-system-gold uppercase font-bold mb-1">
-                    <DollarSign className="w-4 h-4 text-system-gold" />
-                    <span>Est. Cost: {plan.estCostPerWeek}</span>
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <span className="text-lg">{plan.flag}</span>
+                    <span className="text-xs font-mono font-black uppercase tracking-widest text-system-cyan bg-system-blue/20 px-2.5 py-0.5 rounded border border-system-blue/30">
+                      {plan.country} Cuisine
+                    </span>
+                    {plan.badge && (
+                      <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-system-gold/20 text-system-gold border border-system-gold/40">
+                        {plan.badge}
+                      </span>
+                    )}
+                    <div className="flex items-center gap-1 text-xs font-mono text-system-gold uppercase font-bold bg-system-dark px-2.5 py-0.5 rounded border border-system-gold/30">
+                      <DollarSign className="w-3.5 h-3.5 text-system-gold" />
+                      <span>{plan.estCostPerWeek}</span>
+                    </div>
                   </div>
-                  <h3 className="text-xl md:text-2xl font-black text-white uppercase">
+                  <h3 className="text-xl md:text-2xl font-black text-white uppercase mt-1">
                     {plan.title}
                   </h3>
-                  <p className="text-xs text-zinc-300 mt-1 max-w-2xl">{plan.description}</p>
+                  <p className="text-xs text-zinc-300 mt-1 max-w-3xl leading-relaxed">{plan.description}</p>
                 </div>
 
-                <div className="flex items-center gap-3 bg-system-dark px-4 py-2.5 rounded-xl border border-system-cyan/30">
+                <div className="flex items-center gap-3 bg-system-dark px-4 py-2.5 rounded-xl border border-system-cyan/30 shrink-0">
                   <Award className="w-6 h-6 text-system-cyan" />
                   <div>
                     <div className="text-[10px] text-zinc-400 uppercase font-bold">Daily Macro Target</div>
@@ -594,7 +641,7 @@ export default function GroceryGuide() {
               {/* Meals Timeline */}
               <div className="space-y-4">
                 {plan.meals.map((meal, idx) => (
-                  <div key={idx} className="bg-system-dark p-5 rounded-xl border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                  <div key={idx} className="bg-system-dark p-5 rounded-xl border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 hover:border-system-cyan/40 transition-all">
                     <div className="space-y-1 flex-1">
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-system-blue/20 text-system-cyan">
