@@ -39,18 +39,18 @@ export interface MealPrepPlan {
 export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-1",
-    upc: "078742371195", // Fresh Chicken Breast Family Pack (5 lb)
-    name: "Freshness Guaranteed Fresh Boneless Skinless Chicken Breasts (~5 lb Family Pack)",
+    upc: "078742371195", // Fresh Chicken Breast Family Pack (~3.5 lb)
+    name: "Freshness Guaranteed Fresh Boneless Skinless Chicken Breasts (~3.5 lb Family Tray)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Freshness Guaranteed",
     category: "Protein",
-    priceEst: "$12.40 (~5 lb family pack tray at $2.48/lb)",
+    priceEst: "$7.98 (~3.5 lb family tray at $2.28/lb)",
     calories: 120,
     protein: 26,
     carbs: 0,
     fat: 1.5,
     servingSize: "4 oz (112g)",
-    coachNote: "Upgraded 5 lb fresh family pack for maximum protein! Fresh chicken cooks tender and fast. Season with Adobo & Sazón for authentic Pollo Guisado.",
+    coachNote: "Upgraded fresh family tray for maximum protein! Fresh chicken cooks tender and fast. Season with Adobo & Sazón for authentic Pollo Guisado.",
     cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
@@ -200,17 +200,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-11",
     upc: "078742221612", // Great Value Eggs
-    name: "Great Value Large Grade A White Eggs (18 Count Carton)",
+    name: "Great Value Large Grade A White Eggs (36 Count Tray / Two 18 ct Cartons)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Protein",
-    priceEst: "$2.48 (18 count carton)",
+    priceEst: "$4.86 (36 count tray / 2 cartons)",
     calories: 70,
     protein: 6,
     carbs: 0,
     fat: 5,
     servingSize: "1 Egg (50g)",
-    coachNote: "Bioavailable whole protein with essential healthy fats. Scramble with Adobo and 0-calorie cooking spray for a Boricua spiced breakfast!",
+    coachNote: "36 eggs guaranteed! Provides 3 eggs a day for all 7 days (21 eggs) plus 15 bonus eggs for meal prep and snacks! Scramble in 0-cal cooking spray.",
     cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
@@ -404,6 +404,70 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     servingSize: "1/2 cup dry (40g)",
     coachNote: "Slow-digesting complex carbs for morning energy or mixing into afternoon Greek yogurt power bowls.",
     cuisine: []
+  },
+  {
+    id: "g-24",
+    upc: "078742351111",
+    name: "All Natural Lean Ground Beef 93/7 / Flank Steak Slices (~1.5 lb tray)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "All Natural / Great Value",
+    category: "Protein",
+    priceEst: "$8.94 (~1.5 lb tray at $5.96/lb)",
+    calories: 170,
+    protein: 24,
+    carbs: 0,
+    fat: 8,
+    servingSize: "4 oz (112g raw)",
+    coachNote: "Essential lean beef for authentic Chinese Beef & Broccoli stir-fries and Korean Bulgogi bowls! Loaded with bioavailable iron and creatine.",
+    cuisine: ["China", "Korea"]
+  },
+  {
+    id: "g-25",
+    upc: "078742352222",
+    name: "Great Value 100% Liquid Egg Whites (32 oz carton)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Protein",
+    priceEst: "$3.48 (32 oz carton ~20 servings)",
+    calories: 25,
+    protein: 5,
+    carbs: 0,
+    fat: 0,
+    servingSize: "3 tbsp (46g)",
+    coachNote: "Pure protein booster! Mix 1/2 cup into your morning whole egg scrambles to add 13g of clean protein without extra fat calories.",
+    cuisine: ["China", "Japan", "Mexico"]
+  },
+  {
+    id: "g-26",
+    upc: "078742353333",
+    name: "Nasoya Organic Extra Firm Tofu / Steamed Edamame (14 oz / 12 oz bag)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Nasoya / Great Value",
+    category: "Protein",
+    priceEst: "$2.28 (pack)",
+    calories: 100,
+    protein: 9,
+    carbs: 3,
+    fat: 4.5,
+    servingSize: "3 oz (85g)",
+    coachNote: "Essential plant protein and fiber! Scramble tofu with Korean soy-sesame eggs or enjoy steamed edamame with your Japanese Teriyaki bowls.",
+    cuisine: ["Korea", "Japan"]
+  },
+  {
+    id: "g-27",
+    upc: "078742354444",
+    name: "Herdez Salsa Verde & Fresh Avocado / Pico Produce Pack",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Herdez / Fresh Produce",
+    category: "Produce",
+    priceEst: "$2.48 (jar / produce pack)",
+    calories: 15,
+    protein: 0,
+    carbs: 3,
+    fat: 0,
+    servingSize: "2 tbsp (30g)",
+    coachNote: "The zesty Mexican secret! Salsa Verde for morning Huevos Rancheros and fresh avocado / pico de gallo for citrus Pollo Asado street tacos.",
+    cuisine: ["Mexico"]
   }
 ];
 
@@ -454,7 +518,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ Most Important & Featured",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$44.50 total at Auburn Walmart (Under $50 Budget!)",
+    estCostPerWeek: "$49.88 total at Auburn Walmart (Under $50 Budget!)",
     description: "High-efficiency Chinese cuisine cutting plan featuring traditional metabolism-boosting Oolong/Green Tea, plus the iconic Dirty Matcha Latte (instant coffee/espresso shot + pure green tea matcha + unsweetened almond milk) for clean afternoon focus without sugar crashes! SCHEDULE: Shop Auburn Walmart under $50 and prep MONDAY; eat TUESDAY!",
     meals: [
       {
@@ -532,8 +596,8 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Boricua Authentic",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$46.80 total at Auburn Walmart (Under $50 Budget!)",
-    description: "Authentic Puerto Rican style cutting plan with upgraded 5 lb fresh chicken, 5 lb rice, and crispy green Tostones a la Plancha! Optimized with bulk staples so your entire cart stays well under $50! Shop MONDAY; eat TUESDAY!",
+    estCostPerWeek: "$47.76 total at Auburn Walmart (Under $50 Budget!)",
+    description: "Authentic Puerto Rican style cutting plan with upgraded fresh chicken, pork chops, rice, and crispy green Tostones a la Plancha! Optimized with bulk staples so your entire cart stays well under $50! Shop MONDAY; eat TUESDAY!",
     meals: [
       {
         name: "Breakfast: Sweet Boricua Café con Leche & Spiced Scramble",
@@ -609,7 +673,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "K-Fit High Protein",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$41.20 total at Auburn Walmart (Under $50 Budget!)",
+    estCostPerWeek: "$47.86 total at Auburn Walmart (Under $50 Budget!)",
     description: "Korean K-Fit style recomposition plan utilizing probiotic-rich kimchi, spicy gochujang, and tender bulgogi marinades. Designed for extreme muscle definition and gut health while keeping your Walmart cart strictly under $50!",
     meals: [
       {
@@ -686,7 +750,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Clean Samurai Shred",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$46.48 total at Auburn Walmart (Under $50 Budget!)",
+    estCostPerWeek: "$47.68 total at Auburn Walmart (Under $50 Budget!)",
     description: "Ultra-clean Japanese cuisine blueprint emphasizing ginger-teriyaki seared proteins, edamame fiber, and antioxidant green tea. Engineered for rapid body fat loss and peak physical recovery under $50 total!",
     meals: [
       {
@@ -763,7 +827,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "Street Style Shred",
     targetDailyCalories: 2150,
     targetDailyProtein: 206,
-    estCostPerWeek: "$37.26 total at Auburn Walmart (Under $50 Budget!)",
+    estCostPerWeek: "$40.64 total at Auburn Walmart (Under $50 Budget!)",
     description: "Vibrant Mexican street-style cutting plan featuring citrus-lime Pollo Asado, black beans, corn tortillas, and spiced Café de Olla! Maximum flavor and protein satisfaction while keeping your budget comfortably under $50!",
     meals: [
       {
