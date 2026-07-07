@@ -12,6 +12,7 @@ export interface GroceryItem {
   fat: number; // in grams
   servingSize: string;
   coachNote: string;
+  cuisine?: string[];
 }
 
 export interface MealPrepPlan {
@@ -244,7 +245,152 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1 bottle (500ml)",
-    coachNote: "Crucial hydration staple for Planet Fitness Lewiston lifting sessions and completing your daily water intake quest!"
+    coachNote: "Crucial hydration staple for Planet Fitness Lewiston lifting sessions and completing your daily water intake quest!",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+  },
+  {
+    id: "g-15",
+    upc: "085000040659",
+    name: "Jade Leaf Pure Green Tea Matcha Powder (1 oz pouch)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Jade Leaf",
+    category: "Essentials",
+    priceEst: "$6.98 (1 oz pouch)",
+    calories: 10,
+    protein: 1,
+    carbs: 1,
+    fat: 0,
+    servingSize: "1 tsp (2g)",
+    coachNote: "Essential Chinese & Japanese antioxidant green tea staple for making clean Dirty Matcha Lattes and afternoon focus shakes!",
+    cuisine: ["China", "Japan"]
+  },
+  {
+    id: "g-16",
+    upc: "078742231299",
+    name: "Great Value 100% Green Tea / Oolong Tea Bags (40 ct)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$2.48 (40 ct box)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1 Tea Bag",
+    coachNote: "Traditional Chinese & Japanese metabolism tea staple. Enjoy hot or iced with zero calories.",
+    cuisine: ["China", "Korea", "Japan"]
+  },
+  {
+    id: "g-17",
+    upc: "025293001234",
+    name: "Silk Unsweetened Almond Milk (Half Gallon / 64 fl oz)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Silk",
+    category: "Essentials",
+    priceEst: "$3.28 (Half Gallon)",
+    calories: 30,
+    protein: 1,
+    carbs: 1,
+    fat: 2.5,
+    servingSize: "1 cup (8 fl oz)",
+    coachNote: "Low-calorie creamy base for mixing Dirty Matcha Lattes and afternoon protein bowls without sugar crashes.",
+    cuisine: ["China"]
+  },
+  {
+    id: "g-18",
+    upc: "085000010987",
+    name: "Bibigo Gochujang Korean Hot Pepper Paste / Kimchi (16 oz)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Bibigo / Great Value",
+    category: "Essentials",
+    priceEst: "$4.98 (16 oz tub/jar)",
+    calories: 25,
+    protein: 1,
+    carbs: 5,
+    fat: 0,
+    servingSize: "1 tbsp (15g)",
+    coachNote: "Essential Korean probiotic and metabolism-boosting spice staple for Bulgogi bowls and egg scrambles.",
+    cuisine: ["Korea"]
+  },
+  {
+    id: "g-19",
+    upc: "078742359999",
+    name: "Great Value Soy Sauce & Teriyaki Marinade (15 fl oz)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$1.98 (15 fl oz bottle)",
+    calories: 15,
+    protein: 1,
+    carbs: 3,
+    fat: 0,
+    servingSize: "1 tbsp (15ml)",
+    coachNote: "Essential savory marinade for Chinese Szechuan chicken, Korean Bulgogi, and Japanese Samurai Teriyaki bowls.",
+    cuisine: ["China", "Korea", "Japan"]
+  },
+  {
+    id: "g-20",
+    upc: "078742358888",
+    name: "Great Value White Corn Tortillas (30 ct)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Carbs",
+    priceEst: "$1.98 (30 count pack)",
+    calories: 100,
+    protein: 2,
+    carbs: 21,
+    fat: 1,
+    servingSize: "2 Tortillas (50g)",
+    coachNote: "Authentic Mexican street taco and fajita staple with slow-digesting corn carbohydrates.",
+    cuisine: ["Mexico"]
+  },
+  {
+    id: "g-21",
+    upc: "078742357777",
+    name: "Great Value Frozen Broccoli Florets (12 oz bag)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Produce",
+    priceEst: "$1.18 (12 oz bag)",
+    calories: 30,
+    protein: 2,
+    carbs: 5,
+    fat: 0,
+    servingSize: "1 cup (85g)",
+    coachNote: "Easy steamed micronutrients and fiber for Chinese stir-fries, Japanese bowls, and Boricua dinners.",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+  },
+  {
+    id: "g-22",
+    upc: "000000040111",
+    name: "Fresh Bananas (~1 lb bunch / ~3-4 bananas)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Fresh Produce",
+    category: "Produce",
+    priceEst: "$0.58 (~1 lb bunch)",
+    calories: 105,
+    protein: 1,
+    carbs: 27,
+    fat: 0,
+    servingSize: "1 Medium Banana (118g)",
+    coachNote: "Quick potassium and clean pre-workout carbohydrates.",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+  },
+  {
+    id: "g-23",
+    upc: "078742356666",
+    name: "Great Value Old Fashioned Rolled Oats / Crispy Rice Cereal (42 oz)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Carbs",
+    priceEst: "$3.98 (42 oz canister)",
+    calories: 150,
+    protein: 5,
+    carbs: 27,
+    fat: 2.5,
+    servingSize: "1/2 cup dry (40g)",
+    coachNote: "Slow-digesting complex carbs for morning energy or mixing into afternoon Greek yogurt power bowls.",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   }
 ];
 

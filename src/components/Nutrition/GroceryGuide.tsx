@@ -11,6 +11,7 @@ export default function GroceryGuide() {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<'items' | 'plans'>('items');
   const [selectedCountryPlan, setSelectedCountryPlan] = useState<string>('All');
+  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('All');
 
   const [customItems, setCustomItems] = useState<GroceryItem[]>([]);
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
@@ -110,8 +111,9 @@ export default function GroceryGuide() {
 
   const filteredItems = allItems.filter(item => {
     const matchStore = selectedStore === 'All Stores' || item.store === selectedStore;
-    const matchCat = selectedCategory === 'All' || item.category === selectedCategory;
-    return matchStore && matchCat;
+    const matchCat = selectedCategory === 'All' || selectedCategory === '🍱 Meal Prep Templates' || item.category === selectedCategory;
+    const matchTemplate = selectedAisleTemplate === 'All' || !item.cuisine || item.cuisine.includes(selectedAisleTemplate);
+    return matchStore && matchCat && matchTemplate;
   });
 
   const extractPrice = (priceStr: string): number => {
@@ -131,7 +133,7 @@ export default function GroceryGuide() {
   const checkedEstPrice = allItems.filter(item => checkedItems[item.id]).reduce((sum, item) => sum + extractPrice(item.priceEst), 0);
 
   const stores = ['All Stores', 'Walmart Supercenter (Auburn, ME)', "Shaw's (Auburn/Lewiston)", 'Hannaford (Lewiston/Auburn)'];
-  const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery'];
+  const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery', '🍱 Meal Prep Templates'];
 
   const handlePrintPlan = (plan: typeof MEAL_PREP_PLANS[0]) => {
     const slugMap: Record<string, string> = {
@@ -431,6 +433,35 @@ export default function GroceryGuide() {
               ))}
             </div>
 
+            {/* Meal Prep Template Filter */}
+            <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-white/5">
+              <span className="text-xs font-bold text-zinc-400 uppercase mr-2 flex items-center gap-1">
+                <Utensils className="w-3.5 h-3.5 text-system-gold" /> Template Filter:
+              </span>
+              {['All', 'China', 'Korea', 'Japan', 'Puerto Rico', 'Mexico'].map((tpl) => {
+                const flags: Record<string, string> = { 'China': '🇨🇳', 'Korea': '🇰🇷', 'Japan': '🇯🇵', 'Puerto Rico': '🇵🇷', 'Mexico': '🇲🇽' };
+                return (
+                  <button
+                    key={tpl}
+                    onClick={() => {
+                      setSelectedAisleTemplate(tpl);
+                      if (tpl !== 'All' && selectedCategory === '🍱 Meal Prep Templates') {
+                        setSelectedCategory('All');
+                      }
+                    }}
+                    className={`px-3.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                      selectedAisleTemplate === tpl
+                        ? 'bg-system-gold text-system-dark font-black shadow-glow-gold scale-105'
+                        : 'bg-system-dark text-zinc-400 hover:text-white border border-white/5'
+                    }`}
+                  >
+                    {flags[tpl] && <span>{flags[tpl]}</span>}
+                    <span>{tpl === 'All' ? '🌐 All Items & Templates' : `${tpl} ($50 Limit)`}</span>
+                  </button>
+                );
+              })}
+            </div>
+
             {/* Auburn Walmart Quick-Select Strip */}
             <div className="bg-system-card p-4 rounded-2xl border border-system-blue/40 shadow-inner flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div className="flex items-center gap-2">
@@ -491,6 +522,86 @@ export default function GroceryGuide() {
               </div>
             </div>
           </div>
+
+          {/* Meal Prep Templates Display in Aisle Checklist */}
+          {(selectedCategory === 'All' || selectedCategory === '🍱 Meal Prep Templates' || selectedAisleTemplate !== 'All') && (
+            <div className="space-y-4 bg-system-panel/50 p-5 rounded-2xl border border-system-gold/30">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-black uppercase text-system-gold tracking-wider flex items-center gap-2">
+                  <Utensils className="w-4 h-4 text-system-gold" />
+                  <span>Meal Prep Blueprints & Aisle Shopping Lists (Under $50 Budget)</span>
+                </h3>
+                {selectedAisleTemplate !== 'All' && (
+                  <button
+                    onClick={() => setSelectedAisleTemplate('All')}
+                    className="text-xs text-zinc-400 hover:text-white underline font-mono"
+                  >
+                    Clear Template Filter
+                  </button>
+                )}
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {MEAL_PREP_PLANS.filter(p => selectedAisleTemplate === 'All' || p.country === selectedAisleTemplate).map(plan => (
+                  <div
+                    key={`aisle-plan-${plan.id}`}
+                    className={`p-5 rounded-2xl border transition-all flex flex-col justify-between gap-4 ${
+                      selectedAisleTemplate === plan.country
+                        ? 'bg-gradient-to-br from-system-panel to-system-dark border-system-gold shadow-glow-gold scale-[1.02]'
+                        : 'bg-system-panel border-system-blue/30 hover:border-system-blue shadow-md'
+                    }`}
+                  >
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-2xl">{plan.flag}</span>
+                        <span className="text-[10px] font-mono font-black uppercase tracking-wider text-system-gold bg-system-gold/15 px-2 py-0.5 rounded border border-system-gold/30">
+                          {plan.estCostPerWeek.split(' ')[0]} / Wk
+                        </span>
+                      </div>
+                      <h4 className="text-sm font-black text-white leading-tight">{plan.title}</h4>
+                      <p className="text-xs text-zinc-400 line-clamp-2">{plan.description}</p>
+                    </div>
+
+                    <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
+                      <button
+                        onClick={() => {
+                          setSelectedAisleTemplate(plan.country);
+                          if (selectedCategory === '🍱 Meal Prep Templates') {
+                            setSelectedCategory('All');
+                          }
+                        }}
+                        className={`w-full py-2 rounded-xl text-xs font-bold font-mono transition-all flex items-center justify-center gap-1.5 ${
+                          selectedAisleTemplate === plan.country
+                            ? 'bg-system-cyan text-system-dark font-black shadow-glow-blue'
+                            : 'bg-system-blue/20 text-system-cyan hover:bg-system-blue/30 border border-system-blue/40'
+                        }`}
+                      >
+                        <ShoppingBag className="w-3.5 h-3.5" />
+                        <span>{selectedAisleTemplate === plan.country ? '✓ Showing Aisle List Below' : '🛒 Filter Aisle List To This Plan'}</span>
+                      </button>
+
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => handlePrintPlan(plan)}
+                          className="flex-1 py-1.5 rounded-lg bg-system-dark text-zinc-300 hover:text-white border border-white/10 text-[11px] font-bold flex items-center justify-center gap-1"
+                        >
+                          <Printer className="w-3 h-3 text-system-blue" />
+                          <span>Print PDF</span>
+                        </button>
+                        <button
+                          onClick={() => handleEmailPlan(plan)}
+                          className="flex-1 py-1.5 rounded-lg bg-system-dark text-zinc-300 hover:text-white border border-white/10 text-[11px] font-bold flex items-center justify-center gap-1"
+                        >
+                          <Mail className="w-3 h-3 text-system-gold" />
+                          <span>Email Plan</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Grocery Items List */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
