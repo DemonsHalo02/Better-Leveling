@@ -259,7 +259,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tsp (2g / 1 espresso shot equivalent)",
     coachNote: "Essential instant coffee / espresso roast! Dissolve 1-2 tsp in hot water to create the espresso shot required for your authentic Chinese & Japanese Dirty Matcha Lattes!",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Korea", "Japan", "Mexico"]
   },
   {
     id: "g-15",
@@ -307,7 +307,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 2.5,
     servingSize: "1 cup (8 fl oz)",
     coachNote: "Low-calorie creamy base for mixing Dirty Matcha Lattes and afternoon protein bowls without sugar crashes.",
-    cuisine: ["China"]
+    cuisine: ["China", "Japan", "Mexico"]
   },
   {
     id: "g-18",
@@ -371,7 +371,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 cup (85g)",
     coachNote: "Easy steamed micronutrients and fiber for Chinese stir-fries, Japanese bowls, and Boricua dinners.",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Korea", "Japan"]
   },
   {
     id: "g-22",
@@ -387,7 +387,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Medium Banana (118g)",
     coachNote: "Quick potassium and clean pre-workout carbohydrates.",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: []
   },
   {
     id: "g-23",
@@ -403,7 +403,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 2.5,
     servingSize: "1/2 cup dry (40g)",
     coachNote: "Slow-digesting complex carbs for morning energy or mixing into afternoon Greek yogurt power bowls.",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Korea", "Japan", "Mexico"]
   }
 ];
 
