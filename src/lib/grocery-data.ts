@@ -99,7 +99,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Packet (1g)",
     coachNote: "The secret to getting traditional sweet lattes and teas without adding unwanted sugar calories!",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-5",
@@ -147,7 +147,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "0.25 sec spray (0.25g)",
     coachNote: "Zero-calorie non-stick cooking spray for searing Chuletas (pork chops), chicken, and eggs without adding hidden liquid oil calories!",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-8",
@@ -323,7 +323,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tbsp (15g)",
     coachNote: "Essential spicy metabolism-boosting chili sauce staple stocked at Auburn Walmart for Chinese stir-fries, Korean Bulgogi bowls and egg scrambles.",
-    cuisine: ["China", "Korea"]
+    cuisine: ["China"]
   },
   {
     id: "g-19",
@@ -403,7 +403,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 2.5,
     servingSize: "1/2 cup dry (40g)",
     coachNote: "Slow-digesting complex carbs for morning energy or mixing into afternoon Greek yogurt power bowls.",
-    cuisine: ["China", "Korea", "Mexico"]
+    cuisine: ["China", "Mexico"]
   },
   {
     id: "g-24",
@@ -419,7 +419,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 8,
     servingSize: "4 oz (112g raw)",
     coachNote: "Essential lean beef for authentic Chinese Beef & Broccoli stir-fries and Korean Bulgogi bowls! Loaded with bioavailable iron and creatine.",
-    cuisine: ["China", "Korea"]
+    cuisine: ["China"]
   },
   {
     id: "g-25",
@@ -435,7 +435,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "3 tbsp (46g)",
     coachNote: "Pure protein booster! Mix 1/2 cup into your morning whole egg scrambles to add 13g of clean protein without extra fat calories.",
-    cuisine: ["China", "Korea", "Japan", "Mexico"]
+    cuisine: ["China", "Japan", "Mexico"]
   },
   {
     id: "g-26",
@@ -451,7 +451,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 1,
     servingSize: "1 can (142g)",
     coachNote: "High protein, zero-carb lean fish staple ALWAYS stocked at Auburn Walmart. Perfect for high-protein Korean and Japanese rice bowls!",
-    cuisine: ["Korea", "Japan"]
+    cuisine: ["Japan"]
   },
   {
     id: "g-27",
@@ -515,7 +515,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 tsp (0.7g)",
     coachNote: "Essential all-purpose seasoning! Used across every single meal plan for searing chicken, beef, eggs, and stir-fries with zero calories.",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-31",
@@ -531,7 +531,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 tsp (0.5g)",
     coachNote: "Essential Asian cooking spice! Adds warming heat to Chinese stir-fries, Korean Bulgogi marinades, and Japanese teriyaki glazes.",
-    cuisine: ["China", "Korea", "Japan"]
+    cuisine: ["China", "Japan"]
   },
   {
     id: "g-32",
@@ -547,7 +547,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 tsp (0.7g)",
     coachNote: "Sweet warming spice for Dirty Chai Lattes, Café con Leche, Café de Olla, Greek Yogurt bowls, and cinnamon oatmeal with zero calories!",
-    cuisine: ["Korea", "Puerto Rico", "Mexico"]
+    cuisine: ["Puerto Rico", "Mexico"]
   },
   {
     id: "g-33",
@@ -595,7 +595,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 tsp (0.7g)",
     coachNote: "Savory all-purpose onion seasoning for Korean Bulgogi marinades, Puerto Rican Adobo chicken, and Mexican fajita spice blends.",
-    cuisine: ["Korea", "Puerto Rico", "Mexico"]
+    cuisine: ["Puerto Rico", "Mexico"]
   },
   {
     id: "g-36",
@@ -611,7 +611,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 bottle (16.9 fl oz)",
     coachNote: "Essential 40-pack purified hydration staple from Auburn Maine Walmart! Keeps you fully hydrated during workouts and daily meal prep.",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: []
   }
 ];
 
@@ -683,8 +683,8 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main & Featured Blueprint",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
-    estCostPerWeek: "$49.75 weekly food supply at Auburn Walmart ($64.49 Full Stocking w/ spices)",
-    description: "The #1 Main & Featured Korean K-Fit style recomposition plan utilizing authentic Dirty Chai Lattes (Spiced Chai Concentrate + Instant Coffee + Silk Soy Milk), probiotic-rich Nasoya kimchi, and tender bulgogi marinades! Perfectly tuned to 170g daily protein with 7 full days of food guaranteed under $50 weekly replenishment!",
+    estCostPerWeek: "$49.21 weekly food supply at Auburn Walmart (Includes Liquid Chai Concentrate & Green Tea Bags!)",
+    description: "The #1 Main & Featured Korean K-Fit style recomposition plan utilizing authentic Dirty Chai Lattes (Spiced Chai Concentrate + Instant Coffee + Silk Soy Milk), probiotic-rich Nasoya kimchi, and metabolism green tea! Perfectly tuned to 170g daily protein with 7 full days of food guaranteed strictly under $50 weekly replenishment ($49.21)!",
     meals: [
       {
         name: "Breakfast: Seoul Dirty Chai Latte & Soy-Glazed Egg Scramble",
