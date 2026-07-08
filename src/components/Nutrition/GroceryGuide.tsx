@@ -340,7 +340,7 @@ export default function GroceryGuide() {
                 </div>
                 <p className="text-xs text-zinc-300">
                   <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment: $51.73):</strong> Chicken Breasts, Lean Beef Stew Meat, 36-ct Eggs, 2x Greek Yogurt Tubs, Kimchi, Chai Concentrate, Soy Milk, Green Tea, White Rice, Broccoli.<br />
-                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry Restock: +$14.36 / $66.09 Full Trip):</strong> Sriracha, Instant Coffee, Ginger, Cooking Spray, Sweetener, Soy Sauce, Garlic Powder, Onion Powder.
+                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry Restock: +$18.49 / $70.22 Full Trip):</strong> Bibigo Korean BBQ Sauce ($4.13), Sriracha, Instant Coffee, Ginger, Cooking Spray, Sweetener, Soy Sauce, Garlic Powder, Onion Powder.
                 </p>
               </div>
             </div>
@@ -540,7 +540,7 @@ export default function GroceryGuide() {
                       {tpl === 'All'
                         ? '🌐 All Items & Templates'
                         : tpl === 'Korea'
-                        ? 'Korea ($51.73 Core / $66.09 Full Restock)'
+                        ? 'Korea ($51.73 Core / $70.22 Full Restock)'
                         : `${tpl} ($50 Limit)`}
                     </span>
                   </button>

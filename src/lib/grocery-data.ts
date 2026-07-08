@@ -628,6 +628,22 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     servingSize: "4 oz (112g raw)",
     coachNote: "Tender lean beef chunks for authentic Korean Bulgogi bowls and savory stir-fries! High in bioavailable iron, zinc, and muscle-building creatine.",
     cuisine: ["Korea"]
+  },
+  {
+    id: "g-38",
+    upc: "071191010300",
+    name: "Bibigo Authentic Korean BBQ Marinade & Sauce (16.9 fl oz bottle)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Bibigo",
+    category: "Seasonings & Spices",
+    priceEst: "$4.13 (16.9 fl oz bottle)",
+    calories: 35,
+    protein: 1,
+    carbs: 8,
+    fat: 0,
+    servingSize: "1 tbsp (19g)",
+    coachNote: "Authentic sweet & savory Korean BBQ marinade and glaze stocked at Auburn Maine Walmart! Perfect for glazing Bulgogi chicken breasts and lean beef stew meat (Periodic Monday Restock item).",
+    cuisine: ["Korea"]
   }
 ];
 
@@ -662,6 +678,7 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   { name: "Goya Adobo All-Purpose Seasoning (8 oz jar)", category: "Seasonings & Spices", price: "$2.18", note: "The #1 Boricua garlic and pepper all-purpose seasoning." },
   { name: "Great Value Soy Sauce (15 fl oz bottle)", category: "Seasonings & Spices", price: "$1.48", note: "Savory seasoning for Chinese stir-fries and Korean Bulgogi." },
   { name: "Great Value Sriracha Chili Sauce (17 fl oz bottle)", category: "Seasonings & Spices", price: "$2.98", note: "Spicy metabolism-boosting chili sauce staple." },
+  { name: "Bibigo Authentic Korean BBQ Marinade & Sauce (16.9 fl oz bottle)", category: "Seasonings & Spices", price: "$4.13", note: "Authentic sweet & savory Korean BBQ marinade and glaze." },
   { name: "Nasoya Authentic Korean Spicy Kimchi (14 oz cup)", category: "Seasonings & Spices", price: "$4.98", note: "Probiotic gut health & authentic Korean Bulgogi side." },
   { name: "Great Value Classic Roast Instant Coffee (4 oz jar)", category: "Seasonings & Spices", price: "$2.48", note: "Dissolve 1 tsp for espresso shots in Dirty Matcha and Dirty Chai Lattes!" },
   { name: "Café Bustelo Dark Roast Espresso (4 oz)", category: "Seasonings & Spices", price: "$3.48", note: "Authentic Boricua espresso for Café con Leche." },
