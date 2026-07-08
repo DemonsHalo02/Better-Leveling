@@ -504,8 +504,8 @@ export default function GroceryGuide() {
               <span className="text-xs font-bold text-zinc-400 uppercase mr-2 flex items-center gap-1">
                 <Utensils className="w-3.5 h-3.5 text-system-gold" /> Template Filter:
               </span>
-              {['All', 'China', 'Korea', 'Japan', 'Puerto Rico', 'Mexico'].map((tpl) => {
-                const flags: Record<string, string> = { 'China': '🇨🇳', 'Korea': '🇰🇷', 'Japan': '🇯🇵', 'Puerto Rico': '🇵🇷', 'Mexico': '🇲🇽' };
+              {['All', 'Korea', 'China', 'Japan', 'Puerto Rico', 'Mexico'].map((tpl) => {
+                const flags: Record<string, string> = { 'Korea': '🇰🇷', 'China': '🇨🇳', 'Japan': '🇯🇵', 'Puerto Rico': '🇵🇷', 'Mexico': '🇲🇽' };
                 return (
                   <button
                     key={tpl}
@@ -789,8 +789,8 @@ export default function GroceryGuide() {
             <div className="flex flex-wrap items-center gap-2">
               {[
                 { name: 'All', label: '🌐 All Cuisines' },
-                { name: 'China', label: '🇨🇳 China (⭐ Featured)' },
-                { name: 'Korea', label: '🇰🇷 Korea' },
+                { name: 'Korea', label: '🇰🇷 Korea (⭐ #1 Main & Featured)' },
+                { name: 'China', label: '🇨🇳 China' },
                 { name: 'Japan', label: '🇯🇵 Japan' },
                 { name: 'Puerto Rico', label: '🇵🇷 Puerto Rico' },
                 { name: 'Mexico', label: '🇲🇽 Mexico' },
