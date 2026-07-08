@@ -327,6 +327,25 @@ export default function GroceryGuide() {
             </div>
           </div>
 
+          {selectedAisleTemplate === 'Korea' && (
+            <div className="bg-gradient-to-r from-system-blue/15 to-system-cyan/15 p-4 rounded-2xl border border-system-blue/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="bg-system-gold text-system-dark text-[10px] font-black uppercase px-2 py-0.5 rounded">
+                    ⭐ #1 Main Blueprint
+                  </span>
+                  <span className="text-xs text-white font-bold">
+                    🇰🇷 Korean K-Fit Bulgogi & Dirty Chai Shopping Strategy
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-300">
+                  <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment: $51.73):</strong> Chicken Breasts, Lean Beef Stew Meat, 36-ct Eggs, 2x Greek Yogurt Tubs, Kimchi, Chai Concentrate, Soy Milk, Green Tea, White Rice, Broccoli.<br />
+                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry Restock: +$14.36 / $66.09 Full Trip):</strong> Sriracha, Instant Coffee, Ginger, Cooking Spray, Sweetener, Soy Sauce, Garlic Powder, Onion Powder.
+                </p>
+              </div>
+            </div>
+          )}
+
           {/* Add Custom Item Modal */}
           {showAddModal && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200">
@@ -517,7 +536,13 @@ export default function GroceryGuide() {
                     }`}
                   >
                     {flags[tpl] && <span>{flags[tpl]}</span>}
-                    <span>{tpl === 'All' ? '🌐 All Items & Templates' : `${tpl} ($50 Limit)`}</span>
+                    <span>
+                      {tpl === 'All'
+                        ? '🌐 All Items & Templates'
+                        : tpl === 'Korea'
+                        ? 'Korea ($51.73 Core / $66.09 Full Restock)'
+                        : `${tpl} ($50 Limit)`}
+                    </span>
                   </button>
                 );
               })}

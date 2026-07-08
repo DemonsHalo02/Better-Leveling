@@ -98,8 +98,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1 Packet (1g)",
-    coachNote: "The secret to getting traditional sweet lattes and teas without adding unwanted sugar calories!",
-    cuisine: ["China", "Japan", "Puerto Rico", "Mexico"]
+    coachNote: "The secret to getting traditional sweet lattes and teas without adding unwanted sugar calories! Restock item for Korean Dirty Chai Lattes.",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-5",
@@ -146,8 +146,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "0.25 sec spray (0.25g)",
-    coachNote: "Zero-calorie non-stick cooking spray for searing Chuletas (pork chops), chicken, and eggs without adding hidden liquid oil calories!",
-    cuisine: ["China", "Japan", "Puerto Rico", "Mexico"]
+    coachNote: "Zero-calorie non-stick cooking spray for searing Chuletas (pork chops), chicken, and eggs without adding hidden liquid oil calories! Restock item for Korean meal prep.",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-8",
@@ -322,8 +322,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 5,
     fat: 0,
     servingSize: "1 tbsp (15g)",
-    coachNote: "Essential spicy metabolism-boosting chili sauce staple stocked at Auburn Walmart for Chinese stir-fries, Korean Bulgogi bowls and egg scrambles.",
-    cuisine: ["China"]
+    coachNote: "Essential spicy metabolism-boosting chili sauce staple stocked at Auburn Walmart for Chinese stir-fries, Korean Bulgogi bowls and egg scrambles (Restock item).",
+    cuisine: ["China", "Korea"]
   },
   {
     id: "g-19",
@@ -338,8 +338,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 3,
     fat: 0,
     servingSize: "1 tbsp (15ml)",
-    coachNote: "Essential savory seasoning staple for Chinese stir-fries, Korean Bulgogi, and Japanese rice bowls.",
-    cuisine: ["China", "Japan"]
+    coachNote: "Essential savory seasoning staple for Chinese stir-fries, Korean Bulgogi, and Japanese rice bowls (Restock item).",
+    cuisine: ["China", "Korea", "Japan"]
   },
   {
     id: "g-20",
@@ -514,8 +514,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1/4 tsp (0.7g)",
-    coachNote: "Essential all-purpose seasoning! Used across every single meal plan for searing chicken, beef, eggs, and stir-fries with zero calories.",
-    cuisine: ["China", "Japan", "Puerto Rico", "Mexico"]
+    coachNote: "Essential all-purpose seasoning! Used across every single meal plan for searing chicken, beef, eggs, and stir-fries with zero calories (Restock item).",
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-31",
@@ -530,8 +530,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1/4 tsp (0.5g)",
-    coachNote: "Essential Asian cooking spice! Adds warming heat to Chinese stir-fries, Korean Bulgogi marinades, and Japanese teriyaki glazes.",
-    cuisine: ["China", "Japan"]
+    coachNote: "Essential Asian cooking spice! Adds warming heat to Chinese stir-fries, Korean Bulgogi marinades, and Japanese teriyaki glazes (Restock item).",
+    cuisine: ["China", "Korea", "Japan"]
   },
   {
     id: "g-32",
@@ -594,8 +594,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1/4 tsp (0.7g)",
-    coachNote: "Savory all-purpose onion seasoning for Korean Bulgogi marinades, Puerto Rican Adobo chicken, and Mexican fajita spice blends.",
-    cuisine: ["Puerto Rico", "Mexico"]
+    coachNote: "Savory all-purpose onion seasoning for Korean Bulgogi marinades, Puerto Rican Adobo chicken, and Mexican fajita spice blends (Restock item).",
+    cuisine: ["Korea", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-36",
