@@ -339,7 +339,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tbsp (15ml)",
     coachNote: "Essential savory seasoning staple for Chinese stir-fries, Korean Bulgogi, and Japanese rice bowls.",
-    cuisine: ["China", "Korea", "Japan"]
+    cuisine: ["China", "Japan"]
   },
   {
     id: "g-20",
@@ -612,6 +612,22 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     servingSize: "1 bottle (16.9 fl oz)",
     coachNote: "Essential 40-pack purified hydration staple from Auburn Maine Walmart! Keeps you fully hydrated during workouts and daily meal prep.",
     cuisine: []
+  },
+  {
+    id: "g-37",
+    upc: "078742351199",
+    name: "All Natural Lean Beef Stew Meat (~1.0 lb Tray)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "All Natural / Great Value",
+    category: "Protein",
+    priceEst: "$6.48 (~1.0 lb tray at $6.48/lb)",
+    calories: 160,
+    protein: 24,
+    carbs: 0,
+    fat: 7,
+    servingSize: "4 oz (112g raw)",
+    coachNote: "Tender lean beef chunks for authentic Korean Bulgogi bowls and savory stir-fries! High in bioavailable iron, zinc, and muscle-building creatine.",
+    cuisine: ["Korea"]
   }
 ];
 
@@ -657,6 +673,7 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   { name: "Great Value Purified Drinking Water (40 Pack, 16.9 fl oz bottles)", category: "Essentials", price: "$4.98", note: "40-pack purified water bottles from Auburn Walmart." },
   // Groceries & Protein Staples
   { name: "Fresh Chicken Breasts (~4.7 lb Family Tray)", category: "Protein", price: "$12.60", note: "Primary lean protein staple (~4.7 to 6 lb tray)." },
+  { name: "All Natural Lean Beef Stew Meat (~1.0 lb Tray)", category: "Protein", price: "$6.48", note: "Tender beef chunks for Korean Bulgogi bowls." },
   { name: "Great Value Large Grade A White Eggs (36 Count Tray)", category: "Protein", price: "$6.84", note: "36 eggs guaranteed (3 eggs/day + extras!)." },
   { name: "All Natural Lean Ground Beef 93/7 (~1 lb roll)", category: "Protein", price: "$6.48", note: "Essential for Bulgogi bowls and beef stir-fries." },
   { name: "Great Value Plain Nonfat Greek Yogurt (Two 32 oz tubs / 64 oz total)", category: "Protein", price: "$7.96", note: "Two tubs (64 oz / 8+ cups total) guaranteed for 7 days of afternoon & bedtime protein snacks!" },
@@ -683,8 +700,8 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main & Featured Blueprint",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
-    estCostPerWeek: "$49.21 weekly food supply at Auburn Walmart (Includes Liquid Chai Concentrate & Green Tea Bags!)",
-    description: "The #1 Main & Featured Korean K-Fit style recomposition plan utilizing authentic Dirty Chai Lattes (Spiced Chai Concentrate + Instant Coffee + Silk Soy Milk), probiotic-rich Nasoya kimchi, and metabolism green tea! Perfectly tuned to 170g daily protein with 7 full days of food guaranteed strictly under $50 weekly replenishment ($49.21)!",
+    estCostPerWeek: "$51.73 weekly core restock at Auburn Walmart ($66.09 Full Monday Stock-Up w/ sauces & spices)",
+    description: "The #1 Main & Featured Korean K-Fit style recomposition plan utilizing authentic Dirty Chai Lattes (Spiced Chai Concentrate + Instant Coffee + Silk Soy Milk), probiotic-rich Nasoya kimchi, tender Lean Beef Stew Meat & Chicken Bulgogi, and metabolism green tea! Perfectly tuned to 170g daily protein with 7 full days of food for $51.73 weekly core restock ($66.09 Full Monday Stock-Up)!",
     meals: [
       {
         name: "Breakfast: Seoul Dirty Chai Latte & Soy-Glazed Egg Scramble",
@@ -700,10 +717,10 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 16
       },
       {
-        name: "Lunch: Lean Chicken / Beef Bulgogi Bowl with Kimchi",
+        name: "Lunch: Lean Beef Stew Meat / Chicken Bulgogi Bowl with Kimchi",
         time: "12:30 PM",
         ingredients: [
-          "7 oz Fresh Chicken Breast or Lean Ground Beef seared in Korean soy-garlic-gochujang marinade (240 kcal, 48g p)",
+          "7 oz Lean Beef Stew Meat or Fresh Chicken Breast seared in Korean soy-garlic-ginger marinade (240 kcal, 48g p)",
           "1/2 cup Nasoya Spicy Kimchi for gut health & probiotics (25 kcal, 2g p)",
           "1 cup cooked White Rice (200 kcal, 4g p, 45g c)",
           "1 cup steamed broccoli / spinach (30 kcal, 2g p)"
