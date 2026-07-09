@@ -40,17 +40,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-1",
     upc: "078742371195", // Fresh Chicken Breast Family Pack (~4.7 lb)
-    name: "Freshness Guaranteed Fresh Boneless Skinless Chicken Breasts (~4.7 lb Family Tray)",
+    name: "Fresh Chicken Breasts (~5.5 lb Family Tray / 88 oz raw)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Freshness Guaranteed",
     category: "Protein",
-    priceEst: "$12.60 (~4.7 lb family tray at $2.68/lb)",
+    priceEst: "$14.74 (~5.5 lb family tray at $2.68/lb)",
     calories: 120,
     protein: 26,
     carbs: 0,
     fat: 1.5,
     servingSize: "4 oz (112g)",
-    coachNote: "Upgraded fresh family tray (~4.7 to 6 lb size available at Auburn Walmart) for maximum protein! Fresh chicken cooks tender and fast. Season with Adobo & Sazón for authentic Pollo Guisado.",
+    coachNote: "Upgraded ~5.5 lb (88 oz raw) family tray from Auburn Walmart! Guaranteed to provide enough chicken for 7 full days of Lunch (7 oz/day) and Dinner (5.6 oz/day) without running out!",
     cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
@@ -216,17 +216,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-12",
     upc: "078742136039", // Great Value Greek Yogurt
-    name: "Great Value Plain Nonfat Greek Yogurt (Two 32 oz tubs / 64 oz total)",
+    name: "Great Value Plain Nonfat Greek Yogurt (Three 32 oz tubs / 96 oz total)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Protein",
-    priceEst: "$7.96 (Two 32 oz tubs / 64 oz total)",
+    priceEst: "$11.94 (Three 32 oz tubs / 96 oz total)",
     calories: 90,
     protein: 16,
     carbs: 6,
     fat: 0,
     servingSize: "3/4 cup (170g / 6 oz)",
-    coachNote: "Two tubs (64 oz / 8+ cups total) guaranteed! Provides over 1 cup daily of high-protein casein for your afternoon snack or bedtime recovery snack every single day of the week!",
+    coachNote: "Three tubs (96 oz / 12 cups total) guaranteed! Provides 100% enough Greek Yogurt for 7 full days of Afternoon bowls (1 cup / 8 oz) AND Nighttime Casein Fluff (~3/4 cup / 5.7 oz) without running out!",
     cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
@@ -360,17 +360,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-21",
     upc: "078742357777",
-    name: "Great Value Frozen Broccoli Florets (Two 12 oz bags / 24 oz total)",
+    name: "Great Value Frozen Broccoli Florets (Three 12 oz bags / 36 oz total)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Produce",
-    priceEst: "$2.32 (Two 12 oz bags at $1.16 ea)",
+    priceEst: "$3.48 (Three 12 oz bags at $1.16 ea)",
     calories: 30,
     protein: 2,
     carbs: 5,
     fat: 0,
     servingSize: "1 cup (85g)",
-    coachNote: "Two bags guaranteed! Steamed micronutrients and fiber for Chinese stir-fries, Korean bowls, and Japanese dinners.",
+    coachNote: "Three bags (36 oz / ~12 cups total) guaranteed! Steamed micronutrients and fiber for 7 full days of Lunch & Dinner bowls.",
     cuisine: ["China", "Korea", "Japan"]
   },
   {
@@ -403,7 +403,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 2.5,
     servingSize: "1/2 cup dry (40g)",
     coachNote: "Slow-digesting complex carbs for morning energy or mixing into afternoon Greek yogurt power bowls.",
-    cuisine: ["China", "Mexico"]
+    cuisine: ["China", "Japan", "Mexico"]
   },
   {
     id: "g-24",
@@ -664,17 +664,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-40",
     upc: "078742358999",
-    name: "Great Value Frozen Shelled Edamame (12 oz bag)",
+    name: "Great Value Frozen Shelled Edamame (Two 12 oz bags / 24 oz total)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Produce",
-    priceEst: "$2.28 (12 oz bag)",
+    priceEst: "$4.56 (Two 12 oz bags at $2.28 ea)",
     calories: 100,
     protein: 9,
     carbs: 7,
     fat: 4,
     servingSize: "1/2 cup (75g)",
-    coachNote: "Rich in plant protein and fiber! Steam as a clean Japanese side dish or stir-fry with your Samurai Teriyaki Chicken Bowls.",
+    coachNote: "Two bags (24 oz / 680g total / 9 servings) guaranteed! Rich in plant protein and fiber to provide 100% enough edamame for 7 full days of Lunch bowls.",
     cuisine: ["Japan"]
   },
   {
@@ -781,8 +781,8 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main & Featured Blueprint",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
-    estCostPerWeek: "$49.75 weekly consumables at Auburn Walmart ($21.78 Pantry Restock)",
-    description: "The #1 Main & Featured Japanese Samurai Dojo cutting plan featuring clean ginger-teriyaki seared chicken breasts, soft-boiled eggs, edamame fiber, and the signature Dirty Matcha Latte (Pure Matcha + Instant Coffee Espresso Shot + Silk Soy Milk)! Strictly zero tofu, perfectly tuned to 170g daily protein under $50 weekly!",
+    estCostPerWeek: "$49.84 weekly consumables at Auburn Walmart ($21.78 Pantry Restock)",
+    description: "The #1 Main & Featured Japanese Samurai Dojo cutting plan featuring clean ginger-teriyaki seared chicken breasts (~5.5 lb 88 oz Family Tray covering all 7 days!), soft-boiled eggs, edamame fiber (Two 12 oz bags covering all 7 days!), Three 32 oz tubs of Greek Yogurt (96 oz covering all 7 afternoon & night bowls!), and the signature Dirty Matcha Latte! Strictly zero tofu, perfectly tuned to 170g daily protein under $50 weekly ($49.84 total)!",
     meals: [
       {
         name: "Breakfast: Dirty Matcha Latte & Soy-Marinated Soft-Boiled Eggs",
