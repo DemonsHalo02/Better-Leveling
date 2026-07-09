@@ -259,7 +259,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tsp (2g / 1 espresso shot equivalent)",
     coachNote: "Essential instant coffee roast! Dissolve 1 tsp in hot water to create the espresso shot required for your authentic Korean Dirty Chai Lattes, Chinese Dirty Matcha Lattes, and Mexican Café de Olla!",
-    cuisine: ["China", "Korea", "Mexico"]
+    cuisine: ["China", "Korea", "Japan", "Mexico"]
   },
   {
     id: "g-15",
@@ -828,7 +828,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         name: "Dinner: Miso-Ginger Seared Chicken (or Beef/Tuna) & Steamed Veggies",
         time: "7:30 PM",
         ingredients: [
-          "6.5 oz Fresh Chicken Breast (or Lean Beef Stew Meat / Tuna) seared with ginger & soy broth (225 kcal, 45g p)",
+          "6.5 oz Fresh Chicken Breast (or swap 2 cans / 10 oz drained Chunk Light Tuna for an instant zero-cook high-protein dinner alternative!) seasoned with ginger & soy (225 kcal, 45g p)",
           "1 cup cooked White Rice (200 kcal, 4g p, 45g c)",
           "1.5 cups steamed broccoli florets & greens (45 kcal, 3g p)"
         ],
