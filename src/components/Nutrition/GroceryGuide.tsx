@@ -190,6 +190,111 @@ export default function GroceryGuide() {
     return 0;
   };
 
+  const isRestockItem = (item: GroceryItem): boolean => {
+    const restockIds = new Set([
+      'g-3', 'g-4', 'g-5', 'g-6', 'g-7', 'g-9', 'g-10', 'g-14', 'g-15',
+      'g-16', 'g-17', 'g-19', 'g-20', 'g-23', 'g-24', 'g-27', 'g-28', 'g-29',
+      'g-30', 'g-31', 'g-38', 'g-39', 'g-43', 'g-44'
+    ]);
+    if (restockIds.has(item.id)) return true;
+    if (item.category === 'Seasonings & Spices' || item.category === 'Toiletries / Non-Grocery') return true;
+    if (item.coachNote && item.coachNote.toLowerCase().includes('restock')) return true;
+    return false;
+  };
+
+  const weeklyConsumables = filteredItems.filter(item => !isRestockItem(item));
+  const restockItemsList = filteredItems.filter(item => isRestockItem(item));
+
+  const weeklyConsumablesPrice = weeklyConsumables.reduce((sum, item) => sum + extractPrice(item.priceEst), 0);
+  const restockItemsPrice = restockItemsList.reduce((sum, item) => sum + extractPrice(item.priceEst), 0);
+
+  const renderItemCard = (item: GroceryItem) => {
+    const isChecked = checkedItems[item.id] || false;
+    return (
+      <div
+        key={item.id}
+        onClick={() => handleToggleCheck(item.id)}
+        className={`cursor-pointer rounded-2xl p-5 border transition-all duration-200 flex items-start justify-between gap-4 ${
+          isChecked
+            ? 'bg-system-panel/40 border-green-500/40 opacity-75'
+            : 'bg-system-panel border-system-blue/30 hover:border-system-blue shadow-md'
+        }`}
+      >
+        <div className="flex items-start gap-3.5 flex-1">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleToggleCheck(item.id);
+            }}
+            className={`mt-0.5 transition-colors ${isChecked ? 'text-green-400' : 'text-zinc-500 hover:text-system-cyan'}`}
+          >
+            {isChecked ? <CheckCircle2 className="w-5 h-5" /> : <Circle className="w-5 h-5" />}
+          </button>
+
+          <div className="space-y-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className={`text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded ${
+                item.store.includes('Walmart') ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40' :
+                item.store.includes("Shaw's") ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40' :
+                'bg-green-500/20 text-green-300 border border-green-500/40'
+              }`}>
+                {item.brand}
+              </span>
+              <span className="text-[10px] font-mono text-zinc-400">{item.store}</span>
+            </div>
+
+            <h4 className={`text-base font-bold ${isChecked ? 'line-through text-zinc-400' : 'text-white'}`}>
+              {item.name}
+            </h4>
+
+            <div className="flex flex-wrap items-center gap-2.5 text-xs font-mono text-zinc-400 pt-1">
+              <span className="bg-system-gold/15 text-system-gold font-bold text-xs sm:text-sm px-2.5 py-0.5 rounded border border-system-gold/40 shadow-sm flex items-center gap-1">
+                <DollarSign className="w-3.5 h-3.5 inline text-system-gold" />
+                <span>{item.priceEst.startsWith('$') ? item.priceEst.replace('$', '') : item.priceEst}</span>
+              </span>
+              {item.category === 'Toiletries / Non-Grocery' ? (
+                <>
+                  <span>|</span>
+                  <span className="text-purple-300 font-bold">🧴 Household Essential</span>
+                </>
+              ) : (
+                <>
+                  <span>|</span>
+                  <span className="text-system-cyan font-bold">{item.protein}g Protein</span>
+                  <span>|</span>
+                  <span>{item.calories} kcal</span>
+                </>
+              )}
+            </div>
+
+            <p className="text-xs text-zinc-400 leading-relaxed pt-1.5 border-t border-white/5 mt-2">
+              <strong className="text-system-cyan">Why Buy:</strong> {item.coachNote}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-end gap-2">
+          <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border whitespace-nowrap ${
+            item.category === 'Toiletries / Non-Grocery'
+              ? 'bg-purple-500/20 text-purple-300 border-purple-500/40 shadow-sm'
+              : 'bg-system-dark text-zinc-300 border-white/10'
+          }`}>
+            {item.category}
+          </span>
+          <button
+            type="button"
+            onClick={(e) => handleRemoveItem(item.id, e)}
+            className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/20 transition-all shadow-sm"
+            title="Delete item from checklist"
+          >
+            <Trash2 className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   const totalItemsCount = filteredItems.length;
   const checkedCount = filteredItems.filter(item => checkedItems[item.id]).length;
   const progressPct = totalItemsCount > 0 ? Math.round((checkedCount / totalItemsCount) * 100) : 0;
@@ -559,9 +664,11 @@ export default function GroceryGuide() {
                       {tpl === 'All'
                         ? '🌐 All Items & Templates'
                         : tpl === 'Japan'
-                        ? 'Japan ($49.75 Weekly / $21.78 Restock)'
+                        ? 'Japan ($44.98 Weekly / $33.81 Restock)'
                         : tpl === 'Korea'
-                        ? 'Korea ($51.73 Core / $70.22 Full Restock)'
+                        ? 'Korea ($41.20 Weekly / $33.81 Restock)'
+                        : tpl === 'China'
+                        ? 'China ($44.50 Weekly / $33.81 Restock)'
                         : `${tpl} ($50 Limit)`}
                     </span>
                   </button>
@@ -720,103 +827,80 @@ export default function GroceryGuide() {
           )}
 
           {/* Grocery Items List */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {filteredItems.length === 0 ? (
-              <div className="bg-system-panel p-8 rounded-2xl border border-white/10 text-center space-y-3 col-span-1 md:col-span-2">
-                <ShoppingBag className="w-10 h-10 text-system-blue mx-auto opacity-50" />
-                <h3 className="text-base font-bold text-white">No Items in "{selectedCategory}" Yet</h3>
-                <p className="text-xs text-zinc-400 max-w-md mx-auto">
-                  You removed the pre-loaded items so you can add exactly what you need! Pick an item from the Auburn Walmart Quick-Select Catalog above or click "+ Add Item" to add your own.
-                </p>
-              </div>
-            ) : (
-              filteredItems.map((item) => {
-                const isChecked = checkedItems[item.id] || false;
-                return (
-                  <div
-                    key={item.id}
-                    onClick={() => handleToggleCheck(item.id)}
-                    className={`cursor-pointer rounded-2xl p-5 border transition-all duration-200 flex items-start justify-between gap-4 ${
-                      isChecked
-                        ? 'bg-system-panel/40 border-green-500/40 opacity-75'
-                        : 'bg-system-panel border-system-blue/30 hover:border-system-blue shadow-md'
-                    }`}
-                  >
-                    <div className="flex items-start gap-3.5 flex-1">
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleToggleCheck(item.id);
-                        }}
-                        className={`mt-0.5 transition-colors ${isChecked ? 'text-green-400' : 'text-zinc-500 hover:text-system-cyan'}`}
-                      >
-                        {isChecked ? <CheckCircle2 className="w-5 h-5" /> : <Circle className="w-5 h-5" />}
-                      </button>
-
-                      <div className="space-y-1">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className={`text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded ${
-                            item.store.includes('Walmart') ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40' :
-                            item.store.includes("Shaw's") ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40' :
-                            'bg-green-500/20 text-green-300 border border-green-500/40'
-                          }`}>
-                            {item.brand}
-                          </span>
-                          <span className="text-[10px] font-mono text-zinc-400">{item.store}</span>
-                        </div>
-
-                        <h4 className={`text-base font-bold ${isChecked ? 'line-through text-zinc-400' : 'text-white'}`}>
-                          {item.name}
-                        </h4>
-
-                        <div className="flex flex-wrap items-center gap-2.5 text-xs font-mono text-zinc-400 pt-1">
-                          <span className="bg-system-gold/15 text-system-gold font-bold text-xs sm:text-sm px-2.5 py-0.5 rounded border border-system-gold/40 shadow-sm flex items-center gap-1">
-                            <DollarSign className="w-3.5 h-3.5 inline text-system-gold" />
-                            <span>{item.priceEst.startsWith('$') ? item.priceEst.replace('$', '') : item.priceEst}</span>
-                          </span>
-                          {item.category === 'Toiletries / Non-Grocery' ? (
-                            <>
-                              <span>|</span>
-                              <span className="text-purple-300 font-bold">🧴 Household Essential</span>
-                            </>
-                          ) : (
-                            <>
-                              <span>|</span>
-                              <span className="text-system-cyan font-bold">{item.protein}g Protein</span>
-                              <span>|</span>
-                              <span>{item.calories} kcal</span>
-                            </>
-                          )}
-                        </div>
-
-                      <p className="text-xs text-zinc-400 leading-relaxed pt-1.5 border-t border-white/5 mt-2">
-                        <strong className="text-system-cyan">Why Buy:</strong> {item.coachNote}
-                      </p>
+          {/* Separated Grocery Lists: Weekly Consumables vs Restock */}
+          {filteredItems.length === 0 ? (
+            <div className="bg-system-panel p-8 rounded-2xl border border-white/10 text-center space-y-3">
+              <ShoppingBag className="w-10 h-10 text-system-blue mx-auto opacity-50" />
+              <h3 className="text-base font-bold text-white">No Items in "{selectedCategory}" Yet</h3>
+              <p className="text-xs text-zinc-400 max-w-md mx-auto">
+                You removed the pre-loaded items so you can add exactly what you need! Pick an item from the Auburn Walmart Quick-Select Catalog above or click "+ Add Item" to add your own.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-8">
+              {/* SECTION 1: Weekly Consumables Run */}
+              {weeklyConsumables.length > 0 && (
+                <div className="space-y-4">
+                  <div className="bg-system-panel p-4 rounded-2xl border border-system-blue/40 flex flex-wrap items-center justify-between gap-3 shadow-lg">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-2.5 h-2.5 rounded-full bg-system-cyan shadow-glow-blue animate-pulse" />
+                      <div>
+                        <h3 className="text-sm sm:text-base font-black uppercase tracking-wider text-white">
+                          🛒 Weekly Consumable Grocery Run (Every Monday)
+                        </h3>
+                        <p className="text-xs text-zinc-400">
+                          Fresh meats, eggs, Greek yogurt & produce eaten every single week
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-mono font-bold bg-system-dark text-zinc-300 px-3 py-1 rounded-lg border border-white/10">
+                        {weeklyConsumables.length} {weeklyConsumables.length === 1 ? 'Item' : 'Items'}
+                      </span>
+                      <span className="text-xs sm:text-sm font-mono font-black text-system-gold bg-system-gold/15 px-3.5 py-1.5 rounded-xl border border-system-gold/40 shadow-sm">
+                        Weekly Total: ${weeklyConsumablesPrice.toFixed(2)}
+                      </span>
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-end gap-2">
-                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border whitespace-nowrap ${
-                      item.category === 'Toiletries / Non-Grocery'
-                        ? 'bg-purple-500/20 text-purple-300 border-purple-500/40 shadow-sm'
-                        : 'bg-system-dark text-zinc-300 border-white/10'
-                    }`}>
-                      {item.category}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={(e) => handleRemoveItem(item.id, e)}
-                      className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/20 transition-all shadow-sm"
-                      title="Delete item from checklist"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </button>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {weeklyConsumables.map(renderItemCard)}
                   </div>
                 </div>
-              );
-            }))}
-          </div>
+              )}
+
+              {/* SECTION 2: Periodic Pantry & Spices Restock */}
+              {restockItemsList.length > 0 && (
+                <div className="space-y-4">
+                  <div className="bg-system-panel p-4 rounded-2xl border border-system-gold/40 flex flex-wrap items-center justify-between gap-3 shadow-lg">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-2.5 h-2.5 rounded-full bg-system-gold shadow-glow-gold" />
+                      <div>
+                        <h3 className="text-sm sm:text-base font-black uppercase tracking-wider text-system-gold">
+                          🧂 Periodic Pantry & Seasoning Restock (Check Kitchen & Buy As Needed)
+                        </h3>
+                        <p className="text-xs text-zinc-400">
+                          Multi-week sauces, matcha, coffee, spices, cooking sprays & sweeteners
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-mono font-bold bg-system-dark text-zinc-300 px-3 py-1 rounded-lg border border-white/10">
+                        {restockItemsList.length} {restockItemsList.length === 1 ? 'Item' : 'Items'}
+                      </span>
+                      <span className="text-xs sm:text-sm font-mono font-black text-system-gold bg-system-gold/15 px-3.5 py-1.5 rounded-xl border border-system-gold/40 shadow-sm">
+                        Full Restock Total: ${restockItemsPrice.toFixed(2)}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {restockItemsList.map(renderItemCard)}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </>
       ) : (
         /* Meal Prep Plans Tab */
