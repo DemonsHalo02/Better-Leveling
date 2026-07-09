@@ -11,7 +11,7 @@ export default function GroceryGuide() {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<'items' | 'plans'>('items');
   const [selectedCountryPlan, setSelectedCountryPlan] = useState<string>('All');
-  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('Japan');
+  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('Korea');
 
   const [customItems, setCustomItems] = useState<GroceryItem[]>([]);
   const [hiddenItemIds, setHiddenItemIds] = useState<string[]>([]);
@@ -345,7 +345,7 @@ export default function GroceryGuide() {
             Hunter Grocery Companion
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            High-protein, authentic Puerto Rican style staples priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly prep under budget! Includes Keurig K-Cup coffee, Sazón, Tostones, and 0-calorie cooking spray.
+            High-protein, authentic Korean K-Fit style staples priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run under $50 budget ($46.66 Weekly / $37.55 Restock)! Includes Korean Dirty Chai Lattes, Kimchi, Samyang Buldak Spicy Ramen weekly treat, and 100% Green Tea.
           </p>
         </div>
 
@@ -647,8 +647,8 @@ export default function GroceryGuide() {
               <span className="text-xs font-bold text-zinc-400 uppercase mr-2 flex items-center gap-1">
                 <Utensils className="w-3.5 h-3.5 text-system-gold" /> Template Filter:
               </span>
-              {['All', 'Japan', 'Korea', 'China', 'Puerto Rico', 'Mexico'].map((tpl) => {
-                const flags: Record<string, string> = { 'Japan': '🇯🇵', 'Korea': '🇰🇷', 'China': '🇨🇳', 'Puerto Rico': '🇵🇷', 'Mexico': '🇲🇽' };
+              {['All', 'Korea', 'Japan', 'China', 'Puerto Rico', 'Mexico'].map((tpl) => {
+                const flags: Record<string, string> = { 'Korea': '🇰🇷', 'Japan': '🇯🇵', 'China': '🇨🇳', 'Puerto Rico': '🇵🇷', 'Mexico': '🇲🇽' };
                 return (
                   <button
                     key={tpl}
@@ -663,10 +663,10 @@ export default function GroceryGuide() {
                     <span>
                       {tpl === 'All'
                         ? '🌐 All Items & Templates'
+                        : tpl === 'Korea'
+                        ? '⭐ Korea ($46.66 Weekly / $37.55 Restock)'
                         : tpl === 'Japan'
                         ? 'Japan ($44.98 Weekly / $33.81 Restock)'
-                        : tpl === 'Korea'
-                        ? 'Korea ($41.20 Weekly / $33.81 Restock)'
                         : tpl === 'China'
                         ? 'China ($44.50 Weekly / $33.81 Restock)'
                         : `${tpl} ($50 Limit)`}
@@ -919,8 +919,8 @@ export default function GroceryGuide() {
             <div className="flex flex-wrap items-center gap-2">
               {[
                 { name: 'All', label: '🌐 All Cuisines' },
-                { name: 'Japan', label: '🇯🇵 Japan (⭐ #1 Main & Featured)' },
-                { name: 'Korea', label: '🇰🇷 Korea' },
+                { name: 'Korea', label: '🇰🇷 Korea (⭐ #1 Main & Featured)' },
+                { name: 'Japan', label: '🇯🇵 Japan' },
                 { name: 'China', label: '🇨🇳 China' },
                 { name: 'Puerto Rico', label: '🇵🇷 Puerto Rico' },
                 { name: 'Mexico', label: '🇲🇽 Mexico' },

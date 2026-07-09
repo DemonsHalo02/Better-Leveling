@@ -476,7 +476,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Nasoya",
     category: "Produce",
-    priceEst: "$4.98 (14 oz refrigerated cup)",
+    priceEst: "$4.48 (14 oz refrigerated cup)",
     calories: 15,
     protein: 1,
     carbs: 2,
@@ -508,7 +508,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Essentials",
-    priceEst: "$1.08 (3.4 oz bottle)",
+    priceEst: "$1.18 (3.4 oz bottle)",
     calories: 0,
     protein: 0,
     carbs: 0,
@@ -627,7 +627,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 7,
     servingSize: "4 oz (112g raw)",
     coachNote: "Tender lean beef chunks for authentic Korean Bulgogi bowls! High in bioavailable iron, zinc, and muscle-building creatine.",
-    cuisine: ["Korea"]
+    cuisine: []
   },
   {
     id: "g-38",
@@ -636,7 +636,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Bibigo",
     category: "Seasonings & Spices",
-    priceEst: "$4.13 (16.9 fl oz bottle)",
+    priceEst: "$3.48 (16.9 fl oz bottle)",
     calories: 35,
     protein: 1,
     carbs: 8,
@@ -740,6 +740,22 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     servingSize: "1/4 tsp (1g)",
     coachNote: "Essential table salt and black pepper seasoning set for seasoning morning omelets and seared chicken breasts (Restock item).",
     cuisine: ["Japan", "Korea", "China", "Puerto Rico", "Mexico"]
+  },
+  {
+    id: "g-45",
+    upc: "8801073110502",
+    name: "Samyang Buldak Spicy Chicken Ramen Noodles (Single 4.93 oz Pack)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Samyang",
+    category: "Carbs",
+    priceEst: "$1.68 (1 single pack / 140g)",
+    calories: 530,
+    protein: 12,
+    carbs: 85,
+    fat: 16,
+    servingSize: "1 pack (140g)",
+    coachNote: "Your once-a-week Korean treat meal! Fiery spicy chicken ramen noodles to enjoy as a reward on Friday or Saturday topped with sliced lean chicken breast and fresh green onions.",
+    cuisine: ["Korea"]
   }
 ];
 
@@ -806,11 +822,89 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
 
 export const MEAL_PREP_PLANS: MealPrepPlan[] = [
   {
+    id: "plan-korea",
+    title: "Korea: K-Fit Bulgogi & Dirty Chai Shred Blueprint (~2,150 kcal)",
+    country: "Korea",
+    flag: "🇰🇷",
+    badge: "⭐ #1 Main & Featured Blueprint",
+    targetDailyCalories: 2150,
+    targetDailyProtein: 170,
+    estCostPerWeek: "$46.66 Weekly Consumables / $37.55 Periodic Restock",
+    description: "The #1 Main & Featured Korean K-Fit K-Pop Idol Lean Muscle cutting plan featuring ONE Great Value ~5.0 lb Family Pack (80 oz raw) of clean Chicken Breasts covering 7 full days of Lunch and Dinner, 5-Egg Kimchi Scrambles (using 35 of 36 eggs in your weekly tray!), FOUR 32 oz tubs of Greek Yogurt (128 oz covering 7 days of afternoon & night bowls!), edamame, steamed broccoli, and your signature Korean Dirty Chai Lattes (Tazo Spiced Chai Liquid Concentrate + Instant Coffee Shot + Silk Soy Milk)! Plus hot brewed 100% Green Tea bags paired with all non-latte meals and a once-weekly Samyang Buldak Spicy Ramen treat meal! Tuned to 170g daily protein at $46.66 weekly consumables ($37.55 restock)!",
+    meals: [
+      {
+        name: "Breakfast: Seoul Dirty Chai Latte & Kimchi Egg Scramble",
+        time: "8:00 AM",
+        ingredients: [
+          "1 Morning Dirty Chai Latte over ice: Mix 1/2 cup Tazo Spiced Chai Liquid Concentrate + 1 tsp dissolved Instant Coffee shot + 1/2 cup Silk Soy Milk & zero-cal sweetener! (90 kcal, 4g p)",
+          "5 Large Grade A White Eggs scrambled in 0-Cal Cooking Spray with scallions, salt & pepper (350 kcal, 30g p)",
+          "1/2 cup cooked White Rice & 2 tbsp Nasoya Kimchi (115 kcal, 3g p, 24g c)"
+        ],
+        calories: 555,
+        protein: 37,
+        carbs: 45,
+        fat: 22
+      },
+      {
+        name: "Lunch: Korean BBQ Lean Chicken Breast & Edamame Bowl",
+        time: "12:30 PM",
+        ingredients: [
+          "5.7 oz Fresh Chicken Breast seared with Bibigo Korean BBQ Marinade & Sauce, garlic & ginger (210 kcal, 39g p)",
+          "1/2 cup steamed shelled edamame & 2 tbsp Nasoya Kimchi (115 kcal, 10g p, 9g c)",
+          "1 cup cooked White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
+          "1 cup hot brewed 100% Green Tea (0 kcal, clean metabolism & digestion support)"
+        ],
+        calories: 525,
+        protein: 53,
+        carbs: 58,
+        fat: 4
+      },
+      {
+        name: "Afternoon Perk: 2nd Iced Dirty Chai Latte & Casein Bowl (or Weekly Buldak Treat!)",
+        time: "4:00 PM",
+        ingredients: [
+          "2nd Dirty Chai Latte over ice: 1/2 cup Tazo Chai Concentrate + Instant Coffee Shot + Silk Soy Milk (90 kcal, 4g p)",
+          "1.25 cups Plain Nonfat Greek Yogurt sweetened with vanilla & zero-cal sweetener (150 kcal, 28g p)",
+          "ONCE WEEKLY TREAT OPTION (Fri/Sat): Enjoy 1 bowl of Samyang Buldak Spicy Chicken Ramen topped with sliced chicken breast & green onions!"
+        ],
+        calories: 240,
+        protein: 32,
+        carbs: 25,
+        fat: 1
+      },
+      {
+        name: "Dinner: Korean BBQ Glazed Chicken Breast & Steamed Veggies",
+        time: "7:30 PM",
+        ingredients: [
+          "5.7 oz Fresh Chicken Breast seared with Bibigo Korean BBQ Marinade, garlic & ginger (210 kcal, 39g p)",
+          "1 cup cooked White Rice & 2 tbsp Nasoya Kimchi (215 kcal, 5g p, 46g c)",
+          "1.5 cups steamed Great Value Broccoli florets alongside hot brewed 100% Green Tea (45 kcal, 3g p)"
+        ],
+        calories: 470,
+        protein: 47,
+        carbs: 55,
+        fat: 3
+      },
+      {
+        name: "Nighttime Recovery: Seoul Anabolic Casein Fluff & Warm Green Tea",
+        time: "10:30 PM",
+        ingredients: [
+          "1.0 cup Plain Nonfat Greek Yogurt whisked with zero-cal sweetener & cinnamon (120 kcal, 22g p)",
+          "1 cup warm relaxing brewed 100% Green Tea (0 kcal)"
+        ],
+        calories: 120,
+        protein: 22,
+        carbs: 8,
+        fat: 0
+      }
+    ]
+  },
+  {
     id: "plan-japan",
     title: "Japan: Samurai Dojo & Dirty Matcha Clean Shred Blueprint (~2,150 kcal)",
     country: "Japan",
     flag: "🇯🇵",
-    badge: "⭐ #1 Main & Featured Blueprint",
+    badge: "Authentic Samurai Shred Blueprint",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
     estCostPerWeek: "$44.98 weekly consumables at Auburn Walmart ($33.81 Complete Pantry & Seasoning Restock)",
@@ -879,83 +973,6 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         calories: 100,
         protein: 17,
         carbs: 7,
-        fat: 0
-      }
-    ]
-  },
-  {
-    id: "plan-korea",
-    title: "Korea: K-Fit Bulgogi & Dirty Chai Shred Blueprint (~2,150 kcal)",
-    country: "Korea",
-    flag: "🇰🇷",
-    badge: "Korean Bulgogi Shred",
-    targetDailyCalories: 2150,
-    targetDailyProtein: 170,
-    estCostPerWeek: "$51.73 weekly core restock at Auburn Walmart ($66.09 Full Monday Stock-Up w/ sauces & spices)",
-    description: "Authentic Korean K-Fit style recomposition plan utilizing Dirty Chai Lattes (Spiced Chai Concentrate + Instant Coffee + Silk Soy Milk), probiotic-rich Nasoya kimchi, tender Lean Beef Stew Meat & Chicken Bulgogi, and metabolism green tea! Perfectly tuned to 170g daily protein with 7 full days of food for $51.73 weekly core restock ($66.09 Full Monday Stock-Up)!",
-    meals: [
-      {
-        name: "Breakfast: Seoul Dirty Chai Latte & Soy-Glazed Egg Scramble",
-        time: "8:00 AM",
-        ingredients: [
-          "1 Dirty Chai Latte: Mix 1/2 cup Tazo Spiced Chai Concentrate + 1 tsp dissolved Instant Coffee + 1/2 cup Silk Soy Milk & zero-cal sweetener! (90 kcal, 4g p)",
-          "3 Large Eggs scrambled with scallions, soy sauce & garlic powder in 0-Cal Spray (220 kcal, 18g p)",
-          "1 cup cooked White Rice with spicy kimchi on the side (200 kcal, 4g p, 45g c)"
-        ],
-        calories: 510,
-        protein: 26,
-        carbs: 59,
-        fat: 16
-      },
-      {
-        name: "Lunch: Lean Beef Stew Meat / Chicken Bulgogi Bowl with Kimchi",
-        time: "12:30 PM",
-        ingredients: [
-          "7 oz Lean Beef Stew Meat or Fresh Chicken Breast seared in Korean soy-garlic-ginger marinade (240 kcal, 48g p)",
-          "1/2 cup Nasoya Spicy Kimchi for gut health & probiotics (25 kcal, 2g p)",
-          "1 cup cooked White Rice (200 kcal, 4g p, 45g c)",
-          "1 cup steamed broccoli / spinach (30 kcal, 2g p)"
-        ],
-        calories: 495,
-        protein: 56,
-        carbs: 52,
-        fat: 4
-      },
-      {
-        name: "Afternoon Snack: Iced Dirty Chai Latte & Protein Bowl",
-        time: "4:00 PM",
-        ingredients: [
-          "1 Iced Dirty Chai Latte: 1/2 cup Spiced Chai Concentrate + instant coffee shot + 1/2 cup Silk Soy Milk over ice (90 kcal, 4g p)",
-          "1 cup Plain Greek Yogurt with cinnamon & sweetener (120 kcal, 22g p)",
-          "1/2 cup rolled oats or crispy rice cereal (150 kcal, 5g p, 28g c)"
-        ],
-        calories: 360,
-        protein: 31,
-        carbs: 42,
-        fat: 3
-      },
-      {
-        name: "Dinner: Korean BBQ Spiced Chicken Thighs & Breasts",
-        time: "7:30 PM",
-        ingredients: [
-          "6 oz Fresh Chicken Breast seared with Korean BBQ seasonings & garlic (200 kcal, 40g p)",
-          "1 cup cooked White Rice (200 kcal, 4g p, 45g c)",
-          "1.5 cups steamed broccoli florets & spicy kimchi (65 kcal, 3g p)"
-        ],
-        calories: 465,
-        protein: 47,
-        carbs: 52,
-        fat: 5
-      },
-      {
-        name: "Nighttime Recovery: Seoul Anabolic Casein Fluff",
-        time: "10:30 PM",
-        ingredients: [
-          "3/4 cup Plain Greek Yogurt with cinnamon & zero-cal sweetener (120 kcal, 15g p)"
-        ],
-        calories: 120,
-        protein: 15,
-        carbs: 8,
         fat: 0
       }
     ]

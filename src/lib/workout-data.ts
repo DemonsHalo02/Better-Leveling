@@ -25,49 +25,49 @@ export const JAPANESE_HOME_WORKOUT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
-    splitName: "System Restoration / Dojo Zen Recovery (Rest Day)",
+    splitName: "System Restoration / K-Pop Idol Dojo Recovery (Rest Day)",
     isRestDay: true,
-    questTitle: "[Daily Quest] Japanese Dojo Active Recovery & Zen Meditation",
-    description: "Sunday is your official Dojo Rest & Zen Day! Focus on full-body mobility stretching, green tea hydration, and recovery to prepare your mind and body for Monday's workouts and meal prep.",
+    questTitle: "[Daily Quest] K-Pop Idol Active Recovery & Green Tea Detox",
+    description: "Sunday is your official K-Pop Idol Rest & Recomposition Day! Focus on full-body mobility stretching, 100% green tea hydration, and recovery to prepare your physique for Monday's workouts and meal prep.",
     xpReward: 250,
     exercises: [
       {
         id: "sun-1",
-        name: "Samurai Full Body Mobility & Posture Stretching [Beginner -> Expert]",
+        name: "K-Pop Idol Full Body Aesthetic Mobility & Posture Stretching [Beginner -> Expert]",
         targetGroup: "Full Body",
         sets: 1,
         reps: "15-20 mins",
         equipment: "Home Mat / Floor",
-        coachTip: "[Beginner: Gentle child's pose & doorway chest opener | Intermediate: Samurai kneeling hip flexor & thoracic stretches | Expert: Full pancake split & bridge progressions] Open your posture and relieve muscle soreness."
+        coachTip: "[Beginner: Gentle child's pose & doorway chest opener | Intermediate: Kneeling hip flexor & thoracic stretches | Expert: Full pancake split & bridge progressions] Open your posture and relieve muscle soreness."
       },
       {
         id: "sun-2",
-        name: "Active Hydration & Green Tea Recovery Protocol",
+        name: "Active Hydration & 100% Green Tea Antioxidant Protocol",
         targetGroup: "Full Body",
         sets: 1,
-        reps: "1 Gallon Water + Matcha",
+        reps: "1 Gallon Water + Green Tea",
         equipment: "Water Jug",
-        coachTip: "Hydrate thoroughly with 1 gallon of water and Japanese antioxidant green tea to recover your muscles for Monday's workouts and meal prep!"
+        coachTip: "Hydrate thoroughly with 1 gallon of water and antioxidant green tea to recover your muscles for Monday's workouts and Korean K-Fit meal prep!"
       }
     ]
   },
   {
     dayOfWeek: 1, // Monday
     dayName: "Monday",
-    splitName: "Push A (Dojo Striking & Push) + Official Monday Meal Prep Day",
+    splitName: "Push A (K-Pop Idol Chest & Shoulders) + Korean Monday Meal Prep",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Push A & Japanese Monday Weekly Meal Prep",
-    description: "Official Monday Grocery Run & Weekly Batch Meal Prep Day + Home Dojo Push workout for chest, shoulders, and triceps. Hit Auburn ME Walmart for your under-$50 list and prep your Samurai Teriyaki & Dirty Matcha!",
+    questTitle: "[Daily Quest] Clear Push A & Korean K-Fit Monday Batch Meal Prep",
+    description: "Official Monday Grocery Run & Weekly Batch Meal Prep Day + K-Pop Idol Lean Push workout for chest, shoulders, and triceps. Hit Auburn ME Walmart for your $46.66 weekly list ($37.55 restock) and prep your Korean Bulgogi & Dirty Chai Lattes!",
     xpReward: 500,
     exercises: [
       {
         id: "mon-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Japanese Batch Meal Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Korean K-Fit Batch Meal Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Weekly Samurai Teriyaki & Matcha Prep",
+        reps: "Korean Bulgogi & Dirty Chai Prep",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your under-$50 Japanese core grocery list at Auburn ME Walmart, batch-sear your teriyaki chicken breasts and soft-boiled eggs, and get your Dirty Matcha ingredients ready!"
+        coachTip: "Pick up your under-$50 Korean Weekly Consumables ($46.66) at Auburn ME Walmart, batch-sear your Bulgogi Chicken Breasts, scramble your kimchi eggs, and stage your Tazo Spiced Chai + Silk Soy Milk!"
       },
       {
         id: "mon-1",
@@ -119,10 +119,10 @@ export const JAPANESE_HOME_WORKOUT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 2, // Tuesday
     dayName: "Tuesday",
-    splitName: "Pull A (Samurai Back Width & Bicep Toning)",
+    splitName: "Pull A (K-Pop Idol Back V-Taper & Bicep Peak)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Pull A Home Dojo Sculpt",
-    description: "Sculpt upper back V-taper, posture, and bicep strength at home using doorframe rows, backpacks/dumbbells, or resistance bands.",
+    questTitle: "[Daily Quest] Clear Pull A K-Pop Idol V-Taper Sculpt",
+    description: "Sculpt upper back V-taper, posture, and bicep aesthetic strength at home using doorframe rows, backpacks/dumbbells, or resistance bands.",
     xpReward: 500,
     exercises: [
       {
@@ -175,20 +175,20 @@ export const JAPANESE_HOME_WORKOUT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 3, // Wednesday
     dayName: "Wednesday",
-    splitName: "Legs & Core A (Samurai Lower Body & Core Armor)",
+    splitName: "Legs & Core A (K-Pop Idol Lower Body & Core Carve)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Legs & Core A Home Dojo Sculpt",
-    description: "High-energy lower body power and dojo core conditioning for strong legs and carved abdominal armor.",
+    questTitle: "[Daily Quest] Clear Legs & Core A K-Pop Idol Carve",
+    description: "High-energy lower body aesthetic power and core conditioning for lean leg definition and carved abdominal armor.",
     xpReward: 600,
     exercises: [
       {
         id: "wed-1",
-        name: "Samurai Sumo & Tempo Squats [Beginner -> Intermediate -> Expert]",
+        name: "K-Pop Idol Tempo Sumo Squats [Beginner -> Intermediate -> Expert]",
         targetGroup: "Legs",
         sets: 4,
         reps: "15-20 reps",
         equipment: "Bodyweight",
-        coachTip: "[Beginner: Chair-assisted squats | Intermediate: 3s negative Samurai Sumo Squats | Expert: Jump Squats or Pistol Squats progression] Keep heels planted and chest proud."
+        coachTip: "[Beginner: Chair-assisted squats | Intermediate: 3s negative Sumo Squats | Expert: Jump Squats or Pistol Squats progression] Keep heels planted and chest proud."
       },
       {
         id: "wed-2",
@@ -210,7 +210,7 @@ export const JAPANESE_HOME_WORKOUT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "wed-4",
-        name: "Samurai Lying Core Leg Raises [Beginner -> Expert]",
+        name: "K-Pop Idol Lying Core Leg Raises [Beginner -> Expert]",
         targetGroup: "Abs",
         sets: 4,
         reps: "15 reps",
@@ -231,10 +231,10 @@ export const JAPANESE_HOME_WORKOUT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 4, // Thursday
     dayName: "Thursday",
-    splitName: "Push B (Explosive Striking Push & Shoulder Sculpt)",
+    splitName: "Push B (K-Pop Idol Upper Chest & Shoulder Capping)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Push B Home Dojo Sculpt",
-    description: "Target upper chest, medial deltoids, and tricep definition with explosive dojo push variations.",
+    questTitle: "[Daily Quest] Clear Push B K-Pop Idol Aesthetic Sculpt",
+    description: "Target upper chest, medial deltoids, and tricep horseshoe definition with explosive K-Pop Idol push variations.",
     xpReward: 500,
     exercises: [
       {
@@ -287,10 +287,10 @@ export const JAPANESE_HOME_WORKOUT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 5, // Friday
     dayName: "Friday",
-    splitName: "Pull B (Samurai Back Thickness & Bicep Peak)",
+    splitName: "Pull B (K-Pop Idol Mid-Back Density & Bicep Peak)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Pull B Home Dojo Sculpt",
-    description: "Develop mid-back density, posture, and bicep peak definition to complete your upper body V-taper.",
+    questTitle: "[Daily Quest] Clear Pull B K-Pop Idol Aesthetic V-Taper",
+    description: "Develop mid-back density, posture, and bicep peak aesthetic definition to complete your upper body K-Fit V-taper.",
     xpReward: 500,
     exercises: [
       {
@@ -331,7 +331,7 @@ export const JAPANESE_HOME_WORKOUT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "fri-5",
-        name: "Samurai Superman Hold [Beginner -> Expert]",
+        name: "K-Pop Idol Superman Erector Hold [Beginner -> Expert]",
         targetGroup: "Back",
         sets: 3,
         reps: "45 seconds hold",
@@ -343,15 +343,15 @@ export const JAPANESE_HOME_WORKOUT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 6, // Saturday
     dayName: "Saturday",
-    splitName: "Legs & Core B (Agility, Speed & Core Mastery)",
+    splitName: "Legs & Core B (K-Pop Idol Agility, Speed & Core Mastery)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Saturday Dojo Agility & Core Finale",
-    description: "Weekend lower body agility, lateral glute strength, and core mastery to finish off the week with maximum XP.",
+    questTitle: "[Daily Quest] Clear Saturday K-Pop Idol Agility & Core Finale",
+    description: "Weekend lower body aesthetic agility, lateral glute strength, and core mastery to finish off the week with maximum XP.",
     xpReward: 600,
     exercises: [
       {
         id: "sat-1",
-        name: "Reverse & Lateral Dojo Lunges [Beginner -> Expert]",
+        name: "Reverse & Lateral K-Pop Idol Lunges [Beginner -> Expert]",
         targetGroup: "Legs",
         sets: 4,
         reps: "12 reps per leg",
@@ -369,7 +369,7 @@ export const JAPANESE_HOME_WORKOUT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sat-3",
-        name: "Samurai Skater Hops [Beginner -> Expert]",
+        name: "K-Pop Idol Skater Hops [Beginner -> Expert]",
         targetGroup: "Legs",
         sets: 3,
         reps: "45 seconds work",
@@ -378,7 +378,7 @@ export const JAPANESE_HOME_WORKOUT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sat-4",
-        name: "Dojo Russian Core Twists [Beginner -> Expert]",
+        name: "K-Pop Idol Russian Core Twists [Beginner -> Expert]",
         targetGroup: "Abs",
         sets: 4,
         reps: "20 twists (10 per side)",
@@ -387,7 +387,7 @@ export const JAPANESE_HOME_WORKOUT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sat-5",
-        name: "Samurai Forearm Plank Hold [Beginner -> Expert]",
+        name: "K-Pop Idol Forearm Plank Hold [Beginner -> Expert]",
         targetGroup: "Abs",
         sets: 3,
         reps: "60 seconds hold",

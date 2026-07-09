@@ -99,7 +99,7 @@ export default function WorkoutQuestView() {
         <div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
             <MapPin className="w-3.5 h-3.5 text-system-blue" />
-            <span>K-Pop Idol Style Home Workout Protocol | Lewiston, ME</span>
+            <span>K-Pop Idol Style Home Workout Protocol | Auburn / Lewiston, ME</span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
             6-Day K-Pop Idol Home Split

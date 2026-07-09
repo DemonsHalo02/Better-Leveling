@@ -89,7 +89,7 @@ const DEFAULT_STATE: HunterState = {
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
     gymName: "K-Pop Idol Home Training Dojo",
-    dietName: "Japanese Samurai Dojo Clean Shred",
+    dietName: "Korean K-Fit Bulgogi & Dirty Chai Clean Shred",
   },
   completedQuestsToday: {
     workout: false,
