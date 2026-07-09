@@ -710,11 +710,88 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
 
 export const MEAL_PREP_PLANS: MealPrepPlan[] = [
   {
+    id: "plan-japan",
+    title: "Japan: Samurai Dojo & Dirty Matcha Clean Shred Blueprint (~2,150 kcal)",
+    country: "Japan",
+    flag: "🇯🇵",
+    badge: "⭐ #1 Main & Featured Blueprint",
+    targetDailyCalories: 2150,
+    targetDailyProtein: 170,
+    estCostPerWeek: "$42.93 weekly core restock at Auburn Walmart ($56.45 Full Monday Stock-Up w/ sauces & spices)",
+    description: "The #1 Main & Featured Japanese Samurai Dojo cutting plan featuring clean ginger-teriyaki seared chicken breasts, soft-boiled eggs, edamame fiber, and the signature Dirty Matcha Latte (Pure Matcha + Instant Coffee Espresso Shot + Silk Soy Milk)! Strictly zero tofu, perfectly tuned to 170g daily protein under $50 weekly!",
+    meals: [
+      {
+        name: "Breakfast: Dirty Matcha Latte & Soy-Marinated Soft-Boiled Eggs",
+        time: "8:00 AM",
+        ingredients: [
+          "1 Dirty Matcha Latte: Dissolve 1 tsp Classic Roast Instant Coffee + 1 tsp Green Tea Matcha Blend + 1/2 cup Silk Soy Milk & zero-cal sweetener over ice! (70 kcal, 4g p)",
+          "3 Large Eggs soft-boiled and marinated in light soy sauce & ginger in 0-Cal Spray (220 kcal, 18g p)",
+          "1 cup cooked White Rice with furikake or sesame seasoning (200 kcal, 4g p, 45g c)"
+        ],
+        calories: 490,
+        protein: 26,
+        carbs: 48,
+        fat: 16
+      },
+      {
+        name: "Lunch: Samurai Teriyaki Glazed Chicken Breast & Edamame Bowl",
+        time: "12:30 PM",
+        ingredients: [
+          "7 oz Fresh Chicken Breast seared with clean low-sodium Teriyaki & soy-ginger glaze (240 kcal, 48g p)",
+          "1/2 cup steamed edamame soybeans (100 kcal, 9g p, 8g c)",
+          "1 cup cooked White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
+          "1 cup steamed Great Value Broccoli florets (30 kcal, 2g p)"
+        ],
+        calories: 570,
+        protein: 59,
+        carbs: 58,
+        fat: 5
+      },
+      {
+        name: "Afternoon Perk: 2nd Iced Dirty Matcha Latte & Greek Yogurt Bowl",
+        time: "4:00 PM",
+        ingredients: [
+          "2nd Dirty Matcha Latte over ice: Pure green tea matcha + instant coffee shot + Silk Soy Milk (45 kcal, 4g p)",
+          "1 cup Plain Nonfat Greek Yogurt sweetened with vanilla & zero-cal sweetener (120 kcal, 22g p)",
+          "1/2 cup oats or rice crispy cereal mixed in for clean pre-workout carbs (130 kcal, 3g p, 28g c)"
+        ],
+        calories: 295,
+        protein: 25,
+        carbs: 32,
+        fat: 2
+      },
+      {
+        name: "Dinner: Miso-Ginger Seared Chicken (or Beef/Tuna) & Steamed Veggies",
+        time: "7:30 PM",
+        ingredients: [
+          "6.5 oz Fresh Chicken Breast (or Lean Beef Stew Meat / Tuna) seared with ginger & soy broth (225 kcal, 45g p)",
+          "1 cup cooked White Rice (200 kcal, 4g p, 45g c)",
+          "1.5 cups steamed broccoli florets & greens (45 kcal, 3g p)"
+        ],
+        calories: 470,
+        protein: 45,
+        carbs: 50,
+        fat: 4
+      },
+      {
+        name: "Nighttime Recovery: Matcha Green Tea Casein Yogurt Bowl",
+        time: "10:30 PM",
+        ingredients: [
+          "4/5 cup Plain Greek Yogurt blended with pinch of matcha powder & zero-cal sweetener (125 kcal, 15g p)"
+        ],
+        calories: 125,
+        protein: 15,
+        carbs: 8,
+        fat: 0
+      }
+    ]
+  },
+  {
     id: "plan-korea",
     title: "Korea: K-Fit Bulgogi & Dirty Chai Shred Blueprint (~2,150 kcal)",
     country: "Korea",
     flag: "🇰🇷",
-    badge: "⭐ #1 Main & Featured Blueprint",
+    badge: "Korean Bulgogi Shred",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
     estCostPerWeek: "$51.73 weekly core restock at Auburn Walmart ($66.09 Full Monday Stock-Up w/ sauces & spices)",
@@ -940,83 +1017,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 0
       }
     ]
-  },
-  {
-    id: "plan-japan",
-    title: "Japan: Samurai Teriyaki & Matcha Clean Shred (~2,150 kcal)",
-    country: "Japan",
-    flag: "🇯🇵",
-    badge: "Clean Samurai Shred",
-    targetDailyCalories: 2150,
-    targetDailyProtein: 170,
-    estCostPerWeek: "$40.67 weekly food supply at Auburn Walmart ($51.45 Full Stocking w/ spices)",
-    description: "Ultra-clean Japanese cuisine blueprint emphasizing ginger-teriyaki seared proteins, edamame fiber, and antioxidant green tea. Engineered for 170g daily protein under $50 weekly!",
-    meals: [
-      {
-        name: "Breakfast: Hot Japanese Green Tea & Soy-Marinated Eggs",
-        time: "8:00 AM",
-        ingredients: [
-          "1 Hot Japanese Green / Sencha Tea cup (0 kcal)",
-          "3 Large Eggs soft-boiled and marinated in light soy sauce & ginger (220 kcal, 18g p)",
-          "1 cup cooked Jasmine Rice with furikake/sesame seasoning (210 kcal, 4g p, 46g c)"
-        ],
-        calories: 430,
-        protein: 22,
-        carbs: 46,
-        fat: 15
-      },
-      {
-        name: "Lunch: Teriyaki Glazed Chicken Breast & Edamame Bowl",
-        time: "12:30 PM",
-        ingredients: [
-          "7 oz Chicken Breast seared with clean low-sodium Teriyaki glaze (240 kcal, 48g p)",
-          "1/2 cup steamed edamame soybeans (100 kcal, 9g p, 8g c)",
-          "1 cup cooked Jasmine Rice (200 kcal, 4g p, 45g c)",
-          "1 cup steamed broccoli florets (30 kcal, 2g p)"
-        ],
-        calories: 570,
-        protein: 63,
-        carbs: 58,
-        fat: 5
-      },
-      {
-        name: "Afternoon Snack: Iced Matcha Latte & Protein Bowl",
-        time: "4:00 PM",
-        ingredients: [
-          "1 Iced Matcha Green Tea Latte made with Silk Soy Milk & zero-cal sweetener (35 kcal, 2g p)",
-          "1 cup Plain Greek Yogurt with vanilla extract (120 kcal, 22g p)",
-          "1/2 cup rice crispy cereal (130 kcal, 2g p, 28g c)"
-        ],
-        calories: 285,
-        protein: 26,
-        carbs: 32,
-        fat: 2
-      },
-      {
-        name: "Dinner: Miso-Ginger Seared Chicken & Steamed Veggies",
-        time: "7:30 PM",
-        ingredients: [
-          "7 oz Fresh Chicken Breast seared with ginger & soy-miso broth (240 kcal, 48g p)",
-          "1 cup cooked Jasmine Rice (200 kcal, 4g p, 45g c)",
-          "1.5 cups steamed broccoli & greens (45 kcal, 3g p)"
-        ],
-        calories: 485,
-        protein: 55,
-        carbs: 50,
-        fat: 4
-      },
-      {
-        name: "Nighttime Recovery: Matcha Greek Yogurt Bowl",
-        time: "10:30 PM",
-        ingredients: [
-          "3/4 cup Greek Yogurt blended with matcha blend powder & sweetener (120 kcal, 15g p)"
-        ],
-        calories: 120,
-        protein: 15,
-        carbs: 8,
-        fat: 0
-      }
-    ]
+
   },
   {
     id: "plan-mexico",

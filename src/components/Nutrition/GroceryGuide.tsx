@@ -11,7 +11,7 @@ export default function GroceryGuide() {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<'items' | 'plans'>('items');
   const [selectedCountryPlan, setSelectedCountryPlan] = useState<string>('All');
-  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('All');
+  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('Japan');
 
   const [customItems, setCustomItems] = useState<GroceryItem[]>([]);
   const [hiddenItemIds, setHiddenItemIds] = useState<string[]>([]);
@@ -80,7 +80,7 @@ export default function GroceryGuide() {
       localStorage.removeItem('pf_hidden_grocery_items');
       localStorage.removeItem('pf_custom_grocery_items');
     }
-    setSelectedAisleTemplate('All');
+    setSelectedAisleTemplate('Japan');
     setSelectedCountryPlan('All');
     setSelectedCategory('All');
     setSelectedStore('All Stores');
@@ -327,15 +327,34 @@ export default function GroceryGuide() {
             </div>
           </div>
 
+          {selectedAisleTemplate === 'Japan' && (
+            <div className="bg-gradient-to-r from-system-gold/15 to-system-cyan/15 p-4 rounded-2xl border border-system-gold/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="bg-system-gold text-system-dark text-[10px] font-black uppercase px-2 py-0.5 rounded">
+                    ⭐ #1 Main & Featured Blueprint
+                  </span>
+                  <span className="text-xs text-white font-bold">
+                    🇯🇵 Japanese Samurai Dojo & Dirty Matcha Shopping Strategy (No Tofu!)
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-300">
+                  <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment: $36.99):</strong> Chicken Breasts (~$12.60), 36-ct Eggs ($6.84), 2x Greek Yogurt Tubs ($7.96), Silk Soy Milk ($3.97), Green Tea & Matcha Blend Bags ($2.98), White Rice ($1.48), Broccoli ($1.16).<br />
+                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry Restock: +$15.84 / $52.83 Full Trip):</strong> Instant Coffee for Dirty Matcha ($2.48), Zero-Cal Sweetener ($2.18), Ground Ginger ($2.32), Soy Sauce ($1.48), Garlic Powder ($1.08), Onion Powder ($1.08), 0-Cal Cooking Spray ($2.24), Sriracha ($2.98).
+                </p>
+              </div>
+            </div>
+          )}
+
           {selectedAisleTemplate === 'Korea' && (
             <div className="bg-gradient-to-r from-system-blue/15 to-system-cyan/15 p-4 rounded-2xl border border-system-blue/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="bg-system-gold text-system-dark text-[10px] font-black uppercase px-2 py-0.5 rounded">
-                    ⭐ #1 Main Blueprint
+                  <span className="bg-system-blue text-white text-[10px] font-black uppercase px-2 py-0.5 rounded">
+                    🇰🇷 Bulgogi Blueprint
                   </span>
                   <span className="text-xs text-white font-bold">
-                    🇰🇷 Korean K-Fit Bulgogi & Dirty Chai Shopping Strategy
+                    Korean K-Fit Bulgogi & Dirty Chai Shopping Strategy
                   </span>
                 </div>
                 <p className="text-xs text-zinc-300">

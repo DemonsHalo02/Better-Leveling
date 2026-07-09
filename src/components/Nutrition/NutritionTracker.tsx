@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { loadHunterState, saveHunterState, awardXp, triggerLevelUpCelebration } from '@/lib/hunter-system';
 import { Utensils, Plus, Trash2, CheckCircle2, Flame, Award, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { TabType } from '../Navigation/SystemSidebar';
+import { MEAL_PREP_PLANS } from '@/lib/grocery-data';
 
 interface LoggedMeal {
   id: string;
@@ -21,6 +22,7 @@ interface NutritionTrackerProps {
 
 export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) {
   const [meals, setMeals] = useState<LoggedMeal[]>([]);
+  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('Japan');
   const [showManualModal, setShowManualModal] = useState(false);
   const [manualName, setManualName] = useState('');
   const [manualCals, setManualCals] = useState('');
@@ -35,6 +37,11 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
       const saved = localStorage.getItem(`pf_meals_${today}`);
       if (saved) setMeals(JSON.parse(saved));
       else setMeals([]);
+
+      const savedCountry = localStorage.getItem('pf_selected_aisle_template');
+      if (savedCountry && savedCountry !== 'All') {
+        setSelectedDeckCountry(savedCountry);
+      }
     }
   }, [today]);
 
@@ -87,24 +94,25 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
   const totalFat = meals.reduce((acc, m) => acc + m.fat, 0);
 
   const calGoal = 2150;
-  const protGoal = 206;
+  const protGoal = 170;
   const carbGoal = 220;
   const fatGoal = 55;
 
-  const boricuaQuickMeals = [
-    { name: "Breakfast: Sweet Boricua Café con Leche & Scramble", cals: 420, prot: 24, carbs: 40, fat: 16, time: "8:00 AM", icon: "☕" },
-    { name: "Lunch: Pollo Guisado & Crispy Tostones", cals: 625, prot: 63, carbs: 83, fat: 4, time: "12:30 PM", icon: "🍌" },
-    { name: "Afternoon Perk: Iced Café con Leche & Greek Yogurt", cals: 320, prot: 35, carbs: 30, fat: 1, time: "4:00 PM", icon: "🥛" },
-    { name: "Dinner: Chuletas A la Plancha & Beans", cals: 650, prot: 57, carbs: 65, fat: 16, time: "7:30 PM", icon: "🥩" },
-    { name: "Nighttime Recovery: Anabolic Casein Snack", cals: 180, prot: 25, carbs: 8, fat: 0, time: "10:30 PM", icon: "🌙" },
-  ];
+  const activePlan = MEAL_PREP_PLANS.find(p => p.country === selectedDeckCountry) || MEAL_PREP_PLANS[0];
 
-  const handleQuickLog = (item: typeof boricuaQuickMeals[0]) => {
+  const handleSelectDeckCountry = (country: string) => {
+    setSelectedDeckCountry(country);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('pf_selected_aisle_template', country);
+    }
+  };
+
+  const handleQuickLog = (item: { name: string; calories: number; protein: number; carbs: number; fat: number; time: string; }) => {
     const newMeal: LoggedMeal = {
       id: Date.now().toString() + Math.random().toString(36).substring(2, 5),
       name: item.name,
-      calories: item.cals,
-      protein: item.prot,
+      calories: item.calories,
+      protein: item.protein,
       carbs: item.carbs,
       fat: item.fat,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -137,7 +145,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
             Calorie & Macro Quest
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            Hit your 190g protein target to stay anabolic and preserve muscle mass while cutting at a safe ~1 lb/week pace.
+            Hit your 170g protein target to stay anabolic and preserve muscle mass while cutting at a safe ~1 lb/week pace.
           </p>
         </div>
 
@@ -159,22 +167,44 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
         </div>
       </div>
 
-      {/* 1-Click Boricua Meal Prep Quick-Log Deck */}
+      {/* 1-Click Template-Synced Meal Prep Quick-Log Deck */}
       <div className="bg-system-panel p-6 rounded-2xl border border-system-blue/40 shadow-glow-blue space-y-4">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-white/10 pb-3">
           <div>
             <h3 className="text-base font-black text-white uppercase tracking-wider flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-system-gold animate-pulse" /> ⚡ 1-Click Boricua Meal Prep Quick-Log Deck
+              <Sparkles className="w-5 h-5 text-system-gold animate-pulse" /> ⚡ 1-Click Meal Prep Quick-Log Deck ({activePlan.flag} {activePlan.country})
             </h3>
-            <p className="text-xs text-zinc-400">Instantly log your prepped Puerto Rican meals with 1 click to fill your HP & Mana bars!</p>
+            <p className="text-xs text-zinc-400">Instantly log your prepped {activePlan.country} blueprint meals with 1 click to fill your HP & Mana bars!</p>
           </div>
           <span className="text-[10px] bg-system-blue/20 text-system-cyan border border-system-blue/40 px-2.5 py-1 rounded font-mono font-bold whitespace-nowrap">
             +75 INT XP Per Meal
           </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {boricuaQuickMeals.map((item, idx) => (
+        {/* Cuisine Template Selector Pills */}
+        <div className="flex flex-wrap items-center gap-2 pt-1">
+          {MEAL_PREP_PLANS.map((plan) => {
+            const isSelected = selectedDeckCountry === plan.country;
+            return (
+              <button
+                key={plan.id}
+                onClick={() => handleSelectDeckCountry(plan.country)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold uppercase transition-all ${
+                  isSelected
+                    ? 'bg-system-cyan text-black shadow-glow-blue'
+                    : 'bg-system-dark hover:bg-system-card text-zinc-300 hover:text-white border border-white/10'
+                }`}
+              >
+                <span>{plan.flag}</span>
+                <span>{plan.country}</span>
+                {plan.country === 'Japan' && <span className="text-[9px] bg-system-gold text-black px-1.5 py-0.2 rounded font-black ml-0.5">#1 Main</span>}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-2">
+          {activePlan.meals.map((item, idx) => (
             <button
               key={idx}
               onClick={() => handleQuickLog(item)}
@@ -182,16 +212,16 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
             >
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-lg">{item.icon}</span>
+                  <span className="text-lg">{activePlan.flag}</span>
                   <span className="text-xs font-mono text-system-gold">{item.time}</span>
                 </div>
                 <h4 className="text-xs font-bold text-white group-hover:text-system-cyan transition-colors line-clamp-1">
                   {item.name}
                 </h4>
                 <div className="text-[11px] font-mono text-zinc-400 flex items-center gap-2">
-                  <span className="text-white font-bold">{item.cals} kcal</span>
+                  <span className="text-white font-bold">{item.calories} kcal</span>
                   <span>|</span>
-                  <span className="text-system-cyan font-bold">{item.prot}g P</span>
+                  <span className="text-system-cyan font-bold">{item.protein}g P</span>
                 </div>
               </div>
               <div className="w-8 h-8 rounded-lg bg-system-blue/10 group-hover:bg-system-blue text-system-cyan group-hover:text-black flex items-center justify-center transition-all flex-shrink-0 mt-1">
