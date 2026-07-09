@@ -274,8 +274,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1 Tea Bag / 1 tsp",
-    coachNote: "Essential Auburn Walmart green tea & matcha staple! Perfect for making clean Dirty Matcha Lattes and afternoon antioxidant focus tea without sugar crashes!",
-    cuisine: ["China", "Japan"]
+    coachNote: "Essential Auburn Walmart green tea staple for Chinese green tea lattes.",
+    cuisine: ["China"]
   },
   {
     id: "g-16",
@@ -290,7 +290,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1 Tea Bag",
-    coachNote: "Traditional Japanese and Korean metabolism tea staple. Enjoy hot or iced with zero calories.",
+    coachNote: "Traditional Japanese 100% green tea staple! Enjoy a cup of hot or iced green tea with every non-latte meal across your 7-day plan.",
     cuisine: ["Korea", "Japan"]
   },
   {
@@ -360,17 +360,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-21",
     upc: "078742357777",
-    name: "Great Value Frozen Broccoli Florets (12 oz bag)",
+    name: "Great Value Frozen Broccoli Florets (Two 12 oz bags / 24 oz total)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Produce",
-    priceEst: "$1.16 (12 oz bag)",
+    priceEst: "$2.32 (Two 12 oz bags at $1.16 ea)",
     calories: 30,
     protein: 2,
     carbs: 5,
     fat: 0,
     servingSize: "1 cup (85g)",
-    coachNote: "Easy steamed micronutrients and fiber for Chinese stir-fries, Korean bowls, and Japanese dinners.",
+    coachNote: "Two bags guaranteed! Steamed micronutrients and fiber for Chinese stir-fries, Korean bowls, and Japanese dinners.",
     cuisine: ["China", "Korea", "Japan"]
   },
   {
@@ -380,14 +380,14 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Fresh Produce",
     category: "Produce",
-    priceEst: "$1.58 (~1 lb bunch)",
+    priceEst: "$1.16 (~2 lb bunch / ~6 bananas)",
     calories: 105,
     protein: 1,
     carbs: 27,
     fat: 0,
     servingSize: "1 Medium Banana (118g)",
-    coachNote: "Quick potassium and clean pre-workout carbohydrates.",
-    cuisine: []
+    coachNote: "Quick potassium and clean pre-workout carbohydrates for your Japanese Samurai Dojo workouts.",
+    cuisine: ["Japan"]
   },
   {
     id: "g-23",
@@ -626,8 +626,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 7,
     servingSize: "4 oz (112g raw)",
-    coachNote: "Tender lean beef chunks for authentic Korean Bulgogi bowls and savory stir-fries! High in bioavailable iron, zinc, and muscle-building creatine.",
-    cuisine: ["Korea"]
+    coachNote: "Tender lean beef chunks for authentic Korean Bulgogi bowls and Japanese Samurai Teriyaki bowls! High in bioavailable iron, zinc, and muscle-building creatine.",
+    cuisine: ["Korea", "Japan"]
   },
   {
     id: "g-38",
@@ -644,6 +644,70 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     servingSize: "1 tbsp (19g)",
     coachNote: "Authentic sweet & savory Korean BBQ marinade and glaze stocked at Auburn Maine Walmart! Perfect for glazing Bulgogi chicken breasts and lean beef stew meat (Periodic Monday Restock item).",
     cuisine: ["Korea"]
+  },
+  {
+    id: "g-39",
+    upc: "085000049999",
+    name: "Jade Leaf Organic Matcha Latte Mix / Pure Matcha Powder (5.3 oz pouch)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Jade Leaf",
+    category: "Essentials",
+    priceEst: "$8.98 (5.3 oz pouch)",
+    calories: 10,
+    protein: 1,
+    carbs: 2,
+    fat: 0,
+    servingSize: "1 tsp (4g)",
+    coachNote: "High-antioxidant Jade Leaf Organic Matcha! Whisk 1 tsp with Instant Coffee and Silk Soy Milk for your morning & afternoon Dirty Matcha Lattes (Restock item).",
+    cuisine: ["Japan"]
+  },
+  {
+    id: "g-40",
+    upc: "078742358999",
+    name: "Great Value Frozen Shelled Edamame (12 oz bag)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Produce",
+    priceEst: "$2.28 (12 oz bag)",
+    calories: 100,
+    protein: 9,
+    carbs: 7,
+    fat: 4,
+    servingSize: "1/2 cup (75g)",
+    coachNote: "Rich in plant protein and fiber! Steam as a clean Japanese side dish or stir-fry with your Samurai Teriyaki Chicken Bowls.",
+    cuisine: ["Japan"]
+  },
+  {
+    id: "g-41",
+    upc: "078742359111",
+    name: "Great Value Frozen Mixed Berries (12 oz bag)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Produce",
+    priceEst: "$2.88 (12 oz bag)",
+    calories: 70,
+    protein: 1,
+    carbs: 17,
+    fat: 0.5,
+    servingSize: "1 cup (140g)",
+    coachNote: "High-antioxidant frozen berry medley! Mix into your afternoon Matcha Greek Yogurt Power Bowl and bedtime Casein Fluff.",
+    cuisine: ["Japan"]
+  },
+  {
+    id: "g-42",
+    upc: "000000040666",
+    name: "Fresh Green Onions / Scallions (1 Bunch)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Fresh Produce",
+    category: "Produce",
+    priceEst: "$0.78 (1 bunch)",
+    calories: 15,
+    protein: 1,
+    carbs: 3,
+    fat: 0,
+    servingSize: "2 tbsp (15g chopped)",
+    coachNote: "Fresh aromatic scallions for topping your Dojo Beef Stew Meat Teriyaki Bowl and Samurai Teriyaki Scrambles.",
+    cuisine: ["Japan", "Korea", "China"]
   }
 ];
 
