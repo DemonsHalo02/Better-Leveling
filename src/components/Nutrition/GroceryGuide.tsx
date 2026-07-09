@@ -542,8 +542,8 @@ export default function GroceryGuide() {
               <span className="text-xs font-bold text-zinc-400 uppercase mr-2 flex items-center gap-1">
                 <Utensils className="w-3.5 h-3.5 text-system-gold" /> Template Filter:
               </span>
-              {['All', 'Korea', 'China', 'Japan', 'Puerto Rico', 'Mexico'].map((tpl) => {
-                const flags: Record<string, string> = { 'Korea': '🇰🇷', 'China': '🇨🇳', 'Japan': '🇯🇵', 'Puerto Rico': '🇵🇷', 'Mexico': '🇲🇽' };
+              {['All', 'Japan', 'Korea', 'China', 'Puerto Rico', 'Mexico'].map((tpl) => {
+                const flags: Record<string, string> = { 'Japan': '🇯🇵', 'Korea': '🇰🇷', 'China': '🇨🇳', 'Puerto Rico': '🇵🇷', 'Mexico': '🇲🇽' };
                 return (
                   <button
                     key={tpl}
@@ -558,6 +558,8 @@ export default function GroceryGuide() {
                     <span>
                       {tpl === 'All'
                         ? '🌐 All Items & Templates'
+                        : tpl === 'Japan'
+                        ? 'Japan ($49.75 Weekly / $21.78 Restock)'
                         : tpl === 'Korea'
                         ? 'Korea ($51.73 Core / $70.22 Full Restock)'
                         : `${tpl} ($50 Limit)`}
@@ -833,9 +835,9 @@ export default function GroceryGuide() {
             <div className="flex flex-wrap items-center gap-2">
               {[
                 { name: 'All', label: '🌐 All Cuisines' },
-                { name: 'Korea', label: '🇰🇷 Korea (⭐ #1 Main & Featured)' },
+                { name: 'Japan', label: '🇯🇵 Japan (⭐ #1 Main & Featured)' },
+                { name: 'Korea', label: '🇰🇷 Korea' },
                 { name: 'China', label: '🇨🇳 China' },
-                { name: 'Japan', label: '🇯🇵 Japan' },
                 { name: 'Puerto Rico', label: '🇵🇷 Puerto Rico' },
                 { name: 'Mexico', label: '🇲🇽 Mexico' },
               ].map((c) => (

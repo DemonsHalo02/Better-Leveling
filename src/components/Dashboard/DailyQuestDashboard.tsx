@@ -379,7 +379,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                   </span>
                   <span className="text-xs font-mono text-system-gold">+200 XP</span>
                 </div>
-                <h4 className="text-base font-black text-white uppercase">{state.profile.dailyCalorieGoal || 2150} kcal | {state.profile.dailyProteinGoal || 206}g Protein</h4>
+                <h4 className="text-base font-black text-white uppercase">{state.profile.dailyCalorieGoal || 2150} kcal | {state.profile.dailyProteinGoal || 170}g Protein</h4>
                 <p className="text-xs text-zinc-400 mt-1">High protein prevents muscle loss & loose skin during your cut.</p>
               </div>
               <button

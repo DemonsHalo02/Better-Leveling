@@ -781,7 +781,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main & Featured Blueprint",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
-    estCostPerWeek: "$42.93 weekly core restock at Auburn Walmart ($56.45 Full Monday Stock-Up w/ sauces & spices)",
+    estCostPerWeek: "$49.75 weekly consumables at Auburn Walmart ($21.78 Pantry Restock)",
     description: "The #1 Main & Featured Japanese Samurai Dojo cutting plan featuring clean ginger-teriyaki seared chicken breasts, soft-boiled eggs, edamame fiber, and the signature Dirty Matcha Latte (Pure Matcha + Instant Coffee Espresso Shot + Silk Soy Milk)! Strictly zero tofu, perfectly tuned to 170g daily protein under $50 weekly!",
     meals: [
       {
@@ -859,7 +859,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
     estCostPerWeek: "$51.73 weekly core restock at Auburn Walmart ($66.09 Full Monday Stock-Up w/ sauces & spices)",
-    description: "The #1 Main & Featured Korean K-Fit style recomposition plan utilizing authentic Dirty Chai Lattes (Spiced Chai Concentrate + Instant Coffee + Silk Soy Milk), probiotic-rich Nasoya kimchi, tender Lean Beef Stew Meat & Chicken Bulgogi, and metabolism green tea! Perfectly tuned to 170g daily protein with 7 full days of food for $51.73 weekly core restock ($66.09 Full Monday Stock-Up)!",
+    description: "Authentic Korean K-Fit style recomposition plan utilizing Dirty Chai Lattes (Spiced Chai Concentrate + Instant Coffee + Silk Soy Milk), probiotic-rich Nasoya kimchi, tender Lean Beef Stew Meat & Chicken Bulgogi, and metabolism green tea! Perfectly tuned to 170g daily protein with 7 full days of food for $51.73 weekly core restock ($66.09 Full Monday Stock-Up)!",
     meals: [
       {
         name: "Breakfast: Seoul Dirty Chai Latte & Soy-Glazed Egg Scramble",

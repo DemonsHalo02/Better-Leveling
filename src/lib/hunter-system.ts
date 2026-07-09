@@ -85,11 +85,11 @@ const DEFAULT_STATE: HunterState = {
     targetWeight: 170,
     targetDate: "2027-12-31",
     dailyCalorieGoal: 2150,
-    dailyProteinGoal: 206,
+    dailyProteinGoal: 170,
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
-    gymName: "Planet Fitness Lewiston",
-    dietName: "Boricua Cutting Blueprint",
+    gymName: "K-Pop Idol Home Training Dojo",
+    dietName: "Japanese Samurai Dojo Clean Shred",
   },
   completedQuestsToday: {
     workout: false,
@@ -150,6 +150,16 @@ export function loadHunterState(): HunterState {
         weighIn: false,
       };
       saveHunterState(parsed);
+    }
+
+    if (parsed.profile) {
+      if (parsed.profile.dailyProteinGoal === 206) parsed.profile.dailyProteinGoal = 170;
+      if (parsed.profile.dietName === "Boricua Cutting Blueprint" || parsed.profile.dietName === "Korean Bulgogi Shred") {
+        parsed.profile.dietName = "Japanese Samurai Dojo Clean Shred";
+      }
+      if (parsed.profile.gymName === "Planet Fitness Lewiston") {
+        parsed.profile.gymName = "K-Pop Idol Home Training Dojo";
+      }
     }
     
     return parsed;
