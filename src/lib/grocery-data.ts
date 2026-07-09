@@ -40,17 +40,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-1",
     upc: "078742371195", // Fresh Chicken Breast Family Pack (~4.7 lb)
-    name: "Fresh Chicken Breasts (~5.5 lb Family Tray / 88 oz raw)",
+    name: "Fresh Chicken Breasts (ONE Great Value ~5.0 lb Family Pack / 80 oz raw)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Freshness Guaranteed",
     category: "Protein",
-    priceEst: "$14.74 (~5.5 lb family tray at $2.68/lb)",
+    priceEst: "$13.40 (~5.0 lb family pack at $2.68/lb)",
     calories: 120,
     protein: 26,
     carbs: 0,
     fat: 1.5,
     servingSize: "4 oz (112g)",
-    coachNote: "Upgraded ~5.5 lb (88 oz raw) family tray from Auburn Walmart! Guaranteed to provide enough chicken for 7 full days of Lunch (7 oz/day) and Dinner (5.6 oz/day) without running out!",
+    coachNote: "One Great Value ~5.0 lb (80 oz raw) family pack from Auburn Walmart! Guaranteed to provide 11.4 oz raw chicken per day for 7 full days of Lunch (5.7 oz/day) and Dinner (5.7 oz/day) hitting 170g daily protein!",
     cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
@@ -216,17 +216,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-12",
     upc: "078742136039", // Great Value Greek Yogurt
-    name: "Great Value Plain Nonfat Greek Yogurt (Three 32 oz tubs / 96 oz total)",
+    name: "Great Value Plain Nonfat Greek Yogurt (FOUR 32 oz tubs / 128 oz / 1 Gallon total)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Protein",
-    priceEst: "$11.94 (Three 32 oz tubs / 96 oz total)",
+    priceEst: "$15.92 (FOUR 32 oz tubs / 128 oz total)",
     calories: 90,
     protein: 16,
     carbs: 6,
     fat: 0,
     servingSize: "3/4 cup (170g / 6 oz)",
-    coachNote: "Three tubs (96 oz / 12 cups total) guaranteed! Provides 100% enough Greek Yogurt for 7 full days of Afternoon bowls (1 cup / 8 oz) AND Nighttime Casein Fluff (~3/4 cup / 5.7 oz) without running out!",
+    coachNote: "FOUR tubs (128 oz / 1 full Gallon / 16 cups total) guaranteed! Provides 100% enough Greek Yogurt for 7 full days of Afternoon bowls (1 cup / 8 oz) AND Nighttime Casein Fluff (~3/4 cup / 5.7 oz) plus nearly a full tub buffer without running out!",
     cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
@@ -248,17 +248,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-14",
     upc: "078742231268", // Instant Coffee for Dirty Matcha
-    name: "Great Value Classic Roast Instant Coffee (4 oz jar)",
+    name: "Classic Roast Instant Coffee (5 oz / 8 oz Jar)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
+    brand: "Great Value / Folgers",
     category: "Essentials",
-    priceEst: "$2.48 (4 oz jar ~55 servings)",
+    priceEst: "$5.48 (5 oz / 8 oz Jar)",
     calories: 0,
     protein: 0,
     carbs: 0,
     fat: 0,
     servingSize: "1 tsp (2g / 1 espresso shot equivalent)",
-    coachNote: "Essential instant coffee roast! Dissolve 1 tsp in hot water to create the espresso shot required for your authentic Korean Dirty Chai Lattes, Chinese Dirty Matcha Lattes, and Mexican Café de Olla!",
+    coachNote: "Essential instant coffee roast! Dissolve 1 tsp in hot water to create the espresso shot required for your authentic Japanese Dirty Matcha Lattes, Korean Dirty Chai Lattes, and Chinese Dirty Matcha Lattes!",
     cuisine: ["China", "Korea", "Japan", "Mexico"]
   },
   {
@@ -451,7 +451,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 1,
     servingSize: "1 can (142g)",
     coachNote: "High protein, zero-carb lean fish staple ALWAYS stocked at Auburn Walmart. Perfect for high-protein Korean and Japanese rice bowls!",
-    cuisine: ["Japan"]
+    cuisine: []
   },
   {
     id: "g-27",
@@ -781,35 +781,35 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main & Featured Blueprint",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
-    estCostPerWeek: "$49.84 weekly consumables at Auburn Walmart ($21.78 Pantry Restock)",
-    description: "The #1 Main & Featured Japanese Samurai Dojo cutting plan featuring clean ginger-teriyaki seared chicken breasts (~5.5 lb 88 oz Family Tray covering all 7 days!), soft-boiled eggs, edamame fiber (Two 12 oz bags covering all 7 days!), Three 32 oz tubs of Greek Yogurt (96 oz covering all 7 afternoon & night bowls!), and the signature Dirty Matcha Latte! Strictly zero tofu, perfectly tuned to 170g daily protein under $50 weekly ($49.84 total)!",
+    estCostPerWeek: "$44.98 weekly consumables at Auburn Walmart ($31.33 Complete Pantry & Seasoning Restock)",
+    description: "The #1 Main & Featured Japanese Samurai Dojo cutting plan featuring ONE Great Value ~5.0 lb Family Pack (80 oz raw) of clean Chicken Breasts covering 7 full days of Lunch and Dinner, Giant 5-Egg Tamagoyaki Omelets (using 35 of 36 eggs in your weekly tray!), FOUR 32 oz tubs of Greek Yogurt (128 oz covering 7 days of afternoon & night bowls + buffer!), edamame fiber, steamed broccoli, and the signature Dirty Matcha Lattes! Strictly zero tofu, zero tuna, zero beef—perfectly tuned to 170g daily protein at $44.98 weekly consumables!",
     meals: [
       {
-        name: "Breakfast: Dirty Matcha Latte & Soy-Marinated Soft-Boiled Eggs",
+        name: "Breakfast: Giant 5-Egg Tamagoyaki Omelet & Morning Dirty Matcha Latte",
         time: "8:00 AM",
         ingredients: [
-          "1 Dirty Matcha Latte: Dissolve 1 tsp Classic Roast Instant Coffee + 1 tsp Green Tea Matcha Blend + 1/2 cup Silk Soy Milk & zero-cal sweetener over ice! (70 kcal, 4g p)",
-          "3 Large Eggs soft-boiled and marinated in light soy sauce & ginger in 0-Cal Spray (220 kcal, 18g p)",
-          "1 cup cooked White Rice with furikake or sesame seasoning (200 kcal, 4g p, 45g c)"
+          "1 Morning Dirty Matcha Latte: Dissolve 1 tsp Classic Roast Instant Coffee + 1 tsp Green Tea Matcha Blend + 1/2 cup Silk Soy Milk & zero-cal sweetener over ice! (70 kcal, 4g p)",
+          "Giant 5-Egg Japanese Omelet: 5 Large Grade A White Eggs pan-seared with green onions & soy sauce drop in 0-Cal Cooking Spray (350 kcal, 30g p)",
+          "1 cup cooked White Rice with green onion garnish (200 kcal, 4g p, 45g c)"
         ],
-        calories: 490,
-        protein: 26,
+        calories: 620,
+        protein: 38,
         carbs: 48,
-        fat: 16
+        fat: 25
       },
       {
         name: "Lunch: Samurai Teriyaki Glazed Chicken Breast & Edamame Bowl",
         time: "12:30 PM",
         ingredients: [
-          "7 oz Fresh Chicken Breast seared with clean low-sodium Teriyaki & soy-ginger glaze (240 kcal, 48g p)",
+          "5.7 oz Fresh Chicken Breast seared with clean low-sodium Teriyaki, garlic & ginger glaze (195 kcal, 38g p)",
           "1/2 cup steamed edamame soybeans (100 kcal, 9g p, 8g c)",
           "1 cup cooked White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
-          "1 cup steamed Great Value Broccoli florets (30 kcal, 2g p)"
+          "1.5 cups steamed Great Value Broccoli florets with regular green tea (45 kcal, 3g p)"
         ],
-        calories: 570,
-        protein: 59,
+        calories: 540,
+        protein: 54,
         carbs: 58,
-        fat: 5
+        fat: 4
       },
       {
         name: "Afternoon Perk: 2nd Iced Dirty Matcha Latte & Greek Yogurt Bowl",
@@ -817,35 +817,36 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         ingredients: [
           "2nd Dirty Matcha Latte over ice: Pure green tea matcha + instant coffee shot + Silk Soy Milk (45 kcal, 4g p)",
           "1 cup Plain Nonfat Greek Yogurt sweetened with vanilla & zero-cal sweetener (120 kcal, 22g p)",
-          "1/2 cup oats or rice crispy cereal mixed in for clean pre-workout carbs (130 kcal, 3g p, 28g c)"
+          "1/2 cup oats or crisp rice cereal mixed in for clean pre-workout carbs (130 kcal, 3g p, 28g c)"
         ],
         calories: 295,
-        protein: 25,
+        protein: 29,
         carbs: 32,
         fat: 2
       },
       {
-        name: "Dinner: Miso-Ginger Seared Chicken (or Beef/Tuna) & Steamed Veggies",
+        name: "Dinner: Miso-Ginger Seared Chicken Breast & Steamed Veggies",
         time: "7:30 PM",
         ingredients: [
-          "6.5 oz Fresh Chicken Breast (or swap 2 cans / 10 oz drained Chunk Light Tuna for an instant zero-cook high-protein dinner alternative!) seasoned with ginger & soy (225 kcal, 45g p)",
+          "5.7 oz Fresh Chicken Breast seared with garlic, ginger & soy broth (195 kcal, 38g p)",
           "1 cup cooked White Rice (200 kcal, 4g p, 45g c)",
-          "1.5 cups steamed broccoli florets & greens (45 kcal, 3g p)"
+          "1.5 cups steamed broccoli florets alongside warm brewed Green Tea (45 kcal, 3g p)"
         ],
-        calories: 470,
+        calories: 440,
         protein: 45,
         carbs: 50,
-        fat: 4
+        fat: 3
       },
       {
-        name: "Nighttime Recovery: Matcha Green Tea Casein Yogurt Bowl",
+        name: "Nighttime Recovery: Dojo Casein Yogurt Fluff & Warm Green Tea",
         time: "10:30 PM",
         ingredients: [
-          "4/5 cup Plain Greek Yogurt blended with pinch of matcha powder & zero-cal sweetener (125 kcal, 15g p)"
+          "3/4 cup Plain Greek Yogurt whisked with zero-cal sweetener & optional berry topping (100 kcal, 17g p)",
+          "1 cup warm relaxing brewed 100% Green Tea (0 kcal)"
         ],
-        calories: 125,
-        protein: 15,
-        carbs: 8,
+        calories: 100,
+        protein: 17,
+        carbs: 7,
         fat: 0
       }
     ]
