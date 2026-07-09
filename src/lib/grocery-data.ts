@@ -386,8 +386,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 27,
     fat: 0,
     servingSize: "1 Medium Banana (118g)",
-    coachNote: "Quick potassium and clean pre-workout carbohydrates for your Japanese Samurai Dojo workouts.",
-    cuisine: ["Japan"]
+    coachNote: "Quick potassium and clean pre-workout carbohydrates.",
+    cuisine: []
   },
   {
     id: "g-23",
@@ -403,7 +403,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 2.5,
     servingSize: "1/2 cup dry (40g)",
     coachNote: "Slow-digesting complex carbs for morning energy or mixing into afternoon Greek yogurt power bowls.",
-    cuisine: ["China", "Japan", "Mexico"]
+    cuisine: ["China", "Korea", "Mexico"]
   },
   {
     id: "g-24",
@@ -435,7 +435,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "3 tbsp (46g)",
     coachNote: "Pure protein booster! Mix 1/2 cup into your morning whole egg scrambles to add 13g of clean protein without extra fat calories.",
-    cuisine: ["China", "Japan", "Mexico"]
+    cuisine: []
   },
   {
     id: "g-26",
@@ -626,8 +626,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 7,
     servingSize: "4 oz (112g raw)",
-    coachNote: "Tender lean beef chunks for authentic Korean Bulgogi bowls and Japanese Samurai Teriyaki bowls! High in bioavailable iron, zinc, and muscle-building creatine.",
-    cuisine: ["Korea", "Japan"]
+    coachNote: "Tender lean beef chunks for authentic Korean Bulgogi bowls! High in bioavailable iron, zinc, and muscle-building creatine.",
+    cuisine: ["Korea"]
   },
   {
     id: "g-38",
@@ -691,7 +691,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0.5,
     servingSize: "1 cup (140g)",
     coachNote: "High-antioxidant frozen berry medley! Mix into your afternoon Matcha Greek Yogurt Power Bowl and bedtime Casein Fluff.",
-    cuisine: ["Japan"]
+    cuisine: []
   },
   {
     id: "g-42",
@@ -708,6 +708,38 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     servingSize: "2 tbsp (15g chopped)",
     coachNote: "Fresh aromatic scallions for topping your Dojo Beef Stew Meat Teriyaki Bowl and Samurai Teriyaki Scrambles.",
     cuisine: ["Japan", "Korea", "China"]
+  },
+  {
+    id: "g-43",
+    upc: "078742359912",
+    name: "Great Value Teriyaki Marinade & Sauce (15.2 fl oz bottle)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Seasonings & Spices",
+    priceEst: "$2.48 (15.2 fl oz bottle)",
+    calories: 20,
+    protein: 1,
+    carbs: 4,
+    fat: 0,
+    servingSize: "1 tbsp (15ml)",
+    coachNote: "Authentic savory teriyaki marinade and sauce stocked at Auburn Walmart! Glaze your Samurai chicken breasts and edamame bowls with clean teriyaki flavor (Restock item).",
+    cuisine: ["Japan"]
+  },
+  {
+    id: "g-44",
+    upc: "078742359934",
+    name: "Great Value Table Salt & Black Pepper Shaker Set (4 oz set)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Seasonings & Spices",
+    priceEst: "$1.18 (4 oz shaker set)",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1/4 tsp (1g)",
+    coachNote: "Essential table salt and black pepper seasoning set for seasoning morning omelets and seared chicken breasts (Restock item).",
+    cuisine: ["Japan", "Korea", "China", "Puerto Rico", "Mexico"]
   }
 ];
 
@@ -781,15 +813,15 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main & Featured Blueprint",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
-    estCostPerWeek: "$44.98 weekly consumables at Auburn Walmart ($31.33 Complete Pantry & Seasoning Restock)",
-    description: "The #1 Main & Featured Japanese Samurai Dojo cutting plan featuring ONE Great Value ~5.0 lb Family Pack (80 oz raw) of clean Chicken Breasts covering 7 full days of Lunch and Dinner, Giant 5-Egg Tamagoyaki Omelets (using 35 of 36 eggs in your weekly tray!), FOUR 32 oz tubs of Greek Yogurt (128 oz covering 7 days of afternoon & night bowls + buffer!), edamame fiber, steamed broccoli, and the signature Dirty Matcha Lattes! Strictly zero tofu, zero tuna, zero beef—perfectly tuned to 170g daily protein at $44.98 weekly consumables!",
+    estCostPerWeek: "$44.98 weekly consumables at Auburn Walmart ($33.81 Complete Pantry & Seasoning Restock)",
+    description: "The #1 Main & Featured Japanese Samurai Dojo cutting plan featuring ONE Great Value ~5.0 lb Family Pack (80 oz raw) of clean Chicken Breasts covering 7 full days of Lunch and Dinner, Giant 5-Egg Tamagoyaki Omelets (using 35 of 36 eggs in your weekly tray!), FOUR 32 oz tubs of Greek Yogurt (128 oz covering 7 days of afternoon & night bowls + buffer!), edamame fiber, steamed broccoli, and the signature Dirty Matcha Lattes! Seasoned with authentic Great Value Teriyaki Marinade & Sauce ($2.48), Soy Sauce, Garlic, and Ginger. Strictly zero tofu, zero tuna, zero beef—perfectly tuned to 170g daily protein at $44.98 weekly consumables!",
     meals: [
       {
         name: "Breakfast: Giant 5-Egg Tamagoyaki Omelet & Morning Dirty Matcha Latte",
         time: "8:00 AM",
         ingredients: [
           "1 Morning Dirty Matcha Latte: Dissolve 1 tsp Classic Roast Instant Coffee + 1 tsp Green Tea Matcha Blend + 1/2 cup Silk Soy Milk & zero-cal sweetener over ice! (70 kcal, 4g p)",
-          "Giant 5-Egg Japanese Omelet: 5 Large Grade A White Eggs pan-seared with green onions & soy sauce drop in 0-Cal Cooking Spray (350 kcal, 30g p)",
+          "Giant 5-Egg Japanese Omelet: 5 Large Grade A White Eggs pan-seared with green onions, salt, black pepper & soy sauce drop in 0-Cal Cooking Spray (350 kcal, 30g p)",
           "1 cup cooked White Rice with green onion garnish (200 kcal, 4g p, 45g c)"
         ],
         calories: 620,
@@ -801,7 +833,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         name: "Lunch: Samurai Teriyaki Glazed Chicken Breast & Edamame Bowl",
         time: "12:30 PM",
         ingredients: [
-          "5.7 oz Fresh Chicken Breast seared with clean low-sodium Teriyaki, garlic & ginger glaze (195 kcal, 38g p)",
+          "5.7 oz Fresh Chicken Breast seared with Great Value Teriyaki Marinade & Sauce, garlic & ginger glaze (195 kcal, 38g p)",
           "1/2 cup steamed edamame soybeans (100 kcal, 9g p, 8g c)",
           "1 cup cooked White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
           "1.5 cups steamed Great Value Broccoli florets with regular green tea (45 kcal, 3g p)"
@@ -825,10 +857,10 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 2
       },
       {
-        name: "Dinner: Miso-Ginger Seared Chicken Breast & Steamed Veggies",
+        name: "Dinner: Samurai Teriyaki Glazed Chicken Breast & Steamed Veggies",
         time: "7:30 PM",
         ingredients: [
-          "5.7 oz Fresh Chicken Breast seared with garlic, ginger & soy broth (195 kcal, 38g p)",
+          "5.7 oz Fresh Chicken Breast seared with Great Value Teriyaki Marinade & Sauce, garlic & ginger (195 kcal, 38g p)",
           "1 cup cooked White Rice (200 kcal, 4g p, 45g c)",
           "1.5 cups steamed broccoli florets alongside warm brewed Green Tea (45 kcal, 3g p)"
         ],
