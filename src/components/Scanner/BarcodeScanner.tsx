@@ -19,7 +19,19 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
   const [customServings, setCustomServings] = useState<number>(1);
   const [isInGroceryList, setIsInGroceryList] = useState<boolean>(false);
   const [checkedInGrocery, setCheckedInGrocery] = useState<boolean>(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<string>('Korea');
   const scannerRef = useRef<Html5QrcodeScanner | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedTpl = localStorage.getItem('pf_selected_aisle_template');
+      if (savedTpl && savedTpl !== 'All') {
+        setSelectedTemplate(savedTpl);
+      } else {
+        setSelectedTemplate('Korea');
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (scannerActive) {
@@ -70,7 +82,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
   }, [scannedResult]);
 
   const handleToggleGroceryCheck = () => {
-    if (!scannedResult || typeof window !== 'undefined') return;
+    if (!scannedResult || typeof window === 'undefined') return;
     const savedChecked = localStorage.getItem('pf_grocery_checked');
     const checkedMap = savedChecked ? JSON.parse(savedChecked) : {};
     const nextState = !checkedInGrocery;
@@ -81,7 +93,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
   };
 
   const handleSaveToGroceryList = () => {
-    if (!scannedResult || typeof window !== 'undefined') return;
+    if (!scannedResult || typeof window === 'undefined') return;
     const savedCustom = localStorage.getItem('pf_custom_grocery_items');
     const customList: GroceryItem[] = savedCustom ? JSON.parse(savedCustom) : [];
     
@@ -166,7 +178,16 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
       if (saved) try { customList = JSON.parse(saved); } catch {}
     }
     const allLocal = [...AUBURN_LEWISTON_GROCERY_ITEMS, ...customList];
-    const match = allLocal.find(
+    
+    // First try matching inside selected template items
+    const templateMatch = allLocal.find(item => {
+      const matchesQuery = item.name.toLowerCase().includes(q) || item.brand.toLowerCase().includes(q) || item.category.toLowerCase().includes(q);
+      if (!matchesQuery) return false;
+      if (selectedTemplate === 'All') return true;
+      return item.cuisine && item.cuisine.includes(selectedTemplate);
+    });
+
+    const match = templateMatch || allLocal.find(
       item => item.name.toLowerCase().includes(q) || item.brand.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)
     );
 
@@ -177,6 +198,17 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
       setErrorMsg(`No direct local match for "${searchQuery}". Showing closest high-protein recommendation!`);
       setScannedResult(allLocal[0]); // fallback to chicken
       setLoading(false);
+    }
+  };
+
+  const handleSelectTemplate = (tpl: string) => {
+    setSelectedTemplate(tpl);
+    if (typeof window !== 'undefined') {
+      if (tpl === 'All') {
+        localStorage.removeItem('pf_selected_aisle_template');
+      } else {
+        localStorage.setItem('pf_selected_aisle_template', tpl);
+      }
     }
   };
 
@@ -293,23 +325,54 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
           </button>
         </form>
 
-        {/* Quick Click Badges for Auburn / Lewiston Stores */}
-        <div className="pt-2">
-          <div className="text-[11px] text-zinc-400 uppercase font-bold mb-2">⚡ Instant Auburn / Lewiston ME Staples:</div>
-          <div className="flex flex-wrap gap-2">
-            {AUBURN_LEWISTON_GROCERY_ITEMS.slice(0, 5).map((item) => (
-              <button
-                key={item.id}
-                onClick={() => {
-                  setScannedResult(item);
-                  setErrorMsg(null);
-                }}
-                className="px-3 py-1.5 rounded-lg bg-system-dark border border-white/10 hover:border-system-blue/40 text-xs text-zinc-300 hover:text-white transition-all flex items-center gap-1.5"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-system-blue" />
-                <span>{item.name.replace('Great Value ', 'GV ')}</span>
-              </button>
-            ))}
+        {/* Meal Plan Template Filter & Instant Staples */}
+        <div className="pt-3 border-t border-white/10 space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2 text-xs font-bold text-zinc-300 uppercase">
+              <Utensils className="w-3.5 h-3.5 text-system-gold" />
+              <span>Active Meal Plan Template Filter:</span>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {['Korea', 'All', 'China', 'Japan', 'Puerto Rico', 'Mexico'].map((tpl) => {
+                const flags: Record<string, string> = { 'Korea': '🇰🇷', 'China': '🇨🇳', 'Japan': '🇯🇵', 'Puerto Rico': '🇵🇷', 'Mexico': '🇲🇽' };
+                return (
+                  <button
+                    key={tpl}
+                    onClick={() => handleSelectTemplate(tpl)}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
+                      selectedTemplate === tpl
+                        ? 'bg-system-gold text-system-dark font-black shadow-glow-gold scale-105'
+                        : 'bg-system-dark text-zinc-400 hover:text-white border border-white/5'
+                    }`}
+                  >
+                    {flags[tpl] && <span>{flags[tpl]}</span>}
+                    <span>{tpl === 'Korea' ? 'Korea (Main)' : tpl === 'All' ? '🌐 All' : tpl}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="text-[11px] text-zinc-400 uppercase font-bold">
+            ⚡ Quick-Scan & Log Staples for Selected Template ({selectedTemplate}):
+          </div>
+          <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto pr-1">
+            {AUBURN_LEWISTON_GROCERY_ITEMS
+              .filter(item => selectedTemplate === 'All' || (item.cuisine && item.cuisine.includes(selectedTemplate)))
+              .map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    setScannedResult(item);
+                    setErrorMsg(null);
+                  }}
+                  className="px-3 py-1.5 rounded-lg bg-system-dark border border-white/10 hover:border-system-cyan text-xs text-zinc-300 hover:text-white transition-all flex items-center gap-2"
+                >
+                  <span className="w-2 h-2 rounded-full bg-system-cyan" />
+                  <span className="font-bold">{item.name.replace('Great Value ', 'GV ').replace('Freshness Guaranteed ', 'FG ')}</span>
+                  <span className="text-[10px] text-system-gold font-mono">({item.priceEst.split(' ')[0]})</span>
+                </button>
+              ))}
           </div>
         </div>
       </div>

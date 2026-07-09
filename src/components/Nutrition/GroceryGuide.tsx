@@ -278,7 +278,7 @@ export default function GroceryGuide() {
                   Weekly Monday Prep
                 </span>
                 <span className="text-xs text-system-cyan font-mono flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5" /> Shop Monday | Eat Tuesday
+                  <Calendar className="w-3.5 h-3.5" /> Shop & Batch Meal Prep Every Monday
                 </span>
               </div>
               <h3 className="text-lg font-black text-white uppercase tracking-wide">

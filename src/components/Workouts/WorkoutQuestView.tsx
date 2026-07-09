@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { PLANET_FITNESS_PPL_ROUTINE, WorkoutDay, Exercise } from '@/lib/workout-data';
 import { awardXp, loadHunterState, saveHunterState } from '@/lib/hunter-system';
-import { Dumbbell, CheckCircle2, Circle, Trophy, Info, Sparkles, MapPin, Zap } from 'lucide-react';
+import { Dumbbell, CheckCircle2, Circle, Trophy, Info, Sparkles, MapPin, Zap, Footprints, Flame, PlusCircle, RotateCcw } from 'lucide-react';
 import RestTimerBar from './RestTimerBar';
 
 export default function WorkoutQuestView() {
@@ -12,10 +12,14 @@ export default function WorkoutQuestView() {
   const [exerciseWeights, setExerciseWeights] = useState<Record<string, string>>({});
   const [questCleared, setQuestCleared] = useState<boolean>(false);
 
+  // K-Pop Walking & Step Log State
+  const [dailySteps, setDailySteps] = useState<number>(0);
+  const [customStepInput, setCustomStepInput] = useState<string>('');
+  const STEP_GOAL = 10000;
+
   const currentDayWorkout = PLANET_FITNESS_PPL_ROUTINE.find(d => d.dayOfWeek === selectedDay) || PLANET_FITNESS_PPL_ROUTINE[0];
 
   useEffect(() => {
-    // Load stored workout logs for this day
     if (typeof window !== 'undefined') {
       const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}`);
       if (savedSets) setCompletedSets(JSON.parse(savedSets));
@@ -24,8 +28,31 @@ export default function WorkoutQuestView() {
       const savedWeights = localStorage.getItem(`pf_weights`);
       if (savedWeights) setExerciseWeights(JSON.parse(savedWeights));
       else setExerciseWeights({});
+
+      const todayKey = new Date().toISOString().split('T')[0];
+      const savedSteps = localStorage.getItem(`kpop_daily_steps_${todayKey}`);
+      if (savedSteps) setDailySteps(parseInt(savedSteps, 10));
     }
   }, [selectedDay]);
+
+  const handleAddSteps = (amount: number) => {
+    const nextSteps = Math.max(0, dailySteps + amount);
+    setDailySteps(nextSteps);
+    if (typeof window !== 'undefined') {
+      const todayKey = new Date().toISOString().split('T')[0];
+      localStorage.setItem(`kpop_daily_steps_${todayKey}`, nextSteps.toString());
+    }
+    awardXp(amount >= 2500 ? 50 : 25, 'agi');
+  };
+
+  const handleCustomStepsSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const parsed = parseInt(customStepInput.replace(/,/g, ''), 10);
+    if (!isNaN(parsed) && parsed > 0) {
+      handleAddSteps(parsed);
+      setCustomStepInput('');
+    }
+  };
 
   const handleSetToggle = (exerciseId: string, maxSets: number) => {
     const current = completedSets[exerciseId] || 0;
@@ -36,7 +63,6 @@ export default function WorkoutQuestView() {
       localStorage.setItem(`pf_completed_sets_${selectedDay}`, JSON.stringify(updated));
     }
 
-    // Check if entire workout quest is now cleared
     const allCleared = currentDayWorkout.exercises.every(ex => (updated[ex.id] || 0) >= ex.sets);
     if (allCleared && !questCleared) {
       setQuestCleared(true);
@@ -63,6 +89,7 @@ export default function WorkoutQuestView() {
   };
 
   const progressPct = calculateDayProgress();
+  const stepProgressPct = Math.min(100, Math.floor((dailySteps / STEP_GOAL) * 100));
 
   return (
     <div className="space-y-6 pb-12">
@@ -72,13 +99,13 @@ export default function WorkoutQuestView() {
         <div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
             <MapPin className="w-3.5 h-3.5 text-system-blue" />
-            <span>Planet Fitness Equipment Profile | Lewiston, ME</span>
+            <span>K-Pop Idol Style Home Workout Protocol | Lewiston, ME</span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            6-Day Push / Pull / Legs Split
+            6-Day K-Pop Idol Home Split
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            Tailored specifically for Planet Fitness Smith machines, cable towers, leg presses, and dumbbells. Sunday is reserved for System Restoration (No Workout Quests).
+            Tailored specifically for home-based bodyweight sculpting, choreography intervals, and resistance training. Sunday is reserved for System Restoration & Korean Meal Prep.
           </p>
         </div>
 
@@ -88,6 +115,91 @@ export default function WorkoutQuestView() {
             <div className="text-[10px] text-zinc-400 uppercase font-bold">Quest Reward</div>
             <div className="text-sm font-black text-system-gold font-mono">+ {currentDayWorkout.xpReward} XP & STR Boost</div>
           </div>
+        </div>
+      </div>
+
+      {/* K-POP IDOL DAILY WALKING & STEP LOG */}
+      <div className="bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 rounded-2xl border border-system-cyan/50 shadow-glow-blue space-y-4">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-gold mb-1">
+              <Footprints className="w-4 h-4 text-system-cyan animate-pulse" />
+              <span>Daily Idol Walking & Choreography Cardio Log</span>
+            </div>
+            <h3 className="text-xl font-black text-white uppercase tracking-wide">
+              {dailySteps.toLocaleString()} / {STEP_GOAL.toLocaleString()} <span className="text-sm text-zinc-400 font-bold">Steps Today (~{(dailySteps * 0.00045).toFixed(1)} Miles)</span>
+            </h3>
+            <p className="text-xs text-zinc-300 mt-0.5">
+              Consistent daily walking enhances insulin sensitivity, accelerates abdominal fat burning during your cut, and awards AGI points!
+            </p>
+          </div>
+
+          <div className="w-full md:w-64 bg-system-dark/80 p-3.5 rounded-xl border border-system-blue/30 space-y-2">
+            <div className="flex justify-between text-xs font-bold">
+              <span className="text-zinc-400">Step Goal Progress</span>
+              <span className="text-system-cyan font-mono">{stepProgressPct}%</span>
+            </div>
+            <div className="w-full h-2.5 bg-black/60 rounded-full overflow-hidden border border-white/10">
+              <div 
+                className="h-full bg-gradient-to-r from-system-blue via-system-cyan to-green-400 rounded-full transition-all duration-300 shadow-glow-blue"
+                style={{ width: `${stepProgressPct}%` }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Log Buttons & Custom Input */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/10">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-bold text-zinc-400 uppercase mr-1">Quick Add:</span>
+            <button
+              onClick={() => handleAddSteps(1000)}
+              className="px-3.5 py-2 rounded-xl bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
+            >
+              <Footprints className="w-3.5 h-3.5 text-system-cyan" />
+              <span>+1,000 (~10m walk)</span>
+            </button>
+            <button
+              onClick={() => handleAddSteps(2500)}
+              className="px-3.5 py-2 rounded-xl bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
+            >
+              <Footprints className="w-3.5 h-3.5 text-system-gold" />
+              <span>+2,500 (~25m walk)</span>
+            </button>
+            <button
+              onClick={() => handleAddSteps(5000)}
+              className="px-3.5 py-2 rounded-xl bg-system-dark border border-system-blue/50 hover:border-system-cyan text-xs font-bold text-system-cyan hover:bg-system-blue hover:text-black transition-all flex items-center gap-1.5"
+            >
+              <Flame className="w-3.5 h-3.5" />
+              <span>+5,000 (~45m Idol Walk)</span>
+            </button>
+          </div>
+
+          <form onSubmit={handleCustomStepsSubmit} className="flex items-center gap-2">
+            <input
+              type="text"
+              placeholder="Custom steps..."
+              value={customStepInput}
+              onChange={(e) => setCustomStepInput(e.target.value)}
+              className="w-28 bg-system-dark border border-system-blue/40 rounded-xl px-3 py-2 text-xs font-mono text-white placeholder:text-zinc-500 focus:outline-none focus:border-system-cyan"
+            />
+            <button
+              type="submit"
+              className="px-3 py-2 rounded-xl bg-system-blue text-black font-black text-xs uppercase tracking-wider hover:bg-white transition-all"
+            >
+              Log
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                if (confirm("Reset today's step count to 0?")) setDailySteps(0);
+              }}
+              title="Reset steps"
+              className="p-2 rounded-xl bg-system-dark border border-white/10 text-zinc-400 hover:text-white transition-all"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+            </button>
+          </form>
         </div>
       </div>
 

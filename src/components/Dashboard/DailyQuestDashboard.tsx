@@ -338,7 +338,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                     : 'bg-system-blue text-system-dark hover:bg-white font-black shadow-glow-blue'
                 }`}
               >
-                <span>{todayWorkout.isRestDay ? 'View Prep Checklist' : 'Enter PF Dungeon'}</span>
+                <span>{todayWorkout.isRestDay ? 'View Prep Checklist' : 'Start Idol Workout'}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

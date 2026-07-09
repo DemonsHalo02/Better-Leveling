@@ -21,456 +21,395 @@ export interface WorkoutDay {
   exercises: Exercise[];
 }
 
-export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
+export const KPOP_HOME_WORKOUT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
-    splitName: "System Restoration / Mana Recharge",
+    splitName: "System Restoration / Idol Recharge (Rest Day)",
     isRestDay: true,
-    questTitle: "[Daily Quest] Active Recovery & Preparation",
-    description: "The System requires a mana recharge day. No workout lifting quests today! Use this time for light stretching, meal prepping at Auburn Walmart / Shaw's / Hannaford, drinking 1 gallon of water, and logging your weekly weigh-in.",
+    questTitle: "[Daily Quest] K-Pop Idol Active Recovery & Flexibility",
+    description: "Sunday is your official Idol Rest Day! No high-intensity workout quests today. Focus on K-Pop idol stretching, posture alignment, and hydrating with 1 gallon of water to recharge for Monday.",
     xpReward: 250,
     exercises: [
       {
         id: "sun-1",
-        name: "Full Body Static Stretching & Foam Rolling",
+        name: "Idol Full Body Flexibility & Posture Stretching",
         targetGroup: "Full Body",
         sets: 1,
         reps: "15-20 mins",
-        equipment: "PF Stretching Area / Mat",
-        coachTip: "Focus on opening up tight chest fibers, hip flexors, and hamstrings from your heavy lifting sessions."
+        equipment: "Home Mat / Floor",
+        coachTip: "Gently stretch hip flexors, hamstrings, shoulders, and chest to maintain the elegant, upright K-Pop idol posture and relieve muscle soreness."
       },
       {
         id: "sun-2",
-        name: "Active Recovery & Hydration Protocol",
+        name: "Active Hydration & Idol Recovery Protocol",
         targetGroup: "Full Body",
         sets: 1,
         reps: "1 Gallon Water",
-        equipment: "Water Jug / Stretching Mat",
-        coachTip: "Hydrate heavily and rest your muscles! Your Auburn Walmart shopping and meal prep cooking session starts tomorrow on Monday."
+        equipment: "Water Jug",
+        coachTip: "Hydrate thoroughly with 1 gallon of water and ensure optimal rest to recover your muscles for Monday's workouts and meal prep!"
       }
     ]
   },
   {
     dayOfWeek: 1, // Monday
     dayName: "Monday",
-    splitName: "Push A (Chest & Shoulder Heavy)",
+    splitName: "Push A + Official Monday Meal Prep Day",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear the Push A Dungeon",
-    description: "Heavy pressing using Planet Fitness Lewiston's Smith Machines and Cable Towers. Focus on controlled eccentric lowering to maximize muscle fiber recruitment without joint irritation.",
+    questTitle: "[Daily Quest] Clear Push A & Monday Weekly Meal Prep",
+    description: "Official Monday Grocery Run & Weekly Batch Meal Prep Day + Home sculpting for chest, shoulders, and triceps. Hit Auburn ME Walmart for your under-$50 list and prep your Korean Bulgogi & Dirty Chai!",
     xpReward: 500,
     exercises: [
       {
+        id: "mon-prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Batch Meal Prep",
+        targetGroup: "Nutrition / Batch Prep",
+        sets: 1,
+        reps: "Weekly Bulgogi & Chai Prep",
+        equipment: "Auburn ME Walmart & Kitchen",
+        coachTip: "Pick up your under-$50 core grocery list at Auburn ME Walmart, batch-prep your Korean Bulgogi beef bowls, and mix your Tazo Dirty Chai concentrate for the week!"
+      },
+      {
         id: "mon-1",
-        name: "Smith Machine Incline Bench Press",
+        name: "Home Bodyweight Push-Ups (or Elevated Push-Ups)",
         targetGroup: "Chest",
         sets: 4,
-        reps: "8-10 reps",
-        equipment: "Smith Machine (PF Lewiston)",
-        coachTip: "Set bench to a 30-degree incline. Lower bar slowly to upper chest, pause 1 second, then explode upward. Squeeze pecs at the top."
+        reps: "12-15 reps",
+        equipment: "Floor or Chair/Couch Edge",
+        coachTip: "Keep body in a rigid straight line from heels to head. Lower until chest barely brushes floor, explode upward while squeezing pecs."
       },
       {
         id: "mon-2",
-        name: "Seated Dumbbell Shoulder Press",
+        name: "Pike Push-Ups (Idol Shoulder Armor)",
         targetGroup: "Shoulders",
         sets: 3,
         reps: "10-12 reps",
-        equipment: "Dumbbells (Up to 75 lbs)",
-        coachTip: "Keep your back flat against the bench. Press dumbbells overhead in a smooth arc without clanking them together."
+        equipment: "Floor / Bodyweight",
+        coachTip: "Hinge at hips into an inverted V position. Lower crown of head toward floor and press back up to sculpt rounded shoulder caps."
       },
       {
         id: "mon-3",
-        name: "Machine Pec Deck / Chest Fly",
-        targetGroup: "Chest",
+        name: "Chair or Couch Edge Tricep Dips",
+        targetGroup: "Triceps",
         sets: 3,
         reps: "12-15 reps",
-        equipment: "Pec Deck Machine",
-        coachTip: "Imagine hugging a giant tree. Keep a slight bend in elbows and focus entirely on chest contraction."
+        equipment: "Sturdy Chair or Couch",
+        coachTip: "Keep back close to the edge of chair. Lower elbows to 90 degrees and lock out triceps hard at the top."
       },
       {
         id: "mon-4",
-        name: "Cable Lateral Raises",
+        name: "Idol Standing Posture Wall Slides",
         targetGroup: "Shoulders",
-        sets: 4,
+        sets: 3,
         reps: "15 reps",
-        equipment: "Functional Trainer / Cable Tower",
-        coachTip: "Set pulley to bottom. Use a handle or wrist cuff. Lead with your elbows to build broad shoulder armor (AGI/STR boost)."
+        equipment: "Wall",
+        coachTip: "Press lower back, elbows, and wrists against wall. Slide arms overhead while keeping contact to fix posture and open chest."
       },
       {
         id: "mon-5",
-        name: "Tricep Rope Pushdowns",
-        targetGroup: "Triceps",
-        sets: 4,
-        reps: "12-15 reps",
-        equipment: "Cable Tower with Rope Attachment",
-        coachTip: "Pin your elbows to your sides. Spread the rope apart at the very bottom and lock out triceps hard for 1 second."
+        name: "Isometric Towel / Resistance Chest Squeeze",
+        targetGroup: "Chest",
+        sets: 3,
+        reps: "30 seconds hold",
+        equipment: "Towel or Resistance Band",
+        coachTip: "Hold towel in front of chest with palms pressing inward hard. Squeeze pecs continuously for 30 seconds."
       },
       {
         id: "mon-6",
-        name: "Overhead Cable Tricep Extension",
-        targetGroup: "Triceps",
+        name: "K-Pop Choreography Arm Circle Burnout",
+        targetGroup: "Shoulders",
         sets: 3,
-        reps: "12-15 reps",
-        equipment: "Cable Tower (High Pulley)",
-        coachTip: "Step forward away from machine, lean torso forward, and extend elbows overhead for deep long-head stretch."
-      },
-      {
-        id: "mon-7",
-        name: "Weekly Boricua Meal Prep & Auburn Walmart Run",
-        targetGroup: "Full Body",
-        sets: 1,
-        reps: "Weekly Prep",
-        equipment: "Walmart Auburn & Kitchen",
-        coachTip: "Shop your grocery list at Auburn Walmart and pre-cook your Pollo Guisado, Chuletas, Tostones & Rice today (Monday)! Your actual eating cycle for these prepped meals begins tomorrow on Tuesday."
+        reps: "45 seconds",
+        equipment: "Bodyweight",
+        coachTip: "Fast, controlled arm circles forward and backward to tone shoulder definition and endurance."
       }
     ]
   },
   {
     dayOfWeek: 2, // Tuesday
     dayName: "Tuesday",
-    splitName: "Pull A (Back Width & Bicep Peak)",
+    splitName: "Pull A (Idol V-Taper Back & Bicep Toning)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear the Pull A Dungeon",
-    description: "Build the iconic V-taper physique. Planet Fitness cables and lat pulldowns are incredible for constant tension on the lats and biceps.",
+    questTitle: "[Daily Quest] Clear Pull A Home Idol Sculpt",
+    description: "Sculpt upper back width, posture, and arm tone at home using resistance bands, dumbbells/water bottles, or doorway frame rows.",
     xpReward: 500,
     exercises: [
       {
         id: "tue-1",
-        name: "Wide-Grip Lat Pulldown",
+        name: "Doorframe Isometric Rows or Towel Rows",
         targetGroup: "Back",
         sets: 4,
-        reps: "8-10 reps",
-        equipment: "Lat Pulldown Station",
-        coachTip: "Pull bar down to upper collarbone while driving elbows down and back. Keep chest elevated high."
+        reps: "12-15 reps",
+        equipment: "Sturdy Doorframe or Towel",
+        coachTip: "Grip doorframe or wrapped towel, lean back with rigid torso, and pull chest forward by driving elbows backward."
       },
       {
         id: "tue-2",
-        name: "Seated Cable Row (Close V-Bar)",
+        name: "Bent-Over Dumbbell / Backpack Rows",
         targetGroup: "Back",
         sets: 4,
-        reps: "10-12 reps",
-        equipment: "Seated Cable Row Station",
-        coachTip: "Keep torso upright with minimal sway. Pull V-handle into your belly button and squeeze shoulder blades together."
+        reps: "12-15 reps",
+        equipment: "Dumbbells or Weighted Backpack",
+        coachTip: "Hinge at hips with flat lower back. Pull weight into your belly button, squeezing shoulder blades together at the top."
       },
       {
         id: "tue-3",
-        name: "Single-Arm Dumbbell Row",
+        name: "Prone Reverse Snow Angels",
         targetGroup: "Back",
         sets: 3,
-        reps: "10-12 reps per side",
-        equipment: "Dumbbells & Flat Bench",
-        coachTip: "Support opposite hand and knee on bench. Pull dumbbell toward your hip pocket, keeping elbow tight to torso."
+        reps: "12-15 reps",
+        equipment: "Floor / Mat",
+        coachTip: "Lie face down, lift chest slightly, and sweep arms from hips up overhead while squeezing upper back and rear delts."
       },
       {
         id: "tue-4",
-        name: "Rear Delt Machine Fly / Face Pulls",
-        targetGroup: "Back",
+        name: "Standing Bicep Curls (Dumbbells or Bands)",
+        targetGroup: "Biceps",
         sets: 4,
-        reps: "15 reps",
-        equipment: "Reverse Pec Deck or Cable Rope",
-        coachTip: "Pull rope toward bridge of nose with external rotation, or sit reverse on pec deck to isolate rear delts for posture."
+        reps: "12-15 reps",
+        equipment: "Dumbbells or Resistance Band",
+        coachTip: "Keep elbows pinned to your ribs. Curl weight up smoothly and contract bicep peak for 1 second."
       },
       {
         id: "tue-5",
-        name: "Standing Cable Curls or Incline DB Curls",
-        targetGroup: "Biceps",
-        sets: 4,
-        reps: "10-12 reps",
-        equipment: "Cable Tower or Incline Bench",
-        coachTip: "Keep upper arm completely stationary. Curl weight up with pinky twisted inward to maximize bicep peak."
-      },
-      {
-        id: "tue-6",
-        name: "Dumbbell Hammer Curls",
-        targetGroup: "Biceps",
+        name: "Idol Prone Cobra Posture Hold",
+        targetGroup: "Back",
         sets: 3,
-        reps: "12-15 reps",
-        equipment: "Dumbbells",
-        coachTip: "Neutral palm-facing-in grip. Targets the brachialis and forearm thickness to make arms look massive from all angles."
-      },
-      {
-        id: "tue-7",
-        name: "Behind-the-Back Cable / Dumbbell Wrist Curls",
-        targetGroup: "Forearms",
-        sets: 4,
-        reps: "15-20 reps",
-        equipment: "Low Cable Pulley or Dumbbells",
-        coachTip: "Let the bar/weight roll down to your fingertips at the bottom of each rep, then curl your wrists up hard and squeeze inner forearms for 1 second."
+        reps: "45 seconds hold",
+        equipment: "Floor / Mat",
+        coachTip: "Lie face down, lift chest and hands off floor with thumbs pointed to ceiling. Builds incredible K-Pop stage posture."
       }
     ]
   },
   {
     dayOfWeek: 3, // Wednesday
     dayName: "Wednesday",
-    splitName: "Legs & Abs A (Quad & Core Heavy)",
+    splitName: "Legs & Core A (Idol Lower Body & Choreography Abs)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear the Legs & Abs A Dungeon",
-    description: "Leg day is where champions are forged. Planet Fitness's Leg Press and Smith Machine allow safe, heavy loading without balance risk.",
+    questTitle: "[Daily Quest] Clear Legs & Core A Home Idol Sculpt",
+    description: "High-energy lower body sculpting and choreography-inspired core work for lean idol leg lines and tight abs.",
     xpReward: 600,
     exercises: [
       {
         id: "wed-1",
-        name: "45-Degree Leg Press",
+        name: "K-Pop Idol Tempo Bodyweight Squats",
         targetGroup: "Legs",
         sets: 4,
-        reps: "10-12 reps",
-        equipment: "Leg Press Machine (PF Lewiston)",
-        coachTip: "Place feet shoulder-width in middle of sled. Lower until knees form 90-degree angle, press through heels. Never lock out knees!"
+        reps: "15-20 reps",
+        equipment: "Bodyweight",
+        coachTip: "Descend 3 seconds down, pause 1 second at 90 degrees, drive up quickly. Keeps constant tension on quads and glutes."
       },
       {
         id: "wed-2",
-        name: "Smith Machine Romanian Deadlift (RDL)",
+        name: "Bulgarian Split Squats (Rear Foot Elevated)",
         targetGroup: "Legs",
-        sets: 4,
-        reps: "10-12 reps",
-        equipment: "Smith Machine",
-        coachTip: "Soft bend in knees. Push hips backward until you feel intense stretch in hamstrings and glutes, then drive hips forward to stand."
+        sets: 3,
+        reps: "10-12 reps per leg",
+        equipment: "Chair / Couch & Bodyweight",
+        coachTip: "Elevate back foot on sturdy chair. Lower rear knee toward floor while keeping front foot flat. Incredible glute & quad sculptor."
       },
       {
         id: "wed-3",
-        name: "Leg Extension Machine",
+        name: "Choreography High-Knee Cardio Intervals",
         targetGroup: "Legs",
-        sets: 3,
-        reps: "15 reps",
-        equipment: "Leg Extension Machine",
-        coachTip: "Extend legs fully and hold at top for 2 full seconds on every rep to burn out quad fibers."
+        sets: 4,
+        reps: "45 seconds work / 15s rest",
+        equipment: "Bodyweight",
+        coachTip: "Drive knees high to waist level to K-Pop tempo. Burns fat rapidly while conditioning hip flexors."
       },
       {
         id: "wed-4",
-        name: "Seated Leg Curl Machine",
-        targetGroup: "Legs",
-        sets: 3,
-        reps: "12-15 reps",
-        equipment: "Seated or Lying Leg Curl Machine",
-        coachTip: "Keep hips pressed firmly into seat pad while curling weight underneath."
-      },
-      {
-        id: "wed-5",
-        name: "Captain's Chair Hanging Leg Raises",
+        name: "Idol 11-Line Abs Lying Leg Raises",
         targetGroup: "Abs",
         sets: 4,
         reps: "15 reps",
-        equipment: "Captain's Chair Station",
-        coachTip: "Support weight on forearms. Curl pelvis upward as you raise knees/legs toward chest. Don't just swing legs!"
+        equipment: "Floor / Mat",
+        coachTip: "Press lower back firmly into mat. Lower straightened legs until just above floor, then lift using lower abs."
       },
       {
-        id: "wed-6",
-        name: "Cable Ab Crunch or Machine Crunch",
+        id: "wed-5",
+        name: "Standing Oblique Knee-to-Elbow Crunches",
         targetGroup: "Abs",
         sets: 3,
-        reps: "15-20 reps",
-        equipment: "Cable Tower with Rope or Ab Machine",
-        coachTip: "Kneel below high pulley with rope behind neck. Flex spine downward, bringing ribcage toward pelvis for intense core burn."
+        reps: "20 reps (10 per side)",
+        equipment: "Bodyweight",
+        coachTip: "Bring elbow to meet opposite driving knee with a sharp torso twist to sculpt tight waistlines."
       }
     ]
   },
   {
     dayOfWeek: 4, // Thursday
     dayName: "Thursday",
-    splitName: "Push B (Chest Volume & Shoulder Armor)",
+    splitName: "Push B (Idol Shoulder Armor & Tricep Sculpt)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear the Push B Dungeon",
-    description: "Volume and isolation day for chest, front/side delts, and horseshoe triceps. High blood flow promotes rapid recovery and hypertrophy.",
+    questTitle: "[Daily Quest] Clear Push B Home Idol Sculpt",
+    description: "Focus on shoulder width and tricep definition to give your upper body clean, crisp proportions.",
     xpReward: 500,
     exercises: [
       {
         id: "thu-1",
-        name: "Flat Dumbbell Bench Press or Chest Machine",
-        targetGroup: "Chest",
+        name: "Diamond / Close-Grip Push-Ups",
+        targetGroup: "Triceps",
         sets: 4,
-        reps: "8-10 reps",
-        equipment: "Dumbbells / Chest Press Machine",
-        coachTip: "Lower dumbbells deep until thumbs touch outer chest level, press up and converge slightly at top."
+        reps: "10-12 reps",
+        equipment: "Floor or Elevated Bench",
+        coachTip: "Form a diamond with thumbs and index fingers under chest. Targets triceps and inner chest."
       },
       {
         id: "thu-2",
-        name: "Smith Machine Seated Shoulder Press",
+        name: "Standing Lateral Raises (Dumbbells or Bands)",
         targetGroup: "Shoulders",
-        sets: 3,
-        reps: "10-12 reps",
-        equipment: "Smith Machine & Upright Bench",
-        coachTip: "Grip slightly wider than shoulders. Lower bar to chin/upper chest level, press smoothly."
+        sets: 4,
+        reps: "15 reps",
+        equipment: "Dumbbells or Bands",
+        coachTip: "Raise arms out to sides until parallel to floor. Builds wide idol shoulders that make your waist look smaller."
       },
       {
         id: "thu-3",
-        name: "Standing Cable Crossover / Fly",
+        name: "Decline Push-Ups (Feet Elevated on Chair)",
         targetGroup: "Chest",
         sets: 3,
-        reps: "12-15 reps",
-        equipment: "Dual Cable Tower",
-        coachTip: "Set pulleys high. Step forward, keep slight elbow bend, and bring hands together in front of waist with a hard chest squeeze."
+        reps: "10-12 reps",
+        equipment: "Chair / Couch",
+        coachTip: "Elevating feet shifts focus to upper chest and anterior delts for a complete, square chest profile."
       },
       {
         id: "thu-4",
-        name: "Dumbbell Lateral Raises",
-        targetGroup: "Shoulders",
-        sets: 4,
+        name: "Overhead Tricep Extension (Dumbbell or Band)",
+        targetGroup: "Triceps",
+        sets: 3,
         reps: "12-15 reps",
-        equipment: "Dumbbells",
-        coachTip: "Raise weights to sides until arms are parallel to floor. Imagine pouring water out of a pitcher at top."
+        equipment: "Dumbbell or Resistance Band",
+        coachTip: "Keep elbows pointing forward overhead. Lower weight behind head for deep long-head tricep stretch."
       },
       {
         id: "thu-5",
-        name: "Assisted Machine Dips or Skull Crushers",
-        targetGroup: "Triceps",
+        name: "Idol High Plank Hold",
+        targetGroup: "Abs",
         sets: 3,
-        reps: "10-12 reps",
-        equipment: "Assisted Dip Machine or Pre-fixed Barbell",
-        coachTip: "For dips: keep torso vertical to keep tension on triceps rather than chest. For skull crushers: lower bar to forehead."
-      },
-      {
-        id: "thu-6",
-        name: "Single-Arm Cable Tricep Kickback / Pushdown",
-        targetGroup: "Triceps",
-        sets: 3,
-        reps: "15 reps per side",
-        equipment: "Cable Tower (No attachment / D-Handle)",
-        coachTip: "Extend arm fully backward, locking out elbow completely to target tricep lateral and medial heads."
+        reps: "60 seconds hold",
+        equipment: "Floor / Mat",
+        coachTip: "Hold top of push-up position with glutes locked and belly button drawn in tight."
       }
     ]
   },
   {
     dayOfWeek: 5, // Friday
     dayName: "Friday",
-    splitName: "Pull B (Back Thickness & Bicep Volume)",
+    splitName: "Pull B (Idol Back Thickness & Arm Definition)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear the Pull B Dungeon",
-    description: "Build upper back thickness and biceps fullness. Planet Fitness machine rows and straight-arm pulldowns isolate lats without lower back fatigue.",
+    questTitle: "[Daily Quest] Clear Pull B Home Idol Sculpt",
+    description: "Back thickness and arm vascularity sculpting using home equipment and targeted posture holds.",
     xpReward: 500,
     exercises: [
       {
         id: "fri-1",
-        name: "Close-Grip / Neutral Grip Lat Pulldown",
+        name: "Single-Arm Dumbbell / Backpack Rows",
         targetGroup: "Back",
         sets: 4,
-        reps: "8-10 reps",
-        equipment: "Lat Pulldown Station with V-Handle",
-        coachTip: "Palms facing each other. Pull handle down to chest while arching upper back and pulling shoulders down."
+        reps: "12-15 reps per side",
+        equipment: "Dumbbell or Weighted Backpack",
+        coachTip: "Brace non-working hand on chair. Pull elbow straight toward ceiling, squeezing lat hard at top."
       },
       {
         id: "fri-2",
-        name: "Chest-Supported Machine Row or Smith Row",
+        name: "Idol Prone Y-T-W Posture Raises",
         targetGroup: "Back",
-        sets: 4,
-        reps: "10-12 reps",
-        equipment: "Seated Row Machine",
-        coachTip: "Let weight stretch your shoulder blades forward at start of rep, then pull handles back and squeeze shoulder blades hard."
+        sets: 3,
+        reps: "10 reps each position (30 total)",
+        equipment: "Floor / Mat",
+        coachTip: "Form Y, T, and W shapes with arms lying face down. Strengthens rotator cuff and upper back for confident stage posture."
       },
       {
         id: "fri-3",
-        name: "Straight-Arm Lat Pulldown",
-        targetGroup: "Back",
-        sets: 3,
+        name: "Hammer Curls (Neutral Grip)",
+        targetGroup: "Biceps",
+        sets: 4,
         reps: "12-15 reps",
-        equipment: "High Cable Pulley with Straight Bar or Rope",
-        coachTip: "Keep arms straight with locked elbows. Push bar down in an arc from eye level down to thighs using pure lat strength."
+        equipment: "Dumbbells",
+        coachTip: "Palms facing each other. Builds forearm thickness and bicep height."
       },
       {
         id: "fri-4",
-        name: "Reverse Pec Deck Machine (Rear Delts)",
+        name: "Doorframe Isometric Lat Squeeze",
         targetGroup: "Back",
-        sets: 4,
-        reps: "15 reps",
-        equipment: "Pec Deck Machine (Reverse Seat)",
-        coachTip: "Sit facing machine pad. Push handles outward and backward using rear shoulders, keeping arms level with shoulders."
+        sets: 3,
+        reps: "30 seconds hold",
+        equipment: "Doorframe",
+        coachTip: "Stand inside doorway, press elbows outward against frame hard for 30 seconds to activate lat fibers."
       },
       {
         id: "fri-5",
-        name: "Preacher Curl Machine or EZ-Bar Curl",
-        targetGroup: "Biceps",
-        sets: 4,
-        reps: "10-12 reps",
-        equipment: "Preacher Curl Machine / Pre-fixed Bar",
-        coachTip: "Rest triceps firmly on pad. Lower weight until arms are almost straight, then curl up without lifting elbows off pad."
-      },
-      {
-        id: "fri-6",
-        name: "Cable Rope Hammer Curls",
-        targetGroup: "Biceps",
-        sets: 3,
-        reps: "12-15 reps",
-        equipment: "Low Pulley with Rope Attachment",
-        coachTip: "Keep wrists straight and thumbs pointing up. Constant cable tension creates incredible bicep pump."
-      },
-      {
-        id: "fri-7",
-        name: "Reverse-Grip EZ-Bar / Cable Curls & Wrist Extensions",
+        name: "Wrist Curls & Extensions",
         targetGroup: "Forearms",
-        sets: 4,
-        reps: "12-15 reps",
-        equipment: "Pre-fixed Barbell or Straight Cable Bar",
-        coachTip: "Grip the bar overhand (palms facing down). Keeps constant tension on the brachioradialis and forearm extensors for thick, vascular Popeye forearms!"
+        sets: 3,
+        reps: "15-20 reps",
+        equipment: "Light Dumbbells or Water Bottles",
+        coachTip: "Curl wrists up and down over edge of knee for defined forearm vascularity."
       }
     ]
   },
   {
     dayOfWeek: 6, // Saturday
     dayName: "Saturday",
-    splitName: "Legs & Abs B (Hamstring, Glute & Core)",
+    splitName: "Legs & Core B (Idol Glutes, Hamstrings & 11-Line Abs)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear the Legs & Abs B Dungeon",
-    description: "Complete your 6-day training cycle with posterior chain strength and core hardening. Finish strong before Sunday mana restoration!",
+    questTitle: "[Daily Quest] Clear Legs & Core B Home Idol Sculpt",
+    description: "Complete your 6-day training split with glute/hamstring toning and K-Pop 11-line ab sculpting before Sunday rest day!",
     xpReward: 600,
     exercises: [
       {
         id: "sat-1",
-        name: "Smith Machine Squats or Bulgarian Split Squats",
+        name: "Single-Leg Glute Bridges",
         targetGroup: "Legs",
         sets: 4,
-        reps: "8-10 reps",
-        equipment: "Smith Machine & Bench",
-        coachTip: "Position feet slightly forward under bar. Descend until thighs are parallel to floor, drive up through whole foot."
+        reps: "12-15 reps per leg",
+        equipment: "Floor / Mat",
+        coachTip: "Drive through heel of grounded foot, lifting hips until torso and thigh form a straight line. Squeeze glutes hard."
       },
       {
         id: "sat-2",
-        name: "Seated Leg Curls",
+        name: "Romanian Deadlifts (Dumbbells or Backpack)",
         targetGroup: "Legs",
         sets: 4,
-        reps: "10-12 reps",
-        equipment: "Seated Leg Curl Station",
-        coachTip: "Control the return weight on every rep. Don't let the weight stack slam!"
+        reps: "12-15 reps",
+        equipment: "Dumbbells or Weighted Backpack",
+        coachTip: "Soft bend in knees. Hinge hips backward until hamstrings stretch deep, then squeeze glutes forward to stand."
       },
       {
         id: "sat-3",
-        name: "Wide-Stance High Foot Leg Press",
+        name: "K-Pop Choreography Skater Hops",
         targetGroup: "Legs",
         sets: 3,
-        reps: "12-15 reps",
-        equipment: "Leg Press Machine",
-        coachTip: "Place feet high and wide on platform to shift emphasis onto glutes and hamstrings."
+        reps: "45 seconds work",
+        equipment: "Bodyweight",
+        coachTip: "Hop laterally from foot to foot like an ice skater, absorbing landing smoothly. Great lateral glute & cardio conditioner."
       },
       {
         id: "sat-4",
-        name: "Standing Calf Raises on Smith Machine or Leg Press",
-        targetGroup: "Legs",
+        name: "K-Pop Idol Russian Twists",
+        targetGroup: "Abs",
         sets: 4,
-        reps: "15-20 reps",
-        equipment: "Smith Machine with Step or Leg Press",
-        coachTip: "Lower heels deep for maximum stretch, pause 1 second at bottom, rise onto tiptoes and hold 1 second at top."
+        reps: "20 twists (10 per side)",
+        equipment: "Floor / Light Weight",
+        coachTip: "Balance on sit bones with feet slightly elevated. Rotate torso smoothly side to side."
       },
       {
         id: "sat-5",
-        name: "Russian Twists or Cable Woodchops",
+        name: "11-Line Abs Elbow Plank Hold",
         targetGroup: "Abs",
         sets: 3,
-        reps: "15 reps per side",
-        equipment: "Dumbbell or Cable Tower",
-        coachTip: "Rotate torso from side to side, engaging internal and external obliques to tighten waistline."
-      },
-      {
-        id: "sat-6",
-        name: "Plank Hold / Ab Wheel Rollout",
-        targetGroup: "Abs",
-        sets: 3,
-        reps: "45-60 seconds hold",
-        equipment: "Mat / Ab Wheel",
-        coachTip: "Brace core as if taking a punch. Keep glutes squeezed and spine straight."
+        reps: "60 seconds hold",
+        equipment: "Floor / Mat",
+        coachTip: "Squeeze glutes and draw belly button toward spine to carve deep vertical core definition."
       }
     ]
   }
 ];
 
+export const PLANET_FITNESS_PPL_ROUTINE = KPOP_HOME_WORKOUT_ROUTINE;
+
 export function getTodayWorkout(): WorkoutDay {
   const dayIndex = new Date().getDay(); // 0 = Sunday, 1 = Monday...
-  return PLANET_FITNESS_PPL_ROUTINE.find(d => d.dayOfWeek === dayIndex) || PLANET_FITNESS_PPL_ROUTINE[0];
+  return KPOP_HOME_WORKOUT_ROUTINE.find(d => d.dayOfWeek === dayIndex) || KPOP_HOME_WORKOUT_ROUTINE[0];
 }
