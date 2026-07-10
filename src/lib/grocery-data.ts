@@ -227,23 +227,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "3/4 cup (170g / 6 oz)",
     coachNote: "FOUR tubs (128 oz / 1 full Gallon / 16 cups total) guaranteed! Provides 100% enough Greek Yogurt for 7 full days of Afternoon bowls (1 cup / 8 oz) AND Nighttime Casein Fluff (~3/4 cup / 5.7 oz) plus nearly a full tub buffer without running out!",
-    cuisine: ["China", "Japan", "Puerto Rico", "Mexico"]
-  },
-  {
-    id: "g-12k",
-    upc: "078742136039", // Great Value Greek Yogurt
-    name: "Great Value Plain Nonfat Greek Yogurt (THREE 32 oz tubs / 96 oz total)",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
-    category: "Protein",
-    priceEst: "$11.94 (THREE 32 oz tubs / 96 oz total)",
-    calories: 90,
-    protein: 16,
-    carbs: 6,
-    fat: 0,
-    servingSize: "3/4 cup (170g / 6 oz)",
-    coachNote: "THREE tubs (96 oz / 12 cups total) guaranteed! Provides ~1.7 cups per day covering 7 full days of Afternoon bowls (1 cup) and Nighttime Casein Fluff (~0.7 cup) alongside 6.0 lbs of meat!",
-    cuisine: ["Korea"]
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-13",
@@ -680,18 +664,18 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-40",
     upc: "078742358999",
-    name: "Great Value Frozen Shelled Edamame (Two 12 oz bags / 24 oz total)",
+    name: "Great Value Frozen Shelled Edamame (ONE 12 oz bag)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Produce",
-    priceEst: "$4.56 (Two 12 oz bags at $2.28 ea)",
+    priceEst: "$3.09 (12 oz bag)",
     calories: 100,
     protein: 9,
     carbs: 7,
     fat: 4,
     servingSize: "1/2 cup (75g)",
-    coachNote: "Two bags (24 oz / 680g total / 9 servings) guaranteed! Rich in plant protein and fiber to provide 100% enough edamame for 7 full days of Lunch bowls.",
-    cuisine: ["Japan"]
+    coachNote: "Rich in plant protein and fiber to pair with your Korean Beef Bulgogi and Japanese lunch bowls.",
+    cuisine: ["Japan", "Korea"]
   },
   {
     id: "g-41",
@@ -845,8 +829,8 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main & Featured Blueprint",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
-    estCostPerWeek: "$49.16 Weekly Consumables / $37.55 Periodic Restock",
-    description: "The #1 Main & Featured Korean K-Fit K-Pop Idol Lean Muscle cutting plan featuring 6.0 lbs of total meat (ONE Great Value ~5.0 lb Family Pack of clean Chicken Breasts + ONE ~1.0 lb Tray of All Natural Lean Beef Stew Meat for authentic Beef Bulgogi!), 5-Egg Kimchi Scrambles (using 35 of 36 eggs in your weekly tray!), THREE 32 oz tubs of Greek Yogurt (96 oz covering 7 days of afternoon & night bowls!), edamame, steamed broccoli, and your signature Korean Dirty Chai Lattes (Tazo Spiced Chai Liquid Concentrate + Instant Coffee Shot + Silk Soy Milk)! Plus hot brewed 100% Green Tea bags paired with all non-latte meals and a once-weekly Samyang Buldak Spicy Ramen treat meal! Tuned to 170g daily protein at $49.16 weekly consumables ($37.55 restock)!",
+    estCostPerWeek: "$50.05 Weekly Consumables / $37.55 Periodic Restock",
+    description: "The #1 Main & Featured Korean K-Fit K-Pop Idol Lean Muscle cutting plan featuring 6.0 lbs of total meat: ONE Great Value ~5.0 lb Family Pack of clean Chicken Breasts PLUS ONE ~1.0 lb Tray of All Natural Lean Beef Stew Meat for authentic Beef Bulgogi bowls! Includes 5-Egg Kimchi Scrambles (using 35 of 36 eggs in your weekly tray!), FOUR 32 oz tubs of Greek Yogurt (1 Gallon covering 7 days of afternoon & night bowls!), edamame, steamed broccoli, and your signature Korean Dirty Chai Lattes (Tazo Spiced Chai Liquid Concentrate + Instant Coffee Shot + Silk Soy Milk)! Plus hot brewed 100% Green Tea bags paired with all non-latte meals and a once-weekly Samyang Buldak Spicy Ramen treat meal! Tuned to 170g+ daily protein at $50.05 weekly consumables ($37.55 restock)!",
     meals: [
       {
         name: "Breakfast: Seoul Dirty Chai Latte & Kimchi Egg Scramble",
@@ -862,18 +846,18 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 22
       },
       {
-        name: "Lunch: Korean Beef Bulgogi Bowl & Edamame (or Chicken Bulgogi)",
+        name: "Lunch: Authentic Korean Beef Bulgogi (or BBQ Chicken) & Edamame Bowl",
         time: "12:30 PM",
         ingredients: [
-          "4 oz seared All Natural Lean Beef Stew Meat (or Chicken Breast) seared with Bibigo Korean BBQ Marinade & Sauce, garlic & ginger (180 kcal, 26g p)",
+          "4.0 oz seared All Natural Lean Beef Stew Meat (or 5.5 oz Chicken Breast) glazed with Bibigo Korean BBQ Marinade & Sauce, garlic & ginger (195 kcal, 32g p)",
           "1/2 cup steamed shelled edamame & 2 tbsp Nasoya Kimchi (115 kcal, 10g p, 9g c)",
           "1 cup cooked White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
           "1 cup hot brewed 100% Green Tea (0 kcal, clean metabolism & digestion support)"
         ],
         calories: 525,
-        protein: 50,
+        protein: 53,
         carbs: 58,
-        fat: 6
+        fat: 4
       },
       {
         name: "Afternoon Perk: 2nd Iced Dirty Chai Latte & Casein Bowl (or Weekly Buldak Treat!)",
