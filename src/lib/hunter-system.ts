@@ -264,13 +264,14 @@ export function allocateStatPoint(stat: keyof Omit<HunterStats, 'availablePoints
 export function updateWeight(newWeight: number): HunterState {
   const state = loadHunterState();
   state.profile.currentWeight = newWeight;
+  // Always save the weight first so it persists in localStorage
+  saveHunterState(state);
   if (!state.completedQuestsToday.weighIn) {
     state.completedQuestsToday.weighIn = true;
-    awardXp(100, 'per'); // 100 XP for daily weigh in
-  } else {
     saveHunterState(state);
+    awardXp(100, 'per'); // 100 XP for daily weigh in
   }
-  return state;
+  return loadHunterState();
 }
 
 export function addCustomQuest(title: string, xpReward: number = 100): HunterState {

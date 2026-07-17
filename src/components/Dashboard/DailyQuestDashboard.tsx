@@ -53,18 +53,20 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
 
   const handleStatUpgrade = (stat: 'str' | 'agi' | 'vit' | 'int' | 'per') => {
     allocateStatPoint(stat);
+    setState(loadHunterState());
   };
 
   const handleDrinkWater = () => {
-    const nextState = { ...state };
-    nextState.mp = Math.min(100, nextState.mp + 20);
-    if (!nextState.completedQuestsToday.hydration && nextState.mp >= 100) {
-      nextState.completedQuestsToday.hydration = true;
-      saveHunterState(nextState);
+    const current = loadHunterState();
+    current.mp = Math.min(100, current.mp + 20);
+    if (!current.completedQuestsToday.hydration && current.mp >= 100) {
+      current.completedQuestsToday.hydration = true;
+      saveHunterState(current);
       awardXp(150, 'vit');
     } else {
-      saveHunterState(nextState);
+      saveHunterState(current);
     }
+    setState(loadHunterState());
   };
 
   const handleWeighInSubmit = (e: React.FormEvent) => {
@@ -74,6 +76,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
       updateWeight(val);
       setShowWeightModal(false);
       setNewWeightInput('');
+      setState(loadHunterState());
     }
   };
 
@@ -82,14 +85,17 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
     if (!customQuestTitle.trim()) return;
     addCustomQuest(customQuestTitle.trim(), 100);
     setCustomQuestTitle('');
+    setState(loadHunterState());
   };
 
   const handleToggleCustomQuest = (id: string) => {
     toggleCustomQuest(id);
+    setState(loadHunterState());
   };
 
   const handleDeleteCustomQuest = (id: string) => {
     deleteCustomQuest(id);
+    setState(loadHunterState());
   };
 
   return (
