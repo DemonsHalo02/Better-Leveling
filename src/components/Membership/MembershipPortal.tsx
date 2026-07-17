@@ -70,7 +70,8 @@ export default function MembershipPortal() {
       if (savedUser) {
         try {
           const parsed = JSON.parse(savedUser);
-          if (parsed.email?.toLowerCase() === "ncrossonofficial06@gmail.com") {
+          const emailClean = (parsed.email || "").toLowerCase();
+          if (emailClean === "nickcrossonofficial@outlook.com" || emailClean === "ncrossonofficial06@gmail.com") {
             parsed.tier = "S-Rank VIP Guild";
             localStorage.setItem("hunter_vip_tier", "S-Rank VIP Guild");
           }
@@ -89,7 +90,8 @@ export default function MembershipPortal() {
       // Check Firebase Auth observer
       const unsubscribe = auth.onAuthStateChanged(async (user: FirebaseUser | null) => {
         if (user && user.email) {
-          const isNickAdmin = user.email.toLowerCase() === "ncrossonofficial06@gmail.com";
+          const userEmailClean = user.email.toLowerCase();
+          const isNickAdmin = userEmailClean === "nickcrossonofficial@outlook.com" || userEmailClean === "ncrossonofficial06@gmail.com";
           if (isNickAdmin) {
             localStorage.setItem("hunter_vip_tier", "S-Rank VIP Guild");
           }
@@ -132,7 +134,8 @@ export default function MembershipPortal() {
     setLoading(true);
 
     try {
-      if (email.trim().toLowerCase() === "ncrossonofficial06@gmail.com") {
+      const emailClean = email.trim().toLowerCase();
+      if (emailClean === "nickcrossonofficial@outlook.com" || emailClean === "ncrossonofficial06@gmail.com") {
         if (password !== "Charminlikeasnake06!") {
           throw new Error("⚠️ Incorrect secret password for Creator Admin account!");
         }
@@ -151,7 +154,7 @@ export default function MembershipPortal() {
         const adminName = displayName.trim() || "Shadow Monarch Nick";
         const adminUser: LocalAuthUser = {
           uid: "admin-shadow-monarch-001",
-          email: "ncrossonofficial06@gmail.com",
+          email: emailClean === "ncrossonofficial06@gmail.com" ? "ncrossonofficial06@gmail.com" : "nickcrossonofficial@outlook.com",
           displayName: adminName,
           tier: "S-Rank VIP Guild",
         };

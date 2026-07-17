@@ -12,7 +12,7 @@ interface SystemSidebarProps {
 }
 
 export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebarProps) {
-  const [isAdmin, setIsAdmin] = React.useState(false);
+  const [isAdmin, setIsAdmin] = React.useState(() => isSystemAdmin());
 
   React.useEffect(() => {
     const checkAdmin = () => {
@@ -144,15 +144,19 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
       </nav>
 
       {/* Mobile Fixed Bottom Navigation Bar */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#050811]/95 backdrop-blur-2xl border-t border-system-blue/30 px-1 py-1.5 shadow-[0_-10px_30px_rgba(0,0,0,0.9)]">
-        <div className="flex items-center justify-between overflow-x-auto no-scrollbar gap-1 max-w-xl mx-auto px-1">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#050811]/95 backdrop-blur-2xl border-t border-system-blue/30 py-1.5 shadow-[0_-10px_30px_rgba(0,0,0,0.9)]">
+        {/* Subtle scroll indicator fades on edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#050811] to-transparent pointer-events-none z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-[#050811] via-[#050811]/80 to-transparent pointer-events-none z-10" />
+        
+        <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-1.5 max-w-2xl mx-auto px-3.5 scroll-smooth">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`relative flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all duration-200 select-none flex-shrink-0 min-w-[56px] ${
+                className={`relative flex flex-col items-center justify-center py-1.5 px-2.5 rounded-xl transition-all duration-200 select-none flex-shrink-0 min-w-[58px] ${
                   isActive
                     ? item.id === 'membership'
                       ? 'text-system-gold bg-system-gold/15 font-black shadow-[0_0_12px_rgba(255,215,0,0.3)]'

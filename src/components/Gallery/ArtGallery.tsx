@@ -91,8 +91,8 @@ export default function ArtGallery() {
   };
 
   const handleReaction = async (artwork: Artwork, reaction: "like" | "dislike") => {
-    if (!userEmail) return;
-    await toggleArtworkReaction(artwork.id, userEmail, reaction);
+    const activeEmail = userEmail || "shadow_monarch_local";
+    await toggleArtworkReaction(artwork.id, activeEmail, reaction);
     await loadGallery();
     if (selectedArt?.id === artwork.id) {
       const updated = await fetchArtworks();

@@ -388,15 +388,24 @@ export function toggleQuestCompletion(questType: keyof HunterState['completedQue
 export function isSystemAdmin(): boolean {
   if (typeof window === 'undefined') return false;
   if (localStorage.getItem("hunter_is_admin") === "true") return true;
+  if (localStorage.getItem("hunter_is_admin") === "false") return false;
   try {
     const savedUser = localStorage.getItem("hunter_current_user");
     if (savedUser) {
       const parsed = JSON.parse(savedUser);
-      if ((parsed.email || "").trim().toLowerCase() === "ncrossonofficial06@gmail.com") {
+      const email = (parsed.email || "").trim().toLowerCase();
+      if (email === "nickcrossonofficial@outlook.com" || email === "ncrossonofficial06@gmail.com") {
         return true;
       }
+    }
+    // If running on local device with default or Nick's profile, ensure Nick gets admin privileges
+    const state = loadHunterState();
+    const name = (state.profile?.name || "").toLowerCase();
+    if (name.includes("nick crosson") || name.includes("shadow monarch nick")) {
+      return true;
     }
   } catch {}
   return false;
 }
+
 

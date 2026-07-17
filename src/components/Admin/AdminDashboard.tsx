@@ -44,7 +44,7 @@ const DEFAULT_MEMBERS: GuildMember[] = [
   {
     id: "user-admin-001",
     name: "Nick Crosson",
-    email: "ncrossonofficial06@gmail.com",
+    email: "nickcrossonofficial@outlook.com",
     level: 100,
     rank: "Shadow Monarch",
     tier: "S-Rank VIP Guild",
