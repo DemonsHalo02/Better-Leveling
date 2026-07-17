@@ -1,7 +1,7 @@
 export interface Exercise {
   id: string;
   name: string;
-  targetGroup: 'Chest' | 'Back' | 'Shoulders' | 'Biceps' | 'Triceps' | 'Forearms' | 'Legs' | 'Abs' | 'Full Body';
+  targetGroup: 'Chest' | 'Back' | 'Shoulders' | 'Biceps' | 'Triceps' | 'Forearms' | 'Legs' | 'Abs' | 'Full Body' | 'Nutrition / Batch Prep' | 'Cardio';
   sets: number;
   reps: string;
   equipment: string;
@@ -21,387 +21,451 @@ export interface WorkoutDay {
   exercises: Exercise[];
 }
 
-export const JAPANESE_HOME_WORKOUT_ROUTINE: WorkoutDay[] = [
+export const PLANET_FITNESS_LEWISTON_6DAY_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
-    splitName: "System Restoration / K-Pop Idol Dojo Recovery (Rest Day)",
+    splitName: "System Restoration / Active Recovery & Green Tea Detox (Rest Day)",
     isRestDay: true,
-    questTitle: "[Daily Quest] K-Pop Idol Active Recovery & Green Tea Detox",
-    description: "Sunday is your official K-Pop Idol Rest & Recomposition Day! Focus on full-body mobility stretching, 100% green tea hydration, and recovery to prepare your physique for Monday's workouts and meal prep.",
+    questTitle: "[Daily Quest] Planet Fitness Active Recovery & Green Tea Detox",
+    description: "Sunday is your official System Restoration Day! Focus on 20-30 minutes of gentle incline walking on Planet Fitness treadmills, full-body foam rolling/stretching, and 100% green tea hydration to prepare your physique for Monday's grocery run, batch meal prep, and Push A training.",
     xpReward: 250,
     exercises: [
       {
         id: "sun-1",
-        name: "K-Pop Idol Full Body Aesthetic Mobility & Posture Stretching [Beginner -> Expert]",
-        targetGroup: "Full Body",
+        name: "Planet Fitness Incline Treadmill Active Recovery Walk [20-30 Minutes]",
+        targetGroup: "Cardio",
         sets: 1,
-        reps: "15-20 mins",
-        equipment: "Home Mat / Floor",
-        coachTip: "[Beginner: Gentle child's pose & doorway chest opener | Intermediate: Kneeling hip flexor & thoracic stretches | Expert: Full pancake split & bridge progressions] Open your posture and relieve muscle soreness."
+        reps: "20-30 mins (@ 2.5-3.0 MPH, 6-10% Incline)",
+        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
+        coachTip: "Set treadmill to a moderate incline (6-10%) and steady pace (2.5-3.0 MPH). Low-impact steady-state walking increases blood flow, flushes metabolic waste, and burns fat without stressing joints or skin."
       },
       {
         id: "sun-2",
+        name: "Full Body Stretching, Posture Mobility & PF Stretching Area Mat Work",
+        targetGroup: "Full Body",
+        sets: 1,
+        reps: "15-20 mins",
+        equipment: "Stretching Area Mat & Foam Roller (Lewiston PF)",
+        coachTip: "Use the PF stretching area mats and foam rollers to release tension in chest, lats, hips, and hamstrings before the Monday training week begins."
+      },
+      {
+        id: "sun-3",
         name: "Active Hydration & 100% Green Tea Antioxidant Protocol",
         targetGroup: "Full Body",
         sets: 1,
-        reps: "1 Gallon Water + Green Tea",
-        equipment: "Water Jug",
-        coachTip: "Hydrate thoroughly with 1 gallon of water and antioxidant green tea to recover your muscles for Monday's workouts and Korean K-Fit meal prep!"
+        reps: "1 Gallon Water + Green Tea Bags",
+        equipment: "Water Jug & Green Tea",
+        coachTip: "Hydrate thoroughly with 1 gallon of water and antioxidant green tea to support skin elasticity during weight loss and recover your muscles for Monday's workouts and Chinese Shred meal prep!"
       }
     ]
   },
   {
     dayOfWeek: 1, // Monday
     dayName: "Monday",
-    splitName: "Push A (K-Pop Idol Chest & Shoulders) + Korean Monday Meal Prep",
+    splitName: "Push A (Chest, Anterior Delts, Triceps) + Monday Grocery & Meal Prep",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Push A & Korean K-Fit Monday Batch Meal Prep",
-    description: "Official Monday Grocery Run & Weekly Batch Meal Prep Day + K-Pop Idol Lean Push workout for chest, shoulders, and triceps. Hit Auburn ME Walmart for your $46.66 weekly list ($37.55 restock) and prep your Korean Bulgogi & Dirty Chai Lattes!",
+    questTitle: "[Daily Quest] Clear Push A & Chinese Shred Monday Batch Meal Prep",
+    description: "Official Monday Grocery Run & Weekly Batch Meal Prep Day + Push A workout using Lewiston Maine Planet Fitness equipment! Hit Auburn ME Walmart for your $49.92 weekly list ($30.89 restock), batch prep your Chinese Shred meals for Tuesday start, and crush your chest/shoulder/tricep workout.",
     xpReward: 500,
     exercises: [
       {
         id: "mon-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Korean K-Fit Batch Meal Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Chinese Shred Batch Meal Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Korean Bulgogi & Dirty Chai Prep",
+        reps: "Chinese Shred Batch Prep (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your under-$50 Korean Weekly Consumables ($46.66) at Auburn ME Walmart, batch-sear your Bulgogi Chicken Breasts, scramble your kimchi eggs, and stage your Tazo Spiced Chai + Silk Soy Milk!"
+        coachTip: "Pick up your under-$50 Chinese Shred Weekly Consumables ($49.92) at Auburn ME Walmart. Batch-cook chicken breasts, ground beef, rice, and broccoli on Monday so your meal prep eating begins seamlessly on Tuesday!"
       },
       {
         id: "mon-1",
-        name: "Dojo Push-Ups Progression [Beginner -> Intermediate -> Expert]",
+        name: "Planet Fitness Smith Machine Flat Bench Press [Chest Compound]",
         targetGroup: "Chest",
         sets: 4,
-        reps: "12-15 reps",
-        equipment: "Floor or Chair/Couch Edge",
-        coachTip: "[Beginner: Wall or Incline Push-Ups on couch edge | Intermediate: Strict Dojo Floor Push-Ups with 2s negative | Expert: Archer Push-Ups or Decline Diamond Push-Ups] Keep body rigid from heels to crown."
+        reps: "8-10 reps",
+        equipment: "Smith Machine & Flat Bench (Lewiston PF)",
+        coachTip: "Position flat bench centrally under Smith bar. Lower bar smoothly to mid-chest with 2-second negative, drive up explosively. Builds dense pectoral armor while maintaining control."
       },
       {
         id: "mon-2",
-        name: "Pike Push-Ups Progression [Beginner -> Intermediate -> Expert]",
-        targetGroup: "Shoulders",
+        name: "Planet Fitness Seated Chest Press Machine or Incline Dumbbell Press",
+        targetGroup: "Chest",
         sets: 3,
         reps: "10-12 reps",
-        equipment: "Floor / Bodyweight",
-        coachTip: "[Beginner: Knee Pike Push-Ups | Intermediate: Standard Inverted V Pike Push-Ups | Expert: Feet-Elevated Pike Push-Ups or Handstand Push-Up Negatives] Build rounded samurai shoulder armor."
+        equipment: "Chest Press Machine or Dumbbells & Incline Bench",
+        coachTip: "Adjust seat height so handles align with upper chest. Squeeze chest hard at full extension without locking elbows to maintain constant muscular tension."
       },
       {
         id: "mon-3",
-        name: "Tricep Extension Dips [Beginner -> Intermediate -> Expert]",
-        targetGroup: "Triceps",
+        name: "Dual Adjustable Pulley / Cable Crossover Flys [Chest Isolation]",
+        targetGroup: "Chest",
         sets: 3,
         reps: "12-15 reps",
-        equipment: "Sturdy Chair or Couch",
-        coachTip: "[Beginner: Chair Dips with bent knees flat on floor | Intermediate: Straight-leg Chair Dips | Expert: Elevated-feet Dips or Diamond Floor Push-Ups] Lock out triceps hard at the top."
+        equipment: "Cable Cross Station (Lewiston PF)",
+        coachTip: "Set pulleys to mid/high position. Step forward with one foot, bring handles together in front of chest in a hugging motion with a 1-second squeeze."
       },
       {
         id: "mon-4",
-        name: "Samurai Wall Slides & Posture Correction",
+        name: "Planet Fitness Seated Shoulder Press Machine or Dumbbell Overhead Press",
         targetGroup: "Shoulders",
-        sets: 3,
-        reps: "15 reps",
-        equipment: "Wall",
-        coachTip: "[Beginner -> Expert] Press lower back, elbows, and wrists against wall. Slide arms overhead while keeping contact to open chest and improve posture."
+        sets: 4,
+        reps: "8-10 reps",
+        equipment: "Shoulder Press Machine or Dumbbells",
+        coachTip: "Keep core braced against back pad. Press upward overhead, stopping just short of lockout to keep tension on anterior and medial deltoids."
       },
       {
         id: "mon-5",
-        name: "Isometric Dojo Chest Squeeze Hold",
-        targetGroup: "Chest",
-        sets: 3,
-        reps: "30-45 seconds hold",
-        equipment: "Towel or Resistance Band",
-        coachTip: "[Beginner: 30s Hold | Intermediate: 45s Hold | Expert: 60s Pulse & Hold] Squeeze hands together against towel/band at chest height with maximum tension."
+        name: "Planet Fitness Cable Tricep Pushdowns (Rope or V-Bar Attachment)",
+        targetGroup: "Triceps",
+        sets: 4,
+        reps: "12-15 reps",
+        equipment: "Cable Pulley Station & Rope/V-Bar",
+        coachTip: "Pin upper arms firmly to sides. Push down and spread rope ends at the bottom, locking out triceps for maximum horseshoe contraction."
+      },
+      {
+        id: "mon-cardio",
+        name: "Daily Planet Fitness Treadmill Walk [20-30 Minutes Fat Burning Target]",
+        targetGroup: "Cardio",
+        sets: 1,
+        reps: "20-30 mins (@ 3.0 MPH, 5-8% Incline)",
+        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
+        coachTip: "Complete your 20-30 minutes of steady incline walking on the treadmill right after lifting. Optimal for burning 1 lb/week without muscle loss or loose skin!"
       }
     ]
   },
   {
     dayOfWeek: 2, // Tuesday
     dayName: "Tuesday",
-    splitName: "Pull A (K-Pop Idol Back V-Taper & Bicep Peak)",
+    splitName: "Pull A (Upper Back Width, Lats, Rear Delts, Biceps) - Start Eating Prep!",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Pull A K-Pop Idol V-Taper Sculpt",
-    description: "Sculpt upper back V-taper, posture, and bicep aesthetic strength at home using doorframe rows, backpacks/dumbbells, or resistance bands.",
+    questTitle: "[Daily Quest] Clear Pull A V-Taper Sculpt & Start Eating Prep",
+    description: "First day of eating your prepped Chinese Shred meals + Pull A workout at Lewiston Maine Planet Fitness! Build wide lats, upper back thickness, and bicep peaks using cable stations and machines.",
     xpReward: 500,
     exercises: [
       {
         id: "tue-1",
-        name: "Bodyweight Rows Progression [Beginner -> Intermediate -> Expert]",
+        name: "Planet Fitness Wide-Grip Lat Pulldown Machine [Back V-Taper Width]",
         targetGroup: "Back",
         sets: 4,
-        reps: "12-15 reps",
-        equipment: "Sturdy Doorframe / Table / Bar",
-        coachTip: "[Beginner: Doorframe Isometric Rows | Intermediate: Incline Table/Sheet Rows | Expert: Strict Pull-Ups or Slow-Negative Table Rows] Drive elbows back and squeeze shoulder blades."
+        reps: "8-10 reps",
+        equipment: "Lat Pulldown Machine (Lewiston PF)",
+        coachTip: "Take a wide grip on the bar. Drive elbows straight down toward ribs while lifting chest up. Squeeze lats hard at bottom of movement."
       },
       {
         id: "tue-2",
-        name: "Bent-Over Backpack / Dumbbell Rows [Beginner -> Expert]",
+        name: "Planet Fitness Seated Cable Row (Close-Grip V-Bar or Wide Attachment)",
         targetGroup: "Back",
         sets: 4,
-        reps: "12-15 reps",
-        equipment: "Dumbbells or Loaded Backpack",
-        coachTip: "[Beginner: Single-arm supported row | Intermediate: Double-arm bent row | Expert: 3-second hold at contraction] Pull weight into lower ribcage keeping flat spine."
+        reps: "10-12 reps",
+        equipment: "Seated Cable Row Station (Lewiston PF)",
+        coachTip: "Keep slight bend in knees and upright spine. Pull V-bar directly into lower ribcage, squeezing shoulder blades together for 2 full seconds."
       },
       {
         id: "tue-3",
-        name: "Prone Reverse Snow Angels [Beginner -> Expert]",
-        targetGroup: "Back",
+        name: "Pec Deck Rear Delt Fly Machine or Cable Face Pulls",
+        targetGroup: "Shoulders",
         sets: 3,
         reps: "12-15 reps",
-        equipment: "Floor / Mat",
-        coachTip: "[Beginner: Unweighted sweep | Intermediate: Hold light water bottles | Expert: Hover chest and legs simultaneously] Strengthen upper back and rear deltoids."
+        equipment: "Rear Delt Machine or Cable Pulley Station",
+        coachTip: "Face toward the machine pad or use rope attachment on high pulley. Pull weight out and back to target rear deltoids and upper trap posture."
       },
       {
         id: "tue-4",
-        name: "Samurai Bicep Curls [Beginner -> Intermediate -> Expert]",
+        name: "Planet Fitness Standing EZ-Bar or Dumbbell Bicep Curls",
         targetGroup: "Biceps",
         sets: 4,
-        reps: "12-15 reps",
-        equipment: "Dumbbells, Backpack, or Bands",
-        coachTip: "[Beginner: Standard controlled curls | Intermediate: 3s negative curls | Expert: Zottman curls with twist] Keep elbows pinned to ribs throughout."
+        reps: "10-12 reps",
+        equipment: "Fixed EZ-Bars or Dumbbells (Lewiston PF)",
+        coachTip: "Keep elbows glued to ribs. Curl bar smoothly toward chin with zero body swinging. Lower with a controlled 3-second negative."
       },
       {
         id: "tue-5",
-        name: "Dojo Prone Cobra Posture Hold [Beginner -> Expert]",
-        targetGroup: "Back",
+        name: "Single-Arm Cable Curls or Preacher Curl Machine [Bicep Isolation]",
+        targetGroup: "Biceps",
         sets: 3,
-        reps: "45 seconds hold",
-        equipment: "Floor / Mat",
-        coachTip: "[Beginner: 30s | Intermediate: 45s | Expert: 60s with arm pulses] Lie face down, lift chest and hands off floor with thumbs pointing up."
+        reps: "12-15 reps",
+        equipment: "Preacher Machine or Low Cable Pulley",
+        coachTip: "Isolate bicep peak by keeping upper arm stationary on pad or against ribs. Squeeze peak hard at top contraction."
+      },
+      {
+        id: "tue-cardio",
+        name: "Daily Planet Fitness Treadmill Walk [20-30 Minutes Fat Burning Target]",
+        targetGroup: "Cardio",
+        sets: 1,
+        reps: "20-30 mins (@ 3.0 MPH, 5-8% Incline)",
+        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
+        coachTip: "Complete 20-30 minutes of incline walking on the treadmill after lifting to keep fat oxidation high while preserving lean muscle mass."
       }
     ]
   },
   {
     dayOfWeek: 3, // Wednesday
     dayName: "Wednesday",
-    splitName: "Legs & Core A (K-Pop Idol Lower Body & Core Carve)",
+    splitName: "Legs & Core A (Quads, Hamstrings, Calves, Abdominal Carve)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Legs & Core A K-Pop Idol Carve",
-    description: "High-energy lower body aesthetic power and core conditioning for lean leg definition and carved abdominal armor.",
+    questTitle: "[Daily Quest] Clear Legs & Core A Lower Body Sculpt",
+    description: "High-intensity lower body training and core armor conditioning using Lewiston Maine Planet Fitness leg machines and Captain's Chair abdominal station.",
     xpReward: 600,
     exercises: [
       {
         id: "wed-1",
-        name: "K-Pop Idol Tempo Sumo Squats [Beginner -> Intermediate -> Expert]",
+        name: "Planet Fitness Leg Press Machine [Quad & Glute Compound]",
         targetGroup: "Legs",
         sets: 4,
-        reps: "15-20 reps",
-        equipment: "Bodyweight",
-        coachTip: "[Beginner: Chair-assisted squats | Intermediate: 3s negative Sumo Squats | Expert: Jump Squats or Pistol Squats progression] Keep heels planted and chest proud."
+        reps: "10-12 reps",
+        equipment: "Leg Press Machine (Lewiston PF)",
+        coachTip: "Place feet shoulder-width on sled. Lower sled deeply with control until knees are near 90 degrees without letting lower back lift off pad. Press up through mid-foot."
       },
       {
         id: "wed-2",
-        name: "Bulgarian Split Squats [Beginner -> Intermediate -> Expert]",
+        name: "Planet Fitness Leg Extension Machine [Quad Isolation & Tear Drop]",
         targetGroup: "Legs",
         sets: 3,
-        reps: "10-12 reps per leg",
-        equipment: "Chair / Couch & Bodyweight",
-        coachTip: "[Beginner: Split stationary lunges on floor | Intermediate: Rear foot elevated on couch | Expert: Rear foot elevated + slow bottom pause] Carves glutes and quads."
+        reps: "12-15 reps",
+        equipment: "Leg Extension Machine (Lewiston PF)",
+        coachTip: "Extend legs fully and pause at top for 2 seconds to isolate quad tear-drop (VMO). Lower under strict control."
       },
       {
         id: "wed-3",
-        name: "Dojo High-Knee Agility Intervals [Beginner -> Expert]",
+        name: "Planet Fitness Seated or Lying Leg Curl Machine [Hamstring Sculpt]",
         targetGroup: "Legs",
         sets: 4,
-        reps: "45 seconds work / 15s rest",
-        equipment: "Bodyweight",
-        coachTip: "[Beginner: Fast marching | Intermediate: High knees running | Expert: Explosive tuck jumps / shadow boxing knees] Torch fat and condition stamina."
+        reps: "10-12 reps",
+        equipment: "Leg Curl Machine (Lewiston PF)",
+        coachTip: "Curl weight toward glutes smoothly. Focus on hamstring stretch at extension and forceful contraction at flexion."
       },
       {
         id: "wed-4",
-        name: "K-Pop Idol Lying Core Leg Raises [Beginner -> Expert]",
-        targetGroup: "Abs",
+        name: "Seated or Standing Calf Raise Machine [Lower Leg Armor]",
+        targetGroup: "Legs",
         sets: 4,
-        reps: "15 reps",
-        equipment: "Floor / Mat",
-        coachTip: "[Beginner: Single-leg alternating raises | Intermediate: Double leg raises | Expert: Dragon flag negatives] Keep lower back pressed firmly into floor."
+        reps: "15-20 reps",
+        equipment: "Calf Raise Machine or Leg Press Calf Press",
+        coachTip: "Allow heels to drop for deep stretch at bottom, push up onto balls of feet with full ankle extension and hold for 1 second."
       },
       {
         id: "wed-5",
-        name: "Dojo Hollow Body Hold [Beginner -> Intermediate -> Expert]",
+        name: "Captain's Chair Hanging Knee / Leg Raises or Abdominal Crunch Machine",
         targetGroup: "Abs",
-        sets: 3,
-        reps: "45 seconds hold",
-        equipment: "Floor / Mat",
-        coachTip: "[Beginner: Tuck Hollow Hold | Intermediate: Full Hollow Body Hold | Expert: Hollow Body Rocks] Lock ribcage down to build unbreakable core armor."
+        sets: 4,
+        reps: "15 reps",
+        equipment: "Captain's Chair Station or Ab Crunch Machine",
+        coachTip: "Support upper body on Captain's Chair pads. Raise knees/legs toward chest by rolling pelvis upward to engage lower abdominals completely."
+      },
+      {
+        id: "wed-cardio",
+        name: "Daily Planet Fitness Treadmill Walk [20-30 Minutes Fat Burning Target]",
+        targetGroup: "Cardio",
+        sets: 1,
+        reps: "20-30 mins (@ 2.8-3.0 MPH, Moderate Incline)",
+        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
+        coachTip: "Finish leg day with 20-30 minutes of steady walking to flush lactic acid from lower body while burning abdominal fat."
       }
     ]
   },
   {
     dayOfWeek: 4, // Thursday
     dayName: "Thursday",
-    splitName: "Push B (K-Pop Idol Upper Chest & Shoulder Capping)",
+    splitName: "Push B (Upper Chest Focus, Lateral Delt Capping, Triceps)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Push B K-Pop Idol Aesthetic Sculpt",
-    description: "Target upper chest, medial deltoids, and tricep horseshoe definition with explosive K-Pop Idol push variations.",
+    questTitle: "[Daily Quest] Clear Push B Upper Chest & Shoulder Capping",
+    description: "Target upper chest, medial deltoid width, and tricep horseshoe definition using Smith machine incline press and cable lateral raises at Lewiston Planet Fitness.",
     xpReward: 500,
     exercises: [
       {
         id: "thu-1",
-        name: "Decline / Elevated Dojo Push-Ups [Beginner -> Expert]",
+        name: "Planet Fitness Smith Machine Incline Bench Press [Upper Chest]",
         targetGroup: "Chest",
         sets: 4,
-        reps: "12-15 reps",
-        equipment: "Chair / Couch & Floor",
-        coachTip: "[Beginner: Incline push-ups on couch | Intermediate: Feet elevated decline push-ups | Expert: Plyometric clapping or plyo push-ups] Focus on upper chest squeeze."
+        reps: "8-10 reps",
+        equipment: "Smith Machine & 30-Degree Incline Bench (Lewiston PF)",
+        coachTip: "Set incline bench to 30 degrees under bar. Lower bar slowly to upper clavicle area, drive upward focusing on upper chest contraction."
       },
       {
         id: "thu-2",
-        name: "Diamond / Close-Grip Push-Ups [Beginner -> Expert]",
-        targetGroup: "Triceps",
+        name: "Planet Fitness Pec Deck Fly Machine (Chest Fly Station)",
+        targetGroup: "Chest",
         sets: 3,
-        reps: "10-12 reps",
-        equipment: "Floor / Bodyweight",
-        coachTip: "[Beginner: Close-grip hands on wall/couch | Intermediate: Diamond hands on knees | Expert: Strict full Diamond Push-Ups] Carves tricep horseshoes and inner pecs."
+        reps: "12-15 reps",
+        equipment: "Pec Deck Machine (Lewiston PF)",
+        coachTip: "Keep elbows slightly bent. Bring arms together smoothly across chest, squeezing inner pecs hard at center."
       },
       {
         id: "thu-3",
-        name: "Lateral Shoulder Raises (Water Bottles / Dumbbells)",
+        name: "Cable Lateral Raises (Dual Pulley or Single-Arm) or Dumbbell Raises",
         targetGroup: "Shoulders",
         sets: 4,
         reps: "15 reps",
-        equipment: "Dumbbells or Water Bottles",
-        coachTip: "[Beginner -> Expert] Raise arms out to sides with slight elbow bend until parallel to floor. Builds broad shoulder width."
+        equipment: "Low Cable Pulley or Dumbbells",
+        coachTip: "Raise cables or dumbbells out to sides until parallel to floor. Lead slightly with elbows to cap lateral deltoid width."
       },
       {
         id: "thu-4",
-        name: "Overhead Tricep Extension (Dumbbell or Backpack)",
+        name: "Overhead Cable Tricep Extension (Rope Attachment Facing Away)",
         targetGroup: "Triceps",
-        sets: 3,
+        sets: 4,
         reps: "12-15 reps",
-        equipment: "Dumbbell or Backpack",
-        coachTip: "[Beginner -> Expert] Keep upper arms close to ears. Extend weight overhead smoothly to target long head of triceps."
+        equipment: "Cable Station & Rope Attachment",
+        coachTip: "Face away from cable tower with rope held behind head. Extend overhead to place maximum stretch and tension on long head of triceps."
       },
       {
         id: "thu-5",
-        name: "Shadow Boxing & Striking Shoulder Burnout",
+        name: "Planet Fitness Dumbbell or Cable Shrugs [Upper Trap Density]",
         targetGroup: "Shoulders",
         sets: 3,
-        reps: "60 seconds",
-        equipment: "Bodyweight",
-        coachTip: "[Beginner -> Expert] Fast, crisp straight punches and hooks to condition shoulder endurance and core rotation."
+        reps: "12-15 reps",
+        equipment: "Heavy Dumbbells or Low Cable Bar",
+        coachTip: "Shrug shoulders straight toward ears with a 2-second hold at the top. Do not roll shoulders."
+      },
+      {
+        id: "thu-cardio",
+        name: "Daily Planet Fitness Treadmill Walk [20-30 Minutes Fat Burning Target]",
+        targetGroup: "Cardio",
+        sets: 1,
+        reps: "20-30 mins (@ 3.0 MPH, 5-8% Incline)",
+        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
+        coachTip: "Complete 20-30 minutes of steady-state incline walking on the treadmill right after lifting."
       }
     ]
   },
   {
     dayOfWeek: 5, // Friday
     dayName: "Friday",
-    splitName: "Pull B (K-Pop Idol Mid-Back Density & Bicep Peak)",
+    splitName: "Pull B (Back Thickness, Lats Stretch, Brachialis & Biceps Peak)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Pull B K-Pop Idol Aesthetic V-Taper",
-    description: "Develop mid-back density, posture, and bicep peak aesthetic definition to complete your upper body K-Fit V-taper.",
+    questTitle: "[Daily Quest] Clear Pull B Mid-Back Density & Brachialis Peak",
+    description: "Develop mid-back density, lower lat stretch, and thicker forearms/biceps using single-arm dumbbell rows and neutral-grip pulldowns.",
     xpReward: 500,
     exercises: [
       {
         id: "fri-1",
-        name: "Underhand Grip Rows / Chin-Up Progression [Beginner -> Expert]",
+        name: "Neutral-Grip Lat Pulldown or Assisted Pull-Up Machine",
         targetGroup: "Back",
         sets: 4,
-        reps: "12-15 reps",
-        equipment: "Table / Doorframe / Bar",
-        coachTip: "[Beginner: Underhand doorframe row | Intermediate: Underhand inverted table row | Expert: Strict Chin-Ups] Targets lower lats and biceps."
+        reps: "8-10 reps",
+        equipment: "Lat Pulldown (V-Bar / Parallel Handle) or Assisted Pull-Up",
+        coachTip: "Use neutral (palms facing each other) handle. Pull straight down to upper chest, emphasizing lower lat squeeze and biceps."
       },
       {
         id: "fri-2",
-        name: "Single-Arm Backpack Lawn Mower Rows [Beginner -> Expert]",
+        name: "Single-Arm Dumbbell Row on Flat Bench [Mid-Back Thickness]",
         targetGroup: "Back",
         sets: 3,
-        reps: "12 reps per side",
-        equipment: "Backpack or Dumbbell",
-        coachTip: "[Beginner: Moderate weight | Intermediate: Heavy weight with stretch | Expert: Explosive pull + 2s squeeze] Core braced and back flat."
+        reps: "10-12 reps per side",
+        equipment: "Heavy Dumbbells & Flat Bench (Lewiston PF)",
+        coachTip: "Support opposite knee and hand on flat bench. Pull dumbbell up to lower hip/ribcage, keeping back flat and elbow close to body."
       },
       {
         id: "fri-3",
-        name: "Rear Delt T-Raises & Y-Raises [Beginner -> Expert]",
-        targetGroup: "Shoulders",
+        name: "Straight-Arm Lat Pulldown (Cable Rope Attachment) [Lat Isolation]",
+        targetGroup: "Back",
         sets: 3,
-        reps: "15 reps",
-        equipment: "Floor or Light Bottles",
-        coachTip: "[Beginner: Unweighted lying T/Y raises | Intermediate: Light water bottles | Expert: High-rep slow tempo] Builds rear delts and posture."
+        reps: "12-15 reps",
+        equipment: "High Cable Pulley & Rope Attachment",
+        coachTip: "Keep arms straight with slight elbow bend. Pull rope down from forehead height to thighs using only lats without bending elbows."
       },
       {
         id: "fri-4",
-        name: "Hammer Curls Progression [Beginner -> Expert]",
+        name: "Planet Fitness Dumbbell Hammer Curls [Brachialis & Forearm Thickness]",
         targetGroup: "Biceps",
         sets: 4,
-        reps: "12-15 reps",
-        equipment: "Dumbbells or Backpack",
-        coachTip: "[Beginner -> Expert] Neutral palm-in grip curls. Sculpts brachialis for fuller arm appearance."
+        reps: "10-12 reps",
+        equipment: "Dumbbells (Lewiston PF)",
+        coachTip: "Keep palms facing inward (neutral grip) throughout entire curl. Sculpts brachialis muscle under biceps for thicker arm look."
       },
       {
         id: "fri-5",
-        name: "K-Pop Idol Superman Erector Hold [Beginner -> Expert]",
-        targetGroup: "Back",
+        name: "Cable Rope Hammer Curls or High Pulley Bicep Flex Curls",
+        targetGroup: "Biceps",
         sets: 3,
-        reps: "45 seconds hold",
-        equipment: "Floor / Mat",
-        coachTip: "[Beginner: 30s | Intermediate: 45s | Expert: 60s arch hold] Strengthens lower back erectors and glutes."
+        reps: "12-15 reps",
+        equipment: "Low Cable Pulley with Rope",
+        coachTip: "Keep elbows fixed against ribs. Curl rope ends toward front delts with constant cable tension at bottom and top."
+      },
+      {
+        id: "fri-cardio",
+        name: "Daily Planet Fitness Treadmill Walk [20-30 Minutes Fat Burning Target]",
+        targetGroup: "Cardio",
+        sets: 1,
+        reps: "20-30 mins (@ 3.0 MPH, 5-8% Incline)",
+        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
+        coachTip: "Finish off your pull day with 20-30 minutes of steady incline walking on the treadmill."
       }
     ]
   },
   {
     dayOfWeek: 6, // Saturday
     dayName: "Saturday",
-    splitName: "Legs & Core B (K-Pop Idol Agility, Speed & Core Mastery)",
+    splitName: "Legs & Core B (Hamstrings Focus, Glute Density, Core Carve)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Saturday K-Pop Idol Agility & Core Finale",
-    description: "Weekend lower body aesthetic agility, lateral glute strength, and core mastery to finish off the week with maximum XP.",
+    questTitle: "[Daily Quest] Clear Saturday Legs B & Core Carve Finale",
+    description: "Weekend lower body density focusing on hamstrings, glutes, and obliques using Romanian deadlifts and lunges at Lewiston Planet Fitness to finish off the training week.",
     xpReward: 600,
     exercises: [
       {
         id: "sat-1",
-        name: "Reverse & Lateral K-Pop Idol Lunges [Beginner -> Expert]",
+        name: "Smith Machine Romanian Deadlifts (RDLs) or Dumbbell RDLs",
         targetGroup: "Legs",
         sets: 4,
-        reps: "12 reps per leg",
-        equipment: "Bodyweight",
-        coachTip: "[Beginner: Alternating reverse lunges | Intermediate: Lateral side lunges | Expert: Plyo jumping lunges] Excellent for hip mobility and glute tone."
+        reps: "8-10 reps",
+        equipment: "Smith Machine or Dumbbells (Lewiston PF)",
+        coachTip: "Keep slight bend in knees, hinge hips straight back while lowering bar along shins until deep hamstring stretch is felt. Squeeze glutes to stand."
       },
       {
         id: "sat-2",
-        name: "Single-Leg Glute Bridges [Beginner -> Expert]",
+        name: "Planet Fitness Leg Press (High Foot Placement for Glutes / Hamstrings)",
         targetGroup: "Legs",
-        sets: 3,
-        reps: "12-15 reps per leg",
-        equipment: "Floor / Mat",
-        coachTip: "[Beginner: Double-leg glute bridge | Intermediate: Single-leg bridge | Expert: Single-leg elevated bridge] Drive through heel and squeeze glutes."
+        sets: 4,
+        reps: "10-12 reps",
+        equipment: "Leg Press Machine (Lewiston PF)",
+        coachTip: "Place feet high and wide on leg press footboard. Shifts focus directly to posterior chain (glutes and hamstrings)."
       },
       {
         id: "sat-3",
-        name: "K-Pop Idol Skater Hops [Beginner -> Expert]",
+        name: "Walking Dumbbell Lunges or Stationary Split Squats",
         targetGroup: "Legs",
         sets: 3,
-        reps: "45 seconds work",
-        equipment: "Bodyweight",
-        coachTip: "[Beginner: Step skaters | Intermediate: Bound skater hops | Expert: Explosive distance hops] Lateral power and cardio conditioning."
+        reps: "12 reps per leg",
+        equipment: "Dumbbells & Gym Floor / Turf",
+        coachTip: "Step forward into deep lunge with upright torso. Drive through front heel to return or step through for walking lunges."
       },
       {
         id: "sat-4",
-        name: "K-Pop Idol Russian Core Twists [Beginner -> Expert]",
+        name: "Rotary Torso Machine or Cable Woodchoppers [Oblique Carve]",
         targetGroup: "Abs",
-        sets: 4,
-        reps: "20 twists (10 per side)",
-        equipment: "Floor / Light Weight",
-        coachTip: "[Beginner: Heels lightly touching floor | Intermediate: Elevated heels | Expert: Weighted twist with pause] Carves obliques."
+        sets: 3,
+        reps: "15 reps per side",
+        equipment: "Rotary Torso Machine or Cable Pulley",
+        coachTip: "Rotate torso against resistance with controlled speed. Carves tight obliques and lateral core armor."
       },
       {
         id: "sat-5",
-        name: "K-Pop Idol Forearm Plank Hold [Beginner -> Expert]",
+        name: "Mat Forearm Plank Hold & Captain's Chair Leg Raises Burnout",
         targetGroup: "Abs",
         sets: 3,
-        reps: "60 seconds hold",
-        equipment: "Floor / Mat",
-        coachTip: "[Beginner: 30-45s | Intermediate: 60s | Expert: Long-lever plank walkouts] Complete full-body tension to finish the training week."
+        reps: "60 seconds hold / 15 raises",
+        equipment: "Stretching Area Mat & Captain's Chair",
+        coachTip: "Finish the 6-day split with a 60-second strict plank superset with hanging leg raises to lock in core strength and aesthetic posture."
+      },
+      {
+        id: "sat-cardio",
+        name: "Daily Planet Fitness Treadmill Walk [20-30 Minutes Fat Burning Target]",
+        targetGroup: "Cardio",
+        sets: 1,
+        reps: "20-30 mins (@ 3.0 MPH, 5-8% Incline)",
+        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
+        coachTip: "Finish your training week with 20-30 minutes of incline treadmill walking. Consistent daily walking guarantees 1 lb/week fat loss while maintaining muscular fullness!"
       }
     ]
   }
 ];
 
-export const KPOP_HOME_WORKOUT_ROUTINE = JAPANESE_HOME_WORKOUT_ROUTINE;
-export const PLANET_FITNESS_PPL_ROUTINE = JAPANESE_HOME_WORKOUT_ROUTINE;
+export const KPOP_HOME_WORKOUT_ROUTINE = PLANET_FITNESS_LEWISTON_6DAY_ROUTINE;
+export const PLANET_FITNESS_PPL_ROUTINE = PLANET_FITNESS_LEWISTON_6DAY_ROUTINE;
+export const JAPANESE_HOME_WORKOUT_ROUTINE = PLANET_FITNESS_LEWISTON_6DAY_ROUTINE;
 
 export function getTodayWorkout(): WorkoutDay {
   const dayIndex = new Date().getDay(); // 0 = Sunday, 1 = Monday...
-  return JAPANESE_HOME_WORKOUT_ROUTINE.find(d => d.dayOfWeek === dayIndex) || JAPANESE_HOME_WORKOUT_ROUTINE[0];
+  return PLANET_FITNESS_LEWISTON_6DAY_ROUTINE.find(d => d.dayOfWeek === dayIndex) || PLANET_FITNESS_LEWISTON_6DAY_ROUTINE[0];
 }

@@ -275,7 +275,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Tea Bag / 1 tsp",
     coachNote: "Essential Auburn Walmart green tea staple for Chinese green tea lattes.",
-    cuisine: ["China"]
+    cuisine: []
   },
   {
     id: "g-16",
@@ -291,7 +291,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Tea Bag",
     coachNote: "Traditional Japanese 100% green tea staple! Enjoy a cup of hot or iced green tea with every non-latte meal across your 7-day plan.",
-    cuisine: ["Korea", "Japan"]
+    cuisine: ["China", "Korea", "Japan"]
   },
   {
     id: "g-17",
@@ -323,7 +323,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tbsp (15g)",
     coachNote: "Essential spicy metabolism-boosting chili sauce staple stocked at Auburn Walmart for Chinese stir-fries, Korean Bulgogi bowls and egg scrambles (Restock item).",
-    cuisine: ["China", "Korea"]
+    cuisine: ["Korea"]
   },
   {
     id: "g-19",
@@ -360,17 +360,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-21",
     upc: "078742357777",
-    name: "Great Value Frozen Broccoli Florets (Three 12 oz bags / 36 oz total)",
+    name: "Great Value Frozen Broccoli Florets (Two 12 oz bags / 24 oz total)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Produce",
-    priceEst: "$3.48 (Three 12 oz bags at $1.16 ea)",
+    priceEst: "$2.32 (Two 12 oz bags at $1.16 ea)",
     calories: 30,
     protein: 2,
     carbs: 5,
     fat: 0,
     servingSize: "1 cup (85g)",
-    coachNote: "Three bags (36 oz / ~12 cups total) guaranteed! Steamed micronutrients and fiber for 7 full days of Lunch & Dinner bowls.",
+    coachNote: "Two bags (24 oz / ~8 cups total) guaranteed! Steamed micronutrients and fiber for 7 full days of Lunch & Dinner bowls.",
     cuisine: ["China", "Korea", "Japan"]
   },
   {
@@ -403,7 +403,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 2.5,
     servingSize: "1/2 cup dry (40g)",
     coachNote: "Slow-digesting complex carbs for morning energy or mixing into afternoon Greek yogurt power bowls.",
-    cuisine: ["China", "Korea", "Mexico"]
+    cuisine: ["Korea", "Mexico"]
   },
   {
     id: "g-24",
@@ -435,7 +435,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "3 tbsp (46g)",
     coachNote: "Pure protein booster! Mix 1/2 cup into your morning whole egg scrambles to add 13g of clean protein without extra fat calories.",
-    cuisine: []
+    cuisine: ["China"]
   },
   {
     id: "g-26",
@@ -595,7 +595,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 tsp (0.7g)",
     coachNote: "Savory all-purpose onion seasoning for Korean Bulgogi marinades, Puerto Rican Adobo chicken, and Mexican fajita spice blends (Restock item).",
-    cuisine: ["Korea", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Korea", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-36",
@@ -659,7 +659,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tsp (4g)",
     coachNote: "High-antioxidant Jade Leaf Organic Matcha! Whisk 1 tsp with Instant Coffee and Silk Soy Milk for your morning & afternoon Dirty Matcha Lattes (Restock item).",
-    cuisine: ["Japan"]
+    cuisine: ["China", "Japan"]
   },
   {
     id: "g-40",
@@ -707,7 +707,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "2 tbsp (15g chopped)",
     coachNote: "Fresh aromatic scallions for topping your Dojo Beef Stew Meat Teriyaki Bowl and Samurai Teriyaki Scrambles.",
-    cuisine: ["Japan", "Korea", "China"]
+    cuisine: ["Japan", "Korea"]
   },
   {
     id: "g-43",
@@ -739,7 +739,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 tsp (1g)",
     coachNote: "Essential table salt and black pepper seasoning set for seasoning morning omelets and seared chicken breasts (Restock item).",
-    cuisine: ["Japan", "Korea", "China", "Puerto Rico", "Mexico"]
+    cuisine: ["Japan", "Korea", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-45",
@@ -822,75 +822,77 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
 
 export const MEAL_PREP_PLANS: MealPrepPlan[] = [
   {
-    id: "plan-korea",
-    title: "Korea: K-Fit Bulgogi & Dirty Chai Shred Blueprint (~2,150 kcal)",
-    country: "Korea",
-    flag: "🇰🇷",
-    badge: "⭐ #1 Main & Featured Blueprint",
+    id: "plan-china",
+    title: "China: Green Tea & Dirty Matcha Shred Blueprint (~2,150 kcal)",
+    country: "China",
+    flag: "🇨🇳",
+    badge: "⭐ #1 Main & Exclusive Blueprint",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
-    estCostPerWeek: "$50.05 Weekly Consumables / $37.55 Periodic Restock",
-    description: "The #1 Main & Featured Korean K-Fit K-Pop Idol Lean Muscle cutting plan featuring 6.0 lbs of total meat: ONE Great Value ~5.0 lb Family Pack of clean Chicken Breasts PLUS ONE ~1.0 lb Tray of All Natural Lean Beef Stew Meat for authentic Beef Bulgogi bowls! Includes 5-Egg Kimchi Scrambles (using 35 of 36 eggs in your weekly tray!), FOUR 32 oz tubs of Greek Yogurt (1 Gallon covering 7 days of afternoon & night bowls!), edamame, steamed broccoli, and your signature Korean Dirty Chai Lattes (Tazo Spiced Chai Liquid Concentrate + Instant Coffee Shot + Silk Soy Milk)! Plus hot brewed 100% Green Tea bags paired with all non-latte meals and a once-weekly Samyang Buldak Spicy Ramen treat meal! Tuned to 170g+ daily protein at $50.05 weekly consumables ($37.55 restock)!",
+    estCostPerWeek: "$46.44 Weekly Consumables / $23.31 Periodic Restock ($69.75 Combined Total)",
+    description: "The #1 Main & Exclusive Chinese Green Tea & Dirty Matcha Shred Blueprint! Designed for Hunter Nick's schedule: Monday Grocery Run at Auburn Walmart & Batch Meal Prep, starting eating the meal prep on Tuesdays (Tuesday through Monday 7-Day Cycle). Features traditional metabolism-boosting hot 100% Green Tea paired with every meal, plus the iconic Dirty Matcha Latte (Jade Leaf Organic Matcha Latte Powder + Instant Coffee Espresso Shot + Silk Soy Milk over ice) as your clean afternoon Pre-Workout Focus fuel before hitting Planet Fitness Lewiston! Tuned to 170g+ daily protein with your weekly consumables run at just $46.44 ($23.31 periodic restock, keeping combined cost under $70 total limit)!",
     meals: [
       {
-        name: "Breakfast: Seoul Dirty Chai Latte & Kimchi Egg Scramble",
+        name: "Breakfast: Scallion Egg Scramble & Hot Green Tea",
         time: "8:00 AM",
         ingredients: [
-          "1 Morning Dirty Chai Latte over ice: Mix 1/2 cup Tazo Spiced Chai Liquid Concentrate + 1 tsp dissolved Instant Coffee shot + 1/2 cup Silk Soy Milk & zero-cal sweetener! (90 kcal, 4g p)",
-          "5 Large Grade A White Eggs scrambled in 0-Cal Cooking Spray with scallions, salt & pepper (350 kcal, 30g p)",
-          "1/2 cup cooked White Rice & 2 tbsp Nasoya Kimchi (115 kcal, 3g p, 24g c)"
+          "5 Large Grade A White Eggs & 1/2 cup liquid egg whites scrambled in 0-Cal Cooking Spray with fresh scallions, soy sauce & ginger (320 kcal, 36g p)",
+          "1 cup cooked Jasmine / White Rice seasoned with garlic & sesame (200 kcal, 4g p, 45g c)",
+          "1 cup hot brewed 100% Green Tea (0 kcal, metabolism boost & morning antioxidant start)"
         ],
-        calories: 555,
-        protein: 37,
+        calories: 520,
+        protein: 40,
         carbs: 45,
-        fat: 22
+        fat: 18
       },
       {
-        name: "Lunch: Authentic Korean Beef Bulgogi (or BBQ Chicken) & Edamame Bowl",
+        name: "Lunch: Szechuan Honey-Soy Glazed Chicken Breast & Broccoli",
         time: "12:30 PM",
         ingredients: [
-          "4.0 oz seared All Natural Lean Beef Stew Meat (or 5.5 oz Chicken Breast) glazed with Bibigo Korean BBQ Marinade & Sauce, garlic & ginger (195 kcal, 32g p)",
-          "1/2 cup steamed shelled edamame & 2 tbsp Nasoya Kimchi (115 kcal, 10g p, 9g c)",
-          "1 cup cooked White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
-          "1 cup hot brewed 100% Green Tea (0 kcal, clean metabolism & digestion support)"
+          "8 oz Fresh Chicken Breast seared in wok/skillet with garlic, soy sauce, ginger & chili flakes (260 kcal, 54g p)",
+          "1.5 cups steamed Great Value Frozen Broccoli florets (45 kcal, 3g p)",
+          "1 cup cooked Jasmine White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
+          "1 cup hot brewed 100% Green Tea (0 kcal, thermogenic fat oxidation booster)"
         ],
-        calories: 525,
-        protein: 53,
-        carbs: 58,
+        calories: 505,
+        protein: 61,
+        carbs: 48,
         fat: 4
       },
       {
-        name: "Afternoon Perk: 2nd Iced Dirty Chai Latte & Casein Bowl (or Weekly Buldak Treat!)",
-        time: "4:00 PM",
+        name: "Pre-Workout Energy: Dirty Matcha Latte & Casein Bowl",
+        time: "4:00 PM (Pre-Workout)",
         ingredients: [
-          "2nd Dirty Chai Latte over ice: 1/2 cup Tazo Chai Concentrate + Instant Coffee Shot + Silk Soy Milk (90 kcal, 4g p)",
-          "1.25 cups Plain Nonfat Greek Yogurt sweetened with vanilla & zero-cal sweetener (150 kcal, 28g p)",
-          "ONCE WEEKLY TREAT OPTION (Fri/Sat): Enjoy 1 bowl of Samyang Buldak Spicy Chicken Ramen topped with sliced chicken breast & green onions!"
+          "1 Pre-Workout Dirty Matcha Latte over ice: Mix 1 tbsp Jade Leaf Organic Matcha Latte Powder + 1 dissolved Instant Coffee/Espresso shot + 1 cup Silk Soy Milk & 1 zero-cal sweetener packet! (85 kcal, 8g p)",
+          "1.5 cups Plain Nonfat Greek Yogurt sweetened with vanilla & zero-cal sweetener (180 kcal, 32g p)",
+          "1/2 cup cooked Jasmine White Rice with cinnamon & sweetener for clean pre-gym carbohydrates (110 kcal, 1g p, 25g c)",
+          "1 cup hot or iced 100% Green Tea alongside (0 kcal)"
         ],
-        calories: 240,
-        protein: 32,
-        carbs: 25,
-        fat: 1
+        calories: 375,
+        protein: 41,
+        carbs: 42,
+        fat: 4
       },
       {
-        name: "Dinner: Korean BBQ Glazed Chicken Breast & Steamed Veggies",
-        time: "7:30 PM",
+        name: "Post-Workout Dinner: Chinese Wok-Seared Garlic Beef & Broccoli",
+        time: "7:30 PM (Post-Workout)",
         ingredients: [
-          "5.7 oz Fresh Chicken Breast seared with Bibigo Korean BBQ Marinade, garlic & ginger (210 kcal, 39g p)",
-          "1 cup cooked White Rice & 2 tbsp Nasoya Kimchi (215 kcal, 5g p, 46g c)",
-          "1.5 cups steamed Great Value Broccoli florets alongside hot brewed 100% Green Tea (45 kcal, 3g p)"
+          "8 oz All Natural Lean Beef / 93/7 Ground Beef wok-seared with soy sauce, garlic & ginger (340 kcal, 48g p, 16g f)",
+          "1.5 cups steamed Great Value Frozen Broccoli florets (45 kcal, 3g p)",
+          "1 cup cooked Jasmine White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
+          "1 cup hot brewed 100% Green Tea (0 kcal, post-workout recovery aid)"
         ],
-        calories: 470,
-        protein: 47,
-        carbs: 55,
-        fat: 3
+        calories: 585,
+        protein: 55,
+        carbs: 48,
+        fat: 16
       },
       {
-        name: "Nighttime Recovery: Seoul Anabolic Casein Fluff & Warm Green Tea",
+        name: "Nighttime Recovery: Green Tea Infused Casein Snack",
         time: "10:30 PM",
         ingredients: [
-          "1.0 cup Plain Nonfat Greek Yogurt whisked with zero-cal sweetener & cinnamon (120 kcal, 22g p)",
-          "1 cup warm relaxing brewed 100% Green Tea (0 kcal)"
+          "1 cup Plain Nonfat Greek Yogurt blended with pinch of Jade Leaf Matcha Powder & zero-cal sweetener (120 kcal, 22g p)",
+          "1 cup warm soothing 100% Green Tea (0 kcal, overnight metabolic support)"
         ],
         calories: 120,
         protein: 22,
@@ -898,317 +900,5 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 0
       }
     ]
-  },
-  {
-    id: "plan-japan",
-    title: "Japan: Samurai Dojo & Dirty Matcha Clean Shred Blueprint (~2,150 kcal)",
-    country: "Japan",
-    flag: "🇯🇵",
-    badge: "Authentic Samurai Shred Blueprint",
-    targetDailyCalories: 2150,
-    targetDailyProtein: 170,
-    estCostPerWeek: "$44.98 weekly consumables at Auburn Walmart ($33.81 Complete Pantry & Seasoning Restock)",
-    description: "The #1 Main & Featured Japanese Samurai Dojo cutting plan featuring ONE Great Value ~5.0 lb Family Pack (80 oz raw) of clean Chicken Breasts covering 7 full days of Lunch and Dinner, Giant 5-Egg Tamagoyaki Omelets (using 35 of 36 eggs in your weekly tray!), FOUR 32 oz tubs of Greek Yogurt (128 oz covering 7 days of afternoon & night bowls + buffer!), edamame fiber, steamed broccoli, and the signature Dirty Matcha Lattes! Seasoned with authentic Great Value Teriyaki Marinade & Sauce ($2.48), Soy Sauce, Garlic, and Ginger. Strictly zero tofu, zero tuna, zero beef—perfectly tuned to 170g daily protein at $44.98 weekly consumables!",
-    meals: [
-      {
-        name: "Breakfast: Giant 5-Egg Tamagoyaki Omelet & Morning Dirty Matcha Latte",
-        time: "8:00 AM",
-        ingredients: [
-          "1 Morning Dirty Matcha Latte: Dissolve 1 tsp Classic Roast Instant Coffee + 1 tsp Green Tea Matcha Blend + 1/2 cup Silk Soy Milk & zero-cal sweetener over ice! (70 kcal, 4g p)",
-          "Giant 5-Egg Japanese Omelet: 5 Large Grade A White Eggs pan-seared with green onions, salt, black pepper & soy sauce drop in 0-Cal Cooking Spray (350 kcal, 30g p)",
-          "1 cup cooked White Rice with green onion garnish (200 kcal, 4g p, 45g c)"
-        ],
-        calories: 620,
-        protein: 38,
-        carbs: 48,
-        fat: 25
-      },
-      {
-        name: "Lunch: Samurai Teriyaki Glazed Chicken Breast & Edamame Bowl",
-        time: "12:30 PM",
-        ingredients: [
-          "5.7 oz Fresh Chicken Breast seared with Great Value Teriyaki Marinade & Sauce, garlic & ginger glaze (195 kcal, 38g p)",
-          "1/2 cup steamed edamame soybeans (100 kcal, 9g p, 8g c)",
-          "1 cup cooked White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
-          "1.5 cups steamed Great Value Broccoli florets with regular green tea (45 kcal, 3g p)"
-        ],
-        calories: 540,
-        protein: 54,
-        carbs: 58,
-        fat: 4
-      },
-      {
-        name: "Afternoon Perk: 2nd Iced Dirty Matcha Latte & Greek Yogurt Bowl",
-        time: "4:00 PM",
-        ingredients: [
-          "2nd Dirty Matcha Latte over ice: Pure green tea matcha + instant coffee shot + Silk Soy Milk (45 kcal, 4g p)",
-          "1 cup Plain Nonfat Greek Yogurt sweetened with vanilla & zero-cal sweetener (120 kcal, 22g p)",
-          "1/2 cup oats or crisp rice cereal mixed in for clean pre-workout carbs (130 kcal, 3g p, 28g c)"
-        ],
-        calories: 295,
-        protein: 29,
-        carbs: 32,
-        fat: 2
-      },
-      {
-        name: "Dinner: Samurai Teriyaki Glazed Chicken Breast & Steamed Veggies",
-        time: "7:30 PM",
-        ingredients: [
-          "5.7 oz Fresh Chicken Breast seared with Great Value Teriyaki Marinade & Sauce, garlic & ginger (195 kcal, 38g p)",
-          "1 cup cooked White Rice (200 kcal, 4g p, 45g c)",
-          "1.5 cups steamed broccoli florets alongside warm brewed Green Tea (45 kcal, 3g p)"
-        ],
-        calories: 440,
-        protein: 45,
-        carbs: 50,
-        fat: 3
-      },
-      {
-        name: "Nighttime Recovery: Dojo Casein Yogurt Fluff & Warm Green Tea",
-        time: "10:30 PM",
-        ingredients: [
-          "3/4 cup Plain Greek Yogurt whisked with zero-cal sweetener & optional berry topping (100 kcal, 17g p)",
-          "1 cup warm relaxing brewed 100% Green Tea (0 kcal)"
-        ],
-        calories: 100,
-        protein: 17,
-        carbs: 7,
-        fat: 0
-      }
-    ]
-  },
-  {
-    id: "plan-china",
-    title: "China: Green Tea & Dirty Matcha Shred Blueprint (~2,150 kcal)",
-    country: "China",
-    flag: "🇨🇳",
-    badge: "Green Tea & Dirty Matcha",
-    targetDailyCalories: 2150,
-    targetDailyProtein: 170,
-    estCostPerWeek: "$43.47 weekly food supply at Auburn Walmart ($56.31 Full Stocking w/ spices)",
-    description: "High-efficiency Chinese cuisine cutting plan featuring traditional metabolism-boosting Oolong/Green Tea, plus the iconic Dirty Matcha Latte (instant coffee/espresso shot + pure green tea matcha + Silk Soy Milk) for clean afternoon focus without sugar crashes! Tuned to 170g daily protein under $50 weekly!",
-    meals: [
-      {
-        name: "Breakfast: Dirty Matcha Latte & Green Scallion Egg Scramble",
-        time: "8:00 AM",
-        ingredients: [
-          "1 Dirty Matcha Latte: Dissolved instant coffee shot mixed with 1 tsp Matcha Blend, 1 cup Silk Soy Milk & 1 0-cal sweetener! (45 kcal, 4g p)",
-          "3 Large Eggs scrambled with fresh scallions & drops of soy sauce in 0-Cal Spray (220 kcal, 18g p)",
-          "1 cup cooked Jasmine / White Rice seasoned with sesame seasoning (200 kcal, 4g p, 45g c)"
-        ],
-        calories: 465,
-        protein: 26,
-        carbs: 48,
-        fat: 16
-      },
-      {
-        name: "Lunch: Szechuan Honey-Soy Glazed Chicken Breast & Broccoli",
-        time: "12:30 PM",
-        ingredients: [
-          "7 oz Fresh Chicken Breast seared in wok/skillet with garlic, soy sauce, ginger & chili flakes (240 kcal, 48g p)",
-          "1.5 cups steamed Great Value Frozen Broccoli florets (45 kcal, 3g p)",
-          "1 cup cooked Jasmine White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
-          "1 cup hot Oolong or Green Tea (0 kcal, metabolism boost)"
-        ],
-        calories: 485,
-        protein: 55,
-        carbs: 52,
-        fat: 4
-      },
-      {
-        name: "Afternoon Tea & Energy: 2nd Dirty Matcha Latte & Protein Bowl",
-        time: "4:00 PM",
-        ingredients: [
-          "2nd Dirty Matcha Latte over ice: Pure green tea matcha + instant coffee + Silk Soy Milk (45 kcal, 4g p)",
-          "1 cup Plain Nonfat Greek Yogurt sweetened with vanilla & sweetener (120 kcal, 22g p)",
-          "1/2 cup oats or rice crispy cereal mixed in for clean pre-workout carbs (150 kcal, 5g p, 30g c)"
-        ],
-        calories: 315,
-        protein: 31,
-        carbs: 35,
-        fat: 3
-      },
-      {
-        name: "Dinner: Beef & Broccoli Stir-Fry over Steamed Rice",
-        time: "7:30 PM",
-        ingredients: [
-          "6 oz Lean Flank Steak or Ground Lean Beef seared with soy sauce, garlic & ginger (280 kcal, 42g p, 10g f)",
-          "1 cup steamed broccoli florets (30 kcal, 2g p)",
-          "1 cup cooked Jasmine White Rice (200 kcal, 4g p, 45g c)",
-          "Hot Jasmine Green Tea cup (0 kcal)"
-        ],
-        calories: 510,
-        protein: 48,
-        carbs: 50,
-        fat: 10
-      },
-      {
-        name: "Nighttime Recovery: Green Tea Infused Casein Snack",
-        time: "10:30 PM",
-        ingredients: [
-          "3/4 cup Plain Greek Yogurt blended with pinch of matcha powder & sweetener (120 kcal, 15g p)"
-        ],
-        calories: 120,
-        protein: 15,
-        carbs: 8,
-        fat: 0
-      }
-    ]
-  },
-  {
-    id: "plan-1",
-    title: "Puerto Rico: The Boricua Cutting Blueprint (~2,150 kcal)",
-    country: "Puerto Rico",
-    flag: "🇵🇷",
-    badge: "Boricua Authentic",
-    targetDailyCalories: 2150,
-    targetDailyProtein: 170,
-    estCostPerWeek: "$41.29 weekly food supply at Auburn Walmart ($52.68 Full Stocking w/ spices)",
-    description: "Authentic Puerto Rican style cutting plan with upgraded fresh chicken, pork chops, rice, and crispy green Tostones a la Plancha! Tuned to 170g daily protein so your weekly replenishment stays well under $50!",
-    meals: [
-      {
-        name: "Breakfast: Sweet Boricua Café con Leche & Spiced Scramble",
-        time: "8:00 AM",
-        ingredients: [
-          "1 Café Bustelo K-Cup brewed with 1/2 cup Silk Soy Milk & 2 zero-cal sweetener packets for sweet Café con Leche! (50 kcal, 4g p)",
-          "3 Great Value Large Eggs scrambled in 0-Calorie Cooking Spray with pinch of Goya Adobo (220 kcal, 18g p)",
-          "1/2 cup Great Value White Rice seasoned with pinch of Sazón (150 kcal, 3g p, 34g c)"
-        ],
-        calories: 420,
-        protein: 25,
-        carbs: 40,
-        fat: 16
-      },
-      {
-        name: "Lunch: Pollo Guisado & Crispy Tostones a la Plancha",
-        time: "12:30 PM",
-        ingredients: [
-          "7 oz Freshness Guaranteed Fresh Chicken Breast seasoned with Adobo & Sazón, seared in 0-Cal Spray (240 kcal, 48g p)",
-          "1/2 Smashed Green Plantain pan-seared in 0-Calorie Spray into crispy Tostones a la Plancha (75 kcal, 19g c)",
-          "1 cup cooked Great Value White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
-          "1/2 cup Great Value Black Beans stewed with Sazón (110 kcal, 7g p, 20g c)"
-        ],
-        calories: 625,
-        protein: 59,
-        carbs: 83,
-        fat: 4
-      },
-      {
-        name: "Afternoon Perk: Sweet Iced Café con Leche & Protein Bowl",
-        time: "4:00 PM",
-        ingredients: [
-          "1 Café Bustelo over ice with splash of Soy Milk & sweetener for a 2nd sweet Café con Leche (30 kcal, 2g p)",
-          "1 cup Great Value Plain Nonfat Greek Yogurt (120 kcal, 22g p)",
-          "1/2 cup cooked white rice seasoned with cinnamon & sweetener (110 kcal, 1g p, 25g c)"
-        ],
-        calories: 260,
-        protein: 25,
-        carbs: 30,
-        fat: 1
-      },
-      {
-        name: "Dinner: Chuletas A la Plancha (Seared Pork Chops) & Beans",
-        time: "7:30 PM",
-        ingredients: [
-          "7 oz Bone-In Pork Chop (Chuleta) seasoned with Goya Adobo & Sazón, seared in 0-Calorie Cooking Spray (300 kcal, 40g p, 14g f)",
-          "1 cup cooked Great Value White Rice (200 kcal, 4g p, 45g c)",
-          "1/2 cup Great Value Black Beans (Habichuelas Negras) (110 kcal, 7g p, 20g c)"
-        ],
-        calories: 610,
-        protein: 51,
-        carbs: 65,
-        fat: 14
-      },
-      {
-        name: "Nighttime Recovery: Anabolic Casein Snack",
-        time: "10:30 PM",
-        ingredients: [
-          "3/4 cup Plain Greek Yogurt with cinnamon & vanilla (120 kcal, 15g p)"
-        ],
-        calories: 120,
-        protein: 15,
-        carbs: 6,
-        fat: 0
-      }
-    ]
-
-  },
-  {
-    id: "plan-mexico",
-    title: "Mexico: Street-Style Pollo Asado & Fajita Plan (~2,150 kcal)",
-    country: "Mexico",
-    flag: "🇲🇽",
-    badge: "Street Style Shred",
-    targetDailyCalories: 2150,
-    targetDailyProtein: 170,
-    estCostPerWeek: "$43.07 weekly food supply at Auburn Walmart ($56.38 Full Stocking w/ spices)",
-    description: "Vibrant Mexican street-style cutting plan featuring citrus-lime Pollo Asado, black beans, corn tortillas, and spiced Café de Olla! Tuned to 170g daily protein under $50 weekly!",
-    meals: [
-      {
-        name: "Breakfast: Spiced Café de Olla & Huevos Rancheros Scramble",
-        time: "8:00 AM",
-        ingredients: [
-          "1 Café de Olla: Coffee brewed with cinnamon and zero-cal sweetener (5 kcal, 0g p)",
-          "3 Large Eggs scrambled with salsa & lime juice (220 kcal, 18g p)",
-          "2 Warm White Corn Tortillas toasted on griddle (100 kcal, 3g p, 20g c)"
-        ],
-        calories: 325,
-        protein: 21,
-        carbs: 22,
-        fat: 15
-      },
-      {
-        name: "Lunch: Citrus Pollo Asado Street Tacos / Rice Bowl",
-        time: "12:30 PM",
-        ingredients: [
-          "7 oz Fresh Chicken Breast marinated in lime juice, garlic, cumin & chili powder (240 kcal, 48g p)",
-          "3 White Corn Tortillas or 1 cup cooked White Rice (150 kcal, 4g p, 30g c)",
-          "1/2 cup Great Value Black Beans with lime & cilantro (110 kcal, 7g p, 20g c)",
-          "1/4 sliced avocado or pico de gallo (60 kcal, 1g p, 5g f)"
-        ],
-        calories: 560,
-        protein: 60,
-        carbs: 54,
-        fat: 9
-      },
-      {
-        name: "Afternoon Snack: Spiced Horchata-Style Protein Bowl",
-        time: "4:00 PM",
-        ingredients: [
-          "1 Iced Coffee with splash of almond milk & cinnamon (20 kcal, 1g p)",
-          "1 cup Plain Greek Yogurt sweetened with cinnamon & vanilla (120 kcal, 22g p)",
-          "1/2 cup rolled oats (150 kcal, 4g p, 27g c)"
-        ],
-        calories: 290,
-        protein: 27,
-        carbs: 30,
-        fat: 3
-      },
-      {
-        name: "Dinner: Sizzling Chicken Fajita Bowl with Beans & Rice",
-        time: "7:30 PM",
-        ingredients: [
-          "7 oz Chicken Breast strips seared with fajita seasoning, bell peppers & onions (240 kcal, 48g p)",
-          "1 cup cooked White Rice (200 kcal, 4g p, 45g c)",
-          "1/2 cup Great Value Black Beans (110 kcal, 7g p, 20g c)"
-        ],
-        calories: 550,
-        protein: 59,
-        carbs: 68,
-        fat: 5
-      },
-      {
-        name: "Nighttime Recovery: Cinnamon Mexican Hot Chocolate Casein",
-        time: "10:30 PM",
-        ingredients: [
-          "3/4 cup Greek Yogurt with cocoa powder & cinnamon (120 kcal, 15g p)"
-        ],
-        calories: 120,
-        protein: 15,
-        carbs: 8,
-        fat: 0
-      }
-    ]
   }
 ];
-

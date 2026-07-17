@@ -22,7 +22,7 @@ interface NutritionTrackerProps {
 
 export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) {
   const [meals, setMeals] = useState<LoggedMeal[]>([]);
-  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('Japan');
+  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('China');
   const [showManualModal, setShowManualModal] = useState(false);
   const [manualName, setManualName] = useState('');
   const [manualCals, setManualCals] = useState('');
@@ -197,7 +197,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
               >
                 <span>{plan.flag}</span>
                 <span>{plan.country}</span>
-                {plan.country === 'Japan' && <span className="text-[9px] bg-system-gold text-black px-1.5 py-0.2 rounded font-black ml-0.5">#1 Main</span>}
+                {plan.country === 'China' && <span className="text-[9px] bg-system-gold text-black px-1.5 py-0.2 rounded font-black ml-0.5">#1 Main</span>}
               </button>
             );
           })}

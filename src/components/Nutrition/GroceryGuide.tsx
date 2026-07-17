@@ -11,7 +11,7 @@ export default function GroceryGuide() {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<'items' | 'plans'>('items');
   const [selectedCountryPlan, setSelectedCountryPlan] = useState<string>('All');
-  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('Korea');
+  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('China');
 
   const [customItems, setCustomItems] = useState<GroceryItem[]>([]);
   const [hiddenItemIds, setHiddenItemIds] = useState<string[]>([]);
@@ -80,7 +80,7 @@ export default function GroceryGuide() {
       localStorage.removeItem('pf_hidden_grocery_items');
       localStorage.removeItem('pf_custom_grocery_items');
     }
-    setSelectedAisleTemplate('Japan');
+    setSelectedAisleTemplate('China');
     setSelectedCountryPlan('All');
     setSelectedCategory('All');
     setSelectedStore('All Stores');
@@ -192,9 +192,9 @@ export default function GroceryGuide() {
 
   const isRestockItem = (item: GroceryItem): boolean => {
     const restockIds = new Set([
-      'g-3', 'g-4', 'g-5', 'g-6', 'g-7', 'g-9', 'g-10', 'g-14', 'g-15',
-      'g-16', 'g-17', 'g-19', 'g-20', 'g-23', 'g-24', 'g-27', 'g-28', 'g-29',
-      'g-30', 'g-31', 'g-38', 'g-39', 'g-43', 'g-44'
+      'g-3', 'g-4', 'g-5', 'g-6', 'g-7', 'g-9', 'g-14', 'g-15',
+      'g-16', 'g-17', 'g-19', 'g-20', 'g-23', 'g-27', 'g-28', 'g-29',
+      'g-30', 'g-31', 'g-35', 'g-38', 'g-39', 'g-43', 'g-44'
     ]);
     if (restockIds.has(item.id)) return true;
     if (item.category === 'Seasonings & Spices' || item.category === 'Toiletries / Non-Grocery') return true;
@@ -432,39 +432,20 @@ export default function GroceryGuide() {
             </div>
           </div>
 
-          {selectedAisleTemplate === 'Japan' && (
+          {selectedAisleTemplate === 'China' && (
             <div className="bg-gradient-to-r from-system-gold/15 to-system-cyan/15 p-4 rounded-2xl border border-system-gold/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="bg-system-gold text-system-dark text-[10px] font-black uppercase px-2 py-0.5 rounded">
-                    ⭐ #1 Main & Featured Blueprint
+                    ⭐ #1 Main & Exclusive Blueprint
                   </span>
                   <span className="text-xs text-white font-bold">
-                    🇯🇵 Japanese Samurai Dojo & Dirty Matcha Shopping Strategy (No Tofu!)
+                    🇨🇳 Chinese Green Tea & Dirty Matcha Shred Strategy (No Tofu!)
                   </span>
                 </div>
                 <p className="text-xs text-zinc-300">
-                  <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment: $36.99):</strong> Chicken Breasts (~$12.60), 36-ct Eggs ($6.84), 2x Greek Yogurt Tubs ($7.96), Silk Soy Milk ($3.97), Green Tea & Matcha Blend Bags ($2.98), White Rice ($1.48), Broccoli ($1.16).<br />
-                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry Restock: +$15.84 / $52.83 Full Trip):</strong> Instant Coffee for Dirty Matcha ($2.48), Zero-Cal Sweetener ($2.18), Ground Ginger ($2.32), Soy Sauce ($1.48), Garlic Powder ($1.08), Onion Powder ($1.08), 0-Cal Cooking Spray ($2.24), Sriracha ($2.98).
-                </p>
-              </div>
-            </div>
-          )}
-
-          {selectedAisleTemplate === 'Korea' && (
-            <div className="bg-gradient-to-r from-system-blue/15 to-system-cyan/15 p-4 rounded-2xl border border-system-blue/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <span className="bg-system-blue text-white text-[10px] font-black uppercase px-2 py-0.5 rounded">
-                    🇰🇷 Bulgogi Blueprint
-                  </span>
-                  <span className="text-xs text-white font-bold">
-                    Korean K-Fit Bulgogi & Dirty Chai Shopping Strategy
-                  </span>
-                </div>
-                <p className="text-xs text-zinc-300">
-                  <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment: $51.73):</strong> Chicken Breasts, Lean Beef Stew Meat, 36-ct Eggs, 2x Greek Yogurt Tubs, Kimchi, Chai Concentrate, Soy Milk, Green Tea, White Rice, Broccoli.<br />
-                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry Restock: +$18.49 / $70.22 Full Trip):</strong> Bibigo Korean BBQ Sauce ($4.13), Sriracha, Instant Coffee, Ginger, Cooking Spray, Sweetener, Soy Sauce, Garlic Powder, Onion Powder.
+                  <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment):</strong> Chicken Breasts ($13.40), 93/7 Ground Beef ($6.48), 36-ct Eggs ($6.84), Liquid Egg Whites ($3.48), Greek Yogurt Tubs ($15.92), White Rice ($1.48), Frozen Broccoli ($2.32).<br />
+                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry & Spices Restock):</strong> Jade Leaf Organic Matcha Powder ($8.98), Instant Coffee for Dirty Matcha ($5.48), Silk Soy Milk ($3.97), 100% Green Tea Bags ($1.98), Zero-Cal Sweetener ($2.18), Canola Cooking Spray ($2.24), Ground Ginger ($2.32), Soy Sauce ($1.48), Garlic Powder ($1.18), Onion Powder ($1.08).
                 </p>
               </div>
             </div>
@@ -647,8 +628,8 @@ export default function GroceryGuide() {
               <span className="text-xs font-bold text-zinc-400 uppercase mr-2 flex items-center gap-1">
                 <Utensils className="w-3.5 h-3.5 text-system-gold" /> Template Filter:
               </span>
-              {['All', 'Korea', 'Japan', 'China', 'Puerto Rico', 'Mexico'].map((tpl) => {
-                const flags: Record<string, string> = { 'Korea': '🇰🇷', 'Japan': '🇯🇵', 'China': '🇨🇳', 'Puerto Rico': '🇵🇷', 'Mexico': '🇲🇽' };
+              {['All', 'China'].map((tpl) => {
+                const flags: Record<string, string> = { 'China': '🇨🇳' };
                 return (
                   <button
                     key={tpl}
@@ -663,13 +644,7 @@ export default function GroceryGuide() {
                     <span>
                       {tpl === 'All'
                         ? '🌐 All Items & Templates'
-                        : tpl === 'Korea'
-                        ? '⭐ Korea ($46.66 Weekly / $37.55 Restock)'
-                        : tpl === 'Japan'
-                        ? 'Japan ($44.98 Weekly / $33.81 Restock)'
-                        : tpl === 'China'
-                        ? 'China ($44.50 Weekly / $33.81 Restock)'
-                        : `${tpl} ($50 Limit)`}
+                        : '⭐ China ($49.92 Weekly / $30.89 Restock)'}
                     </span>
                   </button>
                 );
@@ -919,11 +894,7 @@ export default function GroceryGuide() {
             <div className="flex flex-wrap items-center gap-2">
               {[
                 { name: 'All', label: '🌐 All Cuisines' },
-                { name: 'Korea', label: '🇰🇷 Korea (⭐ #1 Main & Featured)' },
-                { name: 'Japan', label: '🇯🇵 Japan' },
-                { name: 'China', label: '🇨🇳 China' },
-                { name: 'Puerto Rico', label: '🇵🇷 Puerto Rico' },
-                { name: 'Mexico', label: '🇲🇽 Mexico' },
+                { name: 'China', label: '🇨🇳 China (⭐ #1 Main & Exclusive Blueprint)' },
               ].map((c) => (
                 <button
                   key={c.name}

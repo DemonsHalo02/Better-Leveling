@@ -12,10 +12,10 @@ export default function WorkoutQuestView() {
   const [exerciseWeights, setExerciseWeights] = useState<Record<string, string>>({});
   const [questCleared, setQuestCleared] = useState<boolean>(false);
 
-  // K-Pop Walking & Step Log State
-  const [dailySteps, setDailySteps] = useState<number>(0);
-  const [customStepInput, setCustomStepInput] = useState<string>('');
-  const STEP_GOAL = 10000;
+  // Planet Fitness Treadmill Walking State (20-30 mins daily target)
+  const [treadmillMinutes, setTreadmillMinutes] = useState<number>(0);
+  const [customMinutesInput, setCustomMinutesInput] = useState<string>('');
+  const TREADMILL_GOAL = 30;
 
   const currentDayWorkout = PLANET_FITNESS_PPL_ROUTINE.find(d => d.dayOfWeek === selectedDay) || PLANET_FITNESS_PPL_ROUTINE[0];
 
@@ -30,27 +30,27 @@ export default function WorkoutQuestView() {
       else setExerciseWeights({});
 
       const todayKey = new Date().toISOString().split('T')[0];
-      const savedSteps = localStorage.getItem(`kpop_daily_steps_${todayKey}`);
-      if (savedSteps) setDailySteps(parseInt(savedSteps, 10));
+      const savedMinutes = localStorage.getItem(`pf_treadmill_minutes_${todayKey}`);
+      if (savedMinutes) setTreadmillMinutes(parseInt(savedMinutes, 10));
     }
   }, [selectedDay]);
 
-  const handleAddSteps = (amount: number) => {
-    const nextSteps = Math.max(0, dailySteps + amount);
-    setDailySteps(nextSteps);
+  const handleAddMinutes = (amount: number) => {
+    const nextMinutes = Math.max(0, treadmillMinutes + amount);
+    setTreadmillMinutes(nextMinutes);
     if (typeof window !== 'undefined') {
       const todayKey = new Date().toISOString().split('T')[0];
-      localStorage.setItem(`kpop_daily_steps_${todayKey}`, nextSteps.toString());
+      localStorage.setItem(`pf_treadmill_minutes_${todayKey}`, nextMinutes.toString());
     }
-    awardXp(amount >= 2500 ? 50 : 25, 'agi');
+    awardXp(amount >= 20 ? 50 : 25, 'agi');
   };
 
-  const handleCustomStepsSubmit = (e: React.FormEvent) => {
+  const handleCustomMinutesSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const parsed = parseInt(customStepInput.replace(/,/g, ''), 10);
+    const parsed = parseInt(customMinutesInput.replace(/,/g, ''), 10);
     if (!isNaN(parsed) && parsed > 0) {
-      handleAddSteps(parsed);
-      setCustomStepInput('');
+      handleAddMinutes(parsed);
+      setCustomMinutesInput('');
     }
   };
 
@@ -89,7 +89,7 @@ export default function WorkoutQuestView() {
   };
 
   const progressPct = calculateDayProgress();
-  const stepProgressPct = Math.min(100, Math.floor((dailySteps / STEP_GOAL) * 100));
+  const stepProgressPct = Math.min(100, Math.floor((treadmillMinutes / TREADMILL_GOAL) * 100));
 
   return (
     <div className="space-y-6 pb-12">
@@ -99,13 +99,13 @@ export default function WorkoutQuestView() {
         <div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
             <MapPin className="w-3.5 h-3.5 text-system-blue" />
-            <span>K-Pop Idol Style Home Workout Protocol | Auburn / Lewiston, ME</span>
+            <span>Planet Fitness Lewiston, ME Equipment Protocol | 6-Day PPL Gym Split</span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            6-Day K-Pop Idol Home Split
+            6-Day Planet Fitness Gym Split
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            Tailored specifically for home-based bodyweight sculpting, choreography intervals, and resistance training. Sunday is reserved for System Restoration & Korean Meal Prep.
+            Tailored specifically for Planet Fitness Lewiston equipment (Smith Machines, Cable Towers, Leg Press, and Matrix/Life Fitness Treadmills). Sunday is reserved for System Restoration; Monday is Push A + Auburn Walmart Grocery Run & Chinese Shred Batch Meal Prep.
           </p>
         </div>
 
@@ -118,25 +118,25 @@ export default function WorkoutQuestView() {
         </div>
       </div>
 
-      {/* K-POP IDOL DAILY WALKING & STEP LOG */}
+      {/* PLANET FITNESS DAILY TREADMILL WALKING LOG */}
       <div className="bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 rounded-2xl border border-system-cyan/50 shadow-glow-blue space-y-4">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-gold mb-1">
               <Footprints className="w-4 h-4 text-system-cyan animate-pulse" />
-              <span>Daily Idol Walking & Choreography Cardio Log</span>
+              <span>Daily Planet Fitness Treadmill Walking Log</span>
             </div>
             <h3 className="text-xl font-black text-white uppercase tracking-wide">
-              {dailySteps.toLocaleString()} / {STEP_GOAL.toLocaleString()} <span className="text-sm text-zinc-400 font-bold">Steps Today (~{(dailySteps * 0.00045).toFixed(1)} Miles)</span>
+              {treadmillMinutes} / {TREADMILL_GOAL} <span className="text-sm text-zinc-400 font-bold">Minutes Today (~{(treadmillMinutes * 0.05).toFixed(1)} Miles Incline Walk)</span>
             </h3>
             <p className="text-xs text-zinc-300 mt-0.5">
-              Consistent daily walking enhances insulin sensitivity, accelerates abdominal fat burning during your cut, and awards AGI points!
+              Consistent daily 20-30 minute incline walking on Planet Fitness treadmills burns fat directly, enhances cardiovascular recovery, and achieves 1 lb/week fat loss without loose skin!
             </p>
           </div>
 
           <div className="w-full md:w-64 bg-system-dark/80 p-3.5 rounded-xl border border-system-blue/30 space-y-2">
             <div className="flex justify-between text-xs font-bold">
-              <span className="text-zinc-400">Step Goal Progress</span>
+              <span className="text-zinc-400">Treadmill Goal (30m)</span>
               <span className="text-system-cyan font-mono">{stepProgressPct}%</span>
             </div>
             <div className="w-full h-2.5 bg-black/60 rounded-full overflow-hidden border border-white/10">
@@ -153,34 +153,34 @@ export default function WorkoutQuestView() {
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-bold text-zinc-400 uppercase mr-1">Quick Add:</span>
             <button
-              onClick={() => handleAddSteps(1000)}
+              onClick={() => handleAddMinutes(10)}
               className="px-3.5 py-2 rounded-xl bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
             >
               <Footprints className="w-3.5 h-3.5 text-system-cyan" />
-              <span>+1,000 (~10m walk)</span>
+              <span>+10 Mins (~0.5 Mile)</span>
             </button>
             <button
-              onClick={() => handleAddSteps(2500)}
+              onClick={() => handleAddMinutes(15)}
               className="px-3.5 py-2 rounded-xl bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
             >
               <Footprints className="w-3.5 h-3.5 text-system-gold" />
-              <span>+2,500 (~25m walk)</span>
+              <span>+15 Mins (~0.8 Mile)</span>
             </button>
             <button
-              onClick={() => handleAddSteps(5000)}
+              onClick={() => handleAddMinutes(30)}
               className="px-3.5 py-2 rounded-xl bg-system-dark border border-system-blue/50 hover:border-system-cyan text-xs font-bold text-system-cyan hover:bg-system-blue hover:text-black transition-all flex items-center gap-1.5"
             >
               <Flame className="w-3.5 h-3.5" />
-              <span>+5,000 (~45m Idol Walk)</span>
+              <span>+30 Mins (Full Daily Goal!)</span>
             </button>
           </div>
 
-          <form onSubmit={handleCustomStepsSubmit} className="flex items-center gap-2">
+          <form onSubmit={handleCustomMinutesSubmit} className="flex items-center gap-2">
             <input
               type="text"
-              placeholder="Custom steps..."
-              value={customStepInput}
-              onChange={(e) => setCustomStepInput(e.target.value)}
+              placeholder="Custom mins..."
+              value={customMinutesInput}
+              onChange={(e) => setCustomMinutesInput(e.target.value)}
               className="w-28 bg-system-dark border border-system-blue/40 rounded-xl px-3 py-2 text-xs font-mono text-white placeholder:text-zinc-500 focus:outline-none focus:border-system-cyan"
             />
             <button
@@ -192,9 +192,9 @@ export default function WorkoutQuestView() {
             <button
               type="button"
               onClick={() => {
-                if (confirm("Reset today's step count to 0?")) setDailySteps(0);
+                if (confirm("Reset today's treadmill minutes to 0?")) setTreadmillMinutes(0);
               }}
-              title="Reset steps"
+              title="Reset minutes"
               className="p-2 rounded-xl bg-system-dark border border-white/10 text-zinc-400 hover:text-white transition-all"
             >
               <RotateCcw className="w-3.5 h-3.5" />
