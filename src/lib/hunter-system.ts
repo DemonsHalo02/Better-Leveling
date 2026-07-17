@@ -223,6 +223,33 @@ export function saveHunterState(state: HunterState): void {
   }
 }
 
+export function resetHunterState(): HunterState {
+  if (typeof window === 'undefined') return DEFAULT_STATE;
+  try {
+    const curr = loadHunterState();
+    const fresh: HunterState = {
+      ...DEFAULT_STATE,
+      profile: {
+        ...DEFAULT_STATE.profile,
+        name: curr.profile?.name || DEFAULT_STATE.profile.name,
+        age: curr.profile?.age || DEFAULT_STATE.profile.age,
+        heightInches: curr.profile?.heightInches || DEFAULT_STATE.profile.heightInches,
+        startWeight: curr.profile?.startWeight || DEFAULT_STATE.profile.startWeight,
+        currentWeight: curr.profile?.startWeight || DEFAULT_STATE.profile.startWeight,
+        targetWeight: curr.profile?.targetWeight || DEFAULT_STATE.profile.targetWeight,
+      },
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(fresh));
+    localStorage.removeItem('better_leveling_v2_logs');
+    window.dispatchEvent(new CustomEvent('hunterStateChanged', { detail: fresh }));
+    window.dispatchEvent(new CustomEvent('storage'));
+    return fresh;
+  } catch (e) {
+    console.error("Error resetting hunter state:", e);
+    return DEFAULT_STATE;
+  }
+}
+
 export function awardXp(amount: number, statType?: keyof Omit<HunterStats, 'availablePoints'>): HunterState {
   const state = loadHunterState();
   state.xp += amount;

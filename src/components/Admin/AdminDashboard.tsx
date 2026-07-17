@@ -11,6 +11,7 @@ import {
   Trash2,
   UserCheck,
   RefreshCw,
+  RotateCcw,
   Search,
   Sparkles,
   CheckCircle2,
@@ -24,6 +25,7 @@ import {
 import {
   loadHunterState,
   saveHunterState,
+  resetHunterState,
   awardXp,
   isSystemAdmin,
   HunterState,
@@ -262,6 +264,43 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleResetActiveAccount = () => {
+    if (confirm("⚡ MONARCH RE-AWAKENING: Reset your active local hunter account to Level 1 E-Rank with base stats?")) {
+      resetHunterState();
+      showToast("Your local account and progression have been reset to Level 1 E-Rank!");
+    }
+  };
+
+  const handleResetSystemAccounts = () => {
+    if (confirm("⚠️ SYSTEM-WIDE DIRECTIVE: Reset ALL registered hunter accounts across the guild database back to Level 1 E-Rank status?")) {
+      const resetMembers = members.map((m) => ({
+        ...m,
+        level: 1,
+        rank: "Awakened Hunter",
+      }));
+      saveRoster(resetMembers);
+      resetHunterState();
+      showToast("All hunter accounts globally reset to Level 1 E-Rank status!");
+    }
+  };
+
+  const handleResetMemberAccount = (id: string, name: string, email: string) => {
+    if (confirm(`Reset ${name}'s account back to Level 1 E-Rank Hunter?`)) {
+      const updated = members.map((m) => {
+        if (m.id === id) {
+          return { ...m, level: 1, rank: "Awakened Hunter", status: "Active" as const };
+        }
+        return m;
+      });
+      saveRoster(updated);
+
+      if (typeof window !== "undefined" && (localStorage.getItem("hunter_current_user")?.includes(email) || email.toLowerCase() === "nickcrossonofficial@outlook.com")) {
+        resetHunterState();
+      }
+      showToast(`${name}'s account has been reset to Level 1 E-Rank!`);
+    }
+  };
+
   const handleAddMemberSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newName.trim() || !newEmail.trim()) return;
@@ -466,6 +505,83 @@ export default function AdminDashboard() {
         </form>
       </div>
 
+      {/* Account Re-Awakening & Reset Suite */}
+      <div className="bg-gradient-to-r from-red-950/30 via-system-panel to-system-panel rounded-2xl p-6 border-2 border-red-500/40 shadow-[0_0_25px_rgba(239,68,68,0.15)] space-y-4">
+        <div className="flex items-center justify-between border-b border-white/10 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500 flex items-center justify-center">
+              <RotateCcw className="w-5 h-5 text-red-400" />
+            </div>
+            <div>
+              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-400">Monarch System Override</div>
+              <h3 className="text-lg font-black text-white uppercase tracking-wider">Account Re-Awakening & Reset Engine</h3>
+            </div>
+          </div>
+          <div className="text-[11px] font-mono text-zinc-400 bg-red-500/10 px-3 py-1 rounded-full border border-red-500/30">
+            High Authority Required
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+          <div className="bg-system-dark/80 p-4 rounded-xl border border-white/10 flex flex-col justify-between gap-3">
+            <div>
+              <div className="text-xs font-bold text-white uppercase flex items-center gap-1.5">
+                <RefreshCw className="w-3.5 h-3.5 text-system-cyan" />
+                <span>Reset Active Account</span>
+              </div>
+              <p className="text-[11px] text-zinc-400 mt-1">
+                Wipes current local hunter levels and stats back to Level 1 E-Rank while preserving your name and profile settings.
+              </p>
+            </div>
+            <button
+              onClick={handleResetActiveAccount}
+              className="w-full py-2.5 rounded-lg bg-system-blue/20 hover:bg-system-blue text-system-cyan hover:text-black border border-system-blue/40 font-black uppercase text-xs tracking-wider transition-all cursor-pointer shadow-glow-blue flex items-center justify-center gap-2"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Reset My Account</span>
+            </button>
+          </div>
+
+          <div className="bg-system-dark/80 p-4 rounded-xl border border-white/10 flex flex-col justify-between gap-3">
+            <div>
+              <div className="text-xs font-bold text-white uppercase flex items-center gap-1.5">
+                <Sliders className="w-3.5 h-3.5 text-system-gold" />
+                <span>Reset Daily Quests</span>
+              </div>
+              <p className="text-[11px] text-zinc-400 mt-1">
+                Clears all today&apos;s daily quest checkmarks (workout, protein, water, etc.) back to 0% for a fresh tracking day.
+              </p>
+            </div>
+            <button
+              onClick={handleResetAllQuestsToday}
+              className="w-full py-2.5 rounded-lg bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-black border border-system-gold/40 font-black uppercase text-xs tracking-wider transition-all cursor-pointer shadow-glow-gold flex items-center justify-center gap-2"
+            >
+              <RefreshCw className="w-3.5 h-3.5" />
+              <span>Reset Daily Quests</span>
+            </button>
+          </div>
+
+          <div className="bg-system-dark/80 p-4 rounded-xl border border-red-500/30 flex flex-col justify-between gap-3">
+            <div>
+              <div className="text-xs font-bold text-red-400 uppercase flex items-center gap-1.5">
+                <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
+                <span>Reset All Guild Accounts</span>
+              </div>
+              <p className="text-[11px] text-zinc-400 mt-1">
+                Global wipe: resets ALL registered hunter accounts across the entire database back to Level 1 Awakened status.
+              </p>
+            </div>
+            <button
+              onClick={handleResetSystemAccounts}
+              className="w-full py-2.5 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/40 font-black uppercase text-xs tracking-wider transition-all cursor-pointer shadow-[0_0_15px_rgba(239,68,68,0.3)] flex items-center justify-center gap-2"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Global Account Reset</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Guild Roster & User Management Section */}
       <div className="bg-system-panel rounded-2xl p-6 border border-white/10 shadow-xl space-y-6">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/10 pb-4">
@@ -595,6 +711,16 @@ export default function AdminDashboard() {
                           title="Boost +10 Hunter Levels"
                         >
                           +10 LV
+                        </button>
+
+                        {/* Reset Individual Account */}
+                        <button
+                          onClick={() => handleResetMemberAccount(member.id, member.name, member.email)}
+                          className="px-2 py-1.5 rounded-lg bg-red-500/15 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/30 text-[10px] font-bold transition-all cursor-pointer flex items-center gap-1"
+                          title="Reset account to Level 1 E-Rank"
+                        >
+                          <RotateCcw className="w-3 h-3" />
+                          <span>Reset</span>
                         </button>
 
                         {/* Toggle Suspend */}
