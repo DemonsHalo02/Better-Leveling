@@ -54,6 +54,8 @@ export interface HunterState {
     protein: boolean;
     hydration: boolean;
     weighIn: boolean;
+    cardio?: boolean;
+    matchaTea?: boolean;
   };
   customQuests?: CustomQuest[];
 }
@@ -82,14 +84,14 @@ const DEFAULT_STATE: HunterState = {
     heightInches: 70, // 5'10"
     startWeight: 242,
     currentWeight: 242,
-    targetWeight: 170,
+    targetWeight: 160,
     targetDate: "2027-12-31",
     dailyCalorieGoal: 2150,
     dailyProteinGoal: 170,
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
-    gymName: "K-Pop Idol Home Training Dojo",
-    dietName: "Korean K-Fit Bulgogi & Dirty Chai Clean Shred",
+    gymName: "Planet Fitness Lewiston, ME",
+    dietName: "Chinese Green Tea & Dirty Matcha Shred Blueprint",
   },
   completedQuestsToday: {
     workout: false,
@@ -97,6 +99,8 @@ const DEFAULT_STATE: HunterState = {
     protein: false,
     hydration: false,
     weighIn: false,
+    cardio: false,
+    matchaTea: false,
   },
   customQuests: [],
 };
@@ -148,18 +152,24 @@ export function loadHunterState(): HunterState {
         protein: false,
         hydration: false,
         weighIn: false,
+        cardio: false,
+        matchaTea: false,
       };
       saveHunterState(parsed);
     }
 
     if (parsed.profile) {
       if (parsed.profile.dailyProteinGoal === 206) parsed.profile.dailyProteinGoal = 170;
-      if (parsed.profile.dietName === "Boricua Cutting Blueprint" || parsed.profile.dietName === "Korean Bulgogi Shred") {
-        parsed.profile.dietName = "Japanese Samurai Dojo Clean Shred";
+      if (parsed.profile.targetWeight === 170) parsed.profile.targetWeight = 160;
+      if (parsed.profile.dietName?.includes("Boricua") || parsed.profile.dietName?.includes("Korean") || parsed.profile.dietName?.includes("Japanese")) {
+        parsed.profile.dietName = "Chinese Green Tea & Dirty Matcha Shred Blueprint";
       }
-      if (parsed.profile.gymName === "Planet Fitness Lewiston") {
-        parsed.profile.gymName = "K-Pop Idol Home Training Dojo";
+      if (parsed.profile.gymName?.includes("K-Pop") || parsed.profile.gymName?.includes("Home") || parsed.profile.gymName === "Planet Fitness Lewiston") {
+        parsed.profile.gymName = "Planet Fitness Lewiston, ME";
       }
+    }
+    if (!parsed.completedQuestsToday) {
+      parsed.completedQuestsToday = { workout: false, calories: false, protein: false, hydration: false, weighIn: false, cardio: false, matchaTea: false };
     }
     
     return parsed;
@@ -307,3 +317,21 @@ export function updateUserProfile(updates: Partial<UserProfile>): HunterState {
   saveHunterState(state);
   return state;
 }
+
+export function toggleQuestCompletion(questType: keyof HunterState['completedQuestsToday'], xpReward: number = 150, statType: keyof Omit<HunterStats, 'availablePoints'> = 'str'): HunterState {
+  const state = loadHunterState();
+  if (!state.completedQuestsToday) {
+    state.completedQuestsToday = { workout: false, calories: false, protein: false, hydration: false, weighIn: false, cardio: false, matchaTea: false };
+  }
+  const isCompleted = state.completedQuestsToday[questType];
+  if (!isCompleted) {
+    state.completedQuestsToday[questType] = true;
+    saveHunterState(state);
+    awardXp(xpReward, statType);
+  } else {
+    state.completedQuestsToday[questType] = false;
+    saveHunterState(state);
+  }
+  return loadHunterState();
+}
+

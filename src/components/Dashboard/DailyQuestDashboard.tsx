@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { loadHunterState, saveHunterState, awardXp, allocateStatPoint, updateWeight, addCustomQuest, toggleCustomQuest, deleteCustomQuest, HunterState } from '@/lib/hunter-system';
+import { loadHunterState, saveHunterState, awardXp, allocateStatPoint, updateWeight, addCustomQuest, toggleCustomQuest, deleteCustomQuest, toggleQuestCompletion, HunterState } from '@/lib/hunter-system';
 import { getTodayWorkout } from '@/lib/workout-data';
-import { Shield, Zap, Flame, Award, Dumbbell, Utensils, Droplets, Scale, CheckCircle2, Circle, PlusCircle, Sparkles, ArrowRight, Trash2, Settings } from 'lucide-react';
+import { Shield, Zap, Flame, Award, Dumbbell, Utensils, Droplets, Scale, CheckCircle2, Circle, PlusCircle, Sparkles, ArrowRight, Trash2, Settings, Footprints, Coffee } from 'lucide-react';
 import { TabType } from '../Navigation/SystemSidebar';
 import MotivationOracle from './MotivationOracle';
 
@@ -16,11 +16,24 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
   const [newWeightInput, setNewWeightInput] = useState<string>('');
   const [showWeightModal, setShowWeightModal] = useState(false);
   const [customQuestTitle, setCustomQuestTitle] = useState<string>('');
+  const [treadmillMinutes, setTreadmillMinutes] = useState<number>(0);
   const todayWorkout = getTodayWorkout();
 
   useEffect(() => {
     setState(loadHunterState());
-    const handleUpdate = () => setState(loadHunterState());
+    if (typeof window !== 'undefined') {
+      const todayKey = new Date().toISOString().split('T')[0];
+      const savedMins = localStorage.getItem(`pf_treadmill_minutes_${todayKey}`);
+      if (savedMins) setTreadmillMinutes(parseInt(savedMins, 10));
+    }
+    const handleUpdate = () => {
+      setState(loadHunterState());
+      if (typeof window !== 'undefined') {
+        const todayKey = new Date().toISOString().split('T')[0];
+        const savedMins = localStorage.getItem(`pf_treadmill_minutes_${todayKey}`);
+        if (savedMins) setTreadmillMinutes(parseInt(savedMins, 10));
+      }
+    };
     window.addEventListener('hunterStateChanged', handleUpdate);
     return () => window.removeEventListener('hunterStateChanged', handleUpdate);
   }, []);
@@ -53,6 +66,11 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
 
   const handleStatUpgrade = (stat: 'str' | 'agi' | 'vit' | 'int' | 'per') => {
     allocateStatPoint(stat);
+  };
+
+  const handleToggleQuest = (questType: keyof HunterState['completedQuestsToday'], xp: number = 150, stat: 'str' | 'agi' | 'vit' | 'int' | 'per' = 'str') => {
+    const nextState = toggleQuestCompletion(questType, xp, stat);
+    setState(nextState);
   };
 
   const handleDrinkWater = () => {
@@ -330,17 +348,39 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                   {todayWorkout.questTitle}
                 </h3>
               </div>
-              <button
-                onClick={() => onNavigate('workouts')}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold uppercase text-xs tracking-wider transition-all ${
-                  todayWorkout.isRestDay
-                    ? 'bg-system-gold text-system-dark hover:bg-white font-black'
-                    : 'bg-system-blue text-system-dark hover:bg-white font-black shadow-glow-blue'
-                }`}
-              >
-                <span>{todayWorkout.isRestDay ? 'View Prep Checklist' : 'Start Idol Workout'}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={() => onNavigate('workouts')}
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold uppercase text-xs tracking-wider transition-all ${
+                    todayWorkout.isRestDay
+                      ? 'bg-system-gold text-system-dark hover:bg-white font-black'
+                      : 'bg-system-blue text-system-dark hover:bg-white font-black shadow-glow-blue'
+                  }`}
+                >
+                  <span>{todayWorkout.isRestDay ? 'View Prep Checklist' : 'Start Gym Workout'}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => handleToggleQuest('workout', todayWorkout.xpReward || 500, 'str')}
+                  className={`px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider border flex items-center gap-1.5 transition-all ${
+                    state.completedQuestsToday.workout
+                      ? 'bg-green-500/20 border-green-500/40 text-green-400'
+                      : 'bg-system-dark/80 border-white/20 hover:border-system-cyan text-zinc-300 hover:text-white'
+                  }`}
+                >
+                  {state.completedQuestsToday.workout ? (
+                    <>
+                      <CheckCircle2 className="w-4 h-4 text-green-400" />
+                      <span>✓ Completed Goal (+{todayWorkout.xpReward} XP)</span>
+                    </>
+                  ) : (
+                    <>
+                      <Circle className="w-4 h-4" />
+                      <span>Check Off Goal</span>
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
 
             <p className="text-zinc-300 text-sm leading-relaxed mb-4">
@@ -367,28 +407,127 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
             </div>
           </div>
 
-          {/* Daily Nutrition & Health Quests Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Daily Nutrition, Cardio & Health Quests Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             
+            {/* Daily Treadmill Cardio Goal */}
+            <div className="bg-system-panel p-5 rounded-2xl border border-system-cyan/30 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-system-cyan flex items-center gap-1.5">
+                    <Footprints className="w-4 h-4 text-system-cyan animate-pulse" /> Daily Treadmill Walk
+                  </span>
+                  <span className="text-xs font-mono text-system-gold">+150 XP</span>
+                </div>
+                <h4 className="text-base font-black text-white uppercase">20-30 Mins Incline Walk</h4>
+                <p className="text-xs text-zinc-400 mt-1">Status: <span className="text-system-cyan font-mono font-bold">{treadmillMinutes} / 30 Mins</span> logged today.</p>
+              </div>
+              <div className="flex flex-col gap-2 mt-4">
+                <button
+                  onClick={() => handleToggleQuest('cardio', 150, 'agi')}
+                  className={`w-full py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 border ${
+                    state.completedQuestsToday.cardio
+                      ? 'bg-green-500/20 border-green-500/40 text-green-400'
+                      : 'bg-system-cyan/10 hover:bg-system-cyan border-system-cyan/40 text-system-cyan hover:text-black'
+                  }`}
+                >
+                  {state.completedQuestsToday.cardio ? (
+                    <>
+                      <CheckCircle2 className="w-3.5 h-3.5 text-green-400" />
+                      <span>✓ Completed (+150 XP)</span>
+                    </>
+                  ) : (
+                    <>
+                      <Circle className="w-3.5 h-3.5" />
+                      <span>Check Off Goal</span>
+                    </>
+                  )}
+                </button>
+                <button
+                  onClick={() => onNavigate('workouts')}
+                  className="w-full py-1.5 rounded-lg bg-system-card hover:bg-white/10 text-zinc-400 hover:text-white text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1"
+                >
+                  <span>Log Minutes in Tracker</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
+              </div>
+            </div>
+
+            {/* Pre-Workout Matcha & Green Tea Goal */}
+            <div className="bg-system-panel p-5 rounded-2xl border border-green-500/30 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-green-400 flex items-center gap-1.5">
+                    <Coffee className="w-4 h-4 text-green-400" /> Tea Hydration Protocol
+                  </span>
+                  <span className="text-xs font-mono text-system-gold">+100 XP</span>
+                </div>
+                <h4 className="text-base font-black text-white uppercase">Dirty Matcha + Green Tea</h4>
+                <p className="text-xs text-zinc-400 mt-1">Jade Leaf Matcha latte pre-workout & 100% Green Tea with every meal.</p>
+              </div>
+              <button
+                onClick={() => handleToggleQuest('matchaTea', 100, 'vit')}
+                className={`mt-4 w-full py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 border ${
+                  state.completedQuestsToday.matchaTea
+                    ? 'bg-green-500/20 border-green-500/40 text-green-400'
+                    : 'bg-green-500/10 hover:bg-green-500 border-green-500/40 text-green-300 hover:text-black'
+                }`}
+              >
+                {state.completedQuestsToday.matchaTea ? (
+                  <>
+                    <CheckCircle2 className="w-3.5 h-3.5 text-green-400" />
+                    <span>✓ Completed (+100 XP)</span>
+                  </>
+                ) : (
+                  <>
+                    <Circle className="w-3.5 h-3.5" />
+                    <span>Check Off Goal</span>
+                  </>
+                )}
+              </button>
+            </div>
+
             {/* Calorie & Protein Quest */}
             <div className="bg-system-panel p-5 rounded-2xl border border-system-blue/20 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-bold uppercase tracking-wider text-system-cyan flex items-center gap-1.5">
-                    <Utensils className="w-4 h-4 text-system-blue" /> Nutrition Quest
+                    <Utensils className="w-4 h-4 text-system-blue" /> Nutrition Macros
                   </span>
                   <span className="text-xs font-mono text-system-gold">+200 XP</span>
                 </div>
                 <h4 className="text-base font-black text-white uppercase">{state.profile.dailyCalorieGoal || 2150} kcal | {state.profile.dailyProteinGoal || 170}g Protein</h4>
                 <p className="text-xs text-zinc-400 mt-1">High protein prevents muscle loss & loose skin during your cut.</p>
               </div>
-              <button
-                onClick={() => onNavigate('scanner')}
-                className="mt-4 w-full py-2 rounded-xl bg-system-card hover:bg-system-blue/20 border border-system-blue/40 text-system-cyan text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5"
-              >
-                <span>Scan / Log Meals</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+              <div className="flex flex-col gap-2 mt-4">
+                <button
+                  onClick={() => handleToggleQuest('calories', 200, 'int')}
+                  className={`w-full py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 border ${
+                    state.completedQuestsToday.calories
+                      ? 'bg-green-500/20 border-green-500/40 text-green-400'
+                      : 'bg-system-blue/10 hover:bg-system-blue border-system-blue/40 text-system-cyan hover:text-black'
+                  }`}
+                >
+                  {state.completedQuestsToday.calories ? (
+                    <>
+                      <CheckCircle2 className="w-3.5 h-3.5 text-green-400" />
+                      <span>✓ Macros Hit (+200 XP)</span>
+                    </>
+                  ) : (
+                    <>
+                      <Circle className="w-3.5 h-3.5" />
+                      <span>Check Off Goal</span>
+                    </>
+                  )}
+                </button>
+                <button
+                  onClick={() => onNavigate('scanner')}
+                  className="w-full py-1.5 rounded-lg bg-system-card hover:bg-white/10 text-zinc-400 hover:text-white text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1"
+                >
+                  <span>Scan Barcode / View Plan</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
+              </div>
             </div>
 
             {/* Hydration Quest */}
@@ -403,13 +542,25 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 <h4 className="text-base font-black text-white uppercase">1 Gallon (128 oz)</h4>
                 <p className="text-xs text-zinc-400 mt-1">Status: <span className="text-blue-300 font-mono font-bold">{state.mp}% Hydrated</span> today.</p>
               </div>
-              <button
-                onClick={handleDrinkWater}
-                className="mt-4 w-full py-2 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-md"
-              >
-                <PlusCircle className="w-3.5 h-3.5" />
-                <span>Drink +20 oz Water</span>
-              </button>
+              <div className="flex flex-col gap-2 mt-4">
+                <button
+                  onClick={handleDrinkWater}
+                  className="w-full py-2 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-md"
+                >
+                  <PlusCircle className="w-3.5 h-3.5" />
+                  <span>Drink +20 oz Water</span>
+                </button>
+                <button
+                  onClick={() => handleToggleQuest('hydration', 150, 'vit')}
+                  className={`w-full py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 border ${
+                    state.completedQuestsToday.hydration
+                      ? 'bg-green-500/20 border-green-500/40 text-green-400'
+                      : 'bg-system-card hover:bg-white/10 text-zinc-400 hover:text-white border-white/10'
+                  }`}
+                >
+                  {state.completedQuestsToday.hydration ? '✓ Hydration Complete' : 'Check Off Goal'}
+                </button>
+              </div>
             </div>
 
             {/* Weigh-In Quest */}
@@ -425,10 +576,13 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 <p className="text-xs text-zinc-400 mt-1">Target: <span className="text-system-cyan font-bold">{targetWeight} lbs</span> (~0.92 lbs/wk pace).</p>
               </div>
               {state.completedQuestsToday.weighIn ? (
-                <div className="mt-4 w-full py-2 rounded-xl bg-green-500/20 border border-green-500/40 text-green-400 text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1.5">
+                <button
+                  onClick={() => handleToggleQuest('weighIn', 100, 'per')}
+                  className="mt-4 w-full py-2 rounded-xl bg-green-500/20 border border-green-500/40 text-green-400 text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1.5 hover:bg-red-500/20 hover:text-red-300 hover:border-red-500/40 transition-all"
+                >
                   <CheckCircle2 className="w-4 h-4" />
                   <span>Logged Today (+100 XP)</span>
-                </div>
+                </button>
               ) : (
                 <button
                   onClick={() => setShowWeightModal(true)}
