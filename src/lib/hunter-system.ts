@@ -146,6 +146,7 @@ export function loadHunterState(): HunterState {
       }
       
       parsed.lastActiveDate = today;
+      parsed.mp = 0; // Reset hydration to 0% at start of each new day
       parsed.completedQuestsToday = {
         workout: false,
         calories: false,
@@ -158,18 +159,35 @@ export function loadHunterState(): HunterState {
       saveHunterState(parsed);
     }
 
+    let needsSave = false;
     if (parsed.profile) {
-      if (parsed.profile.dailyProteinGoal === 206) parsed.profile.dailyProteinGoal = 170;
-      if (parsed.profile.targetWeight === 170) parsed.profile.targetWeight = 160;
+      if (parsed.profile.dailyProteinGoal === 206) { parsed.profile.dailyProteinGoal = 170; needsSave = true; }
+      if (parsed.profile.targetWeight === 170) { parsed.profile.targetWeight = 160; needsSave = true; }
+      // Fix corrupted currentWeight (old bug wrote projected goal weight instead of actual)
+      if (parsed.profile.currentWeight <= (parsed.profile.targetWeight || 160)) {
+        parsed.profile.currentWeight = parsed.profile.startWeight || 242;
+        needsSave = true;
+      }
       if (parsed.profile.dietName?.includes("Boricua") || parsed.profile.dietName?.includes("Korean") || parsed.profile.dietName?.includes("Japanese")) {
         parsed.profile.dietName = "Chinese Green Tea & Dirty Matcha Shred Blueprint";
+        needsSave = true;
       }
       if (parsed.profile.gymName?.includes("K-Pop") || parsed.profile.gymName?.includes("Home") || parsed.profile.gymName === "Planet Fitness Lewiston") {
         parsed.profile.gymName = "Planet Fitness Lewiston, ME";
+        needsSave = true;
       }
     }
     if (!parsed.completedQuestsToday) {
       parsed.completedQuestsToday = { workout: false, calories: false, protein: false, hydration: false, weighIn: false, cardio: false, matchaTea: false };
+      needsSave = true;
+    }
+    // Reset mp if it's stuck at 100 but hydration quest not completed today
+    if (parsed.mp >= 100 && !parsed.completedQuestsToday?.hydration) {
+      parsed.mp = 0;
+      needsSave = true;
+    }
+    if (needsSave) {
+      saveHunterState(parsed);
     }
     
     return parsed;
