@@ -67,7 +67,7 @@ const DEFAULT_STATE: HunterState = {
   rank: 'E-Rank',
   title: 'Awakened Hunter',
   hp: 100,
-  mp: 100,
+  mp: 0,
   streakDays: 1,
   lastActiveDate: new Date().toISOString().split('T')[0],
   stats: {
@@ -106,6 +106,12 @@ const DEFAULT_STATE: HunterState = {
 };
 
 const STORAGE_KEY = 'better_leveling_v2_state';
+
+export const HYDRATION_GOAL_OZ = 128;
+export const HYDRATION_INCREMENT_OZ = 24;
+export const HYDRATION_INCREMENT_MP = (HYDRATION_INCREMENT_OZ / HYDRATION_GOAL_OZ) * 100;
+
+const HYDRATION_ONE_TIME_RESET_KEY = 'pf_hydration_force_reset_20260717_reset_now';
 
 export function getRankFromLevel(level: number): { rank: HunterRank; title: string } {
   if (level >= 100) return { rank: 'Shadow Monarch', title: 'Monarch of Shadows' };
@@ -184,6 +190,15 @@ export function loadHunterState(): HunterState {
     // Reset mp if it's stuck at 100 but hydration quest not completed today
     if (parsed.mp >= 100 && !parsed.completedQuestsToday?.hydration) {
       parsed.mp = 0;
+      needsSave = true;
+    }
+    // One-time hydration reset so users can track water intake fresh today
+    if (!localStorage.getItem(HYDRATION_ONE_TIME_RESET_KEY)) {
+      parsed.mp = 0;
+      if (parsed.completedQuestsToday) {
+        parsed.completedQuestsToday.hydration = false;
+      }
+      localStorage.setItem(HYDRATION_ONE_TIME_RESET_KEY, 'done');
       needsSave = true;
     }
     if (needsSave) {
@@ -335,6 +350,22 @@ export function updateUserProfile(updates: Partial<UserProfile>): HunterState {
   state.profile = { ...state.profile, ...updates };
   saveHunterState(state);
   return state;
+}
+
+export function resetDailyHydration(): HunterState {
+  const state = loadHunterState();
+  state.mp = 0;
+  if (!state.completedQuestsToday) {
+    state.completedQuestsToday = { workout: false, calories: false, protein: false, hydration: false, weighIn: false, cardio: false, matchaTea: false };
+  } else {
+    state.completedQuestsToday.hydration = false;
+  }
+  saveHunterState(state);
+  return state;
+}
+
+export function getHydrationOzConsumed(mp: number): number {
+  return Math.round((mp / 100) * HYDRATION_GOAL_OZ);
 }
 
 export function toggleQuestCompletion(questType: keyof HunterState['completedQuestsToday'], xpReward: number = 150, statType: keyof Omit<HunterStats, 'availablePoints'> = 'str'): HunterState {

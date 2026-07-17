@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Crown, Lock, Sparkles, TrendingDown, Utensils, Award, CheckCircle2, Sliders, Calendar, Flame, Zap, ArrowRight, Shield } from 'lucide-react';
+import { Crown, Lock, Sparkles, TrendingDown, Utensils, Award, CheckCircle2, Sliders, Calendar, Flame, Zap, ArrowRight, Shield, Palette } from 'lucide-react';
 import { loadHunterState, saveHunterState, awardXp, HunterState } from '@/lib/hunter-system';
 import confetti from 'canvas-confetti';
 
@@ -399,6 +399,52 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             );
           })}
         </div>
+      </div>
+
+      {/* TOOL 4: 🎨 Shadow Monarch Art & Manhua Vault (Cloud Gallery) */}
+      <div className={`relative bg-system-panel rounded-2xl p-6 border border-system-purple/50 shadow-xl space-y-4 overflow-hidden transition-all ${
+        !isVip ? 'opacity-80' : ''
+      }`}>
+        {!isVip && (
+          <div className="absolute inset-0 z-20 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center space-y-4">
+            <div className="w-14 h-14 rounded-2xl bg-system-purple/20 border-2 border-system-purple flex items-center justify-center shadow-glow-purple">
+              <Lock className="w-7 h-7 text-system-purple animate-pulse" />
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-xl font-black text-white uppercase tracking-wider">Art & Manhua Vault Locked</h3>
+              <p className="text-xs text-zinc-300 max-w-md">
+                S-Rank VIP Guild members get exclusive access to view high-res artwork, read manhua chapters, and leave likes, dislikes, and comments!
+              </p>
+            </div>
+            <button
+              onClick={onUpgradeClick}
+              className="px-6 py-3 rounded-xl bg-system-purple text-white font-black uppercase text-xs tracking-widest shadow-glow-purple hover:scale-105 transition-all cursor-pointer"
+            >
+              Unlock Art Vault ($9.99/mo)
+            </button>
+          </div>
+        )}
+
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-system-purple/10 border border-system-purple flex items-center justify-center">
+              <Palette className="w-5 h-5 text-system-purple animate-spin-slow" />
+            </div>
+            <div>
+              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-system-purple">Cloud Storage Powered Gallery</div>
+              <h3 className="text-lg font-black text-white uppercase tracking-wider">Shadow Monarch Art & Manhua Vault</h3>
+            </div>
+          </div>
+          {isVip && (
+            <span className="bg-system-purple/20 text-system-purple text-xs font-mono font-black px-3 py-1 rounded-full border border-system-purple/30">
+              VIP Access Unlocked
+            </span>
+          )}
+        </div>
+
+        <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+          As a VIP Hunter or Creator, access our Cloud Storage Art Vault. High-resolution art and manhua chapters are uploaded directly by the creator (<span className="text-system-gold font-mono">ncrossonofficial06@gmail.com</span>). Like your favorite chapters and discuss in the guild comments!
+        </p>
       </div>
 
     </div>

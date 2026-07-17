@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { loadHunterState, saveHunterState, awardXp, allocateStatPoint, updateWeight, addCustomQuest, toggleCustomQuest, deleteCustomQuest, HunterState } from '@/lib/hunter-system';
+import { loadHunterState, saveHunterState, awardXp, allocateStatPoint, updateWeight, addCustomQuest, toggleCustomQuest, deleteCustomQuest, resetDailyHydration, HunterState, HYDRATION_INCREMENT_MP, HYDRATION_INCREMENT_OZ, HYDRATION_GOAL_OZ, getHydrationOzConsumed } from '@/lib/hunter-system';
 import { getTodayWorkout } from '@/lib/workout-data';
-import { Shield, Zap, Flame, Award, Dumbbell, Utensils, Droplets, Scale, CheckCircle2, Circle, PlusCircle, Sparkles, ArrowRight, Trash2, Settings } from 'lucide-react';
+import { Shield, Zap, Flame, Award, Dumbbell, Utensils, Droplets, Scale, CheckCircle2, Circle, PlusCircle, Sparkles, ArrowRight, Trash2, Settings, Palette, BookOpen, RotateCcw } from 'lucide-react';
 import { TabType } from '../Navigation/SystemSidebar';
 import MotivationOracle from './MotivationOracle';
 
@@ -45,7 +45,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
 
   const handleDrinkWater = () => {
     const current = loadHunterState();
-    current.mp = Math.min(100, current.mp + 20);
+    current.mp = Math.min(100, current.mp + HYDRATION_INCREMENT_MP);
     if (!current.completedQuestsToday.hydration && current.mp >= 100) {
       current.completedQuestsToday.hydration = true;
       saveHunterState(current);
@@ -53,6 +53,11 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
     } else {
       saveHunterState(current);
     }
+    setState(loadHunterState());
+  };
+
+  const handleResetWater = () => {
+    resetDailyHydration();
     setState(loadHunterState());
   };
 
@@ -194,6 +199,36 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
 
       {/* General Feature & VIP Teaser: Daily Motivation Oracle */}
       <MotivationOracle onNavigate={(tab) => onNavigate(tab as TabType)} />
+
+      {/* 🎨 New Feature Banner: Shadow Monarch Art & Manhua Vault */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-system-panel via-[#130a24] to-system-dark p-6 border border-system-purple/50 shadow-glow-purple">
+        <div className="absolute -right-12 -top-12 w-64 h-64 bg-system-purple/15 rounded-full blur-3xl pointer-events-none animate-pulse" />
+        
+        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-2 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-system-purple/20 border border-system-purple text-system-purple text-xs font-mono uppercase tracking-widest font-bold shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-system-purple animate-ping" />
+              Cloud Storage Gallery Active
+            </div>
+            <h3 className="text-xl md:text-2xl font-black tracking-wider text-white uppercase flex items-center gap-2">
+              <Palette className="w-6 h-6 text-system-purple" />
+              <span>Shadow Monarch Art & Manhua Vault</span>
+            </h3>
+            <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed">
+              Explore exclusive original artwork and manhua chapters uploaded directly to Cloud Storage. Paying S-Rank VIP Guild members can view, like, dislike, and leave guild comments on new releases!
+            </p>
+          </div>
+
+          <button
+            onClick={() => onNavigate('gallery')}
+            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-system-purple to-system-blue text-white font-black uppercase text-xs tracking-widest shadow-glow-purple hover:scale-105 transition-all flex-shrink-0 cursor-pointer"
+          >
+            <BookOpen className="w-4 h-4" />
+            <span>Open Art Vault</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
 
       {/* Grid: Stat Sheet & Today's Workout Quest */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -409,16 +444,26 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                   </span>
                   <span className="text-xs font-mono text-system-gold">+150 XP</span>
                 </div>
-                <h4 className="text-base font-black text-white uppercase">1 Gallon (128 oz)</h4>
-                <p className="text-xs text-zinc-400 mt-1">Status: <span className="text-blue-300 font-mono font-bold">{state.mp}% Hydrated</span> today.</p>
+                <h4 className="text-base font-black text-white uppercase">1 Gallon ({HYDRATION_GOAL_OZ} oz)</h4>
+                <p className="text-xs text-zinc-400 mt-1">Status: <span className="text-blue-300 font-mono font-bold">{getHydrationOzConsumed(state.mp)} / {HYDRATION_GOAL_OZ} oz</span> ({state.mp}% hydrated) today.</p>
               </div>
-              <button
-                onClick={handleDrinkWater}
-                className="mt-4 w-full py-2 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-md"
-              >
-                <PlusCircle className="w-3.5 h-3.5" />
-                <span>Drink +20 oz Water</span>
-              </button>
+              <div className="mt-4 flex gap-2">
+                <button
+                  onClick={handleDrinkWater}
+                  className="flex-1 py-2 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-md cursor-pointer"
+                >
+                  <PlusCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                  <span>Drink +{HYDRATION_INCREMENT_OZ} oz Water</span>
+                </button>
+                <button
+                  onClick={handleResetWater}
+                  className="px-3 py-2 rounded-xl bg-system-card hover:bg-red-500/20 border border-white/10 hover:border-red-500/40 text-zinc-400 hover:text-red-300 text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 cursor-pointer"
+                  title="Reset today's water tracking to 0 oz"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  <span>Reset</span>
+                </button>
+              </div>
             </div>
 
             {/* Weigh-In Quest */}

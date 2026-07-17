@@ -64,9 +64,10 @@ export async function restoreHunterFromCloud(email: string): Promise<CloudHunter
         localStorage.setItem("hunter_vip_tier", data.tier);
       }
 
-      // Restore hunter leveling state if valid
+      // Restore hunter leveling state if valid, then re-run daily reset logic
       if (data.hunterState && data.hunterState.level) {
         saveHunterState(data.hunterState);
+        loadHunterState();
       }
 
       return data;
