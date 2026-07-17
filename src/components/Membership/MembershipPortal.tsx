@@ -160,6 +160,8 @@ export default function MembershipPortal() {
         if (typeof window !== "undefined") {
           localStorage.setItem("hunter_current_user", JSON.stringify(adminUser));
           localStorage.setItem("hunter_vip_tier", "S-Rank VIP Guild");
+          localStorage.setItem("hunter_is_admin", "true");
+          window.dispatchEvent(new CustomEvent("hunterStateChanged"));
         }
 
         // Update hunter state with Admin Perks
@@ -249,6 +251,8 @@ export default function MembershipPortal() {
     setCurrentUser(null);
     if (typeof window !== "undefined") {
       localStorage.removeItem("hunter_current_user");
+      localStorage.removeItem("hunter_is_admin");
+      window.dispatchEvent(new CustomEvent("hunterStateChanged"));
     }
   };
 

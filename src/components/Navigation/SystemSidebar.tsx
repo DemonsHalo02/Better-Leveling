@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { ShieldAlert, Dumbbell, ScanLine, TrendingDown, ShoppingBag, Crown, Trophy, Settings, Palette } from 'lucide-react';
+import { isSystemAdmin } from '@/lib/hunter-system';
 
-export type TabType = 'quests' | 'workouts' | 'scanner' | 'weight' | 'grocery' | 'membership' | 'trophies' | 'settings' | 'gallery';
+export type TabType = 'quests' | 'workouts' | 'scanner' | 'weight' | 'grocery' | 'membership' | 'trophies' | 'settings' | 'gallery' | 'admin';
 
 interface SystemSidebarProps {
   activeTab: TabType;
@@ -11,6 +12,21 @@ interface SystemSidebarProps {
 }
 
 export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebarProps) {
+  const [isAdmin, setIsAdmin] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkAdmin = () => {
+      setIsAdmin(isSystemAdmin());
+    };
+    checkAdmin();
+    window.addEventListener('hunterStateChanged', checkAdmin);
+    window.addEventListener('storage', checkAdmin);
+    return () => {
+      window.removeEventListener('hunterStateChanged', checkAdmin);
+      window.removeEventListener('storage', checkAdmin);
+    };
+  }, []);
+
   const navItems: { id: TabType; label: string; mobileLabel: string; icon: React.ReactNode; badge?: string }[] = [
     {
       id: 'quests',
@@ -71,7 +87,18 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
       mobileLabel: 'VIP Guild',
       icon: <Crown className="w-5 h-5 text-system-gold" />,
       badge: 'PRO'
-    }
+    },
+    ...(isAdmin
+      ? [
+          {
+            id: 'admin' as TabType,
+            label: 'Monarch Admin',
+            mobileLabel: 'Admin',
+            icon: <ShieldAlert className="w-5 h-5 text-red-500 animate-pulse" />,
+            badge: 'GOD'
+          }
+        ]
+      : [])
   ];
 
   return (
@@ -102,6 +129,8 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
                         ? 'bg-black text-system-blue font-black shadow-sm'
                         : item.id === 'membership'
                         ? 'bg-system-gold/20 text-system-gold border border-system-gold/50 font-black'
+                        : item.id === 'admin'
+                        ? 'bg-red-500/20 text-red-400 border border-red-500/50 font-black'
                         : 'bg-system-blue/20 text-system-cyan border border-system-blue/30'
                     }`}
                   >
@@ -116,31 +145,33 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
 
       {/* Mobile Fixed Bottom Navigation Bar */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#050811]/95 backdrop-blur-2xl border-t border-system-blue/30 px-1 py-1.5 shadow-[0_-10px_30px_rgba(0,0,0,0.9)]">
-        <div className="grid grid-cols-6 gap-0.5 max-w-xl mx-auto">
+        <div className="flex items-center justify-between overflow-x-auto no-scrollbar gap-1 max-w-xl mx-auto px-1">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`relative flex flex-col items-center justify-center py-1.5 px-0.5 rounded-xl transition-all duration-200 select-none ${
+                className={`relative flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all duration-200 select-none flex-shrink-0 min-w-[56px] ${
                   isActive
                     ? item.id === 'membership'
                       ? 'text-system-gold bg-system-gold/15 font-black shadow-[0_0_12px_rgba(255,215,0,0.3)]'
+                      : item.id === 'admin'
+                      ? 'text-red-400 bg-red-500/15 font-black shadow-[0_0_12px_rgba(239,68,68,0.3)]'
                       : 'text-system-cyan bg-system-blue/15 font-black shadow-[0_0_12px_rgba(0,240,255,0.25)]'
                     : 'text-zinc-500 hover:text-zinc-300 active:bg-white/5 font-medium'
                 }`}
               >
                 {/* Active top neon indicator */}
                 {isActive && (
-                  <span className={`absolute top-0 left-1/4 right-1/4 h-0.5 rounded-full animate-pulse ${item.id === 'membership' ? 'bg-system-gold shadow-glow-gold' : 'bg-system-cyan shadow-glow-blue'}`} />
+                  <span className={`absolute top-0 left-1/4 right-1/4 h-0.5 rounded-full animate-pulse ${item.id === 'membership' ? 'bg-system-gold shadow-glow-gold' : item.id === 'admin' ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]' : 'bg-system-cyan shadow-glow-blue'}`} />
                 )}
                 
                 <div className={`relative transition-transform duration-200 mb-1 ${isActive ? 'scale-110 drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]' : ''}`}>
                   {item.icon}
                   {item.badge && (
                     <span className={`absolute -top-1 -right-3 text-[7px] font-mono px-1 rounded-full border border-black font-bold leading-tight ${
-                      item.id === 'membership' ? 'bg-system-gold text-black font-black' : 'bg-system-purple text-white'
+                      item.id === 'membership' ? 'bg-system-gold text-black font-black' : item.id === 'admin' ? 'bg-red-500 text-white font-black' : 'bg-system-purple text-white'
                     }`}>
                       {item.badge}
                     </span>

@@ -385,3 +385,18 @@ export function toggleQuestCompletion(questType: keyof HunterState['completedQue
   return loadHunterState();
 }
 
+export function isSystemAdmin(): boolean {
+  if (typeof window === 'undefined') return false;
+  if (localStorage.getItem("hunter_is_admin") === "true") return true;
+  try {
+    const savedUser = localStorage.getItem("hunter_current_user");
+    if (savedUser) {
+      const parsed = JSON.parse(savedUser);
+      if ((parsed.email || "").trim().toLowerCase() === "ncrossonofficial06@gmail.com") {
+        return true;
+      }
+    }
+  } catch {}
+  return false;
+}
+

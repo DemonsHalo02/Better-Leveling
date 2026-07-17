@@ -13,6 +13,7 @@ import MembershipPortal from "@/components/Membership/MembershipPortal";
 import TrophyHall from "@/components/Dashboard/TrophyHall";
 import SystemSettings from "@/components/Dashboard/SystemSettings";
 import ArtGallery from "@/components/Gallery/ArtGallery";
+import AdminDashboard from "@/components/Admin/AdminDashboard";
 import { Shield } from "lucide-react";
 
 export default function Home() {
@@ -49,6 +50,7 @@ export default function Home() {
             <SystemSettings onNavigate={(tab) => setActiveTab(tab)} />
           )}
           {activeTab === "membership" && <MembershipPortal />}
+          {activeTab === "admin" && <AdminDashboard />}
         </div>
       </main>
 
