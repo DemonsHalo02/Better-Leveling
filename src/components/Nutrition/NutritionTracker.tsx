@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { loadHunterState, saveHunterState, awardXp, triggerLevelUpCelebration } from '@/lib/hunter-system';
-import { Utensils, Plus, Trash2, CheckCircle2, Flame, Award, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { Utensils, Plus, Trash2, CheckCircle2, Flame, Award, ArrowRight, ShieldCheck, Sparkles, Printer } from 'lucide-react';
 import { TabType } from '../Navigation/SystemSidebar';
 import { MEAL_PREP_PLANS } from '@/lib/grocery-data';
 
@@ -176,9 +176,19 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
             </h3>
             <p className="text-xs text-zinc-400">Instantly log your prepped {activePlan.country} blueprint meals with 1 click to fill your HP & Mana bars!</p>
           </div>
-          <span className="text-[10px] bg-system-blue/20 text-system-cyan border border-system-blue/40 px-2.5 py-1 rounded font-mono font-bold whitespace-nowrap">
-            +75 INT XP Per Meal
-          </span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => window.open('/Chinese_Meal_Plan_Under_50.html', '_blank')}
+              className="flex items-center gap-1.5 bg-system-dark hover:bg-system-gold text-system-gold hover:text-black px-3 py-1 rounded-lg text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all cursor-pointer"
+              title="Print or Save as PDF the Chinese Meal Prep Blueprint"
+            >
+              <Printer className="w-3.5 h-3.5" />
+              <span>🖨️ Print Blueprint PDF</span>
+            </button>
+            <span className="text-[10px] bg-system-blue/20 text-system-cyan border border-system-blue/40 px-2.5 py-1 rounded font-mono font-bold whitespace-nowrap">
+              +75 INT XP Per Meal
+            </span>
+          </div>
         </div>
 
         {/* Cuisine Template Selector Pills */}

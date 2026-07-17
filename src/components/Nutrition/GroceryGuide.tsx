@@ -305,15 +305,8 @@ export default function GroceryGuide() {
   const stores = ['All Stores', 'Walmart Supercenter (Auburn, ME)', "Shaw's (Auburn/Lewiston)", 'Hannaford (Lewiston/Auburn)'];
   const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery', '🍱 Meal Prep Templates'];
 
-  const handlePrintPlan = (plan: typeof MEAL_PREP_PLANS[0]) => {
-    const slugMap: Record<string, string> = {
-      'China': '/Chinese_Meal_Plan_Under_50.html',
-      'Korea': '/Korean_Meal_Plan_Under_50.html',
-      'Japan': '/Japanese_Meal_Plan_Under_50.html',
-      'Puerto Rico': '/Puerto_Rico_Meal_Plan_Under_50.html',
-      'Mexico': '/Mexican_Meal_Plan_Under_50.html',
-    };
-    const url = slugMap[plan.country] || '/Chinese_Meal_Plan_Under_50.html';
+  const handlePrintPlan = (plan?: typeof MEAL_PREP_PLANS[0]) => {
+    const url = '/Chinese_Meal_Plan_Under_50.html';
     window.open(url, '_blank');
   };
 
@@ -345,7 +338,7 @@ export default function GroceryGuide() {
             Hunter Grocery Companion
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            High-protein, authentic Korean K-Fit style staples priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run under $50 budget ($46.66 Weekly / $37.55 Restock)! Includes Korean Dirty Chai Lattes, Kimchi, Samyang Buldak Spicy Ramen weekly treat, and 100% Green Tea.
+            High-protein, authentic Chinese Green Tea & Dirty Matcha Shred Blueprint staples priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run under $50 budget ($46.44 Weekly Consumables / $23.31 Periodic Restock)! Features 100% Green Tea and afternoon Dirty Matcha Lattes.
           </p>
         </div>
 
@@ -414,6 +407,15 @@ export default function GroceryGuide() {
               </div>
 
               <button
+                onClick={() => handlePrintPlan(MEAL_PREP_PLANS[0])}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-system-gold to-yellow-500 text-black font-black uppercase tracking-wider text-xs shadow-glow-gold hover:bg-white transition-all min-h-[38px] cursor-pointer"
+                title="Print or Save as PDF the Chinese Green Tea & Dirty Matcha Shred Blueprint"
+              >
+                <Printer className="w-3.5 h-3.5 text-black" />
+                <span>🖨️ Print Blueprint PDF</span>
+              </button>
+
+              <button
                 onClick={() => setShowAddModal(true)}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-black font-black uppercase tracking-wider text-xs shadow-glow-blue hover:bg-white transition-all min-h-[38px]"
               >
@@ -448,6 +450,13 @@ export default function GroceryGuide() {
                   <strong className="text-system-gold">Part 2 (Periodic Monday Pantry & Spices Restock):</strong> Jade Leaf Organic Matcha Powder ($8.98), Instant Coffee for Dirty Matcha ($5.48), Silk Soy Milk ($3.97), 100% Green Tea Bags ($1.98), Zero-Cal Sweetener ($2.18), Canola Cooking Spray ($2.24), Ground Ginger ($2.32), Soy Sauce ($1.48), Garlic Powder ($1.18), Onion Powder ($1.08).
                 </p>
               </div>
+              <button
+                onClick={() => handlePrintPlan(MEAL_PREP_PLANS[0])}
+                className="flex items-center gap-2 bg-system-dark hover:bg-white/10 text-system-gold hover:text-white px-4 py-2.5 rounded-xl text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all shrink-0 cursor-pointer"
+              >
+                <Printer className="w-4 h-4 text-system-gold" />
+                <span>🖨️ Print / Save PDF</span>
+              </button>
             </div>
           )}
 
@@ -644,7 +653,7 @@ export default function GroceryGuide() {
                     <span>
                       {tpl === 'All'
                         ? '🌐 All Items & Templates'
-                        : '⭐ China ($49.92 Weekly / $30.89 Restock)'}
+                        : '⭐ China ($46.44 Weekly / $23.31 Restock)'}
                     </span>
                   </button>
                 );
