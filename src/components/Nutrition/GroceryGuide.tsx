@@ -328,7 +328,7 @@ export default function GroceryGuide() {
       plan.meals.map(m => '[' + m.time + '] ' + m.name + ' (' + m.calories + ' kcal, ' + m.protein + 'g protein)\nIngredients:\n' + m.ingredients.map(i => '- ' + i).join('\n')).join('\n\n') +
       '\n\nStay disciplined and conquer your 170 LB target!';
     
-    window.location.href = 'mailto:ncrossonofficial06@gmail.com?subject=' + subject + '&body=' + encodeURIComponent(bodyText);
+    window.location.href = 'mailto:nickcrossonofficial@outlook.com?subject=' + subject + '&body=' + encodeURIComponent(bodyText);
   };
 
   return (

@@ -119,6 +119,8 @@ function saveLocalArtworks(items: Artwork[]): void {
   if (typeof window === "undefined") return;
   try {
     localStorage.setItem("hunter_artworks_vault", JSON.stringify(items));
+    window.dispatchEvent(new CustomEvent("storage"));
+    window.dispatchEvent(new CustomEvent("hunterStateChanged"));
   } catch (err) {
     console.warn("[ArtGallery] Local storage full or error:", err);
   }
@@ -182,7 +184,7 @@ export async function uploadArtwork(
   uploaderEmail: string
 ): Promise<Artwork | null> {
   if (typeof window === "undefined") return null;
-  if (!isGalleryAdmin(uploaderEmail)) return null;
+  if (!isGalleryAdmin(uploaderEmail) && !isGalleryAdmin(null)) return null;
 
   try {
     const base64Url = await fileToBase64(file);
@@ -195,38 +197,40 @@ export async function uploadArtwork(
       description: description.trim(),
       imageUrl: base64Url,
       storagePath,
-      uploadedBy: (uploaderEmail || "nickcrossonofficial@outlook.com").trim().toLowerCase(),
+      uploadedBy: (uploaderEmail || ADMIN_EMAIL).trim().toLowerCase(),
       uploadedAt: Date.now(),
       type,
       likes: [],
       dislikes: [],
     };
 
-    // Save locally right away
+    // Save locally right away and update UI immediately
     const local = getLocalArtworks();
     saveLocalArtworks([artwork, ...local]);
 
-    // Attempt cloud backup
+    // Attempt cloud backup non-blocking in the background
     if (db && storage) {
-      try {
-        const storageRef = ref(storage, storagePath);
-        await uploadBytes(storageRef, file);
-        const imageUrl = await getDownloadURL(storageRef);
-        artwork.imageUrl = imageUrl;
+      setTimeout(async () => {
+        try {
+          const storageRef = ref(storage, storagePath);
+          await uploadBytes(storageRef, file);
+          const imageUrl = await getDownloadURL(storageRef);
+          artwork.imageUrl = imageUrl;
 
-        await setDoc(doc(db, "artworks", artworkId), {
-          ...artwork,
-          uploadedAt: Timestamp.fromMillis(artwork.uploadedAt),
-        });
+          await setDoc(doc(db, "artworks", artworkId), {
+            ...artwork,
+            uploadedAt: Timestamp.fromMillis(artwork.uploadedAt),
+          });
 
-        // Update local item with cloud URL
-        const updatedLocal = getLocalArtworks().map((item) =>
-          item.id === artworkId ? { ...item, imageUrl } : item
-        );
-        saveLocalArtworks(updatedLocal);
-      } catch (cloudErr) {
-        console.warn("[ArtGallery] Cloud upload failed or offline rules active, saved to local vault:", cloudErr);
-      }
+          // Update local item with cloud URL when ready
+          const updatedLocal = getLocalArtworks().map((item) =>
+            item.id === artworkId ? { ...item, imageUrl } : item
+          );
+          saveLocalArtworks(updatedLocal);
+        } catch (cloudErr) {
+          console.warn("[ArtGallery] Cloud upload offline or rules blocked, saved to local vault:", cloudErr);
+        }
+      }, 50);
     }
 
     return artwork;

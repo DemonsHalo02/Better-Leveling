@@ -179,7 +179,7 @@ export default function AdminDashboard() {
           Access Denied - Monarch Level Clearance Required
         </h2>
         <p className="text-zinc-400 text-sm max-w-md leading-relaxed">
-          This command suite is restricted exclusively to the Creator Admin (<span className="text-system-gold font-mono">ncrossonofficial06@gmail.com</span>). Unauthorized access logs have been recorded.
+          This command suite is restricted exclusively to the Creator Admin (<span className="text-system-gold font-mono">nickcrossonofficial@outlook.com</span>). Unauthorized access logs have been recorded.
         </p>
       </div>
     );
@@ -201,7 +201,7 @@ export default function AdminDashboard() {
       if (m.id === id) {
         const nextTier: "E-Rank Free" | "S-Rank VIP Guild" = m.tier === "S-Rank VIP Guild" ? "E-Rank Free" : "S-Rank VIP Guild";
         // If modifying logged in user or admin, sync local VIP tier
-        if (m.email.toLowerCase() === "ncrossonofficial06@gmail.com" || (typeof window !== "undefined" && localStorage.getItem("hunter_current_user")?.includes(m.email))) {
+        if (m.email.toLowerCase() === "nickcrossonofficial@outlook.com" || (typeof window !== "undefined" && localStorage.getItem("hunter_current_user")?.includes(m.email))) {
           if (typeof window !== "undefined") {
             localStorage.setItem("hunter_vip_tier", nextTier);
             window.dispatchEvent(new CustomEvent("hunterStateChanged"));
@@ -376,7 +376,7 @@ export default function AdminDashboard() {
             Monarch Server Node #1 Active
           </span>
           <span className="text-[11px] font-mono text-zinc-400">
-            Auth: <strong className="text-system-gold">ncrossonofficial06@gmail.com</strong>
+            Auth: <strong className="text-system-gold">nickcrossonofficial@outlook.com</strong>
           </span>
         </div>
       </div>
@@ -527,7 +527,7 @@ export default function AdminDashboard() {
             <tbody className="divide-y divide-white/5">
               {filteredMembers.map((member) => {
                 const isVip = member.tier === "S-Rank VIP Guild";
-                const isSelf = member.email.toLowerCase() === "ncrossonofficial06@gmail.com";
+                const isSelf = member.email.toLowerCase() === "nickcrossonofficial@outlook.com" || member.email.toLowerCase() === "ncrossonofficial06@gmail.com";
 
                 return (
                   <tr key={member.id} className="hover:bg-white/[0.02] transition-colors">

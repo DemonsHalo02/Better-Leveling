@@ -154,7 +154,7 @@ export default function MembershipPortal() {
         const adminName = displayName.trim() || "Shadow Monarch Nick";
         const adminUser: LocalAuthUser = {
           uid: "admin-shadow-monarch-001",
-          email: emailClean === "ncrossonofficial06@gmail.com" ? "ncrossonofficial06@gmail.com" : "nickcrossonofficial@outlook.com",
+          email: emailClean || "nickcrossonofficial@outlook.com",
           displayName: adminName,
           tier: "S-Rank VIP Guild",
         };
