@@ -32,21 +32,8 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
   const todayTime = new Date().getTime();
   const daysRemaining = Math.max(0, Math.round((targetDate - todayTime) / (1000 * 60 * 60 * 24)));
   const startWeight = state.profile?.startWeight || 242;
-  const targetWeight = state.profile?.targetWeight || 170;
-  let currentWeight = state.profile?.currentWeight || startWeight;
-  if (typeof window !== 'undefined') {
-    try {
-      const savedWeights = localStorage.getItem('pf_weight_history');
-      if (savedWeights) {
-        const parsed = JSON.parse(savedWeights);
-        if (Array.isArray(parsed) && parsed.length > 0 && typeof parsed[parsed.length - 1]?.weight === 'number') {
-          currentWeight = parsed[parsed.length - 1].weight;
-        }
-      }
-    } catch {
-      // ignore
-    }
-  }
+  const targetWeight = state.profile?.targetWeight || 160;
+  const currentWeight = state.profile?.currentWeight || startWeight;
   const lbsLost = Math.max(0, Number((startWeight - currentWeight).toFixed(1)));
   const totalLossNeeded = Math.max(1, startWeight - targetWeight);
   const raidProgress = Math.min(100, Math.max(5, Math.round((lbsLost / totalLossNeeded) * 100)));
@@ -73,7 +60,23 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
     e.preventDefault();
     const val = parseFloat(newWeightInput);
     if (!isNaN(val) && val > 50 && val < 500) {
+      // Update hunter state weight
       updateWeight(val);
+      // Also sync to pf_weight_history so the WeightAndPrTracker stays consistent
+      if (typeof window !== 'undefined') {
+        try {
+          const savedWeights = localStorage.getItem('pf_weight_history');
+          const history = savedWeights ? JSON.parse(savedWeights) : [];
+          history.push({
+            date: new Date().toLocaleDateString([], { month: 'short', day: 'numeric' }),
+            weight: val,
+            targetWeight: state.profile?.targetWeight || 160,
+          });
+          localStorage.setItem('pf_weight_history', JSON.stringify(history));
+        } catch {
+          // ignore
+        }
+      }
       setShowWeightModal(false);
       setNewWeightInput('');
       setState(loadHunterState());
