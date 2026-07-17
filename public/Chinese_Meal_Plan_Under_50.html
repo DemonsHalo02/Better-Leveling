@@ -26,7 +26,7 @@
     }
 
     .container {
-      max-width: 850px;
+      max-width: 880px;
       margin: 0 auto;
       background: linear-gradient(135deg, #131b2e 0%, #0d1322 100%);
       border: 2px solid rgba(0, 240, 255, 0.3);
@@ -91,7 +91,7 @@
     }
 
     .stat-value {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--primary);
     }
@@ -114,7 +114,7 @@
     }
 
     h2 {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -124,11 +124,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-    }
-
-    h2::before {
-      content: '⚡';
-      font-size: 18px;
     }
 
     .meal-card {
@@ -198,14 +193,14 @@
 
     .grocery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
       gap: 12px;
     }
 
     .grocery-item {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 12px 15px;
+      padding: 14px 16px;
       border-radius: 10px;
       display: flex;
       align-items: flex-start;
@@ -225,13 +220,21 @@
     .item-name {
       font-weight: 600;
       color: #fff;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .item-price {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
+      font-size: 12px;
       color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .item-note {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.4;
     }
 
     .print-btn-bar {
@@ -333,9 +336,13 @@
       .grocery-item {
         background: #fff;
         border: 1px solid #cbd5e1;
+        page-break-inside: avoid;
       }
       .item-price {
         color: #15803d;
+      }
+      .item-note {
+        color: #475569;
       }
       .checkbox {
         border-color: #475569;
@@ -353,17 +360,17 @@
     </div>
 
     <div class="header">
-      <div class="sub-badge">👑 S-Rank Hunter Recomposition Protocol</div>
+      <div class="sub-badge">👑 S-Rank Hunter Recomposition Protocol • ⭐ #1 Main & Exclusive Blueprint</div>
       <h1>🇨🇳 China: Green Tea & Dirty Matcha Shred Blueprint</h1>
       
       <div class="description">
-        High-efficiency Chinese cuisine cutting plan featuring traditional metabolism-boosting Oolong/Green Tea, plus the iconic <strong>Dirty Matcha Latte</strong> (instant coffee/espresso shot + pure green tea matcha + Silk Soy Milk) for clean afternoon focus without sugar crashes!
+        The #1 Main & Exclusive Chinese Green Tea & Dirty Matcha Shred Blueprint! Designed for Hunter Nick's schedule: Monday Grocery Run at Auburn Walmart & Batch Meal Prep, starting eating the meal prep on Tuesdays (Tuesday through Monday 7-Day Cycle). Features traditional metabolism-boosting hot 100% Green Tea paired with every meal, plus the iconic Dirty Matcha Latte (Jade Leaf Organic Matcha Latte Powder + Instant Coffee Espresso Shot + Silk Soy Milk over ice) as your clean afternoon Pre-Workout Focus fuel before hitting Planet Fitness Lewiston! Tuned to 170g+ daily protein with your weekly consumables run at just $46.44 ($23.31 periodic restock, keeping combined cost under $70 total limit)!
       </div>
 
       <div class="stats-bar">
         <div class="stat-pill cost">
-          <div class="stat-label">Estimated Weekly Cost</div>
-          <div class="stat-value">💰 $70.75 at Auburn Walmart (Full Stocking)</div>
+          <div class="stat-label">Estimated Grocery Costs</div>
+          <div class="stat-value">💰 $46.44 Weekly Run • $23.31 Periodic Restock ($69.75 Total)</div>
         </div>
         <div class="stat-pill">
           <div class="stat-label">Daily Calories</div>
@@ -371,7 +378,7 @@
         </div>
         <div class="stat-pill">
           <div class="stat-label">Daily Protein</div>
-          <div class="stat-value">💪 206g Protein</div>
+          <div class="stat-value">💪 219g Protein</div>
         </div>
         <div class="stat-pill">
           <div class="stat-label">Target Goal</div>
@@ -386,14 +393,14 @@
       <div class="meal-header">
         <div class="meal-title-wrap">
           <span class="time-badge">8:00 AM</span>
-          <span class="meal-name">Breakfast: Dirty Matcha Latte & Green Scallion Egg Scramble</span>
+          <span class="meal-name">Breakfast: Scallion Egg Scramble & Hot Green Tea</span>
         </div>
-        <div class="macros-box">505 kcal | 32g Protein</div>
+        <div class="macros-box">520 kcal | 40g Protein | 45g Carbs | 18g Fat</div>
       </div>
       <ul>
-        <li><strong>1 Dirty Matcha Latte:</strong> Dissolved instant coffee/espresso shot mixed with 1 tsp Great Value / Lipton Matcha Blend, 1 cup Silk Soy Milk & 1 zero-cal sweetener packet! (45 kcal, 2g p)</li>
-        <li><strong>Spiced Scramble:</strong> 3 Large Eggs & 1/2 cup egg whites scrambled with fresh scallions & drops of soy sauce in 0-Cal Cooking Spray (260 kcal, 26g p)</li>
-        <li><strong>Complex Carbs:</strong> 1 cup cooked Jasmine / White Rice seasoned with sesame seasoning (200 kcal, 4g p, 45g c)</li>
+        <li><strong>Spiced Scramble:</strong> 5 Large Grade A White Eggs & 1/2 cup liquid egg whites scrambled in 0-Cal Cooking Spray with fresh scallions, soy sauce & ginger (320 kcal, 36g p)</li>
+        <li><strong>Complex Carbs:</strong> 1 cup cooked Jasmine / White Rice seasoned with garlic & sesame (200 kcal, 4g p, 45g c)</li>
+        <li><strong>Metabolism Start:</strong> 1 cup hot brewed 100% Green Tea (0 kcal, metabolism boost & morning antioxidant start)</li>
       </ul>
     </div>
 
@@ -403,44 +410,45 @@
           <span class="time-badge">12:30 PM</span>
           <span class="meal-name">Lunch: Szechuan Honey-Soy Glazed Chicken Breast & Broccoli</span>
         </div>
-        <div class="macros-box">505 kcal | 61g Protein</div>
+        <div class="macros-box">505 kcal | 61g Protein | 48g Carbs | 4g Fat</div>
       </div>
       <ul>
         <li><strong>Power Protein:</strong> 8 oz Fresh Chicken Breast seared in wok/skillet with garlic, soy sauce, ginger & chili flakes (260 kcal, 54g p)</li>
-        <li><strong>Micronutrients:</strong> 1.5 cups steamed Great Value Frozen Broccoli florets (45 kcal, 3g p)</li>
-        <li><strong>Clean Energy:</strong> 1 cup cooked Jasmine White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)</li>
-        <li><strong>Metabolism Boost:</strong> 1 cup hot Oolong or Green Tea (0 kcal)</li>
-      </ul>
-    </div>
-
-    <div class="meal-card">
-      <div class="meal-header">
-        <div class="meal-title-wrap">
-          <span class="time-badge">4:00 PM</span>
-          <span class="meal-name">Afternoon Tea & Energy: 2nd Dirty Matcha Latte & Protein Bowl</span>
-        </div>
-        <div class="macros-box">420 kcal | 35g Protein</div>
-      </div>
-      <ul>
-        <li><strong>2nd Dirty Matcha Latte:</strong> 1 tsp matcha blend, instant coffee shot & 1 cup Silk Soy Milk over ice (45 kcal, 2g p)</li>
-        <li><strong>Anabolic Casein Bowl:</strong> 1.5 cups Plain Nonfat Greek Yogurt sweetened with vanilla & sweetener (180 kcal, 32g p)</li>
-        <li><strong>Pre-Workout Carbs:</strong> 1/2 cup Jasmine White Rice cooked with cinnamon & sweetener (110 kcal, 1g p, 25g c)</li>
-      </ul>
-    </div>
-
-    <div class="meal-card">
-      <div class="meal-header">
-        <div class="meal-title-wrap">
-          <span class="time-badge">7:30 PM</span>
-          <span class="meal-name">Dinner: Chinese Wok-Seared Garlic Beef & Broccoli</span>
-        </div>
-        <div class="macros-box">505 kcal | 57g Protein</div>
-      </div>
-      <ul>
-        <li><strong>Anabolic Beef:</strong> 8 oz 93/7 Lean Ground Beef wok-seared with soy sauce, garlic & ginger (340 kcal, 48g p, 16g f)</li>
         <li><strong>Green Micronutrients:</strong> 1.5 cups steamed Great Value Frozen Broccoli florets (45 kcal, 3g p)</li>
-        <li><strong>Clean Carbs:</strong> 1 cup cooked Jasmine White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)</li>
-        <li><strong>Evening Hydration:</strong> 1 cup hot or iced green tea (0 kcal)</li>
+        <li><strong>Clean Energy:</strong> 1 cup cooked Jasmine White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)</li>
+        <li><strong>Thermogenic Aid:</strong> 1 cup hot brewed 100% Green Tea (0 kcal, thermogenic fat oxidation booster)</li>
+      </ul>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-header">
+        <div class="meal-title-wrap">
+          <span class="time-badge">4:00 PM (Pre-Workout)</span>
+          <span class="meal-name">Pre-Workout Energy: Dirty Matcha Latte & Casein Bowl</span>
+        </div>
+        <div class="macros-box">375 kcal | 41g Protein | 42g Carbs | 4g Fat</div>
+      </div>
+      <ul>
+        <li><strong>1 Pre-Workout Dirty Matcha Latte over ice:</strong> Mix 1 tbsp Jade Leaf Organic Matcha Latte Powder + 1 dissolved Instant Coffee/Espresso shot + 1 cup Silk Soy Milk & 1 zero-cal sweetener packet! (85 kcal, 8g p)</li>
+        <li><strong>Anabolic Casein Bowl:</strong> 1.5 cups Plain Nonfat Greek Yogurt sweetened with vanilla & zero-cal sweetener (180 kcal, 32g p)</li>
+        <li><strong>Pre-Gym Carbs:</strong> 1/2 cup cooked Jasmine White Rice with cinnamon & sweetener for clean pre-gym carbohydrates (110 kcal, 1g p, 25g c)</li>
+        <li><strong>Hydration Boost:</strong> 1 cup hot or iced 100% Green Tea alongside (0 kcal)</li>
+      </ul>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-header">
+        <div class="meal-title-wrap">
+          <span class="time-badge">7:30 PM (Post-Workout)</span>
+          <span class="meal-name">Post-Workout Dinner: Chinese Wok-Seared Garlic Beef & Broccoli</span>
+        </div>
+        <div class="macros-box">585 kcal | 55g Protein | 48g Carbs | 16g Fat</div>
+      </div>
+      <ul>
+        <li><strong>Anabolic Wok Beef:</strong> 8 oz All Natural Lean Beef / 93/7 Ground Beef wok-seared with soy sauce, garlic & ginger (340 kcal, 48g p, 16g f)</li>
+        <li><strong>Green Micronutrients:</strong> 1.5 cups steamed Great Value Frozen Broccoli florets (45 kcal, 3g p)</li>
+        <li><strong>Clean Recovery Carbs:</strong> 1 cup cooked Jasmine White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)</li>
+        <li><strong>Post-Workout Tea:</strong> 1 cup hot brewed 100% Green Tea (0 kcal, post-workout recovery aid)</li>
       </ul>
     </div>
 
@@ -450,31 +458,156 @@
           <span class="time-badge">10:30 PM</span>
           <span class="meal-name">Nighttime Recovery: Green Tea Infused Casein Snack</span>
         </div>
-        <div class="macros-box">215 kcal | 21g Protein</div>
+        <div class="macros-box">120 kcal | 22g Protein | 8g Carbs | 0g Fat</div>
       </div>
       <ul>
-        <li><strong>Overnight Recovery:</strong> 1 cup Plain Greek Yogurt or Whey/Casein Shake blended with pinch of matcha blend powder & sweetener (215 kcal, 21g p)</li>
+        <li><strong>Overnight Recovery:</strong> 1 cup Plain Nonfat Greek Yogurt blended with pinch of Jade Leaf Matcha Powder & zero-cal sweetener (120 kcal, 22g p)</li>
+        <li><strong>Metabolic Soother:</strong> 1 cup warm soothing 100% Green Tea (0 kcal, overnight metabolic support)</li>
       </ul>
     </div>
 
-    <h2>🛒 Weekly Auburn Walmart Grocery Checklist ($70.75 Full Stocking / ~$50 Weekly Replenish)</h2>
+    <h2>🛒 Section 1: Weekly Core Replenishment (~$46.44 Auburn Walmart Consumables Run)</h2>
     <div class="grocery-grid">
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Fresh Chicken Breasts (~4.7 lb Family Tray)</div><div class="item-price">$12.60 • Primary lean protein staple</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">All Natural Lean Ground Beef 93/7 (~1 lb roll)</div><div class="item-price">$6.48 • Beef & Broccoli stir-fries</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Great Value Large White Eggs (36 ct Tray / 2 Cartons)</div><div class="item-price">$6.84 • 36 eggs (3 eggs/day + extras!)</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Great Value Plain Nonfat Greek Yogurt (Four 32 oz tubs / 128 oz)</div><div class="item-price">$15.92 • 4 tubs guaranteed for 7 days afternoon & bedtime casein</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Great Value 100% Liquid Egg Whites (32 oz carton)</div><div class="item-price">$3.48 • Clean protein for breakfast scramble</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Silk Original Soy Milk (Half Gallon / 64 fl oz)</div><div class="item-price">$3.97 • 100% dairy-free / lactose-free latte base</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Great Value / Lipton Green Tea & Matcha Blend (40 ct)</div><div class="item-price">$2.98 • Green tea & matcha for Dirty Matcha Lattes</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Great Value Classic Roast Instant Coffee (4 oz jar)</div><div class="item-price">$2.48 • Espresso shot for Dirty Matcha</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Great Value Ground Ginger (1.5 oz)</div><div class="item-price">$2.32 • Essential for Chinese stir-fries</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Great Value 0-Calorie Cooking Spray</div><div class="item-price">$2.24 • Fat-free searing & egg scrambling</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Great Value Zero Calorie Sweetener (100 ct)</div><div class="item-price">$2.18 • Sweetens lattes & yogurt</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Great Value Soy Sauce (15 fl oz bottle)</div><div class="item-price">$1.48 • Savory wok seasoning staple</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Great Value Long Grain White Rice (2 lb bag)</div><div class="item-price">$1.48 • Clean daily complex carbs</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Great Value Frozen Broccoli Florets (12 oz)</div><div class="item-price">$1.16 • Steamed micronutrients & fiber</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Great Value Garlic Powder (3.4 oz)</div><div class="item-price">$1.08 • All-purpose seasoning staple</div></div></div>
-      <div class="grocery-item"><div class="checkbox"></div><div><div class="item-name">Great Value Chili Powder (3 oz)</div><div class="item-price">$1.08 • Smoky Szechuan-style heat</div></div></div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Fresh Chicken Breasts (ONE Great Value ~5.0 lb Family Pack / 80 oz raw)</div>
+          <div class="item-price">$13.40 (~5.0 lb family pack at $2.68/lb)</div>
+          <div class="item-note">Guaranteed to provide 11.4 oz raw chicken per day for 7 full days of Lunch (5.7 oz/day) and Dinner (5.7 oz/day).</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Plain Nonfat Greek Yogurt (FOUR 32 oz tubs / 128 oz / 1 Gallon total)</div>
+          <div class="item-price">$15.92 (FOUR 32 oz tubs total)</div>
+          <div class="item-note">FOUR tubs (16 cups total) guaranteed! Enough Greek Yogurt for 7 full days of Afternoon bowls AND Nighttime Casein Fluff.</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Large Grade A White Eggs (36 Count Tray / Two 18 ct Cartons)</div>
+          <div class="item-price">$6.84 (36 count tray / 2 cartons)</div>
+          <div class="item-note">36 eggs guaranteed! Provides 3 eggs a day for all 7 days plus 15 bonus eggs for meal prep and snacks. Scramble in 0-cal cooking spray.</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">All Natural Lean Ground Beef 93/7 (~1 lb roll / tray)</div>
+          <div class="item-price">$6.48 (1 lb roll / tray)</div>
+          <div class="item-note">Essential lean beef for authentic Chinese Beef & Broccoli stir-fries! Loaded with bioavailable iron and creatine.</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value 100% Liquid Egg Whites (32 oz carton)</div>
+          <div class="item-price">$3.48 (32 oz carton ~20 servings)</div>
+          <div class="item-note">Pure protein booster! Mix 1/2 cup into your morning whole egg scrambles to add clean protein without extra fat calories.</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>🧂 Section 2: Periodic Monday Pantry, Spices & Beverage Restock (~$23.31 Initial / Restock As Needed)</h2>
+    <div class="grocery-grid">
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Jade Leaf Organic Matcha Latte Mix / Pure Matcha Powder (5.3 oz pouch)</div>
+          <div class="item-price">$8.98 (5.3 oz pouch)</div>
+          <div class="item-note">High-antioxidant Jade Leaf Organic Matcha! Whisk 1 tsp with Instant Coffee and Silk Soy Milk for your Pre-Workout Dirty Matcha Lattes.</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Classic Roast Instant Coffee (5 oz / 8 oz Jar)</div>
+          <div class="item-price">$5.48 (5 oz / 8 oz Jar)</div>
+          <div class="item-note">Essential instant coffee roast! Dissolve 1 tsp in hot water to create the espresso shot required for your Dirty Matcha Lattes.</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Silk Original Soy Milk (Half Gallon / 64 fl oz)</div>
+          <div class="item-price">$3.97 (Half Gallon)</div>
+          <div class="item-note">100% dairy-free & lactose-free! High protein (8g/cup) creamy base for making Dirty Matcha Lattes without stomach discomfort.</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Frozen Broccoli Florets (Two 12 oz bags / 24 oz total)</div>
+          <div class="item-price">$2.32 (Two 12 oz bags at $1.16 ea)</div>
+          <div class="item-note">Two bags (~8 cups total) guaranteed! Steamed micronutrients and fiber for 7 full days of Lunch & Dinner bowls.</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Ground Ginger (1.5 oz bottle)</div>
+          <div class="item-price">$2.32 (1.5 oz bottle)</div>
+          <div class="item-note">Essential Asian cooking spice! Adds warming heat to Chinese stir-fries and marinades.</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Canola Oil 0-Calorie Cooking Spray (8 oz can)</div>
+          <div class="item-price">$2.24 (8 oz aerosol can)</div>
+          <div class="item-note">Zero-calorie non-stick cooking spray for searing chicken and eggs without adding hidden liquid oil calories.</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Zero Calorie Sweetener Packets (100 Count Box)</div>
+          <div class="item-price">$2.18 (100 Count Box)</div>
+          <div class="item-note">The secret to getting traditional sweet lattes and teas without adding unwanted sugar calories!</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value 100% Green Tea Bags (40 ct)</div>
+          <div class="item-price">$1.98 (40 ct box)</div>
+          <div class="item-note">Traditional Chinese 100% green tea bags! Enjoy a cup of hot brewed green tea with every non-latte meal across your 7-day plan.</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Soy Sauce (15 fl oz bottle)</div>
+          <div class="item-price">$1.48 (15 fl oz bottle)</div>
+          <div class="item-note">Essential savory seasoning staple for Chinese stir-fries and wok-seared chicken/beef.</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Long Grain White Rice (2 lb bag)</div>
+          <div class="item-price">$1.48 (2 lb bag ~20 servings)</div>
+          <div class="item-note">Convenient 2 lb bag! Clean fast-digesting carbohydrates to fuel your heavy lifting sessions at Planet Fitness Lewiston.</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Garlic Powder (3.4 oz bottle)</div>
+          <div class="item-price">$1.18 (3.4 oz bottle)</div>
+          <div class="item-note">Essential all-purpose seasoning! Used across every meal plan for searing chicken, beef, eggs, and stir-fries with zero calories.</div>
+        </div>
+      </div>
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Onion Powder (3.25 oz bottle)</div>
+          <div class="item-price">$1.08 (3.25 oz bottle)</div>
+          <div class="item-note">Savory all-purpose onion seasoning for wok marinades and spice blends.</div>
+        </div>
+      </div>
     </div>
 
     <div class="footer">
