@@ -247,7 +247,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   },
   {
     id: "g-14",
-    upc: "078742231268", // Instant Coffee for Dirty Matcha
+    upc: "078742231268",
     name: "Classic Roast Instant Coffee (5 oz / 8 oz Jar)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value / Folgers",
@@ -258,8 +258,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1 tsp (2g / 1 espresso shot equivalent)",
-    coachNote: "Essential instant coffee roast! Dissolve 1 tsp in hot water to create the espresso shot required for your authentic Japanese Dirty Matcha Lattes, Korean Dirty Chai Lattes, and Chinese Dirty Matcha Lattes!",
-    cuisine: ["China", "Korea", "Japan", "Mexico"]
+    coachNote: "Optional instant coffee alternative if you prefer quick mixing over brewing Death Wish Ground Coffee.",
+    cuisine: []
   },
   {
     id: "g-15",
@@ -648,18 +648,18 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-39",
     upc: "085000049999",
-    name: "Jade Leaf Organic Matcha Latte Mix / Pure Matcha Powder (5.3 oz pouch)",
+    name: "Death Wish Coffee Co. Espresso Roast Ground Coffee (9 oz bag)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Jade Leaf",
+    brand: "Death Wish Coffee Co.",
     category: "Essentials",
-    priceEst: "$8.98 (5.3 oz pouch)",
-    calories: 10,
-    protein: 1,
-    carbs: 2,
+    priceEst: "$11.76 (9 oz bag)",
+    calories: 5,
+    protein: 0,
+    carbs: 0,
     fat: 0,
-    servingSize: "1 tsp (4g)",
-    coachNote: "High-antioxidant Jade Leaf Organic Matcha! Whisk 1 tsp with Instant Coffee and Silk Soy Milk for your morning & afternoon Dirty Matcha Lattes (Restock item).",
-    cuisine: ["China", "Japan"]
+    servingSize: "2 tbsp brewed",
+    coachNote: "High-octane Death Wish Espresso Roast! Brew over ice for your 8:00 AM Pre-Workout Iced Black Coffee fuel before hitting Planet Fitness Lewiston.",
+    cuisine: ["China"]
   },
   {
     id: "g-40",
@@ -768,7 +768,7 @@ export interface WalmartPresetItem {
 
 export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   // Toiletries & Household
-  { name: "Equate Men's 3-in-1 Body Wash, Shampoo & Conditioner (32 fl oz)", category: "Toiletries / Non-Grocery", price: "$4.48", note: "Essential post-workout hygiene for K-Pop Idol home workout sessions." },
+  { name: "Equate Men's 3-in-1 Body Wash, Shampoo & Conditioner (32 fl oz)", category: "Toiletries / Non-Grocery", price: "$4.48", note: "Essential post-workout hygiene for Planet Fitness Lewiston gym workout sessions." },
   { name: "Colgate Total Clean Mint Toothpaste (2-pack)", category: "Toiletries / Non-Grocery", price: "$6.98", note: "Daily oral hygiene essential from aisle A-12." },
   { name: "Great Value Ultra Gentle Toilet Paper (12 Mega Rolls)", category: "Toiletries / Non-Grocery", price: "$10.98", note: "Household budget bulk staple." },
   { name: "Equate 28 oz Protein Shaker Bottle with Wire Whisk Ball", category: "Toiletries / Non-Grocery", price: "$5.98", note: "Essential for mixing whey protein shakes smoothly after lifting." },
@@ -782,120 +782,129 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   // Seasonings, Spices, Sauces & Beverages
   { name: "Great Value Garlic Powder (3.4 oz bottle)", category: "Seasonings & Spices", price: "$1.08", note: "Essential zero-calorie savory garlic seasoning." },
   { name: "Great Value Onion Powder (3.25 oz bottle)", category: "Seasonings & Spices", price: "$1.08", note: "Essential zero-calorie savory onion seasoning." },
-  { name: "Great Value Ground Ginger (1.5 oz bottle)", category: "Seasonings & Spices", price: "$2.32", note: "Warming Asian spice for Bulgogi and stir-fries." },
+  { name: "Great Value Ground Ginger (1.5 oz bottle)", category: "Seasonings & Spices", price: "$2.32", note: "Warming Asian spice for Bulgogi and Gochujang glazes." },
   { name: "Great Value Ground Cinnamon (2.5 oz bottle)", category: "Seasonings & Spices", price: "$1.27", note: "Sweet warming spice for Dirty Chai Lattes and oatmeal." },
   { name: "Great Value Ground Cumin (2.5 oz bottle)", category: "Seasonings & Spices", price: "$1.37", note: "Earthy Mexican spice for Pollo Asado and fajitas." },
   { name: "Great Value Chili Powder (3 oz bottle)", category: "Seasonings & Spices", price: "$1.08", note: "Smoky heat for fajitas and stir-fries." },
   { name: "Goya Sazón with Coriander & Annatto (8 ct)", category: "Seasonings & Spices", price: "$1.88", note: "Authentic Puerto Rican seasoning with zero calories." },
   { name: "Goya Adobo All-Purpose Seasoning (8 oz jar)", category: "Seasonings & Spices", price: "$2.18", note: "The #1 Boricua garlic and pepper all-purpose seasoning." },
-  { name: "Great Value Soy Sauce (15 fl oz bottle)", category: "Seasonings & Spices", price: "$1.48", note: "Savory seasoning for Chinese stir-fries and Korean Bulgogi." },
-  { name: "Great Value Sriracha Chili Sauce (17 fl oz bottle)", category: "Seasonings & Spices", price: "$2.98", note: "Spicy metabolism-boosting chili sauce staple." },
+  { name: "Great Value Soy Sauce (15 fl oz bottle)", category: "Seasonings & Spices", price: "$1.48", note: "Savory seasoning for Korean Gochujang glaze and egg scrambles." },
+  { name: "Great Value Sriracha Chili Sauce or Chili Garlic Sauce (17 fl oz bottle)", category: "Seasonings & Spices", price: "$2.98", note: "Spicy metabolism-boosting chili sauce for Korean glazes." },
   { name: "Bibigo Authentic Korean BBQ Marinade & Sauce (16.9 fl oz bottle)", category: "Seasonings & Spices", price: "$4.13", note: "Authentic sweet & savory Korean BBQ marinade and glaze." },
-  { name: "Nasoya Authentic Korean Spicy Kimchi (14 oz cup)", category: "Seasonings & Spices", price: "$4.98", note: "Probiotic gut health & authentic Korean Bulgogi side." },
-  { name: "Great Value Classic Roast Instant Coffee (4 oz jar)", category: "Seasonings & Spices", price: "$2.48", note: "Dissolve 1 tsp for espresso shots in Dirty Matcha and Dirty Chai Lattes!" },
-  { name: "Café Bustelo Dark Roast Espresso (4 oz)", category: "Seasonings & Spices", price: "$3.48", note: "Authentic Boricua espresso for Café con Leche." },
-  { name: "Jade Leaf Organic Matcha Latte Mix / Pure Matcha Powder (5.3 oz pouch)", category: "Seasonings & Spices", price: "$8.98", note: "Essential pure matcha powder for Dirty Matcha Lattes and Casein Fluff!" },
-  { name: "Great Value 100% Green Tea Bags (40 ct)", category: "Seasonings & Spices", price: "$1.98", note: "Traditional Chinese, Japanese, and Korean metabolism tea." },
-  { name: "Great Value 0-Calorie Canola Oil Cooking Spray", category: "Seasonings & Spices", price: "$2.24", note: "Fat-free searing and egg scrambling." },
-  { name: "Great Value Zero Calorie Sweetener Packets (100 ct)", category: "Seasonings & Spices", price: "$2.18", note: "Sweetens tea, lattes, and yogurt with zero sugar calories." },
+  { name: "Nasoya Authentic Korean Spicy Kimchi (14 oz cup)", category: "Seasonings & Spices", price: "$4.98", note: "Probiotic gut health & authentic Korean side dish." },
+  { name: "Death Wish Coffee Co. Espresso Roast Ground Coffee (9 oz bag)", category: "Seasonings & Spices", price: "$11.76", note: "Brew over ice at 8:00 AM for extreme high-octane pre-workout focus!" },
+  { name: "Great Value Cornstarch (16 oz box)", category: "Seasonings & Spices", price: "$1.48", note: "Toss chicken breast cubes lightly before searing for authentic wok crispiness." },
+  { name: "Great Value 100% Green Tea Bags (40 ct)", category: "Seasonings & Spices", price: "$1.98", note: "Traditional Asian 100% green tea paired with post-workout meals." },
+  { name: "Great Value 0-Calorie Canola Oil Cooking Spray", category: "Seasonings & Spices", price: "$2.24", note: "Fat-free searing for Korean Gochujang chicken and egg scrambling." },
+  { name: "Great Value Zero Calorie Sweetener Packets (100 ct)", category: "Seasonings & Spices", price: "$2.18", note: "Sweetens Korean Gochujang glaze, tea, and yogurt with zero sugar calories." },
   { name: "Great Value Purified Drinking Water (40 Pack, 16.9 fl oz bottles)", category: "Essentials", price: "$4.98", note: "40-pack purified water bottles from Auburn Walmart." },
   // Groceries & Protein Staples
-  { name: "Fresh Chicken Breasts (~4.7 lb Family Tray)", category: "Protein", price: "$12.60", note: "Primary lean protein staple (~4.7 to 6 lb tray)." },
-  { name: "All Natural Lean Beef Stew Meat (~1.0 lb Tray)", category: "Protein", price: "$6.48", note: "Tender beef chunks for Korean Bulgogi bowls." },
-  { name: "Great Value Large Grade A White Eggs (36 Count Tray)", category: "Protein", price: "$6.84", note: "36 eggs guaranteed (3 eggs/day + extras!)." },
-  { name: "All Natural Lean Ground Beef 93/7 (~1 lb roll)", category: "Protein", price: "$6.48", note: "Essential for Bulgogi bowls and beef stir-fries." },
-  { name: "Great Value Plain Nonfat Greek Yogurt (Two 32 oz tubs / 64 oz total)", category: "Protein", price: "$7.96", note: "Two tubs (64 oz / 8+ cups total) guaranteed for 7 days of afternoon & bedtime protein snacks!" },
-  { name: "Silk Original Soy Milk (Half Gallon / 64 fl oz)", category: "Essentials", price: "$3.97", note: "100% dairy-free and lactose-free! High protein (8g/cup) creamy latte base." },
+  { name: "Fresh Chicken Breasts (~4.7 to 5.0 lb Family Tray)", category: "Protein", price: "$13.40", note: "Primary lean protein staple (~5.0 lb tray at $2.68/lb) for General Tso cubes." },
+  { name: "All Natural Lean Beef Stew Meat (~1.0 lb Tray)", category: "Protein", price: "$6.48", note: "Tender beef chunks for stir-fry bowls." },
+  { name: "Great Value Large Grade A White Eggs (36 Count Tray)", category: "Protein", price: "$6.84", note: "36 eggs guaranteed (5 eggs/day for post-workout breakfast plus extras!)." },
+  { name: "All Natural Lean Ground Beef 93/7 (~1 lb roll)", category: "Protein", price: "$6.48", note: "Essential lean beef for stir-fries." },
+  { name: "Great Value Plain Nonfat Greek Yogurt (Two 32 oz tubs / 64 oz total)", category: "Protein", price: "$7.96", note: "Two tubs (64 oz / 8+ cups total) guaranteed for afternoon & bedtime protein snacks!" },
+  { name: "Silk Original Soy Milk (Half Gallon / 64 fl oz)", category: "Essentials", price: "$3.97", note: "100% dairy-free high protein creamy base." },
   { name: "Great Value Chunk Light Tuna in Water (4 Pack)", category: "Protein", price: "$3.68", note: "High protein, zero-carb lean fish staple." },
-  { name: "Great Value 100% Liquid Egg Whites (32 oz carton)", category: "Protein", price: "$3.48", note: "Pure protein booster for morning scrambles." },
+  { name: "Great Value 100% Liquid Egg Whites (32 oz carton)", category: "Protein", price: "$3.48", note: "Pure protein booster for post-workout scrambles." },
   { name: "All Natural Bone-In Assorted Pork Chops (~1.3 lb tray)", category: "Protein", price: "$4.44", note: "Traditional Puerto Rican Chuletas." },
   { name: "Great Value Old Fashioned Rolled Oats (42 oz canister)", category: "Carbs", price: "$3.98", note: "Slow-digesting complex carbs for morning energy." },
   { name: "Fresh Green Plantains (4 Pack)", category: "Carbs", price: "$2.32", note: "Crispy authentic Tostones a la Plancha." },
   { name: "Great Value White Corn Tortillas (30 ct)", category: "Carbs", price: "$1.98", note: "Authentic Mexican street taco and fajita staple." },
   { name: "Great Value Black Beans (Two 15.25 oz cans)", category: "Carbs", price: "$1.68", note: "Essential fiber and slow carbs." },
-  { name: "Fresh Bananas (~1 lb bunch)", category: "Produce", price: "$1.58", note: "Quick potassium and pre-workout carbohydrates." },
-  { name: "Great Value Long Grain White Rice (2 lb bag)", category: "Carbs", price: "$1.48", note: "Clean fast-digesting carbohydrates." },
+  { name: "Fresh Bananas (~1 lb bunch)", category: "Produce", price: "$1.58", note: "Quick potassium and pre-workout carbohydrates (paired with 8 AM coffee)." },
+  { name: "Great Value Long Grain White Rice (2 lb bag)", category: "Carbs", price: "$1.48", note: "Clean fast-digesting carbohydrates for post-workout recovery." },
   { name: "Great Value Frozen Broccoli Florets (12 oz bag)", category: "Produce", price: "$1.16", note: "Easy steamed micronutrients and fiber." },
   { name: "Great Value Chunky Salsa & Fresh Avocados", category: "Produce", price: "$2.48", note: "The zesty Mexican secret for morning Huevos Rancheros." }
 ];
 
 export const MEAL_PREP_PLANS: MealPrepPlan[] = [
   {
-    id: "plan-china",
-    title: "China: Green Tea & Dirty Matcha Shred Blueprint (~2,150 kcal)",
-    country: "China",
-    flag: "🇨🇳",
+    id: "plan-korea",
+    title: "Korea: Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint (~2,150 kcal)",
+    country: "Korea",
+    flag: "🇰🇷",
     badge: "⭐ #1 Main & Exclusive Blueprint",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
-    estCostPerWeek: "$46.44 Weekly Consumables / $23.31 Periodic Restock ($69.75 Combined Total)",
-    description: "The #1 Main & Exclusive Chinese Green Tea & Dirty Matcha Shred Blueprint! Designed for Hunter Nick's schedule: Monday Grocery Run at Auburn Walmart & Batch Meal Prep, starting eating the meal prep on Tuesdays (Tuesday through Monday 7-Day Cycle). Features traditional metabolism-boosting hot 100% Green Tea paired with every meal, plus the iconic Dirty Matcha Latte (Jade Leaf Organic Matcha Latte Powder + Instant Coffee Espresso Shot + Silk Soy Milk over ice) as your clean afternoon Pre-Workout Focus fuel before hitting Planet Fitness Lewiston! Tuned to 170g+ daily protein with your weekly consumables run at just $46.44 ($23.31 periodic restock, keeping combined cost under $70 total limit)!",
+    estCostPerWeek: "$38.42 Weekly Consumables / $19.92 Periodic Restock ($58.34 Combined Total)",
+    description: "The #1 Main & Exclusive Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint! Designed specifically around Hunter Nick's schedule: Monday Grocery Run at Auburn Maine Walmart Supercenter ($50 budget for regular runs, max $25 for restocking) & Batch Meal Prep, starting eating Tuesday (Tuesday-Monday 7-Day Cycle). Features high-octane Death Wish Espresso Roast Iced Black Coffee + Banana at 8:00 AM as extreme Pre-Workout focus before hitting Planet Fitness Lewiston! Followed by a cooked-fresh Post-Workout Scallion & Liquid Egg White Scramble with Kimchi at 10:30-11:00 AM, authentic Wok-Seared Korean Gochujang/Bibigo Glazed Chicken Breast for Lunch and Dinner, and slow-release Casein Greek Yogurt bowls (with 4 tubs / 1 Gallon guaranteed so you never run out!). Traditional 100% Green Tea is paired with every post-workout main meal to maximize thermogenesis. Plus, includes Samyang Buldak Spicy Carbonara Chicken Ramen Noodles as your weekly reward treat meal on Friday or Saturday evening!",
     meals: [
       {
-        name: "Breakfast: Scallion Egg Scramble & Hot Green Tea",
-        time: "8:00 AM",
+        name: "Pre-Workout Fuel: Death Wish Iced Black Coffee & Banana",
+        time: "8:00 AM (Pre-Workout)",
         ingredients: [
-          "5 Large Grade A White Eggs & 1/2 cup liquid egg whites scrambled in 0-Cal Cooking Spray with fresh scallions, soy sauce & ginger (320 kcal, 36g p)",
-          "1 cup cooked Jasmine / White Rice seasoned with garlic & sesame (200 kcal, 4g p, 45g c)",
-          "1 cup hot brewed 100% Green Tea (0 kcal, metabolism boost & morning antioxidant start)"
+          "1 Pre-Workout Death Wish Iced Black Coffee: Brew 2 tbsp Death Wish Espresso Roast ground coffee with hot water, pour over ice (optional: add 1 zero-cal sweetener packet for zero-calorie sweetness, or keep pure black). Cooking Instructions: Brew strong in morning or batch cold-brew overnight. Extreme clean caffeine and focus! (5 kcal, 0g p)",
+          "1 Medium Fresh Banana: Peel and eat immediately before heading to Planet Fitness Lewiston for rapid-absorbing pre-workout carbohydrates & potassium! (105 kcal, 1g p, 27g c)"
         ],
-        calories: 520,
-        protein: 40,
-        carbs: 45,
-        fat: 18
+        calories: 110,
+        protein: 1,
+        carbs: 27,
+        fat: 0
       },
       {
-        name: "Lunch: Szechuan Honey-Soy Glazed Chicken Breast & Broccoli",
-        time: "12:30 PM",
+        name: "Post-Workout Breakfast: Korean Scallion & Egg White Scramble + Rice & Kimchi + Tea",
+        time: "10:30 AM – 11:00 AM (Post-Workout)",
         ingredients: [
-          "8 oz Fresh Chicken Breast seared in wok/skillet with garlic, soy sauce, ginger & chili flakes (260 kcal, 54g p)",
-          "1.5 cups steamed Great Value Frozen Broccoli florets (45 kcal, 3g p)",
-          "1 cup cooked Jasmine White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
+          "3 Large Grade A White Eggs + 1/2 cup (4 oz) Liquid Egg Whites scrambled in Great Value 0-Cal Cooking Spray. Cooking Instructions: Heat non-stick skillet over medium heat, spray liberally with canola oil spray. Whisk 3 whole eggs plus 1/2 cup liquid egg whites thoroughly. Pour in skillet and gently fold with spatula over medium heat. During the last 60 seconds of cooking, fold in 1 tbsp soy sauce, 1/2 tsp garlic powder, and chopped fresh green onions until golden and fluffy! (330 kcal, 31g p, 15g f)",
+          "1 cup cooked Long Grain White Rice. Cooking Instructions: Rinse rice until water runs clear. Combine 1 cup raw rice with 2 cups water in saucepan, bring to boil, cover, and simmer low for 18 minutes. Fluff with fork! (200 kcal, 4g p, 44g c)",
+          "2 tbsp Nasoya Authentic Korean Spicy Kimchi (fermented cabbage for gut health and tangy spice). (15 kcal, 1g p, 2g c)",
+          "1 cup hot brewed Great Value 100% Green Tea. Cooking Instructions: Steep 1 green tea bag in boiling water for 3-5 minutes. (0 kcal, post-workout antioxidant recovery & metabolism boost)"
+        ],
+        calories: 550,
+        protein: 36,
+        carbs: 48,
+        fat: 15
+      },
+      {
+        name: "Lunch: Wok-Seared Korean Gochujang Glazed Chicken Breast & Steamed Broccoli + Tea",
+        time: "2:00 PM – 2:30 PM",
+        ingredients: [
+          "~5.7 oz Fresh Chicken Breast cubes wok-seared in Korean Gochujang / Bibigo Glaze. Cooking Instructions: Cut chicken breast into bite-sized 1-inch cubes and toss with 1 tsp cornstarch and garlic powder. Spray non-stick wok or skillet with 0-cal canola cooking spray over medium-high heat. Sear chicken cubes for 6-8 minutes until golden brown and fully cooked (165°F internal). Whisk low-cal Korean Gochujang Glaze (1.5 tbsp Bibigo Korean BBQ sauce / soy sauce, 1 tsp sriracha, 1 zero-cal sweetener packet, 1/4 tsp ground ginger, 1/4 tsp garlic powder, and 1 tbsp water). Pour glaze into wok over chicken and toss vigorously for 1 minute until sticky, glossy, and caramelized! (210 kcal, 40g p, 2g f)",
+          "1 cup steamed Great Value Frozen Broccoli florets. Cooking Instructions: Microwave frozen broccoli in covered bowl with 2 tbsp water for 3-4 minutes until crisp-tender, drain and season with garlic powder. (30 kcal, 2g p, 6g c)",
+          "1 cup cooked Long Grain White Rice (from batch prep, reheated with a splash of water so it stays fluffy). (200 kcal, 4g p, 44g c)",
           "1 cup hot brewed 100% Green Tea (0 kcal, thermogenic fat oxidation booster)"
         ],
-        calories: 505,
-        protein: 61,
-        carbs: 48,
-        fat: 4
+        calories: 440,
+        protein: 46,
+        carbs: 53,
+        fat: 2
       },
       {
-        name: "Pre-Workout Energy: Dirty Matcha Latte & Casein Bowl",
-        time: "4:00 PM (Pre-Workout)",
+        name: "Afternoon Snack: Korean Casein Greek Yogurt Bowl",
+        time: "5:30 PM",
         ingredients: [
-          "1 Pre-Workout Dirty Matcha Latte over ice: Mix 1 tbsp Jade Leaf Organic Matcha Latte Powder + 1 dissolved Instant Coffee/Espresso shot + 1 cup Silk Soy Milk & 1 zero-cal sweetener packet! (85 kcal, 8g p)",
-          "1.5 cups Plain Nonfat Greek Yogurt sweetened with vanilla & zero-cal sweetener (180 kcal, 32g p)",
-          "1/2 cup cooked Jasmine White Rice with cinnamon & sweetener for clean pre-gym carbohydrates (110 kcal, 1g p, 25g c)",
-          "1 cup hot or iced 100% Green Tea alongside (0 kcal)"
-        ],
-        calories: 375,
-        protein: 41,
-        carbs: 42,
-        fat: 4
-      },
-      {
-        name: "Post-Workout Dinner: Chinese Wok-Seared Garlic Beef & Broccoli",
-        time: "7:30 PM (Post-Workout)",
-        ingredients: [
-          "8 oz All Natural Lean Beef / 93/7 Ground Beef wok-seared with soy sauce, garlic & ginger (340 kcal, 48g p, 16g f)",
-          "1.5 cups steamed Great Value Frozen Broccoli florets (45 kcal, 3g p)",
-          "1 cup cooked Jasmine White Rice (from 2 lb bag!) (200 kcal, 4g p, 45g c)",
-          "1 cup hot brewed 100% Green Tea (0 kcal, post-workout recovery aid)"
-        ],
-        calories: 585,
-        protein: 55,
-        carbs: 48,
-        fat: 16
-      },
-      {
-        name: "Nighttime Recovery: Green Tea Infused Casein Snack",
-        time: "10:30 PM",
-        ingredients: [
-          "1 cup Plain Nonfat Greek Yogurt blended with pinch of Jade Leaf Matcha Powder & zero-cal sweetener (120 kcal, 22g p)",
-          "1 cup warm soothing 100% Green Tea (0 kcal, overnight metabolic support)"
+          "1 cup (8 oz) Plain Nonfat Greek Yogurt. Cooking Instructions: Spoon yogurt into bowl, stir in 1 zero-calorie sweetener packet and a pinch of cinnamon or vanilla until velvety and creamy. Slow-release casein protein keeps muscles fueled and satiated between meals! (120 kcal, 21g p, 8g c)"
         ],
         calories: 120,
-        protein: 22,
+        protein: 21,
         carbs: 8,
+        fat: 0
+      },
+      {
+        name: "Dinner: Wok-Seared Korean Gochujang Glazed Chicken Breast & Steamed Broccoli + Tea",
+        time: "7:30 PM – 8:00 PM",
+        ingredients: [
+          "~5.7 oz Fresh Chicken Breast cubes wok-seared in Korean Gochujang / Bibigo Glaze. Cooking Instructions: Prepare chicken cubes in wok with 0-cal canola spray over medium-high heat for 6-8 minutes. Toss with low-cal Gochujang Glaze (Bibigo sauce, soy sauce, sriracha, zero-cal sweetener, ginger, garlic powder, water) until caramelized and glossy! (210 kcal, 40g p, 2g f)",
+          "1 cup steamed Great Value Frozen Broccoli florets (crisp-tender, seasoned with garlic powder). (30 kcal, 2g p, 6g c)",
+          "1 cup cooked Long Grain White Rice (reheated warm and fluffy). (200 kcal, 4g p, 44g c)",
+          "1 cup hot brewed 100% Green Tea (0 kcal, overnight metabolic & muscle recovery aid)"
+        ],
+        calories: 440,
+        protein: 46,
+        carbs: 53,
+        fat: 2
+      },
+      {
+        name: "Nighttime Recovery: Casein Greek Yogurt Fluff & Hot Green Tea",
+        time: "10:30 PM",
+        ingredients: [
+          "3/4 cup (6 oz) Plain Nonfat Greek Yogurt. Cooking Instructions: Whisk yogurt in a bowl with 1 zero-calorie sweetener packet until airy and fluffy. Provides essential overnight amino acids to rebuild muscle fiber while you sleep. (90 kcal, 16g p, 6g c)",
+          "1 warm, soothing cup of brewed 100% Green Tea (0 kcal, overnight metabolic support during deep sleep)"
+        ],
+        calories: 90,
+        protein: 16,
+        carbs: 6,
         fat: 0
       }
     ]

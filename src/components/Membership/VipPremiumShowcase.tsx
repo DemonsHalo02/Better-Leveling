@@ -24,17 +24,20 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
 
   useEffect(() => {
     setState(loadHunterState());
+    const handleUpdate = () => setState({ ...loadHunterState() });
+    window.addEventListener('hunterStateChanged', handleUpdate);
     if (typeof window !== 'undefined') {
       const savedTrophies = localStorage.getItem('pf_vip_trophies_claimed');
       if (savedTrophies) setClaimedTrophies(JSON.parse(savedTrophies));
     }
+    return () => window.removeEventListener('hunterStateChanged', handleUpdate);
   }, []);
 
   if (!state) return null;
 
   const isVip = userTier === "S-Rank VIP Guild";
   const startWeight = state.profile?.startWeight || 242;
-  const targetWeight = state.profile?.targetWeight || 170;
+  const targetWeight = state.profile?.targetWeight || 160;
   const currentWeight = state.profile?.currentWeight || startWeight;
   const lbsRemaining = Math.max(0, Number((currentWeight - targetWeight).toFixed(1)));
 
@@ -85,7 +88,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
   const vipTrophies = [
     { id: 'vip_founder', name: 'S-Rank Guild Founder', desc: 'Unlocked the highest echelon of Shadow Monarch fitness coaching.', xp: 500, icon: '👑' },
     { id: 'vip_recomp', name: 'Titanium Recomposition Master', desc: 'Simulated and executed a precision cutting blueprint.', xp: 500, icon: '⚡' },
-    { id: 'vip_oracle', name: 'Shadow Monarch VIP Vanguard', desc: 'Dedicated to achieving 170 LBS with zero muscle loss.', xp: 500, icon: '🔥' },
+    { id: 'vip_oracle', name: 'Shadow Monarch VIP Vanguard', desc: 'Dedicated to achieving 160 LBS with zero muscle loss.', xp: 500, icon: '🔥' },
   ];
 
   return (
@@ -185,7 +188,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
               <Shield className="w-4 h-4" /> 3. Skin Retraction Protocol
             </div>
             <p className="text-xs text-zinc-300 leading-relaxed">
-              To ensure zero loose skin as you approach 170 lbs, keep daily hydration above <strong>1 Gallon</strong> and hit <strong>{simulatedProtein}g protein</strong> daily. This supports collagen elasticity and subcutaneous muscle density!
+              To ensure zero loose skin as you approach 160 lbs, keep daily hydration above <strong>1 Gallon</strong> and hit <strong>{simulatedProtein}g protein</strong> daily. This supports collagen elasticity and subcutaneous muscle density!
             </p>
           </div>
         </div>

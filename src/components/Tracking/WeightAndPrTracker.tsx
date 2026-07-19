@@ -38,18 +38,21 @@ export default function WeightAndPrTracker() {
       window.addEventListener('hunterStateChanged', updateStr);
 
       // Load weight history
+      // Load weight history
       const savedWeights = localStorage.getItem('pf_weight_history');
       if (savedWeights) {
-        setWeightLogs(JSON.parse(savedWeights));
+        let parsed = JSON.parse(savedWeights) as WeightLog[];
+        parsed = parsed.map(p => p.date.includes('Goal') || p.targetWeight === 170 ? { ...p, weight: p.date.includes('Goal') ? 160 : p.weight, targetWeight: p.targetWeight === 170 ? 160 : p.targetWeight } : p);
+        setWeightLogs(parsed);
       } else {
-        // Default initial data points demonstrating the safe curve to 170 lbs by Dec 2027
+        // Default initial data points demonstrating the safe curve to 160 lbs by Dec 2027
         const initial: WeightLog[] = [
           { date: 'Start (242 lbs)', weight: 242, targetWeight: 242 },
           { date: 'Month 3', weight: 233, targetWeight: 232 },
           { date: 'Month 6', weight: 224, targetWeight: 222 },
           { date: 'Month 12', weight: 206, targetWeight: 204 },
           { date: 'Month 18', weight: 190, targetWeight: 188 },
-          { date: 'Dec 2027 (Goal)', weight: 170, targetWeight: 170 },
+          { date: 'Dec 2027 (Goal)', weight: 160, targetWeight: 160 },
         ];
         setWeightLogs(initial);
         localStorage.setItem('pf_weight_history', JSON.stringify(initial));
@@ -126,7 +129,7 @@ export default function WeightAndPrTracker() {
             Weight Trajectory & PR Vault
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            Track your journey from 242 lbs to 170 lbs by Dec 31, 2027. By maintaining a steady ~0.92 lb/week loss while building heavy lifting PRs, you prevent loose skin completely.
+            Track your journey from 242 lbs to 160 lbs by Dec 31, 2027. By maintaining a steady ~0.92 lb/week loss while building heavy lifting PRs, you prevent loose skin completely.
           </p>
         </div>
 
@@ -134,7 +137,7 @@ export default function WeightAndPrTracker() {
           <Trophy className="w-6 h-6 text-system-gold" />
           <div>
             <div className="text-[10px] text-zinc-400 uppercase font-bold">Total Cut Goal</div>
-            <div className="text-sm font-black text-system-gold font-mono">242 lbs ➔ 170 lbs (-72 lbs)</div>
+            <div className="text-sm font-black text-system-gold font-mono">242 lbs ➔ 160 lbs (-82 lbs)</div>
           </div>
         </div>
       </div>

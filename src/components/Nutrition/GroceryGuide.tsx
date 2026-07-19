@@ -11,7 +11,7 @@ export default function GroceryGuide() {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<'items' | 'plans'>('items');
   const [selectedCountryPlan, setSelectedCountryPlan] = useState<string>('All');
-  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('China');
+  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('Korea');
 
   const [customItems, setCustomItems] = useState<GroceryItem[]>([]);
   const [hiddenItemIds, setHiddenItemIds] = useState<string[]>([]);
@@ -80,7 +80,7 @@ export default function GroceryGuide() {
       localStorage.removeItem('pf_hidden_grocery_items');
       localStorage.removeItem('pf_custom_grocery_items');
     }
-    setSelectedAisleTemplate('China');
+    setSelectedAisleTemplate('Korea');
     setSelectedCountryPlan('All');
     setSelectedCategory('All');
     setSelectedStore('All Stores');
@@ -306,7 +306,7 @@ export default function GroceryGuide() {
   const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery', '🍱 Meal Prep Templates'];
 
   const handlePrintPlan = (plan?: typeof MEAL_PREP_PLANS[0]) => {
-    const url = '/Chinese_Meal_Plan_Under_50.html';
+    const url = '/Korean_Meal_Plan_Under_50.html';
     window.open(url, '_blank');
   };
 
@@ -319,7 +319,7 @@ export default function GroceryGuide() {
       'DESCRIPTION:\n' + plan.description + '\n\n' +
       'DAILY TIMELINE:\n' +
       plan.meals.map(m => '[' + m.time + '] ' + m.name + ' (' + m.calories + ' kcal, ' + m.protein + 'g protein)\nIngredients:\n' + m.ingredients.map(i => '- ' + i).join('\n')).join('\n\n') +
-      '\n\nStay disciplined and conquer your 170 LB target!';
+      '\n\nStay disciplined and conquer your 160 LB target!';
     
     window.location.href = 'mailto:nickcrossonofficial@outlook.com?subject=' + subject + '&body=' + encodeURIComponent(bodyText);
   };
@@ -338,7 +338,7 @@ export default function GroceryGuide() {
             Hunter Grocery Companion
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            High-protein, authentic Chinese Green Tea & Dirty Matcha Shred Blueprint staples priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run under $50 budget ($46.44 Weekly Consumables / $23.31 Periodic Restock)! Features 100% Green Tea and afternoon Dirty Matcha Lattes.
+            High-protein, authentic Chinese General Tso & Death Wish Black Coffee Shred Blueprint staples priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run under $50 budget ($43.52 Weekly Consumables / $24.04 Periodic Restock)! Features 100% Green Tea and 8:00 AM Pre-Workout Death Wish Iced Black Coffee.
           </p>
         </div>
 
@@ -409,7 +409,7 @@ export default function GroceryGuide() {
               <button
                 onClick={() => handlePrintPlan(MEAL_PREP_PLANS[0])}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-system-gold to-yellow-500 text-black font-black uppercase tracking-wider text-xs shadow-glow-gold hover:bg-white transition-all min-h-[38px] cursor-pointer"
-                title="Print or Save as PDF the Chinese Green Tea & Dirty Matcha Shred Blueprint"
+                title="Print or Save as PDF the Chinese General Tso & Death Wish Black Coffee Shred Blueprint"
               >
                 <Printer className="w-3.5 h-3.5 text-black" />
                 <span>🖨️ Print Blueprint PDF</span>
@@ -442,12 +442,12 @@ export default function GroceryGuide() {
                     ⭐ #1 Main & Exclusive Blueprint
                   </span>
                   <span className="text-xs text-white font-bold">
-                    🇨🇳 Chinese Green Tea & Dirty Matcha Shred Strategy (No Tofu!)
+                    🇨🇳 Chinese General Tso & Death Wish Black Coffee Shred Strategy (No Tofu!)
                   </span>
                 </div>
                 <p className="text-xs text-zinc-300">
-                  <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment):</strong> Chicken Breasts ($13.40), 93/7 Ground Beef ($6.48), 36-ct Eggs ($6.84), Liquid Egg Whites ($3.48), Greek Yogurt Tubs ($15.92), White Rice ($1.48), Frozen Broccoli ($2.32).<br />
-                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry & Spices Restock):</strong> Jade Leaf Organic Matcha Powder ($8.98), Instant Coffee for Dirty Matcha ($5.48), Silk Soy Milk ($3.97), 100% Green Tea Bags ($1.98), Zero-Cal Sweetener ($2.18), Canola Cooking Spray ($2.24), Ground Ginger ($2.32), Soy Sauce ($1.48), Garlic Powder ($1.18), Onion Powder ($1.08).
+                  <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment):</strong> Chicken Breasts ($13.40), 93/7 Ground Beef ($6.48), 36-ct Eggs ($6.84), Liquid Egg Whites ($3.48), Greek Yogurt Tubs ($15.92), White Rice ($1.48), Frozen Broccoli ($2.32), Bananas ($1.58), 100% Green Tea ($1.98).<br />
+                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry & Spices Restock):</strong> Death Wish Coffee Espresso Roast Ground ($11.76), Soy Sauce ($1.48), Sriracha/Chili Garlic Sauce ($2.98), Garlic Powder ($1.18), Onion Powder ($1.08), Ground Ginger ($2.32), Cornstarch ($1.48), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18).
                 </p>
               </div>
               <button
@@ -653,7 +653,7 @@ export default function GroceryGuide() {
                     <span>
                       {tpl === 'All'
                         ? '🌐 All Items & Templates'
-                        : '⭐ China ($46.44 Weekly / $23.31 Restock)'}
+                        : '⭐ China ($43.52 Weekly / $24.04 Restock)'}
                     </span>
                   </button>
                 );
@@ -864,7 +864,7 @@ export default function GroceryGuide() {
                           🧂 Periodic Pantry & Seasoning Restock (Check Kitchen & Buy As Needed)
                         </h3>
                         <p className="text-xs text-zinc-400">
-                          Multi-week sauces, matcha, coffee, spices, cooking sprays & sweeteners
+                          Multi-week sauces, Death Wish Coffee, spices, cooking sprays & sweeteners
                         </p>
                       </div>
                     </div>

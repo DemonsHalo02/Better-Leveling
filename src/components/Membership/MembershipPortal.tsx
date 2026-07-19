@@ -337,7 +337,7 @@ export default function MembershipPortal() {
               Awaken Your <span className="text-system-gold">Shadow Monarch</span> VIP Status
             </h2>
             <p className="text-zinc-300 text-sm leading-relaxed">
-              Sign up or log in to sync your 242 lbs → 170 lbs transformation journey across devices. Upgrade to the <strong className="text-system-gold">S-Rank VIP Guild Membership</strong> with PayPal for real-time cloud backups, unlimited AI scanning, and elite coaching perks!
+              Sign up or log in to sync your 242 lbs → 160 lbs transformation journey across devices. Upgrade to the <strong className="text-system-gold">S-Rank VIP Guild Membership</strong> with PayPal for real-time cloud backups, unlimited AI scanning, and elite coaching perks!
             </p>
           </div>
         </div>

@@ -12,8 +12,8 @@ const DIRECTIVE_QUOTES = [
     stat: "STR FOCUS"
   },
   {
-    quote: "Your target weight of 170 LBS is not a dream—it is an inevitability forged through daily discipline and macro precision.",
-    author: "Boricua Cutting Codex",
+    quote: "Your target weight of 160 LBS is not a dream—it is an inevitability forged through daily discipline and macro precision.",
+    author: "Korean Gochujang Cutting Codex",
     stat: "VIT FOCUS"
   },
   {

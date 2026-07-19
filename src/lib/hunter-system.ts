@@ -91,7 +91,7 @@ const DEFAULT_STATE: HunterState = {
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
     gymName: "Planet Fitness Lewiston, ME",
-    dietName: "Chinese Green Tea & Dirty Matcha Shred Blueprint",
+    dietName: "Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint",
   },
   completedQuestsToday: {
     workout: false,
@@ -136,8 +136,12 @@ export function loadHunterState(): HunterState {
     }
     const parsed = JSON.parse(saved) as HunterState;
     
-    // Check if new day to reset daily quests
-    const today = new Date().toISOString().split('T')[0];
+    // Check if new day to reset daily quests (using local date instead of UTC)
+    const getLocalDateStr = () => {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    };
+    const today = getLocalDateStr();
     if (parsed.lastActiveDate !== today) {
       // Check streak (if yesterday, increment; if missed > 1 day, reset to 1 unless Sunday)
       const lastDate = new Date(parsed.lastActiveDate);
@@ -169,13 +173,17 @@ export function loadHunterState(): HunterState {
     if (parsed.profile) {
       if (parsed.profile.dailyProteinGoal === 206) { parsed.profile.dailyProteinGoal = 170; needsSave = true; }
       if (parsed.profile.targetWeight === 170) { parsed.profile.targetWeight = 160; needsSave = true; }
-      // Fix corrupted currentWeight (old bug wrote projected goal weight instead of actual)
-      if (parsed.profile.currentWeight <= (parsed.profile.targetWeight || 160)) {
+      if (!parsed.profile.currentWeight || parsed.profile.currentWeight < 50) {
         parsed.profile.currentWeight = parsed.profile.startWeight || 242;
         needsSave = true;
       }
-      if (parsed.profile.dietName?.includes("Boricua") || parsed.profile.dietName?.includes("Korean") || parsed.profile.dietName?.includes("Japanese")) {
-        parsed.profile.dietName = "Chinese Green Tea & Dirty Matcha Shred Blueprint";
+      if (parsed.profile.currentWeight === 170 && !localStorage.getItem('pf_fixed_170_weight_bug_v2')) {
+        parsed.profile.currentWeight = parsed.profile.startWeight || 242;
+        localStorage.setItem('pf_fixed_170_weight_bug_v2', 'done');
+        needsSave = true;
+      }
+      if (parsed.profile.dietName?.includes("Boricua") || parsed.profile.dietName?.includes("Chinese") || parsed.profile.dietName?.includes("Japanese") || parsed.profile.dietName?.includes("Matcha")) {
+        parsed.profile.dietName = "Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint";
         needsSave = true;
       }
       if (parsed.profile.gymName?.includes("K-Pop") || parsed.profile.gymName?.includes("Home") || parsed.profile.gymName === "Planet Fitness Lewiston") {
@@ -250,8 +258,8 @@ export function resetHunterState(): HunterState {
   }
 }
 
-export function awardXp(amount: number, statType?: keyof Omit<HunterStats, 'availablePoints'>): HunterState {
-  const state = loadHunterState();
+export function awardXp(amount: number, statType?: keyof Omit<HunterStats, 'availablePoints'>, existingState?: HunterState): HunterState {
+  const state = existingState || loadHunterState();
   state.xp += amount;
   
   if (statType) {
@@ -329,9 +337,9 @@ export function updateWeight(newWeight: number): HunterState {
   if (!state.completedQuestsToday.weighIn) {
     state.completedQuestsToday.weighIn = true;
     saveHunterState(state);
-    awardXp(100, 'per'); // 100 XP for daily weigh in
+    awardXp(100, 'per', state); // 100 XP for daily weigh in
   }
-  return loadHunterState();
+  return state;
 }
 
 export function addCustomQuest(title: string, xpReward: number = 100): HunterState {
@@ -404,12 +412,12 @@ export function toggleQuestCompletion(questType: keyof HunterState['completedQue
   if (!isCompleted) {
     state.completedQuestsToday[questType] = true;
     saveHunterState(state);
-    awardXp(xpReward, statType);
+    awardXp(xpReward, statType, state);
   } else {
     state.completedQuestsToday[questType] = false;
     saveHunterState(state);
   }
-  return loadHunterState();
+  return state;
 }
 
 export function isSystemAdmin(): boolean {

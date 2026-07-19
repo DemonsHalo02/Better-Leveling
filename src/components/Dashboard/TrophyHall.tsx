@@ -245,12 +245,12 @@ export default function TrophyHall() {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-zinc-400">Training Sector:</span>
-                <span className="text-green-400 font-bold">Planet Fitness Lewiston</span>
+                <span className="text-green-400 font-bold">Planet Fitness Lewiston, ME</span>
               </div>
             </div>
 
             <p className="text-[11px] text-zinc-400 text-center italic">
-              "Arise. Transform from 242 lbs to 170 lbs with Boricua discipline and relentless iron."
+              "Arise. Transform from 242 lbs to 160 lbs with Korean Gochujang discipline and relentless iron."
             </p>
 
             <button

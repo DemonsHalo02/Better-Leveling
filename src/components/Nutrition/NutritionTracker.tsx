@@ -22,7 +22,7 @@ interface NutritionTrackerProps {
 
 export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) {
   const [meals, setMeals] = useState<LoggedMeal[]>([]);
-  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('China');
+  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('Korea');
   const [showManualModal, setShowManualModal] = useState(false);
   const [manualName, setManualName] = useState('');
   const [manualCals, setManualCals] = useState('');
@@ -70,10 +70,10 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
     saveMealsToStorage(updated);
 
     // Award XP
-    awardXp(50, 'int');
     const state = loadHunterState();
     if (!state.completedQuestsToday.calories) state.completedQuestsToday.calories = true;
     saveHunterState(state);
+    awardXp(50, 'int', state);
 
     setShowManualModal(false);
     setManualName('');
@@ -120,11 +120,11 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
     const updated = [...meals, newMeal];
     saveMealsToStorage(updated);
 
-    awardXp(75, 'int');
     const state = loadHunterState();
     if (!state.completedQuestsToday.calories) state.completedQuestsToday.calories = true;
     if (!state.completedQuestsToday.protein) state.completedQuestsToday.protein = true;
     saveHunterState(state);
+    awardXp(75, 'int', state);
     triggerLevelUpCelebration();
   };
 
@@ -139,7 +139,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
         <div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
             <Flame className="w-3.5 h-3.5 text-system-blue" />
-            <span>Daily Nutrition Directive | Target Weight: 170 lbs</span>
+            <span>Daily Nutrition Directive | Target Weight: 160 lbs</span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
             Calorie & Macro Quest
@@ -178,9 +178,9 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
           </div>
           <div className="flex items-center gap-2">
             <button
-              onClick={() => window.open('/Chinese_Meal_Plan_Under_50.html', '_blank')}
+              onClick={() => window.open('/Korean_Meal_Plan_Under_50.html', '_blank')}
               className="flex items-center gap-1.5 bg-system-dark hover:bg-system-gold text-system-gold hover:text-black px-3 py-1 rounded-lg text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all cursor-pointer"
-              title="Print or Save as PDF the Chinese Meal Prep Blueprint"
+              title="Print or Save as PDF the Korean Meal Prep Blueprint"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>🖨️ Print Blueprint PDF</span>
@@ -207,7 +207,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
               >
                 <span>{plan.flag}</span>
                 <span>{plan.country}</span>
-                {plan.country === 'China' && <span className="text-[9px] bg-system-gold text-black px-1.5 py-0.2 rounded font-black ml-0.5">#1 Main</span>}
+                {plan.country === 'Korea' && <span className="text-[9px] bg-system-gold text-black px-1.5 py-0.2 rounded font-black ml-0.5">#1 Main</span>}
               </button>
             );
           })}
