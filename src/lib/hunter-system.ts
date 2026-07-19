@@ -91,7 +91,7 @@ const DEFAULT_STATE: HunterState = {
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
     gymName: "Planet Fitness Lewiston, ME",
-    dietName: "Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint",
+    dietName: "Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint",
   },
   completedQuestsToday: {
     workout: false,
@@ -182,8 +182,8 @@ export function loadHunterState(): HunterState {
         localStorage.setItem('pf_fixed_170_weight_bug_v2', 'done');
         needsSave = true;
       }
-      if (parsed.profile.dietName !== "Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint") {
-        parsed.profile.dietName = "Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint";
+      if (parsed.profile.dietName !== "Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint") {
+        parsed.profile.dietName = "Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint";
         needsSave = true;
       }
       if (parsed.profile.gymName?.includes("K-Pop") || parsed.profile.gymName?.includes("Home") || parsed.profile.gymName === "Planet Fitness Lewiston") {

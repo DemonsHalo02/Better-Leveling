@@ -19,16 +19,16 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
   const [customServings, setCustomServings] = useState<number>(1);
   const [isInGroceryList, setIsInGroceryList] = useState<boolean>(false);
   const [checkedInGrocery, setCheckedInGrocery] = useState<boolean>(false);
-  const [selectedTemplate, setSelectedTemplate] = useState<string>('Korea');
+  const [selectedTemplate, setSelectedTemplate] = useState<string>('China');
   const scannerRef = useRef<Html5QrcodeScanner | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const savedTpl = localStorage.getItem('pf_selected_aisle_template');
-      if (savedTpl && savedTpl !== 'All') {
+      if (savedTpl && ['China', 'China Bulking', 'All'].includes(savedTpl)) {
         setSelectedTemplate(savedTpl);
       } else {
-        setSelectedTemplate('Korea');
+        setSelectedTemplate('China');
       }
     }
   }, []);
@@ -333,8 +333,8 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
               <span>Active Meal Plan Template Filter:</span>
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {['Korea', 'Korea Bulking', 'All', 'Japan', 'China', 'Puerto Rico', 'Mexico'].map((tpl) => {
-                const flags: Record<string, string> = { 'Japan': '🇯🇵', 'Korea': '🇰🇷', 'Korea Bulking': '🔥', 'China': '🇨🇳', 'Puerto Rico': '🇵🇷', 'Mexico': '🇲🇽' };
+              {['China', 'China Bulking', 'All'].map((tpl) => {
+                const flags: Record<string, string> = { 'China': '🇨🇳', 'China Bulking': '🔥' };
                 return (
                   <button
                     key={tpl}
@@ -346,7 +346,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
                     }`}
                   >
                     {flags[tpl] && <span>{flags[tpl]}</span>}
-                    <span>{tpl === 'Korea' ? 'Korea Cutting (#1 Main)' : tpl === 'Korea Bulking' ? 'Korea Bulking (Post-160 Lb)' : tpl === 'All' ? '🌐 All' : tpl}</span>
+                    <span>{tpl === 'China' ? 'China Cutting (#1 Main)' : tpl === 'China Bulking' ? 'China Bulking (Post-160 Lb)' : '🌐 All'}</span>
                   </button>
                 );
               })}

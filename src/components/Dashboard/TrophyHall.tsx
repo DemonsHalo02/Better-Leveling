@@ -83,14 +83,14 @@ export default function TrophyHall() {
       unlockCondition: 'Verified S-Rank VIP Account (nickcrossonofficial@outlook.com)'
     },
     {
-      id: 'boricua_shredder',
-      title: 'Master of Tostones & Leche',
-      name: '🍌 Boricua Shredder',
-      description: 'Successfully log Puerto Rican cutting meals and hit your daily anabolic protein target.',
+      id: 'chinese_shredder',
+      title: "Master of General Tso's & Wok Searing",
+      name: "🥢 Chinese Shredder",
+      description: "Successfully log Chinese cutting meals and hit your daily anabolic protein target.",
       icon: <Sparkles className="w-6 h-6 text-system-cyan" />,
       rarity: 'Epic',
       unlocked: hasMeals || hunterState.completedQuestsToday.calories || hunterState.completedQuestsToday.protein,
-      unlockCondition: 'Log any Boricua meal prep item in the Nutrition Tracker'
+      unlockCondition: "Log any Chinese meal prep item in the Nutrition Tracker"
     },
     {
       id: 'iron_monarch',
@@ -250,7 +250,7 @@ export default function TrophyHall() {
             </div>
 
             <p className="text-[11px] text-zinc-400 text-center italic">
-              "Arise. Transform from 242 lbs to 160 lbs with Korean Gochujang discipline and relentless iron."
+              "Arise. Transform from 242 lbs to 160 lbs with Chinese General Tso's discipline and relentless iron."
             </p>
 
             <button

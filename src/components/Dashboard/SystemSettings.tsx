@@ -39,7 +39,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
       setName(loaded.profile.name || 'Nick Crosson');
       setTitle(loaded.title || 'Awakened Hunter');
       setGymName(loaded.profile.gymName || 'Planet Fitness Lewiston, ME');
-      setDietName(loaded.profile.dietName || 'Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint');
+      setDietName(loaded.profile.dietName || "Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint");
 
       setStartWeight(loaded.profile.startWeight || 242);
       setCurrentWeight(loaded.profile.currentWeight || 242);
@@ -72,7 +72,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
       dailyCarbGoal: Number(dailyCarbGoal) || 200,
       dailyFatGoal: Number(dailyFatGoal) || 60,
       gymName: gymName.trim() || 'Planet Fitness Lewiston, ME',
-      dietName: dietName.trim() || 'Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint',
+      dietName: dietName.trim() || "Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint",
     };
 
     const nextState = updateUserProfile(updates);
@@ -101,7 +101,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('pf_custom_grocery_items');
       localStorage.removeItem('pf_grocery_checked');
-      alert('Custom grocery items and checked items reset to Korean default staples!');
+      alert("Custom grocery items and checked items reset to Chinese General Tso's default staples!");
     }
   };
 
@@ -197,7 +197,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 type="text"
                 value={dietName}
                 onChange={(e) => setDietName(e.target.value)}
-                placeholder="e.g., Korean Gochujang Chicken Blueprint"
+                placeholder="e.g., Chinese General Tso's Chicken Blueprint"
                 className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
               />
               <p className="text-[11px] text-zinc-500">Customizes nutrition coaching and meal prep advice.</p>
@@ -352,7 +352,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
               <div>
                 <div className="text-xs font-bold uppercase text-white">Custom Grocery Staples Management</div>
                 <p className="text-[11px] text-zinc-400 mt-0.5">
-                  You can add unlimited custom items directly on the <strong>ME Grocery Guide</strong> tab, or reset your personal additions back to the clean Korean weekly defaults.
+                  You can add unlimited custom items directly on the <strong>ME Grocery Guide</strong> tab, or reset your personal additions back to the clean Chinese General Tso's weekly defaults.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2 pt-1">

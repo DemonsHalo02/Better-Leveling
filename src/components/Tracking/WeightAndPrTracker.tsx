@@ -191,18 +191,18 @@ export default function WeightAndPrTracker() {
           <Shield className="w-5 h-5 text-system-blue flex-shrink-0 mt-0.5" />
           <div className="text-xs text-zinc-300 leading-relaxed space-y-1">
             <div className="font-bold text-white uppercase tracking-wider">Why This Pace Safeguards Your Skin:</div>
-            <p>At age 20, your skin possesses high levels of natural collagen and elastin. By targeting roughly <span className="text-system-cyan font-bold">0.92 lbs per week</span> (rather than crash dieting 3-4 lbs/week), your skin elasticity adapts in lockstep with fat reduction. Meanwhile, your K-Pop Idol Home Push/Pull/Legs volume replaces lost adipose tissue with firm, dense muscle.</p>
+            <p>At age 20, your skin possesses high levels of natural collagen and elastin. By targeting roughly <span className="text-system-cyan font-bold">0.92 lbs per week</span> (rather than crash dieting 3-4 lbs/week), your skin elasticity adapts in lockstep with fat reduction. Meanwhile, your Planet Fitness Push/Pull/Legs volume replaces lost adipose tissue with firm, dense muscle.</p>
           </div>
         </div>
       </div>
 
-      {/* Daily & Weekly K-Pop Walking & Step Log */}
+      {/* Daily & Weekly Walking & Step Log */}
       <div className="bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 rounded-2xl border border-system-cyan/40 shadow-xl space-y-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
               <Footprints className="w-4 h-4 text-system-cyan animate-pulse" />
-              <span>K-Pop Idol Walking & Choreography Cardio Log</span>
+              <span>Daily Walking & Cardio Log</span>
             </div>
             <h3 className="text-xl font-black text-white uppercase tracking-wide">
               {dailySteps.toLocaleString()} / 10,000 <span className="text-sm text-zinc-400 font-bold">Steps Today (~{(dailySteps * 0.00045).toFixed(1)} Miles)</span>
@@ -242,7 +242,7 @@ export default function WeightAndPrTracker() {
             <h3 className="text-base font-black text-white uppercase tracking-widest flex items-center gap-2">
               <Trophy className="w-5 h-5 text-system-gold" /> Hunter Strength PR Vault
             </h3>
-            <p className="text-xs text-zinc-400">Log your heaviest weights lifted during K-Pop Idol Home Workouts to level up your STR stat!</p>
+            <p className="text-xs text-zinc-400">Log your heaviest weights lifted during Planet Fitness Workouts to level up your STR stat!</p>
           </div>
           <button
             onClick={() => setShowPrModal(true)}
@@ -264,7 +264,7 @@ export default function WeightAndPrTracker() {
                 <span>STR (Strength) Attribute Level</span>
                 <span className="text-[10px] bg-system-gold/20 px-1.5 py-0.2 rounded font-mono text-white">+1 Per PR</span>
               </div>
-              <p className="text-xs text-zinc-400">Every personal record logged during your K-Pop Idol Home Workout increases your STR stat by +1 and awards 150 XP!</p>
+              <p className="text-xs text-zinc-400">Every personal record logged during your Planet Fitness Workout increases your STR stat by +1 and awards 150 XP!</p>
             </div>
           </div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase bg-black/40 px-3.5 py-2 rounded-lg border border-white/10 text-system-cyan whitespace-nowrap">

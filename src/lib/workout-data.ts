@@ -461,9 +461,7 @@ export const PLANET_FITNESS_LEWISTON_6DAY_ROUTINE: WorkoutDay[] = [
   }
 ];
 
-export const KPOP_HOME_WORKOUT_ROUTINE = PLANET_FITNESS_LEWISTON_6DAY_ROUTINE;
 export const PLANET_FITNESS_PPL_ROUTINE = PLANET_FITNESS_LEWISTON_6DAY_ROUTINE;
-export const JAPANESE_HOME_WORKOUT_ROUTINE = PLANET_FITNESS_LEWISTON_6DAY_ROUTINE;
 
 export function getTodayWorkout(): WorkoutDay {
   const dayIndex = new Date().getDay(); // 0 = Sunday, 1 = Monday...
