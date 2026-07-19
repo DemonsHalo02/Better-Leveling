@@ -306,7 +306,8 @@ export default function GroceryGuide() {
   const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery', '🍱 Meal Prep Templates'];
 
   const handlePrintPlan = (plan?: typeof MEAL_PREP_PLANS[0]) => {
-    const url = '/Korean_Meal_Plan_Under_50.html';
+    const isBulking = (plan && plan.country === 'Korea Bulking') || (!plan && (selectedAisleTemplate === 'Korea Bulking' || selectedCountryPlan === 'Korea Bulking'));
+    const url = isBulking ? '/Korean_Bulking_Meal_Plan_Under_50.html' : '/Korean_Meal_Plan_Under_50.html';
     window.open(url, '_blank');
   };
 
@@ -363,6 +364,78 @@ export default function GroceryGuide() {
           >
             Meal Prep Plans
           </button>
+        </div>
+      </div>
+
+      {/* Diet Phase & Goal Selector Menu with Dual PDF Access */}
+      <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-dark p-5 rounded-2xl border-2 border-system-gold/40 shadow-glow-gold space-y-4">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="bg-system-gold text-system-dark text-[10px] font-black uppercase px-2.5 py-0.5 rounded tracking-wider">
+                ⭐ Korean S-Rank Diet Phase Selector
+              </span>
+              <span className="text-xs font-mono font-bold text-system-cyan">
+                Target: 160 Lbs Cutting vs Post-Goal Lean Bulking
+              </span>
+            </div>
+            <h3 className="text-lg md:text-xl font-black text-white uppercase tracking-wide">
+              Select Your Active Korean Diet Protocol & Printable PDF Guides
+            </h3>
+            <p className="text-xs text-zinc-300 max-w-3xl">
+              Switch between your active trajectory phase below. Both plans keep the exact same Monday Auburn Walmart shopping routine and ~11.4 oz daily Gochujang Chicken, but adapt carbs and yogurt to hit either calorie deficit or clean muscle hypertrophy.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            <button
+              onClick={() => {
+                setSelectedAisleTemplate('Korea');
+                setSelectedCountryPlan('Korea');
+              }}
+              className={`px-4 py-2.5 rounded-xl text-xs font-black uppercase font-mono tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
+                selectedAisleTemplate === 'Korea' && selectedCountryPlan !== 'Korea Bulking'
+                  ? 'bg-gradient-to-r from-system-gold to-yellow-500 text-system-dark shadow-glow-gold scale-105 border border-system-gold'
+                  : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10 hover:border-system-gold/50'
+              }`}
+            >
+              <span>🇰🇷 Phase 1: Cutting Diet (~2,150 kcal)</span>
+            </button>
+            <button
+              onClick={() => {
+                setSelectedAisleTemplate('Korea Bulking');
+                setSelectedCountryPlan('Korea Bulking');
+              }}
+              className={`px-4 py-2.5 rounded-xl text-xs font-black uppercase font-mono tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
+                selectedAisleTemplate === 'Korea Bulking' || selectedCountryPlan === 'Korea Bulking'
+                  ? 'bg-gradient-to-r from-system-cyan to-system-blue text-system-dark shadow-glow-blue scale-105 border border-system-cyan'
+                  : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10 hover:border-system-cyan/50'
+              }`}
+            >
+              <span>🔥 Phase 2: Bulking Diet (~2,750 kcal)</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-black/30 p-3.5 rounded-xl border border-white/5">
+          <div className="text-xs font-mono text-zinc-300 flex items-center gap-2">
+            <Printer className="w-4 h-4 text-system-gold shrink-0" />
+            <span><strong>2 Separate PDF Guides Available:</strong> Printable S-Rank blueprints with exact cooking, shopping & macro breakdowns for both diets:</span>
+          </div>
+          <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-end">
+            <button
+              onClick={() => window.open('/Korean_Meal_Plan_Under_50.html', '_blank')}
+              className="px-3.5 py-1.5 rounded-lg bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-system-dark border border-system-gold/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5"
+            >
+              <span>📄 Phase 1 Cutting PDF ($45.38/wk)</span>
+            </button>
+            <button
+              onClick={() => window.open('/Korean_Bulking_Meal_Plan_Under_50.html', '_blank')}
+              className="px-3.5 py-1.5 rounded-lg bg-system-cyan/20 hover:bg-system-cyan text-system-cyan hover:text-system-dark border border-system-cyan/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5"
+            >
+              <span>📄 Phase 2 Bulking PDF ($43.76/wk)</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -456,6 +529,32 @@ export default function GroceryGuide() {
               >
                 <Printer className="w-4 h-4 text-system-gold" />
                 <span>🖨️ Print / Save PDF</span>
+              </button>
+            </div>
+          )}
+
+          {selectedAisleTemplate === 'Korea Bulking' && (
+            <div className="bg-gradient-to-r from-system-cyan/15 to-system-blue/15 p-4 rounded-2xl border border-system-cyan/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="bg-system-cyan text-system-dark text-[10px] font-black uppercase px-2 py-0.5 rounded">
+                    🔥 Phase 2 Lean Bulking Blueprint
+                  </span>
+                  <span className="text-xs text-white font-bold">
+                    🇰🇷 Korean Bulgogi & Gochujang Muscle Hypertrophy Protocol ($43.76/wk!)
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-300">
+                  <strong className="text-system-cyan">Part 1 (Weekly Consumables - $43.76 / Exactly $1.62 Cheaper!):</strong> Chicken Breasts ($13.40), 3 Greek Yogurt Tubs ($11.94), 36-ct Eggs ($6.84), 42 oz Rolled Oats ($3.98), 5 lb Bulk White Rice ($3.34), Frozen Broccoli ($2.32), Bananas ($1.16), Fresh Green Onions ($0.78).<br />
+                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $32.78):</strong> Death Wish Coffee Espresso Roast Ground ($11.76), Nasoya Spicy Kimchi ($4.48), Bibigo Korean BBQ Marinade & Sauce ($3.48), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Samyang Buldak Carbonara Ramen ($1.68), Soy Sauce ($1.48), Garlic Powder ($1.18).
+                </p>
+              </div>
+              <button
+                onClick={() => handlePrintPlan(MEAL_PREP_PLANS.find(p => p.id === 'plan-korea-bulking'))}
+                className="flex items-center gap-2 bg-system-dark hover:bg-white/10 text-system-cyan hover:text-white px-4 py-2.5 rounded-xl text-xs font-black font-mono border border-system-cyan/40 hover:shadow-glow-blue transition-all shrink-0 cursor-pointer"
+              >
+                <Printer className="w-4 h-4 text-system-cyan" />
+                <span>🖨️ Print Bulking PDF</span>
               </button>
             </div>
           )}
@@ -637,8 +736,8 @@ export default function GroceryGuide() {
               <span className="text-xs font-bold text-zinc-400 uppercase mr-2 flex items-center gap-1">
                 <Utensils className="w-3.5 h-3.5 text-system-gold" /> Template Filter:
               </span>
-              {['All', 'Korea'].map((tpl) => {
-                const flags: Record<string, string> = { 'Korea': '🇰🇷' };
+              {['All', 'Korea', 'Korea Bulking'].map((tpl) => {
+                const flags: Record<string, string> = { 'Korea': '🇰🇷', 'Korea Bulking': '🔥' };
                 return (
                   <button
                     key={tpl}
@@ -653,7 +752,9 @@ export default function GroceryGuide() {
                     <span>
                       {tpl === 'All'
                         ? '🌐 All Items & Templates'
-                        : '⭐ Korea ($45.38 Weekly / $32.78 Restock)'}
+                        : tpl === 'Korea'
+                        ? '⭐ Phase 1 Cutting ($45.38 / $32.78 Restock)'
+                        : '🔥 Phase 2 Bulking ($43.76 / $32.78 Restock)'}
                     </span>
                   </button>
                 );
@@ -903,7 +1004,8 @@ export default function GroceryGuide() {
             <div className="flex flex-wrap items-center gap-2">
               {[
                 { name: 'All', label: '🌐 All Cuisines' },
-                { name: 'Korea', label: '🇰🇷 Korea (⭐ #1 Main & Exclusive Blueprint)' },
+                { name: 'Korea', label: '🇰🇷 Phase 1: Korea Cutting ($45.38/wk)' },
+                { name: 'Korea Bulking', label: '🔥 Phase 2: Korea Bulking ($43.76/wk)' },
               ].map((c) => (
                 <button
                   key={c.name}

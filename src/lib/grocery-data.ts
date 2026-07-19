@@ -51,7 +51,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 1.5,
     servingSize: "4 oz (112g)",
     coachNote: "One Great Value ~5.0 lb (80 oz raw) family pack from Auburn Walmart! Guaranteed to provide 11.4 oz raw chicken per day for 7 full days of Lunch (5.7 oz/day) and Dinner (5.7 oz/day) hitting 170g daily protein!",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-2",
@@ -99,7 +99,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Packet (1g)",
     coachNote: "The secret to getting traditional sweet lattes and teas without adding unwanted sugar calories! Restock item for Korean Dirty Chai Lattes.",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-5",
@@ -147,7 +147,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "0.25 sec spray (0.25g)",
     coachNote: "Zero-calorie non-stick cooking spray for searing Chuletas (pork chops), chicken, and eggs without adding hidden liquid oil calories! Restock item for Korean meal prep.",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-8",
@@ -211,7 +211,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 5,
     servingSize: "1 Egg (50g)",
     coachNote: "36 eggs guaranteed! Provides 3 eggs a day for all 7 days (21 eggs) plus 15 bonus eggs for meal prep and snacks! Scramble in 0-cal cooking spray.",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-12",
@@ -291,7 +291,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Tea Bag",
     coachNote: "Traditional Japanese 100% green tea staple! Enjoy a cup of hot or iced green tea with every non-latte meal across your 7-day plan.",
-    cuisine: ["China", "Korea", "Japan"]
+    cuisine: ["China", "Korea", "Korea Bulking", "Japan"]
   },
   {
     id: "g-17",
@@ -339,7 +339,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tbsp (15ml)",
     coachNote: "Essential savory seasoning staple for Chinese stir-fries, Korean Bulgogi, and Japanese rice bowls (Restock item).",
-    cuisine: ["China", "Korea", "Japan"]
+    cuisine: ["China", "Korea", "Korea Bulking", "Japan"]
   },
   {
     id: "g-20",
@@ -371,7 +371,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 cup (85g)",
     coachNote: "Two bags (24 oz / ~8 cups total) guaranteed! Steamed micronutrients and fiber for 7 full days of Lunch & Dinner bowls.",
-    cuisine: ["China", "Korea", "Japan"]
+    cuisine: ["China", "Korea", "Korea Bulking", "Japan"]
   },
   {
     id: "g-22",
@@ -387,7 +387,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Medium Banana (118g)",
     coachNote: "Quick potassium and clean pre-workout carbohydrates.",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-23",
@@ -403,7 +403,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 2.5,
     servingSize: "1/2 cup dry (40g)",
     coachNote: "Slow-digesting complex carbs for morning energy or mixing into afternoon Greek yogurt power bowls.",
-    cuisine: ["Mexico"]
+    cuisine: ["Mexico", "Korea Bulking"]
   },
   {
     id: "g-24",
@@ -483,7 +483,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "2 tbsp (28g)",
     coachNote: "Authentic probiotic-rich Korean kimchi! Fermented napa cabbage loaded with gut-healthy bacteria for digestion and immune support. Essential side dish for Bulgogi bowls.",
-    cuisine: ["Korea"]
+    cuisine: ["Korea", "Korea Bulking"]
   },
   {
     id: "g-29",
@@ -515,7 +515,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 tsp (0.7g)",
     coachNote: "Essential all-purpose seasoning! Used across every single meal plan for searing chicken, beef, eggs, and stir-fries with zero calories (Restock item).",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-31",
@@ -531,7 +531,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 tsp (0.5g)",
     coachNote: "Essential Asian cooking spice! Adds warming heat to Chinese stir-fries, Korean Bulgogi marinades, and Japanese teriyaki glazes (Restock item).",
-    cuisine: ["China", "Korea", "Japan"]
+    cuisine: ["China", "Korea", "Korea Bulking", "Japan"]
   },
   {
     id: "g-32",
@@ -643,7 +643,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tbsp (19g)",
     coachNote: "Authentic sweet & savory Korean BBQ marinade and glaze stocked at Auburn Maine Walmart! Perfect for glazing Bulgogi chicken breasts and lean beef stew meat (Periodic Monday Restock item).",
-    cuisine: ["Korea"]
+    cuisine: ["Korea", "Korea Bulking"]
   },
   {
     id: "g-39",
@@ -659,7 +659,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "2 tbsp brewed",
     coachNote: "High-octane Death Wish Espresso Roast! Brew over ice for your 8:00 AM Pre-Workout Iced Black Coffee fuel before hitting Planet Fitness Lewiston.",
-    cuisine: ["China", "Korea"]
+    cuisine: ["China", "Korea", "Korea Bulking"]
   },
   {
     id: "g-40",
@@ -707,7 +707,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "2 tbsp (15g chopped)",
     coachNote: "Fresh aromatic scallions for topping your Dojo Beef Stew Meat Teriyaki Bowl and Samurai Teriyaki Scrambles.",
-    cuisine: ["Japan", "Korea"]
+    cuisine: ["Japan", "Korea", "Korea Bulking"]
   },
   {
     id: "g-43",
@@ -755,7 +755,39 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 16,
     servingSize: "1 pack (140g)",
     coachNote: "Your once-a-week Korean treat meal! Fiery spicy chicken ramen noodles to enjoy as a reward on Friday or Saturday topped with sliced lean chicken breast and fresh green onions.",
-    cuisine: ["Korea"]
+    cuisine: ["Korea", "Korea Bulking"]
+  },
+  {
+    id: "g-46",
+    upc: "078742359000",
+    name: "Great Value Long Grain White Rice (5 lb bag / ~50 servings)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Carbs",
+    priceEst: "$3.34 (5 lb bag / ~50 servings)",
+    calories: 160,
+    protein: 3,
+    carbs: 36,
+    fat: 0,
+    servingSize: "1/4 cup dry (1 cup cooked)",
+    coachNote: "Huge 5 lb bulk bag! Clean fast-digesting carbohydrates to fuel heavy post-160 lb muscle building and glycogen recovery after lifting at Planet Fitness Lewiston.",
+    cuisine: ["Korea Bulking"]
+  },
+  {
+    id: "g-47",
+    upc: "078742136039",
+    name: "Great Value Plain Nonfat Greek Yogurt (THREE 32 oz tubs / 96 oz total)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Protein",
+    priceEst: "$11.94 (THREE 32 oz tubs at $3.98 ea)",
+    calories: 90,
+    protein: 16,
+    carbs: 6,
+    fat: 0,
+    servingSize: "3/4 cup (170g / 6 oz)",
+    coachNote: "THREE tubs (96 oz / 12 cups total) for lean bulking! Provides 1 cup (8 oz) afternoon bowls AND 3/4 cup (6 oz) bedtime casein fluff every single day while leaving plenty of appetite and stomach volume for clean complex carbohydrates (rice & oats)!",
+    cuisine: ["Korea Bulking"]
   }
 ];
 
@@ -901,6 +933,96 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         ingredients: [
           "3/4 cup (6 oz) Plain Nonfat Greek Yogurt. Cooking Instructions: Whisk yogurt in a bowl with 1 zero-calorie sweetener packet until airy and fluffy. Provides essential overnight amino acids to rebuild muscle fiber while you sleep. (90 kcal, 16g p, 6g c)",
           "1 warm, soothing cup of brewed 100% Green Tea (0 kcal, overnight metabolic support during deep sleep)"
+        ],
+        calories: 90,
+        protein: 16,
+        carbs: 6,
+        fat: 0
+      }
+    ]
+  },
+  {
+    id: "plan-korea-bulking",
+    title: "Korea Bulking: Korean Bulgogi & Gochujang Lean Bulking Blueprint (~2,750 kcal)",
+    country: "Korea Bulking",
+    flag: "🇰🇷💪",
+    badge: "🔥 Phase 2: Post-160 Lb Lean Bulk ($43.76/Wk)",
+    targetDailyCalories: 2750,
+    targetDailyProtein: 189,
+    estCostPerWeek: "$43.76 Weekly Consumables / $32.78 Periodic Restock ($76.54 Combined Total)",
+    description: "The #1 Lean Bulking Blueprint designed for Hunter Nick once he conquers his 160 Lb target weight! Built around the same Monday Auburn ME Walmart Grocery Run & Batch Meal Prep schedule. Notice how this bulking plan is exactly $1.62 CHEAPER per week ($43.76 vs $45.38) while adding +600 clean muscle-building calories every day! We swap 4 tubs of yogurt and liquid egg whites for a massive 5 lb bag of Long Grain White Rice, 42 oz of Rolled Oats, 3 tubs of Greek Yogurt, and 35 whole eggs across the week (5 whole eggs daily to naturally boost hormone production and muscle recovery after heavy compound lifts at Planet Fitness Lewiston!). Includes hot 100% Green Tea and your Friday/Saturday Samyang Buldak Carbonara Ramen treat meal!",
+    meals: [
+      {
+        name: "Pre-Workout Fuel: Death Wish Iced Black Coffee & Banana",
+        time: "8:00 AM (Pre-Workout)",
+        ingredients: [
+          "1 Pre-Workout Death Wish Iced Black Coffee: Brew 2 tbsp Death Wish Espresso Roast ground coffee with hot water, pour over ice (optional: add 1 zero-cal sweetener packet). High-octane clean caffeine for heavy compound lifts at Planet Fitness Lewiston! (5 kcal, 0g p)",
+          "1 Medium Fresh Banana: Peel and eat immediately before gym for rapid-absorbing pre-workout carbohydrates & potassium! (105 kcal, 1g p, 27g c)"
+        ],
+        calories: 110,
+        protein: 1,
+        carbs: 27,
+        fat: 0
+      },
+      {
+        name: "Post-Workout Breakfast: 5-Egg Korean Scallion Scramble + Rolled Oats + Kimchi + Tea",
+        time: "10:30 AM – 11:00 AM (Post-Workout)",
+        ingredients: [
+          "5 Large Grade A White Eggs scrambled in Great Value 0-Cal Cooking Spray. Cooking Instructions: Heat non-stick skillet over medium heat, spray liberally with canola oil spray. Whisk 5 whole eggs thoroughly. Pour in skillet and gently fold over medium heat. Fold in 1 tbsp soy sauce, 1/2 tsp garlic powder, and chopped fresh green onions until fluffy and golden! Provides rich amino acids, healthy fats, and natural cholesterol for muscle building. (350 kcal, 30g p, 25g f)",
+          "1 cup cooked Great Value Old Fashioned Rolled Oats. Cooking Instructions: Combine 1/2 cup dry oats with 1 cup water in bowl, microwave 2 minutes or cook on stovetop. Stir in cinnamon or sweetener packet for slow-digesting complex carbs! (150 kcal, 5g p, 27g c)",
+          "2 tbsp Nasoya Authentic Korean Spicy Kimchi (probiotic gut health and tangy spice). (15 kcal, 1g p, 2g c)",
+          "1 cup hot brewed Great Value 100% Green Tea. (0 kcal, post-workout antioxidant recovery & digestion aid)"
+        ],
+        calories: 515,
+        protein: 36,
+        carbs: 56,
+        fat: 25
+      },
+      {
+        name: "Lunch: Wok-Seared Korean Gochujang Chicken + DOUBLE White Rice & Broccoli + Tea",
+        time: "2:00 PM – 2:30 PM",
+        ingredients: [
+          "~5.7 oz Fresh Chicken Breast cubes wok-seared in Korean Gochujang / Bibigo Glaze. Cooking Instructions: Cut chicken breast into bite-sized cubes, toss with 1 tsp cornstarch and garlic powder. Spray wok with 0-cal canola spray, sear 6-8 minutes until golden and 165°F internal. Whisk low-cal Gochujang Glaze (Bibigo BBQ sauce, soy sauce, sriracha, sweetener packet, ginger, garlic powder, water), pour into wok and toss for 1 minute until sticky and glossy! (210 kcal, 40g p, 2g f)",
+          "2 cups cooked Long Grain White Rice (from your 5 lb batch prep bag, reheated with a splash of water for fluffy, high-density bulking glycogen replenishment!). (400 kcal, 8g p, 88g c)",
+          "1 cup steamed Great Value Frozen Broccoli florets seasoned with garlic powder. (30 kcal, 2g p, 6g c)",
+          "1 cup hot brewed 100% Green Tea (0 kcal, digestion & nutrient partitioning support)"
+        ],
+        calories: 640,
+        protein: 50,
+        carbs: 94,
+        fat: 2
+      },
+      {
+        name: "Afternoon Snack: High-Protein Korean Casein Greek Yogurt Power Bowl",
+        time: "5:30 PM",
+        ingredients: [
+          "1 cup (8 oz) Plain Nonfat Greek Yogurt mixed with 1 zero-calorie sweetener packet and cinnamon/vanilla until creamy and velvety. Slow-release casein protein keeps muscles supplied with amino acids between lifting sessions! (120 kcal, 21g p, 8g c)"
+        ],
+        calories: 120,
+        protein: 21,
+        carbs: 8,
+        fat: 0
+      },
+      {
+        name: "Dinner: Wok-Seared Korean Gochujang Chicken + DOUBLE White Rice & Broccoli + Tea",
+        time: "7:30 PM – 8:00 PM",
+        ingredients: [
+          "~5.7 oz Fresh Chicken Breast cubes wok-seared in Korean Gochujang / Bibigo Glaze until caramelized and glossy. (210 kcal, 40g p, 2g f)",
+          "2 cups cooked Long Grain White Rice (warm, fluffy complex carbohydrates to fuel overnight muscle repair and top off glycogen stores). (400 kcal, 8g p, 88g c)",
+          "1 cup steamed Great Value Frozen Broccoli florets seasoned with garlic powder. (30 kcal, 2g p, 6g c)",
+          "1 cup hot brewed 100% Green Tea (0 kcal, evening antioxidant hydration)"
+        ],
+        calories: 640,
+        protein: 50,
+        carbs: 94,
+        fat: 2
+      },
+      {
+        name: "Nighttime Muscle Armor: Casein Greek Yogurt Fluff & Hot Green Tea",
+        time: "10:30 PM",
+        ingredients: [
+          "3/4 cup (6 oz) Plain Nonfat Greek Yogurt whisked with 1 zero-calorie sweetener packet until airy and fluffy. Provides slow-digesting night casein protein to maximize muscle protein synthesis while sleeping. (90 kcal, 16g p, 6g c)",
+          "1 warm, soothing cup of brewed 100% Green Tea (0 kcal, deep sleep recovery & metabolic support)"
         ],
         calories: 90,
         protein: 16,

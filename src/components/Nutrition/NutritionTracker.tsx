@@ -93,12 +93,12 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
   const totalCarbs = meals.reduce((acc, m) => acc + m.carbs, 0);
   const totalFat = meals.reduce((acc, m) => acc + m.fat, 0);
 
-  const calGoal = 2150;
-  const protGoal = 170;
-  const carbGoal = 220;
-  const fatGoal = 55;
-
   const activePlan = MEAL_PREP_PLANS.find(p => p.country === selectedDeckCountry) || MEAL_PREP_PLANS[0];
+
+  const calGoal = activePlan.targetDailyCalories || 2150;
+  const protGoal = activePlan.targetDailyProtein || 170;
+  const carbGoal = selectedDeckCountry === 'Korea Bulking' ? 370 : 220;
+  const fatGoal = selectedDeckCountry === 'Korea Bulking' ? 65 : 55;
 
   const handleSelectDeckCountry = (country: string) => {
     setSelectedDeckCountry(country);
@@ -178,12 +178,15 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
           </div>
           <div className="flex items-center gap-2">
             <button
-              onClick={() => window.open('/Korean_Meal_Plan_Under_50.html', '_blank')}
+              onClick={() => {
+                const url = activePlan.country === 'Korea Bulking' ? '/Korean_Bulking_Meal_Plan_Under_50.html' : '/Korean_Meal_Plan_Under_50.html';
+                window.open(url, '_blank');
+              }}
               className="flex items-center gap-1.5 bg-system-dark hover:bg-system-gold text-system-gold hover:text-black px-3 py-1 rounded-lg text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all cursor-pointer"
-              title="Print or Save as PDF the Korean Meal Prep Blueprint"
+              title="Print or Save as PDF the selected Korean Meal Prep Blueprint"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>🖨️ Print Blueprint PDF</span>
+              <span>🖨️ Print {activePlan.country === 'Korea Bulking' ? 'Phase 2 Bulking' : 'Phase 1 Cutting'} PDF</span>
             </button>
             <span className="text-[10px] bg-system-blue/20 text-system-cyan border border-system-blue/40 px-2.5 py-1 rounded font-mono font-bold whitespace-nowrap">
               +75 INT XP Per Meal
@@ -206,8 +209,9 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
                 }`}
               >
                 <span>{plan.flag}</span>
-                <span>{plan.country}</span>
+                <span>{plan.country === 'Korea' ? 'Phase 1: Korea Cutting' : plan.country === 'Korea Bulking' ? 'Phase 2: Korea Bulking' : plan.country}</span>
                 {plan.country === 'Korea' && <span className="text-[9px] bg-system-gold text-black px-1.5 py-0.2 rounded font-black ml-0.5">#1 Main</span>}
+                {plan.country === 'Korea Bulking' && <span className="text-[9px] bg-red-500 text-white px-1.5 py-0.2 rounded font-black ml-0.5">Post-160 Lb</span>}
               </button>
             );
           })}
