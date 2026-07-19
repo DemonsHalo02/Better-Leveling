@@ -194,7 +194,7 @@ export default function GroceryGuide() {
     const restockIds = new Set([
       'g-3', 'g-4', 'g-5', 'g-6', 'g-7', 'g-9', 'g-14', 'g-15',
       'g-16', 'g-17', 'g-19', 'g-20', 'g-23', 'g-27', 'g-28', 'g-29',
-      'g-30', 'g-31', 'g-35', 'g-38', 'g-39', 'g-43', 'g-44'
+      'g-30', 'g-31', 'g-35', 'g-38', 'g-39', 'g-43', 'g-44', 'g-45'
     ]);
     if (restockIds.has(item.id)) return true;
     if (item.category === 'Seasonings & Spices' || item.category === 'Toiletries / Non-Grocery') return true;
@@ -338,7 +338,7 @@ export default function GroceryGuide() {
             Hunter Grocery Companion
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            High-protein, authentic Chinese General Tso & Death Wish Black Coffee Shred Blueprint staples priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run under $50 budget ($43.52 Weekly Consumables / $24.04 Periodic Restock)! Features 100% Green Tea and 8:00 AM Pre-Workout Death Wish Iced Black Coffee.
+            High-protein, authentic Korean Gochujang Glazed Chicken & Death Wish Black Coffee Shred Blueprint staples priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run under $50 budget ($45.38 Weekly Consumables / $32.78 Periodic Restock)! Features 100% Green Tea and 8:00 AM Pre-Workout Death Wish Iced Black Coffee.
           </p>
         </div>
 
@@ -409,7 +409,7 @@ export default function GroceryGuide() {
               <button
                 onClick={() => handlePrintPlan(MEAL_PREP_PLANS[0])}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-system-gold to-yellow-500 text-black font-black uppercase tracking-wider text-xs shadow-glow-gold hover:bg-white transition-all min-h-[38px] cursor-pointer"
-                title="Print or Save as PDF the Chinese General Tso & Death Wish Black Coffee Shred Blueprint"
+                title="Print or Save as PDF the Korean Gochujang Glazed Chicken & Death Wish Black Coffee Shred Blueprint"
               >
                 <Printer className="w-3.5 h-3.5 text-black" />
                 <span>🖨️ Print Blueprint PDF</span>
@@ -434,7 +434,7 @@ export default function GroceryGuide() {
             </div>
           </div>
 
-          {selectedAisleTemplate === 'China' && (
+          {selectedAisleTemplate === 'Korea' && (
             <div className="bg-gradient-to-r from-system-gold/15 to-system-cyan/15 p-4 rounded-2xl border border-system-gold/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
@@ -442,12 +442,12 @@ export default function GroceryGuide() {
                     ⭐ #1 Main & Exclusive Blueprint
                   </span>
                   <span className="text-xs text-white font-bold">
-                    🇨🇳 Chinese General Tso & Death Wish Black Coffee Shred Strategy (No Tofu!)
+                    🇰🇷 Korean Gochujang Glazed Chicken & Death Wish Black Coffee Shred Strategy (Under $50/wk!)
                   </span>
                 </div>
                 <p className="text-xs text-zinc-300">
-                  <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment):</strong> Chicken Breasts ($13.40), 93/7 Ground Beef ($6.48), 36-ct Eggs ($6.84), Liquid Egg Whites ($3.48), Greek Yogurt Tubs ($15.92), White Rice ($1.48), Frozen Broccoli ($2.32), Bananas ($1.58), 100% Green Tea ($1.98).<br />
-                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry & Spices Restock):</strong> Death Wish Coffee Espresso Roast Ground ($11.76), Soy Sauce ($1.48), Sriracha/Chili Garlic Sauce ($2.98), Garlic Powder ($1.18), Onion Powder ($1.08), Ground Ginger ($2.32), Cornstarch ($1.48), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18).
+                  <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment - $45.38):</strong> Chicken Breasts ($13.40), Greek Yogurt Tubs ($15.92), 36-ct Eggs ($6.84), Liquid Egg Whites ($3.48), Frozen Broccoli ($2.32), White Rice ($1.48), Bananas ($1.16), Fresh Green Onions ($0.78).<br />
+                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $32.78):</strong> Death Wish Coffee Espresso Roast Ground ($11.76), Nasoya Spicy Kimchi ($4.48), Bibigo Korean BBQ Marinade & Sauce ($3.48), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Samyang Buldak Carbonara Ramen ($1.68), Soy Sauce ($1.48), Garlic Powder ($1.18).
                 </p>
               </div>
               <button
@@ -637,8 +637,8 @@ export default function GroceryGuide() {
               <span className="text-xs font-bold text-zinc-400 uppercase mr-2 flex items-center gap-1">
                 <Utensils className="w-3.5 h-3.5 text-system-gold" /> Template Filter:
               </span>
-              {['All', 'China'].map((tpl) => {
-                const flags: Record<string, string> = { 'China': '🇨🇳' };
+              {['All', 'Korea'].map((tpl) => {
+                const flags: Record<string, string> = { 'Korea': '🇰🇷' };
                 return (
                   <button
                     key={tpl}
@@ -653,7 +653,7 @@ export default function GroceryGuide() {
                     <span>
                       {tpl === 'All'
                         ? '🌐 All Items & Templates'
-                        : '⭐ China ($43.52 Weekly / $24.04 Restock)'}
+                        : '⭐ Korea ($45.38 Weekly / $32.78 Restock)'}
                     </span>
                   </button>
                 );
@@ -903,7 +903,7 @@ export default function GroceryGuide() {
             <div className="flex flex-wrap items-center gap-2">
               {[
                 { name: 'All', label: '🌐 All Cuisines' },
-                { name: 'China', label: '🇨🇳 China (⭐ #1 Main & Exclusive Blueprint)' },
+                { name: 'Korea', label: '🇰🇷 Korea (⭐ #1 Main & Exclusive Blueprint)' },
               ].map((c) => (
                 <button
                   key={c.name}

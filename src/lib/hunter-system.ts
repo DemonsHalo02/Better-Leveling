@@ -182,7 +182,7 @@ export function loadHunterState(): HunterState {
         localStorage.setItem('pf_fixed_170_weight_bug_v2', 'done');
         needsSave = true;
       }
-      if (parsed.profile.dietName?.includes("Boricua") || parsed.profile.dietName?.includes("Chinese") || parsed.profile.dietName?.includes("Japanese") || parsed.profile.dietName?.includes("Matcha")) {
+      if (parsed.profile.dietName !== "Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint") {
         parsed.profile.dietName = "Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint";
         needsSave = true;
       }

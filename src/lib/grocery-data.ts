@@ -83,7 +83,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 4.5,
     servingSize: "1 cup (8 fl oz)",
     coachNote: "100% dairy-free & lactose-free! High protein (8g/cup) creamy base for making Café con Leche, Dirty Matcha Lattes, and Dirty Chai Lattes without stomach discomfort!",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-4",
@@ -323,7 +323,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tbsp (15g)",
     coachNote: "Essential spicy metabolism-boosting chili sauce staple stocked at Auburn Walmart for Chinese stir-fries, Korean Bulgogi bowls and egg scrambles (Restock item).",
-    cuisine: ["Korea"]
+    cuisine: []
   },
   {
     id: "g-19",
@@ -387,7 +387,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Medium Banana (118g)",
     coachNote: "Quick potassium and clean pre-workout carbohydrates.",
-    cuisine: []
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-23",
@@ -403,7 +403,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 2.5,
     servingSize: "1/2 cup dry (40g)",
     coachNote: "Slow-digesting complex carbs for morning energy or mixing into afternoon Greek yogurt power bowls.",
-    cuisine: ["Korea", "Mexico"]
+    cuisine: ["Mexico"]
   },
   {
     id: "g-24",
@@ -435,7 +435,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "3 tbsp (46g)",
     coachNote: "Pure protein booster! Mix 1/2 cup into your morning whole egg scrambles to add 13g of clean protein without extra fat calories.",
-    cuisine: ["China"]
+    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-26",
@@ -499,7 +499,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/2 cup (4 fl oz)",
     coachNote: "Premium spiced chai liquid tea concentrate for Korean Dirty Chai Lattes! Combine 1/2 cup concentrate with dissolved instant coffee and Silk soy milk for an authentic cafe-quality Dirty Chai Latte without lactose!",
-    cuisine: ["Korea"]
+    cuisine: []
   },
   {
     id: "g-30",
@@ -595,7 +595,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 tsp (0.7g)",
     coachNote: "Savory all-purpose onion seasoning for Korean Bulgogi marinades, Puerto Rican Adobo chicken, and Mexican fajita spice blends (Restock item).",
-    cuisine: ["China", "Korea", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-36",
@@ -627,7 +627,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 7,
     servingSize: "4 oz (112g raw)",
     coachNote: "Tender lean beef chunks for authentic Korean Bulgogi bowls! High in bioavailable iron, zinc, and muscle-building creatine.",
-    cuisine: ["Korea"]
+    cuisine: []
   },
   {
     id: "g-38",
@@ -659,7 +659,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "2 tbsp brewed",
     coachNote: "High-octane Death Wish Espresso Roast! Brew over ice for your 8:00 AM Pre-Workout Iced Black Coffee fuel before hitting Planet Fitness Lewiston.",
-    cuisine: ["China"]
+    cuisine: ["China", "Korea"]
   },
   {
     id: "g-40",
@@ -675,7 +675,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 4,
     servingSize: "1/2 cup (75g)",
     coachNote: "Rich in plant protein and fiber to pair with your Korean Beef Bulgogi and Japanese lunch bowls.",
-    cuisine: ["Japan", "Korea"]
+    cuisine: ["Japan"]
   },
   {
     id: "g-41",
@@ -739,7 +739,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 tsp (1g)",
     coachNote: "Essential table salt and black pepper seasoning set for seasoning morning omelets and seared chicken breasts (Restock item).",
-    cuisine: ["Japan", "Korea", "Puerto Rico", "Mexico"]
+    cuisine: ["Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-45",
@@ -827,7 +827,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main & Exclusive Blueprint",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
-    estCostPerWeek: "$38.42 Weekly Consumables / $19.92 Periodic Restock ($58.34 Combined Total)",
+    estCostPerWeek: "$45.38 Weekly Consumables / $32.78 Periodic Restock ($78.16 Combined Total)",
     description: "The #1 Main & Exclusive Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint! Designed specifically around Hunter Nick's schedule: Monday Grocery Run at Auburn Maine Walmart Supercenter ($50 budget for regular runs, max $25 for restocking) & Batch Meal Prep, starting eating Tuesday (Tuesday-Monday 7-Day Cycle). Features high-octane Death Wish Espresso Roast Iced Black Coffee + Banana at 8:00 AM as extreme Pre-Workout focus before hitting Planet Fitness Lewiston! Followed by a cooked-fresh Post-Workout Scallion & Liquid Egg White Scramble with Kimchi at 10:30-11:00 AM, authentic Wok-Seared Korean Gochujang/Bibigo Glazed Chicken Breast for Lunch and Dinner, and slow-release Casein Greek Yogurt bowls (with 4 tubs / 1 Gallon guaranteed so you never run out!). Traditional 100% Green Tea is paired with every post-workout main meal to maximize thermogenesis. Plus, includes Samyang Buldak Spicy Carbonara Chicken Ramen Noodles as your weekly reward treat meal on Friday or Saturday evening!",
     meals: [
       {

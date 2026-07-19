@@ -105,7 +105,7 @@ export default function WorkoutQuestView() {
             6-Day Planet Fitness Gym Split
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            Tailored specifically for Planet Fitness Lewiston equipment (Smith Machines, Cable Towers, Leg Press, and Matrix/Life Fitness Treadmills). Sunday is reserved for System Restoration; Monday is Push A + Auburn Walmart Grocery Run & Chinese Shred Batch Meal Prep.
+            Tailored specifically for Planet Fitness Lewiston equipment (Smith Machines, Cable Towers, Leg Press, and Matrix/Life Fitness Treadmills). Sunday is reserved for System Restoration; Monday is Push A + Auburn Walmart Grocery Run & Korean Gochujang Shred Batch Meal Prep.
           </p>
         </div>
 

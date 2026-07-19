@@ -333,7 +333,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
               <span>Active Meal Plan Template Filter:</span>
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {['Japan', 'All', 'Korea', 'China', 'Puerto Rico', 'Mexico'].map((tpl) => {
+              {['Korea', 'All', 'Japan', 'China', 'Puerto Rico', 'Mexico'].map((tpl) => {
                 const flags: Record<string, string> = { 'Japan': '🇯🇵', 'Korea': '🇰🇷', 'China': '🇨🇳', 'Puerto Rico': '🇵🇷', 'Mexico': '🇲🇽' };
                 return (
                   <button
@@ -346,7 +346,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
                     }`}
                   >
                     {flags[tpl] && <span>{flags[tpl]}</span>}
-                    <span>{tpl === 'Japan' ? 'Japan (#1 Main)' : tpl === 'All' ? '🌐 All' : tpl}</span>
+                    <span>{tpl === 'Korea' ? 'Korea (#1 Main)' : tpl === 'All' ? '🌐 All' : tpl}</span>
                   </button>
                 );
               })}
