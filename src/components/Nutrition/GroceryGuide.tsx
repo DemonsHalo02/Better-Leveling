@@ -192,13 +192,10 @@ export default function GroceryGuide() {
 
   const isRestockItem = (item: GroceryItem): boolean => {
     const restockIds = new Set([
-      'g-3', 'g-4', 'g-5', 'g-6', 'g-7', 'g-9', 'g-14', 'g-15',
-      'g-16', 'g-17', 'g-19', 'g-20', 'g-23', 'g-27', 'g-28', 'g-29',
-      'g-30', 'g-31', 'g-35', 'g-38', 'g-39', 'g-43', 'g-44', 'g-45'
+      'g-12', 'g-13', 'g-14', 'g-15', 'g-16', 'g-17', 'g-18', 'g-19', 'g-20', 'g-21'
     ]);
     if (restockIds.has(item.id)) return true;
     if (item.category === 'Seasonings & Spices' || item.category === 'Toiletries / Non-Grocery') return true;
-    if (item.coachNote && item.coachNote.toLowerCase().includes('restock')) return true;
     return false;
   };
 
