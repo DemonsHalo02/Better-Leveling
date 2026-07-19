@@ -51,7 +51,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 1.5,
     servingSize: "4 oz (112g)",
     coachNote: "One Great Value ~5.0 lb (80 oz raw) family pack from Auburn Walmart! Guaranteed to provide 11.4 oz raw chicken per day for 7 full days of Lunch (5.7 oz/day) and Dinner (5.7 oz/day) hitting 170g daily protein!",
-    cuisine: ["China", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "China Bulking", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-2",
@@ -99,7 +99,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Packet (1g)",
     coachNote: "The secret to getting traditional sweet lattes and teas without adding unwanted sugar calories! Restock item for Korean Dirty Chai Lattes.",
-    cuisine: ["China", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "China Bulking", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-5",
@@ -147,7 +147,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "0.25 sec spray (0.25g)",
     coachNote: "Zero-calorie non-stick cooking spray for searing Chuletas (pork chops), chicken, and eggs without adding hidden liquid oil calories! Restock item for Korean meal prep.",
-    cuisine: ["China", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "China Bulking", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-8",
@@ -195,7 +195,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 cup dry (45g)",
     coachNote: "Convenient 2 lb bag! Clean fast-digesting carbohydrates to fuel your heavy lifting sessions at Planet Fitness Lewiston.",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "China Bulking", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-11",
@@ -211,7 +211,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 5,
     servingSize: "1 Egg (50g)",
     coachNote: "36 eggs guaranteed! Provides 3 eggs a day for all 7 days (21 eggs) plus 15 bonus eggs for meal prep and snacks! Scramble in 0-cal cooking spray.",
-    cuisine: ["China", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "China Bulking", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-12",
@@ -227,7 +227,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "3/4 cup (170g / 6 oz)",
     coachNote: "FOUR tubs (128 oz / 1 full Gallon / 16 cups total) guaranteed! Provides 100% enough Greek Yogurt for 7 full days of Afternoon bowls (1 cup / 8 oz) AND Nighttime Casein Fluff (~3/4 cup / 5.7 oz) plus nearly a full tub buffer without running out!",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "China Bulking", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-13",
@@ -291,7 +291,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Tea Bag",
     coachNote: "Traditional Japanese 100% green tea staple! Enjoy a cup of hot or iced green tea with every non-latte meal across your 7-day plan.",
-    cuisine: ["China", "Korea", "Korea Bulking", "Japan"]
+    cuisine: ["China", "China Bulking", "Korea", "Korea Bulking", "Japan"]
   },
   {
     id: "g-17",
@@ -339,7 +339,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tbsp (15ml)",
     coachNote: "Essential savory seasoning staple for Chinese stir-fries, Korean Bulgogi, and Japanese rice bowls (Restock item).",
-    cuisine: ["China", "Korea", "Korea Bulking", "Japan"]
+    cuisine: ["China", "China Bulking", "Korea", "Korea Bulking", "Japan"]
   },
   {
     id: "g-20",
@@ -371,7 +371,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 cup (85g)",
     coachNote: "Two bags (24 oz / ~8 cups total) guaranteed! Steamed micronutrients and fiber for 7 full days of Lunch & Dinner bowls.",
-    cuisine: ["China", "Korea", "Korea Bulking", "Japan"]
+    cuisine: ["China", "China Bulking", "Korea", "Korea Bulking", "Japan"]
   },
   {
     id: "g-22",
@@ -387,7 +387,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Medium Banana (118g)",
     coachNote: "Quick potassium and clean pre-workout carbohydrates.",
-    cuisine: ["China", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "China Bulking", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-23",
@@ -403,7 +403,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 2.5,
     servingSize: "1/2 cup dry (40g)",
     coachNote: "Slow-digesting complex carbs for morning energy or mixing into afternoon Greek yogurt power bowls.",
-    cuisine: ["Mexico", "Korea Bulking"]
+    cuisine: ["China Bulking", "Mexico", "Korea Bulking"]
   },
   {
     id: "g-24",
@@ -435,7 +435,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "3 tbsp (46g)",
     coachNote: "Pure protein booster! Mix 1/2 cup into your morning whole egg scrambles to add 13g of clean protein without extra fat calories.",
-    cuisine: ["China", "Korea", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "China Bulking", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-26",
@@ -515,7 +515,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 tsp (0.7g)",
     coachNote: "Essential all-purpose seasoning! Used across every single meal plan for searing chicken, beef, eggs, and stir-fries with zero calories (Restock item).",
-    cuisine: ["China", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
+    cuisine: ["China", "China Bulking", "Korea", "Korea Bulking", "Japan", "Puerto Rico", "Mexico"]
   },
   {
     id: "g-31",
@@ -531,7 +531,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 tsp (0.5g)",
     coachNote: "Essential Asian cooking spice! Adds warming heat to Chinese stir-fries, Korean Bulgogi marinades, and Japanese teriyaki glazes (Restock item).",
-    cuisine: ["China", "Korea", "Korea Bulking", "Japan"]
+    cuisine: ["China", "China Bulking", "Korea", "Korea Bulking", "Japan"]
   },
   {
     id: "g-32",
@@ -771,7 +771,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 cup dry (1 cup cooked)",
     coachNote: "Huge 5 lb bulk bag! Clean fast-digesting carbohydrates to fuel heavy post-160 lb muscle building and glycogen recovery after lifting at Planet Fitness Lewiston.",
-    cuisine: ["Korea Bulking"]
+    cuisine: ["China Bulking", "Korea Bulking"]
   },
   {
     id: "g-47",
@@ -787,7 +787,55 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "3/4 cup (170g / 6 oz)",
     coachNote: "THREE tubs (96 oz / 12 cups total) for lean bulking! Provides 1 cup (8 oz) afternoon bowls AND 3/4 cup (6 oz) bedtime casein fluff every single day while leaving plenty of appetite and stomach volume for clean complex carbohydrates (rice & oats)!",
-    cuisine: ["Korea Bulking"]
+    cuisine: ["China Bulking", "Korea Bulking"]
+  },
+  {
+    id: "g-48",
+    upc: "078742359001",
+    name: "Panda Express Mandarin / General Tso's Sauce (18.75 fl oz bottle)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Panda Express",
+    category: "Seasonings & Spices",
+    priceEst: "$3.48 (18.75 fl oz bottle)",
+    calories: 45,
+    protein: 0,
+    carbs: 11,
+    fat: 0,
+    servingSize: "1 tbsp (18g)",
+    coachNote: "Authentic sweet & savory General Tso's glaze stocked at Auburn Maine Walmart! Perfect for glazing wok-seared chicken breast cubes for your Chinese Shred and Bulking blueprints (Periodic Monday Restock item).",
+    cuisine: ["China", "China Bulking"]
+  },
+  {
+    id: "g-49",
+    upc: "078742359002",
+    name: "Lee Kum Kee Chili Garlic Sauce or Hoisin Sauce (8 oz jar)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Lee Kum Kee",
+    category: "Seasonings & Spices",
+    priceEst: "$2.98 (8 oz jar)",
+    calories: 10,
+    protein: 0,
+    carbs: 2,
+    fat: 0,
+    servingSize: "1 tsp (5g)",
+    coachNote: "Spicy garlic and chili kick to pair with morning egg scrambles and wok-seared General Tso's chicken (Periodic Monday Restock item).",
+    cuisine: ["China", "China Bulking"]
+  },
+  {
+    id: "g-50",
+    upc: "078742359003",
+    name: "Nissin Chow Mein Teriyaki Beef or General Tso Noodles (4 oz tray)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Nissin",
+    category: "Carbs",
+    priceEst: "$1.48 (4 oz tray)",
+    calories: 500,
+    protein: 11,
+    carbs: 65,
+    fat: 21,
+    servingSize: "1 tray (113g)",
+    coachNote: "Your once-a-week Chinese reward treat meal! Savory stir-fried noodles to enjoy as a reward on Friday or Saturday topped with sliced lean chicken breast and green onions.",
+    cuisine: ["China", "China Bulking"]
   }
 ];
 
@@ -820,15 +868,14 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   { name: "Great Value Chili Powder (3 oz bottle)", category: "Seasonings & Spices", price: "$1.08", note: "Smoky heat for fajitas and stir-fries." },
   { name: "Goya Sazón with Coriander & Annatto (8 ct)", category: "Seasonings & Spices", price: "$1.88", note: "Authentic Puerto Rican seasoning with zero calories." },
   { name: "Goya Adobo All-Purpose Seasoning (8 oz jar)", category: "Seasonings & Spices", price: "$2.18", note: "The #1 Boricua garlic and pepper all-purpose seasoning." },
-  { name: "Great Value Soy Sauce (15 fl oz bottle)", category: "Seasonings & Spices", price: "$1.48", note: "Savory seasoning for Korean Gochujang glaze and egg scrambles." },
-  { name: "Great Value Sriracha Chili Sauce or Chili Garlic Sauce (17 fl oz bottle)", category: "Seasonings & Spices", price: "$2.98", note: "Spicy metabolism-boosting chili sauce for Korean glazes." },
-  { name: "Bibigo Authentic Korean BBQ Marinade & Sauce (16.9 fl oz bottle)", category: "Seasonings & Spices", price: "$4.13", note: "Authentic sweet & savory Korean BBQ marinade and glaze." },
-  { name: "Nasoya Authentic Korean Spicy Kimchi (14 oz cup)", category: "Seasonings & Spices", price: "$4.98", note: "Probiotic gut health & authentic Korean side dish." },
+  { name: "Great Value Soy Sauce (15 fl oz bottle)", category: "Seasonings & Spices", price: "$1.48", note: "Savory seasoning for Chinese General Tso glaze and egg scrambles." },
+  { name: "Panda Express Mandarin / General Tso's Sauce (18.75 fl oz bottle)", category: "Seasonings & Spices", price: "$3.48", note: "Authentic sweet & savory General Tso glaze." },
+  { name: "Lee Kum Kee Chili Garlic Sauce or Hoisin Sauce (8 oz jar)", category: "Seasonings & Spices", price: "$2.98", note: "Spicy garlic and chili kick for Chinese scrambles and stir-fries." },
   { name: "Death Wish Coffee Co. Espresso Roast Ground Coffee (9 oz bag)", category: "Seasonings & Spices", price: "$11.76", note: "Brew over ice at 8:00 AM for extreme high-octane pre-workout focus!" },
   { name: "Great Value Cornstarch (16 oz box)", category: "Seasonings & Spices", price: "$1.48", note: "Toss chicken breast cubes lightly before searing for authentic wok crispiness." },
   { name: "Great Value 100% Green Tea Bags (40 ct)", category: "Seasonings & Spices", price: "$1.98", note: "Traditional Asian 100% green tea paired with post-workout meals." },
-  { name: "Great Value 0-Calorie Canola Oil Cooking Spray", category: "Seasonings & Spices", price: "$2.24", note: "Fat-free searing for Korean Gochujang chicken and egg scrambling." },
-  { name: "Great Value Zero Calorie Sweetener Packets (100 ct)", category: "Seasonings & Spices", price: "$2.18", note: "Sweetens Korean Gochujang glaze, tea, and yogurt with zero sugar calories." },
+  { name: "Great Value 0-Calorie Canola Oil Cooking Spray", category: "Seasonings & Spices", price: "$2.24", note: "Fat-free searing for Chinese General Tso chicken and egg scrambling." },
+  { name: "Great Value Zero Calorie Sweetener Packets (100 ct)", category: "Seasonings & Spices", price: "$2.18", note: "Sweetens Chinese General Tso glaze, tea, and yogurt with zero sugar calories." },
   { name: "Great Value Purified Drinking Water (40 Pack, 16.9 fl oz bottles)", category: "Essentials", price: "$4.98", note: "40-pack purified water bottles from Auburn Walmart." },
   // Groceries & Protein Staples
   { name: "Fresh Chicken Breasts (~4.7 to 5.0 lb Family Tray)", category: "Protein", price: "$13.40", note: "Primary lean protein staple (~5.0 lb tray at $2.68/lb) for General Tso cubes." },
@@ -847,20 +894,21 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   { name: "Fresh Bananas (~1 lb bunch)", category: "Produce", price: "$1.58", note: "Quick potassium and pre-workout carbohydrates (paired with 8 AM coffee)." },
   { name: "Great Value Long Grain White Rice (2 lb bag)", category: "Carbs", price: "$1.48", note: "Clean fast-digesting carbohydrates for post-workout recovery." },
   { name: "Great Value Frozen Broccoli Florets (12 oz bag)", category: "Produce", price: "$1.16", note: "Easy steamed micronutrients and fiber." },
-  { name: "Great Value Chunky Salsa & Fresh Avocados", category: "Produce", price: "$2.48", note: "The zesty Mexican secret for morning Huevos Rancheros." }
+  { name: "Great Value Chunky Salsa & Fresh Avocados", category: "Produce", price: "$2.48", note: "The zesty Mexican secret for morning Huevos Rancheros." },
+  { name: "Nissin Chow Mein Teriyaki Beef / General Tso Noodles (4 oz tray)", category: "Carbs", price: "$1.48", note: "Weekly Friday/Saturday Chinese reward treat meal." }
 ];
 
 export const MEAL_PREP_PLANS: MealPrepPlan[] = [
   {
-    id: "plan-korea",
-    title: "Korea: Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint (~2,150 kcal)",
-    country: "Korea",
-    flag: "🇰🇷",
+    id: "plan-china",
+    title: "China: Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint (~2,150 kcal)",
+    country: "China",
+    flag: "🇨🇳",
     badge: "⭐ #1 Main & Exclusive Blueprint",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
-    estCostPerWeek: "$45.38 Weekly Consumables / $32.78 Periodic Restock ($78.16 Combined Total)",
-    description: "The #1 Main & Exclusive Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint! Designed specifically around Hunter Nick's schedule: Monday Grocery Run at Auburn Maine Walmart Supercenter ($50 budget for regular runs, max $25 for restocking) & Batch Meal Prep, starting eating Tuesday (Tuesday-Monday 7-Day Cycle). Features high-octane Death Wish Espresso Roast Iced Black Coffee + Banana at 8:00 AM as extreme Pre-Workout focus before hitting Planet Fitness Lewiston! Followed by a cooked-fresh Post-Workout Scallion & Liquid Egg White Scramble with Kimchi at 10:30-11:00 AM, authentic Wok-Seared Korean Gochujang/Bibigo Glazed Chicken Breast for Lunch and Dinner, and slow-release Casein Greek Yogurt bowls (with 4 tubs / 1 Gallon guaranteed so you never run out!). Traditional 100% Green Tea is paired with every post-workout main meal to maximize thermogenesis. Plus, includes Samyang Buldak Spicy Carbonara Chicken Ramen Noodles as your weekly reward treat meal on Friday or Saturday evening!",
+    estCostPerWeek: "$45.38 Weekly Consumables / $31.08 Periodic Restock ($76.46 Combined Total)",
+    description: "The #1 Main & Exclusive Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint! Designed specifically around Hunter Nick's schedule: Monday Grocery Run at Auburn Maine Walmart Supercenter ($50 budget for regular runs, max $25 for restocking) & Batch Meal Prep, starting eating Tuesday (Tuesday-Monday 7-Day Cycle). Features high-octane Death Wish Espresso Roast Iced Black Coffee + Banana at 8:00 AM as extreme Pre-Workout focus before hitting Planet Fitness Lewiston! Followed by a cooked-fresh Post-Workout Scallion & Liquid Egg White Scramble with Chili Garlic Sauce at 10:30-11:00 AM, authentic Wok-Seared Chinese General Tso's Glazed Chicken Breast for Lunch and Dinner, and slow-release Casein Greek Yogurt bowls (with 4 tubs / 1 Gallon guaranteed so you never run out!). Traditional 100% Green Tea is paired with every post-workout main meal to maximize thermogenesis. Plus, includes Nissin Chow Mein / Lo Mein Noodles as your weekly reward treat meal on Friday or Saturday evening!",
     meals: [
       {
         name: "Pre-Workout Fuel: Death Wish Iced Black Coffee & Banana",
@@ -875,12 +923,12 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 0
       },
       {
-        name: "Post-Workout Breakfast: Korean Scallion & Egg White Scramble + Rice & Kimchi + Tea",
+        name: "Post-Workout Breakfast: Chinese Scallion & Egg White Scramble + Rice & Chili Garlic Sauce + Tea",
         time: "10:30 AM – 11:00 AM (Post-Workout)",
         ingredients: [
           "3 Large Grade A White Eggs + 1/2 cup (4 oz) Liquid Egg Whites scrambled in Great Value 0-Cal Cooking Spray. Cooking Instructions: Heat non-stick skillet over medium heat, spray liberally with canola oil spray. Whisk 3 whole eggs plus 1/2 cup liquid egg whites thoroughly. Pour in skillet and gently fold with spatula over medium heat. During the last 60 seconds of cooking, fold in 1 tbsp soy sauce, 1/2 tsp garlic powder, and chopped fresh green onions until golden and fluffy! (330 kcal, 31g p, 15g f)",
           "1 cup cooked Long Grain White Rice. Cooking Instructions: Rinse rice until water runs clear. Combine 1 cup raw rice with 2 cups water in saucepan, bring to boil, cover, and simmer low for 18 minutes. Fluff with fork! (200 kcal, 4g p, 44g c)",
-          "2 tbsp Nasoya Authentic Korean Spicy Kimchi (fermented cabbage for gut health and tangy spice). (15 kcal, 1g p, 2g c)",
+          "1 tsp Lee Kum Kee Chili Garlic Sauce or Hoisin Sauce (spicy garlic flavor booster with near-zero calories). (10 kcal, 0g p, 2g c)",
           "1 cup hot brewed Great Value 100% Green Tea. Cooking Instructions: Steep 1 green tea bag in boiling water for 3-5 minutes. (0 kcal, post-workout antioxidant recovery & metabolism boost)"
         ],
         calories: 550,
@@ -889,10 +937,10 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 15
       },
       {
-        name: "Lunch: Wok-Seared Korean Gochujang Glazed Chicken Breast & Steamed Broccoli + Tea",
+        name: "Lunch: Wok-Seared Chinese General Tso's Glazed Chicken Breast & Steamed Broccoli + Tea",
         time: "2:00 PM – 2:30 PM",
         ingredients: [
-          "~5.7 oz Fresh Chicken Breast cubes wok-seared in Korean Gochujang / Bibigo Glaze. Cooking Instructions: Cut chicken breast into bite-sized 1-inch cubes and toss with 1 tsp cornstarch and garlic powder. Spray non-stick wok or skillet with 0-cal canola cooking spray over medium-high heat. Sear chicken cubes for 6-8 minutes until golden brown and fully cooked (165°F internal). Whisk low-cal Korean Gochujang Glaze (1.5 tbsp Bibigo Korean BBQ sauce / soy sauce, 1 tsp sriracha, 1 zero-cal sweetener packet, 1/4 tsp ground ginger, 1/4 tsp garlic powder, and 1 tbsp water). Pour glaze into wok over chicken and toss vigorously for 1 minute until sticky, glossy, and caramelized! (210 kcal, 40g p, 2g f)",
+          "~5.7 oz Fresh Chicken Breast cubes wok-seared in Chinese General Tso's Glaze. Cooking Instructions: Cut chicken breast into bite-sized 1-inch cubes and toss with 1 tsp cornstarch and garlic powder. Spray non-stick wok or skillet with 0-cal canola cooking spray over medium-high heat. Sear chicken cubes for 6-8 minutes until golden brown and fully cooked (165°F internal). Whisk low-cal Chinese General Tso's Glaze (1.5 tbsp Panda Express General Tso's sauce, 1 tsp soy sauce, 1 zero-cal sweetener packet, 1/4 tsp ground ginger, 1/4 tsp garlic powder, and 1 tbsp water). Pour glaze into wok over chicken and toss vigorously for 1 minute until sticky, glossy, and caramelized! (210 kcal, 40g p, 2g f)",
           "1 cup steamed Great Value Frozen Broccoli florets. Cooking Instructions: Microwave frozen broccoli in covered bowl with 2 tbsp water for 3-4 minutes until crisp-tender, drain and season with garlic powder. (30 kcal, 2g p, 6g c)",
           "1 cup cooked Long Grain White Rice (from batch prep, reheated with a splash of water so it stays fluffy). (200 kcal, 4g p, 44g c)",
           "1 cup hot brewed 100% Green Tea (0 kcal, thermogenic fat oxidation booster)"
@@ -903,7 +951,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 2
       },
       {
-        name: "Afternoon Snack: Korean Casein Greek Yogurt Bowl",
+        name: "Afternoon Snack: Chinese Casein Greek Yogurt Bowl",
         time: "5:30 PM",
         ingredients: [
           "1 cup (8 oz) Plain Nonfat Greek Yogurt. Cooking Instructions: Spoon yogurt into bowl, stir in 1 zero-calorie sweetener packet and a pinch of cinnamon or vanilla until velvety and creamy. Slow-release casein protein keeps muscles fueled and satiated between meals! (120 kcal, 21g p, 8g c)"
@@ -914,10 +962,10 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 0
       },
       {
-        name: "Dinner: Wok-Seared Korean Gochujang Glazed Chicken Breast & Steamed Broccoli + Tea",
+        name: "Dinner: Wok-Seared Chinese General Tso's Glazed Chicken Breast & Steamed Broccoli + Tea",
         time: "7:30 PM – 8:00 PM",
         ingredients: [
-          "~5.7 oz Fresh Chicken Breast cubes wok-seared in Korean Gochujang / Bibigo Glaze. Cooking Instructions: Prepare chicken cubes in wok with 0-cal canola spray over medium-high heat for 6-8 minutes. Toss with low-cal Gochujang Glaze (Bibigo sauce, soy sauce, sriracha, zero-cal sweetener, ginger, garlic powder, water) until caramelized and glossy! (210 kcal, 40g p, 2g f)",
+          "~5.7 oz Fresh Chicken Breast cubes wok-seared in Chinese General Tso's Glaze. Cooking Instructions: Prepare chicken cubes in wok with 0-cal canola spray over medium-high heat for 6-8 minutes. Toss with low-cal General Tso's Glaze (Panda Express sauce, soy sauce, zero-cal sweetener, ginger, garlic powder, water) until caramelized and glossy! (210 kcal, 40g p, 2g f)",
           "1 cup steamed Great Value Frozen Broccoli florets (crisp-tender, seasoned with garlic powder). (30 kcal, 2g p, 6g c)",
           "1 cup cooked Long Grain White Rice (reheated warm and fluffy). (200 kcal, 4g p, 44g c)",
           "1 cup hot brewed 100% Green Tea (0 kcal, overnight metabolic & muscle recovery aid)"
@@ -942,15 +990,15 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     ]
   },
   {
-    id: "plan-korea-bulking",
-    title: "Korea Bulking: Korean Bulgogi & Gochujang Lean Bulking Blueprint (~2,750 kcal)",
-    country: "Korea Bulking",
-    flag: "🇰🇷💪",
+    id: "plan-china-bulking",
+    title: "China Bulking: Chinese General Tso's & Wok-Seared Lean Bulking Blueprint (~2,750 kcal)",
+    country: "China Bulking",
+    flag: "🇨🇳💪",
     badge: "🔥 Phase 2: Post-160 Lb Lean Bulk ($43.76/Wk)",
     targetDailyCalories: 2750,
     targetDailyProtein: 189,
-    estCostPerWeek: "$43.76 Weekly Consumables / $32.78 Periodic Restock ($76.54 Combined Total)",
-    description: "The #1 Lean Bulking Blueprint designed for Hunter Nick once he conquers his 160 Lb target weight! Built around the same Monday Auburn ME Walmart Grocery Run & Batch Meal Prep schedule. Notice how this bulking plan is exactly $1.62 CHEAPER per week ($43.76 vs $45.38) while adding +600 clean muscle-building calories every day! We swap 4 tubs of yogurt and liquid egg whites for a massive 5 lb bag of Long Grain White Rice, 42 oz of Rolled Oats, 3 tubs of Greek Yogurt, and 35 whole eggs across the week (5 whole eggs daily to naturally boost hormone production and muscle recovery after heavy compound lifts at Planet Fitness Lewiston!). Includes hot 100% Green Tea and your Friday/Saturday Samyang Buldak Carbonara Ramen treat meal!",
+    estCostPerWeek: "$43.76 Weekly Consumables / $31.08 Periodic Restock ($74.84 Combined Total)",
+    description: "The #1 Lean Bulking Blueprint designed for Hunter Nick once he conquers his 160 Lb target weight! Built around the same Monday Auburn ME Walmart Grocery Run & Batch Meal Prep schedule. Notice how this bulking plan is exactly $1.62 CHEAPER per week ($43.76 vs $45.38) while adding +600 clean muscle-building calories every day! We swap 4 tubs of yogurt and liquid egg whites for a massive 5 lb bag of Long Grain White Rice, 42 oz of Rolled Oats, 3 tubs of Greek Yogurt, and 35 whole eggs across the week (5 whole eggs daily to naturally boost hormone production and muscle recovery after heavy compound lifts at Planet Fitness Lewiston!). Features Wok-Seared Chinese General Tso's Glazed Chicken with DOUBLE White Rice & Broccoli, hot 100% Green Tea, and your Friday/Saturday Chow Mein treat meal!",
     meals: [
       {
         name: "Pre-Workout Fuel: Death Wish Iced Black Coffee & Banana",
@@ -965,12 +1013,12 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 0
       },
       {
-        name: "Post-Workout Breakfast: 5-Egg Korean Scallion Scramble + Rolled Oats + Kimchi + Tea",
+        name: "Post-Workout Breakfast: 5-Egg Chinese Scallion Scramble + Rolled Oats + Chili Garlic + Tea",
         time: "10:30 AM – 11:00 AM (Post-Workout)",
         ingredients: [
           "5 Large Grade A White Eggs scrambled in Great Value 0-Cal Cooking Spray. Cooking Instructions: Heat non-stick skillet over medium heat, spray liberally with canola oil spray. Whisk 5 whole eggs thoroughly. Pour in skillet and gently fold over medium heat. Fold in 1 tbsp soy sauce, 1/2 tsp garlic powder, and chopped fresh green onions until fluffy and golden! Provides rich amino acids, healthy fats, and natural cholesterol for muscle building. (350 kcal, 30g p, 25g f)",
           "1 cup cooked Great Value Old Fashioned Rolled Oats. Cooking Instructions: Combine 1/2 cup dry oats with 1 cup water in bowl, microwave 2 minutes or cook on stovetop. Stir in cinnamon or sweetener packet for slow-digesting complex carbs! (150 kcal, 5g p, 27g c)",
-          "2 tbsp Nasoya Authentic Korean Spicy Kimchi (probiotic gut health and tangy spice). (15 kcal, 1g p, 2g c)",
+          "1 tsp Lee Kum Kee Chili Garlic Sauce (tangy, spicy kick with near-zero calories). (10 kcal, 0g p, 2g c)",
           "1 cup hot brewed Great Value 100% Green Tea. (0 kcal, post-workout antioxidant recovery & digestion aid)"
         ],
         calories: 515,
@@ -979,10 +1027,10 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 25
       },
       {
-        name: "Lunch: Wok-Seared Korean Gochujang Chicken + DOUBLE White Rice & Broccoli + Tea",
+        name: "Lunch: Wok-Seared Chinese General Tso's Chicken + DOUBLE White Rice & Broccoli + Tea",
         time: "2:00 PM – 2:30 PM",
         ingredients: [
-          "~5.7 oz Fresh Chicken Breast cubes wok-seared in Korean Gochujang / Bibigo Glaze. Cooking Instructions: Cut chicken breast into bite-sized cubes, toss with 1 tsp cornstarch and garlic powder. Spray wok with 0-cal canola spray, sear 6-8 minutes until golden and 165°F internal. Whisk low-cal Gochujang Glaze (Bibigo BBQ sauce, soy sauce, sriracha, sweetener packet, ginger, garlic powder, water), pour into wok and toss for 1 minute until sticky and glossy! (210 kcal, 40g p, 2g f)",
+          "~5.7 oz Fresh Chicken Breast cubes wok-seared in Chinese General Tso's Glaze. Cooking Instructions: Cut chicken breast into bite-sized cubes, toss with 1 tsp cornstarch and garlic powder. Spray wok with 0-cal canola spray, sear 6-8 minutes until golden and 165°F internal. Whisk low-cal General Tso's Glaze (Panda Express sauce, soy sauce, sweetener packet, ginger, garlic powder, water), pour into wok and toss for 1 minute until sticky and glossy! (210 kcal, 40g p, 2g f)",
           "2 cups cooked Long Grain White Rice (from your 5 lb batch prep bag, reheated with a splash of water for fluffy, high-density bulking glycogen replenishment!). (400 kcal, 8g p, 88g c)",
           "1 cup steamed Great Value Frozen Broccoli florets seasoned with garlic powder. (30 kcal, 2g p, 6g c)",
           "1 cup hot brewed 100% Green Tea (0 kcal, digestion & nutrient partitioning support)"
@@ -993,7 +1041,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 2
       },
       {
-        name: "Afternoon Snack: High-Protein Korean Casein Greek Yogurt Power Bowl",
+        name: "Afternoon Snack: High-Protein Casein Greek Yogurt Power Bowl",
         time: "5:30 PM",
         ingredients: [
           "1 cup (8 oz) Plain Nonfat Greek Yogurt mixed with 1 zero-calorie sweetener packet and cinnamon/vanilla until creamy and velvety. Slow-release casein protein keeps muscles supplied with amino acids between lifting sessions! (120 kcal, 21g p, 8g c)"
@@ -1004,10 +1052,10 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         fat: 0
       },
       {
-        name: "Dinner: Wok-Seared Korean Gochujang Chicken + DOUBLE White Rice & Broccoli + Tea",
+        name: "Dinner: Wok-Seared Chinese General Tso's Chicken + DOUBLE White Rice & Broccoli + Tea",
         time: "7:30 PM – 8:00 PM",
         ingredients: [
-          "~5.7 oz Fresh Chicken Breast cubes wok-seared in Korean Gochujang / Bibigo Glaze until caramelized and glossy. (210 kcal, 40g p, 2g f)",
+          "~5.7 oz Fresh Chicken Breast cubes wok-seared in Chinese General Tso's Glaze until caramelized and glossy. (210 kcal, 40g p, 2g f)",
           "2 cups cooked Long Grain White Rice (warm, fluffy complex carbohydrates to fuel overnight muscle repair and top off glycogen stores). (400 kcal, 8g p, 88g c)",
           "1 cup steamed Great Value Frozen Broccoli florets seasoned with garlic powder. (30 kcal, 2g p, 6g c)",
           "1 cup hot brewed 100% Green Tea (0 kcal, evening antioxidant hydration)"

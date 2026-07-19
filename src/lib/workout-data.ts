@@ -56,7 +56,7 @@ export const PLANET_FITNESS_LEWISTON_6DAY_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "1 Gallon Water + Green Tea Bags",
         equipment: "Water Jug & Green Tea",
-        coachTip: "Hydrate thoroughly with 1 gallon of water and antioxidant green tea to support skin elasticity during weight loss and recover your muscles for Monday's workouts and Korean Gochujang Shred meal prep!"
+        coachTip: "Hydrate thoroughly with 1 gallon of water and antioxidant green tea to support skin elasticity during weight loss and recover your muscles for Monday's workouts and Chinese General Tso's Shred meal prep!"
       }
     ]
   },
@@ -65,18 +65,18 @@ export const PLANET_FITNESS_LEWISTON_6DAY_ROUTINE: WorkoutDay[] = [
     dayName: "Monday",
     splitName: "Push A (Chest, Anterior Delts, Triceps) + Monday Grocery & Meal Prep",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Push A & Korean Gochujang Shred Monday Batch Meal Prep",
-    description: "Official Monday Grocery Run & Weekly Batch Meal Prep Day + Push A workout using Lewiston Maine Planet Fitness equipment! Hit Auburn ME Walmart for your $45.38 weekly list ($32.78 restock), batch prep your Korean Gochujang Shred meals for Tuesday start, and crush your chest/shoulder/tricep workout.",
+    questTitle: "[Daily Quest] Clear Push A & Chinese General Tso's Shred Monday Batch Meal Prep",
+    description: "Official Monday Grocery Run & Weekly Batch Meal Prep Day + Push A workout using Lewiston Maine Planet Fitness equipment! Hit Auburn ME Walmart for your $45.38 weekly list ($31.08 restock), batch prep your Chinese General Tso's Shred meals for Tuesday start, and crush your chest/shoulder/tricep workout.",
     xpReward: 500,
     exercises: [
       {
         id: "mon-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Korean Gochujang Shred Batch Meal Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Chinese General Tso's Shred Batch Meal Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Korean Gochujang Shred Batch Prep (For Tuesday Start)",
+        reps: "Chinese General Tso's Shred Batch Prep (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your under-$50 Korean Gochujang Shred Weekly Consumables ($45.38) at Auburn ME Walmart. Batch-cook chicken breasts, rice, and broccoli on Monday so your meal prep eating begins seamlessly on Tuesday!"
+        coachTip: "Pick up your under-$50 Chinese General Tso's Shred Weekly Consumables ($45.38) at Auburn ME Walmart. Batch-cook chicken breasts, rice, and broccoli on Monday so your meal prep eating begins seamlessly on Tuesday!"
       },
       {
         id: "mon-1",
@@ -140,7 +140,7 @@ export const PLANET_FITNESS_LEWISTON_6DAY_ROUTINE: WorkoutDay[] = [
     splitName: "Pull A (Upper Back Width, Lats, Rear Delts, Biceps) - Start Eating Prep!",
     isRestDay: false,
     questTitle: "[Daily Quest] Clear Pull A V-Taper Sculpt & Start Eating Prep",
-    description: "First day of eating your prepped Korean Gochujang Shred meals + Pull A workout at Lewiston Maine Planet Fitness! Build wide lats, upper back thickness, and bicep peaks using cable stations and machines.",
+    description: "First day of eating your prepped Chinese General Tso's Shred meals + Pull A workout at Lewiston Maine Planet Fitness! Build wide lats, upper back thickness, and bicep peaks using cable stations and machines.",
     xpReward: 500,
     exercises: [
       {
