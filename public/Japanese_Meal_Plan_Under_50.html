@@ -266,10 +266,79 @@
         color: #854d0e;
         border: 1px solid #ca8a04;
       }
+      .print-toolbar {
+        display: none !important;
+      }
+    }
+
+    .print-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10, 14, 23, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--primary);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: -40px -20px 30px -20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    }
+    .print-toolbar-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    .print-btn {
+      background: linear-gradient(135deg, var(--gold) 0%, #eab308 100%);
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .print-btn:hover {
+      transform: scale(1.05);
+      background: #fff;
+    }
+    .close-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .close-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
   </style>
 </head>
 <body>
+
+  <div class="print-toolbar">
+    <div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--primary); font-weight: 700; text-transform: uppercase;">S-Rank Printable Document</div>
+      <div style="font-size: 16px; font-weight: 900; color: #fff;">Japanese Teriyaki & Death Wish Coffee Blueprint</div>
+    </div>
+    <div class="print-toolbar-buttons">
+      <button class="print-btn" onclick="window.print()">🖨️ Click Here to Print / Save as PDF</button>
+      <button class="close-btn" onclick="window.close()">✕ Close Tab</button>
+    </div>
+  </div>
 
   <div class="container">
     <div class="header">
@@ -506,8 +575,12 @@
         <li><strong>Step 4: Steam Frozen Broccoli:</strong> Portion 1 cup of frozen broccoli florets into each container right next to the chicken and rice. The broccoli will naturally thaw inside the sealed container in the fridge and steam perfectly when you pop the container into the microwave for 2 minutes!</li>
         <li><strong>Step 5: Refrigerate & Enjoy Tuesday – Monday:</strong> Seal all 14 containers and store in the refrigerator. Every morning at 8:00 AM grab your Death Wish iced coffee and banana before your bodyweight workout, make your fresh 3-minute scallion & liquid egg white Tamagoyaki scramble at 10:30 AM, and pop your Wok-Seared Teriyaki bowls into the microwave at 2:00 PM and 7:30 PM!</li>
       </ol>
-    </div>
-  </div>
-
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        window.print();
+      }, 600);
+    });
+  </script>
 </body>
 </html>

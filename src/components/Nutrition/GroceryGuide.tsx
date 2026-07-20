@@ -305,7 +305,12 @@ export default function GroceryGuide() {
   const handlePrintPlan = (plan?: typeof MEAL_PREP_PLANS[0]) => {
     const isBulking = (plan && plan.country === 'Japan Bulking') || (!plan && (selectedAisleTemplate === 'Japan Bulking' || selectedCountryPlan === 'Japan Bulking'));
     const url = isBulking ? '/Japanese_Bulking_Meal_Plan_Under_50.html' : '/Japanese_Meal_Plan_Under_50.html';
-    window.open(url, '_blank');
+    const win = window.open(url, '_blank');
+    if (win) {
+      win.focus();
+    } else {
+      window.location.href = url;
+    }
   };
 
   const handleEmailPlan = (plan: typeof MEAL_PREP_PLANS[0]) => {
@@ -420,18 +425,22 @@ export default function GroceryGuide() {
             <span><strong>2 Separate PDF Guides Available:</strong> Printable S-Rank blueprints with exact cooking, shopping & macro breakdowns for both diets:</span>
           </div>
           <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-end">
-            <button
-              onClick={() => window.open('/Japanese_Meal_Plan_Under_50.html', '_blank')}
-              className="px-3.5 py-1.5 rounded-lg bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-system-dark border border-system-gold/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5"
+            <a
+              href="/Japanese_Meal_Plan_Under_50.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3.5 py-1.5 rounded-lg bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-system-dark border border-system-gold/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5 no-underline"
             >
               <span>📄 Phase 1 Cutting PDF ($45.38/wk)</span>
-            </button>
-            <button
-              onClick={() => window.open('/Japanese_Bulking_Meal_Plan_Under_50.html', '_blank')}
-              className="px-3.5 py-1.5 rounded-lg bg-system-cyan/20 hover:bg-system-cyan text-system-cyan hover:text-system-dark border border-system-cyan/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5"
+            </a>
+            <a
+              href="/Japanese_Bulking_Meal_Plan_Under_50.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3.5 py-1.5 rounded-lg bg-system-cyan/20 hover:bg-system-cyan text-system-cyan hover:text-system-dark border border-system-cyan/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5 no-underline"
             >
               <span>📄 Phase 2 Bulking PDF ($43.76/wk)</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>

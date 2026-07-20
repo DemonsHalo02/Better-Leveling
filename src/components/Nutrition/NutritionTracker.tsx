@@ -178,17 +178,16 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
             <p className="text-xs text-zinc-400">Instantly log your prepped {activePlan.country} blueprint meals with 1 click to fill your HP & Mana bars!</p>
           </div>
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => {
-                const url = activePlan.country === 'Japan Bulking' || activePlan.country === 'China Bulking' ? '/Japanese_Bulking_Meal_Plan_Under_50.html' : '/Japanese_Meal_Plan_Under_50.html';
-                window.open(url, '_blank');
-              }}
-              className="flex items-center gap-1.5 bg-system-dark hover:bg-system-gold text-system-gold hover:text-black px-3 py-1 rounded-lg text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all cursor-pointer"
+            <a
+              href={activePlan.country === 'Japan Bulking' || activePlan.country === 'China Bulking' ? '/Japanese_Bulking_Meal_Plan_Under_50.html' : '/Japanese_Meal_Plan_Under_50.html'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 bg-system-dark hover:bg-system-gold text-system-gold hover:text-black px-3 py-1 rounded-lg text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all cursor-pointer no-underline"
               title="Print or Save as PDF the selected Japanese Meal Prep Blueprint"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>🖨️ Print {activePlan.country === 'Japan Bulking' || activePlan.country === 'China Bulking' ? 'Phase 2 Bulking' : 'Phase 1 Cutting'} PDF</span>
-            </button>
+            </a>
             <span className="text-[10px] bg-system-blue/20 text-system-cyan border border-system-blue/40 px-2.5 py-1 rounded font-mono font-bold whitespace-nowrap">
               +75 INT XP Per Meal
             </span>
