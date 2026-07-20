@@ -19,18 +19,16 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
   const [customServings, setCustomServings] = useState<number>(1);
   const [isInGroceryList, setIsInGroceryList] = useState<boolean>(false);
   const [checkedInGrocery, setCheckedInGrocery] = useState<boolean>(false);
-  const [selectedTemplate, setSelectedTemplate] = useState<string>('Japan');
+  const [selectedTemplate, setSelectedTemplate] = useState<string>('China');
   const scannerRef = useRef<Html5QrcodeScanner | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const savedTpl = localStorage.getItem('pf_selected_aisle_template');
-      if (savedTpl && ['Japan', 'Japan Bulking', 'All'].includes(savedTpl)) {
+      if (savedTpl && ['China', 'China Bulking', 'All'].includes(savedTpl)) {
         setSelectedTemplate(savedTpl);
-      } else if (savedTpl && ['China', 'China Bulking'].includes(savedTpl)) {
-        setSelectedTemplate(savedTpl === 'China' ? 'Japan' : 'Japan Bulking');
       } else {
-        setSelectedTemplate('Japan');
+        setSelectedTemplate('China');
       }
     }
   }, []);
@@ -264,7 +262,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
             Hunter Barcode Scanner
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            Scan ingredient barcodes with your web camera or use quick text search to instantly log calories and macros toward your 2,080 kcal / 178g protein daily goals.
+            Scan ingredient barcodes with your web camera or use quick text search to instantly log calories and macros toward your 2,650 kcal / 190g protein daily goals.
           </p>
         </div>
 
@@ -335,8 +333,8 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
               <span>Active Meal Plan Template Filter:</span>
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {['Japan', 'Japan Bulking', 'All'].map((tpl) => {
-                const flags: Record<string, string> = { 'Japan': '🇯🇵', 'Japan Bulking': '🔥' };
+              {['China', 'China Bulking', 'All'].map((tpl) => {
+                const flags: Record<string, string> = { 'China': '🇨🇳', 'China Bulking': '🔥' };
                 return (
                   <button
                     key={tpl}
@@ -348,7 +346,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
                     }`}
                   >
                     {flags[tpl] && <span>{flags[tpl]}</span>}
-                    <span>{tpl === 'Japan' ? 'Japan Cutting (#1 Main)' : tpl === 'Japan Bulking' ? 'Japan Bulking (Post-160 Lb)' : '🌐 All'}</span>
+                    <span>{tpl === 'China' ? 'China Cutting (#1 Main)' : tpl === 'China Bulking' ? 'China Bulking (Post-160 Lb)' : '🌐 All'}</span>
                   </button>
                 );
               })}

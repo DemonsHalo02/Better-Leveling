@@ -15,7 +15,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
 
   // Recomposition Lab Slider States
   const [weeklyLossRate, setWeeklyLossRate] = useState<number>(1.0); // lbs per week
-  const [simulatedProtein, setSimulatedProtein] = useState<number>(178); // grams
+  const [simulatedProtein, setSimulatedProtein] = useState<number>(206); // grams
   const [cardioDays, setCardioDays] = useState<number>(3); // days per week
 
   // Claimed VIP Trophies
@@ -54,7 +54,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
   const simulatedCalories = Math.max(1500, baseTdee - dailyDeficit + Math.round(cardioBurn / 7));
 
   // Lean Muscle Preservation Score
-  const proteinRatio = simulatedProtein / 178;
+  const proteinRatio = simulatedProtein / 206;
   const musclePreservation = Math.min(99.8, Math.max(88.0, Number((94.5 + (proteinRatio * 4.5) - (weeklyLossRate > 1.5 ? (weeklyLossRate - 1.5) * 3 : 0)).toFixed(1))));
 
   const handleClaimVipTrophy = (id: string, name: string, xp: number) => {
@@ -142,7 +142,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             <div className="space-y-1">
               <h3 className="text-xl font-black text-white uppercase tracking-wider">AI Coach Oracle Locked</h3>
               <p className="text-xs text-zinc-300 max-w-md">
-                S-Rank VIP Guild members receive custom weekly caloric adjustments, loose skin prevention advice, and tailored Japanese Teriyaki cutting meal preps!
+                S-Rank VIP Guild members receive custom weekly caloric adjustments, loose skin prevention advice, and tailored Boricua cutting meal preps!
               </p>
             </div>
             <button
@@ -176,10 +176,10 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
 
           <div className="bg-system-dark/80 p-4 rounded-xl border border-system-gold/40 space-y-2">
             <div className="flex items-center gap-2 text-xs font-bold text-system-gold uppercase">
-              <Utensils className="w-4 h-4" /> 2. Japanese Teriyaki Cutting Meal Prep
+              <Utensils className="w-4 h-4" /> 2. Boricua Cutting Meal Prep
             </div>
             <p className="text-xs text-zinc-300 leading-relaxed">
-              <strong>VIP Meal Blueprint:</strong> Japanese Teriyaki Chicken Bowl! Cook 1.5 lbs chicken breast with low-sodium soy sauce, mirin, and ginger. Pair 8oz chicken with 1/2 cup jasmine rice and steamed broccoli. <strong>Stats:</strong> 510 kcal, 56g Protein, 46g Carbs!
+              <strong>VIP Meal Blueprint:</strong> Pollo Guisado Clean Prep! Cook 1.5 lbs chicken breast with sofrito, tomato sauce, and cilantro. Pair 8oz chicken with 1/2 cup jasmine rice and avocado. <strong>Stats:</strong> 520 kcal, 58g Protein, 45g Carbs!
             </p>
           </div>
 
@@ -277,7 +277,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             />
             <div className="flex justify-between text-[10px] text-zinc-500 font-bold">
               <span>150g (Min)</span>
-              <span>178g (Japanese Goal)</span>
+              <span>206g (Boricua Goal)</span>
               <span>260g (Max)</span>
             </div>
           </div>

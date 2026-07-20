@@ -85,13 +85,13 @@ const DEFAULT_STATE: HunterState = {
     startWeight: 242,
     currentWeight: 242,
     targetWeight: 160,
-    targetDate: "2028-01-01",
-    dailyCalorieGoal: 2080,
-    dailyProteinGoal: 178,
+    targetDate: "2027-12-31",
+    dailyCalorieGoal: 2150,
+    dailyProteinGoal: 170,
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
-    gymName: "Planet Fitness Lewiston (6-Day PPL + Treadmill Cardio)",
-    dietName: "Japanese Teriyaki Chicken & Death Wish Black Coffee Shred Blueprint",
+    gymName: "Planet Fitness Lewiston, ME",
+    dietName: "Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint",
   },
   completedQuestsToday: {
     workout: false,
@@ -171,8 +171,7 @@ export function loadHunterState(): HunterState {
 
     let needsSave = false;
     if (parsed.profile) {
-      if (parsed.profile.dailyProteinGoal === 170) { parsed.profile.dailyProteinGoal = 178; needsSave = true; }
-      if (parsed.profile.dailyCalorieGoal === 2150) { parsed.profile.dailyCalorieGoal = 2080; needsSave = true; }
+      if (parsed.profile.dailyProteinGoal === 206) { parsed.profile.dailyProteinGoal = 170; needsSave = true; }
       if (parsed.profile.targetWeight === 170) { parsed.profile.targetWeight = 160; needsSave = true; }
       if (!parsed.profile.currentWeight || parsed.profile.currentWeight < 50) {
         parsed.profile.currentWeight = parsed.profile.startWeight || 242;
@@ -183,12 +182,12 @@ export function loadHunterState(): HunterState {
         localStorage.setItem('pf_fixed_170_weight_bug_v2', 'done');
         needsSave = true;
       }
-      if (parsed.profile.dietName !== "Japanese Teriyaki Chicken & Death Wish Black Coffee Shred Blueprint") {
-        parsed.profile.dietName = "Japanese Teriyaki Chicken & Death Wish Black Coffee Shred Blueprint";
+      if (parsed.profile.dietName !== "Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint") {
+        parsed.profile.dietName = "Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint";
         needsSave = true;
       }
-      if (parsed.profile.gymName !== "Planet Fitness Lewiston (6-Day PPL + Treadmill Cardio)") {
-        parsed.profile.gymName = "Planet Fitness Lewiston (6-Day PPL + Treadmill Cardio)";
+      if (parsed.profile.gymName?.includes("K-Pop") || parsed.profile.gymName?.includes("Home") || parsed.profile.gymName === "Planet Fitness Lewiston") {
+        parsed.profile.gymName = "Planet Fitness Lewiston, ME";
         needsSave = true;
       }
     }

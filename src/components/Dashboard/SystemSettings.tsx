@@ -197,7 +197,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 type="text"
                 value={dietName}
                 onChange={(e) => setDietName(e.target.value)}
-                placeholder="e.g., Japanese Teriyaki Chicken Blueprint"
+                placeholder="e.g., Chinese General Tso's Chicken Blueprint"
                 className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
               />
               <p className="text-[11px] text-zinc-500">Customizes nutrition coaching and meal prep advice.</p>
@@ -352,7 +352,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
               <div>
                 <div className="text-xs font-bold uppercase text-white">Custom Grocery Staples Management</div>
                 <p className="text-[11px] text-zinc-400 mt-0.5">
-                  You can add unlimited custom items directly on the <strong>ME Grocery Guide</strong> tab, or reset your personal additions back to the clean Japanese Teriyaki weekly defaults.
+                  You can add unlimited custom items directly on the <strong>ME Grocery Guide</strong> tab, or reset your personal additions back to the clean Chinese General Tso's weekly defaults.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2 pt-1">

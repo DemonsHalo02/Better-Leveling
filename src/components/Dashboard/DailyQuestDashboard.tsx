@@ -162,7 +162,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               <span className="text-sm font-mono font-bold text-system-gold">({daysRemaining} Days Left)</span>
             </h3>
             <p className="text-xs text-zinc-300 max-w-2xl leading-relaxed">
-              Every clean meal prep and every PR at {state.profile.gymName || 'Planet Fitness Lewiston'} chops HP off this boss raid. Stay consistent on the {state.profile.dietName || 'Japanese Teriyaki cutting diet'} to avoid loose skin and emerge at peak definition!
+              Every clean meal prep and every PR at {state.profile.gymName || 'Planet Fitness Lewiston'} chops HP off this boss raid. Stay consistent on the {state.profile.dietName || 'Boricua cutting diet'} to avoid loose skin and emerge at peak definition!
             </p>
 
             {/* Boss HP Bar */}
@@ -422,7 +422,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                   </span>
                   <span className="text-xs font-mono text-system-gold">+200 XP</span>
                 </div>
-                <h4 className="text-base font-black text-white uppercase">{state.profile.dailyCalorieGoal || 2080} kcal | {state.profile.dailyProteinGoal || 178}g Protein</h4>
+                <h4 className="text-base font-black text-white uppercase">{state.profile.dailyCalorieGoal || 2150} kcal | {state.profile.dailyProteinGoal || 170}g Protein</h4>
                 <p className="text-xs text-zinc-400 mt-1">High protein prevents muscle loss & loose skin during your cut.</p>
               </div>
               <button

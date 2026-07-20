@@ -229,7 +229,7 @@ export default function WeightAndPrTracker() {
               className="px-3.5 py-2 rounded-xl bg-system-dark border border-system-blue/50 hover:border-system-cyan text-xs font-bold text-system-cyan hover:bg-system-blue hover:text-black transition-all flex items-center gap-1.5"
             >
               <Flame className="w-3.5 h-3.5" />
-              <span>+5,000 (~45m Treadmill Walk/Run)</span>
+              <span>+5,000 (~45m Idol Walk)</span>
             </button>
           </div>
         </div>
