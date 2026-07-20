@@ -25,9 +25,9 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
   const [targetWeight, setTargetWeight] = useState<number>(160);
   const [targetDate, setTargetDate] = useState<string>('2027-12-31');
 
-  const [dailyCalorieGoal, setDailyCalorieGoal] = useState<number>(2150);
-  const [dailyProteinGoal, setDailyProteinGoal] = useState<number>(170);
-  const [dailyCarbGoal, setDailyCarbGoal] = useState<number>(200);
+  const [dailyCalorieGoal, setDailyCalorieGoal] = useState<number>(2080);
+  const [dailyProteinGoal, setDailyProteinGoal] = useState<number>(178);
+  const [dailyCarbGoal, setDailyCarbGoal] = useState<number>(190);
   const [dailyFatGoal, setDailyFatGoal] = useState<number>(60);
 
   const [primaryStore, setPrimaryStore] = useState<string>('Walmart Supercenter (Auburn, ME)');
@@ -46,9 +46,9 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
       setTargetWeight(loaded.profile.targetWeight || 160);
       setTargetDate(loaded.profile.targetDate || '2027-12-31');
 
-      setDailyCalorieGoal(loaded.profile.dailyCalorieGoal || 2150);
-      setDailyProteinGoal(loaded.profile.dailyProteinGoal || 170);
-      setDailyCarbGoal(loaded.profile.dailyCarbGoal || 200);
+      setDailyCalorieGoal(loaded.profile.dailyCalorieGoal || 2080);
+      setDailyProteinGoal(loaded.profile.dailyProteinGoal || 178);
+      setDailyCarbGoal(loaded.profile.dailyCarbGoal || 190);
       setDailyFatGoal(loaded.profile.dailyFatGoal || 60);
     }
     if (typeof window !== 'undefined') {
@@ -67,9 +67,9 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
       currentWeight: Number(currentWeight) || 242,
       targetWeight: Number(targetWeight) || 160,
       targetDate: targetDate || '2027-12-31',
-      dailyCalorieGoal: Number(dailyCalorieGoal) || 2150,
-      dailyProteinGoal: Number(dailyProteinGoal) || 170,
-      dailyCarbGoal: Number(dailyCarbGoal) || 200,
+      dailyCalorieGoal: Number(dailyCalorieGoal) || 2080,
+      dailyProteinGoal: Number(dailyProteinGoal) || 178,
+      dailyCarbGoal: Number(dailyCarbGoal) || 190,
       dailyFatGoal: Number(dailyFatGoal) || 60,
       gymName: gymName.trim() || 'Quiet Apartment Bodyweight Dojo',
       dietName: dietName.trim() || "Japanese Chicken Teriyaki & Death Wish Black Coffee Shred Blueprint",

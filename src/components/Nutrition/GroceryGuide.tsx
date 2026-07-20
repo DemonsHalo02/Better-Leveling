@@ -382,39 +382,39 @@ export default function GroceryGuide() {
               </span>
             </div>
             <h3 className="text-lg md:text-xl font-black text-white uppercase tracking-wide">
-              Select Your Active Chinese Diet Protocol & Printable PDF Guides
+              Select Your Active Japanese Diet Protocol & Printable PDF Guides
             </h3>
             <p className="text-xs text-zinc-300 max-w-3xl">
-              Switch between your active trajectory phase below. Both plans keep the exact same Monday Auburn Walmart shopping routine and ~11.4 oz daily Chinese General Tso's Chicken, but adapt carbs and yogurt to hit either calorie deficit (~2,150 kcal) or clean muscle hypertrophy (~2,750 kcal).
+              Switch between your active trajectory phase below. Both plans keep the exact same Monday Auburn Walmart shopping routine and ~11.4 oz daily Japanese Chicken Teriyaki, but adapt carbs and oats/rice to hit either calorie deficit (~2,080 kcal) or clean muscle hypertrophy (~2,680 kcal).
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-2.5 shrink-0">
             <button
               onClick={() => {
-                setSelectedAisleTemplate('China');
-                setSelectedCountryPlan('China');
+                setSelectedAisleTemplate('Japan');
+                setSelectedCountryPlan('Japan');
               }}
               className={`px-4 py-2.5 rounded-xl text-xs font-black uppercase font-mono tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
-                selectedAisleTemplate === 'China' && selectedCountryPlan !== 'China Bulking'
+                selectedAisleTemplate === 'Japan' && selectedCountryPlan !== 'Japan Bulking'
                   ? 'bg-gradient-to-r from-system-gold to-yellow-500 text-system-dark shadow-glow-gold scale-105 border border-system-gold'
                   : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10 hover:border-system-gold/50'
               }`}
             >
-              <span>🇨🇳 Phase 1: Cutting Diet (~2,150 kcal)</span>
+              <span>🇯🇵 Phase 1: Cutting Diet (~2,080 kcal)</span>
             </button>
             <button
               onClick={() => {
-                setSelectedAisleTemplate('China Bulking');
-                setSelectedCountryPlan('China Bulking');
+                setSelectedAisleTemplate('Japan Bulking');
+                setSelectedCountryPlan('Japan Bulking');
               }}
               className={`px-4 py-2.5 rounded-xl text-xs font-black uppercase font-mono tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
-                selectedAisleTemplate === 'China Bulking' || selectedCountryPlan === 'China Bulking'
+                selectedAisleTemplate === 'Japan Bulking' || selectedCountryPlan === 'Japan Bulking'
                   ? 'bg-gradient-to-r from-system-cyan to-system-blue text-system-dark shadow-glow-blue scale-105 border border-system-cyan'
                   : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10 hover:border-system-cyan/50'
               }`}
             >
-              <span>🔥 Phase 2: Bulking Diet (~2,750 kcal)</span>
+              <span>🔥 Phase 2: Bulking Diet (~2,680 kcal)</span>
             </button>
           </div>
         </div>
