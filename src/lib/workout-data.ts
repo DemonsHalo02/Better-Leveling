@@ -25,7 +25,7 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
-    splitName: "Active Recovery & Mobility at Planet Fitness + 45m Treadmill Cardio",
+    splitName: "Rest Day (Active Recovery & 45m Treadmill Cardio)",
     isRestDay: true,
     questTitle: "[Daily Quest] Planet Fitness Active Recovery & Treadmill Cardio",
     description: "Sunday is your active recovery and cardio day at Planet Fitness Lewiston! Perform a thorough full-body stretching and mobility routine on the stretch mats, then complete your mandatory 45-minute cardio protocol (30 minutes brisk walking + 15 minutes running on the Planet Fitness treadmills) to burn fat and prepare for Monday's heavy Push session.",
@@ -72,7 +72,7 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 1, // Monday
     dayName: "Monday",
-    splitName: "Push A — Chest, Shoulders & Triceps Hypertrophy + Monday Walmart Grocery Prep",
+    splitName: "Push A (Chest, Shoulders & Triceps Hypertrophy)",
     isRestDay: false,
     questTitle: "[Daily Quest] Planet Fitness Push A & Monday Walmart Grocery Prep",
     description: "Fuel up at 8:00 AM with Death Wish Espresso Roast Black Coffee & Banana, then hit Planet Fitness Lewiston for Push A! Build chest thickness, capped shoulders, and horseshoe triceps on PF equipment, followed immediately by 45 minutes of treadmill cardio. After gym, execute your weekly Walmart Auburn grocery run & Japanese Teriyaki meal prep!",
@@ -155,10 +155,10 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 2, // Tuesday
     dayName: "Tuesday",
-    splitName: "Pull A — Back Width, Biceps & Forearm Crush",
+    splitName: "Pull A + Forearms (Back Width, Biceps & PF Forearm Forge)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Planet Fitness Pull A & Forearm Crush",
-    description: "Start eating your prepped Japanese Chicken Teriyaki bowls today! Hit Planet Fitness Lewiston for Pull A: expand lat width, build thick bicep peaks, and carve crushing forearm density with dedicated wrist and hammer curls. Finish strong with 45 minutes on the PF treadmill.",
+    questTitle: "[Daily Quest] Planet Fitness Pull A & Forearm Forge",
+    description: "Start eating your prepped Japanese Chicken Teriyaki bowls today! Hit Planet Fitness Lewiston for Pull A + Forearms: expand lat width, build thick bicep peaks, and carve crushing forearm density with dedicated hammer curls, bench wrist curls, and low-pulley cable wrist flexions on PF equipment. Finish strong with 45 minutes on the PF treadmill.",
     xpReward: 500,
     exercises: [
       {
@@ -208,12 +208,12 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "tue-6",
-        name: "Dumbbell Hammer Curls [Brachialis & Forearm Thickness]",
+        name: "Dumbbell Hammer Curls [Brachialis & Radial Forearm Thickness]",
         targetGroup: "Forearms",
         sets: 4,
         reps: "12-15 reps per arm",
         equipment: "PF Free Weight Area / Dumbbells",
-        coachTip: "Keep palms facing each other (neutral grip) throughout entire movement. Curl dumbbells toward anterior deltoids. Builds outer bicep brachialis and thick radial forearm flexors."
+        coachTip: "Keep palms facing each other (neutral grip) throughout entire movement. Curl dumbbells toward anterior deltoids. Directly builds the outer brachialis and thick radial forearm flexors."
       },
       {
         id: "tue-7",
@@ -223,6 +223,15 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
         reps: "15-20 reps",
         equipment: "PF Bench & EZ-Bar / Dumbbells",
         coachTip: "Rest forearms on bench with wrists hanging over edge. Perform 15 palms-up wrist curls immediately followed by 15 palms-down reverse wrist curls. Pumps both forearm flexors and extensors!"
+      },
+      {
+        id: "tue-8",
+        name: "Cable Behind-the-Back Forearm Wrist Curls [Deep Flexor Isolation & Peak Squeeze]",
+        targetGroup: "Forearms",
+        sets: 4,
+        reps: "15 reps",
+        equipment: "PF Cable Tower / Low Pulley & Straight Bar",
+        coachTip: "Stand facing away from low pulley with straight bar in hands behind your glutes using a shoulder-width overhand grip. Let bar roll down to your fingers, then curl fingers and wrists up hard for a devastating forearm burn!"
       },
       {
         id: "tue-cardio",
@@ -238,10 +247,10 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 3, // Wednesday
     dayName: "Wednesday",
-    splitName: "Legs A & Abs — Quads, Hamstrings, Glutes & Abdominal Armor",
+    splitName: "Legs A + Abs (Quads, Hamstrings, Glutes & PF Ab Armor)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Planet Fitness Legs A & Abdominal Core Carve",
-    description: "Legs A plus high-intensity Abdominal Training at Planet Fitness Lewiston! Build strong quads, tight hamstrings, and a lifted glute profile while carving deep abdominal armor. Followed immediately by your 45-minute post-workout treadmill walk and run.",
+    questTitle: "[Daily Quest] Planet Fitness Legs A & Abdominal Armor",
+    description: "Legs A plus high-intensity Abdominal Training at Planet Fitness Lewiston! Build strong quads, tight hamstrings, and a lifted glute profile while carving deep abdominal armor using the PF Captain's Chair, Cable Tower rope crunches, and the Selectorized Ab Crunch Machine. Followed immediately by your 45-minute post-workout treadmill walk and run.",
     xpReward: 500,
     exercises: [
       {
@@ -291,7 +300,7 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "wed-6",
-        name: "Captain's Chair Hanging Leg / Knee Raises [Lower Ab & Core Isolation]",
+        name: "Captain's Chair Hanging Leg / Knee Raises [Lower Ab & Hip Flexor Isolation]",
         targetGroup: "Abs",
         sets: 4,
         reps: "15-20 reps",
@@ -308,6 +317,15 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
         coachTip: "Kneel below high pulley holding rope behind neck. Crunch torso downward bringing elbows toward knees by flexing spine (do not pull with arms). Carves deep upper ab blocks."
       },
       {
+        id: "wed-8",
+        name: "PF Selectorized Abdominal Crunch Machine [Weighted Core Contraction & 6-Pack Density]",
+        targetGroup: "Abs",
+        sets: 4,
+        reps: "15 reps",
+        equipment: "PF Ab Crunch Machine",
+        coachTip: "Sit in the Planet Fitness Ab Crunch Machine gripping upper handles with chest pad secure. Curl upper torso down while drawing pelvis forward to create intense, controlled resistance right across all 6 abdominal blocks!"
+      },
+      {
         id: "wed-cardio",
         name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run on Treadmill",
         targetGroup: "Cardio",
@@ -321,7 +339,7 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 4, // Thursday
     dayName: "Thursday",
-    splitName: "Push B — Upper Chest, Shoulder Width & Tricep Power",
+    splitName: "Push B (Upper Chest, Delts & Tricep Power)",
     isRestDay: false,
     questTitle: "[Daily Quest] Planet Fitness Push B & Shoulder Capping",
     description: "Push B focuses on upper chest fullness, extreme side deltoid width, and heavy tricep extension at Planet Fitness Lewiston. Always pre-fuel at 8:00 AM with Death Wish Black Coffee & Banana and finish with your 45-minute treadmill cardio.",
@@ -395,10 +413,10 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 5, // Friday
     dayName: "Friday",
-    splitName: "Pull B — Back Thickness, Rear Delts & Forearm Grip Forge",
+    splitName: "Pull B + Forearms (Back Thickness, Biceps & PF Grip Forge)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Planet Fitness Pull B & Forearm Grip Carve",
-    description: "Pull B at Planet Fitness Lewiston targets thick mid-back musculature, rear deltoid posture, bicep density, and intense forearm grip development. Plus your Friday evening Japanese Ramen treat meal after hitting your 45-minute treadmill cardio!",
+    questTitle: "[Daily Quest] Planet Fitness Pull B & Forearm Grip Forge",
+    description: "Pull B + Forearms at Planet Fitness Lewiston targets thick mid-back musculature, rear deltoid posture, bicep density, and intense forearm grip development using fixed EZ-bars, heavy dumbbells, and cable rollers on PF equipment. Plus your Friday evening Japanese Ramen treat meal after hitting your 45-minute treadmill cardio!",
     xpReward: 500,
     exercises: [
       {
@@ -448,21 +466,30 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "fri-6",
-        name: "Standing Reverse Barbell/EZ-Bar Curls [Brachioradialis Forearm Top Carve]",
+        name: "Standing Reverse EZ-Bar Curls (Overhand Grip) [Brachioradialis Forearm Top Carve]",
         targetGroup: "Forearms",
         sets: 4,
         reps: "12-15 reps",
         equipment: "PF EZ-Bar Rack / Fixed Barbells",
-        coachTip: "Grip fixed barbell or EZ-bar with an overhand (pronated) grip. Curl bar upward keeping elbows tucked. Directly targets top forearm brachioradialis and outer bicep!"
+        coachTip: "Grip pre-loaded fixed EZ-bar with an overhand (pronated) grip. Curl bar upward keeping elbows tucked. Directly targets top forearm brachioradialis and outer bicep!"
       },
       {
         id: "fri-7",
-        name: "Heavy Dumbbell Farmer Curls / Static Hold Curls [Forearm Grip Endurance & Striations]",
+        name: "Heavy Dumbbell Farmer Curls / Static Hold to Failure [Forearm Grip Endurance & Striations]",
         targetGroup: "Forearms",
         sets: 3,
         reps: "45-60 sec hold / 15 reps",
         equipment: "PF Free Weight Area / Heavy Dumbbells",
         coachTip: "Hold heavy dumbbells in neutral grip with elbows bent at 90 degrees for 30 seconds, then immediately pump out 15 hammer curls. Forges iron grip strength and forearm vascularity!"
+      },
+      {
+        id: "fri-8",
+        name: "Cable Forearm Wrist Roller / Wrist Flexions [Continuous Tension Forearm Pump]",
+        targetGroup: "Forearms",
+        sets: 4,
+        reps: "15 reps",
+        equipment: "PF Cable Tower / Straight Bar Attachment",
+        coachTip: "Attach a straight bar to the low pulley on the Planet Fitness Cable Tower. Grasp bar with an overhand grip, rest forearms against your thighs, and roll wrists upward against constant cable tension until forearms are thoroughly pumped!"
       },
       {
         id: "fri-cardio",
@@ -478,10 +505,10 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 6, // Saturday
     dayName: "Saturday",
-    splitName: "Legs B & Abs — Glute Lift, Hamstrings, Calves & Deep Core Carve",
+    splitName: "Legs B + Abs (Glute Lift, Hamstrings, Calves & PF Deep Core)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Planet Fitness Legs B & Deep Abdominal Carve",
-    description: "Finish your 6-day PPL lifting split with Legs B plus intense deep abdominal carving at Planet Fitness Lewiston! Target glute separation, hamstring detail, diamond calves, and a shredded midsection before completing your 45-minute post-workout treadmill cardio.",
+    questTitle: "[Daily Quest] Planet Fitness Legs B & Deep Core Carve",
+    description: "Finish your 6-day PPL lifting split with Legs B plus intense deep abdominal carving at Planet Fitness Lewiston! Target glute separation, hamstring detail, diamond calves, and a shredded midsection on PF Decline Benches, Cable Towers, and stretch mats before completing your 45-minute post-workout treadmill cardio.",
     xpReward: 500,
     exercises: [
       {
@@ -540,12 +567,12 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sat-7",
-        name: "Abdominal Plank & Russian Twist Burnout [Deep Core Stabilization]",
+        name: "PF Torso Rotation Machine / Abdominal Russian Twist Burnout [Deep Core Stabilization]",
         targetGroup: "Abs",
         sets: 3,
-        reps: "60 sec plank + 20 twists",
-        equipment: "PF Stretch Area / Mats",
-        coachTip: "Hold a rigid 60-second forearm plank, then immediately transition to 20 seated Russian twists touching floor side to side. Ultimate core finisher!"
+        reps: "60 sec hold + 20 twists",
+        equipment: "PF Torso Rotation Machine / Stretch Mats",
+        coachTip: "Use the Planet Fitness Torso Rotation Machine or sit on the stretch area mats for 60 seconds of rigid forearm planking followed immediately by 20 Russian twists. Ultimate core finisher!"
       },
       {
         id: "sat-cardio",

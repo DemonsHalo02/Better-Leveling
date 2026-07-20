@@ -2,296 +2,313 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Japan Bulking: Japanese Chicken Teriyaki Lean Bulking Blueprint (~2,680 kcal) - Printable PDF</title>
+  <meta name="viewport" content="width=device-fit, initial-scale=1.0">
+  <title>Japanese Bulking Blueprint (~2,680 kcal) | Better Leveling</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
 
     :root {
+      --bg-color: #0b0f19;
+      --card-bg: #111827;
+      --card-border: #1e293b;
       --primary: #00f0ff;
-      --gold: #ffd700;
-      --dark: #0a0e17;
-      --card: #131b2e;
-      --text: #f1f5f9;
-      --muted: #94a3b8;
+      --primary-glow: rgba(0, 240, 255, 0.15);
+      --secondary: #7000ff;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-gold: #ffd700;
+      --accent-green: #4ade80;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--dark);
-      color: var(--text);
-      margin: 0;
-      padding: 40px 20px;
       line-height: 1.6;
+      padding: 40px 20px;
     }
 
     .container {
-      max-width: 880px;
+      max-width: 1000px;
       margin: 0 auto;
-      background: linear-gradient(135deg, #131b2e 0%, #0d1322 100%);
-      border: 2px solid rgba(255, 215, 0, 0.4);
-      border-radius: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
       padding: 40px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.15);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     }
 
     .header {
-      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 25px;
-      margin-bottom: 30px;
-      position: relative;
+      border-bottom: 2px solid var(--card-border);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+      text-align: center;
     }
 
     .sub-badge {
       display: inline-block;
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--primary);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--gold);
-      background: rgba(255, 215, 0, 0.15);
-      border: 1px solid rgba(255, 215, 0, 0.4);
-      padding: 4px 12px;
-      border-radius: 6px;
+      letter-spacing: 1px;
       margin-bottom: 12px;
     }
 
     h1 {
       font-size: 32px;
       font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin: 0 0 15px 0;
-      color: #fff;
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
     }
 
     .stats-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
     }
 
     .stat-pill {
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 215, 0, 0.4);
-      padding: 10px 18px;
-      border-radius: 8px;
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid var(--card-border);
+      padding: 12px 16px;
+      border-radius: 12px;
+      text-align: center;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .stat-pill span {
-      color: var(--gold);
-      font-weight: 700;
-    }
-
-    .section {
-      margin-bottom: 35px;
-    }
-
-    .section-title {
-      font-size: 18px;
+      display: block;
+      font-size: 20px;
       font-weight: 800;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      color: var(--primary);
+      margin-top: 4px;
     }
 
     .directive-box {
-      background: rgba(255, 215, 0, 0.05);
-      border-left: 4px solid var(--gold);
-      padding: 18px 22px;
-      border-radius: 0 10px 10px 0;
-      margin-bottom: 30px;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, rgba(112, 0, 255, 0.05) 100%);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 32px;
       font-size: 14.5px;
-      line-height: 1.7;
+      color: #e2e8f0;
+    }
+
+    .directive-box strong {
+      color: var(--primary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
     }
 
     .meals-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
 
     .meal-card {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
       border-radius: 12px;
       padding: 20px;
+      transition: border-color 0.2s ease;
     }
 
     .meal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
     .meal-name {
-      font-size: 16px;
-      font-weight: 800;
-      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--accent-gold);
     }
 
     .meal-time {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
-      color: var(--primary);
-      background: rgba(0, 240, 255, 0.1);
-      padding: 3px 8px;
-      border-radius: 4px;
+      background: rgba(255, 215, 0, 0.1);
+      color: var(--accent-gold);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
     }
 
     .meal-macros {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--gold);
+      font-size: 13px;
+      color: var(--accent-green);
       margin-bottom: 12px;
     }
 
     .meal-ingredients {
-      margin: 0;
-      padding-left: 20px;
+      list-style: none;
       font-size: 14px;
-      color: var(--text);
+      color: var(--text-muted);
     }
 
     .meal-ingredients li {
       margin-bottom: 6px;
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .meal-ingredients li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
     }
 
     .receipt-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 15px;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      overflow: hidden;
-      font-size: 13.5px;
-    }
-
-    .receipt-table th,
-    .receipt-table td {
-      padding: 12px 16px;
-      text-align: left;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 16px;
+      font-size: 14px;
     }
 
     .receipt-table th {
-      background: rgba(255, 215, 0, 0.12);
-      color: var(--gold);
+      text-align: left;
+      padding: 12px;
+      background: rgba(30, 41, 59, 0.8);
+      color: #fff;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
+      font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid var(--card-border);
     }
 
-    .receipt-table td.price {
+    .receipt-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--card-border);
+      color: #cbd5e1;
+    }
+
+    .receipt-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .receipt-table .price {
       font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
-      color: #fff;
-      text-align: right;
-    }
-
-    .receipt-table th.price {
+      color: var(--accent-green);
       text-align: right;
     }
 
     .receipt-total {
-      background: rgba(0, 240, 255, 0.08);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
       font-weight: 800;
-      font-size: 15px;
+      color: #fff;
+      background: rgba(0, 240, 255, 0.05);
     }
 
     .receipt-total td {
+      padding: 16px 12px;
+      border-top: 2px solid var(--primary);
       border-bottom: none;
-      color: var(--primary);
     }
 
     .instructions-list {
-      margin: 0;
-      padding-left: 20px;
-      font-size: 14px;
-      line-height: 1.8;
+      counter-reset: step-counter;
+      list-style: none;
+      padding-left: 0;
     }
 
     .instructions-list li {
-      margin-bottom: 12px;
+      position: relative;
+      padding-left: 48px;
+      margin-bottom: 24px;
+      font-size: 14.5px;
+      color: #cbd5e1;
     }
 
-    @media print {
-      body {
-        background-color: #fff;
-        color: #000;
-        padding: 0;
-      }
-      .container {
-        border: none;
-        box-shadow: none;
-        background: #fff;
-        padding: 20px;
-        max-width: 100%;
-      }
-      h1, .meal-name {
-        color: #000;
-        text-shadow: none;
-      }
-      .directive-box, .meal-card, .receipt-table {
-        background: #f8fafc;
-        border: 1px solid #cbd5e1;
-      }
-      .stat-pill, .meal-time {
-        background: #e2e8f0;
-        color: #000;
-        border: 1px solid #94a3b8;
-      }
-      .stat-pill span, .section-title, .meal-macros {
-        color: #ca8a04;
-      }
-      .sub-badge {
-        background: #fef9c3;
-        color: #854d0e;
-        border: 1px solid #ca8a04;
-      }
-      .print-toolbar {
-        display: none !important;
-      }
+    .instructions-list li::before {
+      counter-increment: step-counter;
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .instructions-list strong {
+      color: #fff;
+      display: inline-block;
+      margin-bottom: 4px;
     }
 
     .print-toolbar {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 1000;
-      background: rgba(10, 14, 23, 0.95);
+      left: 0;
+      right: 0;
+      background: rgba(11, 15, 25, 0.95);
       backdrop-filter: blur(10px);
-      border-bottom: 2px solid var(--primary);
-      padding: 15px 20px;
+      border-bottom: 1px solid var(--card-border);
+      padding: 16px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: -40px -20px 30px -20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      z-index: 1000;
     }
+
     .print-toolbar-buttons {
       display: flex;
       gap: 12px;
     }
+
     .print-btn {
-      background: linear-gradient(135deg, var(--gold) 0%, #eab308 100%);
-      color: #000;
+      background: linear-gradient(135deg, var(--primary) 0%, #00a8ff 100%);
+      color: #0b0f19;
       border: none;
       padding: 12px 24px;
       border-radius: 10px;
@@ -299,17 +316,14 @@
       font-weight: 800;
       font-size: 14px;
       cursor: pointer;
-      text-transform: uppercase;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
+
     .print-btn:hover {
-      transform: scale(1.05);
-      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 240, 255, 0.3);
     }
+
     .close-btn {
       background: rgba(255, 255, 255, 0.1);
       color: #fff;
@@ -322,8 +336,85 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
+
     .close-btn:hover {
       background: rgba(255, 255, 255, 0.2);
+    }
+
+    @media print {
+      body {
+        background-color: #fff;
+        color: #000;
+        padding: 0;
+      }
+      .print-toolbar {
+        display: none !important;
+      }
+      .container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .stat-pill {
+        border: 1px solid #ccc;
+        background: #f9f9f9;
+      }
+      .stat-pill span {
+        color: #000;
+      }
+      .directive-box {
+        background: #f0f4f8;
+        border: 1px solid #cbd5e1;
+        color: #1e293b;
+      }
+      .directive-box strong {
+        color: #0f172a;
+      }
+      h1, .section-title, .meal-name, .receipt-total {
+        color: #000 !important;
+        -webkit-text-fill-color: #000 !important;
+      }
+      .meal-card {
+        background: #fff;
+        border: 1px solid #cbd5e1;
+        page-break-inside: avoid;
+      }
+      .meal-time {
+        background: #f1f5f9;
+        color: #334155;
+        border-color: #cbd5e1;
+      }
+      .meal-macros {
+        color: #166534;
+      }
+      .meal-ingredients {
+        color: #334155;
+      }
+      .receipt-table th {
+        background: #e2e8f0;
+        color: #0f172a;
+        border-bottom: 2px solid #94a3b8;
+      }
+      .receipt-table td {
+        border-bottom: 1px solid #cbd5e1;
+        color: #1e293b;
+      }
+      .receipt-table .price {
+        color: #166534;
+      }
+      .instructions-list li {
+        color: #1e293b;
+        page-break-inside: avoid;
+      }
+      .instructions-list strong {
+        color: #0f172a;
+      }
+      .instructions-list li::before {
+        background: #f1f5f9;
+        border-color: #0f172a;
+        color: #0f172a;
+      }
     }
   </style>
 </head>
@@ -355,9 +446,10 @@
     </div>
 
     <div class="directive-box">
-      <strong>Hunter Nick's Phase 2 Lean Bulking Directive:</strong> Designed around your exact schedule with <strong>Monday Grocery Runs at Auburn Maine Walmart Supercenter ($50 weekly budget limit / $33 restock limit)</strong> and batch prep, starting eating on Tuesday. Notice how this lean bulking plan is exactly <strong>$1.62 CHEAPER per week ($43.76 vs $45.38)</strong> while supplying <strong>+600 clean muscle-building calories daily</strong>! We adjust Greek yogurt to 3 tubs and swap out liquid egg whites for a massive <strong>5 lb bag of Long Grain White Rice</strong>, <strong>42 oz of Rolled Oats</strong>, and <strong>35 whole eggs across the week (5 whole eggs daily for natural hormone optimization)</strong>. Paired with your daily ~11.4 oz Wok-Seared Japanese Chicken Teriyaki Breasts, you hit <strong>188g high-value protein</strong> and fuel heavy lifting volume at <strong>Planet Fitness Lewiston & 45m Treadmill Cardio</strong>! Includes hot 100% Green Tea, periodic Wild Pink Salmon restocks for Omega-3s, and your Friday/Saturday Japanese Ramen reward meal!
+      <strong>Hunter Nick's Phase 2 Lean Bulking Directive:</strong> Designed around your exact schedule with <strong>Monday Grocery Runs at Auburn Maine Walmart Supercenter ($50 weekly budget limit / $33 restock limit)</strong> and batch prep, starting eating on Tuesday. Notice how this lean bulking plan is exactly <strong>$1.62 CHEAPER per week ($43.76 vs $45.38)</strong> while supplying <strong>+600 clean muscle-building calories daily</strong>! We adjust Greek yogurt to Three 32 oz tubs and swap out liquid egg whites for a massive <strong>5 lb bag of Long Grain White Rice</strong>, <strong>42 oz of Rolled Oats</strong>, and <strong>36 whole eggs across the week (5 whole eggs daily for natural testosterone & hormone optimization)</strong>. Paired with your daily ~11.4 oz Wok-Seared Japanese Chicken Teriyaki Breasts and DOUBLE portion White Rice, you hit <strong>188g high-value protein</strong> and fuel heavy lifting volume at <strong>Planet Fitness Lewiston & 45m Treadmill Cardio</strong>! Includes hot 100% Green Tea, periodic Wild Pink Salmon restocks for Omega-3s, and your Friday/Saturday Japanese Ramen reward meal!
     </div>
 
+    <!-- DAILY JAPANESE BULKING MEAL SCHEDULE -->
     <div class="section">
       <h2 class="section-title">🍱 DAILY JAPANESE LEAN BULKING MEAL SCHEDULE (~2,680 KCAL / 188G PROTEIN)</h2>
       
@@ -369,20 +461,20 @@
           </div>
           <div class="meal-macros">110 kcal • 1g Protein • 27g Carbs • 0g Fat</div>
           <ul class="meal-ingredients">
-            <li><strong>1 Pre-Workout Death Wish Iced Black Coffee:</strong> Brew 2 tbsp Death Wish Espresso Roast ground coffee with hot water, pour over ice (optional: add 1 zero-cal sweetener packet or keep pure black). High-octane clean caffeine for intense bodyweight dojo volume!</li>
-            <li><strong>1 Medium Fresh Banana:</strong> Peel and eat immediately right before your morning workout for rapid-absorbing carbohydrates & potassium!</li>
+            <li><strong>1 Pre-Workout Death Wish Iced Black Coffee:</strong> Brew 2 tbsp Death Wish Espresso Roast ground coffee with hot water, pour over ice (optional: add 1 zero-cal sweetener packet or keep pure black). High-octane clean caffeine for explosive gym lifting intensity!</li>
+            <li><strong>1 Medium Fresh Banana (~118g):</strong> Peel and eat immediately right before your morning workout for rapid-absorbing carbohydrates & potassium to top off liver glycogen!</li>
           </ul>
         </div>
 
         <div class="meal-card">
           <div class="meal-header">
-            <div class="meal-name">Post-Workout Breakfast: 5-Egg Japanese Scallion Scramble + Rolled Oats + Chili Garlic + Tea</div>
+            <div class="meal-name">Post-Workout Breakfast: 5-Egg Scallion Scramble + Rolled Oats + Chili Garlic + Tea</div>
             <div class="meal-time">10:30 AM – 11:00 AM (Post-Workout)</div>
           </div>
           <div class="meal-macros">515 kcal • 36g Protein • 56g Carbs • 25g Fat</div>
           <ul class="meal-ingredients">
-            <li><strong>5 Large Grade A White Eggs:</strong> Scramble in Great Value 0-Cal Cooking Spray over medium heat. Whisk thoroughly and fold in 1 tbsp soy sauce, 1/2 tsp garlic powder, and chopped fresh Japanese Negi until golden and fluffy! Provides rich amino acids, healthy fats, and natural cholesterol for muscle building and recovery.</li>
-            <li><strong>1 cup cooked Great Value Old Fashioned Rolled Oats:</strong> Combine 1/2 cup dry oats with 1 cup water in bowl, microwave 2 minutes or cook on stovetop. Stir in cinnamon or sweetener packet for slow-digesting complex carbs!</li>
+            <li><strong>5 Large Grade A White Eggs:</strong> Scramble in Great Value 0-Cal Cooking Spray over medium heat. Whisk thoroughly and fold in 1 tbsp soy sauce, 1/2 tsp garlic powder, and 2 tbsp chopped fresh Japanese Negi (scallions) until golden and fluffy! Provides rich amino acids, healthy fats, and natural cholesterol for muscle building and anabolic recovery.</li>
+            <li><strong>1 cup cooked Great Value Old Fashioned Rolled Oats (~81g cooked / 40g dry):</strong> Combine 1/2 cup dry oats with 1 cup water in bowl, microwave 2 minutes or cook on stovetop. Stir in cinnamon or sweetener packet for sustained complex carbohydrates!</li>
             <li><strong>1 tsp Sriracha / Japanese Togarashi Chili Garlic Sauce:</strong> Tangy, spicy kick with near-zero calories.</li>
             <li><strong>1 cup hot brewed Great Value 100% Green Tea:</strong> Post-workout antioxidant recovery & digestion aid.</li>
           </ul>
@@ -390,39 +482,39 @@
 
         <div class="meal-card">
           <div class="meal-header">
-            <div class="meal-name">Lunch: Wok-Seared Japanese Chicken Teriyaki + DOUBLE White Rice & Broccoli + Tea</div>
+            <div class="meal-name">Lunch: Wok-Seared Chicken Teriyaki + DOUBLE White Rice & Broccoli + Tea</div>
             <div class="meal-time">2:00 PM – 2:30 PM</div>
           </div>
           <div class="meal-macros">640 kcal • 50g Protein • 94g Carbs • 2g Fat</div>
           <ul class="meal-ingredients">
-            <li><strong>~5.7 oz Fresh Chicken Breast cubes wok-seared in Japanese Teriyaki Glaze:</strong> Cut chicken into bite-sized cubes, toss with 1 tsp cornstarch and garlic powder. Spray wok with 0-cal canola spray, sear 6-8 minutes until golden and 165°F internal. Whisk low-cal Teriyaki Glaze (Kikkoman Teriyaki marinade, soy sauce, sweetener packet, ginger, garlic powder, water), pour into wok and toss for 1 minute until sticky and glossy!</li>
-            <li><strong>2 cups cooked Long Grain White Rice:</strong> From your 5 lb batch prep bag, reheated with a splash of water for fluffy, high-density bulking glycogen replenishment!</li>
-            <li><strong>1 cup steamed Great Value Frozen Broccoli florets:</strong> Seasoned with garlic powder.</li>
+            <li><strong>~5.7 oz Raw (~4.0 oz Cooked) Chicken Breast cubes wok-seared in Japanese Teriyaki Glaze:</strong> Cut chicken into bite-sized cubes, toss with 1/2 tsp cornstarch and garlic powder. Spray wok with 0-cal canola spray, sear 6-8 minutes until golden and 165°F internal. Whisk low-cal Teriyaki Glaze (`1.5 tbsp Kikkoman marinade, 1 tsp soy sauce, 1 zero-cal sweetener packet, 1/4 tsp ginger, 1/4 tsp garlic powder, 1 tbsp water per serving`), pour into wok and toss for 1 minute until sticky and glossy!</li>
+            <li><strong>2 cups cooked Long Grain White Rice (~316g cooked / 100g dry):</strong> DOUBLE PORTION from your 5 lb batch prep bag, reheated with a splash of water for high-density bulking glycogen expansion and muscle fullness!</li>
+            <li><strong>1 cup steamed Great Value Frozen Broccoli florets (~85g):</strong> Seasoned with garlic powder.</li>
             <li><strong>1 cup hot brewed 100% Green Tea:</strong> Digestion & nutrient partitioning support.</li>
           </ul>
         </div>
 
         <div class="meal-card">
           <div class="meal-header">
-            <div class="meal-name">Afternoon Snack: High-Protein Casein Greek Yogurt Power Bowl</div>
+            <div class="meal-name">Afternoon Snack: Casein Greek Yogurt Power Bowl</div>
             <div class="meal-time">5:30 PM</div>
           </div>
           <div class="meal-macros">120 kcal • 21g Protein • 8g Carbs • 0g Fat</div>
           <ul class="meal-ingredients">
-            <li><strong>1 cup (8 oz) Plain Nonfat Greek Yogurt:</strong> Mixed with 1 zero-calorie sweetener packet and cinnamon/vanilla until creamy and velvety. Slow-release casein protein keeps muscles supplied with amino acids between training and cardio runs!</li>
+            <li><strong>1 cup (8 oz / ~227g) Plain Nonfat Greek Yogurt:</strong> Mixed with 1 zero-calorie sweetener packet and cinnamon/vanilla until creamy and velvety. Slow-release casein protein keeps muscles supplied with amino acids between training and cardio runs!</li>
           </ul>
         </div>
 
         <div class="meal-card">
           <div class="meal-header">
-            <div class="meal-name">Dinner: Wok-Seared Japanese Chicken Teriyaki + DOUBLE White Rice & Broccoli + Tea</div>
+            <div class="meal-name">Dinner: Wok-Seared Chicken Teriyaki + DOUBLE White Rice & Broccoli + Tea</div>
             <div class="meal-time">7:30 PM – 8:00 PM</div>
           </div>
           <div class="meal-macros">640 kcal • 50g Protein • 94g Carbs • 2g Fat</div>
           <ul class="meal-ingredients">
-            <li><strong>~5.7 oz Fresh Chicken Breast cubes wok-seared in Japanese Teriyaki Glaze:</strong> Caramelized and glossy inside your wok.</li>
-            <li><strong>2 cups cooked Long Grain White Rice:</strong> Warm, fluffy complex carbohydrates to fuel overnight muscle repair and top off glycogen stores.</li>
-            <li><strong>1 cup steamed Great Value Frozen Broccoli florets:</strong> Seasoned with garlic powder.</li>
+            <li><strong>~5.7 oz Raw (~4.0 oz Cooked) Chicken Breast cubes wok-seared in Japanese Teriyaki Glaze:</strong> Caramelized and glossy inside your wok from Monday batch prep.</li>
+            <li><strong>2 cups cooked Long Grain White Rice (~316g cooked / 100g dry):</strong> DOUBLE PORTION complex carbohydrates to fuel overnight muscle repair and top off glycogen stores.</li>
+            <li><strong>1 cup steamed Great Value Frozen Broccoli florets (~85g):</strong> Seasoned with garlic powder.</li>
             <li><strong>1 cup hot brewed 100% Green Tea:</strong> Evening antioxidant hydration.</li>
           </ul>
         </div>
@@ -434,8 +526,8 @@
           </div>
           <div class="meal-macros">90 kcal • 16g Protein • 6g Carbs • 0g Fat</div>
           <ul class="meal-ingredients">
-            <li><strong>3/4 cup (6 oz) Plain Nonfat Greek Yogurt:</strong> Whisked with 1 zero-calorie sweetener packet until airy and fluffy. Provides slow-digesting night casein protein to maximize muscle protein synthesis while sleeping.</li>
-            <li><strong>1 warm, soothing cup of brewed 100% Green Tea:</strong> Deep sleep recovery & metabolic support.</li>
+            <li><strong>3/4 cup (6 oz / ~170g) Plain Nonfat Greek Yogurt:</strong> Whisked with 1 zero-calorie sweetener packet until airy and fluffy. Provides slow-digesting night casein protein to maximize muscle protein synthesis while sleeping.</li>
+            <li><strong>1 warm, soothing cup of brewed 100% Green Tea:</strong> Deep sleep recovery & metabolic support without calories.</li>
           </ul>
         </div>
       </div>
@@ -606,43 +698,43 @@
             <td><strong>Monday</strong></td>
             <td>Push A (Chest, Shoulders, Triceps)</td>
             <td>Flat Dumbbell Bench Press (4x10), Machine Chest Flyes (3x12), Seated Dumbbell Overhead Press (4x10), Rope Cable Tricep Pushdowns (4x12)</td>
-            <td><strong>+ Forearm Curls (4x15)</strong><br/>+ 45m Treadmill (30m Walk / 15m Jog)</td>
+            <td><strong>+ Shoulder & Tricep Burnout</strong><br/>+ 45m Treadmill (30m Walk / 15m Jog)</td>
           </tr>
           <tr>
             <td><strong>Tuesday</strong></td>
-            <td>Pull A (Back, Biceps, Rear Delts)</td>
-            <td>Lat Pulldowns (4x10), Seated Cable Rows (4x10), Face Pulls (3x15), Standing Dumbbell Bicep Curls (4x12)</td>
-            <td><strong>+ Reverse Forearm Curls (4x15)</strong><br/>+ 45m Treadmill (30m Walk / 15m Jog)</td>
+            <td>Pull A + Forearms (Back, Biceps & Forearms)</td>
+            <td>Lat Pulldown (4x12), Seated Cable Row (4x12), Assisted Pull-Up Machine (3x12), Alternating Supinated Curls (4x12), Preacher Curl Machine (3x15)</td>
+            <td><strong>+ Lewiston PF Forearm Forge:</strong> Hammer Curls (4x15), EZ-Bar Wrist Curls Super-Set (4x20), Cable Behind-Back Wrist Curls (4x15)<br/>+ 45m Treadmill (30m Walk / 15m Jog)</td>
           </tr>
           <tr>
             <td><strong>Wednesday</strong></td>
-            <td>Legs A (Quads, Hamstrings, Calves)</td>
-            <td>Leg Press Machine (4x12), Leg Extension Machine (4x12), Seated Leg Curl Machine (4x12), Calf Raises on Leg Press (4x15)</td>
-            <td><strong>+ Ab Core Carve (Hanging Leg Raises 4x15)</strong><br/>+ 45m Treadmill (30m Walk / 15m Jog)</td>
+            <td>Legs A + Abs (Quads, Hamstrings & Core)</td>
+            <td>Leg Press Machine (4x15), Leg Extension Machine (4x15), Lying Leg Curl Machine (4x15), Dumbbell Goblet Squats (3x15), Calf Raises (4x20)</td>
+            <td><strong>+ Lewiston PF Ab Armor:</strong> Captain's Chair Leg Raises (4x20), High Cable Rope Crunches (4x20), Selectorized Ab Crunch Machine (4x15)<br/>+ 45m Treadmill (30m Walk / 15m Jog)</td>
           </tr>
           <tr>
             <td><strong>Thursday</strong></td>
-            <td>Push B (Chest Focus, Delts, Triceps)</td>
-            <td>Incline Dumbbell Bench Press (4x10), Cable Crossovers (3x12), Lateral Raises (4x15), Overhead Tricep Extension (4x12)</td>
-            <td><strong>+ Forearm Wrist Rollers / Curls (4x15)</strong><br/>+ 45m Treadmill (30m Walk / 15m Jog)</td>
+            <td>Push B (Upper Chest, Delts, Triceps)</td>
+            <td>Smith Machine Incline Press (4x12), Cable Chest Fly (4x15), Machine Shoulder Press (4x12), Cable Lateral Raises (4x15), Skull Crushers (4x12), Dip Machine (3x15)</td>
+            <td><strong>+ Shoulder Capping & Tricep Horseshoe Burnout</strong><br/>+ 45m Treadmill (30m Walk / 15m Jog)</td>
           </tr>
           <tr>
             <td><strong>Friday</strong></td>
-            <td>Pull B (Back Thickness, Biceps)</td>
-            <td>Assisted Pull-Ups (4x8-10), Single-Arm Dumbbell Rows (4x10/side), Straight-Arm Lat Pulldowns (3x12), Preacher Curls (4x12)</td>
-            <td><strong>+ Behind-Back Forearm Curls (4x15)</strong><br/>+ 45m Treadmill (30m Walk / 15m Jog)</td>
+            <td>Pull B + Forearms (Back Thickness & Forearms)</td>
+            <td>Single-Arm Dumbbell Row (4x12), Close-Grip V-Bar Pulldown (4x12), Rear Delt Face Pulls (4x15), Standing Cable Curls (4x15), Incline Dumbbell Curls (3x12)</td>
+            <td><strong>+ Lewiston PF Forearm Grip Forge:</strong> Reverse EZ-Bar Curls (4x15), Heavy Dumbbell Farmer Static Hold (3x60s), Cable Wrist Rollers (4x15)<br/>+ 45m Treadmill (30m Walk / 15m Jog)</td>
           </tr>
           <tr>
             <td><strong>Saturday</strong></td>
-            <td>Legs B (Glutes, Hamstrings, Quads)</td>
-            <td>Smith Machine Squats or Goblet Squats (4x10), Romanian Dumbbell Deadlifts (4x10), Lying Leg Curls (4x12), Seated Calf Raises (4x15)</td>
-            <td><strong>+ Ab Core Carve (Cable Crunches 4x20)</strong><br/>+ 45m Treadmill (30m Walk / 15m Jog)</td>
+            <td>Legs B + Abs (Glutes, Hamstrings & Core)</td>
+            <td>Dumbbell Romanian Deadlifts (4x12), Walking Lunges/Split Squats (4x12), Smith Machine Glute Bridge (4x15), Calf Raise Machine (4x20)</td>
+            <td><strong>+ Lewiston PF Deep Core Carve:</strong> Decline Bench Weighted Sit-Ups (4x15), Cable Oblique Woodchoppers (4x15), Torso Rotation Machine / Russian Twists (3x60s)<br/>+ 45m Treadmill (30m Walk / 15m Jog)</td>
           </tr>
           <tr>
             <td><strong>Sunday</strong></td>
-            <td>System Restoration (Rest Day)</td>
-            <td>15 Minutes Planet Fitness Stretch Area Mat Work (Foam Rolling lats, quads, IT bands, calves + deep hip flexibility poses)</td>
-            <td><strong>+ 45m Incline Treadmill Walk</strong><br/>+ 100% Green Tea Hydration & Omega-3 Restock</td>
+            <td>Rest Day (Active Recovery & Treadmill Cardio)</td>
+            <td>15 Minutes Planet Fitness Stretch Area Mat Work (Foam Rolling lats, quads, IT bands, calves + deep hip flexibility poses) + HydroMassage Lounge</td>
+            <td><strong>+ 45m Treadmill Protocol (30m Walk / 15m Jog)</strong><br/>+ 100% Green Tea Hydration & Omega-3 Restock</td>
           </tr>
         </tbody>
       </table>
@@ -681,7 +773,7 @@
             <td class="price">800 kcal</td>
           </tr>
           <tr>
-            <td><strong>Great Value Rolled Oats</strong> (1 cup dry / cooked with cinnamon post-workout)</td>
+            <td><strong>Great Value Rolled Oats</strong> (1 cup cooked daily / ~40g dry post-workout)</td>
             <td>10g</td>
             <td>54g</td>
             <td>6g</td>
@@ -695,11 +787,11 @@
             <td class="price">350 kcal</td>
           </tr>
           <tr>
-            <td><strong>Great Value Nonfat Greek Yogurt</strong> (1.3 cups / ~10.5 oz daily across snack & night)</td>
-            <td>30g</td>
-            <td>12g</td>
+            <td><strong>Great Value Nonfat Greek Yogurt</strong> (1.75 cups / 14 oz daily across afternoon & night)</td>
+            <td>40g</td>
+            <td>15g</td>
             <td>0g</td>
-            <td class="price">170 kcal</td>
+            <td class="price">230 kcal</td>
           </tr>
           <tr>
             <td><strong>Post-Workout Rice & Honey/Cinnamon</strong> (1 cup cooked for morning recovery)</td>
@@ -747,17 +839,46 @@
       </table>
     </div>
 
-    <!-- MONDAY BULKING BATCH MEAL PREP & PROTOCOLS GUIDE -->
+    <!-- NEW SECTION: STEP-BY-STEP PREPARATION, COOKING, STORAGE & PORTION GUIDE -->
     <div class="section">
-      <h2 class="section-title">🔪 MONDAY BULKING BATCH COOKING GUIDE & SALMON / COFFEE PROTOCOLS</h2>
+      <h2 class="section-title">🔪 COMPLETE STEP-BY-STEP PREPARATION, COOKING, STORAGE & PORTION GUIDE</h2>
+      <p style="color: #94a3b8; font-size: 14px; margin-top: 0; margin-bottom: 20px;">
+        Follow this exact protocol on Monday (Batch Prep Day) and daily throughout your bulking week so every single gram bought on your Auburn Walmart grocery run is prepared perfectly and accounted for:
+      </p>
+
       <ol class="instructions-list">
-        <li><strong>Step 1: Prep & Weigh the Chicken Breast:</strong> Open your ~5.0 lb family tray of chicken breasts from Auburn Walmart. Cut all raw chicken breasts into bite-sized cubes. Batch sear all cubes at once in your non-stick wok or skillet using 0-cal canola oil spray.</li>
-        <li><strong>Step 2: Wok Sear & Teriyaki Glaze:</strong> Toss chicken cubes lightly with 1 tsp cornstarch and garlic powder. Sear over medium-high heat for 6-8 minutes until golden brown and 165°F internal. Whisk low-cal Japanese Teriyaki Glaze (`1.5 tbsp Kikkoman Teriyaki marinade, 1 tsp soy sauce, 1 zero-cal sweetener packet, 1/4 tsp ginger, 1/4 tsp garlic powder, 1 tbsp water per daily portion`). Pour over cooked chicken and toss vigorously for 1 minute until sticky, glossy, and caramelized! Divide evenly across 14 glass containers (7 lunches, 7 dinners).</li>
-        <li><strong>Step 3: Cook Bulk White Rice (Bulking DOUBLE Portion):</strong> Cook 7 cups of dry white rice with 14 cups of water in a large pot or rice cooker until tender and fluffy. Divide 2 full cups of cooked rice into each of your 14 containers alongside the Chicken Teriyaki for maximum muscle glycogen expansion!</li>
-        <li><strong>Step 4: Steam Frozen Broccoli:</strong> Portion 1 cup of frozen broccoli florets into each container right next to the chicken and rice. The broccoli will naturally thaw inside the sealed container in the fridge and steam perfectly when microwaved for 2 minutes!</li>
-        <li><strong>Step 5: Morning 5-Egg Tamagoyaki & Pre-Workout Coffee Schedule:</strong> Every morning at 8:00 AM, brew 2 tbsp of Death Wish Espresso Roast over ice and eat 1 banana right before your Planet Fitness lifting & treadmill workout. At 10:30 AM right after training, scramble 5 whole Grade A eggs in 0-cal canola spray with chopped fresh Japanese Negi (scallions) and soy sauce alongside 1 cup of warm cinnamon rolled oats!</li>
-        <li><strong>Step 6: Weekly Wild Pink Salmon Omega-3 Protocol:</strong> Once per week (recommended on Sunday or Wednesday active recovery days), open your 14.75 oz can of Wild Pink Salmon. Mix with 1 tsp soy sauce and scallions or serve over 1 cup of rice. This delivers potent EPA/DHA Omega-3 fatty acids essential for joint lubrication, reduced systemic inflammation from heavy bulking sets, and skin elasticity support (`160 lbs clean goal without loose skin`).</li>
+        <li>
+          <strong>Step 1: Exact Quantities & Portioning from Your Walmart Grocery List:</strong><br/>
+          • <strong>Fresh Chicken Breast (~5.0 lb family tray / 80 oz total raw):</strong> Divide into 14 equal raw portions of ~5.7 oz (~160g) each. Once seared, each raw 5.7 oz cube shrinks to ~4.0 oz cooked meat. You consume exactly two 4.0 oz cooked portions per day (Lunch & Dinner) = 8.0 oz cooked daily total (73g protein).<br/>
+          • <strong>Plain Nonfat Greek Yogurt (Three 32 oz Tubs = 96 oz weekly total):</strong> Portion out exactly 14 oz (~1.75 cups) daily across two servings: 8 oz (1 cup) at 5:30 PM and 6 oz (3/4 cup) at 10:30 PM.<br/>
+          • <strong>Large Grade A White Eggs (36 Count Tray / Two 18 ct Cartons):</strong> Use exactly 5 whole Grade A eggs daily for your post-workout Tamagoyaki scramble (30 eggs across 6 lifting days, plus 6 extra eggs for Sunday active recovery or restock). Natural cholesterol optimizes anabolic hormones during bulking!<br/>
+          • <strong>Great Value Old Fashioned Rolled Oats (42 oz Canister):</strong> Use exactly 1/2 cup dry oats (~40g) cooked with water daily (yields 1 full cooked cup) alongside your post-workout 5-egg scramble.<br/>
+          • <strong>Long Grain White Rice (5 lb Bulk Bag):</strong> Cook 7 cups dry rice right after shopping on Monday to yield 14 cups cooked. You eat exactly 4 cooked cups (~632g cooked total) daily divided across Lunch (2 cups DOUBLE PORTION) and Dinner (2 cups DOUBLE PORTION). Plus cook 1 cup for post-workout recovery.<br/>
+          • <strong>Frozen Broccoli Florets (Two 12 oz Bags = 24 oz total):</strong> Portion exactly 2 cups (~170g) daily across your Lunch and Dinner containers (1 cup each).
+        </li>
+        <li>
+          <strong>Step 2: Wok Searing & Caramelizing the Japanese Teriyaki Chicken (Monday Batch Cook):</strong><br/>
+          Open your ~5.0 lb family tray of chicken breasts. On a clean cutting board, slice all chicken into bite-sized 1-inch cubes. Place all cubes in a large mixing bowl and toss lightly with 2 tbsp cornstarch, 1 tbsp garlic powder, and 1 tsp black pepper. Coat your large non-stick wok or skillet with Great Value 0-Calorie Canola Oil Cooking Spray over medium-high heat. Add chicken cubes in two batches to avoid crowding. Sear for 6-8 minutes until golden brown on all sides and internal temperature reaches 165°F.<br/>
+          <strong>The Low-Calorie Teriyaki Glaze:</strong> In a measuring cup, whisk together 10 tbsp Kikkoman Teriyaki Marinade, 2 tbsp soy sauce, 7 zero-calorie sweetener packets, 1 tsp ground ginger, 1 tsp garlic powder, and 1/4 cup warm water. Pour the glaze directly over the cooked chicken in the wok over medium heat. Toss vigorously for 1-2 minutes until the sauce thickens into a glossy, caramelized coating that clings to every cube!
+        </li>
+        <li>
+          <strong>Step 3: Batch Cooking Fluffy White Rice (DOUBLE PORTION) & Portioning Broccoli:</strong><br/>
+          Rinse 7 cups of dry white rice in a fine mesh strainer until water runs clear (removes excess surface starch for fluffy grains). Combine with 14 cups of water in your large stovetop pot or rice cooker. Bring to a boil, cover tightly, reduce heat to low, and simmer for 18 minutes. Fluff gently with a fork.<br/>
+          <strong>Container Assembly:</strong> Lay out 14 glass meal prep containers (7 for Lunch, 7 for Dinner). Spoon exactly 2 cups of cooked white rice (DOUBLE PORTION for bulking glycogen expansion) into each container. Next right next to the rice, spoon exactly one 4.0 oz cooked portion of your glazed Teriyaki Chicken. Finally, place 1 cup of frozen broccoli florets into each container directly beside the chicken.
+        </li>
+        <li>
+          <strong>Step 4: Exact Storage & Reheating Protocol (No Moisture Loss or Spoilage):</strong><br/>
+          • <strong>Fridge vs. Freezer Storage:</strong> Seal all 14 glass containers tightly with leak-proof snap lids. Place Containers 1 through 8 (Tuesday through Friday meals) in the coldest part of your refrigerator (34°F–38°F) where they stay fresh for up to 4 days. Place Containers 9 through 14 (Saturday through Monday meals) directly into your freezer (-0°F). On Friday evening, transfer the frozen containers to the fridge to thaw safely overnight.<br/>
+          • <strong>Precision Reheating:</strong> When ready to eat Lunch or Dinner, pop open the container lid and cover the food loosely with a damp paper towel. Microwave on High for exactly 2 minutes 30 seconds (3 minutes if slightly icy due to the double rice volume). The damp paper towel creates steam inside the glass container, perfectly steaming the broccoli florets while restoring the chicken teriyaki and double rice to fresh, juicy, just-cooked perfection!
+        </li>
+        <li>
+          <strong>Step 5: Daily Morning Scramble & Supplementation Protocol:</strong><br/>
+          Every morning at 8:00 AM right before leaving for Planet Fitness Lewiston, brew 2 tbsp of Death Wish Espresso Roast with 8 oz hot water and pour over ice alongside eating 1 fresh banana. Upon returning home at 10:30 AM, spray a clean non-stick skillet with 0-cal canola oil spray over medium heat. Crack 5 whole Grade A eggs directly into the skillet. Gently scramble with a silicone spatula for 2-3 minutes. Right before taking off the heat, fold in 2 tbsp chopped fresh Japanese Negi (green onions) and 1 tbsp soy sauce until golden and fluffy. Serve right alongside your 1 cup of warm cinnamon rolled oats and 1 tsp Sriracha Chili Garlic!<br/>
+          • <strong>Weekly Wild Pink Salmon Omega-3 Protocol:</strong> Once per week (recommended on Sunday or Wednesday active recovery days), open your 14.75 oz can of Wild Pink Salmon. Mix with 1 tsp soy sauce and scallions or serve over 1 cup of rice. This delivers potent EPA/DHA Omega-3 fatty acids essential for joint lubrication, reduced systemic inflammation from heavy bulking sets, and skin elasticity support (`160 lbs clean goal without loose skin`).
+        </li>
       </ol>
+    </div>
+  </div>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
