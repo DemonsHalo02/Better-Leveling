@@ -13,7 +13,7 @@ const DIRECTIVE_QUOTES = [
   },
   {
     quote: "Your target weight of 160 LBS is not a dream—it is an inevitability forged through daily discipline and macro precision.",
-    author: "Chinese General Tso's Cutting Codex",
+    author: "Japanese Teriyaki Cutting Codex",
     stat: "VIT FOCUS"
   },
   {
