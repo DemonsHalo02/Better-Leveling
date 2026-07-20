@@ -413,7 +413,7 @@ export default function MembershipPortal() {
                   </div>
                   <div className="flex justify-between font-mono">
                     <span className="text-zinc-400">Gym Profile:</span>
-                    <span className="text-white font-bold">Planet Fitness Lewiston ME</span>
+                    <span className="text-white font-bold">Quiet Apartment Bodyweight Dojo</span>
                   </div>
                 </div>
 
@@ -580,7 +580,7 @@ export default function MembershipPortal() {
                   </li>
                   <li className="flex items-center gap-2.5">
                     <CheckCircle2 className="w-4 h-4 text-system-cyan flex-shrink-0" />
-                    <span>Planet Fitness Lewiston ME Equipment Specs</span>
+                    <span>Quiet Apartment Bodyweight Dojo Protocol</span>
                   </li>
                   <li className="flex items-center gap-2.5">
                     <CheckCircle2 className="w-4 h-4 text-system-cyan flex-shrink-0" />

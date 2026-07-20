@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { loadHunterState, saveHunterState, awardXp, allocateStatPoint, updateWeight, addCustomQuest, toggleCustomQuest, deleteCustomQuest, resetDailyHydration, HunterState, HYDRATION_INCREMENT_MP, HYDRATION_INCREMENT_OZ, HYDRATION_GOAL_OZ, getHydrationOzConsumed } from '@/lib/hunter-system';
+import { loadHunterState, saveHunterState, awardXp, allocateStatPoint, updateWeight, addCustomQuest, toggleCustomQuest, deleteCustomQuest, resetDailyHydration, HunterState, HYDRATION_INCREMENT_MP, HYDRATION_INCREMENT_OZ, HYDRATION_GOAL_OZ, getHydrationOzConsumed, drinkWaterAmount } from '@/lib/hunter-system';
 import { getTodayWorkout } from '@/lib/workout-data';
 import { Shield, Zap, Flame, Award, Dumbbell, Utensils, Droplets, Scale, CheckCircle2, Circle, PlusCircle, Sparkles, ArrowRight, Trash2, Settings, Palette, BookOpen, RotateCcw } from 'lucide-react';
 import { TabType } from '../Navigation/SystemSidebar';
@@ -43,15 +43,8 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
     setState({ ...loadHunterState() });
   };
 
-  const handleDrinkWater = () => {
-    const current = loadHunterState();
-    current.mp = Math.min(100, current.mp + HYDRATION_INCREMENT_MP);
-    if (!current.completedQuestsToday.hydration && current.mp >= 100) {
-      current.completedQuestsToday.hydration = true;
-      awardXp(150, 'vit', current);
-    } else {
-      saveHunterState(current);
-    }
+  const handleDrinkWater = (oz: number = HYDRATION_INCREMENT_OZ) => {
+    drinkWaterAmount(oz);
     setState({ ...loadHunterState() });
   };
 
@@ -122,7 +115,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               Arise, <span className="text-system-blue">{state.profile.name}</span>.
             </h2>
             <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
-              Your mission is clear: transform from {startWeight} lbs down to a shredded, muscular <span className="text-system-cyan font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Complete your daily quests to level up your real-life stats and build impressive density at {state.profile.gymName || 'Planet Fitness Lewiston'}!
+              Your mission is clear: transform from {startWeight} lbs down to a shredded, muscular <span className="text-system-cyan font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Complete your daily quests to level up your real-life stats and build impressive density inside your {state.profile.gymName || 'Quiet Apartment Bodyweight Dojo'}!
             </p>
           </div>
 
@@ -162,7 +155,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               <span className="text-sm font-mono font-bold text-system-gold">({daysRemaining} Days Left)</span>
             </h3>
             <p className="text-xs text-zinc-300 max-w-2xl leading-relaxed">
-              Every clean meal prep and every PR at {state.profile.gymName || 'Planet Fitness Lewiston'} chops HP off this boss raid. Stay consistent on the {state.profile.dietName || 'Japanese Teriyaki cutting diet'} to avoid loose skin and emerge at peak definition!
+              Every clean meal prep and every workout PR inside your {state.profile.gymName || 'Quiet Apartment Bodyweight Dojo'} chops HP off this boss raid. Stay consistent on the {state.profile.dietName || 'Japanese Teriyaki cutting diet'} to avoid loose skin and emerge at peak definition!
             </p>
 
             {/* Boss HP Bar */}
@@ -446,13 +439,22 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 <h4 className="text-base font-black text-white uppercase">1 Gallon ({HYDRATION_GOAL_OZ} oz)</h4>
                 <p className="text-xs text-zinc-400 mt-1">Status: <span className="text-blue-300 font-mono font-bold">{getHydrationOzConsumed(state.mp)} / {HYDRATION_GOAL_OZ} oz</span> ({state.mp}% hydrated) today.</p>
               </div>
-              <div className="mt-4 flex gap-2">
+              <div className="mt-4 flex flex-wrap gap-2">
                 <button
-                  onClick={handleDrinkWater}
-                  className="flex-1 py-2 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-md cursor-pointer"
+                  onClick={() => handleDrinkWater(16.9)}
+                  className="flex-1 py-2 px-2 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer"
+                  title="Drink standard 16.9 oz water bottle"
                 >
                   <PlusCircle className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>Drink +{HYDRATION_INCREMENT_OZ} oz Water</span>
+                  <span>+16.9 oz</span>
+                </button>
+                <button
+                  onClick={() => handleDrinkWater(24)}
+                  className="flex-1 py-2 px-2 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer"
+                  title="Drink 24 oz shaker / bottle"
+                >
+                  <PlusCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                  <span>+24 oz</span>
                 </button>
                 <button
                   onClick={handleResetWater}

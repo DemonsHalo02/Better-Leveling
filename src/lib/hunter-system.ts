@@ -86,12 +86,12 @@ const DEFAULT_STATE: HunterState = {
     currentWeight: 242,
     targetWeight: 160,
     targetDate: "2028-01-01",
-    dailyCalorieGoal: 2150,
-    dailyProteinGoal: 170,
+    dailyCalorieGoal: 2080,
+    dailyProteinGoal: 178,
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
-    gymName: "Planet Fitness Lewiston (6-Day PPL + Treadmill Cardio)",
-    dietName: "Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint",
+    gymName: "Quiet Apartment Bodyweight Dojo (No Equipment + 45m Cardio)",
+    dietName: "Japanese Chicken Teriyaki & Death Wish Black Coffee Shred Blueprint",
   },
   completedQuestsToday: {
     workout: false,
@@ -171,8 +171,8 @@ export function loadHunterState(): HunterState {
 
     let needsSave = false;
     if (parsed.profile) {
-      if (parsed.profile.dailyProteinGoal === 178) { parsed.profile.dailyProteinGoal = 170; needsSave = true; }
-      if (parsed.profile.dailyCalorieGoal === 2080) { parsed.profile.dailyCalorieGoal = 2150; needsSave = true; }
+      if (parsed.profile.dailyProteinGoal === 170) { parsed.profile.dailyProteinGoal = 178; needsSave = true; }
+      if (parsed.profile.dailyCalorieGoal === 2150) { parsed.profile.dailyCalorieGoal = 2080; needsSave = true; }
       if (parsed.profile.targetWeight === 170) { parsed.profile.targetWeight = 160; needsSave = true; }
       if (!parsed.profile.currentWeight || parsed.profile.currentWeight < 50) {
         parsed.profile.currentWeight = parsed.profile.startWeight || 242;
@@ -183,12 +183,12 @@ export function loadHunterState(): HunterState {
         localStorage.setItem('pf_fixed_170_weight_bug_v2', 'done');
         needsSave = true;
       }
-      if (parsed.profile.dietName !== "Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint") {
-        parsed.profile.dietName = "Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint";
+      if (parsed.profile.dietName !== "Japanese Chicken Teriyaki & Death Wish Black Coffee Shred Blueprint") {
+        parsed.profile.dietName = "Japanese Chicken Teriyaki & Death Wish Black Coffee Shred Blueprint";
         needsSave = true;
       }
-      if (parsed.profile.gymName !== "Planet Fitness Lewiston (6-Day PPL + Treadmill Cardio)") {
-        parsed.profile.gymName = "Planet Fitness Lewiston (6-Day PPL + Treadmill Cardio)";
+      if (parsed.profile.gymName !== "Quiet Apartment Bodyweight Dojo (No Equipment + 45m Cardio)") {
+        parsed.profile.gymName = "Quiet Apartment Bodyweight Dojo (No Equipment + 45m Cardio)";
         needsSave = true;
       }
     }
@@ -401,7 +401,24 @@ export function resetDailyHydration(): HunterState {
 }
 
 export function getHydrationOzConsumed(mp: number): number {
-  return Math.round((mp / 100) * HYDRATION_GOAL_OZ);
+  return Math.round((mp / 100) * HYDRATION_GOAL_OZ * 10) / 10;
+}
+
+export function drinkWaterAmount(oz: number): HunterState {
+  const current = loadHunterState();
+  const incrementMp = (oz / HYDRATION_GOAL_OZ) * 100;
+  current.mp = Math.min(100, Math.round((current.mp + incrementMp) * 10) / 10);
+  if (!current.completedQuestsToday?.hydration && current.mp >= 100) {
+    if (!current.completedQuestsToday) {
+      current.completedQuestsToday = { workout: false, calories: false, protein: false, hydration: true, weighIn: false, cardio: false, matchaTea: false };
+    } else {
+      current.completedQuestsToday.hydration = true;
+    }
+    awardXp(150, 'vit', current);
+  } else {
+    saveHunterState(current);
+  }
+  return loadHunterState();
 }
 
 export function toggleQuestCompletion(questType: keyof HunterState['completedQuestsToday'], xpReward: number = 150, statType: keyof Omit<HunterStats, 'availablePoints'> = 'str'): HunterState {

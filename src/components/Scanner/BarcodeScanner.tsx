@@ -19,16 +19,16 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
   const [customServings, setCustomServings] = useState<number>(1);
   const [isInGroceryList, setIsInGroceryList] = useState<boolean>(false);
   const [checkedInGrocery, setCheckedInGrocery] = useState<boolean>(false);
-  const [selectedTemplate, setSelectedTemplate] = useState<string>('China');
+  const [selectedTemplate, setSelectedTemplate] = useState<string>('Japan');
   const scannerRef = useRef<Html5QrcodeScanner | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const savedTpl = localStorage.getItem('pf_selected_aisle_template');
-      if (savedTpl && ['China', 'China Bulking', 'All'].includes(savedTpl)) {
+      if (savedTpl && ['Japan', 'Japan Bulking', 'All'].includes(savedTpl)) {
         setSelectedTemplate(savedTpl);
       } else {
-        setSelectedTemplate('China');
+        setSelectedTemplate('Japan');
       }
     }
   }, []);
@@ -333,8 +333,8 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
               <span>Active Meal Plan Template Filter:</span>
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {['China', 'China Bulking', 'All'].map((tpl) => {
-                const flags: Record<string, string> = { 'China': '🇨🇳', 'China Bulking': '🔥' };
+              {['Japan', 'Japan Bulking', 'All'].map((tpl) => {
+                const flags: Record<string, string> = { 'Japan': '🇯🇵', 'Japan Bulking': '🇯🇵💪' };
                 return (
                   <button
                     key={tpl}
@@ -346,7 +346,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
                     }`}
                   >
                     {flags[tpl] && <span>{flags[tpl]}</span>}
-                    <span>{tpl === 'China' ? 'China Cutting (#1 Main)' : tpl === 'China Bulking' ? 'China Bulking (Post-160 Lb)' : '🌐 All'}</span>
+                    <span>{tpl === 'Japan' ? 'Japan Cutting (#1 Main)' : tpl === 'Japan Bulking' ? 'Japan Bulking (Post-160 Lb)' : '🌐 All'}</span>
                   </button>
                 );
               })}

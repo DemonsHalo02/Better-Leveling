@@ -66,7 +66,7 @@ export default function Home() {
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1 text-system-cyan">
               <span className="w-2 h-2 rounded-full bg-system-cyan animate-ping" />
-              Planet Fitness Lewiston, ME Sync Active
+              Quiet Apartment Bodyweight Dojo Sync Active
             </span>
             <span>|</span>
             <span>Offline-First Local Storage Engine</span>

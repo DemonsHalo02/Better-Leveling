@@ -38,8 +38,8 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
     if (loaded.profile) {
       setName(loaded.profile.name || 'Nick Crosson');
       setTitle(loaded.title || 'Awakened Hunter');
-      setGymName(loaded.profile.gymName || 'Planet Fitness Lewiston, ME');
-      setDietName(loaded.profile.dietName || "Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint");
+      setGymName(loaded.profile.gymName || 'Quiet Apartment Bodyweight Dojo');
+      setDietName(loaded.profile.dietName || "Japanese Chicken Teriyaki & Death Wish Black Coffee Shred Blueprint");
 
       setStartWeight(loaded.profile.startWeight || 242);
       setCurrentWeight(loaded.profile.currentWeight || 242);
@@ -71,8 +71,8 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
       dailyProteinGoal: Number(dailyProteinGoal) || 170,
       dailyCarbGoal: Number(dailyCarbGoal) || 200,
       dailyFatGoal: Number(dailyFatGoal) || 60,
-      gymName: gymName.trim() || 'Planet Fitness Lewiston, ME',
-      dietName: dietName.trim() || "Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint",
+      gymName: gymName.trim() || 'Quiet Apartment Bodyweight Dojo',
+      dietName: dietName.trim() || "Japanese Chicken Teriyaki & Death Wish Black Coffee Shred Blueprint",
     };
 
     const nextState = updateUserProfile(updates);
@@ -185,10 +185,10 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 type="text"
                 value={gymName}
                 onChange={(e) => setGymName(e.target.value)}
-                placeholder="e.g., Planet Fitness Lewiston"
+                placeholder="e.g., Quiet Apartment Bodyweight Dojo"
                 className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-2.5 text-system-cyan font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
               />
-              <p className="text-[11px] text-zinc-500">Used in 6-day PPL workout quest descriptions.</p>
+              <p className="text-[11px] text-zinc-500">Used in 6-day bodyweight workout quest descriptions.</p>
             </div>
 
             <div className="space-y-1.5">
