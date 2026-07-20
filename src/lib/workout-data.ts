@@ -21,449 +21,550 @@ export interface WorkoutDay {
   exercises: Exercise[];
 }
 
-export const PLANET_FITNESS_LEWISTON_6DAY_ROUTINE: WorkoutDay[] = [
+export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
-    splitName: "System Restoration / Active Recovery & Green Tea Detox (Rest Day)",
+    splitName: "Active Recovery & Mobility at Planet Fitness + 45m Treadmill Cardio",
     isRestDay: true,
-    questTitle: "[Daily Quest] Planet Fitness Active Recovery & Green Tea Detox",
-    description: "Sunday is your official System Restoration Day! Focus on 20-30 minutes of gentle incline walking on Planet Fitness treadmills, full-body foam rolling/stretching, and 100% green tea hydration to prepare your physique for Monday's grocery run, batch meal prep, and Push A training.",
-    xpReward: 250,
+    questTitle: "[Daily Quest] Planet Fitness Active Recovery & Treadmill Cardio",
+    description: "Sunday is your active recovery and cardio day at Planet Fitness Lewiston! Perform a thorough full-body stretching and mobility routine on the stretch mats, then complete your mandatory 45-minute cardio protocol (30 minutes brisk walking + 15 minutes running on the Planet Fitness treadmills) to burn fat and prepare for Monday's heavy Push session.",
+    xpReward: 300,
     exercises: [
       {
         id: "sun-1",
-        name: "Planet Fitness Incline Treadmill Active Recovery Walk [20-30 Minutes]",
-        targetGroup: "Cardio",
+        name: "Planet Fitness Stretch Mat Mobility & Foam Rolling [15 Minutes]",
+        targetGroup: "Full Body",
         sets: 1,
-        reps: "20-30 mins (@ 2.5-3.0 MPH, 6-10% Incline)",
-        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
-        coachTip: "Set treadmill to a moderate incline (6-10%) and steady pace (2.5-3.0 MPH). Low-impact steady-state walking increases blood flow, flushes metabolic waste, and burns fat without stressing joints or skin."
+        reps: "15 mins (slowly roll & release tension)",
+        equipment: "PF Stretch Area / Mats & Foam Roller",
+        coachTip: "Spend 15 minutes on the Planet Fitness stretching mats rolling out tight calves, quads, IT bands, and lats. This accelerates muscle recovery and prevents injury."
       },
       {
         id: "sun-2",
-        name: "Full Body Stretching, Posture Mobility & PF Stretching Area Mat Work",
+        name: "Deep Hip Flexor, Hamstring & Thoracic Spine Stretch [15 Minutes]",
         targetGroup: "Full Body",
         sets: 1,
-        reps: "15-20 mins",
-        equipment: "Stretching Area Mat & Foam Roller (Lewiston PF)",
-        coachTip: "Use the PF stretching area mats and foam rollers to release tension in chest, lats, hips, and hamstrings before the Monday training week begins."
+        reps: "15 mins (hold each stretch 30-60 sec)",
+        equipment: "PF Stretch Area / Mats",
+        coachTip: "Hold deep stretches for 30-60 seconds per pose: pigeon pose for glutes/hips, seated hamstring stretches, and doorway/rack chest stretches. Keeps your joints lubricated and skin elastic."
       },
       {
         id: "sun-3",
-        name: "Active Hydration & 100% Green Tea Antioxidant Protocol",
+        name: "HydroMassage / Total Body Enhancement & Green Tea Hydration [10 Minutes]",
         targetGroup: "Full Body",
         sets: 1,
-        reps: "1 Gallon Water + Green Tea Bags",
-        equipment: "Water Jug & Green Tea",
-        coachTip: "Hydrate thoroughly with 1 gallon of water and antioxidant green tea to support skin elasticity during weight loss and recover your muscles for Monday's workouts and Chinese General Tso's Shred meal prep!"
+        reps: "10 mins session + 1 cup Green Tea",
+        equipment: "PF Black Card Lounge",
+        coachTip: "Take advantage of the Planet Fitness Black Card HydroMassage or Total Body Enhancement (red light therapy) to soothe muscles and stimulate cellular turnover!"
+      },
+      {
+        id: "sun-cardio",
+        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run on Treadmill",
+        targetGroup: "Cardio",
+        sets: 1,
+        reps: "45 mins total (30m walk @ 3.5 MPH + 15m run @ 6.0 MPH)",
+        equipment: "Planet Fitness Treadmill",
+        coachTip: "Hop on the Planet Fitness treadmill for 30 minutes of brisk incline walking (3.5 MPH @ 3-5% incline) followed immediately by 15 minutes of steady jogging/running (6.0 MPH). Burns maximum fat while protecting muscle!"
       }
     ]
   },
   {
     dayOfWeek: 1, // Monday
     dayName: "Monday",
-    splitName: "Push A (Chest, Anterior Delts, Triceps) + Monday Grocery & Meal Prep",
+    splitName: "Push A — Chest, Shoulders & Triceps Hypertrophy + Monday Walmart Grocery Prep",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Push A & Chinese General Tso's Shred Monday Batch Meal Prep",
-    description: "Official Monday Grocery Run & Weekly Batch Meal Prep Day + Push A workout using Lewiston Maine Planet Fitness equipment! Hit Auburn ME Walmart for your $45.38 weekly list ($31.08 restock), batch prep your Chinese General Tso's Shred meals for Tuesday start, and crush your chest/shoulder/tricep workout.",
+    questTitle: "[Daily Quest] Planet Fitness Push A & Monday Walmart Grocery Prep",
+    description: "Fuel up at 8:00 AM with Death Wish Espresso Roast Black Coffee & Banana, then hit Planet Fitness Lewiston for Push A! Build chest thickness, capped shoulders, and horseshoe triceps on PF equipment, followed immediately by 45 minutes of treadmill cardio. After gym, execute your weekly Walmart Auburn grocery run & Japanese Teriyaki meal prep!",
     xpReward: 500,
     exercises: [
       {
         id: "mon-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Chinese General Tso's Shred Batch Meal Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Japanese Chicken Teriyaki Batch Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Chinese General Tso's Shred Batch Prep (For Tuesday Start)",
+        reps: "Teriyaki Batch Prep (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your under-$50 Chinese General Tso's Shred Weekly Consumables ($45.38) at Auburn ME Walmart. Batch-cook chicken breasts, rice, and broccoli on Monday so your meal prep eating begins seamlessly on Tuesday!"
+        coachTip: "Pick up your exact weekly groceries ($45.38 cutting / $43.76 bulking + $32.98 restock with Salmon). Cut chicken breasts into cubes, wok-sear with low-cal Japanese Teriyaki glaze, cook bulk rice, and portion across 14 containers!"
       },
       {
         id: "mon-1",
-        name: "Planet Fitness Smith Machine Flat Bench Press [Chest Compound]",
+        name: "Smith Machine Flat Bench Press [Chest & Front Delt Compound]",
         targetGroup: "Chest",
         sets: 4,
-        reps: "8-10 reps",
-        equipment: "Smith Machine & Flat Bench (Lewiston PF)",
-        coachTip: "Position flat bench centrally under Smith bar. Lower bar smoothly to mid-chest with 2-second negative, drive up explosively. Builds dense pectoral armor while maintaining control."
+        reps: "10-12 reps",
+        equipment: "Planet Fitness Smith Machine & Bench",
+        coachTip: "Set flat bench under Smith machine bar. Grip slightly wider than shoulder-width. Lower bar with a 2-second negative to mid-chest, press up explosively. Keep scapula retracted and feet planted."
       },
       {
         id: "mon-2",
-        name: "Planet Fitness Seated Chest Press Machine or Incline Dumbbell Press",
+        name: "Seated Chest Press Machine [Mid & Outer Chest Hypertrophy]",
         targetGroup: "Chest",
         sets: 3,
-        reps: "10-12 reps",
-        equipment: "Chest Press Machine or Dumbbells & Incline Bench",
-        coachTip: "Adjust seat height so handles align with upper chest. Squeeze chest hard at full extension without locking elbows to maintain constant muscular tension."
+        reps: "12-15 reps",
+        equipment: "PF Chest Press Machine",
+        coachTip: "Adjust seat height so handles align with mid-chest. Drive handles forward with a deep chest squeeze, control the eccentric all the way back without letting weight stack slam."
       },
       {
         id: "mon-3",
-        name: "Dual Adjustable Pulley / Cable Crossover Flys [Chest Isolation]",
-        targetGroup: "Chest",
-        sets: 3,
-        reps: "12-15 reps",
-        equipment: "Cable Cross Station (Lewiston PF)",
-        coachTip: "Set pulleys to mid/high position. Step forward with one foot, bring handles together in front of chest in a hugging motion with a 1-second squeeze."
+        name: "Dumbbell Overhead Shoulder Press [Capped Shoulders & Width]",
+        targetGroup: "Shoulders",
+        sets: 4,
+        reps: "10-12 reps",
+        equipment: "PF Free Weight Area / Dumbbells",
+        coachTip: "Sit upright with back support. Press dumbbells overhead until arms are extended, lower slowly until elbows are at 90 degrees. Builds broad, capped shoulder caps."
       },
       {
         id: "mon-4",
-        name: "Planet Fitness Seated Shoulder Press Machine or Dumbbell Overhead Press",
+        name: "Dumbbell Lateral Raises [Outer Shoulder Cap Width]",
         targetGroup: "Shoulders",
         sets: 4,
-        reps: "8-10 reps",
-        equipment: "Shoulder Press Machine or Dumbbells",
-        coachTip: "Keep core braced against back pad. Press upward overhead, stopping just short of lockout to keep tension on anterior and medial deltoids."
+        reps: "15 reps",
+        equipment: "PF Free Weight Area / Dumbbells",
+        coachTip: "Stand tall holding moderate dumbbells. Raise arms out to sides with slight elbow bend until wrists align with shoulder height. Lead with elbows for maximum medial head activation."
       },
       {
         id: "mon-5",
-        name: "Planet Fitness Cable Tricep Pushdowns (Rope or V-Bar Attachment)",
+        name: "Cable Tricep Pushdowns (Rope Attachment) [Tricep Horseshoe Isolation]",
         targetGroup: "Triceps",
         sets: 4,
         reps: "12-15 reps",
-        equipment: "Cable Pulley Station & Rope/V-Bar",
-        coachTip: "Pin upper arms firmly to sides. Push down and spread rope ends at the bottom, locking out triceps for maximum horseshoe contraction."
+        equipment: "PF Cable Tower / Rope Attachment",
+        coachTip: "Pin elbows tightly to your sides. Push rope down and pull ends apart at the bottom with a 1-second squeeze. Carves deep definition into the lateral and long tricep heads."
+      },
+      {
+        id: "mon-6",
+        name: "Overhead Dumbbell Tricep Extension [Long Head Tricep Growth]",
+        targetGroup: "Triceps",
+        sets: 3,
+        reps: "12-15 reps",
+        equipment: "PF Free Weight Area / Dumbbells",
+        coachTip: "Hold a single dumbbell overhead with both hands cupping the top plate. Lower weight behind head by bending elbows, press back up to full extension."
       },
       {
         id: "mon-cardio",
-        name: "Daily Planet Fitness Treadmill Walk [20-30 Minutes Fat Burning Target]",
+        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run on Treadmill",
         targetGroup: "Cardio",
         sets: 1,
-        reps: "20-30 mins (@ 3.0 MPH, 5-8% Incline)",
-        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
-        coachTip: "Complete your 20-30 minutes of steady incline walking on the treadmill right after lifting. Optimal for burning 1 lb/week without muscle loss or loose skin!"
+        reps: "45 mins total (30m walk @ 3.5 MPH + 15m run @ 6.0 MPH)",
+        equipment: "Planet Fitness Treadmill",
+        coachTip: "Immediately after finishing your last set of triceps, step onto the Planet Fitness treadmill for 30 minutes of brisk walking (3.5 MPH @ 3% incline) followed by a 15-minute steady run (6.0 MPH)!"
       }
     ]
   },
   {
     dayOfWeek: 2, // Tuesday
     dayName: "Tuesday",
-    splitName: "Pull A (Upper Back Width, Lats, Rear Delts, Biceps) - Start Eating Prep!",
+    splitName: "Pull A — Back Width, Biceps & Forearm Crush",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Pull A V-Taper Sculpt & Start Eating Prep",
-    description: "First day of eating your prepped Chinese General Tso's Shred meals + Pull A workout at Lewiston Maine Planet Fitness! Build wide lats, upper back thickness, and bicep peaks using cable stations and machines.",
+    questTitle: "[Daily Quest] Planet Fitness Pull A & Forearm Crush",
+    description: "Start eating your prepped Japanese Chicken Teriyaki bowls today! Hit Planet Fitness Lewiston for Pull A: expand lat width, build thick bicep peaks, and carve crushing forearm density with dedicated wrist and hammer curls. Finish strong with 45 minutes on the PF treadmill.",
     xpReward: 500,
     exercises: [
       {
         id: "tue-1",
-        name: "Planet Fitness Wide-Grip Lat Pulldown Machine [Back V-Taper Width]",
+        name: "Wide-Grip Lat Pulldown [Lat Width & V-Taper Compound]",
         targetGroup: "Back",
         sets: 4,
-        reps: "8-10 reps",
-        equipment: "Lat Pulldown Machine (Lewiston PF)",
-        coachTip: "Take a wide grip on the bar. Drive elbows straight down toward ribs while lifting chest up. Squeeze lats hard at bottom of movement."
+        reps: "10-12 reps",
+        equipment: "PF Lat Pulldown Machine",
+        coachTip: "Grip wide bar slightly wider than shoulder width. Drive elbows straight down toward your hips, pulling bar to upper chest. Squeeze lats hard at bottom before slowly releasing upward."
       },
       {
         id: "tue-2",
-        name: "Planet Fitness Seated Cable Row (Close-Grip V-Bar or Wide Attachment)",
+        name: "Seated Cable Row (V-Bar Attachment) [Mid-Back Thickness & Rhomboids]",
         targetGroup: "Back",
         sets: 4,
         reps: "10-12 reps",
-        equipment: "Seated Cable Row Station (Lewiston PF)",
-        coachTip: "Keep slight bend in knees and upright spine. Pull V-bar directly into lower ribcage, squeezing shoulder blades together for 2 full seconds."
+        equipment: "PF Seated Cable Row Machine",
+        coachTip: "Keep torso upright with slight knee bend. Pull V-bar into your midsection while drawing shoulder blades together. Builds thick, dense mid-back posture."
       },
       {
         id: "tue-3",
-        name: "Pec Deck Rear Delt Fly Machine or Cable Face Pulls",
-        targetGroup: "Shoulders",
+        name: "Assisted Pull-Up Machine [Upper Lat & Teres Major Control]",
+        targetGroup: "Back",
         sets: 3,
-        reps: "12-15 reps",
-        equipment: "Rear Delt Machine or Cable Pulley Station",
-        coachTip: "Face toward the machine pad or use rope attachment on high pulley. Pull weight out and back to target rear deltoids and upper trap posture."
+        reps: "10-12 reps",
+        equipment: "PF Assisted Pull-Up / Dip Machine",
+        coachTip: "Set appropriate counterbalance weight on knees. Pull chest up to handles with controlled tempo. Excellent for mastering pull-up mechanics while targeting upper lats."
       },
       {
         id: "tue-4",
-        name: "Planet Fitness Standing EZ-Bar or Dumbbell Bicep Curls",
+        name: "Dumbbell Alternating Curl with Supination [Bicep Peak Hypertrophy]",
         targetGroup: "Biceps",
         sets: 4,
-        reps: "10-12 reps",
-        equipment: "Fixed EZ-Bars or Dumbbells (Lewiston PF)",
-        coachTip: "Keep elbows glued to ribs. Curl bar smoothly toward chin with zero body swinging. Lower with a controlled 3-second negative."
+        reps: "12 reps per arm",
+        equipment: "PF Free Weight Area / Dumbbells",
+        coachTip: "Start with palms facing thighs. As you curl dumbbell up, rotate palm upward (supinate) and squeeze bicep peak hard at the top."
       },
       {
         id: "tue-5",
-        name: "Single-Arm Cable Curls or Preacher Curl Machine [Bicep Isolation]",
+        name: "Preacher Curl Machine [Isolated Bicep Short Head Density]",
         targetGroup: "Biceps",
         sets: 3,
         reps: "12-15 reps",
-        equipment: "Preacher Machine or Low Cable Pulley",
-        coachTip: "Isolate bicep peak by keeping upper arm stationary on pad or against ribs. Squeeze peak hard at top contraction."
+        equipment: "PF Preacher Curl Machine",
+        coachTip: "Rest triceps flat against preacher pad so arms cannot swing. Curl handles toward chin and lower slowly. Eliminates momentum for maximum bicep isolation."
+      },
+      {
+        id: "tue-6",
+        name: "Dumbbell Hammer Curls [Brachialis & Forearm Thickness]",
+        targetGroup: "Forearms",
+        sets: 4,
+        reps: "12-15 reps per arm",
+        equipment: "PF Free Weight Area / Dumbbells",
+        coachTip: "Keep palms facing each other (neutral grip) throughout entire movement. Curl dumbbells toward anterior deltoids. Builds outer bicep brachialis and thick radial forearm flexors."
+      },
+      {
+        id: "tue-7",
+        name: "Seated Barbell/Dumbbell Wrist Curls (Palms Up & Down Super-Set) [Forearm Flexor & Extensor Carve]",
+        targetGroup: "Forearms",
+        sets: 4,
+        reps: "15-20 reps",
+        equipment: "PF Bench & EZ-Bar / Dumbbells",
+        coachTip: "Rest forearms on bench with wrists hanging over edge. Perform 15 palms-up wrist curls immediately followed by 15 palms-down reverse wrist curls. Pumps both forearm flexors and extensors!"
       },
       {
         id: "tue-cardio",
-        name: "Daily Planet Fitness Treadmill Walk [20-30 Minutes Fat Burning Target]",
+        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run on Treadmill",
         targetGroup: "Cardio",
         sets: 1,
-        reps: "20-30 mins (@ 3.0 MPH, 5-8% Incline)",
-        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
-        coachTip: "Complete 20-30 minutes of incline walking on the treadmill after lifting to keep fat oxidation high while preserving lean muscle mass."
+        reps: "45 mins total (30m walk @ 3.5 MPH + 15m run @ 6.0 MPH)",
+        equipment: "Planet Fitness Treadmill",
+        coachTip: "Step onto the Planet Fitness treadmill right after your forearm super-set! Complete your 30 minutes of brisk walking plus 15 minutes of running to keep fat burning high."
       }
     ]
   },
   {
     dayOfWeek: 3, // Wednesday
     dayName: "Wednesday",
-    splitName: "Legs & Core A (Quads, Hamstrings, Calves, Abdominal Carve)",
+    splitName: "Legs A & Abs — Quads, Hamstrings, Glutes & Abdominal Armor",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Legs & Core A Lower Body Sculpt",
-    description: "High-intensity lower body training and core armor conditioning using Lewiston Maine Planet Fitness leg machines and Captain's Chair abdominal station.",
-    xpReward: 600,
+    questTitle: "[Daily Quest] Planet Fitness Legs A & Abdominal Core Carve",
+    description: "Legs A plus high-intensity Abdominal Training at Planet Fitness Lewiston! Build strong quads, tight hamstrings, and a lifted glute profile while carving deep abdominal armor. Followed immediately by your 45-minute post-workout treadmill walk and run.",
+    xpReward: 500,
     exercises: [
       {
         id: "wed-1",
-        name: "Planet Fitness Leg Press Machine [Quad & Glute Compound]",
+        name: "Leg Press Machine [Quad & Glute Heavy Compound]",
         targetGroup: "Legs",
         sets: 4,
-        reps: "10-12 reps",
-        equipment: "Leg Press Machine (Lewiston PF)",
-        coachTip: "Place feet shoulder-width on sled. Lower sled deeply with control until knees are near 90 degrees without letting lower back lift off pad. Press up through mid-foot."
+        reps: "12-15 reps",
+        equipment: "PF Leg Press Machine",
+        coachTip: "Place feet shoulder-width on platform. Lower sled deeply until knees reach 90 degrees without letting lower back round off pad. Drive weight up through mid-foot and heels."
       },
       {
         id: "wed-2",
-        name: "Planet Fitness Leg Extension Machine [Quad Isolation & Tear Drop]",
+        name: "Seated Leg Extension Machine [Quad Sweep & Rectus Femoris Isolation]",
         targetGroup: "Legs",
-        sets: 3,
-        reps: "12-15 reps",
-        equipment: "Leg Extension Machine (Lewiston PF)",
-        coachTip: "Extend legs fully and pause at top for 2 seconds to isolate quad tear-drop (VMO). Lower under strict control."
+        sets: 4,
+        reps: "15 reps",
+        equipment: "PF Leg Extension Machine",
+        coachTip: "Align knees with pivot point of machine. Extend legs smoothly until knees are locked out, pause for 1 second squeezing quads, lower with a 2-second eccentric."
       },
       {
         id: "wed-3",
-        name: "Planet Fitness Seated or Lying Leg Curl Machine [Hamstring Sculpt]",
+        name: "Lying Leg Curl Machine [Hamstring Belly & Knee Flexion]",
         targetGroup: "Legs",
         sets: 4,
-        reps: "10-12 reps",
-        equipment: "Leg Curl Machine (Lewiston PF)",
-        coachTip: "Curl weight toward glutes smoothly. Focus on hamstring stretch at extension and forceful contraction at flexion."
+        reps: "12-15 reps",
+        equipment: "PF Lying Leg Curl Machine",
+        coachTip: "Lie face down with roller pad securely just below calves. Curl heels smoothly toward glutes and squeeze hamstrings hard at peak contraction."
       },
       {
         id: "wed-4",
-        name: "Seated or Standing Calf Raise Machine [Lower Leg Armor]",
+        name: "Goblet Squat [Quad Depth & Core Stabilization]",
         targetGroup: "Legs",
-        sets: 4,
-        reps: "15-20 reps",
-        equipment: "Calf Raise Machine or Leg Press Calf Press",
-        coachTip: "Allow heels to drop for deep stretch at bottom, push up onto balls of feet with full ankle extension and hold for 1 second."
+        sets: 3,
+        reps: "12-15 reps",
+        equipment: "PF Free Weight Area / Dumbbells",
+        coachTip: "Hold a single heavy dumbbell vertically against chest. Squat deep keeping elbows tucked inside knees, chest upright, and weight centered across feet."
       },
       {
         id: "wed-5",
-        name: "Captain's Chair Hanging Knee / Leg Raises or Abdominal Crunch Machine",
+        name: "Seated Calf Raise / Leg Press Calf Press [Calf Diamond Carve]",
+        targetGroup: "Legs",
+        sets: 4,
+        reps: "15-20 reps",
+        equipment: "PF Leg Press / Calf Machine",
+        coachTip: "Place balls of feet on bottom edge of leg press platform. Lower heels for maximum stretch, then press high onto toes and hold for 2 seconds. Carves diamond calf striations."
+      },
+      {
+        id: "wed-6",
+        name: "Captain's Chair Hanging Leg / Knee Raises [Lower Ab & Core Isolation]",
         targetGroup: "Abs",
         sets: 4,
-        reps: "15 reps",
-        equipment: "Captain's Chair Station or Ab Crunch Machine",
-        coachTip: "Support upper body on Captain's Chair pads. Raise knees/legs toward chest by rolling pelvis upward to engage lower abdominals completely."
+        reps: "15-20 reps",
+        equipment: "PF Captain's Chair / Tower",
+        coachTip: "Support upper body on forearm pads of Captain's Chair. Raise knees or straight legs toward chest by curling your pelvis upward. The #1 exercise for lower abdominal definition."
+      },
+      {
+        id: "wed-7",
+        name: "High Cable Ab Crunch (Rope Attachment) [Upper Ab Rectus Carve]",
+        targetGroup: "Abs",
+        sets: 4,
+        reps: "15-20 reps",
+        equipment: "PF Cable Tower / Rope Attachment",
+        coachTip: "Kneel below high pulley holding rope behind neck. Crunch torso downward bringing elbows toward knees by flexing spine (do not pull with arms). Carves deep upper ab blocks."
       },
       {
         id: "wed-cardio",
-        name: "Daily Planet Fitness Treadmill Walk [20-30 Minutes Fat Burning Target]",
+        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run on Treadmill",
         targetGroup: "Cardio",
         sets: 1,
-        reps: "20-30 mins (@ 2.8-3.0 MPH, Moderate Incline)",
-        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
-        coachTip: "Finish leg day with 20-30 minutes of steady walking to flush lactic acid from lower body while burning abdominal fat."
+        reps: "45 mins total (30m walk @ 3.5 MPH + 15m run @ 6.0 MPH)",
+        equipment: "Planet Fitness Treadmill",
+        coachTip: "Fluff out leg lactic acid on the Planet Fitness treadmill right after your abdominal routine! 30 minutes brisk walking plus 15 minutes running."
       }
     ]
   },
   {
     dayOfWeek: 4, // Thursday
     dayName: "Thursday",
-    splitName: "Push B (Upper Chest Focus, Lateral Delt Capping, Triceps)",
+    splitName: "Push B — Upper Chest, Shoulder Width & Tricep Power",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Push B Upper Chest & Shoulder Capping",
-    description: "Target upper chest, medial deltoid width, and tricep horseshoe definition using Smith machine incline press and cable lateral raises at Lewiston Planet Fitness.",
+    questTitle: "[Daily Quest] Planet Fitness Push B & Shoulder Capping",
+    description: "Push B focuses on upper chest fullness, extreme side deltoid width, and heavy tricep extension at Planet Fitness Lewiston. Always pre-fuel at 8:00 AM with Death Wish Black Coffee & Banana and finish with your 45-minute treadmill cardio.",
     xpReward: 500,
     exercises: [
       {
         id: "thu-1",
-        name: "Planet Fitness Smith Machine Incline Bench Press [Upper Chest]",
+        name: "Smith Machine Incline Bench Press [Upper Chest & Anterior Delt Focus]",
         targetGroup: "Chest",
         sets: 4,
-        reps: "8-10 reps",
-        equipment: "Smith Machine & 30-Degree Incline Bench (Lewiston PF)",
-        coachTip: "Set incline bench to 30 degrees under bar. Lower bar slowly to upper clavicle area, drive upward focusing on upper chest contraction."
+        reps: "10-12 reps",
+        equipment: "Planet Fitness Smith Machine & Incline Bench",
+        coachTip: "Set bench to 30-45 degree incline under Smith machine. Lower bar slowly to upper chest / collarbone area, press upward squeezing upper pectorals. Builds broad chest shelf."
       },
       {
         id: "thu-2",
-        name: "Planet Fitness Pec Deck Fly Machine (Chest Fly Station)",
+        name: "Cable Chest Fly (Mid/High Pulley) [Inner Chest Pec Striations]",
         targetGroup: "Chest",
-        sets: 3,
+        sets: 4,
         reps: "12-15 reps",
-        equipment: "Pec Deck Machine (Lewiston PF)",
-        coachTip: "Keep elbows slightly bent. Bring arms together smoothly across chest, squeezing inner pecs hard at center."
+        equipment: "PF Dual Cable Cross / Tower",
+        coachTip: "Stand between dual cables with handles set at shoulder height or higher. Bring hands together in front of chest hugging an imaginary barrel. Squeeze inner chest striations hard at midline."
       },
       {
         id: "thu-3",
-        name: "Cable Lateral Raises (Dual Pulley or Single-Arm) or Dumbbell Raises",
+        name: "Machine Shoulder Press [Heavy Overhead Delt Compound]",
         targetGroup: "Shoulders",
         sets: 4,
-        reps: "15 reps",
-        equipment: "Low Cable Pulley or Dumbbells",
-        coachTip: "Raise cables or dumbbells out to sides until parallel to floor. Lead slightly with elbows to cap lateral deltoid width."
+        reps: "10-12 reps",
+        equipment: "PF Shoulder Press Machine",
+        coachTip: "Use neutral or pronated handles on shoulder press machine. Drive weight overhead with steady power, lower until handles reach ear height."
       },
       {
         id: "thu-4",
-        name: "Overhead Cable Tricep Extension (Rope Attachment Facing Away)",
-        targetGroup: "Triceps",
+        name: "Cable Single-Arm Lateral Raise [Continuous Tension Side Delt Cap]",
+        targetGroup: "Shoulders",
         sets: 4,
-        reps: "12-15 reps",
-        equipment: "Cable Station & Rope Attachment",
-        coachTip: "Face away from cable tower with rope held behind head. Extend overhead to place maximum stretch and tension on long head of triceps."
+        reps: "15 reps per arm",
+        equipment: "PF Cable Tower / Single D-Handle",
+        coachTip: "Set low cable pulley and grasp handle with opposite hand behind your back or at side. Raise arm out laterally with slight elbow bend. Cables provide constant tension on side delts across entire range of motion!"
       },
       {
         id: "thu-5",
-        name: "Planet Fitness Dumbbell or Cable Shrugs [Upper Trap Density]",
-        targetGroup: "Shoulders",
+        name: "EZ-Bar / Cable Skull Crushers [Tricep Mass & Overhead Stretch]",
+        targetGroup: "Triceps",
+        sets: 4,
+        reps: "10-12 reps",
+        equipment: "PF Cable Tower / EZ-Bar Attachment",
+        coachTip: "Lie flat on bench holding straight bar or EZ-bar attached to low/mid cable. Lower bar toward forehead by bending elbows, press back up to full lockout. Builds massive tricep belly."
+      },
+      {
+        id: "thu-6",
+        name: "Tricep Dip Machine [Tricep Horseshoe Burnout]",
+        targetGroup: "Triceps",
         sets: 3,
-        reps: "12-15 reps",
-        equipment: "Heavy Dumbbells or Low Cable Bar",
-        coachTip: "Shrug shoulders straight toward ears with a 2-second hold at the top. Do not roll shoulders."
+        reps: "15 reps",
+        equipment: "PF Assisted Dip / Tricep Machine",
+        coachTip: "Press handles straight down locking out elbows with torso slightly upright. Go to failure on your final set for a tremendous tricep pump."
       },
       {
         id: "thu-cardio",
-        name: "Daily Planet Fitness Treadmill Walk [20-30 Minutes Fat Burning Target]",
+        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run on Treadmill",
         targetGroup: "Cardio",
         sets: 1,
-        reps: "20-30 mins (@ 3.0 MPH, 5-8% Incline)",
-        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
-        coachTip: "Complete 20-30 minutes of steady-state incline walking on the treadmill right after lifting."
+        reps: "45 mins total (30m walk @ 3.5 MPH + 15m run @ 6.0 MPH)",
+        equipment: "Planet Fitness Treadmill",
+        coachTip: "Hit the Planet Fitness treadmill right after completing your last tricep dip set! 30 minutes brisk walking plus 15 minutes running."
       }
     ]
   },
   {
     dayOfWeek: 5, // Friday
     dayName: "Friday",
-    splitName: "Pull B (Back Thickness, Lats Stretch, Brachialis & Biceps Peak)",
+    splitName: "Pull B — Back Thickness, Rear Delts & Forearm Grip Forge",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Pull B Mid-Back Density & Brachialis Peak",
-    description: "Develop mid-back density, lower lat stretch, and thicker forearms/biceps using single-arm dumbbell rows and neutral-grip pulldowns.",
+    questTitle: "[Daily Quest] Planet Fitness Pull B & Forearm Grip Carve",
+    description: "Pull B at Planet Fitness Lewiston targets thick mid-back musculature, rear deltoid posture, bicep density, and intense forearm grip development. Plus your Friday evening Japanese Ramen treat meal after hitting your 45-minute treadmill cardio!",
     xpReward: 500,
     exercises: [
       {
         id: "fri-1",
-        name: "Neutral-Grip Lat Pulldown or Assisted Pull-Up Machine",
+        name: "Single-Arm Dumbbell Row [Lat Stretch & Mid-Back Thickness]",
         targetGroup: "Back",
         sets: 4,
-        reps: "8-10 reps",
-        equipment: "Lat Pulldown (V-Bar / Parallel Handle) or Assisted Pull-Up",
-        coachTip: "Use neutral (palms facing each other) handle. Pull straight down to upper chest, emphasizing lower lat squeeze and biceps."
+        reps: "10-12 reps per arm",
+        equipment: "PF Free Weight Area / Dumbbells & Bench",
+        coachTip: "Place one knee and supporting hand on flat bench. Pull heavy dumbbell toward your hip with working arm, driving elbow high to contract lats and rhomboids."
       },
       {
         id: "fri-2",
-        name: "Single-Arm Dumbbell Row on Flat Bench [Mid-Back Thickness]",
+        name: "Close-Grip Front Pulldown (V-Bar / Mag Grip) [Lower Lat & Teres Focus]",
         targetGroup: "Back",
-        sets: 3,
-        reps: "10-12 reps per side",
-        equipment: "Heavy Dumbbells & Flat Bench (Lewiston PF)",
-        coachTip: "Support opposite knee and hand on flat bench. Pull dumbbell up to lower hip/ribcage, keeping back flat and elbow close to body."
+        sets: 4,
+        reps: "10-12 reps",
+        equipment: "PF Lat Pulldown Machine / V-Bar",
+        coachTip: "Attach close-grip V-bar to pulldown cable. Pull bar directly to lower chest while keeping chest lifted high. Targets lower lat insertion and thickness."
       },
       {
         id: "fri-3",
-        name: "Straight-Arm Lat Pulldown (Cable Rope Attachment) [Lat Isolation]",
-        targetGroup: "Back",
-        sets: 3,
-        reps: "12-15 reps",
-        equipment: "High Cable Pulley & Rope Attachment",
-        coachTip: "Keep arms straight with slight elbow bend. Pull rope down from forehead height to thighs using only lats without bending elbows."
+        name: "Rear Delt Face Pulls (Rope Attachment) [Rear Delts & Upper Back Posture]",
+        targetGroup: "Shoulders",
+        sets: 4,
+        reps: "15 reps",
+        equipment: "PF Cable Tower / Rope Attachment",
+        coachTip: "Set pulley to upper face height holding rope ends. Pull rope toward bridge of nose while separating hands and rotating wrists back. Builds rear deltoids and corrects rounded posture."
       },
       {
         id: "fri-4",
-        name: "Planet Fitness Dumbbell Hammer Curls [Brachialis & Forearm Thickness]",
+        name: "Standing Cable Curl (Straight / EZ Bar) [Continuous Tension Bicep Mass]",
         targetGroup: "Biceps",
         sets: 4,
-        reps: "10-12 reps",
-        equipment: "Dumbbells (Lewiston PF)",
-        coachTip: "Keep palms facing inward (neutral grip) throughout entire curl. Sculpts brachialis muscle under biceps for thicker arm look."
+        reps: "12-15 reps",
+        equipment: "PF Low Cable Pulley / Straight Bar",
+        coachTip: "Keep elbows locked against ribs. Curl cable bar up squeezing biceps at the top. Cable resistance keeps biceps under tension at bottom and top of every rep."
       },
       {
         id: "fri-5",
-        name: "Cable Rope Hammer Curls or High Pulley Bicep Flex Curls",
+        name: "Incline Dumbbell Curl [Long Head Bicep Peak Stretch]",
         targetGroup: "Biceps",
         sets: 3,
+        reps: "10-12 reps",
+        equipment: "PF Incline Bench & Dumbbells",
+        coachTip: "Set bench to 45 degree incline. Let arms hang behind torso to put maximum stretch on bicep long head. Curl dumbbells smoothly without moving elbows forward."
+      },
+      {
+        id: "fri-6",
+        name: "Standing Reverse Barbell/EZ-Bar Curls [Brachioradialis Forearm Top Carve]",
+        targetGroup: "Forearms",
+        sets: 4,
         reps: "12-15 reps",
-        equipment: "Low Cable Pulley with Rope",
-        coachTip: "Keep elbows fixed against ribs. Curl rope ends toward front delts with constant cable tension at bottom and top."
+        equipment: "PF EZ-Bar Rack / Fixed Barbells",
+        coachTip: "Grip fixed barbell or EZ-bar with an overhand (pronated) grip. Curl bar upward keeping elbows tucked. Directly targets top forearm brachioradialis and outer bicep!"
+      },
+      {
+        id: "fri-7",
+        name: "Heavy Dumbbell Farmer Curls / Static Hold Curls [Forearm Grip Endurance & Striations]",
+        targetGroup: "Forearms",
+        sets: 3,
+        reps: "45-60 sec hold / 15 reps",
+        equipment: "PF Free Weight Area / Heavy Dumbbells",
+        coachTip: "Hold heavy dumbbells in neutral grip with elbows bent at 90 degrees for 30 seconds, then immediately pump out 15 hammer curls. Forges iron grip strength and forearm vascularity!"
       },
       {
         id: "fri-cardio",
-        name: "Daily Planet Fitness Treadmill Walk [20-30 Minutes Fat Burning Target]",
+        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run on Treadmill",
         targetGroup: "Cardio",
         sets: 1,
-        reps: "20-30 mins (@ 3.0 MPH, 5-8% Incline)",
-        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
-        coachTip: "Finish off your pull day with 20-30 minutes of steady incline walking on the treadmill."
+        reps: "45 mins total (30m walk @ 3.5 MPH + 15m run @ 6.0 MPH)",
+        equipment: "Planet Fitness Treadmill",
+        coachTip: "Complete your Friday 45-minute treadmill walk & run right after your forearm burnout before heading home to enjoy your weekly Japanese Ramen treat meal!"
       }
     ]
   },
   {
     dayOfWeek: 6, // Saturday
     dayName: "Saturday",
-    splitName: "Legs & Core B (Hamstrings Focus, Glute Density, Core Carve)",
+    splitName: "Legs B & Abs — Glute Lift, Hamstrings, Calves & Deep Core Carve",
     isRestDay: false,
-    questTitle: "[Daily Quest] Clear Saturday Legs B & Core Carve Finale",
-    description: "Weekend lower body density focusing on hamstrings, glutes, and obliques using Romanian deadlifts and lunges at Lewiston Planet Fitness to finish off the training week.",
-    xpReward: 600,
+    questTitle: "[Daily Quest] Planet Fitness Legs B & Deep Abdominal Carve",
+    description: "Finish your 6-day PPL lifting split with Legs B plus intense deep abdominal carving at Planet Fitness Lewiston! Target glute separation, hamstring detail, diamond calves, and a shredded midsection before completing your 45-minute post-workout treadmill cardio.",
+    xpReward: 500,
     exercises: [
       {
         id: "sat-1",
-        name: "Smith Machine Romanian Deadlifts (RDLs) or Dumbbell RDLs",
-        targetGroup: "Legs",
-        sets: 4,
-        reps: "8-10 reps",
-        equipment: "Smith Machine or Dumbbells (Lewiston PF)",
-        coachTip: "Keep slight bend in knees, hinge hips straight back while lowering bar along shins until deep hamstring stretch is felt. Squeeze glutes to stand."
-      },
-      {
-        id: "sat-2",
-        name: "Planet Fitness Leg Press (High Foot Placement for Glutes / Hamstrings)",
+        name: "Dumbbell Romanian Deadlifts (RDLs) [Hamstring & Glute Stretch Compound]",
         targetGroup: "Legs",
         sets: 4,
         reps: "10-12 reps",
-        equipment: "Leg Press Machine (Lewiston PF)",
-        coachTip: "Place feet high and wide on leg press footboard. Shifts focus directly to posterior chain (glutes and hamstrings)."
+        equipment: "PF Free Weight Area / Dumbbells",
+        coachTip: "Stand holding dumbbells in front of thighs with slight knee bend. Hinge hips straight back keeping flat spine until dumbbells reach mid-shin and you feel a deep hamstring stretch. Drive hips forward to stand and squeeze glutes."
+      },
+      {
+        id: "sat-2",
+        name: "Dumbbell Walking Lunges or Bulgarian Split Squats [Unilateral Quad & Glute Tone]",
+        targetGroup: "Legs",
+        sets: 4,
+        reps: "12 reps per leg",
+        equipment: "PF Free Weight Area / Dumbbells",
+        coachTip: "Step forward into a lunge or place rear foot on bench for split squats. Lower rear knee gently toward floor. Unilateral training balances leg symmetry and carves deep glute separation."
       },
       {
         id: "sat-3",
-        name: "Walking Dumbbell Lunges or Stationary Split Squats",
+        name: "Smith Machine Glute Bridge / Hip Thrust [Glute Activation & Peak Lift]",
         targetGroup: "Legs",
-        sets: 3,
-        reps: "12 reps per leg",
-        equipment: "Dumbbells & Gym Floor / Turf",
-        coachTip: "Step forward into deep lunge with upright torso. Drive through front heel to return or step through for walking lunges."
+        sets: 4,
+        reps: "12-15 reps",
+        equipment: "Planet Fitness Smith Machine & Bench",
+        coachTip: "Position upper back across flat bench and Smith bar across hips (use bar pad). Drive hips toward ceiling squeezing glutes hard for 2 seconds at full extension."
       },
       {
         id: "sat-4",
-        name: "Rotary Torso Machine or Cable Woodchoppers [Oblique Carve]",
-        targetGroup: "Abs",
-        sets: 3,
-        reps: "15 reps per side",
-        equipment: "Rotary Torso Machine or Cable Pulley",
-        coachTip: "Rotate torso against resistance with controlled speed. Carves tight obliques and lateral core armor."
+        name: "Seated / Standing Calf Raise Machine [Calf Soleus & Gastrocnemius Density]",
+        targetGroup: "Legs",
+        sets: 4,
+        reps: "15-20 reps",
+        equipment: "PF Calf Machine",
+        coachTip: "Lower heels deeply for full stretch, drive up onto big toes and hold peak contraction for 2 seconds. High volume builds dense, diamond calf heads."
       },
       {
         id: "sat-5",
-        name: "Mat Forearm Plank Hold & Captain's Chair Leg Raises Burnout",
+        name: "Decline Bench Sit-Ups with Weighted Plate [Rectus Abdominis Mass & Carve]",
+        targetGroup: "Abs",
+        sets: 4,
+        reps: "15 reps",
+        equipment: "PF Decline Ab Bench & Weight Plate",
+        coachTip: "Hook feet under decline ab bench pads holding a 10-25 lb plate against chest. Curl torso up rounding spine to contract abs, lower slowly under control. Builds deep 6-pack block thickness."
+      },
+      {
+        id: "sat-6",
+        name: "Cable Oblique Woodchoppers (High to Low & Low to High) [V-Taper Oblique Armor]",
+        targetGroup: "Abs",
+        sets: 4,
+        reps: "15 reps per side",
+        equipment: "PF Cable Tower / Single Handle",
+        coachTip: "Stand sideways to cable tower. Pull handle diagonally across body from high pulley down across hip (or low to high) while twisting torso and tightening obliques. Carves sharp side oblique armor."
+      },
+      {
+        id: "sat-7",
+        name: "Abdominal Plank & Russian Twist Burnout [Deep Core Stabilization]",
         targetGroup: "Abs",
         sets: 3,
-        reps: "60 seconds hold / 15 raises",
-        equipment: "Stretching Area Mat & Captain's Chair",
-        coachTip: "Finish the 6-day split with a 60-second strict plank superset with hanging leg raises to lock in core strength and aesthetic posture."
+        reps: "60 sec plank + 20 twists",
+        equipment: "PF Stretch Area / Mats",
+        coachTip: "Hold a rigid 60-second forearm plank, then immediately transition to 20 seated Russian twists touching floor side to side. Ultimate core finisher!"
       },
       {
         id: "sat-cardio",
-        name: "Daily Planet Fitness Treadmill Walk [20-30 Minutes Fat Burning Target]",
+        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run on Treadmill",
         targetGroup: "Cardio",
         sets: 1,
-        reps: "20-30 mins (@ 3.0 MPH, 5-8% Incline)",
-        equipment: "Matrix / Life Fitness Treadmill (Lewiston PF)",
-        coachTip: "Finish your training week with 20-30 minutes of incline treadmill walking. Consistent daily walking guarantees 1 lb/week fat loss while maintaining muscular fullness!"
+        reps: "45 mins total (30m walk @ 3.5 MPH + 15m run @ 6.0 MPH)",
+        equipment: "Planet Fitness Treadmill",
+        coachTip: "Conquer your Saturday training week with your final 45-minute treadmill walk and run session at Planet Fitness Lewiston!"
       }
     ]
   }
 ];
 
-export const PLANET_FITNESS_PPL_ROUTINE = PLANET_FITNESS_LEWISTON_6DAY_ROUTINE;
+export const JAPANESE_HOME_BODYWEIGHT_ROUTINE = PLANET_FITNESS_PPL_ROUTINE;
+export const JAPANESE_APARTMENT_BODYWEIGHT_ROUTINE = PLANET_FITNESS_PPL_ROUTINE;
+export const PLANET_FITNESS_LEWISTON_6DAY_ROUTINE = PLANET_FITNESS_PPL_ROUTINE;
 
 export function getTodayWorkout(): WorkoutDay {
   const dayIndex = new Date().getDay(); // 0 = Sunday, 1 = Monday...
-  return PLANET_FITNESS_LEWISTON_6DAY_ROUTINE.find(d => d.dayOfWeek === dayIndex) || PLANET_FITNESS_LEWISTON_6DAY_ROUTINE[0];
+  return PLANET_FITNESS_PPL_ROUTINE.find(d => d.dayOfWeek === dayIndex) || PLANET_FITNESS_PPL_ROUTINE[0];
 }

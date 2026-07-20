@@ -12,10 +12,10 @@ export default function WorkoutQuestView() {
   const [exerciseWeights, setExerciseWeights] = useState<Record<string, string>>({});
   const [questCleared, setQuestCleared] = useState<boolean>(false);
 
-  // Planet Fitness Treadmill Walking State (20-30 mins daily target)
+  // Planet Fitness Treadmill Cardio State (45 mins daily target: 30m walk + 15m run)
   const [treadmillMinutes, setTreadmillMinutes] = useState<number>(0);
   const [customMinutesInput, setCustomMinutesInput] = useState<string>('');
-  const TREADMILL_GOAL = 30;
+  const TREADMILL_GOAL = 45;
 
   const currentDayWorkout = PLANET_FITNESS_PPL_ROUTINE.find(d => d.dayOfWeek === selectedDay) || PLANET_FITNESS_PPL_ROUTINE[0];
 
@@ -42,7 +42,12 @@ export default function WorkoutQuestView() {
       const todayKey = new Date().toISOString().split('T')[0];
       localStorage.setItem(`pf_treadmill_minutes_${todayKey}`, nextMinutes.toString());
     }
-    awardXp(amount >= 20 ? 50 : 25, 'agi');
+    awardXp(amount >= 30 ? 75 : 35, 'agi');
+    if (nextMinutes >= TREADMILL_GOAL) {
+      const state = loadHunterState();
+      state.completedQuestsToday.cardio = true;
+      saveHunterState(state);
+    }
   };
 
   const handleCustomMinutesSubmit = (e: React.FormEvent) => {
@@ -105,7 +110,7 @@ export default function WorkoutQuestView() {
             6-Day Planet Fitness Gym Split
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            Tailored specifically for Planet Fitness Lewiston equipment (Smith Machines, Cable Towers, Leg Press, and Matrix/Life Fitness Treadmills). Sunday is reserved for System Restoration; Monday is Push A + Auburn Walmart Grocery Run & Chinese General Tso's Shred Batch Meal Prep.
+            Tailored specifically for Planet Fitness Lewiston equipment (Smith Machines, Cable Towers, Leg Press, and Matrix/Life Fitness Treadmills). Sunday is Active Recovery & 45m Treadmill Cardio; Monday is Push A + Auburn Walmart Grocery Run & Japanese Teriyaki Shred Batch Meal Prep.
           </p>
         </div>
 
@@ -118,25 +123,25 @@ export default function WorkoutQuestView() {
         </div>
       </div>
 
-      {/* PLANET FITNESS DAILY TREADMILL WALKING LOG */}
+      {/* PLANET FITNESS POST-WORKOUT 45-MINUTE TREADMILL CARDIO LOG */}
       <div className="bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 rounded-2xl border border-system-cyan/50 shadow-glow-blue space-y-4">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-gold mb-1">
               <Footprints className="w-4 h-4 text-system-cyan animate-pulse" />
-              <span>Daily Planet Fitness Treadmill Walking Log</span>
+              <span>Mandatory Daily Post-Workout Treadmill Cardio Protocol</span>
             </div>
             <h3 className="text-xl font-black text-white uppercase tracking-wide">
-              {treadmillMinutes} / {TREADMILL_GOAL} <span className="text-sm text-zinc-400 font-bold">Minutes Today (~{(treadmillMinutes * 0.05).toFixed(1)} Miles Incline Walk)</span>
+              {treadmillMinutes} / {TREADMILL_GOAL} <span className="text-sm text-zinc-400 font-bold">Minutes Today (30m Incline Walk + 15m Jog/Run)</span>
             </h3>
             <p className="text-xs text-zinc-300 mt-0.5">
-              Consistent daily 20-30 minute incline walking on Planet Fitness treadmills burns fat directly, enhances cardiovascular recovery, and achieves 1 lb/week fat loss without loose skin!
+              Perform your mandatory 45-minute cardio routine on the Planet Fitness treadmills right after lifting (30 minutes brisk walking @ 3.5 MPH + 15 minutes running @ 6.0 MPH). Essential for hitting your 160 lb target cleanly without muscle loss or loose skin!
             </p>
           </div>
 
           <div className="w-full md:w-64 bg-system-dark/80 p-3.5 rounded-xl border border-system-blue/30 space-y-2">
             <div className="flex justify-between text-xs font-bold">
-              <span className="text-zinc-400">Treadmill Goal (30m)</span>
+              <span className="text-zinc-400">Cardio Goal (45m)</span>
               <span className="text-system-cyan font-mono">{stepProgressPct}%</span>
             </div>
             <div className="w-full h-2.5 bg-black/60 rounded-full overflow-hidden border border-white/10">
@@ -153,25 +158,25 @@ export default function WorkoutQuestView() {
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-bold text-zinc-400 uppercase mr-1">Quick Add:</span>
             <button
-              onClick={() => handleAddMinutes(10)}
-              className="px-3.5 py-2 rounded-xl bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
-            >
-              <Footprints className="w-3.5 h-3.5 text-system-cyan" />
-              <span>+10 Mins (~0.5 Mile)</span>
-            </button>
-            <button
               onClick={() => handleAddMinutes(15)}
               className="px-3.5 py-2 rounded-xl bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
             >
-              <Footprints className="w-3.5 h-3.5 text-system-gold" />
-              <span>+15 Mins (~0.8 Mile)</span>
+              <Footprints className="w-3.5 h-3.5 text-system-cyan" />
+              <span>+15 Mins (Run Protocol)</span>
             </button>
             <button
               onClick={() => handleAddMinutes(30)}
+              className="px-3.5 py-2 rounded-xl bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
+            >
+              <Footprints className="w-3.5 h-3.5 text-system-gold" />
+              <span>+30 Mins (Walk Protocol)</span>
+            </button>
+            <button
+              onClick={() => handleAddMinutes(45)}
               className="px-3.5 py-2 rounded-xl bg-system-dark border border-system-blue/50 hover:border-system-cyan text-xs font-bold text-system-cyan hover:bg-system-blue hover:text-black transition-all flex items-center gap-1.5"
             >
               <Flame className="w-3.5 h-3.5" />
-              <span>+30 Mins (Full Daily Goal!)</span>
+              <span>+45 Mins (Full Walk+Run Goal!)</span>
             </button>
           </div>
 
