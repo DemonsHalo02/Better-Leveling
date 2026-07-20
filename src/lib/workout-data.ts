@@ -158,7 +158,7 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
     splitName: "Pull A + Forearms (Back Width, Biceps & PF Forearm Forge)",
     isRestDay: false,
     questTitle: "[Daily Quest] Planet Fitness Pull A & Forearm Forge",
-    description: "Start eating your prepped Japanese Chicken Teriyaki bowls today! Hit Planet Fitness Lewiston for Pull A + Forearms: expand lat width, build thick bicep peaks, and carve crushing forearm density with dedicated hammer curls, bench wrist curls, and low-pulley cable wrist flexions on PF equipment. Finish strong with 45 minutes on the PF treadmill.",
+    description: "Start eating your prepped Chinese General Tso's Glazed Chicken bowls today! Hit Planet Fitness Lewiston for Pull A + Forearms: expand lat width, build thick bicep peaks, and carve crushing forearm density with dedicated hammer curls, bench wrist curls, and low-pulley cable wrist flexions on PF equipment. Finish strong with 45 minutes on the PF treadmill.",
     xpReward: 500,
     exercises: [
       {
@@ -416,7 +416,7 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
     splitName: "Pull B + Forearms (Back Thickness, Biceps & PF Grip Forge)",
     isRestDay: false,
     questTitle: "[Daily Quest] Planet Fitness Pull B & Forearm Grip Forge",
-    description: "Pull B + Forearms at Planet Fitness Lewiston targets thick mid-back musculature, rear deltoid posture, bicep density, and intense forearm grip development using fixed EZ-bars, heavy dumbbells, and cable rollers on PF equipment. Plus your Friday evening Japanese Ramen treat meal after hitting your 45-minute treadmill cardio!",
+    description: "Pull B + Forearms at Planet Fitness Lewiston targets thick mid-back musculature, rear deltoid posture, bicep density, and intense forearm grip development using fixed EZ-bars, heavy dumbbells, and cable rollers on PF equipment. Plus your Friday evening Chinese Chow Mein treat meal after hitting your 45-minute treadmill cardio!",
     xpReward: 500,
     exercises: [
       {

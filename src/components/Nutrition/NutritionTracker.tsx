@@ -22,7 +22,7 @@ interface NutritionTrackerProps {
 
 export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) {
   const [meals, setMeals] = useState<LoggedMeal[]>([]);
-  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('Japan');
+  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('China');
   const [showManualModal, setShowManualModal] = useState(false);
   const [manualName, setManualName] = useState('');
   const [manualCals, setManualCals] = useState('');
@@ -40,8 +40,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
 
       const savedCountry = localStorage.getItem('pf_selected_aisle_template');
       if (savedCountry && savedCountry !== 'All') {
-        const migrated = savedCountry === 'China' ? 'Japan' : savedCountry === 'China Bulking' ? 'Japan Bulking' : savedCountry;
-        setSelectedDeckCountry(migrated);
+        setSelectedDeckCountry(savedCountry);
       }
     }
   }, [today]);
@@ -96,10 +95,10 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
 
   const activePlan = MEAL_PREP_PLANS.find(p => p.country === selectedDeckCountry) || MEAL_PREP_PLANS[0];
 
-  const calGoal = activePlan.targetDailyCalories || 2080;
-  const protGoal = activePlan.targetDailyProtein || 178;
-  const carbGoal = selectedDeckCountry === 'Japan Bulking' || selectedDeckCountry === 'China Bulking' ? 350 : 200;
-  const fatGoal = selectedDeckCountry === 'Japan Bulking' || selectedDeckCountry === 'China Bulking' ? 63 : 60;
+  const calGoal = activePlan.targetDailyCalories || 2150;
+  const protGoal = activePlan.targetDailyProtein || 170;
+  const carbGoal = selectedDeckCountry === 'China Bulking' ? 370 : 220;
+  const fatGoal = selectedDeckCountry === 'China Bulking' ? 65 : 55;
 
   const handleSelectDeckCountry = (country: string) => {
     setSelectedDeckCountry(country);
@@ -179,14 +178,14 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
           </div>
           <div className="flex items-center gap-2">
             <a
-              href={activePlan.country === 'Japan Bulking' || activePlan.country === 'China Bulking' ? '/Japanese_Bulking_Meal_Plan_Under_50.html' : '/Japanese_Meal_Plan_Under_50.html'}
+              href={activePlan.country === 'China Bulking' ? '/Chinese_Bulking_Meal_Plan_Under_50.html' : '/Chinese_Meal_Plan_Under_50.html'}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 bg-system-dark hover:bg-system-gold text-system-gold hover:text-black px-3 py-1 rounded-lg text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all cursor-pointer no-underline"
-              title="Print or Save as PDF the selected Japanese Meal Prep Blueprint"
+              title="Print or Save as PDF the selected Chinese Meal Prep Blueprint"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>🖨️ Print {activePlan.country === 'Japan Bulking' || activePlan.country === 'China Bulking' ? 'Phase 2 Bulking' : 'Phase 1 Cutting'} PDF</span>
+              <span>🖨️ Print {activePlan.country === 'China Bulking' ? 'Phase 2 Bulking' : 'Phase 1 Cutting'} PDF</span>
             </a>
             <span className="text-[10px] bg-system-blue/20 text-system-cyan border border-system-blue/40 px-2.5 py-1 rounded font-mono font-bold whitespace-nowrap">
               +75 INT XP Per Meal
@@ -209,9 +208,9 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
                 }`}
               >
                 <span>{plan.flag}</span>
-                <span>{plan.country === 'Japan' || plan.country === 'China' ? 'Phase 1: Japan Cutting ($45.38)' : plan.country === 'Japan Bulking' || plan.country === 'China Bulking' ? 'Phase 2: Japan Bulking ($43.76)' : plan.country}</span>
-                {(plan.country === 'Japan' || plan.country === 'China') && <span className="text-[9px] bg-system-gold text-black px-1.5 py-0.2 rounded font-black ml-0.5">#1 Main</span>}
-                {(plan.country === 'Japan Bulking' || plan.country === 'China Bulking') && <span className="text-[9px] bg-red-500 text-white px-1.5 py-0.2 rounded font-black ml-0.5">Post-160 Lb</span>}
+                <span>{plan.country === 'China' ? 'Phase 1: China Cutting ($45.38)' : plan.country === 'China Bulking' ? 'Phase 2: China Bulking ($43.76)' : plan.country}</span>
+                {plan.country === 'China' && <span className="text-[9px] bg-system-gold text-black px-1.5 py-0.2 rounded font-black ml-0.5">#1 Main</span>}
+                {plan.country === 'China Bulking' && <span className="text-[9px] bg-red-500 text-white px-1.5 py-0.2 rounded font-black ml-0.5">Post-160 Lb</span>}
               </button>
             );
           })}
