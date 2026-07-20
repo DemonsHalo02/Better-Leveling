@@ -75,17 +75,17 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
     splitName: "Push A (Chest, Shoulders & Triceps Hypertrophy)",
     isRestDay: false,
     questTitle: "[Daily Quest] Planet Fitness Push A & Monday Walmart Grocery Prep",
-    description: "Fuel up at 8:00 AM with Death Wish Espresso Roast Black Coffee & Banana, then hit Planet Fitness Lewiston for Push A! Build chest thickness, capped shoulders, and horseshoe triceps on PF equipment, followed immediately by 45 minutes of treadmill cardio. After gym, execute your weekly Walmart Auburn grocery run & Japanese Teriyaki meal prep!",
+    description: "Fuel up at 8:00 AM with Death Wish Espresso Roast Black Coffee & Banana, then hit Planet Fitness Lewiston for Push A! Build chest thickness, capped shoulders, and horseshoe triceps on PF equipment, followed immediately by 45 minutes of treadmill cardio. After gym, execute your weekly Walmart Auburn grocery run & Chinese General Tso's meal prep!",
     xpReward: 500,
     exercises: [
       {
         id: "mon-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Japanese Chicken Teriyaki Batch Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Chinese General Tso's Chicken Batch Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Teriyaki Batch Prep (For Tuesday Start)",
+        reps: "General Tso's Batch Prep (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your exact weekly groceries ($45.38 cutting / $43.76 bulking + $32.98 restock with Salmon). Cut chicken breasts into cubes, wok-sear with low-cal Japanese Teriyaki glaze, cook bulk rice, and portion across 14 containers!"
+        coachTip: "Pick up your exact weekly groceries ($45.38 cutting / $43.76 bulking + $31.08 restock). Cut chicken breasts into cubes, wok-sear with low-cal Chinese General Tso's glaze, cook bulk rice, and portion across 14 containers!"
       },
       {
         id: "mon-1",
@@ -498,7 +498,7 @@ export const PLANET_FITNESS_PPL_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "45 mins total (30m walk @ 3.5 MPH + 15m run @ 6.0 MPH)",
         equipment: "Planet Fitness Treadmill",
-        coachTip: "Complete your Friday 45-minute treadmill walk & run right after your forearm burnout before heading home to enjoy your weekly Japanese Ramen treat meal!"
+        coachTip: "Complete your Friday 45-minute treadmill walk & run right after your forearm burnout before heading home to enjoy your weekly Chinese Chow Mein treat meal!"
       }
     ]
   },

@@ -372,22 +372,6 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     servingSize: "1 Tea Bag",
     coachNote: "Essential Auburn Walmart green tea staple paired with every post-workout main meal for daily metabolism-boosting hydration.",
     cuisine: ["China", "China Bulking"]
-  },
-  {
-    id: "g-22",
-    upc: "078742135000",
-    name: "Chicken of the Sea / Great Value Wild Pink Salmon (14.75 oz can - Omega-3s)",
-    store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
-    category: "Protein",
-    priceEst: "$2.40 (14.75 oz can)",
-    calories: 210,
-    protein: 39,
-    carbs: 0,
-    fat: 6,
-    servingSize: "1 can (418g)",
-    coachNote: "Weekly Omega-3 skin elasticity and joint lubrication power item! Rich EPA/DHA fatty acids support lifting recovery and skin elasticity without loose skin.",
-    cuisine: ["China", "China Bulking"]
   }
 ];
 
@@ -400,8 +384,8 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main Phase 1 Cutting Blueprint ($45.38/Wk)",
     targetDailyCalories: 2150,
     targetDailyProtein: 170,
-    estCostPerWeek: "$45.38 Weekly Consumables / $33.48 Periodic Restock ($78.86 Combined Total)",
-    description: "The #1 Main Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint! Designed specifically around Hunter Nick's schedule: Monday Grocery Run at Auburn Maine Walmart Supercenter ($50 budget for regular runs, max $33 for restocking) & Batch Meal Prep, starting eating Tuesday (Tuesday-Monday 7-Day Cycle). Features high-octane Death Wish Espresso Roast Iced Black Coffee + Banana at 8:00 AM as extreme Pre-Workout focus before hitting Planet Fitness Lewiston! Followed by a cooked-fresh Post-Workout Scallion & Liquid Egg White Scramble with Chili Garlic Sauce at 10:30-11:00 AM, authentic Wok-Seared Chinese General Tso's Glazed Chicken Breast for Lunch and Dinner, and slow-release Casein Greek Yogurt bowls (with 4 tubs / 1 Gallon guaranteed so you never run out!). Traditional 100% Green Tea is paired with every post-workout main meal to maximize thermogenesis. Plus, includes Nissin Chow Mein / Lo Mein Noodles as your weekly reward treat meal on Friday or Saturday evening!",
+    estCostPerWeek: "$45.38 Weekly Consumables / $31.08 Periodic Restock ($76.46 Combined Total)",
+    description: "The #1 Main Chinese General Tso's Chicken & Death Wish Black Coffee Shred Blueprint! Designed specifically around Hunter Nick's schedule: Monday Grocery Run at Auburn Maine Walmart Supercenter ($50 budget for regular runs, max $25 for restocking) & Batch Meal Prep, starting eating Tuesday (Tuesday-Monday 7-Day Cycle). Features high-octane Death Wish Espresso Roast Iced Black Coffee + Banana at 8:00 AM as extreme Pre-Workout focus before hitting Planet Fitness Lewiston! Followed by a cooked-fresh Post-Workout Scallion & Liquid Egg White Scramble with Chili Garlic Sauce at 10:30-11:00 AM, authentic Wok-Seared Chinese General Tso's Glazed Chicken Breast for Lunch and Dinner, and slow-release Casein Greek Yogurt bowls (with 4 tubs / 1 Gallon guaranteed so you never run out!). Traditional 100% Green Tea is paired with every post-workout main meal to maximize thermogenesis. Plus, includes Nissin Chow Mein / Lo Mein Noodles as your weekly reward treat meal on Friday or Saturday evening!",
     meals: [
       {
         name: "Pre-Workout Fuel: Death Wish Iced Black Coffee & Banana",
@@ -490,7 +474,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Post-160 Lb Lean Bulk ($43.76/Wk)",
     targetDailyCalories: 2750,
     targetDailyProtein: 189,
-    estCostPerWeek: "$43.76 Weekly Consumables / $33.48 Periodic Restock ($77.24 Combined Total)",
+    estCostPerWeek: "$43.76 Weekly Consumables / $31.08 Periodic Restock ($74.84 Combined Total)",
     description: "The #1 Lean Bulking Blueprint designed for Hunter Nick once he conquers his 160 Lb target weight! Built around the same Monday Auburn ME Walmart Grocery Run & Batch Meal Prep schedule. Notice how this bulking plan is exactly $1.62 CHEAPER per week ($43.76 vs $45.38) while adding +600 clean muscle-building calories every day! We swap 4 tubs of yogurt and liquid egg whites for a massive 5 lb bag of Long Grain White Rice, 42 oz of Rolled Oats, 3 tubs of Greek Yogurt, and 35 whole eggs across the week (5 whole eggs daily to naturally boost hormone production and muscle recovery after heavy compound lifts at Planet Fitness Lewiston!). Features Wok-Seared Chinese General Tso's Glazed Chicken with DOUBLE White Rice & Broccoli, hot 100% Green Tea, and your Friday/Saturday Chow Mein treat meal!",
     meals: [
       {

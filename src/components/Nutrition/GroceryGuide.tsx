@@ -341,7 +341,7 @@ export default function GroceryGuide() {
             Hunter Grocery Companion
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            High-protein, authentic Chinese General Tso's Chicken & Death Wish Black Coffee Shred & Bulking Blueprints priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run under $50 budget ($43.76 - $45.38 Weekly Consumables / $33.48 Periodic Restock)! Features 100% Green Tea and 8:00 AM Pre-Workout Death Wish Iced Black Coffee.
+            High-protein, authentic Chinese General Tso's Chicken & Death Wish Black Coffee Shred & Bulking Blueprints priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run under $50 budget ($43.76 - $45.38 Weekly Consumables / $31.08 Periodic Restock)! Features 100% Green Tea and 8:00 AM Pre-Workout Death Wish Iced Black Coffee.
           </p>
         </div>
 
@@ -526,7 +526,7 @@ export default function GroceryGuide() {
                 </div>
                 <p className="text-xs text-zinc-300">
                   <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment - $45.38):</strong> Chicken Breasts ($13.40), Greek Yogurt Tubs ($15.92), 36-ct Eggs ($6.84), Liquid Egg Whites ($3.48), Frozen Broccoli ($2.32), White Rice ($1.48), Bananas ($1.16), Fresh Scallions / Green Onions ($0.78).<br />
-                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $33.48):</strong> Death Wish Coffee Espresso Roast Ground ($11.76), Panda Express General Tso's Sauce ($3.48), Lee Kum Kee Chili Garlic Sauce ($2.98), Wild Pink Salmon ($2.40), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Soy Sauce ($1.48), Nissin Chow Mein Noodles ($1.48), Garlic Powder ($1.18).
+                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $31.08):</strong> Death Wish Coffee Espresso Roast Ground ($11.76), Panda Express General Tso's Sauce ($3.48), Lee Kum Kee Chili Garlic Sauce ($2.98), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Soy Sauce ($1.48), Nissin Chow Mein Noodles ($1.48), Garlic Powder ($1.18).
                 </p>
               </div>
               <button
@@ -552,7 +552,7 @@ export default function GroceryGuide() {
                 </div>
                 <p className="text-xs text-zinc-300">
                   <strong className="text-system-cyan">Part 1 (Weekly Consumables - $43.76 / Exactly $1.62 Cheaper!):</strong> Chicken Breasts ($13.40), 3 Greek Yogurt Tubs ($11.94), 36-ct Eggs ($6.84), 42 oz Rolled Oats ($3.98), 5 lb Bulk White Rice ($3.34), Frozen Broccoli ($2.32), Bananas ($1.16), Fresh Scallions / Green Onions ($0.78).<br />
-                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $33.48):</strong> Death Wish Coffee Espresso Roast Ground ($11.76), Panda Express General Tso's Sauce ($3.48), Lee Kum Kee Chili Garlic Sauce ($2.98), Wild Pink Salmon ($2.40), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Soy Sauce ($1.48), Nissin Chow Mein Noodles ($1.48), Garlic Powder ($1.18).
+                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $31.08):</strong> Death Wish Coffee Espresso Roast Ground ($11.76), Panda Express General Tso's Sauce ($3.48), Lee Kum Kee Chili Garlic Sauce ($2.98), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Soy Sauce ($1.48), Nissin Chow Mein Noodles ($1.48), Garlic Powder ($1.18).
                 </p>
               </div>
               <button
@@ -759,8 +759,8 @@ export default function GroceryGuide() {
                       {tpl === 'All'
                         ? '🌐 All Items & Templates'
                         : tpl === 'China'
-                        ? '⭐ Phase 1 Cutting ($45.38 / $33.48 Restock)'
-                        : '🔥 Phase 2 Bulking ($43.76 / $33.48 Restock)'}
+                        ? '⭐ Phase 1 Cutting ($45.38 / $31.08 Restock)'
+                        : '🔥 Phase 2 Bulking ($43.76 / $31.08 Restock)'}
                     </span>
                   </button>
                 );
