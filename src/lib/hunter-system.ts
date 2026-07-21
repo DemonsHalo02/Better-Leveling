@@ -90,8 +90,8 @@ const DEFAULT_STATE: HunterState = {
     dailyProteinGoal: 178,
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
-    gymName: "K-Pop Idol Home Bodyweight Dojo (No Equipment + 45m Cardio)",
-    dietName: "Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint",
+    gymName: "Quiet Apartment Bodyweight Dojo (No Equipment + 45m Cardio)",
+    dietName: "Japanese Chicken Teriyaki & Death Wish Black Coffee Shred Blueprint",
   },
   completedQuestsToday: {
     workout: false,
@@ -183,12 +183,12 @@ export function loadHunterState(): HunterState {
         localStorage.setItem('pf_fixed_170_weight_bug_v2', 'done');
         needsSave = true;
       }
-      if (parsed.profile.dietName !== "Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint") {
-        parsed.profile.dietName = "Korean Gochujang Chicken & Death Wish Black Coffee Shred Blueprint";
+      if (parsed.profile.dietName !== "Japanese Chicken Teriyaki & Death Wish Black Coffee Shred Blueprint") {
+        parsed.profile.dietName = "Japanese Chicken Teriyaki & Death Wish Black Coffee Shred Blueprint";
         needsSave = true;
       }
-      if (parsed.profile.gymName !== "K-Pop Idol Home Bodyweight Dojo (No Equipment + 45m Cardio)") {
-        parsed.profile.gymName = "K-Pop Idol Home Bodyweight Dojo (No Equipment + 45m Cardio)";
+      if (parsed.profile.gymName !== "Quiet Apartment Bodyweight Dojo (No Equipment + 45m Cardio)") {
+        parsed.profile.gymName = "Quiet Apartment Bodyweight Dojo (No Equipment + 45m Cardio)";
         needsSave = true;
       }
     }
