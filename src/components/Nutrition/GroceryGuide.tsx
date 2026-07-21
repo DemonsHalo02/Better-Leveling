@@ -11,7 +11,7 @@ export default function GroceryGuide() {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<'items' | 'plans'>('items');
   const [selectedCountryPlan, setSelectedCountryPlan] = useState<string>('All');
-  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('Korea');
+  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('Japan');
 
   const [customItems, setCustomItems] = useState<GroceryItem[]>([]);
   const [hiddenItemIds, setHiddenItemIds] = useState<string[]>([]);
@@ -52,8 +52,10 @@ export default function GroceryGuide() {
         try { setHiddenItemIds(JSON.parse(savedHidden)); } catch {}
       }
       const savedAisleTemplate = localStorage.getItem('pf_selected_aisle_template');
-      if (savedAisleTemplate) {
+      if (savedAisleTemplate && (savedAisleTemplate === 'Japan' || savedAisleTemplate === 'Japan Bulking')) {
         setSelectedAisleTemplate(savedAisleTemplate);
+      } else {
+        setSelectedAisleTemplate('Japan');
       }
       const savedCountryPlan = localStorage.getItem('pf_selected_country_plan');
       if (savedCountryPlan) {
@@ -80,7 +82,7 @@ export default function GroceryGuide() {
       localStorage.removeItem('pf_hidden_grocery_items');
       localStorage.removeItem('pf_custom_grocery_items');
     }
-    setSelectedAisleTemplate('Korea');
+    setSelectedAisleTemplate('Japan');
     setSelectedCountryPlan('All');
     setSelectedCategory('All');
     setSelectedStore('All Stores');
@@ -138,7 +140,7 @@ export default function GroceryGuide() {
       carbs: 0,
       fat: 0,
       servingSize: "1 unit",
-      coachNote: customNote.trim() || "Custom added item for weekly Korean prep.",
+      coachNote: customNote.trim() || "Custom added item for weekly Japanese prep.",
       cuisine: [selectedAisleTemplate === 'All' ? 'All' : selectedAisleTemplate]
     };
 
@@ -303,8 +305,8 @@ export default function GroceryGuide() {
   const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery', '🍱 Meal Prep Templates'];
 
   const handlePrintPlan = (plan?: typeof MEAL_PREP_PLANS[0]) => {
-    const isBulking = (plan && plan.country === 'Korea Bulking') || (!plan && (selectedAisleTemplate === 'Korea Bulking' || selectedCountryPlan === 'Korea Bulking'));
-    const url = isBulking ? '/Korean_Bulking_Meal_Plan_Under_50.html' : '/Korean_Meal_Plan_Under_50.html';
+    const isBulking = (plan && plan.country === 'Japan Bulking') || (!plan && (selectedAisleTemplate === 'Japan Bulking' || selectedCountryPlan === 'Japan Bulking'));
+    const url = isBulking ? '/Japanese_Bulking_Meal_Plan_Under_50.html' : '/Japanese_Meal_Plan_Under_50.html';
     const win = window.open(url, '_blank');
     if (win) {
       win.focus();
@@ -341,7 +343,7 @@ export default function GroceryGuide() {
             Hunter Grocery Companion
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            High-protein, authentic Korean Gochujang Healthy Crispy Fried Chicken & Regular Dunkin' Black Coffee Shred & Bulking Blueprints priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run under $50 budget ($43.76 - $45.38 Weekly Consumables / $34.76 Periodic Restock)! Features 100% Green Tea and 8:00 AM Pre-Workout Regular Dunkin' Iced Black Coffee.
+            High-protein, pan or oven crispy fried Japanese Teriyaki Chicken & Matcha Latte Shred & Bulking Blueprints priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run around $50 budget ($49.34 - $50.96 Weekly Consumables / $26.80 Periodic Restock)! Features morning Pre-Workout Matcha Latte using Jade Leaf Brand powder and Soy Milk, plus 100% Green Tea.
           </p>
         </div>
 
@@ -375,41 +377,41 @@ export default function GroceryGuide() {
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <span className="bg-system-gold text-system-dark text-[10px] font-black uppercase px-2.5 py-0.5 rounded tracking-wider">
-                ⭐ Korean S-Rank Diet Phase Selector
+                ⭐ Japanese S-Rank Diet Phase Selector
               </span>
               <span className="text-xs font-mono font-bold text-system-cyan">
                 Target: 160 Lbs Cutting vs Post-Goal Lean Bulking
               </span>
             </div>
             <h3 className="text-lg md:text-xl font-black text-white uppercase tracking-wide">
-              Select Your Active Korean Diet Protocol & Printable PDF Guides
+              Select Your Active Japanese Diet Protocol & Printable PDF Guides
             </h3>
             <p className="text-xs text-zinc-300 max-w-3xl">
-              Switch between your active trajectory phase below. Both plans keep the exact same Monday Auburn Walmart shopping routine and ~11.4 oz daily Korean Gochujang Chicken, but adapt carbs and oats/rice to hit either calorie deficit (~2,080 kcal) or clean muscle hypertrophy (~2,680 kcal).
+              Switch between your active trajectory phase below. Both plans keep the exact same Monday Auburn Walmart shopping routine and ~11.4 oz daily Pan/Oven Crispy Fried Japanese Teriyaki Chicken, plus morning Matcha Latte (Soy Milk + Jade Leaf Mix), but adapt carbs and oats/rice to hit either calorie deficit (~2,080 kcal) or clean muscle hypertrophy (~2,680 kcal).
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-2.5 shrink-0">
             <button
               onClick={() => {
-                setSelectedAisleTemplate('Korea');
-                setSelectedCountryPlan('Korea');
+                setSelectedAisleTemplate('Japan');
+                setSelectedCountryPlan('Japan');
               }}
               className={`px-4 py-2.5 rounded-xl text-xs font-black uppercase font-mono tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
-                selectedAisleTemplate === 'Korea' && selectedCountryPlan !== 'Korea Bulking'
+                selectedAisleTemplate === 'Japan' && selectedCountryPlan !== 'Japan Bulking'
                   ? 'bg-gradient-to-r from-system-gold to-yellow-500 text-system-dark shadow-glow-gold scale-105 border border-system-gold'
                   : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10 hover:border-system-gold/50'
               }`}
             >
-              <span>🇰🇷 Phase 1: Cutting Diet (~2,080 kcal)</span>
+              <span>🇯🇵 Phase 1: Cutting Diet (~2,080 kcal)</span>
             </button>
             <button
               onClick={() => {
-                setSelectedAisleTemplate('Korea Bulking');
-                setSelectedCountryPlan('Korea Bulking');
+                setSelectedAisleTemplate('Japan Bulking');
+                setSelectedCountryPlan('Japan Bulking');
               }}
               className={`px-4 py-2.5 rounded-xl text-xs font-black uppercase font-mono tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
-                selectedAisleTemplate === 'Korea Bulking' || selectedCountryPlan === 'Korea Bulking'
+                selectedAisleTemplate === 'Japan Bulking' || selectedCountryPlan === 'Japan Bulking'
                   ? 'bg-gradient-to-r from-system-cyan to-system-blue text-system-dark shadow-glow-blue scale-105 border border-system-cyan'
                   : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10 hover:border-system-cyan/50'
               }`}
@@ -426,20 +428,20 @@ export default function GroceryGuide() {
           </div>
           <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-end">
             <a
-              href="/Korean_Meal_Plan_Under_50.html"
+              href="/Japanese_Meal_Plan_Under_50.html"
               target="_blank"
               rel="noopener noreferrer"
               className="px-3.5 py-1.5 rounded-lg bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-system-dark border border-system-gold/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5 no-underline"
             >
-              <span>📄 Phase 1 Cutting PDF ($45.38/wk)</span>
+              <span>📄 Phase 1 Cutting PDF ($50.96/wk)</span>
             </a>
             <a
-              href="/Korean_Bulking_Meal_Plan_Under_50.html"
+              href="/Japanese_Bulking_Meal_Plan_Under_50.html"
               target="_blank"
               rel="noopener noreferrer"
               className="px-3.5 py-1.5 rounded-lg bg-system-cyan/20 hover:bg-system-cyan text-system-cyan hover:text-system-dark border border-system-cyan/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5 no-underline"
             >
-              <span>📄 Phase 2 Bulking PDF ($43.76/wk)</span>
+              <span>📄 Phase 2 Bulking PDF ($49.34/wk)</span>
             </a>
           </div>
         </div>
@@ -488,7 +490,7 @@ export default function GroceryGuide() {
               <button
                 onClick={() => handlePrintPlan(MEAL_PREP_PLANS[0])}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-system-gold to-yellow-500 text-black font-black uppercase tracking-wider text-xs shadow-glow-gold hover:bg-white transition-all min-h-[38px] cursor-pointer"
-                title="Print or Save as PDF the Korean Gochujang Healthy Crispy Fried Chicken & Regular Dunkin' Black Coffee Blueprint"
+                title="Print or Save as PDF the Pan or Oven Crispy Fried Japanese Teriyaki Chicken & Matcha Latte Blueprint"
               >
                 <Printer className="w-3.5 h-3.5 text-black" />
                 <span>🖨️ Print Blueprint PDF</span>
@@ -513,7 +515,7 @@ export default function GroceryGuide() {
             </div>
           </div>
 
-          {selectedAisleTemplate === 'Korea' && (
+          {selectedAisleTemplate === 'Japan' && (
             <div className="bg-gradient-to-r from-system-gold/15 to-system-cyan/15 p-4 rounded-2xl border border-system-gold/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
@@ -521,16 +523,16 @@ export default function GroceryGuide() {
                     ⭐ #1 Main & Exclusive Blueprint
                   </span>
                   <span className="text-xs text-white font-bold">
-                    🇰🇷 Korean Gochujang Healthy Crispy Fried Chicken & Regular Dunkin' Black Coffee Shred Strategy (Under $50/wk!)
+                    🇯🇵 Pan/Oven Crispy Fried Japanese Teriyaki Chicken & Matcha Latte Shred Strategy ($50.96/wk!)
                   </span>
                 </div>
                 <p className="text-xs text-zinc-300">
-                  <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment - $45.38):</strong> Chicken Breasts ($13.40), Greek Yogurt Tubs ($15.92), 36-ct Eggs ($6.84), Liquid Egg Whites ($3.48), Frozen Broccoli ($2.32), White Rice ($1.48), Bananas ($1.16), Fresh Scallions / Green Onions ($0.78).<br />
-                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $34.76):</strong> Dunkin' Original Blend Ground Coffee ($8.98), Nasoya Authentic Korean Spicy Kimchi ($4.48), Bibigo Korean BBQ Marinade & Gochujang Glaze ($3.48), Great Value Sriracha ($2.98), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Argo Corn Starch ($1.78), Samyang Buldak Spicy Carbonara Chicken Ramen ($1.68), Soy Sauce ($1.48), Garlic Powder ($1.18).
+                  <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment - $50.96):</strong> Chicken Breasts ($13.40), 4 Greek Yogurt Tubs ($15.92), 36-ct Eggs ($6.84), Frozen Broccoli ($4.64), Liquid Egg Whites ($3.48), Soy Milk ($2.48), Scallions ($1.56), White Rice ($1.48), Bananas ($1.16).<br />
+                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $26.80):</strong> Jade Leaf Organic Matcha Powder ($8.98), Kikkoman Teriyaki Sauce ($2.98), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Argo Corn Starch ($1.78), Nissin Raoh Umami Ramen ($1.68), Soy Sauce ($1.48), Garlic Powder ($1.18).
                 </p>
               </div>
               <button
-                onClick={() => handlePrintPlan(MEAL_PREP_PLANS.find(p => p.id === 'plan-korea'))}
+                onClick={() => handlePrintPlan(MEAL_PREP_PLANS.find(p => p.id === 'plan-japan'))}
                 className="flex items-center gap-2 bg-system-dark hover:bg-white/10 text-system-gold hover:text-white px-4 py-2.5 rounded-xl text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all shrink-0 cursor-pointer"
               >
                 <Printer className="w-4 h-4 text-system-gold" />
@@ -539,7 +541,7 @@ export default function GroceryGuide() {
             </div>
           )}
 
-          {selectedAisleTemplate === 'Korea Bulking' && (
+          {selectedAisleTemplate === 'Japan Bulking' && (
             <div className="bg-gradient-to-r from-system-cyan/15 to-system-blue/15 p-4 rounded-2xl border border-system-cyan/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
@@ -547,16 +549,16 @@ export default function GroceryGuide() {
                     🔥 Phase 2 Lean Bulking Blueprint
                   </span>
                   <span className="text-xs text-white font-bold">
-                    🇰🇷 Korean Gochujang Healthy Crispy Fried Chicken Hypertrophy Protocol ($43.76/wk!)
+                    🇯🇵 Japanese Teriyaki Crispy Fried Chicken Hypertrophy Protocol ($49.34/wk!)
                   </span>
                 </div>
                 <p className="text-xs text-zinc-300">
-                  <strong className="text-system-cyan">Part 1 (Weekly Consumables - $43.76 / Exactly $1.62 Cheaper!):</strong> Chicken Breasts ($13.40), 3 Greek Yogurt Tubs ($11.94), 36-ct Eggs ($6.84), 42 oz Rolled Oats ($3.98), 5 lb Bulk White Rice ($3.34), Frozen Broccoli ($2.32), Bananas ($1.16), Fresh Scallions / Green Onions ($0.78).<br />
-                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $34.76):</strong> Dunkin' Original Blend Ground Coffee ($8.98), Nasoya Authentic Korean Spicy Kimchi ($4.48), Bibigo Korean BBQ Marinade & Gochujang Glaze ($3.48), Great Value Sriracha ($2.98), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Argo Corn Starch ($1.78), Samyang Buldak Spicy Carbonara Chicken Ramen ($1.68), Soy Sauce ($1.48), Garlic Powder ($1.18).
+                  <strong className="text-system-cyan">Part 1 (Weekly Consumables - $49.34):</strong> Chicken Breasts ($13.40), 3 Greek Yogurt Tubs ($11.94), 36-ct Eggs ($6.84), Frozen Broccoli ($4.64), Rolled Oats ($3.98), 5 lb Bulk White Rice ($3.34), Soy Milk ($2.48), Scallions ($1.56), Bananas ($1.16).<br />
+                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $26.80):</strong> Jade Leaf Organic Matcha Powder ($8.98), Kikkoman Teriyaki Sauce ($2.98), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Argo Corn Starch ($1.78), Nissin Raoh Umami Ramen ($1.68), Soy Sauce ($1.48), Garlic Powder ($1.18).
                 </p>
               </div>
               <button
-                onClick={() => handlePrintPlan(MEAL_PREP_PLANS.find(p => p.id === 'plan-korea-bulking'))}
+                onClick={() => handlePrintPlan(MEAL_PREP_PLANS.find(p => p.id === 'plan-japan-bulking'))}
                 className="flex items-center gap-2 bg-system-dark hover:bg-white/10 text-system-cyan hover:text-white px-4 py-2.5 rounded-xl text-xs font-black font-mono border border-system-cyan/40 hover:shadow-glow-blue transition-all shrink-0 cursor-pointer"
               >
                 <Printer className="w-4 h-4 text-system-cyan" />
@@ -742,8 +744,8 @@ export default function GroceryGuide() {
               <span className="text-xs font-bold text-zinc-400 uppercase mr-2 flex items-center gap-1">
                 <Utensils className="w-3.5 h-3.5 text-system-gold" /> Template Filter:
               </span>
-              {['All', 'Korea', 'Korea Bulking'].map((tpl) => {
-                const flags: Record<string, string> = { 'Korea': '🇰🇷', 'Korea Bulking': '🇰🇷💪' };
+              {['All', 'Japan', 'Japan Bulking'].map((tpl) => {
+                const flags: Record<string, string> = { 'Japan': '🇯🇵', 'Japan Bulking': '🇯🇵🔥' };
                 return (
                   <button
                     key={tpl}
@@ -758,9 +760,9 @@ export default function GroceryGuide() {
                     <span>
                       {tpl === 'All'
                         ? '🌐 All Items & Templates'
-                        : tpl === 'Korea'
-                        ? '⭐ Phase 1 Cutting ($45.38 / $34.76 Restock)'
-                        : '🔥 Phase 2 Bulking ($43.76 / $34.76 Restock)'}
+                        : tpl === 'Japan'
+                        ? '⭐ Phase 1 Cutting ($50.96 / $26.80 Restock)'
+                        : '🔥 Phase 2 Bulking ($49.34 / $26.80 Restock)'}
                     </span>
                   </button>
                 );
@@ -971,7 +973,7 @@ export default function GroceryGuide() {
                           🧂 Periodic Pantry & Seasoning Restock (Check Kitchen & Buy As Needed)
                         </h3>
                         <p className="text-xs text-zinc-400">
-                          Multi-week sauces, Dunkin' Coffee, spices, cornstarch, sriracha, cooking sprays & sweeteners
+                          Multi-week sauces, Jade Leaf Matcha, Kikkoman Teriyaki, spices, cornstarch, cooking sprays & sweeteners
                         </p>
                       </div>
                     </div>
@@ -1000,7 +1002,7 @@ export default function GroceryGuide() {
           <div className="bg-system-panel p-4 rounded-2xl border border-system-blue/30 flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <span className="text-xs font-black uppercase tracking-widest text-system-gold bg-system-gold/10 px-3 py-1 rounded-lg border border-system-gold/30">
-                💰 All Plans Guaranteed Under $50
+                💰 All Plans Guaranteed Around $50
               </span>
               <span className="text-xs font-mono text-zinc-400 hidden md:inline">
                 Select your preferred cuisine:
@@ -1010,8 +1012,8 @@ export default function GroceryGuide() {
             <div className="flex flex-wrap items-center gap-2">
               {[
                 { name: 'All', label: '🌐 All Cuisines' },
-                { name: 'Korea', label: '🇰🇷 Phase 1: Korea Cutting ($45.38/wk)' },
-                { name: 'Korea Bulking', label: '🇰🇷💪 Phase 2: Korea Bulking ($43.76/wk)' },
+                { name: 'Japan', label: '🇯🇵 Phase 1: Japan Cutting ($50.96/wk)' },
+                { name: 'Japan Bulking', label: '🇯🇵🔥 Phase 2: Japan Bulking ($49.34/wk)' },
               ].map((c) => (
                 <button
                   key={c.name}

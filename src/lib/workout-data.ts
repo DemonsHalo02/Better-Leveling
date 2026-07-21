@@ -21,24 +21,24 @@ export interface WorkoutDay {
   exercises: Exercise[];
 }
 
-export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
+export const JAPANESE_SAMURAI_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
-    splitName: "System Restoration / K-Pop Idol Yoga & Deep Stretch (Rest Day)",
+    splitName: "System Restoration / Japanese Samurai Yoga & Active Recovery Flow (Rest Day)",
     isRestDay: true,
-    questTitle: "[Daily Quest] K-Pop Idol Active Recovery & Flexibility Flow",
-    description: "Sunday is your official System Restoration Day! Focus on gentle K-Pop idol yoga flows, deep stretching, and mindful breathing inside your quiet apartment to prepare your body for Monday's grocery run, Korean meal prep, and Upper Body training. Concludes with your daily 45-minute dual cardio session (30-minute brisk walk + 15-minute run).",
+    questTitle: "[Daily Quest] Japanese Samurai Active Recovery & Flexibility Flow",
+    description: "Sunday is your official System Restoration & Active Recovery Day! Focus on gentle Japanese mobility flows, deep stretching, and mindful breathing inside your quiet apartment to prepare your body for Monday's grocery run, Japanese Teriyaki meal prep, and Upper Body training. Concludes with your daily 45-minute dual cardio session (30-minute brisk walk + 15-minute run).",
     xpReward: 300,
     exercises: [
       {
         id: "sun-1",
-        name: "K-Pop Idol Mobility Flow: Cat-Cow to Downward Dog [15 Minutes]",
+        name: "Japanese Samurai Mobility Flow: Cat-Cow to Downward Dog & Child's Pose [15 Minutes]",
         targetGroup: "Full Body",
         sets: 1,
         reps: "15 mins (flow through poses slowly)",
         equipment: "Mat or Carpet (Home)",
-        coachTip: "Start on all fours. Alternate between Cat (round spine up) and Cow (arch spine down) for 10 slow breaths, then push hips up into Downward Dog holding 30 seconds to lengthen calves and hamstrings. Used by K-Pop trainees to maintain elite posture and flexibility."
+        coachTip: "Start on all fours. Alternate between Cat (round spine up) and Cow (arch spine down) for 10 slow breaths, then push hips up into Downward Dog holding 30 seconds to lengthen calves and hamstrings. Transition gently into Child's Pose to decompress the lumbar spine and calm the nervous system."
       },
       {
         id: "sun-2",
@@ -47,81 +47,81 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "15 mins (hold each stretch 30-60 sec)",
         equipment: "Mat or Carpet (Home)",
-        coachTip: "Hold each stretch for 30-60 seconds: pigeon pose for hips, seated forward fold for hamstrings, and doorway chest stretches for anterior shoulder flexibility to keep skin elastic and muscles supple."
+        coachTip: "Hold each stretch for 30-60 seconds: pigeon pose for hips, seated forward fold for hamstrings, and doorway chest stretches for anterior shoulder flexibility to keep skin elastic and muscles supple during your fat loss journey."
       },
       {
         id: "sun-3",
-        name: "Mindful Breathing & Core Decompression [10 Minutes]",
+        name: "Mindful Zen Breathing & Meditation [10 Minutes]",
         targetGroup: "Full Body",
         sets: 1,
-        reps: "10 mins",
+        reps: "10 mins (4-4-6 breath pacing)",
         equipment: "Quiet Space (Home)",
-        coachTip: "Lie flat on your back or sit cross-legged. Practice box breathing (4 sec inhale, 4 sec hold, 6 sec exhale) to lower cortisol and accelerate muscle and nervous system recovery."
+        coachTip: "Sit comfortably cross-legged or lie flat on your back. Inhale deeply through the nose for 4 counts, hold for 4 counts, and exhale slowly for 6 counts. Promotes cortisol reduction, mental focus, and accelerated muscle repair."
       },
       {
         id: "sun-cardio",
-        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run",
+        name: "Daily Dual Cardio: 30-Minute Brisk Walk + 15-Minute Run [45 Minutes Total]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run)",
-        equipment: "Outdoors or Apartment Track",
-        coachTip: "Complete 30 minutes of brisk, steady walking followed immediately by 15 minutes of running. This 45-minute dual protocol oxidizes stubborn fat while keeping your cardiovascular endurance elite."
+        equipment: "Outdoors / Treadmill / Silent Apartment Track",
+        coachTip: "Complete your daily 7-day cardio protocol: start with a steady 30-minute brisk fat-burning walk, followed immediately by a focused 15-minute conditioning run to keep daily calorie expenditure elevated while actively recovering!"
       }
     ]
   },
   {
     dayOfWeek: 1, // Monday
     dayName: "Monday",
-    splitName: "Push A (K-Pop Idol Upper Body Sculpt: Chest, Shoulders, Triceps) + Monday Grocery & Korean Prep",
+    splitName: "Push A (Japanese Samurai Upper Body Sculpt: Chest, Shoulders, Triceps) + Monday Grocery & Teriyaki Prep",
     isRestDay: false,
-    questTitle: "[Daily Quest] K-Pop Idol Push A & Monday Walmart Korean Prep",
-    description: "Fuel up at 8:00 AM with Regular Dunkin' Black Coffee & Banana right before your morning bodyweight workout & cardio! Carve out chest thickness, broad shoulders, and defined triceps using 100% silent, equipment-free bodyweight exercises. After training, hit Auburn ME Walmart for your weekly Korean Gochujang groceries and complete your batch prep!",
+    questTitle: "[Daily Quest] Japanese Samurai Push A & Monday Walmart Teriyaki Prep",
+    description: "Fuel up at 8:00 AM with Jade Leaf Matcha Latte (whisked with Soy Milk) & Banana right before your morning bodyweight workout & cardio! Carve out chest thickness, broad shoulders, and defined triceps using 100% silent, equipment-free bodyweight exercises. After training, hit Auburn ME Walmart for your weekly Japanese Teriyaki groceries ($50 budget limit) and complete your batch prep!",
     xpReward: 500,
     exercises: [
       {
         id: "mon-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Korean Gochujang Batch Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Japanese Teriyaki Batch Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Korean Gochujang Batch Prep (For Tuesday Start)",
+        reps: "Japanese Teriyaki Batch Prep (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your exact weekly groceries ($45.38 cutting / $43.76 bulking + $34.76 restock). Cut chicken breasts into 1-inch cubes, dip in egg white, coat lightly with cornstarch, air-fry at 400°F until super crispy & crunchy outside, and toss with low-cal Korean Gochujang glaze!"
+        coachTip: "Pick up your exact weekly groceries at Auburn Maine Walmart Supercenter ($50 budget limit). Cut chicken breasts into 1-inch cubes, dip in egg white, coat lightly with cornstarch, air-fry or bake at 400°F (or pan crisp sear) until super crispy & crunchy outside, and toss with low-cal Japanese Teriyaki glaze!"
       },
       {
         id: "mon-1",
-        name: "Standard Push-Ups [Chest & Anterior Delt Compound]",
+        name: "Standard Bodyweight Push-Ups [Chest & Tricep Compound]",
         targetGroup: "Chest",
         sets: 4,
-        reps: "12-15 reps",
+        reps: "12-15 reps (2s negative)",
         equipment: "Bodyweight Only (Home)",
-        coachTip: "Hands shoulder-width apart, body in a straight line from head to heels. Lower chest to floor with a controlled 2-second negative, push up explosively without locking out elbows. Completely silent and apartment-friendly."
+        coachTip: "Hands shoulder-width apart, body in straight line from head to heels. Lower chest to floor with a controlled 2-second negative, pause slightly, then press up explosively. Keep core and glutes braced."
       },
       {
         id: "mon-2",
-        name: "Wide Push-Ups [Outer Chest & Shoulder Width Isolation]",
+        name: "Wide-Grip Push-Ups [Outer Chest & Broad Shoulder Frame]",
         targetGroup: "Chest",
         sets: 3,
         reps: "10-12 reps",
         equipment: "Bodyweight Only (Home)",
-        coachTip: "Place hands wider than shoulder-width. This shifts tension directly onto the outer pecs and anterior deltoids to widen your upper body V-taper for that broad K-Pop idol shoulder frame."
+        coachTip: "Place hands wider than shoulder-width. This shifts tension directly to the outer pectoral fibers and anterior deltoids, carving out the broad, athletic V-taper of a Japanese warrior."
       },
       {
         id: "mon-3",
         name: "Pike Push-Ups [Overhead Shoulder Press Alternative]",
         targetGroup: "Shoulders",
         sets: 4,
-        reps: "8-12 reps",
+        reps: "8-10 reps",
         equipment: "Bodyweight Only (Home)",
-        coachTip: "Start in a downward dog / pike position with hips high in the air. Bend elbows to lower crown of head gently toward the floor, then press up. This mimics a heavy dumbbell overhead press using only bodyweight!"
+        coachTip: "Start in downward dog position with hips high in the air. Bend elbows to lower top of head toward the floor between your hands, then press back up. Mimics heavy overhead presses using only bodyweight!"
       },
       {
         id: "mon-4",
-        name: "Chair/Couch Edge Tricep Dips [Tricep Horseshoe Sculpt]",
+        name: "Chair/Couch Tricep Dips [Tricep Horseshoe Definition]",
         targetGroup: "Triceps",
         sets: 4,
         reps: "12-15 reps",
         equipment: "Sturdy Chair or Couch Edge (Home)",
-        coachTip: "Place hands on the sturdy edge of a chair behind you with legs extended. Lower your body by bending elbows to 90 degrees, then press back up squeezing the triceps hard at the top."
+        coachTip: "Place palms firmly on the edge of a sturdy chair or couch behind you. Extend legs forward, lower hips vertically by bending elbows to 90 degrees, and press through your palms to lockout."
       },
       {
         id: "mon-5",
@@ -130,352 +130,335 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
         sets: 3,
         reps: "8-10 reps (to failure)",
         equipment: "Bodyweight Only (Home)",
-        coachTip: "Place index fingers and thumbs together under your chest to form a diamond shape. Lower chest to hands and press up. The ultimate burnout finisher for inner chest definition and tricep horseshoe fullness."
+        coachTip: "Place index fingers and thumbs together under your center chest forming a diamond shape. Lower chest to hands and press up. Ultimate finishing movement for tricep separation and inner chest striations."
       },
       {
         id: "mon-cardio",
-        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run",
+        name: "Daily Dual Cardio: 30-Minute Brisk Walk + 15-Minute Run [45 Minutes Total]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run)",
-        equipment: "Outdoors or Apartment Track",
-        coachTip: "Conquer your daily cardio goal right after lifting: 30 minutes of brisk walking followed by 15 minutes of steady jogging/running. Keeps daily calorie burn high while protecting lean muscle gains."
+        equipment: "Outdoors / Treadmill / Silent Apartment Track",
+        coachTip: "Lock in your Monday cardio volume immediately after upper body training or split between morning/evening: 30 minutes of steady brisk walking plus 15 minutes of running to accelerate fat oxidation!"
       }
     ]
   },
   {
     dayOfWeek: 2, // Tuesday
     dayName: "Tuesday",
-    splitName: "Pull A (K-Pop Idol Back & Arm Definition + Forearm Grip Forge)",
+    splitName: "Pull A (Japanese Samurai Back, Biceps & Forearms) - Start Eating Prepped Teriyaki Meals!",
     isRestDay: false,
-    questTitle: "[Daily Quest] K-Pop Idol Pull A - Start Eating Korean Prep!",
-    description: "First day of eating your prepped Healthy Crispy Fried Korean Gochujang Chicken meals! Build back thickness, bicep peaks, and iron forearm grip strength right inside your apartment using isometric towel rows, doorframe pulls, and scapular retractions.",
+    questTitle: "[Daily Quest] Japanese Samurai Pull A - Start Eating Teriyaki Prep!",
+    description: "First day of eating your prepped Pan or Oven Crispy Fried Japanese Teriyaki Chicken meals! Build back thickness, bicep peaks, and iron forearm grip strength right inside your apartment using isometric towel rows, doorframe pulls, and scapular retractions.",
     xpReward: 500,
     exercises: [
       {
         id: "tue-1",
-        name: "Doorframe / Towel Isometric Rows [Upper Back & Lat Thickness]",
+        name: "Isometric Doorframe / Towel Rows [Upper Back & Lats]",
         targetGroup: "Back",
         sets: 4,
-        reps: "12-15 reps (or 30s max contraction holds)",
-        equipment: "Sturdy Doorframe or Towel (Home)",
-        coachTip: "Stand facing a sturdy doorframe gripping both sides at chest height, or loop a thick towel around a sturdy anchor. Lean back slightly and pull your chest up to the frame squeezing your shoulder blades together."
+        reps: "12-15 reps / 30s max tension hold",
+        equipment: "Sturdy Doorframe or Towel around Door Handle",
+        coachTip: "Stand facing a sturdy doorframe or wrap a thick towel securely around a door knob/post. Lean back with feet forward, then pull your chest to your hands while driving elbows back and squeezing shoulder blades together."
       },
       {
         id: "tue-2",
-        name: "Superman Lat Pull-Ins [Lat Activation & Lower Back Armor]",
+        name: "Prone Cobra Holds [Lower Back & Spinal Posture]",
         targetGroup: "Back",
         sets: 4,
-        reps: "12 reps with 3s hold at peak",
+        reps: "45-60 seconds hold per set",
         equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie face down with arms extended forward. Lift chest off floor, then pull elbows back toward your hips imagining pulling a heavy bar down. Squeeze lats hard for 3 seconds before extending arms back out."
+        coachTip: "Lie face down on your mat. Lift chest, head, and arms off the floor while externally rotating your hands (palms facing out/up) and squeezing glutes and lower back. Perfect for counteracting desk posture."
       },
       {
         id: "tue-3",
-        name: "Reverse Snow Angels [Rear Delt & Upper Back Posture]",
-        targetGroup: "Back",
-        sets: 3,
-        reps: "12-15 reps",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie face down with arms at sides, palms facing floor. Lift chest slightly and sweep straight arms out and around overhead until thumbs touch, then sweep back down to hips. Builds bulletproof posture."
+        name: "Doorframe / Towel Bicep Isometric Curls [Bicep Peak Volume]",
+        targetGroup: "Biceps",
+        sets: 4,
+        reps: "12 reps / 20s peak contraction hold",
+        equipment: "Doorframe or Towel",
+        coachTip: "Grip the doorframe or towel at waist height with underhand grip. Lean back slightly and curl your body upward using solely bicep contraction. Hold peak squeeze for 2 seconds on every rep."
       },
       {
         id: "tue-4",
-        name: "Isometric Towel Bicep Curls [Bicep Peak Hypertrophy]",
-        targetGroup: "Biceps",
-        sets: 4,
-        reps: "4 x 30-second max tension holds",
-        equipment: "Towel & Foot Anchor (Home)",
-        coachTip: "Step on the center of a rolled towel with one foot while holding both ends with underhand grip at 90 degrees. Pull upward with maximum bicep contraction against the unmoving towel for 30 seconds per set."
+        name: "Scapular Retraction Squeezes [Rhomboids & Mid-Traps]",
+        targetGroup: "Back",
+        sets: 3,
+        reps: "15 reps (hold squeeze 3 sec each)",
+        equipment: "Bodyweight Only (Home)",
+        coachTip: "Stand tall with arms bent at 90 degrees out to sides. Drive elbows backward as hard as possible, pinching imaginary pencil between shoulder blades for 3 full seconds per rep to thicken mid-back armor."
       },
       {
         id: "tue-5",
-        name: "Fingertip Push-Ups or Wall Forearm Presses [Forearm & Wrist Forge]",
+        name: "Forearm Wall Press & Wrist Isometric Holds [Iron Grip & Forearms]",
         targetGroup: "Forearms",
-        sets: 4,
-        reps: "12-15 reps",
-        equipment: "Wall or Floor (Home)",
-        coachTip: "Perform push-ups against the wall (or floor) resting on your fingertips to build crushing finger and forearm tendon strength, or do wrist extensions against the wall."
+        sets: 3,
+        reps: "45 seconds hold per side",
+        equipment: "Wall (Home)",
+        coachTip: "Place palms flat against the wall at shoulder height with fingers pointing down or up, applying firm pressure through your fingertips and wrists to build dense, vascular forearm extensors and flexors."
       },
       {
         id: "tue-cardio",
-        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run",
+        name: "Daily Dual Cardio: 30-Minute Brisk Walk + 15-Minute Run [45 Minutes Total]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run)",
-        equipment: "Outdoors or Apartment Track",
-        coachTip: "Fluff up your metabolism and flush out upper back fatigue with 30 minutes of brisk walking followed immediately by 15 minutes of running."
+        equipment: "Outdoors / Treadmill / Silent Apartment Track",
+        coachTip: "Complete your Tuesday cardio session: 30 minutes of brisk walking followed by a 15-minute run to keep daily metabolism soaring and flush lactic acid from your back and arm muscles."
       }
     ]
   },
   {
     dayOfWeek: 3, // Wednesday
     dayName: "Wednesday",
-    splitName: "Legs A & K-Pop Idol V-Taper Core Carve (Quads, Hamstrings & Abs)",
+    splitName: "Legs & Glutes (Japanese Samurai Lower Body Power & Tone)",
     isRestDay: false,
-    questTitle: "[Daily Quest] K-Pop Idol Legs A & Core Carve Session",
-    description: "Build lean, athletic quads and carve razor-sharp abdominal definition using 100% silent lower body and core movements. Controlled tempos ensure maximum muscle tension without a single stomp or impact noise in your apartment.",
+    questTitle: "[Daily Quest] Japanese Samurai Lower Body Power & Sculpt",
+    description: "Carve out powerful, toned quad sweeps, hamstrings, and glutes with 100% silent, apartment-friendly lower body resistance training. Zero impact, zero noise for neighbors underneath, maximum muscle activation.",
     xpReward: 550,
     exercises: [
       {
         id: "wed-1",
-        name: "Slow-Tempo Bodyweight Squats [Quad & Glute Compound]",
+        name: "Controlled Slow-Tempo Bodyweight Squats [Quad & Glute Compound]",
         targetGroup: "Legs",
         sets: 4,
-        reps: "15-20 reps (3s down, 1s up)",
+        reps: "15-20 reps (3s down, 1s pause)",
         equipment: "Bodyweight Only (Home)",
-        coachTip: "Stand with feet shoulder-width, toes slightly pointed out. Lower down slowly for 3 seconds keeping weight in heels and chest proud. Drive up smoothly through glutes without stomping or jumping."
+        coachTip: "Stand with feet shoulder-width apart, toes slightly out. Lower hips back and down over 3 slow seconds until thighs are parallel to floor. Pause at bottom, then drive through heels to stand. Absolutely silent."
       },
       {
         id: "wed-2",
-        name: "Alternating Reverse Lunges [Quad & Hamstring Isolation]",
+        name: "Alternating Reverse Lunges [Quad & Glute Isolation]",
         targetGroup: "Legs",
-        sets: 3,
+        sets: 4,
         reps: "12 reps per leg",
         equipment: "Bodyweight Only (Home)",
-        coachTip: "Step backward with right foot, lowering back knee softly to an inch above the floor. Push through front heel to return. Reverse lunges are completely silent and much gentler on knee joints."
+        coachTip: "Step one foot backward softly, lowering back knee until hovering one inch above floor. Drive through front heel to step back up. Reverse lunges place zero stress on knees and generate zero floor noise."
       },
       {
         id: "wed-3",
-        name: "Wall Sit Hold [Quad Endurance & Burnout]",
+        name: "Wall Sit Isometric Hold [Quad Endurance & Separation]",
         targetGroup: "Legs",
         sets: 3,
         reps: "60 seconds hold per set",
         equipment: "Wall (Home)",
-        coachTip: "Lean flat against a wall and slide down until thighs are parallel to the floor (90-degree knee bend). Hold motionless for 60 seconds. Devastating quad pump with zero equipment."
+        coachTip: "Press back flat against wall and slide down until thighs are parallel to floor and knees are at 90 degrees. Hold position with core braced. Creates incredible quad burn and endurance without a single decibel of noise."
       },
       {
         id: "wed-4",
-        name: "Lying Leg Raises [Lower Ab Isolation & Flat Stomach]",
-        targetGroup: "Abs",
+        name: "Single-Leg / Double-Leg Glute Bridges [Glute Lift & Hamstrings]",
+        targetGroup: "Legs",
         sets: 4,
-        reps: "15-20 reps",
+        reps: "15 reps (squeeze 2s at top)",
         equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie flat on back with hands placed under glutes for lower back support. Raise straight legs up to 90 degrees, then lower slowly until heels are 2 inches off floor without touching."
+        coachTip: "Lie flat on back with knees bent and feet flat on floor. Drive hips vertically until body forms straight line from shoulders to knees. Squeeze glutes intensely for 2 seconds at peak before lowering."
       },
       {
         id: "wed-5",
-        name: "Bicycle Crunches [Upper Ab & Oblique Carve]",
-        targetGroup: "Abs",
-        sets: 4,
-        reps: "20 reps (10 per side)",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Bring opposite elbow to opposite knee while extending the other leg straight. Move with slow, controlled precision to carve deep oblique lines for a tight K-Pop idol waist."
+        name: "Clamshells & Single-Leg Calf Raises [Hip Stabilizers & Calves]",
+        targetGroup: "Legs",
+        sets: 3,
+        reps: "15 reps per side",
+        equipment: "Mat / Wall Support",
+        coachTip: "Alternate 15 clamshell repetitions lying on side for hip abductor stabilization with 15 controlled single-leg standing calf raises using wall for balance to build complete lower body symmetry."
       },
       {
         id: "wed-cardio",
-        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run",
+        name: "Daily Dual Cardio: 30-Minute Brisk Walk + 15-Minute Run [45 Minutes Total]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run)",
-        equipment: "Outdoors or Apartment Track",
-        coachTip: "Walking and running right after leg day flushes lactic acid and promotes leg muscle recovery while keeping fat burning at peak velocity."
+        equipment: "Outdoors / Treadmill / Silent Apartment Track",
+        coachTip: "Post-leg day cardio: 30 minutes of brisk walking promotes lower body circulation and reduces soreness, followed by your 15-minute run to maximize daily caloric expenditure!"
       }
     ]
   },
   {
     dayOfWeek: 4, // Thursday
     dayName: "Thursday",
-    splitName: "Push B (K-Pop Idol Upper Chest Focus, Shoulder Capping & Triceps)",
+    splitName: "Core & Oblique Carve (Japanese Samurai Midsection Armor)",
     isRestDay: false,
-    questTitle: "[Daily Quest] K-Pop Idol Push B Definition & Posture Session",
-    description: "Hit your second push session of the week with an emphasis on upper chest fullness, lateral shoulder capping, and tricep burnout. All movements are silent and bodyweight-focused.",
+    questTitle: "[Daily Quest] Japanese Samurai Core & Waist Sculpt Session",
+    description: "High-intensity core, waist carving, and deep abdominal stabilization session. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — all completely silent on your mat.",
     xpReward: 500,
     exercises: [
       {
         id: "thu-1",
-        name: "Decline Push-Ups (Feet on Chair/Couch) [Upper Chest Focus]",
-        targetGroup: "Chest",
+        name: "Bicycle Crunches [Upper & Lower Ab Carve]",
+        targetGroup: "Abs",
         sets: 4,
-        reps: "12-15 reps",
-        equipment: "Chair or Couch Edge (Home)",
-        coachTip: "Elevate your feet on the edge of a sturdy chair or couch with hands on the floor. Lower upper chest toward floor and press up. Shifts overload directly to the clavicular upper pecs!"
+        reps: "20 total reps (10 per side)",
+        equipment: "Mat or Carpet (Home)",
+        coachTip: "Lie flat on back, hands lightly touching temples. Bring right elbow to meet left knee while extending right leg straight out right above floor. Rotate with control—focus on abdominal contraction rather than speed."
       },
       {
         id: "thu-2",
-        name: "Isometric Push-Up Holds [Chest & Core Density]",
-        targetGroup: "Chest",
+        name: "Russian Twists (Seated Torso Rotation) [Oblique Definition]",
+        targetGroup: "Abs",
         sets: 3,
-        reps: "3 x 30-45 second bottom holds",
-        equipment: "Bodyweight Only (Home)",
-        coachTip: "Lower down halfway until elbows are at 90 degrees and hold completely still for 30-45 seconds per set. Builds deep chest density and mental toughness."
+        reps: "20 total twists (10 per side)",
+        equipment: "Mat or Carpet (Home)",
+        coachTip: "Sit on mat with knees bent, lean torso back 45 degrees, and lift feet slightly off floor (or keep heels lightly touching). Rotate torso side to side touching fingertips to floor beside hips to carve obliques."
       },
       {
         id: "thu-3",
-        name: "Plank to Push-Up Transitions [Shoulder Stability & Triceps]",
-        targetGroup: "Shoulders",
-        sets: 4,
-        reps: "12 reps (alternate lead arm)",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Start in a forearm plank. Push up one hand at a time into a high push-up position, then lower back down one forearm at a time. Keep core braced and hips square."
-      },
-      {
-        id: "thu-4",
-        name: "Overhead Tricep Wall Extensions [Tricep Long Head]",
-        targetGroup: "Triceps",
-        sets: 4,
-        reps: "12-15 reps",
-        equipment: "Wall (Home)",
-        coachTip: "Stand facing a wall about 2 feet back. Place forearms/palms against the wall overhead. Bend elbows letting your forehead approach the wall, then push through palms to extend elbows fully."
-      },
-      {
-        id: "thu-5",
-        name: "Side Plank Holds [Lateral Oblique Armor]",
+        name: "Side Plank Hold [Lateral Core Armor & Waist Tightening]",
         targetGroup: "Abs",
         sets: 3,
         reps: "45 seconds hold per side",
         equipment: "Mat or Carpet (Home)",
-        coachTip: "Support body on one forearm and outer edge of foot forming a rigid diagonal line. Hold hips elevated for 45 seconds per side to build lateral core stability."
+        coachTip: "Support body on forearm and side of foot, keeping hips lifted high so body forms perfectly straight diagonal line. Builds bulletproof lateral stability and tightens waistline."
+      },
+      {
+        id: "thu-4",
+        name: "Lying Straight Leg Raises [Lower Abdominal Isolation]",
+        targetGroup: "Abs",
+        sets: 4,
+        reps: "15 controlled reps",
+        equipment: "Mat or Carpet (Home)",
+        coachTip: "Lie flat on back with hands placed slightly under hips for lumbar support. Raise straight legs to 90-degree vertical position, then slowly lower them until hovering 2 inches above floor without letting lower back arch."
+      },
+      {
+        id: "thu-5",
+        name: "Forearm Plank Hold [Deep Core Stability & Transverse Abdominis]",
+        targetGroup: "Abs",
+        sets: 3,
+        reps: "60 seconds hold",
+        equipment: "Mat or Carpet (Home)",
+        coachTip: "Hold forearm plank position with elbows directly beneath shoulders. Squeeze glutes, draw belly button inward toward spine, and breathe steadily. Foundation of ironclad midsection strength."
       },
       {
         id: "thu-cardio",
-        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run",
+        name: "Daily Dual Cardio: 30-Minute Brisk Walk + 15-Minute Run [45 Minutes Total]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run)",
-        equipment: "Outdoors or Apartment Track",
-        coachTip: "Finish Push B with your mandatory 45-minute dual cardio protocol (30m walk + 15m run) to keep your metabolism elevated all afternoon."
+        equipment: "Outdoors / Treadmill / Silent Apartment Track",
+        coachTip: "Finish your core training with 30 minutes of steady brisk walking plus your 15-minute run to keep overall weekly fat oxidation right on target for your 160 lb goal!"
       }
     ]
   },
   {
     dayOfWeek: 5, // Friday
     dayName: "Friday",
-    splitName: "Pull B & K-Pop Idol Posture Sculpt (Back Thickness, Biceps & Forearms)",
+    splitName: "Push B & Pull B Full Upper Body Hypertrophy + Weekly Nissin Raoh Ramen Reward!",
     isRestDay: false,
-    questTitle: "[Daily Quest] K-Pop Idol Pull B Posture Sculpt & Korean Ramen Reward",
-    description: "Sculpt upper back posture, rear deltoids, and bicep definition right before enjoying your weekly Friday or Saturday Samyang Buldak Korean Ramen reward treat meal! Uses Prone Y-T-W raises and isometric holds.",
-    xpReward: 500,
+    questTitle: "[Daily Quest] Japanese Samurai Upper Hypertrophy & Ramen Reward",
+    description: "Hit total upper body hypertrophy targeting chest, upper back, shoulders, and arms right before enjoying your weekly Friday or Saturday Nissin Raoh Umami Tonkotsu / Soy Sauce Japanese Ramen reward treat meal!",
+    xpReward: 600,
     exercises: [
       {
         id: "fri-1",
-        name: "Prone Y-T-W Raises [Scapular Retraction & Posture]",
-        targetGroup: "Back",
+        name: "Decline Push-Ups (Feet on Couch/Chair) [Upper Chest Focus]",
+        targetGroup: "Chest",
         sets: 4,
-        reps: "8 reps each position (Y, T, W = 24 reps total/set)",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie face down on mat. Raise straight arms into Y position holding 2 sec, lower; raise out into T position holding 2 sec, lower; bend elbows into W position pulling shoulder blades together. Cures slouched posture instantly!"
+        reps: "12-15 reps",
+        equipment: "Couch or Chair (Home)",
+        coachTip: "Elevate feet securely on couch edge or chair while hands are flat on floor. Lower upper chest to floor and press up. Builds full clavicular chest shelf and shoulder separation."
       },
       {
         id: "fri-2",
-        name: "Doorway / Frame Scapular Retractions [Mid-Back Thickness]",
-        targetGroup: "Back",
-        sets: 4,
-        reps: "15 reps with 2s squeeze",
-        equipment: "Doorframe (Home)",
-        coachTip: "Grip doorframe with hands at waist height. Keep arms straight and pull chest slightly forward just by squeezing shoulder blades backward together as hard as possible."
+        name: "Prone Y-T-W Raises [Rear Delts & Upper Back Posture]",
+        targetGroup: "Shoulders",
+        sets: 3,
+        reps: "12 reps each position (Y, T, W)",
+        equipment: "Mat or Carpet (Home)",
+        coachTip: "Lie face down. Raise arms in Y position (overhead diagonal), T position (straight out to sides), and W position (elbows bent pulling back). Squeeze rear deltoids and traps hard on every repetition."
       },
       {
         id: "fri-3",
-        name: "Prone Cobra Holds [Lower Back & Spinal Erectors]",
-        targetGroup: "Back",
+        name: "Close-Grip Push-Ups [Tricep Definition & Inner Pectorals]",
+        targetGroup: "Triceps",
         sets: 3,
-        reps: "45-second holds",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie face down, lift chest off floor, sweep arms down along sides with palms facing out and thumbs up. Squeeze glutes and upper back holding motionless for 45 seconds."
+        reps: "12 reps",
+        equipment: "Bodyweight Only (Home)",
+        coachTip: "Hands placed slightly narrower than shoulder-width with elbows tracking tightly against ribcage during descent. Maximizes tricep lockout power and inner chest separation."
       },
       {
         id: "fri-4",
-        name: "Towel Resistance Hammer Curls [Brachialis & Bicep Peak]",
+        name: "Doorframe Row to Bicep Hold Combo [Back & Arm Finisher]",
         targetGroup: "Biceps",
-        sets: 4,
-        reps: "12-15 reps (self-resistance)",
-        equipment: "Towel (Home)",
-        coachTip: "Hold towel with neutral grip (palms facing each other) while stepping on center. Push down slightly with your foot while pulling up with biceps to create heavy, customized resistance through the full curl range."
-      },
-      {
-        id: "fri-5",
-        name: "Isometric Forearm & Wrist Roller Holds [Forearm Density]",
-        targetGroup: "Forearms",
         sets: 3,
-        reps: "60 seconds hold per side",
-        equipment: "Towel or Doorframe (Home)",
-        coachTip: "Grip thick towel or doorframe tightly and twist your wrists outward holding maximum forearm tension for 60 seconds per arm."
+        reps: "12 reps + 15s peak contraction hold",
+        equipment: "Doorframe or Towel",
+        coachTip: "Perform 12 crisp doorframe rows immediately followed by holding the top contracted position for 15 solid seconds to pump lats and biceps completely full of nutrient-rich blood."
       },
       {
         id: "fri-cardio",
-        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run",
+        name: "Daily Dual Cardio: 30-Minute Brisk Walk + 15-Minute Run [45 Minutes Total]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run)",
-        equipment: "Outdoors or Apartment Track",
-        coachTip: "Lock in your Friday cardio (30m walk + 15m run) before your evening Samyang Buldak Korean Ramen treat meal!"
+        equipment: "Outdoors / Treadmill / Silent Apartment Track",
+        coachTip: "Lock in your Friday cardio (30m walk + 15m run) right before your evening Nissin Raoh Umami Japanese Ramen reward treat meal! You earned it through 100% adherence!"
       }
     ]
   },
   {
     dayOfWeek: 6, // Saturday
     dayName: "Saturday",
-    splitName: "Legs B & K-Pop Idol Ab Armor (Glutes, Hamstrings & Core Burnout)",
+    splitName: "Athletic Conditioning & Total Body Samurai Challenge",
     isRestDay: false,
-    questTitle: "[Daily Quest] K-Pop Idol Legs B Glute Forge & Core Armor",
-    description: "Conquer your training week with high-intensity lower body glute/hamstring sculpting and deep abdominal core armor. All silent bodyweight movements inside your quiet apartment.",
+    questTitle: "[Daily Quest] Japanese Samurai Total Body Conditioning",
+    description: "Final active training day of the week! Combine full-body isometric tension, silent athletic conditioning movements, and core endurance to finish out the 7-day cycle with peak caloric burn and mental toughness.",
     xpReward: 600,
     exercises: [
       {
         id: "sat-1",
-        name: "Single-Leg Glute Bridges [Glute & Hamstring Isolation]",
-        targetGroup: "Legs",
-        sets: 4,
-        reps: "12-15 reps per leg",
+        name: "Silent Fast Marching / High Knees [Conditioning & Hip Activation]",
+        targetGroup: "Full Body",
+        sets: 3,
+        reps: "60 seconds fast pace",
         equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie on back with right knee bent and left leg extended straight in the air. Drive hips upward through right heel squeezing glute hard for 2 seconds at the top. Lower with control."
+        coachTip: "Drive knees up toward chest alternating quickly while placing balls of feet down with feather-light silence. Accelerates heart rate and activates core without floor impact."
       },
       {
         id: "sat-2",
-        name: "Bulgarian Split Squats (Rear Foot Elevated on Couch/Chair) [Quad & Glute Medius]",
+        name: "Bodyweight Squat to Calf Raise Combo [Lower Body Explosiveness]",
         targetGroup: "Legs",
-        sets: 3,
-        reps: "10-12 reps per leg",
-        equipment: "Chair or Couch Edge (Home)",
-        coachTip: "Place rear foot up on couch or chair edge, step front foot forward. Lower rear knee straight down until front thigh is parallel to floor. Drive up through front heel. Supreme balance and leg development."
+        sets: 4,
+        reps: "15 reps",
+        equipment: "Bodyweight Only (Home)",
+        coachTip: "Perform a deep, controlled squat, and as you stand up, drive immediately up onto the balls of your feet into a peak calf raise contraction. Smooth, continuous athletic flow."
       },
       {
         id: "sat-3",
-        name: "Single-Leg Calf Raises (Stair/Doorstep Edge) [Calf Definition]",
-        targetGroup: "Legs",
-        sets: 4,
-        reps: "15-20 reps per leg",
-        equipment: "Stair Edge or Book (Home)",
-        coachTip: "Stand on one foot on edge of a step or thick book. Lower heel below edge for deep stretch, then rise onto ball of foot holding 2 seconds at peak contraction."
+        name: "Plank Shoulder Taps [Core Anti-Rotation & Shoulder Endurance]",
+        targetGroup: "Shoulders",
+        sets: 3,
+        reps: "20 total taps (10 per shoulder)",
+        equipment: "Mat or Carpet (Home)",
+        coachTip: "Hold high push-up position. Lift right hand to tap left shoulder, then left hand to tap right shoulder. Keep hips completely locked and level to build deep core anti-rotational strength."
       },
       {
         id: "sat-4",
-        name: "Russian Twists (Seated Torso Rotation) [V-Taper Oblique Carve]",
-        targetGroup: "Abs",
-        sets: 4,
-        reps: "20 reps (10 per side)",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Sit with knees bent, lean back 45 degrees keeping spine long. Twist torso side to side touching hands to floor beside each hip. Carves tight oblique definition for a slim waistline."
-      },
-      {
-        id: "sat-5",
-        name: "Forearm Plank to Side Plank Rotation Burnout [Core Stability]",
-        targetGroup: "Abs",
+        name: "Isometric Push-Up Hold (Mid-Way Pause) [Total Body Tension]",
+        targetGroup: "Chest",
         sets: 3,
-        reps: "60 seconds continuous rotation",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Hold center forearm plank for 20 seconds, rotate right holding right side plank 20 seconds, rotate left holding left side plank 20 seconds. Complete 60-second core armor challenge!"
+        reps: "30-45 seconds hold midway down",
+        equipment: "Bodyweight Only (Home)",
+        coachTip: "Lower halfway down into a push-up until elbows are at 90 degrees and hold position frozen for 30 to 45 seconds. Squeeze chest, triceps, core, and glutes simultaneously for ultimate mental resilience."
       },
       {
         id: "sat-cardio",
-        name: "Post-Workout Cardio: 30-Minute Brisk Walk + 15-Minute Run",
+        name: "Daily Dual Cardio: 30-Minute Brisk Walk + 15-Minute Run [45 Minutes Total]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run)",
-        equipment: "Outdoors or Apartment Track",
-        coachTip: "Finish off Saturday with your final 45-minute cardio run/walk! Consistent daily cardio ensures rapid fat loss while preserving your hard-earned muscle and skin elasticity."
+        equipment: "Outdoors / Treadmill / Silent Apartment Track",
+        coachTip: "Finish out your Saturday with your 30-minute brisk walk and 15-minute conditioning run! You have now hit 7 complete days of consistency—ready to reset and conquer Sunday active recovery tomorrow!"
       }
     ]
   }
 ];
 
-export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE = KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
-export const PLANET_FITNESS_PPL_ROUTINE = KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
-export const PLANET_FITNESS_LEWISTON_6DAY_ROUTINE = KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
-export const KPOP_HOME_BODYWEIGHT_ROUTINE = KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
+export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE = JAPANESE_SAMURAI_HOME_BODYWEIGHT_ROUTINE;
+export const PLANET_FITNESS_PPL_ROUTINE = JAPANESE_SAMURAI_HOME_BODYWEIGHT_ROUTINE;
+export const PLANET_FITNESS_LEWISTON_6DAY_ROUTINE = JAPANESE_SAMURAI_HOME_BODYWEIGHT_ROUTINE;
+export const KPOP_HOME_BODYWEIGHT_ROUTINE = JAPANESE_SAMURAI_HOME_BODYWEIGHT_ROUTINE;
+export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE = JAPANESE_SAMURAI_HOME_BODYWEIGHT_ROUTINE;
 
-export function getTodayWorkout(): WorkoutDay {
-  const dayIndex = new Date().getDay(); // 0 = Sunday, 1 = Monday...
-  return KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE.find(d => d.dayOfWeek === dayIndex) || KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE[0];
-}
+export const getTodayWorkout = (): WorkoutDay => {
+  const dayIndex = new Date().getDay();
+  return JAPANESE_SAMURAI_HOME_BODYWEIGHT_ROUTINE.find(d => d.dayOfWeek === dayIndex) || JAPANESE_SAMURAI_HOME_BODYWEIGHT_ROUTINE[0];
+};
