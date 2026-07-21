@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { loadHunterState, saveHunterState, awardXp, triggerLevelUpCelebration } from '@/lib/hunter-system';
-import { Utensils, Plus, Trash2, CheckCircle2, Flame, Award, ArrowRight, ShieldCheck, Sparkles, Printer } from 'lucide-react';
+import { loadHunterState, saveHunterState, awardXp, triggerLevelUpCelebration, drinkWaterAmount, getHydrationOzConsumed, HYDRATION_GOAL_OZ, resetDailyHydration } from '@/lib/hunter-system';
+import { Utensils, Plus, Trash2, CheckCircle2, Flame, Award, ArrowRight, ShieldCheck, Sparkles, Printer, Droplets, PlusCircle, RotateCcw } from 'lucide-react';
 import { TabType } from '../Navigation/SystemSidebar';
 import { MEAL_PREP_PLANS } from '@/lib/grocery-data';
 
@@ -21,8 +21,9 @@ interface NutritionTrackerProps {
 }
 
 export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) {
+  const [hunterState, setHunterState] = useState(() => (typeof window !== 'undefined' ? loadHunterState() : null));
   const [meals, setMeals] = useState<LoggedMeal[]>([]);
-  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('Korea');
+  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('Japan');
   const [showManualModal, setShowManualModal] = useState(false);
   const [manualName, setManualName] = useState('');
   const [manualCals, setManualCals] = useState('');
@@ -31,6 +32,17 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
   const [manualFat, setManualFat] = useState('');
 
   const today = new Date().toISOString().split('T')[0];
+
+  const handleDrinkWater = (oz: number) => {
+    drinkWaterAmount(oz);
+    setHunterState(loadHunterState());
+    triggerLevelUpCelebration();
+  };
+
+  const handleResetWater = () => {
+    resetDailyHydration();
+    setHunterState(loadHunterState());
+  };
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -97,8 +109,8 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
 
   const calGoal = activePlan.targetDailyCalories || 2080;
   const protGoal = activePlan.targetDailyProtein || 178;
-  const carbGoal = selectedDeckCountry === 'Korea Bulking' ? 370 : 200;
-  const fatGoal = selectedDeckCountry === 'Korea Bulking' ? 65 : 60;
+  const carbGoal = selectedDeckCountry === 'Japan Bulking' ? 370 : 200;
+  const fatGoal = selectedDeckCountry === 'Japan Bulking' ? 65 : 60;
 
   const handleSelectDeckCountry = (country: string) => {
     setSelectedDeckCountry(country);
@@ -167,6 +179,50 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
         </div>
       </div>
 
+      {/* Mana Hydration Quick-Log Card */}
+      {hunterState && (
+        <div className="bg-system-panel p-6 rounded-2xl border border-blue-500/30 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-mono uppercase text-blue-400 mb-1">
+              <Droplets className="w-3.5 h-3.5 text-blue-400" />
+              <span>Mana Hydration Tracker</span>
+            </div>
+            <h3 className="text-xl font-black tracking-wider text-white uppercase">
+              1 Gallon ({HYDRATION_GOAL_OZ} oz) Daily Goal
+            </h3>
+            <p className="text-xs text-zinc-400 mt-1">
+              Status: <span className="text-blue-300 font-mono font-bold">{getHydrationOzConsumed(hunterState.mp)} / {HYDRATION_GOAL_OZ} oz</span> ({hunterState.mp}% hydrated today).
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2.5 w-full md:w-auto">
+            <button
+              onClick={() => handleDrinkWater(16.9)}
+              className="flex-1 sm:flex-initial py-2.5 px-4 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-md cursor-pointer min-h-[44px]"
+              title="Drink standard 16.9 oz water bottle"
+            >
+              <PlusCircle className="w-4 h-4 flex-shrink-0" />
+              <span>+16.9 oz Bottle</span>
+            </button>
+            <button
+              onClick={() => handleDrinkWater(24)}
+              className="flex-1 sm:flex-initial py-2.5 px-4 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-md cursor-pointer min-h-[44px]"
+              title="Drink 24 oz shaker / bottle"
+            >
+              <PlusCircle className="w-4 h-4 flex-shrink-0" />
+              <span>+24 oz Shaker</span>
+            </button>
+            <button
+              onClick={handleResetWater}
+              className="py-2.5 px-3 rounded-xl bg-system-card hover:bg-red-500/20 border border-white/10 hover:border-red-500/40 text-zinc-400 hover:text-red-300 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 cursor-pointer min-h-[44px]"
+              title="Reset today's water tracking to 0 oz"
+            >
+              <RotateCcw className="w-4 h-4" />
+              <span>Reset</span>
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* 1-Click Template-Synced Meal Prep Quick-Log Deck */}
       <div className="bg-system-panel p-6 rounded-2xl border border-system-blue/40 shadow-glow-blue space-y-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-white/10 pb-3">
@@ -178,14 +234,14 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
           </div>
           <div className="flex items-center gap-2">
             <a
-              href={activePlan.country === 'Korea Bulking' ? '/Korean_Bulking_Meal_Plan_Under_50.html' : '/Korean_Meal_Plan_Under_50.html'}
+              href={activePlan.country === 'Japan Bulking' ? '/Japanese_Bulking_Meal_Plan_Under_50.html' : '/Japanese_Meal_Plan_Under_50.html'}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 bg-system-dark hover:bg-system-gold text-system-gold hover:text-black px-3 py-1 rounded-lg text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all cursor-pointer no-underline"
-              title="Print or Save as PDF the selected Korean Meal Prep Blueprint"
+              title="Print or Save as PDF the selected Japanese Meal Prep Blueprint"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>🖨️ Print {activePlan.country === 'Korea Bulking' ? 'Phase 2 Bulking' : 'Phase 1 Cutting'} PDF</span>
+              <span>🖨️ Print {activePlan.country === 'Japan Bulking' ? 'Phase 2 Bulking' : 'Phase 1 Cutting'} PDF</span>
             </a>
             <span className="text-[10px] bg-system-blue/20 text-system-cyan border border-system-blue/40 px-2.5 py-1 rounded font-mono font-bold whitespace-nowrap">
               +75 INT XP Per Meal
@@ -208,9 +264,9 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
                 }`}
               >
                 <span>{plan.flag}</span>
-                <span>{plan.country === 'Korea' ? 'Phase 1: Korea Cutting ($45.38)' : plan.country === 'Korea Bulking' ? 'Phase 2: Korea Bulking ($43.76)' : plan.country}</span>
-                {plan.country === 'Korea' && <span className="text-[9px] bg-system-gold text-black px-1.5 py-0.2 rounded font-black ml-0.5">#1 Main</span>}
-                {plan.country === 'Korea Bulking' && <span className="text-[9px] bg-red-500 text-white px-1.5 py-0.2 rounded font-black ml-0.5">Post-160 Lb</span>}
+                <span>{plan.country === 'Japan' ? 'Phase 1: Japan Cutting ($45.38)' : plan.country === 'Japan Bulking' ? 'Phase 2: Japan Bulking ($43.76)' : plan.country}</span>
+                {plan.country === 'Japan' && <span className="text-[9px] bg-system-gold text-black px-1.5 py-0.2 rounded font-black ml-0.5">#1 Main</span>}
+                {plan.country === 'Japan Bulking' && <span className="text-[9px] bg-red-500 text-white px-1.5 py-0.2 rounded font-black ml-0.5">Post-160 Lb</span>}
               </button>
             );
           })}
