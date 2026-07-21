@@ -85,7 +85,7 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "Korean Gochujang Batch Prep (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your exact weekly groceries ($45.38 cutting / $43.76 bulking + $32.78 restock). Cut chicken breasts into 1-inch cubes, dip in egg white, coat lightly with cornstarch, air-fry at 400°F until super crispy & crunchy outside, and toss with low-cal Korean Gochujang glaze!"
+        coachTip: "Pick up your exact weekly groceries ($45.38 cutting / $43.76 bulking + $34.76 restock). Cut chicken breasts into 1-inch cubes, dip in egg white, coat lightly with cornstarch, air-fry at 400°F until super crispy & crunchy outside, and toss with low-cal Korean Gochujang glaze!"
       },
       {
         id: "mon-1",

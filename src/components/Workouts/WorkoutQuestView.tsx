@@ -104,13 +104,13 @@ export default function WorkoutQuestView() {
         <div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
             <MapPin className="w-3.5 h-3.5 text-system-blue" />
-            <span>Planet Fitness Lewiston, ME Equipment Protocol | 6-Day PPL Gym Split</span>
+            <span>K-Pop Idol Home Bodyweight Dojo | Apartment-Friendly Routine</span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            6-Day Planet Fitness Gym Split
+            K-Pop Idol Home Bodyweight Routine
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            Tailored specifically for Planet Fitness Lewiston equipment (Smith Machines, Cable Towers, Leg Press, and Matrix/Life Fitness Treadmills). Sunday is Active Recovery & 45m Treadmill Cardio; Monday is Push A + Auburn Walmart Grocery Run & Japanese Teriyaki Shred Batch Meal Prep.
+            Tailored specifically for apartment-friendly bodyweight training (silent, no equipment needed). Sunday is Active Recovery & Yoga Flow; Monday is K-Pop Upper Body Sculpt + Auburn Walmart Grocery Run & Korean Gochujang Healthy Crispy Fried Batch Meal Prep.
           </p>
         </div>
 
@@ -123,19 +123,19 @@ export default function WorkoutQuestView() {
         </div>
       </div>
 
-      {/* PLANET FITNESS POST-WORKOUT 45-MINUTE TREADMILL CARDIO LOG */}
+      {/* POST-WORKOUT 45-MINUTE DUAL CARDIO LOG */}
       <div className="bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 rounded-2xl border border-system-cyan/50 shadow-glow-blue space-y-4">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-gold mb-1">
               <Footprints className="w-4 h-4 text-system-cyan animate-pulse" />
-              <span>Mandatory Daily Post-Workout Treadmill Cardio Protocol</span>
+              <span>Mandatory Daily Post-Workout Dual Cardio Protocol</span>
             </div>
             <h3 className="text-xl font-black text-white uppercase tracking-wide">
               {treadmillMinutes} / {TREADMILL_GOAL} <span className="text-sm text-zinc-400 font-bold">Minutes Today (30m Incline Walk + 15m Jog/Run)</span>
             </h3>
             <p className="text-xs text-zinc-300 mt-0.5">
-              Perform your mandatory 45-minute cardio routine on the Planet Fitness treadmills right after lifting (30 minutes brisk walking @ 3.5 MPH + 15 minutes running @ 6.0 MPH). Essential for hitting your 160 lb target cleanly without muscle loss or loose skin!
+              Perform your mandatory 45-minute cardio routine right after your bodyweight session (30 minutes brisk walking @ 3.5 MPH + 15 minutes running @ 6.0 MPH outdoors or indoors). Essential for hitting your 160 lb target cleanly without muscle loss or loose skin!
             </p>
           </div>
 

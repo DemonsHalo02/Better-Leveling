@@ -176,10 +176,10 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
 
           <div className="bg-system-dark/80 p-4 rounded-xl border border-system-gold/40 space-y-2">
             <div className="flex items-center gap-2 text-xs font-bold text-system-gold uppercase">
-              <Utensils className="w-4 h-4" /> 2. Japanese Teriyaki Cutting Meal Prep
+              <Utensils className="w-4 h-4" /> 2. Korean Gochujang Cutting Meal Prep
             </div>
             <p className="text-xs text-zinc-300 leading-relaxed">
-              <strong>VIP Meal Blueprint:</strong> Japanese Teriyaki Chicken Bowl! Cook 1.5 lbs chicken breast with low-sodium soy sauce, mirin, and ginger. Pair 8oz chicken with 1/2 cup jasmine rice and steamed broccoli. <strong>Stats:</strong> 510 kcal, 56g Protein, 46g Carbs!
+              <strong>VIP Meal Blueprint:</strong> Korean Gochujang Healthy Crispy Fried Chicken Bowl! Dip cubed chicken breast in egg white, coat lightly with cornstarch & garlic powder, and air-fry at 400°F (10-12 mins) until super crispy. Toss with sweet & savory Bibigo Gochujang glaze. Pair ~5.7 oz chicken with 1 cup cooked white rice and steamed broccoli. <strong>Stats:</strong> 440 kcal, 46g Protein, 53g Carbs!
             </p>
           </div>
 
@@ -277,7 +277,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             />
             <div className="flex justify-between text-[10px] text-zinc-500 font-bold">
               <span>150g (Min)</span>
-              <span>178g (Japanese Goal)</span>
+              <span>178g (Korean Goal)</span>
               <span>260g (Max)</span>
             </div>
           </div>
@@ -285,7 +285,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
           {/* Slider 3: Cardio Frequency */}
           <div className="bg-system-dark/80 p-4 rounded-xl border border-white/10 space-y-3">
             <div className="flex justify-between text-xs font-bold">
-              <span className="text-zinc-300 uppercase">Weekly Cardio (PF)</span>
+              <span className="text-zinc-300 uppercase">Weekly Cardio (Dojo/PF)</span>
               <span className="text-system-purple font-black">{cardioDays} DAYS / WK</span>
             </div>
             <input

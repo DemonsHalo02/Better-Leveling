@@ -192,7 +192,7 @@ export default function GroceryGuide() {
 
   const isRestockItem = (item: GroceryItem): boolean => {
     const restockIds = new Set([
-      'g-12', 'g-13', 'g-14', 'g-15', 'g-16', 'g-17', 'g-18', 'g-19', 'g-20', 'g-21'
+      'g-12', 'g-13', 'g-14', 'g-15', 'g-16', 'g-17', 'g-18', 'g-19', 'g-20', 'g-21', 'g-22', 'g-23'
     ]);
     if (restockIds.has(item.id)) return true;
     if (item.category === 'Seasonings & Spices' || item.category === 'Toiletries / Non-Grocery') return true;
@@ -341,7 +341,7 @@ export default function GroceryGuide() {
             Hunter Grocery Companion
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            High-protein, authentic Korean Gochujang Chicken & Death Wish Black Coffee Shred & Bulking Blueprints priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run under $50 budget ($43.76 - $45.38 Weekly Consumables / $32.78 Periodic Restock)! Features 100% Green Tea and 8:00 AM Pre-Workout Death Wish Iced Black Coffee.
+            High-protein, authentic Korean Gochujang Healthy Crispy Fried Chicken & Regular Dunkin' Black Coffee Shred & Bulking Blueprints priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run under $50 budget ($43.76 - $45.38 Weekly Consumables / $34.76 Periodic Restock)! Features 100% Green Tea and 8:00 AM Pre-Workout Regular Dunkin' Iced Black Coffee.
           </p>
         </div>
 
@@ -488,7 +488,7 @@ export default function GroceryGuide() {
               <button
                 onClick={() => handlePrintPlan(MEAL_PREP_PLANS[0])}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-system-gold to-yellow-500 text-black font-black uppercase tracking-wider text-xs shadow-glow-gold hover:bg-white transition-all min-h-[38px] cursor-pointer"
-                title="Print or Save as PDF the Korean Gochujang Chicken & Death Wish Black Coffee Blueprint"
+                title="Print or Save as PDF the Korean Gochujang Healthy Crispy Fried Chicken & Regular Dunkin' Black Coffee Blueprint"
               >
                 <Printer className="w-3.5 h-3.5 text-black" />
                 <span>🖨️ Print Blueprint PDF</span>
@@ -521,12 +521,12 @@ export default function GroceryGuide() {
                     ⭐ #1 Main & Exclusive Blueprint
                   </span>
                   <span className="text-xs text-white font-bold">
-                    🇰🇷 Korean Gochujang Chicken & Death Wish Black Coffee Shred Strategy (Under $50/wk!)
+                    🇰🇷 Korean Gochujang Healthy Crispy Fried Chicken & Regular Dunkin' Black Coffee Shred Strategy (Under $50/wk!)
                   </span>
                 </div>
                 <p className="text-xs text-zinc-300">
                   <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment - $45.38):</strong> Chicken Breasts ($13.40), Greek Yogurt Tubs ($15.92), 36-ct Eggs ($6.84), Liquid Egg Whites ($3.48), Frozen Broccoli ($2.32), White Rice ($1.48), Bananas ($1.16), Fresh Scallions / Green Onions ($0.78).<br />
-                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $32.78):</strong> Death Wish Coffee Espresso Roast Ground ($11.76), Bibigo Korean BBQ Marinade / Gochujang Glaze ($3.48), Nasoya Authentic Korean Spicy Kimchi ($4.48), Wild Pink Salmon ($2.40), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Soy Sauce ($1.48), Samyang Buldak Spicy Carbonara Chicken Ramen ($1.68), Garlic Powder ($1.18).
+                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $34.76):</strong> Dunkin' Original Blend Ground Coffee ($8.98), Nasoya Authentic Korean Spicy Kimchi ($4.48), Bibigo Korean BBQ Marinade & Gochujang Glaze ($3.48), Great Value Sriracha ($2.98), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Argo Corn Starch ($1.78), Samyang Buldak Spicy Carbonara Chicken Ramen ($1.68), Soy Sauce ($1.48), Garlic Powder ($1.18).
                 </p>
               </div>
               <button
@@ -547,12 +547,12 @@ export default function GroceryGuide() {
                     🔥 Phase 2 Lean Bulking Blueprint
                   </span>
                   <span className="text-xs text-white font-bold">
-                    🇰🇷 Korean Bulgogi & Gochujang Chicken Hypertrophy Protocol ($43.76/wk!)
+                    🇰🇷 Korean Gochujang Healthy Crispy Fried Chicken Hypertrophy Protocol ($43.76/wk!)
                   </span>
                 </div>
                 <p className="text-xs text-zinc-300">
                   <strong className="text-system-cyan">Part 1 (Weekly Consumables - $43.76 / Exactly $1.62 Cheaper!):</strong> Chicken Breasts ($13.40), 3 Greek Yogurt Tubs ($11.94), 36-ct Eggs ($6.84), 42 oz Rolled Oats ($3.98), 5 lb Bulk White Rice ($3.34), Frozen Broccoli ($2.32), Bananas ($1.16), Fresh Scallions / Green Onions ($0.78).<br />
-                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $32.78):</strong> Death Wish Coffee Espresso Roast Ground ($11.76), Bibigo Korean BBQ Marinade / Gochujang Glaze ($3.48), Nasoya Authentic Korean Spicy Kimchi ($4.48), Wild Pink Salmon ($2.40), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Soy Sauce ($1.48), Samyang Buldak Spicy Carbonara Chicken Ramen ($1.68), Garlic Powder ($1.18).
+                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $34.76):</strong> Dunkin' Original Blend Ground Coffee ($8.98), Nasoya Authentic Korean Spicy Kimchi ($4.48), Bibigo Korean BBQ Marinade & Gochujang Glaze ($3.48), Great Value Sriracha ($2.98), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Argo Corn Starch ($1.78), Samyang Buldak Spicy Carbonara Chicken Ramen ($1.68), Soy Sauce ($1.48), Garlic Powder ($1.18).
                 </p>
               </div>
               <button
@@ -759,8 +759,8 @@ export default function GroceryGuide() {
                       {tpl === 'All'
                         ? '🌐 All Items & Templates'
                         : tpl === 'Korea'
-                        ? '⭐ Phase 1 Cutting ($45.38 / $32.78 Restock)'
-                        : '🔥 Phase 2 Bulking ($43.76 / $32.78 Restock)'}
+                        ? '⭐ Phase 1 Cutting ($45.38 / $34.76 Restock)'
+                        : '🔥 Phase 2 Bulking ($43.76 / $34.76 Restock)'}
                     </span>
                   </button>
                 );
@@ -971,7 +971,7 @@ export default function GroceryGuide() {
                           🧂 Periodic Pantry & Seasoning Restock (Check Kitchen & Buy As Needed)
                         </h3>
                         <p className="text-xs text-zinc-400">
-                          Multi-week sauces, Death Wish Coffee, spices, cooking sprays & sweeteners
+                          Multi-week sauces, Dunkin' Coffee, spices, cornstarch, sriracha, cooking sprays & sweeteners
                         </p>
                       </div>
                     </div>

@@ -372,6 +372,38 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     servingSize: "1 Tea Bag",
     coachNote: "Essential Auburn Walmart green tea staple paired with every post-workout main meal for daily metabolism-boosting hydration and thermogenesis.",
     cuisine: ["Korea", "Korea Bulking"]
+  },
+  {
+    id: "g-22",
+    upc: "078742359022",
+    name: "Argo 100% Pure Corn Starch (16 oz box)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Argo / Great Value",
+    category: "Seasonings & Spices",
+    priceEst: "$1.78 (16 oz box)",
+    calories: 30,
+    protein: 0,
+    carbs: 7,
+    fat: 0,
+    servingSize: "1 tbsp (8g)",
+    coachNote: "Essential coating ingredient for Healthy Crispy Fried Korean Gochujang Chicken (Restock item).",
+    cuisine: ["Korea", "Korea Bulking"]
+  },
+  {
+    id: "g-23",
+    upc: "078742359023",
+    name: "Great Value Sriracha Hot Chili Sauce (17 fl oz bottle)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Seasonings & Spices",
+    priceEst: "$2.98 (17 fl oz bottle)",
+    calories: 5,
+    protein: 0,
+    carbs: 1,
+    fat: 0,
+    servingSize: "1 tsp (5g)",
+    coachNote: "Spicy garlic chili kick whisked into Korean Gochujang glazes and scrambles (Restock item).",
+    cuisine: ["Korea", "Korea Bulking"]
   }
 ];
 
@@ -417,10 +449,10 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         name: "Lunch: Healthy Crispy Fried Korean Gochujang / BBQ Chicken & Steamed Broccoli + Tea",
         time: "2:00 PM – 2:30 PM",
         ingredients: [
-          "~5.7 oz Fresh Chicken Breast cubes prepared Healthy Crispy Fried in Korean Gochujang / BBQ Glaze. Cooking Instructions: Cut chicken breast into bite-sized 1-inch cubes, dip lightly in whisked egg white, and toss with 1 tsp cornstarch and garlic powder. Spray air-fryer basket or non-stick skillet with 0-cal canola cooking spray and air-fry at 400°F (or crisp sear) for 10–12 minutes until super crispy and crunchy outside while juicy inside! Whisk low-cal Korean Glaze (1.5 tbsp Bibigo Korean BBQ sauce / soy sauce, 1 tsp sriracha, 1 zero-cal sweetener packet, 1/4 tsp ground ginger, 1/4 tsp garlic powder, and 1 tbsp water). Toss crispy chicken vigorously with glaze until sticky, glossy, and caramelized! (210 kcal, 40g p, 2g f)",
-          "1 cup steamed Great Value Frozen Broccoli florets. Cooking Instructions: Microwave frozen broccoli in covered bowl with 2 tbsp water for 3-4 minutes until crisp-tender, drain and season with garlic powder. (30 kcal, 2g p, 6g c)",
+          "~5.7 oz Fresh Chicken Breast cubes prepared Healthy Crispy Fried in Korean Gochujang / BBQ Glaze. Cooking Instructions: Cut chicken breast into bite-sized 1-inch cubes, dip lightly in whisked Great Value 100% Liquid Egg Whites, and toss with 1 tsp Argo 100% Pure Corn Starch and Great Value Garlic Powder. Spray air-fryer basket or non-stick skillet liberally with Great Value 0-Calorie Canola Oil Cooking Spray and air-fry at 400°F (or crisp sear) for 10–12 minutes until super crispy and crunchy outside while juicy inside! Whisk low-cal Korean Glaze (1.5 tbsp Bibigo Authentic Korean BBQ sauce / soy sauce, 1 tsp Great Value Sriracha Hot Chili Sauce, 1 Great Value Zero Calorie Sweetener Packet, 1/4 tsp Great Value Ground Ginger, 1/4 tsp Great Value Garlic Powder, and 1 tbsp water). Toss crispy chicken vigorously with glaze until sticky, glossy, and caramelized! Garnished with fresh chopped green onions / scallions. (210 kcal, 40g p, 2g f)",
+          "1 cup steamed Great Value Frozen Broccoli florets. Cooking Instructions: Microwave frozen broccoli in covered bowl with 2 tbsp water for 3-4 minutes until crisp-tender, drain and season with Great Value Garlic Powder. (30 kcal, 2g p, 6g c)",
           "1 cup cooked Long Grain White Rice (from batch prep, reheated with a splash of water so it stays fluffy). (200 kcal, 4g p, 44g c)",
-          "1 cup hot brewed 100% Green Tea (0 kcal, thermogenic fat oxidation booster)"
+          "1 cup hot brewed Great Value 100% Pure Green Tea (0 kcal, thermogenic fat oxidation booster)"
         ],
         calories: 440,
         protein: 46,
@@ -442,10 +474,10 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         name: "Dinner: Healthy Crispy Fried Korean Gochujang / BBQ Chicken & Steamed Broccoli + Tea",
         time: "7:30 PM – 8:00 PM",
         ingredients: [
-          "~5.7 oz Fresh Chicken Breast cubes prepared Healthy Crispy Fried in Korean Gochujang Glaze. Cooking Instructions: Dip cubed chicken in egg white, coat with 1 tsp cornstarch & garlic powder, air-fry at 400°F for 10-12 minutes until super crunchy outside & juicy inside, then toss with low-cal Gochujang Glaze until caramelized and glossy! (210 kcal, 40g p, 2g f)",
-          "1 cup steamed Great Value Frozen Broccoli florets (crisp-tender, seasoned with garlic powder). (30 kcal, 2g p, 6g c)",
+          "~5.7 oz Fresh Chicken Breast cubes prepared Healthy Crispy Fried in Korean Gochujang Glaze. Cooking Instructions: Dip cubed chicken in whisked Great Value 100% Liquid Egg Whites, coat with 1 tsp Argo 100% Pure Corn Starch & Great Value Garlic Powder, spray with Great Value 0-Calorie Canola Oil Cooking Spray, and air-fry at 400°F for 10-12 minutes until super crunchy outside & juicy inside! Whisk low-cal Gochujang Glaze (1.5 tbsp Bibigo Korean BBQ sauce, 1 tsp Great Value Sriracha Hot Chili Sauce, 1 Great Value Zero Calorie Sweetener Packet, 1/4 tsp Great Value Ground Ginger, 1/4 tsp Great Value Garlic Powder, and 1 tbsp water). Toss crispy chicken until caramelized and glossy! Garnished with fresh chopped green onions / scallions. (210 kcal, 40g p, 2g f)",
+          "1 cup steamed Great Value Frozen Broccoli florets (crisp-tender, seasoned with Great Value Garlic Powder). (30 kcal, 2g p, 6g c)",
           "1 cup cooked Long Grain White Rice (reheated warm and fluffy). (200 kcal, 4g p, 44g c)",
-          "1 cup hot brewed 100% Green Tea (0 kcal, evening metabolic & muscle recovery aid)"
+          "1 cup hot brewed Great Value 100% Pure Green Tea (0 kcal, evening metabolic & muscle recovery aid)"
         ],
         calories: 440,
         protein: 46,
@@ -456,13 +488,24 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         name: "Nighttime Recovery: Casein Greek Yogurt Fluff & Hot Green Tea",
         time: "10:30 PM",
         ingredients: [
-          "3/4 cup (6 oz) Plain Nonfat Greek Yogurt. Cooking Instructions: Whisk yogurt in a bowl with 1 zero-calorie sweetener packet until airy and fluffy. Provides essential overnight amino acids to rebuild muscle fiber while you sleep. (90 kcal, 16g p, 6g c)",
-          "1 warm, soothing cup of brewed 100% Green Tea (0 kcal, overnight metabolic support during deep sleep)"
+          "3/4 cup (6 oz) Plain Nonfat Greek Yogurt. Cooking Instructions: Whisk yogurt in a bowl with 1 Great Value Zero Calorie Sweetener Packet until airy and fluffy. Provides essential overnight amino acids to rebuild muscle fiber while you sleep. (90 kcal, 16g p, 6g c)",
+          "1 warm, soothing cup of brewed Great Value 100% Pure Green Tea (0 kcal, overnight metabolic support during deep sleep)"
         ],
         calories: 90,
         protein: 16,
         carbs: 6,
         fat: 0
+      },
+      {
+        name: "Weekly Reward Treat Meal: Samyang Buldak Spicy Carbonara Chicken Ramen",
+        time: "Friday or Saturday Evening (Weekly Reward)",
+        ingredients: [
+          "1 package (4.58 oz) Samyang Buldak Spicy Carbonara Chicken Ramen Noodles. Cooking Instructions: Boil noodles for 5 minutes in 600ml water. Drain all but 8 tbsp water, add liquid spicy sauce packet and cheese carbonara powder packet, and stir-fry for 30 seconds over low heat until rich, creamy, and fiery! Garnished with fresh chopped green onions / scallions. A satisfying weekly reward that keeps your adherence at 100% without breaking your weekly grocery budget! (550 kcal, 8g p, 85g c, 20g f)"
+        ],
+        calories: 550,
+        protein: 8,
+        carbs: 85,
+        fat: 20
       }
     ]
   },
@@ -507,10 +550,10 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         name: "Lunch: Healthy Crispy Fried Korean Gochujang / BBQ Chicken + DOUBLE White Rice & Broccoli + Tea",
         time: "2:00 PM – 2:30 PM",
         ingredients: [
-          "~5.7 oz Fresh Chicken Breast cubes prepared Healthy Crispy Fried in Korean Gochujang Glaze. Cooking Instructions: Cut chicken breast into bite-sized cubes, dip lightly in whisked egg white, and toss with 1 tsp cornstarch and garlic powder. Spray air-fryer basket or non-stick skillet with 0-cal canola cooking spray and air-fry at 400°F (or crisp sear) for 10–12 minutes until super crispy and crunchy outside while juicy inside! Whisk low-cal Gochujang Glaze, pour over chicken and toss for 1 minute until sticky and glossy! (210 kcal, 40g p, 2g f)",
+          "~5.7 oz Fresh Chicken Breast cubes prepared Healthy Crispy Fried in Korean Gochujang Glaze. Cooking Instructions: Cut chicken breast into bite-sized cubes, dip lightly in whisked Great Value 100% Liquid Egg Whites, and toss with 1 tsp Argo 100% Pure Corn Starch and Great Value Garlic Powder. Spray air-fryer basket or non-stick skillet liberally with Great Value 0-Calorie Canola Oil Cooking Spray and air-fry at 400°F (or crisp sear) for 10–12 minutes until super crispy and crunchy outside while juicy inside! Whisk low-cal Gochujang Glaze (1.5 tbsp Bibigo Korean BBQ sauce, 1 tsp Great Value Sriracha Hot Chili Sauce, 1 Great Value Zero Calorie Sweetener Packet, 1/4 tsp Great Value Ground Ginger, 1/4 tsp Great Value Garlic Powder, and 1 tbsp water), pour over chicken and toss until sticky and glossy! Garnished with fresh chopped green onions / scallions. (210 kcal, 40g p, 2g f)",
           "2 cups cooked Long Grain White Rice (from your 5 lb batch prep bag, reheated with a splash of water for fluffy, high-density bulking glycogen replenishment!). (400 kcal, 8g p, 88g c)",
-          "1 cup steamed Great Value Frozen Broccoli florets seasoned with garlic powder. (30 kcal, 2g p, 6g c)",
-          "1 cup hot brewed 100% Green Tea (0 kcal, digestion & nutrient partitioning support)"
+          "1 cup steamed Great Value Frozen Broccoli florets seasoned with Great Value Garlic Powder. (30 kcal, 2g p, 6g c)",
+          "1 cup hot brewed Great Value 100% Pure Green Tea (0 kcal, digestion & nutrient partitioning support)"
         ],
         calories: 640,
         protein: 50,
@@ -532,10 +575,10 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         name: "Dinner: Healthy Crispy Fried Korean Gochujang / BBQ Chicken + DOUBLE White Rice & Broccoli + Tea",
         time: "7:30 PM – 8:00 PM",
         ingredients: [
-          "~5.7 oz Fresh Chicken Breast cubes prepared Healthy Crispy Fried in Korean Gochujang Glaze (dipped in egg white, coated with cornstarch, air-fried at 400°F until super crunchy outside, and tossed with glaze until glossy). (210 kcal, 40g p, 2g f)",
+          "~5.7 oz Fresh Chicken Breast cubes prepared Healthy Crispy Fried in Korean Gochujang Glaze (dipped in Great Value 100% Liquid Egg Whites, coated with 1 tsp Argo 100% Pure Corn Starch & Great Value Garlic Powder, sprayed with Great Value 0-Calorie Canola Oil Cooking Spray, air-fried at 400°F until super crunchy outside, and tossed with glaze consisting of Bibigo Korean BBQ sauce, Great Value Sriracha Hot Chili Sauce, Great Value Ground Ginger, and Great Value Zero Calorie Sweetener Packet). Garnished with fresh chopped green onions / scallions. (210 kcal, 40g p, 2g f)",
           "2 cups cooked Long Grain White Rice (warm, fluffy complex carbohydrates to fuel overnight muscle repair and top off glycogen stores). (400 kcal, 8g p, 88g c)",
-          "1 cup steamed Great Value Frozen Broccoli florets seasoned with garlic powder. (30 kcal, 2g p, 6g c)",
-          "1 cup hot brewed 100% Green Tea (0 kcal, evening antioxidant hydration)"
+          "1 cup steamed Great Value Frozen Broccoli florets seasoned with Great Value Garlic Powder. (30 kcal, 2g p, 6g c)",
+          "1 cup hot brewed Great Value 100% Pure Green Tea (0 kcal, evening antioxidant hydration)"
         ],
         calories: 640,
         protein: 50,
@@ -546,13 +589,24 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
         name: "Nighttime Muscle Armor: Casein Greek Yogurt Fluff & Hot Green Tea",
         time: "10:30 PM",
         ingredients: [
-          "3/4 cup (6 oz) Plain Nonfat Greek Yogurt whisked with 1 zero-calorie sweetener packet until airy and fluffy. Provides slow-digesting night casein protein to maximize muscle protein synthesis while sleeping. (90 kcal, 16g p, 6g c)",
-          "1 warm, soothing cup of brewed 100% Green Tea (0 kcal, deep sleep recovery & metabolic support)"
+          "3/4 cup (6 oz) Plain Nonfat Greek Yogurt whisked with 1 Great Value Zero Calorie Sweetener Packet until airy and fluffy. Provides slow-digesting night casein protein to maximize muscle protein synthesis while sleeping. (90 kcal, 16g p, 6g c)",
+          "1 warm, soothing cup of brewed Great Value 100% Pure Green Tea (0 kcal, deep sleep recovery & metabolic support)"
         ],
         calories: 90,
         protein: 16,
         carbs: 6,
         fat: 0
+      },
+      {
+        name: "Weekly Reward Treat Meal: Samyang Buldak Spicy Carbonara Chicken Ramen",
+        time: "Friday or Saturday Evening (Weekly Reward)",
+        ingredients: [
+          "1 package (4.58 oz) Samyang Buldak Spicy Carbonara Chicken Ramen Noodles. Cooking Instructions: Boil noodles for 5 minutes in 600ml water. Drain all but 8 tbsp water, add liquid spicy sauce packet and cheese carbonara powder packet, and stir-fry for 30 seconds over low heat until rich, creamy, and fiery! Garnished with fresh chopped green onions / scallions. A satisfying weekly reward that keeps your adherence at 100% without breaking your weekly grocery budget! (550 kcal, 8g p, 85g c, 20g f)"
+        ],
+        calories: 550,
+        protein: 8,
+        carbs: 85,
+        fat: 20
       }
     ]
   }
@@ -588,6 +642,8 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   { name: "Great Value 100% Green Tea Bags (40 ct)", category: "Seasonings & Spices", price: "$1.98", note: "Traditional 100% green tea paired with post-workout meals." },
   { name: "Great Value 0-Calorie Canola Oil Cooking Spray", category: "Seasonings & Spices", price: "$2.24", note: "Fat-free searing for Korean Gochujang Chicken and egg scrambling." },
   { name: "Great Value Zero Calorie Sweetener Packets (100 ct)", category: "Seasonings & Spices", price: "$2.18", note: "Sweetens Korean Gochujang glaze, tea, and yogurt with zero sugar calories." },
+  { name: "Argo 100% Pure Corn Starch (16 oz box)", category: "Seasonings & Spices", price: "$1.78", note: "Lightly coat chicken cubes for healthy crispy fried texture." },
+  { name: "Great Value Sriracha Hot Chili Sauce (17 fl oz bottle)", category: "Seasonings & Spices", price: "$2.98", note: "Whisk into Gochujang glaze for authentic fiery heat." },
   // Groceries & Protein Staples
   { name: "Fresh Chicken Breasts (~4.7 to 5.0 lb Family Tray)", category: "Protein", price: "$13.40", note: "Primary lean protein staple (~5.0 lb tray at $2.68/lb) for Gochujang cubes." },
   { name: "Great Value Large Grade A White Eggs (36 Count Tray)", category: "Protein", price: "$6.84", note: "36 eggs guaranteed (3-5 eggs/day for post-workout breakfast plus extras!)." },
