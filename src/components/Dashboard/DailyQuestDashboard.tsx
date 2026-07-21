@@ -115,7 +115,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               Arise, <span className="text-system-blue">{state.profile.name}</span>.
             </h2>
             <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
-              Your mission is clear: transform from {startWeight} lbs down to a shredded, muscular <span className="text-system-cyan font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Complete your daily quests to level up your real-life stats and build impressive density inside your {state.profile.gymName || 'Quiet Apartment Bodyweight Dojo'}!
+              Your mission is clear: transform from {startWeight} lbs down to a shredded, muscular <span className="text-system-cyan font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Complete your daily quests to level up your real-life stats and build impressive density at {state.profile.gymName || 'Planet Fitness Lewiston'}!
             </p>
           </div>
 
@@ -155,7 +155,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               <span className="text-sm font-mono font-bold text-system-gold">({daysRemaining} Days Left)</span>
             </h3>
             <p className="text-xs text-zinc-300 max-w-2xl leading-relaxed">
-              Every clean meal prep and every workout PR inside your {state.profile.gymName || 'Quiet Apartment Bodyweight Dojo'} chops HP off this boss raid. Stay consistent on the {state.profile.dietName || 'Japanese Teriyaki cutting diet'} to avoid loose skin and emerge at peak definition!
+              Every clean meal prep and every PR at {state.profile.gymName || 'Planet Fitness Lewiston'} chops HP off this boss raid. Stay consistent on the {state.profile.dietName || 'Japanese Teriyaki cutting diet'} to avoid loose skin and emerge at peak definition!
             </p>
 
             {/* Boss HP Bar */}
@@ -442,23 +442,23 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               <div className="mt-4 flex flex-wrap gap-2">
                 <button
                   onClick={() => handleDrinkWater(16.9)}
-                  className="flex-1 py-2 px-2 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer"
+                  className="flex-1 sm:flex-initial py-2 px-3 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer min-h-[36px]"
                   title="Drink standard 16.9 oz water bottle"
                 >
                   <PlusCircle className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>+16.9 oz</span>
+                  <span>+16.9 oz Bottle</span>
                 </button>
                 <button
                   onClick={() => handleDrinkWater(24)}
-                  className="flex-1 py-2 px-2 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer"
+                  className="flex-1 sm:flex-initial py-2 px-3 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer min-h-[36px]"
                   title="Drink 24 oz shaker / bottle"
                 >
                   <PlusCircle className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>+24 oz</span>
+                  <span>+24 oz Shaker</span>
                 </button>
                 <button
                   onClick={handleResetWater}
-                  className="px-3 py-2 rounded-xl bg-system-card hover:bg-red-500/20 border border-white/10 hover:border-red-500/40 text-zinc-400 hover:text-red-300 text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 cursor-pointer"
+                  className="px-3 py-2 rounded-xl bg-system-card hover:bg-red-500/20 border border-white/10 hover:border-red-500/40 text-zinc-400 hover:text-red-300 text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 cursor-pointer min-h-[36px]"
                   title="Reset today's water tracking to 0 oz"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />

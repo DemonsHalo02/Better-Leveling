@@ -94,9 +94,9 @@ export default function TrophyHall() {
     },
     {
       id: 'iron_monarch',
-      title: 'Apartment Dojo 50+ Rep Beast',
+      title: 'Lewiston 200+ lb Beast',
       name: '⚔️ Iron Monarch',
-      description: 'Conquer gravity by completing 50+ consecutive bodyweight reps or heavy calisthenics holds in your Quiet Apartment Dojo.',
+      description: 'Conquer gravity by recording a max strength lift of 200 lbs or greater at Planet Fitness Lewiston.',
       icon: <Trophy className="w-6 h-6 text-red-400" />,
       rarity: 'Legendary',
       unlocked: hasPr200 || hunterState.stats.str >= 12,
@@ -159,7 +159,7 @@ export default function TrophyHall() {
 
   const handleCopyShareCard = () => {
     if (!hunterState) return;
-    const text = `👑 [BETTER LEVELING v2 - S-RANK HUNTER GUILD CARD]\n⚔️ Hunter: ${hunterState.profile.name}\n🛡️ Title: ${equippedTitle || 'Awakened Hunter'}\n⚡ Level: ${hunterState.level} | STR: ${hunterState.stats.str}\n🔥 Streak: ${hunterState.streakDays} Days\n🥩 Nutrition Blueprint: 2,080 kcal / 178g Protein (Japanese Style)\n📍 Sector: Quiet Apartment Dojo & Auburn ME`;
+    const text = `👑 [BETTER LEVELING v2 - S-RANK HUNTER GUILD CARD]\n⚔️ Hunter: ${hunterState.profile.name}\n🛡️ Title: ${equippedTitle || 'Awakened Hunter'}\n⚡ Level: ${hunterState.level} | STR: ${hunterState.stats.str}\n🔥 Streak: ${hunterState.streakDays} Days\n🥩 Nutrition Blueprint: 2,080 kcal / 178g Protein (Japanese Style)\n📍 Sector: Planet Fitness Lewiston & Auburn ME`;
     navigator.clipboard.writeText(text);
     setShareCopied(true);
     setTimeout(() => setShareCopied(false), 3000);
@@ -180,7 +180,7 @@ export default function TrophyHall() {
             Hunter Trophy Hall
           </h2>
           <p className="text-xs sm:text-sm text-zinc-300 max-w-2xl leading-relaxed">
-            Unlock legendary titles by crushing your Quiet Apartment Dojo workouts and Japanese Teriyaki nutrition targets. Equip any unlocked title to display it across your top Hunter Status Bar!
+            Unlock legendary titles by crushing your Planet Fitness workouts and Japanese Teriyaki nutrition targets. Equip any unlocked title to display it across your top Hunter Status Bar!
           </p>
         </div>
 
@@ -245,7 +245,7 @@ export default function TrophyHall() {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-zinc-400">Training Sector:</span>
-                <span className="text-green-400 font-bold">Quiet Apartment Bodyweight Dojo</span>
+                <span className="text-green-400 font-bold">Planet Fitness Lewiston, ME</span>
               </div>
             </div>
 

@@ -16,7 +16,7 @@ const chakra = Chakra_Petch({
 
 export const metadata: Metadata = {
   title: "Better Leveling v2 | Shadow Monarch Fitness & Health Tracker",
-  description: "Solo Leveling themed fitness, weight loss, nutrition, and gym tracker app. Tailored for quiet apartment bodyweight training and local Auburn/Lewiston grocers.",
+  description: "Solo Leveling themed fitness, weight loss, nutrition, and gym tracker app. Tailored for Planet Fitness Lewiston, ME and local Auburn/Lewiston grocers.",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",

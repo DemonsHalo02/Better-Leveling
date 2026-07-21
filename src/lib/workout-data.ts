@@ -21,24 +21,24 @@ export interface WorkoutDay {
   exercises: Exercise[];
 }
 
-export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
+export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
-    splitName: "System Restoration / Active Recovery & Deep Stretch (Rest Day)",
+    splitName: "System Restoration / K-Pop Idol Yoga & Deep Stretch (Rest Day)",
     isRestDay: true,
-    questTitle: "[Daily Quest] Apartment Dojo Active Recovery & Flexibility Flow",
-    description: "Sunday is your official System Restoration Day! Focus on gentle yoga flows, deep stretching, and mindful breathing inside your quiet apartment to prepare your body for Monday's grocery run, Japanese meal prep, and Upper Body training. Concludes with your daily 45-minute dual cardio session (30-minute brisk walk + 15-minute run).",
+    questTitle: "[Daily Quest] K-Pop Idol Active Recovery & Flexibility Flow",
+    description: "Sunday is your official System Restoration Day! Focus on gentle K-Pop idol yoga flows, deep stretching, and mindful breathing inside your quiet apartment to prepare your body for Monday's grocery run, Korean meal prep, and Upper Body training. Concludes with your daily 45-minute dual cardio session (30-minute brisk walk + 15-minute run).",
     xpReward: 300,
     exercises: [
       {
         id: "sun-1",
-        name: "Cat-Cow to Downward Dog Mobility Flow [15 Minutes]",
+        name: "K-Pop Idol Mobility Flow: Cat-Cow to Downward Dog [15 Minutes]",
         targetGroup: "Full Body",
         sets: 1,
         reps: "15 mins (flow through poses slowly)",
         equipment: "Mat or Carpet (Home)",
-        coachTip: "Start on all fours. Alternate between Cat (round spine up) and Cow (arch spine down) for 10 slow breaths, then push hips up into Downward Dog holding 30 seconds to lengthen calves and hamstrings."
+        coachTip: "Start on all fours. Alternate between Cat (round spine up) and Cow (arch spine down) for 10 slow breaths, then push hips up into Downward Dog holding 30 seconds to lengthen calves and hamstrings. Used by K-Pop trainees to maintain elite posture and flexibility."
       },
       {
         id: "sun-2",
@@ -47,7 +47,7 @@ export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "15 mins (hold each stretch 30-60 sec)",
         equipment: "Mat or Carpet (Home)",
-        coachTip: "Hold each stretch for 30-60 seconds: pigeon pose for hips, seated forward fold for hamstrings, and doorway chest stretches for anterior shoulder flexibility."
+        coachTip: "Hold each stretch for 30-60 seconds: pigeon pose for hips, seated forward fold for hamstrings, and doorway chest stretches for anterior shoulder flexibility to keep skin elastic and muscles supple."
       },
       {
         id: "sun-3",
@@ -72,20 +72,20 @@ export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 1, // Monday
     dayName: "Monday",
-    splitName: "Push A (Chest, Shoulders & Triceps Sculpt) + Monday Grocery & Prep",
+    splitName: "Push A (K-Pop Idol Upper Body Sculpt: Chest, Shoulders, Triceps) + Monday Grocery & Korean Prep",
     isRestDay: false,
-    questTitle: "[Daily Quest] Apartment Push A & Monday Walmart Japanese Prep",
-    description: "Fuel up at 8:00 AM with Death Wish Espresso Roast Black Coffee & Banana right before your morning bodyweight workout & cardio! Carve out chest thickness, broad shoulders, and defined triceps using 100% silent, equipment-free bodyweight exercises. After training, hit Auburn ME Walmart for your weekly Japanese Teriyaki groceries and complete your batch prep!",
+    questTitle: "[Daily Quest] K-Pop Idol Push A & Monday Walmart Korean Prep",
+    description: "Fuel up at 8:00 AM with Regular Dunkin' Black Coffee & Banana right before your morning bodyweight workout & cardio! Carve out chest thickness, broad shoulders, and defined triceps using 100% silent, equipment-free bodyweight exercises. After training, hit Auburn ME Walmart for your weekly Korean Gochujang groceries and complete your batch prep!",
     xpReward: 500,
     exercises: [
       {
         id: "mon-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Japanese Chicken Teriyaki Batch Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Korean Gochujang Batch Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Japanese Teriyaki Batch Prep (For Tuesday Start)",
+        reps: "Korean Gochujang Batch Prep (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your exact weekly groceries ($45.38 cutting / $43.76 bulking + $32.98 restock). Cut chicken breasts into 1-inch cubes, wok-sear with low-cal Japanese Teriyaki glaze, cook bulk rice, and portion across 14 containers!"
+        coachTip: "Pick up your exact weekly groceries ($45.38 cutting / $43.76 bulking + $32.78 restock). Cut chicken breasts into 1-inch cubes, dip in egg white, coat lightly with cornstarch, air-fry at 400°F until super crispy & crunchy outside, and toss with low-cal Korean Gochujang glaze!"
       },
       {
         id: "mon-1",
@@ -103,7 +103,7 @@ export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
         sets: 3,
         reps: "10-12 reps",
         equipment: "Bodyweight Only (Home)",
-        coachTip: "Place hands wider than shoulder-width. This shifts tension directly onto the outer pecs and anterior deltoids to widen your upper body V-taper."
+        coachTip: "Place hands wider than shoulder-width. This shifts tension directly onto the outer pecs and anterior deltoids to widen your upper body V-taper for that broad K-Pop idol shoulder frame."
       },
       {
         id: "mon-3",
@@ -146,10 +146,10 @@ export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 2, // Tuesday
     dayName: "Tuesday",
-    splitName: "Pull A & Forearm Grip Forge (Back, Biceps & Forearms)",
+    splitName: "Pull A (K-Pop Idol Back & Arm Definition + Forearm Grip Forge)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Apartment Pull A & Forearm Grip Forge - Start Eating Prep!",
-    description: "First day of eating your prepped Japanese Teriyaki Chicken meals! Build back thickness, bicep peaks, and iron forearm grip strength right inside your apartment using isometric towel rows, doorframe pulls, and scapular retractions.",
+    questTitle: "[Daily Quest] K-Pop Idol Pull A - Start Eating Korean Prep!",
+    description: "First day of eating your prepped Healthy Crispy Fried Korean Gochujang Chicken meals! Build back thickness, bicep peaks, and iron forearm grip strength right inside your apartment using isometric towel rows, doorframe pulls, and scapular retractions.",
     xpReward: 500,
     exercises: [
       {
@@ -211,9 +211,9 @@ export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 3, // Wednesday
     dayName: "Wednesday",
-    splitName: "Legs A & Deep Core Carve (Quads, Hamstrings & Abs)",
+    splitName: "Legs A & K-Pop Idol V-Taper Core Carve (Quads, Hamstrings & Abs)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Apartment Legs A & Core Carve Session",
+    questTitle: "[Daily Quest] K-Pop Idol Legs A & Core Carve Session",
     description: "Build lean, athletic quads and carve razor-sharp abdominal definition using 100% silent lower body and core movements. Controlled tempos ensure maximum muscle tension without a single stomp or impact noise in your apartment.",
     xpReward: 550,
     exercises: [
@@ -260,7 +260,7 @@ export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
         sets: 4,
         reps: "20 reps (10 per side)",
         equipment: "Mat or Carpet (Home)",
-        coachTip: "Bring opposite elbow to opposite knee while extending the other leg straight. Move with slow, controlled precision to carve deep oblique lines."
+        coachTip: "Bring opposite elbow to opposite knee while extending the other leg straight. Move with slow, controlled precision to carve deep oblique lines for a tight K-Pop idol waist."
       },
       {
         id: "wed-cardio",
@@ -276,9 +276,9 @@ export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 4, // Thursday
     dayName: "Thursday",
-    splitName: "Push B (Upper Chest Focus, Shoulders & Triceps)",
+    splitName: "Push B (K-Pop Idol Upper Chest Focus, Shoulder Capping & Triceps)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Apartment Push B Definition & Posture Session",
+    questTitle: "[Daily Quest] K-Pop Idol Push B Definition & Posture Session",
     description: "Hit your second push session of the week with an emphasis on upper chest fullness, lateral shoulder capping, and tricep burnout. All movements are silent and bodyweight-focused.",
     xpReward: 500,
     exercises: [
@@ -341,10 +341,10 @@ export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 5, // Friday
     dayName: "Friday",
-    splitName: "Pull B & Posture Sculpt (Back Thickness, Biceps & Forearms)",
+    splitName: "Pull B & K-Pop Idol Posture Sculpt (Back Thickness, Biceps & Forearms)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Apartment Pull B Posture Sculpt & Ramen Reward",
-    description: "Sculpt upper back posture, rear deltoids, and bicep definition right before enjoying your weekly Friday or Saturday Japanese Ramen reward treat meal! Uses Prone Y-T-W raises and isometric holds.",
+    questTitle: "[Daily Quest] K-Pop Idol Pull B Posture Sculpt & Korean Ramen Reward",
+    description: "Sculpt upper back posture, rear deltoids, and bicep definition right before enjoying your weekly Friday or Saturday Samyang Buldak Korean Ramen reward treat meal! Uses Prone Y-T-W raises and isometric holds.",
     xpReward: 500,
     exercises: [
       {
@@ -399,16 +399,16 @@ export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run)",
         equipment: "Outdoors or Apartment Track",
-        coachTip: "Lock in your Friday cardio (30m walk + 15m run) before your evening Japanese Ramen treat meal!"
+        coachTip: "Lock in your Friday cardio (30m walk + 15m run) before your evening Samyang Buldak Korean Ramen treat meal!"
       }
     ]
   },
   {
     dayOfWeek: 6, // Saturday
     dayName: "Saturday",
-    splitName: "Legs B & Ab Armor (Glutes, Hamstrings & Core Burnout)",
+    splitName: "Legs B & K-Pop Idol Ab Armor (Glutes, Hamstrings & Core Burnout)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Apartment Legs B Glute Forge & Core Armor",
+    questTitle: "[Daily Quest] K-Pop Idol Legs B Glute Forge & Core Armor",
     description: "Conquer your training week with high-intensity lower body glute/hamstring sculpting and deep abdominal core armor. All silent bodyweight movements inside your quiet apartment.",
     xpReward: 600,
     exercises: [
@@ -446,7 +446,7 @@ export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
         sets: 4,
         reps: "20 reps (10 per side)",
         equipment: "Mat or Carpet (Home)",
-        coachTip: "Sit with knees bent, lean back 45 degrees keeping spine long. Twist torso side to side touching hands to floor beside each hip. Carves tight oblique definition."
+        coachTip: "Sit with knees bent, lean back 45 degrees keeping spine long. Twist torso side to side touching hands to floor beside each hip. Carves tight oblique definition for a slim waistline."
       },
       {
         id: "sat-5",
@@ -470,12 +470,12 @@ export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   }
 ];
 
-export const PLANET_FITNESS_PPL_ROUTINE = QUIET_APARTMENT_BODYWEIGHT_ROUTINE;
-export const JAPANESE_HOME_BODYWEIGHT_ROUTINE = QUIET_APARTMENT_BODYWEIGHT_ROUTINE;
-export const JAPANESE_APARTMENT_BODYWEIGHT_ROUTINE = QUIET_APARTMENT_BODYWEIGHT_ROUTINE;
-export const PLANET_FITNESS_LEWISTON_6DAY_ROUTINE = QUIET_APARTMENT_BODYWEIGHT_ROUTINE;
+export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE = KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
+export const PLANET_FITNESS_PPL_ROUTINE = KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
+export const PLANET_FITNESS_LEWISTON_6DAY_ROUTINE = KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
+export const KPOP_HOME_BODYWEIGHT_ROUTINE = KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
 
 export function getTodayWorkout(): WorkoutDay {
   const dayIndex = new Date().getDay(); // 0 = Sunday, 1 = Monday...
-  return QUIET_APARTMENT_BODYWEIGHT_ROUTINE.find(d => d.dayOfWeek === dayIndex) || QUIET_APARTMENT_BODYWEIGHT_ROUTINE[0];
+  return KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE.find(d => d.dayOfWeek === dayIndex) || KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE[0];
 }

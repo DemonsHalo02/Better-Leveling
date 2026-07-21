@@ -38,8 +38,8 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
     if (loaded.profile) {
       setName(loaded.profile.name || 'Nick Crosson');
       setTitle(loaded.title || 'Awakened Hunter');
-      setGymName(loaded.profile.gymName || 'Quiet Apartment Bodyweight Dojo');
-      setDietName(loaded.profile.dietName || "Japanese Chicken Teriyaki & Death Wish Black Coffee Shred Blueprint");
+      setGymName(loaded.profile.gymName || 'K-Pop Idol Home Bodyweight Dojo (No Equipment + 45m Cardio)');
+      setDietName(loaded.profile.dietName || "Healthy Crispy Fried Korean Gochujang Chicken & Regular Dunkin' Black Coffee Shred Blueprint");
 
       setStartWeight(loaded.profile.startWeight || 242);
       setCurrentWeight(loaded.profile.currentWeight || 242);
@@ -71,8 +71,8 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
       dailyProteinGoal: Number(dailyProteinGoal) || 178,
       dailyCarbGoal: Number(dailyCarbGoal) || 190,
       dailyFatGoal: Number(dailyFatGoal) || 60,
-      gymName: gymName.trim() || 'Quiet Apartment Bodyweight Dojo',
-      dietName: dietName.trim() || "Japanese Chicken Teriyaki & Death Wish Black Coffee Shred Blueprint",
+      gymName: gymName.trim() || 'K-Pop Idol Home Bodyweight Dojo (No Equipment + 45m Cardio)',
+      dietName: dietName.trim() || "Healthy Crispy Fried Korean Gochujang Chicken & Regular Dunkin' Black Coffee Shred Blueprint",
     };
 
     const nextState = updateUserProfile(updates);
@@ -101,7 +101,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('pf_custom_grocery_items');
       localStorage.removeItem('pf_grocery_checked');
-      alert("Custom grocery items and checked items reset to Chinese General Tso's default staples!");
+      alert("Custom grocery items and checked items reset to Korean Gochujang default staples!");
     }
   };
 

@@ -7,7 +7,7 @@ import confetti from 'canvas-confetti';
 
 const DIRECTIVE_QUOTES = [
   {
-    quote: "A hunter who fears the daily grind will never rise above E-Rank. Step into your Quiet Apartment Dojo and master your body.",
+    quote: "A hunter who fears the weights will never rise above E-Rank. Step into Planet Fitness and conquer the iron.",
     author: "Shadow Monarch System",
     stat: "STR FOCUS"
   },
