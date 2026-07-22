@@ -167,17 +167,17 @@ export default function WorkoutQuestView() {
             <MapPin className="w-3.5 h-3.5 text-system-blue" />
             <span>
               {planType === 'pf'
-                ? 'Puerto Rican Planet Fitness Gym Blueprint | 7-Day Equipment & Machine Routine'
-                : 'Puerto Rican Home Quiet Apartment Dojo | 7-Day Silent Bodyweight Routine'}
+                ? 'Planet Fitness Gym Blueprint | 7-Day Machine & Equipment Routine'
+                : 'Quiet Apartment Bodyweight Dojo | 7-Day Silent Bodyweight Routine'}
             </span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            {planType === 'pf' ? 'Puerto Rican Planet Fitness Gym Dojo' : 'Puerto Rican Home Quiet Apartment Dojo'}
+            {planType === 'pf' ? 'Planet Fitness Gym Dojo' : 'Quiet Apartment Bodyweight Dojo'}
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
             {planType === 'pf'
-              ? 'Tailored specifically for Planet Fitness machines, dumbbells, cables, and Smith machine squats. Daily dual cardio: 30-minute incline treadmill walk + 15-minute jog. Monday is Chest & Triceps + Auburn ME Walmart Grocery Run & Puerto Rican Batch Meal Prep!'
-              : 'Tailored specifically for quiet apartment bodyweight training (silent, no equipment needed, zero floor impact). Daily dual cardio: 30-minute brisk walk + 15-minute run/silent march. Monday is Upper Body Push Sculpt + Auburn ME Walmart Grocery Run & Puerto Rican Batch Meal Prep!'}
+              ? 'Tailored specifically for Planet Fitness machines, dumbbells, cables, and Smith machine squats. Daily dual cardio: 30-minute incline treadmill walk + 15-minute jog. Monday includes your Auburn ME Walmart Grocery Run & Weekly Batch Meal Prep from your chosen 19-Country Global Blueprint!'
+              : 'Tailored specifically for quiet apartment bodyweight training (silent, no equipment needed, zero floor impact). Daily dual cardio: 30-minute brisk walk + 15-minute run/silent march. Monday includes your Auburn ME Walmart Grocery Run & Weekly Batch Meal Prep from your chosen 19-Country Global Blueprint!'}
           </p>
         </div>
 

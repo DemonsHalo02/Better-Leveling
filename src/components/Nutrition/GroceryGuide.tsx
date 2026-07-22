@@ -13,6 +13,7 @@ export default function GroceryGuide() {
   const [selectedCountryPlan, setSelectedCountryPlan] = useState<string>('All');
   const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('🇵🇷 Puerto Rico');
   const [selectedNationalCuisine, setSelectedNationalCuisine] = useState<string>('Puerto Rico');
+  const [selectedRegion, setSelectedRegion] = useState<string>('All Regions');
 
   const [customItems, setCustomItems] = useState<GroceryItem[]>([]);
   const [hiddenItemIds, setHiddenItemIds] = useState<string[]>([]);
@@ -88,6 +89,7 @@ export default function GroceryGuide() {
     }
     setSelectedAisleTemplate('🇵🇷 Puerto Rico');
     setSelectedNationalCuisine('Puerto Rico');
+    setSelectedRegion('All Regions');
     setSelectedCountryPlan('All');
     setSelectedCategory('All');
     setSelectedStore('All Stores');
@@ -99,7 +101,10 @@ export default function GroceryGuide() {
   const handleSelectTemplate = (country: string) => {
     setSelectedAisleTemplate(country);
     const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === country || c.bulkingKey === country);
-    if (matchCuisine) setSelectedNationalCuisine(matchCuisine.name);
+    if (matchCuisine) {
+      setSelectedNationalCuisine(matchCuisine.name);
+      if (matchCuisine.region) setSelectedRegion(matchCuisine.region);
+    }
     if (country !== 'All') {
       setSelectedCategory('All');
       setSelectedStore('All Stores');
@@ -122,7 +127,10 @@ export default function GroceryGuide() {
   const handleSelectCountryPlan = (country: string) => {
     setSelectedCountryPlan(country);
     const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === country || c.bulkingKey === country);
-    if (matchCuisine) setSelectedNationalCuisine(matchCuisine.name);
+    if (matchCuisine) {
+      setSelectedNationalCuisine(matchCuisine.name);
+      if (matchCuisine.region) setSelectedRegion(matchCuisine.region);
+    }
     if (typeof window !== 'undefined') {
       if (country === 'All') {
         localStorage.removeItem('pf_selected_country_plan');
@@ -352,7 +360,7 @@ export default function GroceryGuide() {
             Hunter Grocery Companion
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            High-protein, pan or oven crispy fried S-Rank Blueprints priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run right around your $50 budget (~$51/wk Consumables / ~$26 Periodic Restock)! Features 13 Global National Cuisines (Puerto Rico, Spain, Mexico, Dominican Republic, Colombia, Brazil, China, Korea, Japan, Italy, El Salvador, Venezuela, and Argentina), morning Pre-Workout Café Bustelo Espresso Ground Coffee, and authentic national spices.
+            High-protein, pan or oven crispy fried S-Rank Blueprints priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run right around your $50 budget (~$51/wk Consumables / ~$26 Periodic Restock)! Features 19 Global National Cuisines (Puerto Rico, USA, Canada, Mexico, Dominican Republic, El Salvador, Colombia, Brazil, Venezuela, Argentina, Spain, Italy, France, Germany, Russia, Japan, Korea, China, and India), morning Pre-Workout Café Bustelo Espresso Ground Coffee, and authentic national spices.
           </p>
         </div>
 
@@ -380,13 +388,13 @@ export default function GroceryGuide() {
         </div>
       </div>
 
-      {/* 13-Country Global S-Rank Diet Phase & Goal Selector Menu */}
+      {/* 19-Country Global S-Rank Diet Phase & Goal Selector Menu */}
       <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-dark p-5 rounded-2xl border-2 border-system-gold/40 shadow-glow-gold space-y-5">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <span className="bg-system-gold text-system-dark text-[10px] font-black uppercase px-2.5 py-0.5 rounded tracking-wider flex items-center gap-1">
-                <Globe className="w-3.5 h-3.5 inline" /> ⭐ 13-Country Global Master Deck & Diet Phase Selector
+                <Globe className="w-3.5 h-3.5 inline" /> ⭐ 19-Country Global Master Deck & Diet Phase Selector
               </span>
               <span className="text-xs font-mono font-bold text-system-cyan">
                 Target: 160 Lbs Cutting vs Post-Goal Lean Bulking
@@ -396,37 +404,76 @@ export default function GroceryGuide() {
               Select National Cuisine & Active Phase Protocol ({selectedNationalCuisine})
             </h3>
             <p className="text-xs text-zinc-300 max-w-3xl">
-              Select from all 13 national cuisines below! Each cuisine features 100% ingredient parity, the exact same Monday Auburn Walmart shopping routine, morning Café Bustelo Espresso Ground Coffee, and authentic recipes. Switch between Phase 1 Cutting (~2,080 kcal) and Phase 2 Bulking (~2,680 kcal) for your chosen cuisine.
+              Select from all 19 national cuisines below! Filter by region to keep your workspace clean. Each cuisine features 100% ingredient parity, the exact same Monday Auburn Walmart shopping routine, morning Café Bustelo Espresso Ground Coffee, and authentic recipes. Switch between Phase 1 Cutting (~2,080 kcal) and Phase 2 Bulking (~2,680 kcal) for your chosen cuisine.
             </p>
           </div>
         </div>
 
-        {/* 13 National Cuisines Grid */}
-        <div className="space-y-2">
-          <div className="text-[11px] font-mono font-bold text-zinc-400 uppercase tracking-wider">
-            🌍 Step 1: Choose Your National Cuisine Blueprint
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            {NATIONAL_CUISINES_LIST.map((c) => {
-              const isSelected = selectedNationalCuisine === c.name;
-              return (
+        {/* Region Filter Tabs & 19 National Cuisines Grid */}
+        <div className="space-y-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-white/10 pb-2">
+            <div className="text-[11px] font-mono font-bold text-zinc-400 uppercase tracking-wider">
+              🌍 Step 1: Choose Your National Cuisine Blueprint (Filter By Region)
+            </div>
+            <div className="flex flex-wrap items-center gap-1.5">
+              {['All Regions', 'Americas & Caribbean', 'South America', 'Europe', 'Asia'].map((region) => (
                 <button
-                  key={c.name}
-                  onClick={() => {
-                    setSelectedNationalCuisine(c.name);
-                    const targetKey = selectedAisleTemplate.includes('Bulking') || selectedCountryPlan.includes('Bulking') ? c.bulkingKey : c.cuttingKey;
-                    handleSelectTemplate(targetKey);
-                    handleSelectCountryPlan(targetKey);
-                  }}
-                  className={`px-3 py-2 rounded-xl text-xs font-black uppercase font-mono tracking-wider transition-all flex items-center gap-1.5 cursor-pointer ${
-                    isSelected
-                      ? 'bg-gradient-to-r from-system-gold to-yellow-500 text-system-dark shadow-glow-gold scale-105 border border-system-gold font-black'
-                      : 'bg-system-dark/80 text-zinc-300 hover:text-white border border-white/10 hover:border-system-gold/40'
+                  key={region}
+                  onClick={() => setSelectedRegion(region)}
+                  className={`px-2.5 py-1 rounded-lg text-[11px] font-bold uppercase transition-all cursor-pointer ${
+                    selectedRegion === region
+                      ? 'bg-system-blue text-system-dark font-black shadow-glow-blue'
+                      : 'bg-black/50 text-zinc-400 hover:text-white border border-white/10'
                   }`}
                 >
-                  <span className="text-base">{c.flag}</span>
-                  <span>{c.name}</span>
+                  {region === 'All Regions' ? '🌐 All 19' :
+                   region === 'Americas & Caribbean' ? '🌎 Americas (6)' :
+                   region === 'South America' ? '🗺️ S. America (4)' :
+                   region === 'Europe' ? '🏰 Europe (5)' : '🐉 Asia (4)'}
                 </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            {(selectedRegion === 'All Regions'
+              ? ['Americas & Caribbean', 'South America', 'Europe', 'Asia']
+              : [selectedRegion]
+            ).map((regionGroup) => {
+              const regionCuisines = NATIONAL_CUISINES_LIST.filter(c => c.region === regionGroup);
+              return (
+                <div key={regionGroup} className="space-y-1.5 bg-black/20 p-3 rounded-xl border border-white/5">
+                  <div className="text-[10px] font-mono font-black uppercase text-system-gold tracking-wider">
+                    {regionGroup === 'Americas & Caribbean' ? '🌎 Americas & Caribbean' :
+                     regionGroup === 'South America' ? '🗺️ South America' :
+                     regionGroup === 'Europe' ? '🏰 Europe' : '🐉 Asia'}
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {regionCuisines.map((c) => {
+                      const isSelected = selectedNationalCuisine === c.name;
+                      return (
+                        <button
+                          key={c.name}
+                          onClick={() => {
+                            setSelectedNationalCuisine(c.name);
+                            if (c.region) setSelectedRegion(c.region);
+                            const targetKey = selectedAisleTemplate.includes('Bulking') || selectedCountryPlan.includes('Bulking') ? c.bulkingKey : c.cuttingKey;
+                            handleSelectTemplate(targetKey);
+                            handleSelectCountryPlan(targetKey);
+                          }}
+                          className={`px-3 py-1.5 rounded-xl text-xs font-black uppercase font-mono tracking-wider transition-all flex items-center gap-1.5 cursor-pointer ${
+                            isSelected
+                              ? 'bg-gradient-to-r from-system-gold to-yellow-500 text-system-dark shadow-glow-gold scale-105 border border-system-gold font-black'
+                              : 'bg-system-dark/80 text-zinc-300 hover:text-white border border-white/10 hover:border-system-gold/40'
+                          }`}
+                        >
+                          <span className="text-base">{c.flag}</span>
+                          <span>{c.name}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
               );
             })}
           </div>
@@ -1066,7 +1113,7 @@ export default function GroceryGuide() {
                     : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10'
                 }`}
               >
-                🌐 All 26 Blueprints
+                🌐 All 38 Blueprints
               </button>
               {(() => {
                 const currentCuisineObj = NATIONAL_CUISINES_LIST.find(c => c.name === selectedNationalCuisine) || NATIONAL_CUISINES_LIST[0];
@@ -1085,12 +1132,24 @@ export default function GroceryGuide() {
                 ));
               })()}
               <div className="border-l border-white/10 pl-2 ml-1 flex items-center gap-1.5 flex-wrap">
+                <select
+                  value={selectedRegion}
+                  onChange={(e) => setSelectedRegion(e.target.value)}
+                  className="bg-black/60 text-zinc-300 text-xs font-bold px-2 py-1 rounded-lg border border-white/10 focus:outline-none focus:border-system-cyan cursor-pointer"
+                >
+                  <option value="All Regions">🌐 All Regions (19)</option>
+                  <option value="Americas & Caribbean">🌎 Americas & Caribbean (6)</option>
+                  <option value="South America">🗺️ South America (4)</option>
+                  <option value="Europe">🏰 Europe (5)</option>
+                  <option value="Asia">🐉 Asia (4)</option>
+                </select>
                 <span className="text-[10px] text-zinc-500 uppercase font-mono mr-1">Switch Cuisine:</span>
-                {NATIONAL_CUISINES_LIST.map((c) => (
+                {NATIONAL_CUISINES_LIST.filter(c => selectedRegion === 'All Regions' || c.region === selectedRegion).map((c) => (
                   <button
                     key={c.name}
                     onClick={() => {
                       setSelectedNationalCuisine(c.name);
+                      if (c.region) setSelectedRegion(c.region);
                       const targetKey = selectedCountryPlan.includes('Bulking') ? c.bulkingKey : c.cuttingKey;
                       handleSelectCountryPlan(targetKey);
                     }}
@@ -1116,7 +1175,12 @@ export default function GroceryGuide() {
             </div>
           </div>
 
-          {MEAL_PREP_PLANS.filter(p => selectedCountryPlan === 'All' || p.country === selectedCountryPlan).map((plan) => (
+          {MEAL_PREP_PLANS.filter(p => {
+            if (selectedCountryPlan !== 'All') return p.country === selectedCountryPlan;
+            if (selectedRegion === 'All Regions') return true;
+            const cInfo = NATIONAL_CUISINES_LIST.find(c => p.country.includes(c.name));
+            return cInfo?.region === selectedRegion;
+          }).map((plan) => (
             <div key={plan.id} className="bg-system-panel p-6 rounded-2xl border border-system-blue/40 shadow-glow-blue space-y-6 animate-in fade-in duration-300">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/10 pb-4">
                 <div>

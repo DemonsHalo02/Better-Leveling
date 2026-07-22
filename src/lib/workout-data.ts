@@ -74,18 +74,18 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
     dayName: "Monday",
     splitName: "Home Upper Body Push Sculpt + Monday Grocery & Batch Meal Prep",
     isRestDay: false,
-    questTitle: "[Daily Quest] Upper Body Push Sculpt & Puerto Rican Meal Prep Monday",
-    description: "Official Monday Grocery Run at Auburn ME Walmart & Weekly Batch Puerto Rican Meal Prep Day + Apartment Upper Body Push training! Grab your staples (Café Bustelo, Adobo, Sazón, Sofrito, Gandules, and Chicken Breasts), prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight tension.",
+    questTitle: "[Daily Quest] Upper Body Push Sculpt & 19-Country Global Meal Prep Monday",
+    description: "Official Monday Grocery Run at Auburn ME Walmart & Weekly Batch Meal Prep Day + Apartment Upper Body Push training! Grab your items from your chosen 19-Country Global Blueprint (Puerto Rico, USA, Canada, Mexico, Dominican Republic, El Salvador, Colombia, Brazil, Venezuela, Argentina, Spain, Italy, France, Germany, Russia, Japan, Korea, China, or India), prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight tension.",
     xpReward: 500,
     exercises: [
       {
         id: "mon-home-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Puerto Rican Batch Meal Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & 19-Country Global Batch Meal Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Batch Prep Crispy Pollo al Horno & Arroz con Gandules (For Tuesday Start)",
+        reps: "Batch Prep Your Chosen 19-Country Global S-Rank Chicken & Carbs (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Head to Auburn ME Walmart and pick up your exact grocery items! Once home, batch bake or pan sear your Crispy Pollo al Horno breast cubes and simmer a large pot of Arroz con Gandules so your high-protein eating begins seamlessly on Tuesday morning!"
+        coachTip: "Head to Auburn ME Walmart and pick up your exact grocery items from your selected national cuisine blueprint! Once home, batch bake or pan sear your crispy chicken breast cubes and prepare your complex carb staple so your high-protein eating begins seamlessly on Tuesday morning!"
       },
       {
         id: "mon-home-1",
@@ -514,18 +514,18 @@ export const PUERTO_RICAN_PLANET_FITNESS_ROUTINE: WorkoutDay[] = [
     dayName: "Monday",
     splitName: "Planet Fitness Chest & Triceps Push Day + Monday Grocery & Batch Meal Prep",
     isRestDay: false,
-    questTitle: "[Daily Quest] Planet Fitness Push Day & Puerto Rican Meal Prep Monday",
-    description: "Official Monday Grocery Run at Auburn ME Walmart & Weekly Batch Puerto Rican Meal Prep Day + Planet Fitness Chest & Tricep training! Grab your staples (Café Bustelo, Adobo, Sazón, Sofrito, Gandules, and Chicken Breasts), prep your meals for Tuesday start, and hit the Planet Fitness machines and dumbbells for a massive chest & tricep pump.",
+    questTitle: "[Daily Quest] Planet Fitness Push Day & 19-Country Global Meal Prep Monday",
+    description: "Official Monday Grocery Run at Auburn ME Walmart & Weekly Batch Meal Prep Day + Planet Fitness Chest & Tricep training! Grab your exact items from your chosen 19-Country Global Blueprint (Puerto Rico, USA, Canada, Mexico, Dominican Republic, El Salvador, Colombia, Brazil, Venezuela, Argentina, Spain, Italy, France, Germany, Russia, Japan, Korea, China, or India), prep your meals for Tuesday start, and hit the Planet Fitness machines and dumbbells for a massive chest & tricep pump.",
     xpReward: 500,
     exercises: [
       {
         id: "mon-pf-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Puerto Rican Batch Meal Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & 19-Country Global Batch Meal Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Batch Prep Crispy Pollo al Horno & Arroz con Gandules (For Tuesday Start)",
+        reps: "Batch Prep Your Chosen 19-Country Global S-Rank Chicken & Carbs (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Head to Auburn ME Walmart and pick up your exact Puerto Rican staples! Once home, batch bake or pan sear your Crispy Pollo al Horno breast cubes and simmer Arroz con Gandules so your high-protein eating begins seamlessly on Tuesday morning!"
+        coachTip: "Head to Auburn ME Walmart and pick up your exact items from your selected national cuisine blueprint! Once home, batch bake or pan sear your crispy chicken breast cubes and prepare your complex carb staple so your high-protein eating begins seamlessly on Tuesday morning!"
       },
       {
         id: "mon-pf-1",

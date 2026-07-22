@@ -452,7 +452,7 @@ function generatePlanHtml(plan) {
 }
 
 function run() {
-  console.log(`Generating 26 standalone printable HTML blueprints in ${publicDir}...`);
+  console.log(`Generating ${MEAL_PREP_PLANS.length} standalone printable HTML blueprints in ${publicDir}...`);
   
   MEAL_PREP_PLANS.forEach(plan => {
     const filename = getPlanHtmlFilename(plan.country).replace(/^\//, '');
@@ -469,7 +469,7 @@ function run() {
     }
   });
 
-  console.log("\n🎉 Successfully generated all 26 national cuisine blueprints!");
+  console.log(`\n🎉 Successfully generated all ${MEAL_PREP_PLANS.length} national cuisine blueprints!`);
 }
 
 run();

@@ -24,6 +24,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
   const [hunterState, setHunterState] = useState(() => (typeof window !== 'undefined' ? loadHunterState() : null));
   const [meals, setMeals] = useState<LoggedMeal[]>([]);
   const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('🇵🇷 Puerto Rico');
+  const [selectedDeckRegion, setSelectedDeckRegion] = useState<string>('All Regions');
   const [showManualModal, setShowManualModal] = useState(false);
   const [manualName, setManualName] = useState('');
   const [manualCals, setManualCals] = useState('');
@@ -53,6 +54,8 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
       const savedCountry = localStorage.getItem('pf_selected_aisle_template');
       if (savedCountry && MEAL_PREP_PLANS.some(p => p.country === savedCountry)) {
         setSelectedDeckCountry(savedCountry);
+        const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === savedCountry || c.bulkingKey === savedCountry);
+        if (matchCuisine?.region) setSelectedDeckRegion(matchCuisine.region);
       } else {
         setSelectedDeckCountry('🇵🇷 Puerto Rico');
       }
@@ -117,6 +120,8 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
 
   const handleSelectDeckCountry = (country: string) => {
     setSelectedDeckCountry(country);
+    const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === country || c.bulkingKey === country);
+    if (matchCuisine?.region) setSelectedDeckRegion(matchCuisine.region);
     if (typeof window !== 'undefined') {
       localStorage.setItem('pf_selected_aisle_template', country);
     }
@@ -252,24 +257,69 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
           </div>
         </div>
 
-        {/* Cuisine Template Selector Pills (All 26 Blueprints Across 13 Cuisines) */}
-        <div className="flex flex-wrap items-center gap-2 pt-1 max-h-48 overflow-y-auto p-1 bg-black/20 rounded-xl border border-white/5">
-          {MEAL_PREP_PLANS.map((plan) => {
-            const isSelected = selectedDeckCountry === plan.country;
-            return (
+        {/* Region Filter Tabs */}
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-2">
+          <div className="text-[11px] font-mono font-bold text-zinc-400 uppercase tracking-wider">
+            🌍 Filter Blueprints By Region (All 38 Blueprints Across 19 Cuisines)
+          </div>
+          <div className="flex flex-wrap items-center gap-1.5">
+            {['All Regions', 'Americas & Caribbean', 'South America', 'Europe', 'Asia'].map((region) => (
               <button
-                key={plan.id}
-                onClick={() => handleSelectDeckCountry(plan.country)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  isSelected
-                    ? 'bg-system-cyan text-black shadow-glow-blue scale-105 font-black'
-                    : 'bg-system-dark hover:bg-system-card text-zinc-300 hover:text-white border border-white/10'
+                key={region}
+                onClick={() => setSelectedDeckRegion(region)}
+                className={`px-2.5 py-1 rounded-lg text-[11px] font-bold uppercase transition-all cursor-pointer ${
+                  selectedDeckRegion === region
+                    ? 'bg-system-blue text-system-dark font-black shadow-glow-blue'
+                    : 'bg-black/50 text-zinc-400 hover:text-white border border-white/10'
                 }`}
               >
-                <span>{plan.flag}</span>
-                <span>{plan.country} ({plan.estCostPerWeek.split(' ')[0]})</span>
-                {plan.badge && <span className="text-[9px] bg-system-gold text-black px-1.5 py-0.2 rounded font-black ml-0.5">{plan.badge}</span>}
+                {region === 'All Regions' ? '🌐 All 19' :
+                 region === 'Americas & Caribbean' ? '🌎 Americas (6)' :
+                 region === 'South America' ? '🗺️ S. America (4)' :
+                 region === 'Europe' ? '🏰 Europe (5)' : '🐉 Asia (4)'}
               </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Cuisine Template Selector Pills (Grouped or Filtered by Region) */}
+        <div className="space-y-2 max-h-60 overflow-y-auto p-2 bg-black/20 rounded-xl border border-white/5">
+          {(selectedDeckRegion === 'All Regions'
+            ? ['Americas & Caribbean', 'South America', 'Europe', 'Asia']
+            : [selectedDeckRegion]
+          ).map((regionGroup) => {
+            const regionPlans = MEAL_PREP_PLANS.filter((plan) => {
+              const matchCuisine = NATIONAL_CUISINES_LIST.find(c => plan.country.includes(c.name));
+              return matchCuisine?.region === regionGroup;
+            });
+            return (
+              <div key={regionGroup} className="space-y-1 bg-black/30 p-2 rounded-lg border border-white/5">
+                <div className="text-[10px] font-mono font-black uppercase text-system-gold tracking-wider">
+                  {regionGroup === 'Americas & Caribbean' ? '🌎 Americas & Caribbean' :
+                   regionGroup === 'South America' ? '🗺️ South America' :
+                   regionGroup === 'Europe' ? '🏰 Europe' : '🐉 Asia'}
+                </div>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  {regionPlans.map((plan) => {
+                    const isSelected = selectedDeckCountry === plan.country;
+                    return (
+                      <button
+                        key={plan.id}
+                        onClick={() => handleSelectDeckCountry(plan.country)}
+                        className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                          isSelected
+                            ? 'bg-system-cyan text-black shadow-glow-blue scale-105 font-black'
+                            : 'bg-system-dark hover:bg-system-card text-zinc-300 hover:text-white border border-white/10'
+                        }`}
+                      >
+                        <span>{plan.flag}</span>
+                        <span>{plan.country} ({plan.estCostPerWeek.split(' ')[0]})</span>
+                        {plan.badge && <span className="text-[9px] bg-system-gold text-black px-1 py-0.2 rounded font-black ml-0.5">{plan.badge}</span>}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             );
           })}
         </div>

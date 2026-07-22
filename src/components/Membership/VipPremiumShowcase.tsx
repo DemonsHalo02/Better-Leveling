@@ -142,7 +142,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             <div className="space-y-1">
               <h3 className="text-xl font-black text-white uppercase tracking-wider">AI Coach Oracle Locked</h3>
               <p className="text-xs text-zinc-300 max-w-md">
-                S-Rank VIP Guild members receive custom weekly caloric adjustments, loose skin prevention advice, and tailored Puerto Rican Pollo al Horno cutting meal preps!
+                S-Rank VIP Guild members receive custom weekly caloric adjustments, loose skin prevention advice, and tailored meal preps across the 19-Country Global Master Deck!
               </p>
             </div>
             <button
@@ -170,16 +170,16 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
               <TrendingDown className="w-4 h-4" /> 1. Pacing & Cardio Assessment
             </div>
             <p className="text-xs text-zinc-300 leading-relaxed">
-              At <strong>{currentWeight} LBS</strong>, you have <strong>{lbsRemaining} LBS</strong> left to shred. Your current pace preserves maximum muscle. <strong>AI Recommendation:</strong> Add 15 mins of incline treadmill walking (3.0 mph, 10% incline) after your Planet Fitness PPL workouts on Tuesday and Thursday!
+              At <strong>{currentWeight} LBS</strong>, you have <strong>{lbsRemaining} LBS</strong> left to shred. Your current pace preserves maximum muscle. <strong>AI Recommendation:</strong> Add 15 mins of incline treadmill walking (3.0 mph, 10% incline) after your Planet Fitness PPL or Home Bodyweight workouts on Tuesday and Thursday!
             </p>
           </div>
 
           <div className="bg-system-dark/80 p-4 rounded-xl border border-system-gold/40 space-y-2">
             <div className="flex items-center gap-2 text-xs font-bold text-system-gold uppercase">
-              <Utensils className="w-4 h-4" /> 2. Puerto Rican Pollo al Horno Cutting Meal Prep
+              <Utensils className="w-4 h-4" /> 2. 19-Country Global Meal Blueprints
             </div>
             <p className="text-xs text-zinc-300 leading-relaxed">
-              <strong>VIP Meal Blueprint:</strong> Pan or Oven Crispy Fried Puerto Rican Pollo al Horno Bowl! Marinate cubed chicken breast with authentic Sazón and Adobo seasonings, coat lightly with cornstarch & garlic powder, and pan-sear with olive oil spray or air-fry/bake at 400°F (10-12 mins) until super crispy. Pair ~5.7 oz chicken with 1 cup cooked white rice and seasoned pinto beans. Plus morning Café Bustelo Espresso Ground Coffee! <strong>Stats:</strong> 440 kcal, 46g Protein, 53g Carbs!
+              <strong>VIP Meal Blueprint Suite:</strong> Access all 38 Cutting & Bulking plans across 19 world-class cuisines (Puerto Rico, USA, Canada, Mexico, Dominican Republic, El Salvador, Colombia, Brazil, Venezuela, Argentina, Spain, Italy, France, Germany, Russia, Japan, Korea, China, and India)! Each blueprint features pan or oven crispy chicken, authentic regional spices, clean complex carbs, and your morning national coffee/tea. <strong>Stats:</strong> ~2,080 kcal (Cutting) or ~2,680 kcal (Bulking), 178g+ Protein!
             </p>
           </div>
 

@@ -36,8 +36,27 @@ export interface MealPrepPlan {
   }[];
 }
 
+const ALL_CUISINES_BOTH = [
+  "Puerto Rico", "Puerto Rico Bulking", "Spain", "Spain Bulking", "Mexico", "Mexico Bulking",
+  "Dominican Republic", "Dominican Republic Bulking", "Colombia", "Colombia Bulking", "Brazil", "Brazil Bulking",
+  "China", "China Bulking", "Korea", "Korea Bulking", "Japan", "Japan Bulking", "Italy", "Italy Bulking",
+  "El Salvador", "El Salvador Bulking", "Venezuela", "Venezuela Bulking", "Argentina", "Argentina Bulking",
+  "France", "France Bulking", "Germany", "Germany Bulking", "Russia", "Russia Bulking", "India", "India Bulking",
+  "Canada", "Canada Bulking", "USA", "USA Bulking"
+];
+
+const ALL_CUISINES_CUTTING = [
+  "Puerto Rico", "Spain", "Mexico", "Dominican Republic", "Colombia", "Brazil", "China", "Korea", "Japan", "Italy", "El Salvador", "Venezuela", "Argentina",
+  "France", "Germany", "Russia", "India", "Canada", "USA"
+];
+
+const ALL_CUISINES_BULKING = [
+  "Puerto Rico Bulking", "Spain Bulking", "Mexico Bulking", "Dominican Republic Bulking", "Colombia Bulking", "Brazil Bulking", "China Bulking", "Korea Bulking", "Japan Bulking", "Italy Bulking", "El Salvador Bulking", "Venezuela Bulking", "Argentina Bulking",
+  "France Bulking", "Germany Bulking", "Russia Bulking", "India Bulking", "Canada Bulking", "USA Bulking"
+];
+
 export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
-  // Primary Lean Protein Base (Shared by ALL countries)
+  // Primary Lean Protein Base (Shared by ALL 19 countries)
   {
     id: "g-1",
     upc: "078742371195",
@@ -51,24 +70,10 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 1.5,
     servingSize: "4 oz (112g)",
-    coachNote: "One Great Value ~5.0 lb (80 oz raw) family pack from Auburn Walmart! Guaranteed to provide 11.4 oz raw chicken per day for 7 full days of Lunch (5.7 oz/day) and Dinner (5.7 oz/day) hitting 175g+ daily high-value protein across all 13 national cuisines!",
-    cuisine: [
-      "Puerto Rico", "Puerto Rico Bulking",
-      "Spain", "Spain Bulking",
-      "Mexico", "Mexico Bulking",
-      "Dominican Republic", "Dominican Republic Bulking",
-      "Colombia", "Colombia Bulking",
-      "Brazil", "Brazil Bulking",
-      "China", "China Bulking",
-      "Korea", "Korea Bulking",
-      "Japan", "Japan Bulking",
-      "Italy", "Italy Bulking",
-      "El Salvador", "El Salvador Bulking",
-      "Venezuela", "Venezuela Bulking",
-      "Argentina", "Argentina Bulking"
-    ]
+    coachNote: "One Great Value ~5.0 lb (80 oz raw) family pack from Auburn Walmart! Guaranteed to provide 11.4 oz raw chicken per day for 7 full days of Lunch (5.7 oz/day) and Dinner (5.7 oz/day) hitting 175g+ daily high-value protein across all 19 national cuisines!",
+    cuisine: ALL_CUISINES_BOTH
   },
-  // Eggs (Shared by ALL countries)
+  // Eggs (Shared by ALL 19 countries)
   {
     id: "g-2",
     upc: "078742221612",
@@ -82,24 +87,10 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 5,
     servingSize: "1 Egg (50g)",
-    coachNote: "36 eggs guaranteed! Provides 3 to 5 eggs every morning across all 7 days for your post-workout national egg scrambles (Sofrito, Revuelto, Perico, or Gyeran-mari) plus extra meal prep eggs.",
-    cuisine: [
-      "Puerto Rico", "Puerto Rico Bulking",
-      "Spain", "Spain Bulking",
-      "Mexico", "Mexico Bulking",
-      "Dominican Republic", "Dominican Republic Bulking",
-      "Colombia", "Colombia Bulking",
-      "Brazil", "Brazil Bulking",
-      "China", "China Bulking",
-      "Korea", "Korea Bulking",
-      "Japan", "Japan Bulking",
-      "Italy", "Italy Bulking",
-      "El Salvador", "El Salvador Bulking",
-      "Venezuela", "Venezuela Bulking",
-      "Argentina", "Argentina Bulking"
-    ]
+    coachNote: "36 eggs guaranteed! Provides 3 to 5 eggs every morning across all 7 days for your post-workout national egg scrambles plus extra meal prep eggs.",
+    cuisine: ALL_CUISINES_BOTH
   },
-  // Greek Yogurt - 4 Tubs for Phase 1 Cutting (Shared by ALL Phase 1 Cutting plans)
+  // Greek Yogurt - 4 Tubs for Phase 1 Cutting (Shared by ALL 19 Phase 1 Cutting plans)
   {
     id: "g-3",
     upc: "078742136039",
@@ -113,13 +104,10 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 6,
     fat: 0,
     servingSize: "3/4 cup (170g / 6 oz)",
-    coachNote: "FOUR tubs (128 oz / 1 full Gallon / 16 cups total) guaranteed for Phase 1 Cutting across all 13 countries! Provides 100% enough Greek Yogurt for 7 full days of Afternoon casein power bowls AND Nighttime Casein Fluff without running out!",
-    cuisine: [
-      "Puerto Rico", "Spain", "Mexico", "Dominican Republic", "Colombia",
-      "Brazil", "China", "Korea", "Japan", "Italy", "El Salvador", "Venezuela", "Argentina"
-    ]
+    coachNote: "FOUR tubs (128 oz / 1 full Gallon / 16 cups total) guaranteed for Phase 1 Cutting across all 19 countries! Provides 100% enough Greek Yogurt for 7 full days of Afternoon casein power bowls AND Nighttime Casein Fluff without running out!",
+    cuisine: ALL_CUISINES_CUTTING
   },
-  // Greek Yogurt - 3 Tubs for Phase 2 Bulking (Shared by ALL Phase 2 Bulking plans)
+  // Greek Yogurt - 3 Tubs for Phase 2 Bulking (Shared by ALL 19 Phase 2 Bulking plans)
   {
     id: "g-4",
     upc: "078742136039-bulk",
@@ -133,11 +121,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 6,
     fat: 0,
     servingSize: "3/4 cup (170g / 6 oz)",
-    coachNote: "THREE tubs (96 oz / 12 cups total) tailored for Phase 2 Lean Bulking across all 13 countries! Provides afternoon bowls AND bedtime casein fluff while leaving budget and stomach capacity for double rice & oats!",
-    cuisine: [
-      "Puerto Rico Bulking", "Spain Bulking", "Mexico Bulking", "Dominican Republic Bulking", "Colombia Bulking",
-      "Brazil Bulking", "China Bulking", "Korea Bulking", "Japan Bulking", "Italy Bulking", "El Salvador Bulking", "Venezuela Bulking", "Argentina Bulking"
-    ]
+    coachNote: "THREE tubs (96 oz / 12 cups total) tailored for Phase 2 Lean Bulking across all 19 countries! Provides afternoon bowls AND bedtime casein fluff while leaving budget and stomach capacity for double rice & oats!",
+    cuisine: ALL_CUISINES_BULKING
   },
   // White Rice 2 lb bag for Phase 1 Cutting
   {
@@ -153,11 +138,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 36,
     fat: 0,
     servingSize: "1/4 cup dry (45g)",
-    coachNote: "Clean fast-digesting carbohydrates for Phase 1 Cutting national rice dishes (Arroz con Gandules, Arroz Amarillo, Arroz Mexicano, Moro, Chao Fan, etc.).",
-    cuisine: [
-      "Puerto Rico", "Spain", "Mexico", "Dominican Republic", "Colombia",
-      "Brazil", "China", "Korea", "Japan", "Italy", "El Salvador", "Venezuela", "Argentina"
-    ]
+    coachNote: "Clean fast-digesting carbohydrates for Phase 1 Cutting national rice dishes across all 19 cuisines.",
+    cuisine: ALL_CUISINES_CUTTING
   },
   // White Rice 5 lb bag for Phase 2 Bulking
   {
@@ -173,11 +155,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 36,
     fat: 0,
     servingSize: "1/4 cup dry (1 cup cooked)",
-    coachNote: "Huge 5 lb bulk bag! Clean fast-digesting carbohydrates to fuel Phase 2 post-160 lb lean bulking with double rice portions at lunch and dinner.",
-    cuisine: [
-      "Puerto Rico Bulking", "Spain Bulking", "Mexico Bulking", "Dominican Republic Bulking", "Colombia Bulking",
-      "Brazil Bulking", "China Bulking", "Korea Bulking", "Japan Bulking", "Italy Bulking", "El Salvador Bulking", "Venezuela Bulking", "Argentina Bulking"
-    ]
+    coachNote: "Huge 5 lb bulk bag! Clean fast-digesting carbohydrates to fuel Phase 2 post-160 lb lean bulking across all 19 cuisines.",
+    cuisine: ALL_CUISINES_BULKING
   },
   // Frozen Broccoli (TWO 4 lb bags / 8 lbs total - Shared across all countries)
   {
@@ -193,22 +172,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 5,
     fat: 0,
     servingSize: "1 cup (85g)",
-    coachNote: "Two massive 4 lb bags (8 lbs / ~32 cups total) guaranteed! Steamed micronutrients and fiber for 7 full days of national chicken and rice bowls across all 13 cuisines.",
-    cuisine: [
-      "Puerto Rico", "Puerto Rico Bulking",
-      "Spain", "Spain Bulking",
-      "Mexico", "Mexico Bulking",
-      "Dominican Republic", "Dominican Republic Bulking",
-      "Colombia", "Colombia Bulking",
-      "Brazil", "Brazil Bulking",
-      "China", "China Bulking",
-      "Korea", "Korea Bulking",
-      "Japan", "Japan Bulking",
-      "Italy", "Italy Bulking",
-      "El Salvador", "El Salvador Bulking",
-      "Venezuela", "Venezuela Bulking",
-      "Argentina", "Argentina Bulking"
-    ]
+    coachNote: "Two massive 4 lb bags (8 lbs / ~32 cups total) guaranteed! Steamed micronutrients and fiber for 7 full days of national chicken bowls across all 19 cuisines.",
+    cuisine: ALL_CUISINES_BOTH
   },
   // Bananas (Shared pre-workout energy across all countries)
   {
@@ -225,21 +190,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Medium Banana (118g)",
     coachNote: "Quick potassium and pre-workout carbohydrates to pair with your 8:00 AM morning national coffee or tea!",
-    cuisine: [
-      "Puerto Rico", "Puerto Rico Bulking",
-      "Spain", "Spain Bulking",
-      "Mexico", "Mexico Bulking",
-      "Dominican Republic", "Dominican Republic Bulking",
-      "Colombia", "Colombia Bulking",
-      "Brazil", "Brazil Bulking",
-      "China", "China Bulking",
-      "Korea", "Korea Bulking",
-      "Japan", "Japan Bulking",
-      "Italy", "Italy Bulking",
-      "El Salvador", "El Salvador Bulking",
-      "Venezuela", "Venezuela Bulking",
-      "Argentina", "Argentina Bulking"
-    ]
+    cuisine: ALL_CUISINES_BOTH
   },
   // Scallions / Green Onions (Shared aromatic base)
   {
@@ -256,21 +207,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "2 tbsp (12g)",
     coachNote: "Fresh green aromatics essential for sautéing morning national scrambles and garnishing lunch/dinner bowls.",
-    cuisine: [
-      "Puerto Rico", "Puerto Rico Bulking",
-      "Spain", "Spain Bulking",
-      "Mexico", "Mexico Bulking",
-      "Dominican Republic", "Dominican Republic Bulking",
-      "Colombia", "Colombia Bulking",
-      "Brazil", "Brazil Bulking",
-      "China", "China Bulking",
-      "Korea", "Korea Bulking",
-      "Japan", "Japan Bulking",
-      "Italy", "Italy Bulking",
-      "El Salvador", "El Salvador Bulking",
-      "Venezuela", "Venezuela Bulking",
-      "Argentina", "Argentina Bulking"
-    ]
+    cuisine: ALL_CUISINES_BOTH
   },
   // Liquid Egg Whites for Phase 1 Cutting
   {
@@ -286,11 +223,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "3 tbsp (46g)",
-    coachNote: "Pure fat-free protein booster for morning scrambles and egg wash binder for crispy chicken across Phase 1 Cutting plans.",
-    cuisine: [
-      "Puerto Rico", "Spain", "Mexico", "Dominican Republic", "Colombia",
-      "Brazil", "China", "Korea", "Japan", "Italy", "El Salvador", "Venezuela", "Argentina"
-    ]
+    coachNote: "Pure fat-free protein booster for morning scrambles and egg wash binder across Phase 1 Cutting plans.",
+    cuisine: ALL_CUISINES_CUTTING
   },
   // Rolled Oats for Phase 2 Bulking
   {
@@ -307,10 +241,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 2.5,
     servingSize: "1/2 cup dry (40g)",
     coachNote: "Slow-digesting complex carbs for bulking morning energy alongside 5-egg scrambles across Phase 2 Bulking plans.",
-    cuisine: [
-      "Puerto Rico Bulking", "Spain Bulking", "Mexico Bulking", "Dominican Republic Bulking", "Colombia Bulking",
-      "Brazil Bulking", "China Bulking", "Korea Bulking", "Japan Bulking", "Italy Bulking", "El Salvador Bulking", "Venezuela Bulking", "Argentina Bulking"
-    ]
+    cuisine: ALL_CUISINES_BULKING
   },
   // 2% Milk / Soy Milk Base for Coffee & Tea
   {
@@ -326,22 +257,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 12,
     fat: 5,
     servingSize: "1 cup (240ml)",
-    coachNote: "Creamy milk base whisked with morning national coffees (Café Bustelo, Spanish Cortado, Café com Leite, Matcha) across all 13 countries.",
-    cuisine: [
-      "Puerto Rico", "Puerto Rico Bulking",
-      "Spain", "Spain Bulking",
-      "Mexico", "Mexico Bulking",
-      "Dominican Republic", "Dominican Republic Bulking",
-      "Colombia", "Colombia Bulking",
-      "Brazil", "Brazil Bulking",
-      "China", "China Bulking",
-      "Korea", "Korea Bulking",
-      "Japan", "Japan Bulking",
-      "Italy", "Italy Bulking",
-      "El Salvador", "El Salvador Bulking",
-      "Venezuela", "Venezuela Bulking",
-      "Argentina", "Argentina Bulking"
-    ]
+    coachNote: "Creamy milk base whisked with morning national coffees across all 19 cuisines.",
+    cuisine: ALL_CUISINES_BOTH
   },
   // --- Country-Specific Legumes & Staples ---
   // Puerto Rico & Dominican Republic Pigeon Peas (Gandules)
@@ -495,13 +412,115 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     coachNote: "Fresh garlic and greens to complement Argentine Pollo al Chimichurri and Garlic Bay Leaf Rice.",
     cuisine: ["Argentina", "Argentina Bulking"]
   },
-  // --- Periodic Restock Seasonings & Reward Treats (Shared / Cuisine specific) ---
+  // France Herbes de Provence & Dijon Mustard Base
+  {
+    id: "g-france-spices",
+    upc: "078742353340",
+    name: "Great Value Herbes de Provence & Dijon Mustard Seasoning Mix",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value / Grey Poupon",
+    category: "Seasonings & Spices",
+    priceEst: "$2.48 (Shaker & Jar mix)",
+    calories: 5,
+    protein: 0,
+    carbs: 1,
+    fat: 0,
+    servingSize: "1 tsp (5g)",
+    coachNote: "Classic French aromatic herb blend (thyme, rosemary, oregano) with Dijon notes for seared Poulet Rôti and morning scrambled eggs.",
+    cuisine: ["France", "France Bulking"]
+  },
+  // Germany Caraway & Sauerkraut Veggie Base
+  {
+    id: "g-germany-spices",
+    upc: "078742353341",
+    name: "Great Value Caraway, German Bratwurst Spice & Sauerkraut Veggie Base",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value / Hengstenberg",
+    category: "Seasonings & Spices",
+    priceEst: "$2.58 (Shaker & Jar)",
+    calories: 10,
+    protein: 0,
+    carbs: 2,
+    fat: 0,
+    servingSize: "2 tbsp (30g)",
+    coachNote: "Savory German spice blend with tangy sauerkraut notes to pair with seared chicken breast cubes and roasted potatoes.",
+    cuisine: ["Germany", "Germany Bulking"]
+  },
+  // Russia Fresh Dill, Paprika & Smetana Herb Base
+  {
+    id: "g-russia-spices",
+    upc: "078742353342",
+    name: "Great Value Fresh Dill, Paprika & Smetana Herb Seasoning Base",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Seasonings & Spices",
+    priceEst: "$2.40 (Shaker & Herb pack)",
+    calories: 5,
+    protein: 0,
+    carbs: 1,
+    fat: 0,
+    servingSize: "1 tsp (5g)",
+    coachNote: "Authentic Russian dill and sweet paprika seasoning for garlic chicken and morning Smetana-style egg scrambles.",
+    cuisine: ["Russia", "Russia Bulking"]
+  },
+  // India Garam Masala, Turmeric & Lentil/Dal Spice Base
+  {
+    id: "g-india-spices",
+    upc: "078742353343",
+    name: "Great Value Garam Masala, Turmeric & Yellow Lentil (Dal) Spice Base",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value / Swad",
+    category: "Seasonings & Spices",
+    priceEst: "$2.88 (Shaker & Lentil pack)",
+    calories: 30,
+    protein: 2,
+    carbs: 5,
+    fat: 0,
+    servingSize: "2 tbsp (25g)",
+    coachNote: "Aromatic Garam Masala and golden turmeric spices paired with protein-dense yellow lentils for authentic Indian Tandoori-style chicken bowls.",
+    cuisine: ["India", "India Bulking"]
+  },
+  // Canada Montreal Chicken Seasoning & Pure Maple Glaze Base
+  {
+    id: "g-canada-spices",
+    upc: "078742353344",
+    name: "Great Value Montreal Chicken Seasoning & Pure Maple Glaze Base",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value / Club House",
+    category: "Seasonings & Spices",
+    priceEst: "$2.78 (Shaker & Bottle)",
+    calories: 20,
+    protein: 0,
+    carbs: 5,
+    fat: 0,
+    servingSize: "1 tsp seasoning + 1/2 tsp glaze (6g)",
+    coachNote: "Bold Montreal black pepper/garlic rub with a subtle touch of pure Canadian maple glaze for super savory and caramelized seared chicken.",
+    cuisine: ["Canada", "Canada Bulking"]
+  },
+  // USA All-American BBQ Rub & Garlic Herb Steak Seasoning
+  {
+    id: "g-usa-spices",
+    upc: "078742353345",
+    name: "Great Value All-American BBQ Rub & Garlic Herb Seasoning Base",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Seasonings & Spices",
+    priceEst: "$2.48 (Shaker bottle)",
+    calories: 5,
+    protein: 0,
+    carbs: 1,
+    fat: 0,
+    servingSize: "1 tsp (5g)",
+    coachNote: "Classic American savory barbecue rub with garlic, onion, and hickory notes for diner scrambles and BBQ garlic herb chicken bowls.",
+    cuisine: ["USA", "USA Bulking"]
+  },
+  // --- Periodic Restock Seasonings & Reward Treats (Shared across all 19 cuisines) ---
   {
     id: "g-14",
     upc: "078742355555",
-    name: "Goya Frozen Tostones / Plátanos Maduros / Arepas / Corn Tortillas (Periodic Reward Base)",
+    name: "Goya Frozen Tostones / Plátanos Maduros / Arepas / Corn Tortillas / Naan / Croissants (Periodic Reward Base)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Goya / Great Value",
+    brand: "Goya / Great Value / Bakery",
     category: "Carbs",
     priceEst: "$3.48 (16 oz box/bag)",
     calories: 160,
@@ -509,27 +528,13 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 28,
     fat: 5,
     servingSize: "3 pieces (84g)",
-    coachNote: "Your once-a-week national reward treat! Tostones for Puerto Rico/Dominican, Corn Tortillas for Mexico, Arepas for Colombia/Venezuela, Pupusas for El Salvador, Pão de Queijo for Brazil, or Milanesa/Ramen!",
-    cuisine: [
-      "Puerto Rico", "Puerto Rico Bulking",
-      "Spain", "Spain Bulking",
-      "Mexico", "Mexico Bulking",
-      "Dominican Republic", "Dominican Republic Bulking",
-      "Colombia", "Colombia Bulking",
-      "Brazil", "Brazil Bulking",
-      "China", "China Bulking",
-      "Korea", "Korea Bulking",
-      "Japan", "Japan Bulking",
-      "Italy", "Italy Bulking",
-      "El Salvador", "El Salvador Bulking",
-      "Venezuela", "Venezuela Bulking",
-      "Argentina", "Argentina Bulking"
-    ]
+    coachNote: "Your once-a-week national reward treat! Tostones for Puerto Rico/Dominican, Corn Tortillas for Mexico, Arepas for Colombia/Venezuela, Pupusas for El Salvador, Pão de Queijo for Brazil, French Croissants, German Pretzels, Russian Pirozhki, Indian Naan, Canadian Maple Pancakes, or American Diner Burgers!",
+    cuisine: ALL_CUISINES_BOTH
   },
   {
     id: "g-15",
     upc: "078742356666",
-    name: "Café Bustelo / Spanish Espresso / Oolong Tea / Yerba Mate (10 oz brick/pack)",
+    name: "Café Bustelo / Spanish Espresso / Oolong Tea / Yerba Mate / Masala Chai / Dark Roast (10 oz brick/pack)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Café Bustelo / National Tea",
     category: "Essentials",
@@ -539,29 +544,15 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1 tbsp coffee / 1 tea bag",
-    coachNote: "Authentic national caffeine focus (Café Bustelo, Spanish Cortado, Café de Olla, Oolong Tea, Yerba Mate) brewed strong right before your 8:00 AM workout! (Periodic restock item).",
-    cuisine: [
-      "Puerto Rico", "Puerto Rico Bulking",
-      "Spain", "Spain Bulking",
-      "Mexico", "Mexico Bulking",
-      "Dominican Republic", "Dominican Republic Bulking",
-      "Colombia", "Colombia Bulking",
-      "Brazil", "Brazil Bulking",
-      "China", "China Bulking",
-      "Korea", "Korea Bulking",
-      "Japan", "Japan Bulking",
-      "Italy", "Italy Bulking",
-      "El Salvador", "El Salvador Bulking",
-      "Venezuela", "Venezuela Bulking",
-      "Argentina", "Argentina Bulking"
-    ]
+    coachNote: "Authentic national caffeine focus brewed strong right before your 8:00 AM workout! (Periodic restock item).",
+    cuisine: ALL_CUISINES_BOTH
   },
   {
     id: "g-16",
     upc: "078742359033",
-    name: "Goya Adobo / Sofrito / Sazón / Soy Sauce / Chimichurri Seasoning Base",
+    name: "Goya Adobo / Sofrito / Sazón / Soy Sauce / Chimichurri / Herbes de Provence / Garam Masala / BBQ Rub",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Goya / Kikkoman / Badia",
+    brand: "Goya / Kikkoman / Badia / Great Value",
     category: "Seasonings & Spices",
     priceEst: "$3.28 (Shaker / Jar / Bottle)",
     calories: 0,
@@ -569,22 +560,8 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1 tsp (5g)",
-    coachNote: "Authentic national spice and marinade bases giving your chicken and rice intense zero/low-calorie flavor across all 13 world-class cuisines (Periodic restock item).",
-    cuisine: [
-      "Puerto Rico", "Puerto Rico Bulking",
-      "Spain", "Spain Bulking",
-      "Mexico", "Mexico Bulking",
-      "Dominican Republic", "Dominican Republic Bulking",
-      "Colombia", "Colombia Bulking",
-      "Brazil", "Brazil Bulking",
-      "China", "China Bulking",
-      "Korea", "Korea Bulking",
-      "Japan", "Japan Bulking",
-      "Italy", "Italy Bulking",
-      "El Salvador", "El Salvador Bulking",
-      "Venezuela", "Venezuela Bulking",
-      "Argentina", "Argentina Bulking"
-    ]
+    coachNote: "Authentic national spice and marinade bases giving your chicken and rice intense zero/low-calorie flavor across all 19 world-class cuisines (Periodic restock item).",
+    cuisine: ALL_CUISINES_BOTH
   },
   {
     id: "g-19",
@@ -600,21 +577,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tbsp (8g)",
     coachNote: "Essential coating ingredient mixed with national seasonings for getting chicken breast cubes super crispy and golden in the oven or pan (Periodic restock item).",
-    cuisine: [
-      "Puerto Rico", "Puerto Rico Bulking",
-      "Spain", "Spain Bulking",
-      "Mexico", "Mexico Bulking",
-      "Dominican Republic", "Dominican Republic Bulking",
-      "Colombia", "Colombia Bulking",
-      "Brazil", "Brazil Bulking",
-      "China", "China Bulking",
-      "Korea", "Korea Bulking",
-      "Japan", "Japan Bulking",
-      "Italy", "Italy Bulking",
-      "El Salvador", "El Salvador Bulking",
-      "Venezuela", "Venezuela Bulking",
-      "Argentina", "Argentina Bulking"
-    ]
+    cuisine: ALL_CUISINES_BOTH
   },
   {
     id: "g-20",
@@ -630,21 +593,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "0.25 sec spray (0.25g)",
     coachNote: "Zero-calorie non-stick cooking spray for pan/oven crispy chicken and scrambling eggs without adding hidden liquid oil calories (Periodic restock item).",
-    cuisine: [
-      "Puerto Rico", "Puerto Rico Bulking",
-      "Spain", "Spain Bulking",
-      "Mexico", "Mexico Bulking",
-      "Dominican Republic", "Dominican Republic Bulking",
-      "Colombia", "Colombia Bulking",
-      "Brazil", "Brazil Bulking",
-      "China", "China Bulking",
-      "Korea", "Korea Bulking",
-      "Japan", "Japan Bulking",
-      "Italy", "Italy Bulking",
-      "El Salvador", "El Salvador Bulking",
-      "Venezuela", "Venezuela Bulking",
-      "Argentina", "Argentina Bulking"
-    ]
+    cuisine: ALL_CUISINES_BOTH
   },
   {
     id: "g-21",
@@ -660,21 +609,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1/4 tsp (0.7g)",
     coachNote: "Essential savory garlic/herb seasoning used for searing chicken breast cubes and broccoli across all cuisines (Periodic restock item).",
-    cuisine: [
-      "Puerto Rico", "Puerto Rico Bulking",
-      "Spain", "Spain Bulking",
-      "Mexico", "Mexico Bulking",
-      "Dominican Republic", "Dominican Republic Bulking",
-      "Colombia", "Colombia Bulking",
-      "Brazil", "Brazil Bulking",
-      "China", "China Bulking",
-      "Korea", "Korea Bulking",
-      "Japan", "Japan Bulking",
-      "Italy", "Italy Bulking",
-      "El Salvador", "El Salvador Bulking",
-      "Venezuela", "Venezuela Bulking",
-      "Argentina", "Argentina Bulking"
-    ]
+    cuisine: ALL_CUISINES_BOTH
   },
   {
     id: "g-22",
@@ -690,21 +625,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Packet (1g)",
     coachNote: "Sweetens your morning national coffee/tea and afternoon Greek yogurt bowls with zero added sugar calories (Periodic restock item).",
-    cuisine: [
-      "Puerto Rico", "Puerto Rico Bulking",
-      "Spain", "Spain Bulking",
-      "Mexico", "Mexico Bulking",
-      "Dominican Republic", "Dominican Republic Bulking",
-      "Colombia", "Colombia Bulking",
-      "Brazil", "Brazil Bulking",
-      "China", "China Bulking",
-      "Korea", "Korea Bulking",
-      "Japan", "Japan Bulking",
-      "Italy", "Italy Bulking",
-      "El Salvador", "El Salvador Bulking",
-      "Venezuela", "Venezuela Bulking",
-      "Argentina", "Argentina Bulking"
-    ]
+    cuisine: ALL_CUISINES_BOTH
   }
 ];
 
@@ -1527,6 +1448,330 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
       "Oven-baked Milanesa de Pollo paired with garlic rice and chimichurri! (360 kcal, 28g p, 32g c, 10g f)",
       360, 28, 32, 10, true
     )
+  },
+
+  // 14. France 🇫🇷 (Cutting & Bulking)
+  {
+    id: "plan-france",
+    title: "France: Poulet Rôti aux Herbes de Provence, Riz & Café au Lait Shred Blueprint (~2,080 kcal)",
+    country: "France",
+    flag: "🇫🇷",
+    badge: "🇫🇷 Authentic French Phase 1 Cutting ($51.52/Wk)",
+    targetDailyCalories: 2080,
+    targetDailyProtein: 178,
+    estCostPerWeek: "$51.52 Weekly Consumables / $24.60 Periodic Restock ($76.12 Combined Total)",
+    description: "Authentic French Poulet Rôti aux Herbes de Provence (Crispy Pan/Oven Seared Chicken smothered in thyme, rosemary, oregano, garlic, and subtle Dijon notes) paired with delicate white rice and steamed herbed broccoli florets. Features morning French Café au Lait con Leche + Banana before workout, post-workout Oeufs Brouillés aux Fines Herbes (Herb Scrambled Eggs), Casein Greek Yogurt bowls, and a weekly French Croissant / Bakery reward treat!",
+    meals: createMeals(
+      "France", "French Café au Lait or Espresso", 95,
+      "French Oeufs Brouillés aux Fines Herbes + Herbed Rice",
+      "3 Large White Eggs + 1/2 cup Liquid Egg Whites gently scrambled with chives, scallions, and Herbes de Provence in 0-Cal cooking spray. (330 kcal, 31g p, 15g f)",
+      530, 36, 44, 15,
+      "Crispy Poulet Rôti aux Herbes de Provence",
+      "~5.7 oz Fresh Chicken Breast cubes coated with Herbes de Provence, garlic powder, and a touch of Dijon seasoning, seared golden crispy. (210 kcal, 40g p, 2g f)",
+      "Riz Blanc aux Fines Herbes (Delicate Herbed White Rice)",
+      "1 cup cooked White Rice simmered with a pinch of French herbs and garlic notes. (200 kcal, 5g p, 44g c)",
+      440, 47, 50, 2,
+      "1 cup", 120, 21,
+      "French Bakery Croissant & Poulet Rôti",
+      "1 Buttery French Bakery Croissant toasted and served with 4 oz Crispy Poulet Rôti and herbed greens! (360 kcal, 28g p, 32g c, 10g f)",
+      360, 28, 32, 10, false
+    )
+  },
+  {
+    id: "plan-france-bulking",
+    title: "France Bulking: Poulet Rôti & DOUBLE Riz Blanc aux Fines Herbes Lean Bulk (~2,680 kcal)",
+    country: "France Bulking",
+    flag: "🇫🇷🔥",
+    badge: "🔥 Phase 2: French Lean Bulk ($51.48/Wk)",
+    targetDailyCalories: 2680,
+    targetDailyProtein: 188,
+    estCostPerWeek: "$51.48 Weekly Consumables / $24.60 Periodic Restock ($76.08 Combined Total)",
+    description: "French Phase 2 Lean Bulking! Features Poulet Rôti with DOUBLE Riz Blanc aux Fines Herbes, 5-Egg Oeufs Brouillés + Rolled Oats, Café au Lait, and French Bakery Croissant reward treat!",
+    meals: createMeals(
+      "France Bulking", "French Café au Lait or Espresso", 95,
+      "5-Egg Oeufs Brouillés aux Fines Herbes + Rolled Oats + Café au Lait",
+      "5 Large White Eggs scrambled with chives and Herbes de Provence in 0-cal spray. (350 kcal, 30g p, 25g f)",
+      500, 35, 54, 25,
+      "Crispy Poulet Rôti aux Herbes de Provence",
+      "~5.7 oz Fresh Chicken Breast seared golden and smothered in French herbs and garlic. (210 kcal, 40g p, 2g f)",
+      "DOUBLE Riz Blanc aux Fines Herbes",
+      "2 cups cooked Herbed White Rice (clean French bulking carbohydrates). (400 kcal, 10g p, 88g c)",
+      640, 52, 94, 2,
+      "1 cup", 120, 21,
+      "French Bakery Croissant & Poulet Rôti",
+      "Toasted French Croissant served with chicken and herbed greens! (360 kcal, 28g p, 32g c, 10g f)",
+      360, 28, 32, 10, true
+    )
+  },
+
+  // 15. Germany 🇩🇪 (Cutting & Bulking)
+  {
+    id: "plan-germany",
+    title: "Germany: Crispy German Brat-Chicken, Sauerkraut & Filterkaffee Shred Blueprint (~2,080 kcal)",
+    country: "Germany",
+    flag: "🇩🇪",
+    badge: "🇩🇪 Authentic German Phase 1 Cutting ($51.62/Wk)",
+    targetDailyCalories: 2080,
+    targetDailyProtein: 178,
+    estCostPerWeek: "$51.62 Weekly Consumables / $24.60 Periodic Restock ($76.22 Combined Total)",
+    description: "Authentic German Brat-Chicken (Pan/Oven seared chicken breast seasoned with caraway, savory Bratwurst spices, and garlic) served with clean white rice or potato bowl and tangy fermented sauerkraut / broccoli. Features strong German Filterkaffee con Leche + Banana before workout, Bauernfrühstück Egg Scramble, and a weekly German Pretzel / Bratwurst reward treat!",
+    meals: createMeals(
+      "Germany", "German Strong Filterkaffee or Espresso", 95,
+      "German Bauernfrühstück Egg Scramble + Savory Rice",
+      "3 Large White Eggs + 1/2 cup Liquid Egg Whites scrambled with green onions and German bratwurst seasoning in 0-Cal spray. (330 kcal, 31g p, 15g f)",
+      530, 36, 44, 15,
+      "Crispy German Brat-Chicken & Sauerkraut Bowl",
+      "~5.7 oz Fresh Chicken Breast cubes coated with caraway/bratwurst spice and garlic, seared crispy golden. (210 kcal, 40g p, 2g f)",
+      "Kartoffel/Reis Bowl (German Savory White Rice & Sauerkraut Notes)",
+      "1 cup cooked White Rice seasoned with savory German herbs and paired with tangy sauerkraut/broccoli. (200 kcal, 5g p, 44g c)",
+      440, 47, 50, 2,
+      "1 cup", 120, 21,
+      "German Laugenbrezel (Soft Pretzel) & Brat-Chicken",
+      "1 Authentic German Pretzel toasted crisp served with 4 oz seasoned chicken and sauerkraut! (360 kcal, 28g p, 32g c, 10g f)",
+      360, 28, 32, 10, false
+    )
+  },
+  {
+    id: "plan-germany-bulking",
+    title: "Germany Bulking: Brat-Chicken & DOUBLE Kartoffel/Reis Sauerkraut Lean Bulk (~2,680 kcal)",
+    country: "Germany Bulking",
+    flag: "🇩🇪🔥",
+    badge: "🔥 Phase 2: German Lean Bulk ($51.58/Wk)",
+    targetDailyCalories: 2680,
+    targetDailyProtein: 188,
+    estCostPerWeek: "$51.58 Weekly Consumables / $24.60 Periodic Restock ($76.18 Combined Total)",
+    description: "German Phase 2 Lean Bulking! Features Brat-Chicken with DOUBLE Savory Rice & Sauerkraut, 5-Egg Bauernfrühstück + Rolled Oats, German Filterkaffee, and Soft Pretzel reward treat!",
+    meals: createMeals(
+      "Germany Bulking", "German Strong Filterkaffee or Espresso", 95,
+      "5-Egg Bauernfrühstück Scramble + Rolled Oats + Filterkaffee",
+      "5 Large White Eggs scrambled with onions and bratwurst seasoning in 0-cal spray. (350 kcal, 30g p, 25g f)",
+      500, 35, 54, 25,
+      "Crispy German Brat-Chicken & Sauerkraut Bowl",
+      "~5.7 oz Fresh Chicken Breast seared golden and smothered in German caraway and garlic. (210 kcal, 40g p, 2g f)",
+      "DOUBLE Kartoffel/Reis Bowl",
+      "2 cups cooked Savory White Rice with sauerkraut notes (clean German bulking carbohydrates). (400 kcal, 10g p, 88g c)",
+      640, 52, 94, 2,
+      "1 cup", 120, 21,
+      "German Laugenbrezel (Soft Pretzel) & Brat-Chicken",
+      "Toasted German Pretzel served with chicken and sauerkraut! (360 kcal, 28g p, 32g c, 10g f)",
+      360, 28, 32, 10, true
+    )
+  },
+
+  // 16. Russia 🇷🇺 (Cutting & Bulking)
+  {
+    id: "plan-russia",
+    title: "Russia: Crispy Garlic Dill Chicken, Buckwheat/Rice Bowl & Black Chai Shred (~2,080 kcal)",
+    country: "Russia",
+    flag: "🇷🇺",
+    badge: "🇷🇺 Authentic Russian Phase 1 Cutting ($51.44/Wk)",
+    targetDailyCalories: 2080,
+    targetDailyProtein: 178,
+    estCostPerWeek: "$51.44 Weekly Consumables / $24.60 Periodic Restock ($76.04 Combined Total)",
+    description: "Authentic Russian Garlic Dill Chicken (Chicken breast cubes marinated in garlic, sweet paprika, and fresh fragrant dill) paired with clean white/buckwheat rice and steamed green vegetables. Features morning Russian Spiced Black Tea / Chai con Leche + Banana, Smetana-style Herb Egg Scramble, and a weekly Pirozhki / Blini reward treat!",
+    meals: createMeals(
+      "Russia", "Russian Spiced Black Tea or Strong Chai", 95,
+      "Russian Smetana-Style Dill Egg Scramble + Garlic Rice",
+      "3 Large White Eggs + 1/2 cup Liquid Egg Whites scrambled with green onions and fresh dill in 0-Cal spray. (330 kcal, 31g p, 15g f)",
+      530, 36, 44, 15,
+      "Crispy Russian Garlic Dill Chicken",
+      "~5.7 oz Fresh Chicken Breast cubes coated in garlic powder, sweet paprika, and dill, seared golden crispy. (210 kcal, 40g p, 2g f)",
+      "Grechka/Rice Bowl (Russian Herb White Rice)",
+      "1 cup cooked White Rice seasoned with garlic and fragrant dill notes. (200 kcal, 5g p, 44g c)",
+      440, 47, 50, 2,
+      "1 cup", 120, 21,
+      "Russian Pirozhki / Blini & Garlic Chicken",
+      "Traditional Russian savory baked Pirozhki or Blini paired with 4 oz garlic dill chicken! (360 kcal, 28g p, 32g c, 10g f)",
+      360, 28, 32, 10, false
+    )
+  },
+  {
+    id: "plan-russia-bulking",
+    title: "Russia Bulking: Garlic Dill Chicken & DOUBLE Grechka/Rice Lean Bulk (~2,680 kcal)",
+    country: "Russia Bulking",
+    flag: "🇷🇺🔥",
+    badge: "🔥 Phase 2: Russian Lean Bulk ($51.40/Wk)",
+    targetDailyCalories: 2680,
+    targetDailyProtein: 188,
+    estCostPerWeek: "$51.40 Weekly Consumables / $24.60 Periodic Restock ($76.00 Combined Total)",
+    description: "Russian Phase 2 Lean Bulking! Features Garlic Dill Chicken with DOUBLE Herb White Rice, 5-Egg Smetana-Style Scramble + Rolled Oats, Russian Black Tea, and Pirozhki reward treat!",
+    meals: createMeals(
+      "Russia Bulking", "Russian Spiced Black Tea or Strong Chai", 95,
+      "5-Egg Dill & Scallion Scramble + Rolled Oats + Black Tea",
+      "5 Large White Eggs scrambled with fragrant dill and scallions in 0-cal spray. (350 kcal, 30g p, 25g f)",
+      500, 35, 54, 25,
+      "Crispy Russian Garlic Dill Chicken",
+      "~5.7 oz Fresh Chicken Breast seared golden with garlic, paprika, and dill. (210 kcal, 40g p, 2g f)",
+      "DOUBLE Grechka/Rice Bowl",
+      "2 cups cooked Herb White Rice (clean Russian bulking carbohydrates). (400 kcal, 10g p, 88g c)",
+      640, 52, 94, 2,
+      "1 cup", 120, 21,
+      "Russian Pirozhki / Blini & Garlic Chicken",
+      "Savory Pirozhki served with chicken and dill vegetables! (360 kcal, 28g p, 32g c, 10g f)",
+      360, 28, 32, 10, true
+    )
+  },
+
+  // 17. India 🇮🇳 (Cutting & Bulking)
+  {
+    id: "plan-india",
+    title: "India: Crispy Tandoori Masala Chicken, Basmati Dal & Masala Chai Shred (~2,080 kcal)",
+    country: "India",
+    flag: "🇮🇳",
+    badge: "🇮🇳 Authentic Indian Phase 1 Cutting ($51.92/Wk)",
+    targetDailyCalories: 2080,
+    targetDailyProtein: 178,
+    estCostPerWeek: "$51.92 Weekly Consumables / $24.60 Periodic Restock ($76.52 Combined Total)",
+    description: "Authentic Indian Tandoori / Garam Masala Chicken (Chicken breast cubes coated with aromatic Garam Masala, golden turmeric, cumin, and garlic powder, seared in pan/oven) paired with fragrant Basmati White Rice, seasoned yellow lentils (Dal), and steamed broccoli. Features morning Masala Chai con Leche + Banana, Spiced Masala Egg Bhurji Scramble, and a weekly Garlic Naan reward treat!",
+    meals: createMeals(
+      "India", "Indian Masala Chai or Spiced Tea", 95,
+      "Spiced Masala Egg Bhurji Scramble + Fragrant Rice",
+      "3 Large White Eggs + 1/2 cup Liquid Egg Whites scrambled with turmeric, cumin, green onions, and cilantro in 0-Cal spray. (330 kcal, 31g p, 15g f)",
+      530, 36, 44, 15,
+      "Crispy Indian Tandoori Masala Chicken",
+      "~5.7 oz Fresh Chicken Breast cubes coated in Garam Masala, turmeric, and garlic, seared golden crispy. (210 kcal, 40g p, 2g f)",
+      "Fragrant Basmati Rice & Dal (Lentil Notes)",
+      "1 cup cooked White/Basmati Rice simmered with golden turmeric and a touch of seasoned yellow lentils. (200 kcal, 5g p, 44g c)",
+      440, 47, 50, 2,
+      "1 cup", 120, 21,
+      "Toasted Garlic Naan Bread & Tandoori Chicken",
+      "1 Warm Garlic Naan Bread toasted and served with 4 oz Tandoori Masala Chicken! (360 kcal, 28g p, 32g c, 10g f)",
+      360, 28, 32, 10, false
+    )
+  },
+  {
+    id: "plan-india-bulking",
+    title: "India Bulking: Tandoori Masala Chicken & DOUBLE Basmati Dal Lean Bulk (~2,680 kcal)",
+    country: "India Bulking",
+    flag: "🇮🇳🔥",
+    badge: "🔥 Phase 2: Indian Lean Bulk ($51.88/Wk)",
+    targetDailyCalories: 2680,
+    targetDailyProtein: 188,
+    estCostPerWeek: "$51.88 Weekly Consumables / $24.60 Periodic Restock ($76.48 Combined Total)",
+    description: "Indian Phase 2 Lean Bulking! Features Tandoori Masala Chicken with DOUBLE Fragrant Basmati Rice & Dal, 5-Egg Masala Bhurji + Rolled Oats, Masala Chai, and Garlic Naan reward treat!",
+    meals: createMeals(
+      "India Bulking", "Indian Masala Chai or Spiced Tea", 95,
+      "5-Egg Masala Bhurji Scramble + Rolled Oats + Masala Chai",
+      "5 Large White Eggs scrambled with turmeric, onions, and cilantro in 0-cal spray. (350 kcal, 30g p, 25g f)",
+      500, 35, 54, 25,
+      "Crispy Indian Tandoori Masala Chicken",
+      "~5.7 oz Fresh Chicken Breast seared golden with Garam Masala and turmeric. (210 kcal, 40g p, 2g f)",
+      "DOUBLE Fragrant Basmati Rice & Dal",
+      "2 cups cooked Turmeric Basmati Rice and Dal (fragrant Indian bulking carbohydrates). (400 kcal, 10g p, 88g c)",
+      640, 52, 94, 2,
+      "1 cup", 120, 21,
+      "Toasted Garlic Naan Bread & Tandoori Chicken",
+      "Warm Garlic Naan served with chicken and spiced greens! (360 kcal, 28g p, 32g c, 10g f)",
+      360, 28, 32, 10, true
+    )
+  },
+
+  // 18. Canada 🇨🇦 (Cutting & Bulking)
+  {
+    id: "plan-canada",
+    title: "Canada: Crispy Montreal Maple-Glazed Chicken, Herb Rice & Dark Roast Shred (~2,080 kcal)",
+    country: "Canada",
+    flag: "🇨🇦",
+    badge: "🇨🇦 Authentic Canadian Phase 1 Cutting ($51.82/Wk)",
+    targetDailyCalories: 2080,
+    targetDailyProtein: 178,
+    estCostPerWeek: "$51.82 Weekly Consumables / $24.60 Periodic Restock ($76.42 Combined Total)",
+    description: "Authentic Canadian Montreal Spiced Maple-Glazed Chicken (Chicken breast cubes seared with bold Montreal black pepper/garlic seasoning and a light caramelized maple touch) paired with clean herb rice and roasted broccoli. Features Canadian Maple Dark Roast Coffee con Leche + Banana, Farmhouse Scallion Scramble, and a weekly Maple Pancake / Poutine-inspired reward treat!",
+    meals: createMeals(
+      "Canada", "Canadian Maple Dark Roast Coffee or Tea", 95,
+      "Canadian Farmhouse Scallion Egg Scramble + Savory Rice",
+      "3 Large White Eggs + 1/2 cup Liquid Egg Whites scrambled with green onions and Montreal seasoning in 0-Cal spray. (330 kcal, 31g p, 15g f)",
+      530, 36, 44, 15,
+      "Crispy Montreal Maple-Glazed Chicken",
+      "~5.7 oz Fresh Chicken Breast cubes coated in bold Montreal seasoning and a subtle pure maple glaze touch, seared golden crispy. (210 kcal, 40g p, 2g f)",
+      "Canadian Savory Herb White Rice",
+      "1 cup cooked White Rice seasoned with garlic and savory notes. (200 kcal, 5g p, 44g c)",
+      440, 47, 50, 2,
+      "1 cup", 120, 21,
+      "Canadian Maple Pancakes & Montreal Chicken",
+      "Fluffy protein pancakes with pure maple touch served with 4 oz savory Montreal chicken! (360 kcal, 28g p, 32g c, 10g f)",
+      360, 28, 32, 10, false
+    )
+  },
+  {
+    id: "plan-canada-bulking",
+    title: "Canada Bulking: Montreal Maple Chicken & DOUBLE Savory Herb Rice Lean Bulk (~2,680 kcal)",
+    country: "Canada Bulking",
+    flag: "🇨🇦🔥",
+    badge: "🔥 Phase 2: Canadian Lean Bulk ($51.78/Wk)",
+    targetDailyCalories: 2680,
+    targetDailyProtein: 188,
+    estCostPerWeek: "$51.78 Weekly Consumables / $24.60 Periodic Restock ($76.38 Combined Total)",
+    description: "Canadian Phase 2 Lean Bulking! Features Montreal Maple Chicken with DOUBLE Savory Herb Rice, 5-Egg Farmhouse Scramble + Rolled Oats, Maple Dark Roast, and Maple Pancake reward treat!",
+    meals: createMeals(
+      "Canada Bulking", "Canadian Maple Dark Roast Coffee or Tea", 95,
+      "5-Egg Farmhouse Scramble + Rolled Oats + Maple Dark Roast",
+      "5 Large White Eggs scrambled with green onions and Montreal spices in 0-cal spray. (350 kcal, 30g p, 25g f)",
+      500, 35, 54, 25,
+      "Crispy Montreal Maple-Glazed Chicken",
+      "~5.7 oz Fresh Chicken Breast seared golden with Montreal steak spices and subtle maple glaze. (210 kcal, 40g p, 2g f)",
+      "DOUBLE Canadian Savory Herb White Rice",
+      "2 cups cooked Savory Herb Rice (clean Canadian bulking carbohydrates). (400 kcal, 10g p, 88g c)",
+      640, 52, 94, 2,
+      "1 cup", 120, 21,
+      "Canadian Maple Pancakes & Montreal Chicken",
+      "Fluffy maple pancakes served with chicken and greens! (360 kcal, 28g p, 32g c, 10g f)",
+      360, 28, 32, 10, true
+    )
+  },
+
+  // 19. USA 🇺🇸 (Cutting & Bulking)
+  {
+    id: "plan-usa",
+    title: "USA: Crispy All-American BBQ Garlic Chicken, Diner Rice & Black Coffee Shred (~2,080 kcal)",
+    country: "USA",
+    flag: "🇺🇸",
+    badge: "🇺🇸 All-American Phase 1 Cutting ($51.52/Wk)",
+    targetDailyCalories: 2080,
+    targetDailyProtein: 178,
+    estCostPerWeek: "$51.52 Weekly Consumables / $24.60 Periodic Restock ($76.12 Combined Total)",
+    description: "All-American Crispy BBQ / Garlic Herb Chicken Bowl (Pan or oven seared chicken breast cubes seasoned with classic American barbecue rub, garlic, and hickory notes) paired with clean diner-style white rice or roasted potato bowl and steamed broccoli. Features classic American Dark Roast Coffee con Leche + Banana, All-American Diner Egg Scramble, and a weekly All-American Diner Burger / Fries reward treat!",
+    meals: createMeals(
+      "USA", "American Classic Dark Roast Coffee or Cold Brew", 95,
+      "All-American Diner Egg Scramble + Savory Rice",
+      "3 Large White Eggs + 1/2 cup Liquid Egg Whites scrambled with green onions, peppers, and garlic steak seasoning in 0-Cal spray. (330 kcal, 31g p, 15g f)",
+      530, 36, 44, 15,
+      "Crispy All-American BBQ Garlic Herb Chicken",
+      "~5.7 oz Fresh Chicken Breast cubes coated in BBQ rub, garlic powder, and onion notes, seared golden crispy. (210 kcal, 40g p, 2g f)",
+      "Diner-Style Savory White Rice Bowl",
+      "1 cup cooked White Rice seasoned with garlic and herb notes. (200 kcal, 5g p, 44g c)",
+      440, 47, 50, 2,
+      "1 cup", 120, 21,
+      "All-American Diner Smashburger & Garlic Chicken",
+      "1 Lean All-American Smashburger on toasted bun served alongside crispy BBQ chicken! (360 kcal, 28g p, 32g c, 10g f)",
+      360, 28, 32, 10, false
+    )
+  },
+  {
+    id: "plan-usa-bulking",
+    title: "USA Bulking: All-American BBQ Chicken & DOUBLE Diner Rice Lean Bulk (~2,680 kcal)",
+    country: "USA Bulking",
+    flag: "🇺🇸🔥",
+    badge: "🔥 Phase 2: All-American Lean Bulk ($51.48/Wk)",
+    targetDailyCalories: 2680,
+    targetDailyProtein: 188,
+    estCostPerWeek: "$51.48 Weekly Consumables / $24.60 Periodic Restock ($76.08 Combined Total)",
+    description: "All-American Phase 2 Lean Bulking! Features BBQ Garlic Chicken with DOUBLE Diner Rice, 5-Egg Diner Scramble + Rolled Oats, American Dark Roast, and Smashburger reward treat!",
+    meals: createMeals(
+      "USA Bulking", "American Classic Dark Roast Coffee or Cold Brew", 95,
+      "5-Egg Diner Scramble + Rolled Oats + Classic Dark Roast",
+      "5 Large White Eggs scrambled with peppers, onions, and garlic seasoning in 0-cal spray. (350 kcal, 30g p, 25g f)",
+      500, 35, 54, 25,
+      "Crispy All-American BBQ Garlic Herb Chicken",
+      "~5.7 oz Fresh Chicken Breast seared golden with BBQ rub and garlic steak seasoning. (210 kcal, 40g p, 2g f)",
+      "DOUBLE Diner-Style Savory White Rice Bowl",
+      "2 cups cooked Savory Herb White Rice (clean American bulking carbohydrates). (400 kcal, 10g p, 88g c)",
+      640, 52, 94, 2,
+      "1 cup", 120, 21,
+      "All-American Diner Smashburger & Garlic Chicken",
+      "Diner Smashburger served alongside chicken and broccoli! (360 kcal, 28g p, 32g c, 10g f)",
+      360, 28, 32, 10, true
+    )
   }
 ];
 
@@ -1576,20 +1821,41 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   { name: "Goya Frozen Tostones / Corn Tortillas / Arepas / Pupusas Base", category: "Carbs", price: "$3.48", note: "Your once-a-week authentic national reward treat meal base!" }
 ];
 
-export const NATIONAL_CUISINES_LIST = [
-  { name: 'Puerto Rico', flag: '🇵🇷', cuttingKey: '🇵🇷 Puerto Rico', bulkingKey: '🇵🇷🔥 Puerto Rico Bulking' },
-  { name: 'Spain', flag: '🇪🇸', cuttingKey: '🇪🇸 Spain', bulkingKey: '🇪🇸🔥 Spain Bulking' },
-  { name: 'Mexico', flag: '🇲🇽', cuttingKey: '🇲🇽 Mexico', bulkingKey: '🇲🇽🔥 Mexico Bulking' },
-  { name: 'Dominican Republic', flag: '🇩🇴', cuttingKey: '🇩🇴 Dominican Republic', bulkingKey: '🇩🇴🔥 Dominican Republic Bulking' },
-  { name: 'Colombia', flag: '🇨🇴', cuttingKey: '🇨🇴 Colombia', bulkingKey: '🇨🇴🔥 Colombia Bulking' },
-  { name: 'Brazil', flag: '🇧🇷', cuttingKey: '🇧🇷 Brazil', bulkingKey: '🇧🇷🔥 Brazil Bulking' },
-  { name: 'China', flag: '🇨🇳', cuttingKey: '🇨🇳 China', bulkingKey: '🇨🇳🔥 China Bulking' },
-  { name: 'Korea', flag: '🇰🇷', cuttingKey: '🇰🇷 Korea', bulkingKey: '🇰🇷🔥 Korea Bulking' },
-  { name: 'Japan', flag: '🇯🇵', cuttingKey: '🇯🇵 Japan', bulkingKey: '🇯🇵🔥 Japan Bulking' },
-  { name: 'Italy', flag: '🇮🇹', cuttingKey: '🇮🇹 Italy', bulkingKey: '🇮🇹🔥 Italy Bulking' },
-  { name: 'El Salvador', flag: '🇸🇻', cuttingKey: '🇸🇻 El Salvador', bulkingKey: '🇸🇻🔥 El Salvador Bulking' },
-  { name: 'Venezuela', flag: '🇻🇪', cuttingKey: '🇻🇪 Venezuela', bulkingKey: '🇻🇪🔥 Venezuela Bulking' },
-  { name: 'Argentina', flag: '🇦🇷', cuttingKey: '🇦🇷 Argentina', bulkingKey: '🇦🇷🔥 Argentina Bulking' }
+export interface NationalCuisineInfo {
+  name: string;
+  flag: string;
+  region: 'Americas & Caribbean' | 'South America' | 'Europe' | 'Asia';
+  cuttingKey: string;
+  bulkingKey: string;
+}
+
+export const NATIONAL_CUISINES_LIST: NationalCuisineInfo[] = [
+  // Americas & Caribbean
+  { name: 'Puerto Rico', flag: '🇵🇷', region: 'Americas & Caribbean', cuttingKey: '🇵🇷 Puerto Rico', bulkingKey: '🇵🇷🔥 Puerto Rico Bulking' },
+  { name: 'USA', flag: '🇺🇸', region: 'Americas & Caribbean', cuttingKey: '🇺🇸 USA', bulkingKey: '🇺🇸🔥 USA Bulking' },
+  { name: 'Canada', flag: '🇨🇦', region: 'Americas & Caribbean', cuttingKey: '🇨🇦 Canada', bulkingKey: '🇨🇦🔥 Canada Bulking' },
+  { name: 'Mexico', flag: '🇲🇽', region: 'Americas & Caribbean', cuttingKey: '🇲🇽 Mexico', bulkingKey: '🇲🇽🔥 Mexico Bulking' },
+  { name: 'Dominican Republic', flag: '🇩🇴', region: 'Americas & Caribbean', cuttingKey: '🇩🇴 Dominican Republic', bulkingKey: '🇩🇴🔥 Dominican Republic Bulking' },
+  { name: 'El Salvador', flag: '🇸🇻', region: 'Americas & Caribbean', cuttingKey: '🇸🇻 El Salvador', bulkingKey: '🇸🇻🔥 El Salvador Bulking' },
+
+  // South America
+  { name: 'Colombia', flag: '🇨🇴', region: 'South America', cuttingKey: '🇨🇴 Colombia', bulkingKey: '🇨🇴🔥 Colombia Bulking' },
+  { name: 'Brazil', flag: '🇧🇷', region: 'South America', cuttingKey: '🇧🇷 Brazil', bulkingKey: '🇧🇷🔥 Brazil Bulking' },
+  { name: 'Venezuela', flag: '🇻🇪', region: 'South America', cuttingKey: '🇻🇪 Venezuela', bulkingKey: '🇻🇪🔥 Venezuela Bulking' },
+  { name: 'Argentina', flag: '🇦🇷', region: 'South America', cuttingKey: '🇦🇷 Argentina', bulkingKey: '🇦🇷🔥 Argentina Bulking' },
+
+  // Europe
+  { name: 'Spain', flag: '🇪🇸', region: 'Europe', cuttingKey: '🇪🇸 Spain', bulkingKey: '🇪🇸🔥 Spain Bulking' },
+  { name: 'Italy', flag: '🇮🇹', region: 'Europe', cuttingKey: '🇮🇹 Italy', bulkingKey: '🇮🇹🔥 Italy Bulking' },
+  { name: 'France', flag: '🇫🇷', region: 'Europe', cuttingKey: '🇫🇷 France', bulkingKey: '🇫🇷🔥 France Bulking' },
+  { name: 'Germany', flag: '🇩🇪', region: 'Europe', cuttingKey: '🇩🇪 Germany', bulkingKey: '🇩🇪🔥 Germany Bulking' },
+  { name: 'Russia', flag: '🇷🇺', region: 'Europe', cuttingKey: '🇷🇺 Russia', bulkingKey: '🇷🇺🔥 Russia Bulking' },
+
+  // Asia
+  { name: 'Japan', flag: '🇯🇵', region: 'Asia', cuttingKey: '🇯🇵 Japan', bulkingKey: '🇯🇵🔥 Japan Bulking' },
+  { name: 'Korea', flag: '🇰🇷', region: 'Asia', cuttingKey: '🇰🇷 Korea', bulkingKey: '🇰🇷🔥 Korea Bulking' },
+  { name: 'China', flag: '🇨🇳', region: 'Asia', cuttingKey: '🇨🇳 China', bulkingKey: '🇨🇳🔥 China Bulking' },
+  { name: 'India', flag: '🇮🇳', region: 'Asia', cuttingKey: '🇮🇳 India', bulkingKey: '🇮🇳🔥 India Bulking' }
 ];
 
 export function getPlanHtmlFilename(countryOrPlan: string | { country: string; id?: string }): string {
@@ -1646,7 +1912,31 @@ export function getPlanHtmlFilename(countryOrPlan: string | { country: string; i
     'Argentina': 'Argentina_Cutting_Meal_Plan.html',
     'Argentina Bulking': 'Argentina_Bulking_Meal_Plan.html',
     '🇦🇷 Argentina': 'Argentina_Cutting_Meal_Plan.html',
-    '🇦🇷🔥 Argentina Bulking': 'Argentina_Bulking_Meal_Plan.html'
+    '🇦🇷🔥 Argentina Bulking': 'Argentina_Bulking_Meal_Plan.html',
+    'France': 'France_Cutting_Meal_Plan.html',
+    'France Bulking': 'France_Bulking_Meal_Plan.html',
+    '🇫🇷 France': 'France_Cutting_Meal_Plan.html',
+    '🇫🇷🔥 France Bulking': 'France_Bulking_Meal_Plan.html',
+    'Germany': 'Germany_Cutting_Meal_Plan.html',
+    'Germany Bulking': 'Germany_Bulking_Meal_Plan.html',
+    '🇩🇪 Germany': 'Germany_Cutting_Meal_Plan.html',
+    '🇩🇪🔥 Germany Bulking': 'Germany_Bulking_Meal_Plan.html',
+    'Russia': 'Russia_Cutting_Meal_Plan.html',
+    'Russia Bulking': 'Russia_Bulking_Meal_Plan.html',
+    '🇷🇺 Russia': 'Russia_Cutting_Meal_Plan.html',
+    '🇷🇺🔥 Russia Bulking': 'Russia_Bulking_Meal_Plan.html',
+    'India': 'India_Cutting_Meal_Plan.html',
+    'India Bulking': 'India_Bulking_Meal_Plan.html',
+    '🇮🇳 India': 'India_Cutting_Meal_Plan.html',
+    '🇮🇳🔥 India Bulking': 'India_Bulking_Meal_Plan.html',
+    'Canada': 'Canada_Cutting_Meal_Plan.html',
+    'Canada Bulking': 'Canada_Bulking_Meal_Plan.html',
+    '🇨🇦 Canada': 'Canada_Cutting_Meal_Plan.html',
+    '🇨🇦🔥 Canada Bulking': 'Canada_Bulking_Meal_Plan.html',
+    'USA': 'USA_Cutting_Meal_Plan.html',
+    'USA Bulking': 'USA_Bulking_Meal_Plan.html',
+    '🇺🇸 USA': 'USA_Cutting_Meal_Plan.html',
+    '🇺🇸🔥 USA Bulking': 'USA_Bulking_Meal_Plan.html'
   };
   return '/' + (map[country] || 'Puerto_Rico_Cutting_Meal_Plan.html');
 }

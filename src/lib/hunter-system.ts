@@ -90,8 +90,8 @@ const DEFAULT_STATE: HunterState = {
     dailyProteinGoal: 178,
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
-    gymName: "Puerto Rican Home Quiet Apartment Dojo vs Planet Fitness Gym (Dual Choice + 45m Cardio)",
-    dietName: "Crispy Puerto Rican Pollo al Horno & Café Bustelo Shred Blueprint",
+    gymName: "Quiet Apartment Bodyweight vs Planet Fitness Gym (Dual Choice + 45m Cardio)",
+    dietName: "Global S-Rank 19-Country Master Deck (38 Cutting & Bulking Blueprints)",
   },
   completedQuestsToday: {
     workout: false,

@@ -115,7 +115,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               Arise, <span className="text-system-blue">{state.profile.name}</span>.
             </h2>
             <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
-              Your mission is clear: transform from {startWeight} lbs down to a shredded, muscular <span className="text-system-cyan font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Complete your daily quests to level up your real-life stats and build impressive density at {state.profile.gymName || 'Puerto Rican Home Quiet Apartment Dojo'}!
+              Your mission is clear: transform from {startWeight} lbs down to a shredded, muscular <span className="text-system-cyan font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Complete your daily quests to level up your real-life stats and build impressive density at {state.profile.gymName || 'your Quiet Apartment Bodyweight Dojo or Planet Fitness Gym'}!
             </p>
           </div>
 
@@ -155,7 +155,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               <span className="text-sm font-mono font-bold text-system-gold">({daysRemaining} Days Left)</span>
             </h3>
             <p className="text-xs text-zinc-300 max-w-2xl leading-relaxed">
-              Every clean meal prep and every PR at {state.profile.gymName || 'Puerto Rican Home Quiet Apartment Dojo'} chops HP off this boss raid. Stay consistent on the {state.profile.dietName || 'Puerto Rican Pollo al Horno cutting diet'} to avoid loose skin and emerge at peak definition!
+              Every clean meal prep and every PR at {state.profile.gymName || 'your Quiet Apartment Bodyweight Dojo or Planet Fitness Gym'} chops HP off this boss raid. Stay consistent on your chosen {state.profile.dietName || '19-Country Global S-Rank Meal Blueprint'} to avoid loose skin and emerge at peak definition!
             </p>
 
             {/* Boss HP Bar */}
