@@ -90,8 +90,8 @@ const DEFAULT_STATE: HunterState = {
     dailyProteinGoal: 178,
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
-    gymName: "Japanese Samurai Quiet Apartment Bodyweight Dojo (No Equipment + 45m Cardio)",
-    dietName: "Pan or Oven Crispy Fried Japanese Teriyaki Chicken & Matcha Latte Shred Blueprint",
+    gymName: "Puerto Rican Home Quiet Apartment Dojo vs Planet Fitness Gym (Dual Choice + 45m Cardio)",
+    dietName: "Crispy Puerto Rican Pollo al Horno & Café Bustelo Shred Blueprint",
   },
   completedQuestsToday: {
     workout: false,
@@ -183,12 +183,12 @@ export function loadHunterState(): HunterState {
         localStorage.setItem('pf_fixed_170_weight_bug_v2', 'done');
         needsSave = true;
       }
-      if (parsed.profile.dietName !== "Pan or Oven Crispy Fried Japanese Teriyaki Chicken & Matcha Latte Shred Blueprint") {
-        parsed.profile.dietName = "Pan or Oven Crispy Fried Japanese Teriyaki Chicken & Matcha Latte Shred Blueprint";
+      if (parsed.profile.dietName !== "Crispy Puerto Rican Pollo al Horno & Café Bustelo Shred Blueprint") {
+        parsed.profile.dietName = "Crispy Puerto Rican Pollo al Horno & Café Bustelo Shred Blueprint";
         needsSave = true;
       }
-      if (parsed.profile.gymName !== "Japanese Samurai Quiet Apartment Bodyweight Dojo (No Equipment + 45m Cardio)") {
-        parsed.profile.gymName = "Japanese Samurai Quiet Apartment Bodyweight Dojo (No Equipment + 45m Cardio)";
+      if (parsed.profile.gymName !== "Puerto Rican Home Quiet Apartment Dojo vs Planet Fitness Gym (Dual Choice + 45m Cardio)") {
+        parsed.profile.gymName = "Puerto Rican Home Quiet Apartment Dojo vs Planet Fitness Gym (Dual Choice + 45m Cardio)";
         needsSave = true;
       }
     }

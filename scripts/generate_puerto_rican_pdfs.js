@@ -1,0 +1,700 @@
+const fs = require('fs');
+const path = require('path');
+
+const publicDir = path.join(__dirname, '..', 'public');
+
+function generateHtml(isBulking) {
+  const title = isBulking
+    ? "Puerto Rico Bulking: Pollo al Horno & Arroz con Gandules Lean Bulk Blueprint (~2,680 kcal)"
+    : "Puerto Rico: Crispy Pollo al Horno, Arroz con Gandules & Café Bustelo Shred Blueprint (~2,080 kcal)";
+  
+  const subtitle = isBulking
+    ? "🔥 Phase 2: Post-160 Lb Lean Bulk ($51.70/Wk)"
+    : "⭐ #1 Main Phase 1 Cutting Blueprint ($51.74/Wk)";
+
+  const dailyCals = isBulking ? "~2,680 kcal" : "~2,080 kcal";
+  const dailyProtein = isBulking ? "188g Protein" : "178g Protein";
+  const macroSplit = isBulking ? "275g C / 85g F" : "200g C / 60g F";
+  const weeklyCost = isBulking ? "$51.70/wk ($50 Regular Budget)" : "$51.74/wk ($50 Regular Budget)";
+  const restockCost = "$24.60 ($25 Restock Target Range)";
+  const combinedCost = isBulking ? "$76.30 Combined Total" : "$76.34 Combined Total";
+
+  const description = isBulking
+    ? `<strong>Hunter Nick's Custom S-Rank Lean Bulking Directive:</strong> Designed around your exact schedule with <strong>Monday Grocery Runs at Auburn Maine Walmart Supercenter ($50 regular budget range)</strong> and batch meal prep, starting eating Tuesday (7-Day Cycle). Notice how this bulking plan is $0.04 CHEAPER per week ($51.70 vs $51.74) while adding +600 clean muscle-building calories every day! We swap 4 tubs of yogurt and liquid egg whites for a massive 5 lb bag of Long Grain White Rice, 42 oz of Rolled Oats, 3 tubs of Greek Yogurt, and 36 whole eggs across the week (5 whole eggs daily to naturally boost hormone production and muscle recovery after intense gym or home resistance training!). Features Crispy Puerto Rican Pollo al Horno with DOUBLE Arroz con Gandules & Steamed Broccoli, Café Bustelo Espresso con Leche at 8:00 AM, and your Friday/Saturday Goya Tostones reward treat!`
+    : `<strong>Hunter Nick's Custom S-Rank Phase 1 Cutting Directive:</strong> Designed around your exact schedule with <strong>Monday Grocery Runs at Auburn Maine Walmart Supercenter ($50 regular budget range)</strong> and batch meal prep, starting eating Tuesday (7-Day Cycle). Tailored specifically for steady, sustainable fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target cleanly by 2028 without loose skin or muscle loss. Features authentic dark roast <strong>Café Bustelo Espresso con Leche (brewed strong and whisked with Great Value 2% Milk) + Banana at 8:00 AM</strong> for pre-workout focus right before your choice of Home Quiet Apartment Bodyweight Dojo OR Planet Fitness Gym workout & cardio run! Followed by a cooked-fresh Post-Workout Sofrito & Scallion Egg White Scramble between 10:30–11:00 AM, authentic Crispy Pollo al Horno (Adobo & Sazón garlic chicken breasts) with Arroz con Gandules and Steamed Broccoli for Lunch and Dinner, and slow-release Casein Greek Yogurt bowls (with <strong>4 tubs / 1 Gallon guaranteed</strong> so you never run out!). Plus, includes your once-a-week Goya Tostones reward treat meal!`;
+
+  const meals = isBulking ? [
+    {
+      name: "Pre-Workout Fuel: Café Bustelo Espresso con Leche & Fresh Banana",
+      time: "8:00 AM (Pre-Workout Ignition)",
+      macros: "Calories: 200 kcal | Protein: 7g | Carbs: 36g | Fat: 3.5g",
+      ingredients: [
+        "<strong>1 Pre-Workout Café Bustelo con Leche:</strong> Brew 1 tbsp Café Bustelo Espresso strong and whisk with 3/4 cup warm or iced Great Value 2% Reduced Fat Milk (optional: add 1 zero-cal sweetener packet). Clean sustained energy for gym or home training volume!",
+        "<strong>1 Medium Fresh Banana:</strong> Peel and eat immediately right before your morning workout for rapid-absorbing carbohydrates & essential potassium!"
+      ],
+      prep: "Brew 1 tbsp Café Bustelo espresso with hot water, pour over ice or keep warm, and whisk with 3/4 cup milk. Eat banana alongside coffee exactly at 8:00 AM before starting your workout!"
+    },
+    {
+      name: "Post-Workout Breakfast: 5-Egg Sofrito Scramble + Rolled Oats + Café Bustelo",
+      time: "10:30 AM – 11:00 AM (Post-Workout)",
+      macros: "Calories: 500 kcal | Protein: 35g | Carbs: 54g | Fat: 25g",
+      ingredients: [
+        "<strong>5 Large Grade A White Eggs:</strong> Scrambled in Great Value 0-Cal Cooking Spray with 1 tbsp Goya Sofrito and chopped scallions/cilantro for 1 minute until fragrant. Seasoned with 1/4 tsp Goya Adobo. Provides rich amino acids, healthy fats, and natural cholesterol for muscle building.",
+        "<strong>1 cup cooked Great Value Old Fashioned Rolled Oats:</strong> Combine 1/2 cup dry oats with 1 cup water, microwave 2 minutes or cook on stovetop. Stir in cinnamon or sweetener packet for slow-digesting complex carbs!"
+      ],
+      prep: "Spray skillet with canola cooking spray over medium heat. Sauté 1 tbsp Sofrito and chopped scallions. Whisk 5 whole eggs with 1/4 tsp Adobo, pour in skillet and scramble for 3-4 minutes until fluffy. Serve alongside bowl of hot rolled oats and black coffee or water!"
+    },
+    {
+      name: "Lunch: Crispy Puerto Rican Pollo al Horno + DOUBLE Arroz con Gandules & Broccoli",
+      time: "2:00 PM – 2:30 PM (Mid-Day Muscle Fuel)",
+      macros: "Calories: 640 kcal | Protein: 52g | Carbs: 94g | Fat: 2g",
+      ingredients: [
+        "<strong>~5.7 oz Fresh Chicken Breast cubes prepared Crispy Pollo al Horno:</strong> Cut chicken breast into bite-sized cubes, dip lightly in whisked egg whites, and coat with 1 tsp Argo Corn Starch, Goya Adobo, Sazón & Garlic Powder. Baked at 400°F (or pan seared) for 10–12 minutes until super crispy outside and juicy inside!",
+        "<strong>2 cups cooked Arroz con Gandules (DOUBLE PORTION):</strong> From your 5 lb batch prep bag and Goya Gandules cans, reheated warm and fluffy for high-density bulking glycogen replenishment!",
+        "<strong>1 cup steamed Great Value Frozen Broccoli florets:</strong> High fiber, digestive aid, seasoned with Goya Adobo."
+      ],
+      prep: "Take 1 bulking meal prep container from fridge/freezer, pop in microwave for 90 seconds with a splash of water over the rice to keep it fluffy. Enjoy with fresh chopped cilantro garnish!"
+    },
+    {
+      name: "Afternoon Snack: High-Protein Casein Greek Yogurt Power Bowl",
+      time: "5:30 PM (Afternoon Protein Bridge)",
+      macros: "Calories: 120 kcal | Protein: 21g | Carbs: 8g | Fat: 0g",
+      ingredients: [
+        "<strong>1 cup (8 oz) Plain Nonfat Greek Yogurt:</strong> Thick, slow-release casein protein.",
+        "<strong>1 Packet Zero-Calorie Sweetener + Dash of Cinnamon/Vanilla:</strong> Spiced sweet flavor without added calories."
+      ],
+      prep: "Scoop 1 cup of Greek yogurt into a bowl, stir in sweetener packet and cinnamon/vanilla until velvety smooth. Satiates hunger and keeps amino acids flowing across afternoon activities."
+    },
+    {
+      name: "Dinner: Crispy Puerto Rican Pollo al Horno + DOUBLE Arroz con Gandules & Broccoli",
+      time: "7:30 PM – 8:00 PM (Evening Recovery & Growth)",
+      macros: "Calories: 640 kcal | Protein: 52g | Carbs: 94g | Fat: 2g",
+      ingredients: [
+        "<strong>~5.7 oz Fresh Chicken Breast cubes prepared Crispy Pollo al Horno:</strong> Coated with Argo Corn Starch, Adobo, Sazón & Garlic Powder, baked crispy outside and juicy inside.",
+        "<strong>2 cups cooked Arroz con Gandules (DOUBLE PORTION):</strong> Reheated warm, complex carbohydrates to fuel overnight muscle repair.",
+        "<strong>1 cup steamed Great Value Frozen Broccoli florets:</strong> Crisp-tender, seasoned with Adobo."
+      ],
+      prep: "Reheat container for 90 seconds in microwave. Enjoy with hot tea or water to support evening digestion and muscle recovery."
+    },
+    {
+      name: "Nighttime Muscle Armor: Casein Greek Yogurt Fluff",
+      time: "10:30 PM (Overnight Nitrogen Balance)",
+      macros: "Calories: 90 kcal | Protein: 16g | Carbs: 6g | Fat: 0g",
+      ingredients: [
+        "<strong>3/4 cup (6 oz) Plain Nonfat Greek Yogurt:</strong> Pure slow-release casein protein.",
+        "<strong>1 Great Value Zero Calorie Sweetener Packet:</strong> Whisked in for dessert-like fluff consistency."
+      ],
+      prep: "Whisk 6 oz of Greek yogurt with a packet of sweetener in a bowl. Eat right before bed to guarantee positive nitrogen balance and zero muscle breakdown overnight while sleeping!"
+    }
+  ] : [
+    {
+      name: "Pre-Workout Fuel: Café Bustelo Espresso con Leche & Fresh Banana",
+      time: "8:00 AM (Pre-Workout Ignition)",
+      macros: "Calories: 200 kcal | Protein: 7g | Carbs: 36g | Fat: 3.5g",
+      ingredients: [
+        "<strong>1 Pre-Workout Café Bustelo con Leche:</strong> Brew 1 tbsp Café Bustelo Espresso Ground Coffee strong and whisk with 3/4 cup warm or iced Great Value 2% Reduced Fat Milk (optional: add 1 zero-cal sweetener packet for an authentic sweet Cortadito taste). Provides clean, robust caffeine focus right before your workout & cardio run!",
+        "<strong>1 Medium Fresh Banana:</strong> Peel and eat immediately right before training for rapid-absorbing pre-workout carbohydrates & essential potassium!"
+      ],
+      prep: "Brew 1 tbsp Café Bustelo espresso with hot water, pour over ice or keep warm, and whisk with 3/4 cup milk. Eat banana alongside coffee exactly at 8:00 AM before starting your workout!"
+    },
+    {
+      name: "Post-Workout Breakfast: Puerto Rican Sofrito & Scallion Egg Scramble + Arroz con Gandules",
+      time: "10:30 AM – 11:00 AM (Post-Workout)",
+      macros: "Calories: 530 kcal | Protein: 36g | Carbs: 44g | Fat: 15g",
+      ingredients: [
+        "<strong>3 Large Grade A White Eggs + 1/2 cup (4 oz) Liquid Egg Whites:</strong> Scrambled in Great Value 0-Cal Cooking Spray. Sauté 1 tbsp Goya Sofrito and chopped fresh scallions/cilantro for 1 minute until fragrant. Whisk 3 whole eggs plus 1/2 cup liquid egg whites with 1/4 tsp Goya Adobo. Pour in skillet and gently fold with spatula over medium heat until fluffy and golden!",
+        "<strong>1 cup cooked Arroz con Gandules (Puerto Rican Rice & Pigeon Peas):</strong> Simmered with Goya Sofrito, Sazón, and Green Pigeon Peas for authentic aromatic flavor and post-workout glycogen replenishment."
+      ],
+      prep: "Spray non-stick skillet with 0-cal canola spray over medium heat. Sauté 1 tbsp Sofrito and chopped scallions. Whisk 3 whole eggs and 1/2 cup liquid egg whites with 1/4 tsp Adobo. Scramble for 3-4 minutes until fluffy. Serve alongside 1 cup warm Arroz con Gandules and black coffee or water!"
+    },
+    {
+      name: "Lunch: Crispy Puerto Rican Pollo al Horno + Arroz con Gandules & Steamed Broccoli",
+      time: "2:00 PM – 2:30 PM (Mid-Day Replenishment)",
+      macros: "Calories: 440 kcal | Protein: 47g | Carbs: 50g | Fat: 2g",
+      ingredients: [
+        "<strong>~5.7 oz Fresh Chicken Breast cubes prepared Crispy Pollo al Horno:</strong> Cut chicken breast into bite-sized 1-inch cubes, dip lightly in whisked egg whites, and toss with 1 tsp Argo Corn Starch, 1/2 tsp Goya Adobo, 1/4 packet Goya Sazón, and Garlic Powder. Baked at 400°F (or pan seared) for 10–12 minutes until super crispy outside and juicy inside!",
+        "<strong>1 cup cooked Arroz con Gandules:</strong> Reheated warm and fluffy from Monday batch prep.",
+        "<strong>1 cup steamed Great Value Frozen Broccoli florets:</strong> High-volume fiber and micronutrients seasoned with a pinch of Adobo."
+      ],
+      prep: "Take 1 cutting meal prep container from fridge/freezer, pop in microwave for 90 seconds with a splash of water over the rice to keep it fluffy. Enjoy with fresh chopped cilantro garnish!"
+    },
+    {
+      name: "Afternoon Snack: High-Protein Casein Greek Yogurt Bowl",
+      time: "5:30 PM (Afternoon Protein Bridge)",
+      macros: "Calories: 120 kcal | Protein: 21g | Carbs: 8g | Fat: 0g",
+      ingredients: [
+        "<strong>1 cup (8 oz) Plain Nonfat Greek Yogurt:</strong> Thick, slow-release casein protein pudding.",
+        "<strong>1 Packet Zero-Calorie Sweetener + Dash of Cinnamon/Vanilla:</strong> Adds sweet dessert flavor without added sugar calories."
+      ],
+      prep: "Scoop 1 cup of Greek yogurt into a bowl, stir in 1 zero-calorie sweetener packet and a dash of cinnamon or vanilla until smooth and velvety. Keeps hunger at bay and supports lean muscle preservation!"
+    },
+    {
+      name: "Dinner: Crispy Puerto Rican Pollo al Horno + Arroz con Gandules & Steamed Broccoli",
+      time: "7:30 PM – 8:00 PM (Evening Muscle Recovery)",
+      macros: "Calories: 440 kcal | Protein: 47g | Carbs: 50g | Fat: 2g",
+      ingredients: [
+        "<strong>~5.7 oz Fresh Chicken Breast cubes prepared Crispy Pollo al Horno:</strong> Dipped in liquid egg whites, coated with Argo Corn Starch, Adobo, Sazón & Garlic Powder, baked at 400°F until crunchy outside & juicy inside.",
+        "<strong>1 cup cooked Arroz con Gandules:</strong> Reheated warm from batch prep.",
+        "<strong>1 cup steamed Great Value Frozen Broccoli florets:</strong> High fiber, seasoned with Adobo."
+      ],
+      prep: "Pop container into microwave for 90 seconds. Enjoy with a glass of water or herbal tea for smooth evening digestion."
+    },
+    {
+      name: "Nighttime Recovery: Casein Greek Yogurt Fluff",
+      time: "10:30 PM (Overnight Muscle Protection)",
+      macros: "Calories: 90 kcal | Protein: 16g | Carbs: 6g | Fat: 0g",
+      ingredients: [
+        "<strong>3/4 cup (6 oz) Plain Nonfat Greek Yogurt:</strong> Pure slow-release casein protein that feeds muscle recovery for 7-8 hours while sleeping.",
+        "<strong>1 Great Value Zero Calorie Sweetener Packet:</strong> Whisked in for airy dessert fluff consistency."
+      ],
+      prep: "Whisk 6 oz of Greek yogurt with a packet of sweetener in a bowl until light and fluffy. Eat right before bed to guarantee positive nitrogen balance and zero muscle breakdown overnight!"
+    }
+  ];
+
+  const weeklyConsumables = isBulking ? [
+    { name: "Fresh Chicken Breasts (ONE Great Value ~5.0 lb Family Pack / 80 oz raw)", price: "$13.40 (~5.0 lb family pack at $2.68/lb)", note: "Provides exactly 11.4 oz raw chicken per day for 7 full days of Lunch (5.7 oz/day) and Dinner (5.7 oz/day) hitting your daily protein targets for Crispy Pollo al Horno!" },
+    { name: "Great Value Plain Nonfat Greek Yogurt (THREE 32 oz tubs / 96 oz total)", price: "$11.94 (THREE 32 oz tubs at $3.98 ea)", note: "THREE tubs (96 oz / 12 cups total) tailored for Phase 2 Lean Bulking! Provides 1 cup afternoon bowls AND 3/4 cup bedtime casein fluff every single day." },
+    { name: "Great Value Large Grade A White Eggs (36 Count Tray / Two 18 ct Cartons)", price: "$6.84 (36 count tray / 2 cartons)", note: "36 eggs guaranteed! Provides 5 whole eggs every morning across all 7 days (35 eggs) to naturally boost hormone production and muscle recovery." },
+    { name: "Great Value Long Grain White Rice (5 lb bag / ~50 servings)", price: "$3.34 (5 lb bag / ~50 servings)", note: "Huge 5 lb bulk bag! Clean fast-digesting carbohydrates to fuel Phase 2 bulking with double Arroz con Gandules portions at lunch and dinner." },
+    { name: "Great Value Old Fashioned Rolled Oats (42 oz canister)", price: "$3.98 (42 oz canister)", note: "Slow-digesting complex carbs cooked with cinnamon/sweetener for bulking morning energy alongside 5-egg scrambles." },
+    { name: "Great Value Frozen Broccoli Florets (TWO 4 lb bags / 8 lbs / 128 oz total)", price: "$4.64 (TWO 4 lb bags at $2.32 ea)", note: "Two massive 4 lb bags (8 lbs / ~32 cups total) guaranteed! Steamed micronutrients and fiber for 7 full days of Lunch & Dinner bowls." },
+    { name: "Goya Green Pigeon Peas (Gandules Verdes) (TWO 15 oz cans)", price: "$3.16 (Two 15 oz cans at $1.58 ea)", note: "The iconic Puerto Rican legume staple! Simmered with white rice, sofrito, and sazón to make authentic, aromatic Arroz con Gandules." },
+    { name: "Great Value 2% Reduced Fat Milk (64 fl oz carton / 1/2 Gallon)", price: "$1.68 (64 fl oz carton)", note: "Creamy milk whisked with Café Bustelo espresso every morning at 8:00 AM for your authentic pre-workout Cortadito con Leche focus!" },
+    { name: "Fresh Green Onions / Scallions / Cilantro (Two Bunches)", price: "$1.56 (Two bunches at $0.78 ea)", note: "Fresh aromatic scallions and cilantro for sautéing into morning Sofrito egg scrambles and garnishing Pollo al Horno bowls." },
+    { name: "Fresh Bananas (~2 lb bunch / ~6-7 bananas)", price: "$1.16 (~2 lb bunch / ~6 bananas)", note: "Quick potassium and clean pre-workout carbohydrates eaten at 8:00 AM right alongside your morning Café Bustelo before training." }
+  ] : [
+    { name: "Fresh Chicken Breasts (ONE Great Value ~5.0 lb Family Pack / 80 oz raw)", price: "$13.40 (~5.0 lb family pack at $2.68/lb)", note: "One Great Value ~5.0 lb (80 oz raw) family pack from Auburn Walmart! Provides 11.4 oz raw chicken per day for 7 full days of Lunch (5.7 oz/day) and Dinner (5.7 oz/day) for Crispy Pollo al Horno!" },
+    { name: "Great Value Plain Nonfat Greek Yogurt (FOUR 32 oz tubs / 128 oz / 1 Gallon total)", price: "$15.92 (FOUR 32 oz tubs at $3.98 ea)", note: "FOUR tubs (128 oz / 1 full Gallon / 16 cups total) guaranteed for Phase 1 Cutting! Provides 100% enough Greek Yogurt for 7 full days of Afternoon bowls AND Nighttime Fluff without running out!" },
+    { name: "Great Value Large Grade A White Eggs (36 Count Tray / Two 18 ct Cartons)", price: "$6.84 (36 count tray / 2 cartons)", note: "36 eggs guaranteed! Provides 3 whole eggs every morning across all 7 days (21 eggs) plus 15 bonus eggs for extra snacks or meal prep buffer." },
+    { name: "Great Value Frozen Broccoli Florets (TWO 4 lb bags / 8 lbs / 128 oz total)", price: "$4.64 (TWO 4 lb bags at $2.32 ea)", note: "Two massive 4 lb bags (8 lbs / ~32 cups total) guaranteed! Steamed micronutrients and fiber for 7 full days of Lunch and Dinner bowls." },
+    { name: "Great Value 100% Liquid Egg Whites (32 oz carton)", price: "$3.48 (32 oz carton ~20 servings)", note: "Pure protein booster for Phase 1 Cutting! Mix 1/2 cup into morning scrambles to add 13g clean protein, and use as protein egg wash binder for crispy Pollo al Horno." },
+    { name: "Great Value 2% Reduced Fat Milk (64 fl oz carton / 1/2 Gallon)", price: "$1.68 (64 fl oz carton)", note: "Creamy milk whisked with Café Bustelo espresso every morning at 8:00 AM for your authentic pre-workout Cortadito con Leche focus and energy!" },
+    { name: "Goya Green Pigeon Peas (Gandules Verdes) (15 oz can)", price: "$1.58 (15 oz can)", note: "The iconic Puerto Rican legume staple! Simmered with white rice, sofrito, and sazón to make authentic, aromatic Arroz con Gandules." },
+    { name: "Fresh Green Onions / Scallions / Cilantro (Two Bunches)", price: "$1.56 (Two bunches at $0.78 ea)", note: "Fresh aromatic scallions and cilantro for sautéing into morning Sofrito egg scrambles and garnishing Pollo al Horno bowls." },
+    { name: "Great Value Long Grain White Rice (2 lb bag)", price: "$1.48 (2 lb bag ~20 servings)", note: "Clean fast-digesting carbohydrates for Phase 1 Cutting Arroz con Gandules to replenish glycogen after your daily workout." },
+    { name: "Fresh Bananas (~2 lb bunch / ~6-7 bananas)", price: "$1.16 (~2 lb bunch / ~6 bananas)", note: "Quick potassium and clean pre-workout carbohydrates eaten at 8:00 AM right alongside your morning Café Bustelo before training." }
+  ];
+
+  const periodicRestock = [
+    { name: "Café Bustelo Espresso Ground Coffee (10 oz vacuum-packed brick)", price: "$4.88 (10 oz brick ~35 servings)", note: "Authentic dark roast espresso coffee stocked at Auburn Maine Walmart! Brewed fresh every morning at 8:00 AM for clean, jitter-free pre-workout energy!" },
+    { name: "Goya Frozen Tostones (Crispy Fried Green Plantains, 16 oz bag)", price: "$3.48 (16 oz bag ~15 tostones)", note: "Your once-a-week authentic Puerto Rican reward treat meal! Bake or air-fry until golden crisp on Friday or Saturday evening paired with garlic Pollo al Horno." },
+    { name: "Goya Sazón con Culantro y Achiote (3.52 oz box / 20 packets)", price: "$3.48 (20 packets)", note: "Gives Arroz con Gandules and Pollo al Horno their vibrant orange-red color, rich culantro aroma, and authentic Puerto Rican flavor." },
+    { name: "Goya Sofrito Cooking Base (12 oz jar)", price: "$3.28 (12 oz jar)", note: "Authentic green sofrito base made with green peppers, onions, garlic, and culantro. Essential for sautéing Arroz con Gandules and morning egg scrambles." },
+    { name: "Great Value 0-Calorie Canola Oil Cooking Spray (8 oz aerosol can)", price: "$2.24 (8 oz can ~800 sprays)", note: "Zero-calorie non-stick cooking spray for pan/oven crispy Pollo al Horno and scrambling eggs without adding hidden liquid oil calories." },
+    { name: "Goya Adobo All-Purpose Seasoning with Pepper (8 oz shaker)", price: "$2.18 (8 oz shaker)", note: "The #1 Puerto Rican base seasoning! Essential blend of garlic, oregano, and black pepper for seasoning Pollo al Horno, eggs, and veggies." },
+    { name: "Great Value Zero Calorie Sweetener Packets (100 Count Box)", price: "$2.18 (100 packets)", note: "Sweetens your morning Café Bustelo Cortadito and afternoon Greek yogurt bowls with zero added sugar calories." },
+    { name: "Argo 100% Pure Corn Starch (16 oz box)", price: "$1.78 (16 oz box)", note: "Essential coating ingredient mixed with Adobo and garlic powder for getting Pollo al Horno super crispy and golden in the oven or pan." },
+    { name: "Great Value Garlic Powder (3.4 oz bottle)", price: "$1.18 (3.4 oz bottle)", note: "Essential savory garlic seasoning used for searing chicken breast cubes and broccoli." }
+  ];
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${title} - Printable PDF</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap');
+
+    :root {
+      --primary: #00f0ff;
+      --gold: #ffd700;
+      --dark: #0a0e17;
+      --card: #131b2e;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--dark);
+      color: var(--text);
+      margin: 0;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #131b2e 0%, #0d1322 100%);
+      border: 2px solid rgba(0, 240, 255, 0.3);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 240, 255, 0.1);
+    }
+
+    .header {
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 25px;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .sub-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold);
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 30px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0 0 15px 0;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+    }
+
+    .stats-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .stat-pill {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .stat-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-pill.cost {
+      border-color: rgba(255, 215, 0, 0.5);
+    }
+    .stat-pill.cost .stat-value {
+      color: var(--gold);
+    }
+
+    .description {
+      font-size: 14px;
+      color: #cbd5e1;
+      background: rgba(0, 240, 255, 0.05);
+      border-left: 4px solid var(--primary);
+      padding: 15px 20px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 35px;
+    }
+
+    h2 {
+      font-size: 19px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #fff;
+      margin-top: 35px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .meal-card {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 18px;
+      transition: border-color 0.2s;
+    }
+
+    .meal-card:hover {
+      border-color: rgba(0, 240, 255, 0.4);
+    }
+
+    .meal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .meal-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meal-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary);
+      background: rgba(0, 240, 255, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+    }
+
+    .meal-macros {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--gold);
+      margin-bottom: 15px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    ul.ingredients {
+      margin: 0;
+      padding-left: 20px;
+      color: #cbd5e1;
+      font-size: 13.5px;
+    }
+
+    ul.ingredients li {
+      margin-bottom: 8px;
+    }
+
+    ul.ingredients li strong {
+      color: #fff;
+    }
+
+    .cooking-box {
+      margin-top: 14px;
+      padding: 12px 16px;
+      background: rgba(0, 240, 255, 0.06);
+      border: 1px dashed rgba(0, 240, 255, 0.3);
+      border-radius: 8px;
+      font-size: 13px;
+      color: #e2e8f0;
+    }
+
+    .cooking-box strong {
+      color: var(--primary);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .weekly-treat-card {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 140, 0, 0.05) 100%);
+      border: 2px solid rgba(255, 215, 0, 0.5);
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15);
+    }
+
+    .weekly-treat-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .grocery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .grocery-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 14px 18px;
+      border-radius: 10px;
+    }
+
+    .checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--primary);
+      border-radius: 6px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .item-name {
+      font-weight: 700;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .item-price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+
+    .item-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .print-btn-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .print-btn {
+      background: linear-gradient(90deg, #00f0ff, #0080ff);
+      color: #0a0e17;
+      border: none;
+      padding: 14px 36px;
+      font-size: 15px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .print-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.6);
+    }
+
+    .footer {
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 25px;
+      margin-top: 40px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media print {
+      body {
+        background-color: #fff;
+        color: #000;
+        padding: 0;
+      }
+      .container {
+        border: none;
+        box-shadow: none;
+        background: #fff;
+        padding: 20px;
+        max-width: 100%;
+      }
+      .print-btn-container {
+        display: none;
+      }
+      h1, h2, .meal-title, .item-name {
+        color: #000;
+        text-shadow: none;
+      }
+      .stat-pill, .meal-card, .grocery-item, .description, .cooking-box, .weekly-treat-card {
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        color: #0f172a;
+      }
+      .stat-value, .meal-time, .cooking-box strong {
+        color: #0369a1;
+      }
+      .stat-pill.cost .stat-value, .item-price, .meal-macros, .weekly-treat-title {
+        color: #d97706;
+      }
+      .checkbox {
+        border-color: #000;
+      }
+      .sub-badge {
+        background: #fef3c7;
+        color: #b45309;
+        border-color: #fde68a;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-btn-container">
+    <button class="print-btn" onclick="window.print()">🖨️ Print or Save as PDF</button>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <div class="sub-badge">${subtitle}</div>
+      <h1>${title}</h1>
+      
+      <div class="stats-bar">
+        <div class="stat-pill">
+          <div class="stat-label">Daily Calories</div>
+          <div class="stat-value">${dailyCals}</div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-label">Daily Protein</div>
+          <div class="stat-value">${dailyProtein}</div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-label">Macro Split</div>
+          <div class="stat-value">${macroSplit}</div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-label">Weekly Prep Day</div>
+          <div class="stat-value">Monday Batch Prep</div>
+        </div>
+        <div class="stat-pill cost">
+          <div class="stat-label">Weekly Consumables</div>
+          <div class="stat-value">${weeklyCost}</div>
+        </div>
+        <div class="stat-pill cost">
+          <div class="stat-label">Periodic Restock</div>
+          <div class="stat-value">${restockCost}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="description">
+      ${description}
+    </div>
+
+    <h2>🔥 Daily Meal Blueprint & Cooking Instructions</h2>
+
+    ${meals.map(m => `
+    <div class="meal-card">
+      <div class="meal-header">
+        <div class="meal-title">${m.name}</div>
+        <div class="meal-time">${m.time}</div>
+      </div>
+      <div class="meal-macros">${m.macros}</div>
+      <ul class="ingredients">
+        ${m.ingredients.map(ing => `<li>${ing}</li>`).join('\n        ')}
+      </ul>
+      <div class="cooking-box">
+        <strong>👨‍🍳 Prep & Serving Instructions:</strong>
+        ${m.prep}
+      </div>
+    </div>`).join('\n')}
+
+    <!-- Weekly Reward Treat Card -->
+    <div class="weekly-treat-card">
+      <div class="weekly-treat-title">🇵🇷 S-Rank Weekly Reward Treat: Goya Tostones (Crispy Green Plantains) & Garlic Pollo</div>
+      <p style="color: #cbd5e1; font-size: 14px; margin-top: 0; margin-bottom: 12px;">
+        Every Friday or Saturday evening, swap out your regular dinner for <strong>3 Goya Frozen Tostones (Crispy Fried Green Plantains, 84g) topped with 4 oz of Crispy Pollo al Horno and garlic sofrito!</strong>
+      </p>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #ffd700; background: rgba(0,0,0,0.4); padding: 10px 14px; border-radius: 8px; margin-bottom: 12px;">
+        Macros: 360 kcal | 28g Protein | 32g Carbs | 10g Fat
+      </div>
+      <div style="font-size: 13px; color: #e2e8f0;">
+        <strong>👨‍🍳 Treat Preparation Tip:</strong> Bake or air-fry 3 Goya Tostones at 400°F for 12 minutes until golden crisp. Serve topped with garlic chicken and a squeeze of fresh lime or sofrito! A deeply satisfying authentic Puerto Rican reward that keeps your adherence at 100% without breaking your weekly budget!
+      </div>
+    </div>
+
+    <!-- Master Meal Prep Tutorial -->
+    <h2>📦 Master Step-by-Step Meal Prep & Batch Cooking Tutorial</h2>
+    <div class="meal-card" style="border-color: rgba(0, 240, 255, 0.5);">
+      <div class="meal-header">
+        <div class="meal-title" style="color: var(--primary);">👨‍🍳 Monday Batch Prep Directive (How to Prep, Cook, Portion & Store)</div>
+        <div class="meal-time">Total Time: ~45 Minutes</div>
+      </div>
+      <p style="font-size: 13.5px; color: #cbd5e1; margin-top: 5px; margin-bottom: 15px;">
+        Follow this systematic Monday workflow right after your grocery run so that from Tuesday through the following Monday, all your meals take under 90 seconds to serve!
+      </p>
+      <ul class="ingredients" style="list-style-type: decimal; padding-left: 24px;">
+        <li style="margin-bottom: 12px;"><strong>Step 1: Arroz con Gandules & Broccoli Batch Prep:</strong> Rinse white rice until clear. In a large pot or saucepan, sauté 2 tbsp Goya Sofrito and 1 packet Goya Sazón with 0-cal canola oil spray. Add dry rice, 1 can Goya Green Pigeon Peas (or 2 cans for bulking), 1/2 tsp Adobo, and water (2:1 water to rice ratio). Bring to boil, cover tightly, and simmer low for 18 minutes until tender and aromatic! Simultaneously, steam both 4 lb bags of frozen broccoli florets until crisp-tender (~6 minutes). Drain well so broccoli isn't watery.</li>
+        <li style="margin-bottom: 12px;"><strong>Step 2: Crispy Puerto Rican Pollo al Horno:</strong> Trim excess fat from your ~5.0 lb family pack of chicken breasts and cut into uniform 1-inch bite-sized cubes. Dip cubes lightly in whisked Great Value Liquid Egg Whites and toss in a large bowl with 1 tsp Argo Corn Starch, 1/2 tsp Goya Adobo, 1/4 packet Goya Sazón, and Garlic Powder. Spray baking sheet or non-stick skillet generously with Canola Oil Cooking Spray. Bake at 400°F (or pan crisp sear) for 10–12 minutes until super crispy and crunchy outside and cooked through (165°F internal)! Toss with chopped fresh cilantro or scallions.</li>
+        <li style="margin-bottom: 12px;"><strong>Step 3: Portioning Into Containers:</strong> Set out 14 BPA-free meal prep containers (7 for Lunch, 7 for Dinner). In each container, place exactly 1 cup of cooked Arroz con Gandules (or 2 cups for bulking), 1 cup of steamed broccoli, and ~5.7 oz of Crispy Pollo al Horno. Seal with airtight lids.</li>
+        <li style="margin-bottom: 6px;"><strong>Step 4: Fridge & Freezer Storage Rules:</strong> Store Containers 1 through 6 (first 3 days of lunches and dinners) directly in your refrigerator. Place Containers 7 through 14 in the freezer to keep the chicken completely fresh and juicy. On Thursday evening, move the remaining containers from the freezer to the fridge to thaw overnight for the rest of your week!</li>
+      </ul>
+    </div>
+
+    <h2>🛒 Section 1: Weekly Consumables Grocery List (${weeklyCost})</h2>
+    <p style="font-size: 13px; color: var(--muted); margin-top: -10px; margin-bottom: 20px;">
+      Verified items and prices from <strong>Walmart Supercenter (100 Mount Auburn Ave, Auburn, ME 04210)</strong>. These are your weekly regular grocery run essentials that guarantee exact protein, carbs, and micronutrients for your 7-day cycle!
+    </p>
+
+    <div class="grocery-grid">
+      ${weeklyConsumables.map(item => `
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">${item.name}</div>
+          <div class="item-price">${item.price}</div>
+          <div class="item-note">${item.note}</div>
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+
+    <h2>🧂 Section 2: Periodic Monday Pantry & Restock List (${restockCost})</h2>
+    <p style="font-size: 13px; color: var(--muted); margin-top: -10px; margin-bottom: 20px;">
+      These items last between 2 to 6 weeks depending on usage. Check your kitchen pantry every Sunday and only pick up what is low during your Auburn Walmart Monday trip!
+    </p>
+
+    <div class="grocery-grid">
+      ${periodicRestock.map(item => `
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">${item.name}</div>
+          <div class="item-price">${item.price}</div>
+          <div class="item-note">${item.note}</div>
+        </div>
+      </div>`).join('\n      ')}
+    </div>
+
+    <div class="footer">
+      <strong>BETTER LEVELING V2 - S-RANK HUNTER SYSTEM</strong><br>
+      Created for Hunter Nick Crosson (ncrossonofficial06@gmail.com)<br>
+      Target Weight: 160 LBS by Dec 31, 2027 • Puerto Rican Nutrition Directive
+    </div>
+  </div>
+
+</body>
+</html>`;
+}
+
+function run() {
+  const cuttingHtml = generateHtml(false);
+  const bulkingHtml = generateHtml(true);
+
+  const cuttingDest = path.join(publicDir, 'Puerto_Rican_Meal_Plan_Under_50.html');
+  const bulkingDest = path.join(publicDir, 'Puerto_Rican_Bulking_Meal_Plan_Under_50.html');
+
+  fs.writeFileSync(cuttingDest, cuttingHtml, 'utf8');
+  fs.writeFileSync(bulkingDest, bulkingHtml, 'utf8');
+
+  console.log("Successfully generated:", cuttingDest);
+  console.log("Successfully generated:", bulkingDest);
+}
+
+run();

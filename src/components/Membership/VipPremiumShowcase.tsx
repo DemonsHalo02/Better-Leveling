@@ -142,7 +142,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             <div className="space-y-1">
               <h3 className="text-xl font-black text-white uppercase tracking-wider">AI Coach Oracle Locked</h3>
               <p className="text-xs text-zinc-300 max-w-md">
-                S-Rank VIP Guild members receive custom weekly caloric adjustments, loose skin prevention advice, and tailored Japanese Teriyaki cutting meal preps!
+                S-Rank VIP Guild members receive custom weekly caloric adjustments, loose skin prevention advice, and tailored Puerto Rican Pollo al Horno cutting meal preps!
               </p>
             </div>
             <button
@@ -176,10 +176,10 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
 
           <div className="bg-system-dark/80 p-4 rounded-xl border border-system-gold/40 space-y-2">
             <div className="flex items-center gap-2 text-xs font-bold text-system-gold uppercase">
-              <Utensils className="w-4 h-4" /> 2. Japanese Teriyaki Cutting Meal Prep
+              <Utensils className="w-4 h-4" /> 2. Puerto Rican Pollo al Horno Cutting Meal Prep
             </div>
             <p className="text-xs text-zinc-300 leading-relaxed">
-              <strong>VIP Meal Blueprint:</strong> Pan or Oven Crispy Fried Japanese Teriyaki Chicken Bowl! Dip cubed chicken breast in egg white, coat lightly with cornstarch & garlic powder, and pan-sear or air-fry/bake at 400°F (10-12 mins) until super crispy. Toss with sweet & savory Kikkoman Teriyaki glaze. Pair ~5.7 oz chicken with 1 cup cooked white rice and steamed broccoli. Plus morning Matcha Latte with Soy Milk! <strong>Stats:</strong> 440 kcal, 46g Protein, 53g Carbs!
+              <strong>VIP Meal Blueprint:</strong> Pan or Oven Crispy Fried Puerto Rican Pollo al Horno Bowl! Marinate cubed chicken breast with authentic Sazón and Adobo seasonings, coat lightly with cornstarch & garlic powder, and pan-sear with olive oil spray or air-fry/bake at 400°F (10-12 mins) until super crispy. Pair ~5.7 oz chicken with 1 cup cooked white rice and seasoned pinto beans. Plus morning Café Bustelo Espresso Ground Coffee! <strong>Stats:</strong> 440 kcal, 46g Protein, 53g Carbs!
             </p>
           </div>
 
@@ -277,7 +277,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             />
             <div className="flex justify-between text-[10px] text-zinc-500 font-bold">
               <span>150g (Min)</span>
-              <span>178g (Japanese Goal)</span>
+              <span>178g (Puerto Rican Goal)</span>
               <span>260g (Max)</span>
             </div>
           </div>

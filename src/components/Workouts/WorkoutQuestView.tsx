@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { PLANET_FITNESS_PPL_ROUTINE, WorkoutDay, Exercise } from '@/lib/workout-data';
+import { PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE, PUERTO_RICAN_PLANET_FITNESS_ROUTINE, WorkoutDay, Exercise } from '@/lib/workout-data';
 import { awardXp, loadHunterState, saveHunterState } from '@/lib/hunter-system';
-import { Dumbbell, CheckCircle2, Circle, Trophy, Info, Sparkles, MapPin, Zap, Footprints, Flame, PlusCircle, RotateCcw } from 'lucide-react';
+import { Dumbbell, CheckCircle2, Circle, Trophy, Info, Sparkles, MapPin, Zap, Footprints, Flame, PlusCircle, RotateCcw, Home, Building2 } from 'lucide-react';
 import RestTimerBar from './RestTimerBar';
 
 export default function WorkoutQuestView() {
@@ -11,17 +11,24 @@ export default function WorkoutQuestView() {
   const [completedSets, setCompletedSets] = useState<Record<string, number>>({});
   const [exerciseWeights, setExerciseWeights] = useState<Record<string, string>>({});
   const [questCleared, setQuestCleared] = useState<boolean>(false);
+  const [planType, setPlanType] = useState<'home' | 'pf'>('home');
 
   // Planet Fitness Treadmill Cardio State (45 mins daily target: 30m walk + 15m run)
   const [treadmillMinutes, setTreadmillMinutes] = useState<number>(0);
   const [customMinutesInput, setCustomMinutesInput] = useState<string>('');
   const TREADMILL_GOAL = 45;
 
-  const currentDayWorkout = PLANET_FITNESS_PPL_ROUTINE.find(d => d.dayOfWeek === selectedDay) || PLANET_FITNESS_PPL_ROUTINE[0];
+  const activeRoutine = planType === 'pf' ? PUERTO_RICAN_PLANET_FITNESS_ROUTINE : PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE;
+  const currentDayWorkout = activeRoutine.find(d => d.dayOfWeek === selectedDay) || activeRoutine[0];
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}`);
+      const savedType = localStorage.getItem('active_workout_routine_type') as 'home' | 'pf' | null;
+      if (savedType === 'home' || savedType === 'pf') {
+        setPlanType(savedType);
+      }
+
+      const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}_${savedType || 'home'}`);
       if (savedSets) setCompletedSets(JSON.parse(savedSets));
       else setCompletedSets({});
 
@@ -33,7 +40,17 @@ export default function WorkoutQuestView() {
       const savedMinutes = localStorage.getItem(`pf_treadmill_minutes_${todayKey}`);
       if (savedMinutes) setTreadmillMinutes(parseInt(savedMinutes, 10));
     }
-  }, [selectedDay]);
+  }, [selectedDay, planType]);
+
+  const handlePlanToggle = (newType: 'home' | 'pf') => {
+    setPlanType(newType);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('active_workout_routine_type', newType);
+      const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}_${newType}`);
+      if (savedSets) setCompletedSets(JSON.parse(savedSets));
+      else setCompletedSets({});
+    }
+  };
 
   const handleAddMinutes = (amount: number) => {
     const nextMinutes = Math.max(0, treadmillMinutes + amount);
@@ -65,7 +82,7 @@ export default function WorkoutQuestView() {
     const updated = { ...completedSets, [exerciseId]: next };
     setCompletedSets(updated);
     if (typeof window !== 'undefined') {
-      localStorage.setItem(`pf_completed_sets_${selectedDay}`, JSON.stringify(updated));
+      localStorage.setItem(`pf_completed_sets_${selectedDay}_${planType}`, JSON.stringify(updated));
     }
 
     const allCleared = currentDayWorkout.exercises.every(ex => (updated[ex.id] || 0) >= ex.sets);
@@ -98,19 +115,69 @@ export default function WorkoutQuestView() {
 
   return (
     <div className="space-y-6 pb-12">
+      {/* Prominent Dual-Choice Plan Toggle Banner */}
+      <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-dark p-5 rounded-2xl border-2 border-system-blue/40 shadow-glow-blue flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="p-3 rounded-xl bg-system-blue/10 border border-system-blue/30 text-system-cyan">
+            <Sparkles className="w-6 h-6 animate-pulse" />
+          </div>
+          <div>
+            <div className="text-[10px] font-mono uppercase tracking-wider text-system-gold font-bold">
+              ⚡ ACTIVE TRAINING ENVIRONMENT & PROTOCOL SELECTOR
+            </div>
+            <h3 className="text-base font-black text-white tracking-wide">
+              Choose Your Daily Workout Blueprint
+            </h3>
+            <p className="text-xs text-zinc-400">
+              Switch instantly between your home quiet apartment routine and your Planet Fitness gym routine. Progress and sets are tracked per routine!
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 bg-black/60 p-1.5 rounded-xl border border-white/10 w-full md:w-auto">
+          <button
+            onClick={() => handlePlanToggle('home')}
+            className={`flex-1 md:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all ${
+              planType === 'home'
+                ? 'bg-gradient-to-r from-system-blue to-system-cyan text-black shadow-glow-blue scale-102'
+                : 'text-zinc-400 hover:text-white hover:bg-white/5'
+            }`}
+          >
+            <Home className="w-4 h-4" />
+            <span>Quiet Apartment (Bodyweight)</span>
+          </button>
+          <button
+            onClick={() => handlePlanToggle('pf')}
+            className={`flex-1 md:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all ${
+              planType === 'pf'
+                ? 'bg-gradient-to-r from-system-gold via-amber-400 to-yellow-500 text-black shadow-glow-gold scale-102'
+                : 'text-zinc-400 hover:text-white hover:bg-white/5'
+            }`}
+          >
+            <Building2 className="w-4 h-4" />
+            <span>Planet Fitness Gym</span>
+          </button>
+        </div>
+      </div>
       
       {/* Header & Location Badge */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-system-panel p-6 rounded-2xl border border-system-blue/30 shadow-lg">
         <div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
             <MapPin className="w-3.5 h-3.5 text-system-blue" />
-            <span>Japanese Samurai Quiet Apartment Bodyweight Dojo | 7-Day Routine</span>
+            <span>
+              {planType === 'pf'
+                ? 'Puerto Rican Planet Fitness Gym Blueprint | 7-Day Equipment & Machine Routine'
+                : 'Puerto Rican Home Quiet Apartment Dojo | 7-Day Silent Bodyweight Routine'}
+            </span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            Japanese Samurai Home Bodyweight Dojo
+            {planType === 'pf' ? 'Puerto Rican Planet Fitness Gym Dojo' : 'Puerto Rican Home Quiet Apartment Dojo'}
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            Tailored specifically for quiet apartment bodyweight training (silent, no equipment needed, zero floor impact). Daily dual cardio: 15-minute run + 30-minute brisk walk. Sunday is Active Recovery Dojo & Flexibility Sculpt; Monday is Japanese Upper Body Sculpt + Auburn Walmart Grocery Run & Pan/Oven Crispy Fried Teriyaki Batch Meal Prep.
+            {planType === 'pf'
+              ? 'Tailored specifically for Planet Fitness machines, dumbbells, cables, and Smith machine squats. Daily dual cardio: 30-minute incline treadmill walk + 15-minute jog. Monday is Chest & Triceps + Auburn ME Walmart Grocery Run & Puerto Rican Batch Meal Prep!'
+              : 'Tailored specifically for quiet apartment bodyweight training (silent, no equipment needed, zero floor impact). Daily dual cardio: 30-minute brisk walk + 15-minute run/silent march. Monday is Upper Body Push Sculpt + Auburn ME Walmart Grocery Run & Puerto Rican Batch Meal Prep!'}
           </p>
         </div>
 
@@ -210,7 +277,7 @@ export default function WorkoutQuestView() {
 
       {/* Day Selector Tabs */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
-        {PLANET_FITNESS_PPL_ROUTINE.map((day) => {
+        {activeRoutine.map((day) => {
           const isSelected = selectedDay === day.dayOfWeek;
           const isToday = new Date().getDay() === day.dayOfWeek;
           return (

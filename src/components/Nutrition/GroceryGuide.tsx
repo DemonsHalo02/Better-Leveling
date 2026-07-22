@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { AUBURN_LEWISTON_GROCERY_ITEMS, MEAL_PREP_PLANS, GroceryItem, WALMART_QUICK_SELECT_ITEMS } from '@/lib/grocery-data';
-import { ShoppingBag, CheckCircle2, Circle, Utensils, DollarSign, MapPin, Sparkles, Award, RotateCcw, Calendar, Plus, Trash2, Printer, Mail, ExternalLink } from 'lucide-react';
+import { AUBURN_LEWISTON_GROCERY_ITEMS, MEAL_PREP_PLANS, GroceryItem, WALMART_QUICK_SELECT_ITEMS, NATIONAL_CUISINES_LIST, getPlanHtmlFilename } from '@/lib/grocery-data';
+import { ShoppingBag, CheckCircle2, Circle, Utensils, DollarSign, MapPin, Sparkles, Award, RotateCcw, Calendar, Plus, Trash2, Printer, Mail, ExternalLink, Globe } from 'lucide-react';
 
 
 export default function GroceryGuide() {
@@ -11,7 +11,8 @@ export default function GroceryGuide() {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<'items' | 'plans'>('items');
   const [selectedCountryPlan, setSelectedCountryPlan] = useState<string>('All');
-  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('Japan');
+  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('🇵🇷 Puerto Rico');
+  const [selectedNationalCuisine, setSelectedNationalCuisine] = useState<string>('Puerto Rico');
 
   const [customItems, setCustomItems] = useState<GroceryItem[]>([]);
   const [hiddenItemIds, setHiddenItemIds] = useState<string[]>([]);
@@ -52,10 +53,13 @@ export default function GroceryGuide() {
         try { setHiddenItemIds(JSON.parse(savedHidden)); } catch {}
       }
       const savedAisleTemplate = localStorage.getItem('pf_selected_aisle_template');
-      if (savedAisleTemplate && (savedAisleTemplate === 'Japan' || savedAisleTemplate === 'Japan Bulking')) {
+      if (savedAisleTemplate && MEAL_PREP_PLANS.some(p => p.country === savedAisleTemplate)) {
         setSelectedAisleTemplate(savedAisleTemplate);
+        const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === savedAisleTemplate || c.bulkingKey === savedAisleTemplate);
+        if (matchCuisine) setSelectedNationalCuisine(matchCuisine.name);
       } else {
-        setSelectedAisleTemplate('Japan');
+        setSelectedAisleTemplate('🇵🇷 Puerto Rico');
+        setSelectedNationalCuisine('Puerto Rico');
       }
       const savedCountryPlan = localStorage.getItem('pf_selected_country_plan');
       if (savedCountryPlan) {
@@ -82,7 +86,8 @@ export default function GroceryGuide() {
       localStorage.removeItem('pf_hidden_grocery_items');
       localStorage.removeItem('pf_custom_grocery_items');
     }
-    setSelectedAisleTemplate('Japan');
+    setSelectedAisleTemplate('🇵🇷 Puerto Rico');
+    setSelectedNationalCuisine('Puerto Rico');
     setSelectedCountryPlan('All');
     setSelectedCategory('All');
     setSelectedStore('All Stores');
@@ -93,6 +98,8 @@ export default function GroceryGuide() {
 
   const handleSelectTemplate = (country: string) => {
     setSelectedAisleTemplate(country);
+    const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === country || c.bulkingKey === country);
+    if (matchCuisine) setSelectedNationalCuisine(matchCuisine.name);
     if (country !== 'All') {
       setSelectedCategory('All');
       setSelectedStore('All Stores');
@@ -114,6 +121,8 @@ export default function GroceryGuide() {
 
   const handleSelectCountryPlan = (country: string) => {
     setSelectedCountryPlan(country);
+    const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === country || c.bulkingKey === country);
+    if (matchCuisine) setSelectedNationalCuisine(matchCuisine.name);
     if (typeof window !== 'undefined') {
       if (country === 'All') {
         localStorage.removeItem('pf_selected_country_plan');
@@ -140,7 +149,7 @@ export default function GroceryGuide() {
       carbs: 0,
       fat: 0,
       servingSize: "1 unit",
-      coachNote: customNote.trim() || "Custom added item for weekly Japanese prep.",
+      coachNote: customNote.trim() || "Custom added item for weekly Puerto Rican prep.",
       cuisine: [selectedAisleTemplate === 'All' ? 'All' : selectedAisleTemplate]
     };
 
@@ -305,8 +314,8 @@ export default function GroceryGuide() {
   const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery', '🍱 Meal Prep Templates'];
 
   const handlePrintPlan = (plan?: typeof MEAL_PREP_PLANS[0]) => {
-    const isBulking = (plan && plan.country === 'Japan Bulking') || (!plan && (selectedAisleTemplate === 'Japan Bulking' || selectedCountryPlan === 'Japan Bulking'));
-    const url = isBulking ? '/Japanese_Bulking_Meal_Plan_Under_50.html' : '/Japanese_Meal_Plan_Under_50.html';
+    const targetCountry = plan ? plan.country : (selectedAisleTemplate !== 'All' ? selectedAisleTemplate : (selectedCountryPlan !== 'All' ? selectedCountryPlan : '🇵🇷 Puerto Rico'));
+    const url = getPlanHtmlFilename(targetCountry);
     const win = window.open(url, '_blank');
     if (win) {
       win.focus();
@@ -343,7 +352,7 @@ export default function GroceryGuide() {
             Hunter Grocery Companion
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            High-protein, pan or oven crispy fried Japanese Teriyaki Chicken & Matcha Latte Shred & Bulking Blueprints priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run around $50 budget ($49.34 - $50.96 Weekly Consumables / $26.80 Periodic Restock)! Features morning Pre-Workout Matcha Latte using Jade Leaf Brand powder and Soy Milk, plus 100% Green Tea.
+            High-protein, pan or oven crispy fried S-Rank Blueprints priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run right around your $50 budget (~$51/wk Consumables / ~$26 Periodic Restock)! Features 13 Global National Cuisines (Puerto Rico, Spain, Mexico, Dominican Republic, Colombia, Brazil, China, Korea, Japan, Italy, El Salvador, Venezuela, and Argentina), morning Pre-Workout Café Bustelo Espresso Ground Coffee, and authentic national spices.
           </p>
         </div>
 
@@ -371,78 +380,131 @@ export default function GroceryGuide() {
         </div>
       </div>
 
-      {/* Diet Phase & Goal Selector Menu with Dual PDF Access */}
-      <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-dark p-5 rounded-2xl border-2 border-system-gold/40 shadow-glow-gold space-y-4">
+      {/* 13-Country Global S-Rank Diet Phase & Goal Selector Menu */}
+      <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-dark p-5 rounded-2xl border-2 border-system-gold/40 shadow-glow-gold space-y-5">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="bg-system-gold text-system-dark text-[10px] font-black uppercase px-2.5 py-0.5 rounded tracking-wider">
-                ⭐ Japanese S-Rank Diet Phase Selector
+              <span className="bg-system-gold text-system-dark text-[10px] font-black uppercase px-2.5 py-0.5 rounded tracking-wider flex items-center gap-1">
+                <Globe className="w-3.5 h-3.5 inline" /> ⭐ 13-Country Global Master Deck & Diet Phase Selector
               </span>
               <span className="text-xs font-mono font-bold text-system-cyan">
                 Target: 160 Lbs Cutting vs Post-Goal Lean Bulking
               </span>
             </div>
             <h3 className="text-lg md:text-xl font-black text-white uppercase tracking-wide">
-              Select Your Active Japanese Diet Protocol & Printable PDF Guides
+              Select National Cuisine & Active Phase Protocol ({selectedNationalCuisine})
             </h3>
             <p className="text-xs text-zinc-300 max-w-3xl">
-              Switch between your active trajectory phase below. Both plans keep the exact same Monday Auburn Walmart shopping routine and ~11.4 oz daily Pan/Oven Crispy Fried Japanese Teriyaki Chicken, plus morning Matcha Latte (Soy Milk + Jade Leaf Mix), but adapt carbs and oats/rice to hit either calorie deficit (~2,080 kcal) or clean muscle hypertrophy (~2,680 kcal).
+              Select from all 13 national cuisines below! Each cuisine features 100% ingredient parity, the exact same Monday Auburn Walmart shopping routine, morning Café Bustelo Espresso Ground Coffee, and authentic recipes. Switch between Phase 1 Cutting (~2,080 kcal) and Phase 2 Bulking (~2,680 kcal) for your chosen cuisine.
             </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-            <button
-              onClick={() => {
-                setSelectedAisleTemplate('Japan');
-                setSelectedCountryPlan('Japan');
-              }}
-              className={`px-4 py-2.5 rounded-xl text-xs font-black uppercase font-mono tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
-                selectedAisleTemplate === 'Japan' && selectedCountryPlan !== 'Japan Bulking'
-                  ? 'bg-gradient-to-r from-system-gold to-yellow-500 text-system-dark shadow-glow-gold scale-105 border border-system-gold'
-                  : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10 hover:border-system-gold/50'
-              }`}
-            >
-              <span>🇯🇵 Phase 1: Cutting Diet (~2,080 kcal)</span>
-            </button>
-            <button
-              onClick={() => {
-                setSelectedAisleTemplate('Japan Bulking');
-                setSelectedCountryPlan('Japan Bulking');
-              }}
-              className={`px-4 py-2.5 rounded-xl text-xs font-black uppercase font-mono tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
-                selectedAisleTemplate === 'Japan Bulking' || selectedCountryPlan === 'Japan Bulking'
-                  ? 'bg-gradient-to-r from-system-cyan to-system-blue text-system-dark shadow-glow-blue scale-105 border border-system-cyan'
-                  : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10 hover:border-system-cyan/50'
-              }`}
-            >
-              <span>🔥 Phase 2: Bulking Diet (~2,680 kcal)</span>
-            </button>
           </div>
         </div>
 
-        <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-black/30 p-3.5 rounded-xl border border-white/5">
-          <div className="text-xs font-mono text-zinc-300 flex items-center gap-2">
-            <Printer className="w-4 h-4 text-system-gold shrink-0" />
-            <span><strong>2 Separate PDF Guides Available:</strong> Printable S-Rank blueprints with exact cooking, shopping & macro breakdowns for both diets:</span>
+        {/* 13 National Cuisines Grid */}
+        <div className="space-y-2">
+          <div className="text-[11px] font-mono font-bold text-zinc-400 uppercase tracking-wider">
+            🌍 Step 1: Choose Your National Cuisine Blueprint
           </div>
-          <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-end">
-            <a
-              href="/Japanese_Meal_Plan_Under_50.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3.5 py-1.5 rounded-lg bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-system-dark border border-system-gold/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5 no-underline"
-            >
-              <span>📄 Phase 1 Cutting PDF ($50.96/wk)</span>
-            </a>
-            <a
-              href="/Japanese_Bulking_Meal_Plan_Under_50.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3.5 py-1.5 rounded-lg bg-system-cyan/20 hover:bg-system-cyan text-system-cyan hover:text-system-dark border border-system-cyan/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5 no-underline"
-            >
-              <span>📄 Phase 2 Bulking PDF ($49.34/wk)</span>
-            </a>
+          <div className="flex flex-wrap items-center gap-2">
+            {NATIONAL_CUISINES_LIST.map((c) => {
+              const isSelected = selectedNationalCuisine === c.name;
+              return (
+                <button
+                  key={c.name}
+                  onClick={() => {
+                    setSelectedNationalCuisine(c.name);
+                    const targetKey = selectedAisleTemplate.includes('Bulking') || selectedCountryPlan.includes('Bulking') ? c.bulkingKey : c.cuttingKey;
+                    handleSelectTemplate(targetKey);
+                    handleSelectCountryPlan(targetKey);
+                  }}
+                  className={`px-3 py-2 rounded-xl text-xs font-black uppercase font-mono tracking-wider transition-all flex items-center gap-1.5 cursor-pointer ${
+                    isSelected
+                      ? 'bg-gradient-to-r from-system-gold to-yellow-500 text-system-dark shadow-glow-gold scale-105 border border-system-gold font-black'
+                      : 'bg-system-dark/80 text-zinc-300 hover:text-white border border-white/10 hover:border-system-gold/40'
+                  }`}
+                >
+                  <span className="text-base">{c.flag}</span>
+                  <span>{c.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Phase 1 Cutting vs Phase 2 Bulking Toggle & Dual PDF Buttons */}
+        <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-black/40 p-4 rounded-xl border border-white/5">
+          <div className="space-y-1.5 w-full sm:w-auto">
+            <div className="text-[11px] font-mono font-bold text-zinc-400 uppercase tracking-wider">
+              ⚡ Step 2: Select Diet Phase & Aisle Checklist For {selectedNationalCuisine}
+            </div>
+            <div className="flex flex-wrap items-center gap-2.5">
+              {(() => {
+                const currentCuisineObj = NATIONAL_CUISINES_LIST.find(c => c.name === selectedNationalCuisine) || NATIONAL_CUISINES_LIST[0];
+                const isCuttingActive = selectedAisleTemplate === currentCuisineObj.cuttingKey || selectedCountryPlan === currentCuisineObj.cuttingKey;
+                const isBulkingActive = selectedAisleTemplate === currentCuisineObj.bulkingKey || selectedCountryPlan === currentCuisineObj.bulkingKey;
+                return (
+                  <>
+                    <button
+                      onClick={() => {
+                        handleSelectTemplate(currentCuisineObj.cuttingKey);
+                        handleSelectCountryPlan(currentCuisineObj.cuttingKey);
+                      }}
+                      className={`px-4 py-2 rounded-xl text-xs font-black uppercase font-mono tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
+                        isCuttingActive
+                          ? 'bg-gradient-to-r from-system-gold to-yellow-500 text-system-dark shadow-glow-gold scale-105 border border-system-gold'
+                          : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10 hover:border-system-gold/50'
+                      }`}
+                    >
+                      <span>{currentCuisineObj.flag} Phase 1: Cutting Diet (~2,080 kcal)</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        handleSelectTemplate(currentCuisineObj.bulkingKey);
+                        handleSelectCountryPlan(currentCuisineObj.bulkingKey);
+                      }}
+                      className={`px-4 py-2 rounded-xl text-xs font-black uppercase font-mono tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
+                        isBulkingActive
+                          ? 'bg-gradient-to-r from-system-cyan to-system-blue text-system-dark shadow-glow-blue scale-105 border border-system-cyan'
+                          : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10 hover:border-system-cyan/50'
+                      }`}
+                    >
+                      <span>🔥 Phase 2: Bulking Diet (~2,680 kcal)</span>
+                    </button>
+                  </>
+                );
+              })()}
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto justify-end border-t sm:border-t-0 pt-2 sm:pt-0 border-white/10">
+            {(() => {
+              const currentCuisineObj = NATIONAL_CUISINES_LIST.find(c => c.name === selectedNationalCuisine) || NATIONAL_CUISINES_LIST[0];
+              const cuttingPlan = MEAL_PREP_PLANS.find(p => p.country === currentCuisineObj.cuttingKey);
+              const bulkingPlan = MEAL_PREP_PLANS.find(p => p.country === currentCuisineObj.bulkingKey);
+              return (
+                <>
+                  <a
+                    href={getPlanHtmlFilename(currentCuisineObj.cuttingKey)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 py-2 rounded-lg bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-system-dark border border-system-gold/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5 no-underline shadow-sm"
+                  >
+                    <Printer className="w-3.5 h-3.5 shrink-0" />
+                    <span>📄 {currentCuisineObj.flag} Cutting PDF ({cuttingPlan?.estCostPerWeek.split(' ')[0] || '$51.74'})</span>
+                  </a>
+                  <a
+                    href={getPlanHtmlFilename(currentCuisineObj.bulkingKey)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 py-2 rounded-lg bg-system-cyan/20 hover:bg-system-cyan text-system-cyan hover:text-system-dark border border-system-cyan/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5 no-underline shadow-sm"
+                  >
+                    <Printer className="w-3.5 h-3.5 shrink-0" />
+                    <span>📄 🔥 Bulking PDF ({bulkingPlan?.estCostPerWeek.split(' ')[0] || '$51.70'})</span>
+                  </a>
+                </>
+              );
+            })()}
           </div>
         </div>
       </div>
@@ -515,57 +577,43 @@ export default function GroceryGuide() {
             </div>
           </div>
 
-          {selectedAisleTemplate === 'Japan' && (
-            <div className="bg-gradient-to-r from-system-gold/15 to-system-cyan/15 p-4 rounded-2xl border border-system-gold/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <span className="bg-system-gold text-system-dark text-[10px] font-black uppercase px-2 py-0.5 rounded">
-                    ⭐ #1 Main & Exclusive Blueprint
-                  </span>
-                  <span className="text-xs text-white font-bold">
-                    🇯🇵 Pan/Oven Crispy Fried Japanese Teriyaki Chicken & Matcha Latte Shred Strategy ($50.96/wk!)
-                  </span>
+          {selectedAisleTemplate !== 'All' && (() => {
+            const activePlanObj = MEAL_PREP_PLANS.find(p => p.country === selectedAisleTemplate);
+            if (!activePlanObj) return null;
+            const isBulking = selectedAisleTemplate.includes('Bulking');
+            return (
+              <div className={`p-4 rounded-2xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm ${
+                isBulking
+                  ? 'bg-gradient-to-r from-system-cyan/15 to-system-blue/15 border-system-cyan/40'
+                  : 'bg-gradient-to-r from-system-gold/15 to-system-cyan/15 border-system-gold/40'
+              }`}>
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className={`text-[10px] font-black uppercase px-2 py-0.5 rounded text-system-dark ${
+                      isBulking ? 'bg-system-cyan' : 'bg-system-gold'
+                    }`}>
+                      {activePlanObj.flag} {activePlanObj.badge || (isBulking ? 'Phase 2 Bulking Blueprint' : 'Phase 1 Cutting Blueprint')}
+                    </span>
+                    <span className="text-xs text-white font-bold">
+                      {activePlanObj.title} ({activePlanObj.estCostPerWeek} Weekly Consumables / ~$26.80 Periodic Restock!)
+                    </span>
+                  </div>
+                  <p className="text-xs text-zinc-300">
+                    <strong className={isBulking ? 'text-system-cyan' : 'text-system-gold'}>{activePlanObj.description}</strong>
+                  </p>
                 </div>
-                <p className="text-xs text-zinc-300">
-                  <strong className="text-system-cyan">Part 1 (Weekly Core Replenishment - $50.96):</strong> Chicken Breasts ($13.40), 4 Greek Yogurt Tubs ($15.92), 36-ct Eggs ($6.84), Frozen Broccoli ($4.64), Liquid Egg Whites ($3.48), Soy Milk ($2.48), Scallions ($1.56), White Rice ($1.48), Bananas ($1.16).<br />
-                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $26.80):</strong> Jade Leaf Organic Matcha Powder ($8.98), Kikkoman Teriyaki Sauce ($2.98), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Argo Corn Starch ($1.78), Nissin Raoh Umami Ramen ($1.68), Soy Sauce ($1.48), Garlic Powder ($1.18).
-                </p>
+                <button
+                  onClick={() => handlePrintPlan(activePlanObj)}
+                  className={`flex items-center gap-2 bg-system-dark hover:bg-white/10 px-4 py-2.5 rounded-xl text-xs font-black font-mono border transition-all shrink-0 cursor-pointer ${
+                    isBulking ? 'text-system-cyan border-system-cyan/40 hover:shadow-glow-blue' : 'text-system-gold border-system-gold/40 hover:shadow-glow-gold'
+                  }`}
+                >
+                  <Printer className="w-4 h-4" />
+                  <span>🖨️ Print / Save PDF</span>
+                </button>
               </div>
-              <button
-                onClick={() => handlePrintPlan(MEAL_PREP_PLANS.find(p => p.id === 'plan-japan'))}
-                className="flex items-center gap-2 bg-system-dark hover:bg-white/10 text-system-gold hover:text-white px-4 py-2.5 rounded-xl text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all shrink-0 cursor-pointer"
-              >
-                <Printer className="w-4 h-4 text-system-gold" />
-                <span>🖨️ Print / Save PDF</span>
-              </button>
-            </div>
-          )}
-
-          {selectedAisleTemplate === 'Japan Bulking' && (
-            <div className="bg-gradient-to-r from-system-cyan/15 to-system-blue/15 p-4 rounded-2xl border border-system-cyan/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <span className="bg-system-cyan text-system-dark text-[10px] font-black uppercase px-2 py-0.5 rounded">
-                    🔥 Phase 2 Lean Bulking Blueprint
-                  </span>
-                  <span className="text-xs text-white font-bold">
-                    🇯🇵 Japanese Teriyaki Crispy Fried Chicken Hypertrophy Protocol ($49.34/wk!)
-                  </span>
-                </div>
-                <p className="text-xs text-zinc-300">
-                  <strong className="text-system-cyan">Part 1 (Weekly Consumables - $49.34):</strong> Chicken Breasts ($13.40), 3 Greek Yogurt Tubs ($11.94), 36-ct Eggs ($6.84), Frozen Broccoli ($4.64), Rolled Oats ($3.98), 5 lb Bulk White Rice ($3.34), Soy Milk ($2.48), Scallions ($1.56), Bananas ($1.16).<br />
-                  <strong className="text-system-gold">Part 2 (Periodic Monday Pantry, Spices & Treat Restock - $26.80):</strong> Jade Leaf Organic Matcha Powder ($8.98), Kikkoman Teriyaki Sauce ($2.98), Ground Ginger ($2.32), Canola Cooking Spray ($2.24), Zero-Cal Sweetener ($2.18), 100% Green Tea Bags ($1.98), Argo Corn Starch ($1.78), Nissin Raoh Umami Ramen ($1.68), Soy Sauce ($1.48), Garlic Powder ($1.18).
-                </p>
-              </div>
-              <button
-                onClick={() => handlePrintPlan(MEAL_PREP_PLANS.find(p => p.id === 'plan-japan-bulking'))}
-                className="flex items-center gap-2 bg-system-dark hover:bg-white/10 text-system-cyan hover:text-white px-4 py-2.5 rounded-xl text-xs font-black font-mono border border-system-cyan/40 hover:shadow-glow-blue transition-all shrink-0 cursor-pointer"
-              >
-                <Printer className="w-4 h-4 text-system-cyan" />
-                <span>🖨️ Print Bulking PDF</span>
-              </button>
-            </div>
-          )}
+            );
+          })()}
 
           {/* Add Custom Item Modal */}
           {showAddModal && (
@@ -744,9 +792,10 @@ export default function GroceryGuide() {
               <span className="text-xs font-bold text-zinc-400 uppercase mr-2 flex items-center gap-1">
                 <Utensils className="w-3.5 h-3.5 text-system-gold" /> Template Filter:
               </span>
-              {['All', 'Japan', 'Japan Bulking'].map((tpl) => {
-                const flags: Record<string, string> = { 'Japan': '🇯🇵', 'Japan Bulking': '🇯🇵🔥' };
-                return (
+              {(() => {
+                const currentCuisineObj = NATIONAL_CUISINES_LIST.find(c => c.name === selectedNationalCuisine) || NATIONAL_CUISINES_LIST[0];
+                const tpls = ['All', currentCuisineObj.cuttingKey, currentCuisineObj.bulkingKey];
+                return tpls.map((tpl) => (
                   <button
                     key={tpl}
                     onClick={() => handleSelectTemplate(tpl)}
@@ -756,17 +805,16 @@ export default function GroceryGuide() {
                         : 'bg-system-dark/60 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700'
                     }`}
                   >
-                    {flags[tpl] && <span>{flags[tpl]}</span>}
                     <span>
                       {tpl === 'All'
                         ? '🌐 All Items & Templates'
-                        : tpl === 'Japan'
-                        ? '⭐ Phase 1 Cutting ($50.96 / $26.80 Restock)'
-                        : '🔥 Phase 2 Bulking ($49.34 / $26.80 Restock)'}
+                        : tpl === currentCuisineObj.cuttingKey
+                        ? `${currentCuisineObj.flag} Phase 1 Cutting (${MEAL_PREP_PLANS.find(p => p.country === tpl)?.estCostPerWeek.split(' ')[0] || '$51.74'})`
+                        : `🔥 Phase 2 Bulking (${MEAL_PREP_PLANS.find(p => p.country === tpl)?.estCostPerWeek.split(' ')[0] || '$51.70'})`}
                     </span>
                   </button>
-                );
-              })}
+                ));
+              })()}
               <button
                 onClick={handleManualReset}
                 className="px-3.5 py-1 rounded-lg text-xs font-bold bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/30 transition-all flex items-center gap-1.5 ml-auto cursor-pointer"
@@ -1010,23 +1058,53 @@ export default function GroceryGuide() {
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
-              {[
-                { name: 'All', label: '🌐 All Cuisines' },
-                { name: 'Japan', label: '🇯🇵 Phase 1: Japan Cutting ($50.96/wk)' },
-                { name: 'Japan Bulking', label: '🇯🇵🔥 Phase 2: Japan Bulking ($49.34/wk)' },
-              ].map((c) => (
-                <button
-                  key={c.name}
-                  onClick={() => handleSelectCountryPlan(c.name)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
-                    selectedCountryPlan === c.name
-                      ? 'bg-system-blue text-system-dark shadow-glow-blue scale-105'
-                      : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10'
-                  }`}
-                >
-                  {c.label}
-                </button>
-              ))}
+              <button
+                onClick={() => handleSelectCountryPlan('All')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                  selectedCountryPlan === 'All'
+                    ? 'bg-system-blue text-system-dark shadow-glow-blue scale-105 font-black'
+                    : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10'
+                }`}
+              >
+                🌐 All 26 Blueprints
+              </button>
+              {(() => {
+                const currentCuisineObj = NATIONAL_CUISINES_LIST.find(c => c.name === selectedNationalCuisine) || NATIONAL_CUISINES_LIST[0];
+                return [currentCuisineObj.cuttingKey, currentCuisineObj.bulkingKey].map((cKey) => (
+                  <button
+                    key={cKey}
+                    onClick={() => handleSelectCountryPlan(cKey)}
+                    className={`px-3.5 py-1.5 rounded-xl text-xs font-bold font-mono transition-all cursor-pointer ${
+                      selectedCountryPlan === cKey
+                        ? 'bg-gradient-to-r from-system-gold to-yellow-500 text-system-dark shadow-glow-gold scale-105 font-black border border-system-gold'
+                        : 'bg-system-dark text-zinc-300 hover:text-white border border-white/10'
+                    }`}
+                  >
+                    {cKey}
+                  </button>
+                ));
+              })()}
+              <div className="border-l border-white/10 pl-2 ml-1 flex items-center gap-1.5 flex-wrap">
+                <span className="text-[10px] text-zinc-500 uppercase font-mono mr-1">Switch Cuisine:</span>
+                {NATIONAL_CUISINES_LIST.map((c) => (
+                  <button
+                    key={c.name}
+                    onClick={() => {
+                      setSelectedNationalCuisine(c.name);
+                      const targetKey = selectedCountryPlan.includes('Bulking') ? c.bulkingKey : c.cuttingKey;
+                      handleSelectCountryPlan(targetKey);
+                    }}
+                    className={`px-2 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                      selectedNationalCuisine === c.name
+                        ? 'bg-system-cyan/20 text-system-cyan border border-system-cyan/50 font-black'
+                        : 'bg-black/40 text-zinc-400 hover:text-white border border-white/5'
+                    }`}
+                    title={c.name}
+                  >
+                    {c.flag} {c.name}
+                  </button>
+                ))}
+              </div>
               <button
                 onClick={handleManualReset}
                 className="px-3.5 py-1.5 rounded-xl text-xs font-bold font-mono bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/30 transition-all cursor-pointer flex items-center gap-1.5 ml-auto"

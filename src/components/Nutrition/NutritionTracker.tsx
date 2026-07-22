@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { loadHunterState, saveHunterState, awardXp, triggerLevelUpCelebration, drinkWaterAmount, getHydrationOzConsumed, HYDRATION_GOAL_OZ, resetDailyHydration } from '@/lib/hunter-system';
 import { Utensils, Plus, Trash2, CheckCircle2, Flame, Award, ArrowRight, ShieldCheck, Sparkles, Printer, Droplets, PlusCircle, RotateCcw } from 'lucide-react';
 import { TabType } from '../Navigation/SystemSidebar';
-import { MEAL_PREP_PLANS } from '@/lib/grocery-data';
+import { MEAL_PREP_PLANS, NATIONAL_CUISINES_LIST, getPlanHtmlFilename } from '@/lib/grocery-data';
 
 interface LoggedMeal {
   id: string;
@@ -23,7 +23,7 @@ interface NutritionTrackerProps {
 export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) {
   const [hunterState, setHunterState] = useState(() => (typeof window !== 'undefined' ? loadHunterState() : null));
   const [meals, setMeals] = useState<LoggedMeal[]>([]);
-  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('Japan');
+  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('🇵🇷 Puerto Rico');
   const [showManualModal, setShowManualModal] = useState(false);
   const [manualName, setManualName] = useState('');
   const [manualCals, setManualCals] = useState('');
@@ -51,10 +51,10 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
       else setMeals([]);
 
       const savedCountry = localStorage.getItem('pf_selected_aisle_template');
-      if (savedCountry && (savedCountry === 'Japan' || savedCountry === 'Japan Bulking')) {
+      if (savedCountry && MEAL_PREP_PLANS.some(p => p.country === savedCountry)) {
         setSelectedDeckCountry(savedCountry);
       } else {
-        setSelectedDeckCountry('Japan');
+        setSelectedDeckCountry('🇵🇷 Puerto Rico');
       }
     }
   }, [today]);
@@ -111,8 +111,9 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
 
   const calGoal = activePlan.targetDailyCalories || 2080;
   const protGoal = activePlan.targetDailyProtein || 178;
-  const carbGoal = selectedDeckCountry === 'Japan Bulking' ? 370 : 200;
-  const fatGoal = selectedDeckCountry === 'Japan Bulking' ? 65 : 60;
+  const isBulking = selectedDeckCountry.includes('Bulking');
+  const carbGoal = isBulking ? 370 : 200;
+  const fatGoal = isBulking ? 65 : 60;
 
   const handleSelectDeckCountry = (country: string) => {
     setSelectedDeckCountry(country);
@@ -236,14 +237,14 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
           </div>
           <div className="flex items-center gap-2">
             <a
-              href={activePlan.country === 'Japan Bulking' ? '/Japanese_Bulking_Meal_Plan_Under_50.html' : '/Japanese_Meal_Plan_Under_50.html'}
+              href={getPlanHtmlFilename(activePlan.country)}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 bg-system-dark hover:bg-system-gold text-system-gold hover:text-black px-3 py-1 rounded-lg text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all cursor-pointer no-underline"
-              title="Print or Save as PDF the selected Japanese Meal Prep Blueprint"
+              title="Print or Save as PDF the selected Meal Prep Blueprint"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>🖨️ Print {activePlan.country === 'Japan Bulking' ? 'Phase 2 Bulking' : 'Phase 1 Cutting'} PDF</span>
+              <span>🖨️ Print {activePlan.flag} {activePlan.country.includes('Bulking') ? 'Phase 2 Bulking' : 'Phase 1 Cutting'} PDF</span>
             </a>
             <span className="text-[10px] bg-system-blue/20 text-system-cyan border border-system-blue/40 px-2.5 py-1 rounded font-mono font-bold whitespace-nowrap">
               +75 INT XP Per Meal
@@ -251,24 +252,23 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
           </div>
         </div>
 
-        {/* Cuisine Template Selector Pills */}
-        <div className="flex flex-wrap items-center gap-2 pt-1">
+        {/* Cuisine Template Selector Pills (All 26 Blueprints Across 13 Cuisines) */}
+        <div className="flex flex-wrap items-center gap-2 pt-1 max-h-48 overflow-y-auto p-1 bg-black/20 rounded-xl border border-white/5">
           {MEAL_PREP_PLANS.map((plan) => {
             const isSelected = selectedDeckCountry === plan.country;
             return (
               <button
                 key={plan.id}
                 onClick={() => handleSelectDeckCountry(plan.country)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold uppercase transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                   isSelected
-                    ? 'bg-system-cyan text-black shadow-glow-blue'
+                    ? 'bg-system-cyan text-black shadow-glow-blue scale-105 font-black'
                     : 'bg-system-dark hover:bg-system-card text-zinc-300 hover:text-white border border-white/10'
                 }`}
               >
                 <span>{plan.flag}</span>
-                <span>{plan.country === 'Japan' ? 'Phase 1: Japan Cutting ($50.96)' : plan.country === 'Japan Bulking' ? 'Phase 2: Japan Bulking ($49.34)' : plan.country}</span>
-                {plan.country === 'Japan' && <span className="text-[9px] bg-system-gold text-black px-1.5 py-0.2 rounded font-black ml-0.5">#1 Main</span>}
-                {plan.country === 'Japan Bulking' && <span className="text-[9px] bg-red-500 text-white px-1.5 py-0.2 rounded font-black ml-0.5">Post-160 Lb</span>}
+                <span>{plan.country} ({plan.estCostPerWeek.split(' ')[0]})</span>
+                {plan.badge && <span className="text-[9px] bg-system-gold text-black px-1.5 py-0.2 rounded font-black ml-0.5">{plan.badge}</span>}
               </button>
             );
           })}
@@ -363,7 +363,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
               style={{ width: `${Math.min(100, (totalCarbs / carbGoal) * 100)}%` }}
             />
           </div>
-          <div className="text-[11px] text-zinc-400">Primary fuel for Quiet Apartment Bodyweight Dojo workouts.</div>
+          <div className="text-[11px] text-zinc-400">Primary fuel for Home Quiet Apartment or Planet Fitness workouts.</div>
         </div>
 
         {/* Fat Card */}
