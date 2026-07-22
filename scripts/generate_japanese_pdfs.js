@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 const publicDir = path.join(__dirname, '..', 'public');
-const cuttingSrc = path.join(publicDir, 'Korean_Meal_Plan_Under_50.html');
-const bulkingSrc = path.join(publicDir, 'Korean_Bulking_Meal_Plan_Under_50.html');
+const cuttingSrc = path.join(publicDir, 'Japanese_Meal_Plan_Under_50.html');
+const bulkingSrc = path.join(publicDir, 'Japanese_Bulking_Meal_Plan_Under_50.html');
 
 // Helper to get Japanese Samurai Workout HTML
 function getSamuraiWorkoutHtml() {
@@ -357,9 +357,11 @@ function getSamuraiWorkoutHtml() {
 }
 
 function cleanAndTransform(html, isBulking) {
-  // 1. Replace Workout Section First
-  const workoutStartRegex = /<h2>💪 K-Pop Idol Home Bodyweight Dojo Workout Plan[^<]*<\/h2>[\s\S]*?(?=<h2>🛒 Section 1: Weekly Consumables)/;
-  html = html.replace(workoutStartRegex, getSamuraiWorkoutHtml() + "\n\n    ");
+  // 1. Remove Workout Section (PDFs do not include workout plan, just meal plan schedule & instructions)
+  const workoutStartRegex = /<!-- Japanese Samurai Idol Home Bodyweight Workout Plan Section -->[\s\S]*?(?=<h2>🛒 Section 1: Weekly Consumables)/;
+  const workoutAlternativeRegex = /<h2>💪 Japanese Samurai Home Bodyweight Dojo Workout Plan[^<]*<\/h2>[\s\S]*?(?=<h2>🛒 Section 1: Weekly Consumables)/;
+  html = html.replace(workoutStartRegex, "");
+  html = html.replace(workoutAlternativeRegex, "");
 
   // 2. Add Soy Milk to Consumables Table right before Bananas if not already there
   const bananaItemRegex = /<div class="grocery-item">\s*<div class="checkbox"><\/div>\s*<div>\s*<div class="item-name">Fresh Bananas/;
