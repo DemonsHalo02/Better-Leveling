@@ -59,7 +59,7 @@ export default function GroceryGuide() {
         const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === savedAisleTemplate || c.bulkingKey === savedAisleTemplate);
         if (matchCuisine) setSelectedNationalCuisine(matchCuisine.name);
       } else {
-        setSelectedAisleTemplate('🇵🇷 Puerto Rico');
+        setSelectedAisleTemplate('Puerto Rico');
         setSelectedNationalCuisine('Puerto Rico');
       }
       const savedCountryPlan = localStorage.getItem('pf_selected_country_plan');
@@ -87,7 +87,7 @@ export default function GroceryGuide() {
       localStorage.removeItem('pf_hidden_grocery_items');
       localStorage.removeItem('pf_custom_grocery_items');
     }
-    setSelectedAisleTemplate('🇵🇷 Puerto Rico');
+    setSelectedAisleTemplate('Puerto Rico');
     setSelectedNationalCuisine('Puerto Rico');
     setSelectedRegion('All Regions');
     setSelectedCountryPlan('All');
@@ -195,8 +195,10 @@ export default function GroceryGuide() {
   const filteredItems = allItems.filter(item => {
     if (hiddenItemIds.includes(item.id)) return false;
     const matchStore = selectedStore === 'All Stores' || item.store === selectedStore;
-    const matchCat = selectedCategory === 'All' || selectedCategory === '🍱 Meal Prep Templates' || item.category === selectedCategory;
-    const matchTemplate = selectedAisleTemplate === 'All' || (item.cuisine ? (item.cuisine.includes(selectedAisleTemplate) || item.cuisine.includes('All')) : item.id.startsWith('custom-'));
+    const matchCat = selectedCategory === 'All' || item.category === selectedCategory;
+    const matchTemplate = selectedAisleTemplate === 'All'
+      ? (item.cuisine ? (item.cuisine.some(c => c.startsWith(selectedNationalCuisine) || c === 'All')) : item.id.startsWith('custom-'))
+      : (item.cuisine ? (item.cuisine.includes(selectedAisleTemplate) || item.cuisine.includes('All')) : item.id.startsWith('custom-'));
     return matchStore && matchCat && matchTemplate;
   });
 
@@ -319,7 +321,7 @@ export default function GroceryGuide() {
   const checkedEstPrice = filteredItems.filter(item => checkedItems[item.id]).reduce((sum, item) => sum + extractPrice(item.priceEst), 0);
 
   const stores = ['All Stores', 'Walmart Supercenter (Auburn, ME)', "Shaw's (Auburn/Lewiston)", 'Hannaford (Lewiston/Auburn)'];
-  const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery', '🍱 Meal Prep Templates'];
+  const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery'];
 
   const handlePrintPlan = (plan?: typeof MEAL_PREP_PLANS[0]) => {
     const targetCountry = plan ? plan.country : (selectedAisleTemplate !== 'All' ? selectedAisleTemplate : (selectedCountryPlan !== 'All' ? selectedCountryPlan : '🇵🇷 Puerto Rico'));
@@ -834,44 +836,6 @@ export default function GroceryGuide() {
               ))}
             </div>
 
-            {/* Meal Prep Template Filter */}
-            <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-white/5">
-              <span className="text-xs font-bold text-zinc-400 uppercase mr-2 flex items-center gap-1">
-                <Utensils className="w-3.5 h-3.5 text-system-gold" /> Template Filter:
-              </span>
-              {(() => {
-                const currentCuisineObj = NATIONAL_CUISINES_LIST.find(c => c.name === selectedNationalCuisine) || NATIONAL_CUISINES_LIST[0];
-                const tpls = ['All', currentCuisineObj.cuttingKey, currentCuisineObj.bulkingKey];
-                return tpls.map((tpl) => (
-                  <button
-                    key={tpl}
-                    onClick={() => handleSelectTemplate(tpl)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono transition-all border cursor-pointer ${
-                      selectedAisleTemplate === tpl
-                        ? 'bg-system-gold/20 text-system-gold border-system-gold font-bold shadow-glow-gold'
-                        : 'bg-system-dark/60 text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-700'
-                    }`}
-                  >
-                    <span>
-                      {tpl === 'All'
-                        ? '🌐 All Items & Templates'
-                        : tpl === currentCuisineObj.cuttingKey
-                        ? `${currentCuisineObj.flag} Phase 1 Cutting (${MEAL_PREP_PLANS.find(p => p.country === tpl)?.estCostPerWeek.split(' ')[0] || '$51.74'})`
-                        : `🔥 Phase 2 Bulking (${MEAL_PREP_PLANS.find(p => p.country === tpl)?.estCostPerWeek.split(' ')[0] || '$51.70'})`}
-                    </span>
-                  </button>
-                ));
-              })()}
-              <button
-                onClick={handleManualReset}
-                className="px-3.5 py-1 rounded-lg text-xs font-bold bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/30 transition-all flex items-center gap-1.5 ml-auto cursor-pointer"
-                title="Reset template filter and restore full shopping checklist"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>🔄 Reset Template & List</span>
-              </button>
-            </div>
-
             {/* Auburn Walmart Quick-Select Strip */}
             <div className="bg-system-card p-4 rounded-2xl border border-system-blue/40 shadow-inner flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div className="flex items-center gap-2">
@@ -938,81 +902,6 @@ export default function GroceryGuide() {
               </div>
             </div>
           </div>
-
-          {/* Meal Prep Templates Display in Aisle Checklist */}
-          {(selectedCategory === 'All' || selectedCategory === '🍱 Meal Prep Templates' || selectedAisleTemplate !== 'All') && (
-            <div className="space-y-4 bg-system-panel/50 p-5 rounded-2xl border border-system-gold/30">
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-black uppercase text-system-gold tracking-wider flex items-center gap-2">
-                  <Utensils className="w-4 h-4 text-system-gold" />
-                  <span>Meal Prep Blueprints & Aisle Shopping Lists (Under $50 Budget)</span>
-                </h3>
-                {selectedAisleTemplate !== 'All' && (
-                  <button
-                    onClick={() => setSelectedAisleTemplate('All')}
-                    className="text-xs text-zinc-400 hover:text-white underline font-mono"
-                  >
-                    Clear Template Filter
-                  </button>
-                )}
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {MEAL_PREP_PLANS.filter(p => selectedAisleTemplate === 'All' || p.country === selectedAisleTemplate).map(plan => (
-                  <div
-                    key={`aisle-plan-${plan.id}`}
-                    className={`p-5 rounded-2xl border transition-all flex flex-col justify-between gap-4 ${
-                      selectedAisleTemplate === plan.country
-                        ? 'bg-gradient-to-br from-system-panel to-system-dark border-system-gold shadow-glow-gold scale-[1.02]'
-                        : 'bg-system-panel border-system-blue/30 hover:border-system-blue shadow-md'
-                    }`}
-                  >
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-2xl">{plan.flag}</span>
-                        <span className="text-[10px] font-mono font-black uppercase tracking-wider text-system-gold bg-system-gold/15 px-2 py-0.5 rounded border border-system-gold/30">
-                          {plan.estCostPerWeek.split(' ')[0]} / Wk
-                        </span>
-                      </div>
-                      <h4 className="text-sm font-black text-white leading-tight">{plan.title}</h4>
-                      <p className="text-xs text-zinc-400 line-clamp-2">{plan.description}</p>
-                    </div>
-
-                    <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
-                      <button
-                        onClick={() => handleSelectTemplate(plan.country)}
-                        className={`w-full py-2 rounded-xl text-xs font-bold font-mono transition-all flex items-center justify-center gap-1.5 ${
-                          selectedAisleTemplate === plan.country
-                            ? 'bg-system-cyan text-system-dark font-black shadow-glow-blue'
-                            : 'bg-system-blue/20 text-system-cyan hover:bg-system-blue/30 border border-system-blue/40'
-                        }`}
-                      >
-                        <ShoppingBag className="w-3.5 h-3.5" />
-                        <span>{selectedAisleTemplate === plan.country ? '✓ Showing Aisle List Below' : '🛒 Filter Aisle List To This Plan'}</span>
-                      </button>
-
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => handlePrintPlan(plan)}
-                          className="flex-1 py-1.5 rounded-lg bg-system-dark text-zinc-300 hover:text-white border border-white/10 text-[11px] font-bold flex items-center justify-center gap-1"
-                        >
-                          <Printer className="w-3 h-3 text-system-blue" />
-                          <span>Print PDF</span>
-                        </button>
-                        <button
-                          onClick={() => handleEmailPlan(plan)}
-                          className="flex-1 py-1.5 rounded-lg bg-system-dark text-zinc-300 hover:text-white border border-white/10 text-[11px] font-bold flex items-center justify-center gap-1"
-                        >
-                          <Mail className="w-3 h-3 text-system-gold" />
-                          <span>Email Plan</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Grocery Items List */}
           {/* Separated Grocery Lists: Weekly Consumables vs Restock */}
