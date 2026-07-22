@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { JAPANESE_HOME_BODYWEIGHT_ROUTINE, PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE, PUERTO_RICAN_PLANET_FITNESS_ROUTINE, WorkoutDay, Exercise } from '@/lib/workout-data';
+import { KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE, PUERTO_RICAN_PLANET_FITNESS_ROUTINE, WorkoutDay, Exercise } from '@/lib/workout-data';
 import { awardXp, loadHunterState, saveHunterState } from '@/lib/hunter-system';
 import { Dumbbell, CheckCircle2, Circle, Trophy, Info, Sparkles, MapPin, Zap, Footprints, Flame, PlusCircle, RotateCcw, Home, Building2 } from 'lucide-react';
 import RestTimerBar from './RestTimerBar';
@@ -18,7 +18,7 @@ export default function WorkoutQuestView() {
   const [customMinutesInput, setCustomMinutesInput] = useState<string>('');
   const TREADMILL_GOAL = 45;
 
-  const activeRoutine = planType === 'pf' ? PUERTO_RICAN_PLANET_FITNESS_ROUTINE : JAPANESE_HOME_BODYWEIGHT_ROUTINE;
+  const activeRoutine = planType === 'pf' ? PUERTO_RICAN_PLANET_FITNESS_ROUTINE : KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
   const currentDayWorkout = activeRoutine.find(d => d.dayOfWeek === selectedDay) || activeRoutine[0];
 
   useEffect(() => {
@@ -144,7 +144,7 @@ export default function WorkoutQuestView() {
             }`}
           >
             <Home className="w-4 h-4" />
-            <span>Japanese Dojo (Home Bodyweight)</span>
+            <span>K-Pop Idol Style (Home Bodyweight)</span>
           </button>
           <button
             onClick={() => handlePlanToggle('pf')}
@@ -168,16 +168,16 @@ export default function WorkoutQuestView() {
             <span>
               {planType === 'pf'
                 ? 'Planet Fitness Gym Blueprint | 7-Day Machine & Equipment Routine'
-                : 'Japanese Dojo Home Bodyweight | 7-Day Silent Japanese Style Routine'}
+                : 'K-Pop Idol Home Bodyweight | 7-Day Silent Apartment Routine'}
             </span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            {planType === 'pf' ? 'Planet Fitness Gym Dojo' : 'Japanese Dojo Home Bodyweight Plan'}
+            {planType === 'pf' ? 'Planet Fitness Gym Dojo' : 'K-Pop Idol Style Home Bodyweight Plan'}
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
             {planType === 'pf'
               ? 'Tailored specifically for Planet Fitness machines, dumbbells, cables, and Smith machine squats. Daily dual cardio: 30-minute incline treadmill walk + 15-minute jog. Monday includes your Auburn ME Walmart Grocery Run & Weekly Batch Meal Prep from your chosen 19-Country Global Blueprint!'
-              : 'Tailored specifically for quiet apartment Japanese style bodyweight training (silent, no equipment needed, zero floor impact). Daily dual cardio: 30-minute brisk walk + 15-minute run/silent march. Monday includes your Auburn ME Walmart Grocery Run & Weekly Batch Meal Prep from your chosen 19-Country Global Blueprint!'}
+              : 'Tailored specifically for K-Pop idol aesthetic bodyweight training (silent, apartment-friendly, zero floor impact, core & waist carving, posture sculpting). Daily dual cardio: 30-minute brisk walk + 15-minute run/silent march. Monday includes your Auburn ME Walmart Grocery Run & Weekly Batch Meal Prep from your chosen 19-Country Global Blueprint (featuring Korean Gochujang Chicken as your #1 main plan)!'}
           </p>
         </div>
 

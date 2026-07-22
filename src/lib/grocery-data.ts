@@ -801,7 +801,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 5,
     fat: 0,
     servingSize: "1/2 cup (100g)",
-    coachNote: "Essential garlic, ginger, and green onions for authentic Korean Gochujang Chicken and morning Gyeran-mari egg rolls.",
+    coachNote: "Essential garlic, ginger, and green onions for authentic Korean Gochujang Chicken and morning Gyeran-mari egg rolls. Tangy probiotic kimchi aids digestion and satiety while cutting to your 160 lb target!",
     cuisine: ["Korea", "Korea Bulking"]
   },
   {
@@ -817,7 +817,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 0,
     servingSize: "1 tea bag",
-    coachNote: "Traditional Korean roasted barley tea providing clean hydration and morning training focus! (Periodic restock item).",
+    coachNote: "Traditional Korean roasted barley tea (Bori-cha) & matcha providing clean zero-calorie hydration, metabolism support, and appetite control for your 160 lb target! (Periodic restock item).",
     cuisine: ["Korea", "Korea Bulking"]
   },
   {
@@ -833,7 +833,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 3,
     fat: 0.5,
     servingSize: "1 tsp paste (5g)",
-    coachNote: "Bold Korean sweet-spicy gochujang glaze for searing your chicken breast cubes and broccoli (Periodic restock item).",
+    coachNote: "Bold Korean sweet-spicy gochujang glaze paired with garlic powder and a drop of toasted sesame oil for searing your chicken breast cubes and broccoli without excess calories! (Periodic restock item).",
     cuisine: ["Korea", "Korea Bulking"]
   },
   {
@@ -849,7 +849,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 28,
     fat: 4,
     servingSize: "1 bowl/pancake (90g)",
-    coachNote: "Your once-a-week Korean reward treat! Spicy gourmet ramen or kimchi pancake paired with crispy chicken.",
+    coachNote: "Your once-a-week Korean reward treat! Spicy gourmet ramen or kimchi pancake paired with crispy chicken to satisfy cravings and keep you mentally locked into your 160 lb goal.",
     cuisine: ["Korea", "Korea Bulking"]
   },
 
@@ -2161,7 +2161,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
 
   // 8. Korea 🇰🇷 (Cutting & Bulking)
   {
-    id: "plan-korea",
+    id: "plan-korea-cutting",
     title: "Korea: Crispy Gochujang Garlic Chicken, Steamed Rice & Kimchi Broccoli Shred (~2,080 kcal)",
     country: "Korea",
     flag: "🇰🇷",
@@ -2169,16 +2169,16 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
     estCostPerWeek: "$51.66 Weekly Consumables / $24.60 Periodic Restock ($76.26 Combined Total)",
-    description: "Authentic Korean Crispy Gochujang Honey-Garlic Chicken paired with Steamed White Rice, Kimchi / Sesame Broccoli, and Gyeran-mari inspired Scallion Scramble. Features Korean Green Tea / Americano, Casein bowls, and Korean Fried Chicken Bowl reward treat!",
+    description: "Tailored specifically for your 160 lb shredded target! Features authentic Korean Crispy Gochujang Honey-Garlic Chicken paired with Steamed White Rice, Probiotic Kimchi & Sesame Broccoli, and a Gyeran-mari inspired Scallion Scramble. Packed with 178g clean protein to preserve lean muscle while shedding fat, plus roasted barley tea & matcha for daily metabolic focus!",
     meals: createMeals(
       "Korea", "Korean Green Tea or Americano con Leche", 95,
       "Gyeran-mari Inspired Scallion Egg Scramble + Steamed Rice",
-      "3 Large White Eggs + 1/2 cup Liquid Egg Whites folded with chopped scallions and sesame notes in 0-Cal spray. (330 kcal, 31g p, 15g f)",
+      "3 Large White Eggs + 1/2 cup Liquid Egg Whites folded with chopped scallions, garlic notes, and a drop of sesame oil in 0-Cal spray. (330 kcal, 31g p, 15g f)",
       530, 36, 44, 15,
       "Crispy Gochujang Garlic Chicken",
-      "~5.7 oz Fresh Chicken Breast cubes seared super crispy with corn starch and tossed with 1 tsp Gochujang pepper glaze and garlic powder. (210 kcal, 40g p, 2g f)",
-      "Steamed White Rice & Kimchi / Sesame Broccoli",
-      "1 cup cooked White Rice paired with steamed broccoli and a forkful of tangy kimchi. (200 kcal, 5g p, 44g c)",
+      "~5.7 oz Fresh Chicken Breast cubes seared super crispy with corn starch and tossed with 1 tsp Gochujang pepper glaze, garlic powder, and ginger. (210 kcal, 40g p, 2g f)",
+      "Steamed White Rice & Probiotic Kimchi / Sesame Broccoli",
+      "1 cup cooked White Rice paired with steamed broccoli and a generous forkful of tangy probiotic kimchi for gut health and high satiety during your cut. (200 kcal, 5g p, 44g c)",
       440, 47, 50, 2,
       "1 cup", 120, 21,
       "Crispy Korean Fried Chicken Bowl with Rice",
