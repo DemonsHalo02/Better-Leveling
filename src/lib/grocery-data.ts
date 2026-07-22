@@ -2864,35 +2864,36 @@ export interface NationalCuisineInfo {
 
 export const NATIONAL_CUISINES_LIST: NationalCuisineInfo[] = [
   // Americas & Caribbean
-  { name: 'Puerto Rico', flag: '🇵🇷', region: 'Americas & Caribbean', cuttingKey: '🇵🇷 Puerto Rico', bulkingKey: '🇵🇷🔥 Puerto Rico Bulking' },
-  { name: 'USA', flag: '🇺🇸', region: 'Americas & Caribbean', cuttingKey: '🇺🇸 USA', bulkingKey: '🇺🇸🔥 USA Bulking' },
-  { name: 'Canada', flag: '🇨🇦', region: 'Americas & Caribbean', cuttingKey: '🇨🇦 Canada', bulkingKey: '🇨🇦🔥 Canada Bulking' },
-  { name: 'Mexico', flag: '🇲🇽', region: 'Americas & Caribbean', cuttingKey: '🇲🇽 Mexico', bulkingKey: '🇲🇽🔥 Mexico Bulking' },
-  { name: 'Dominican Republic', flag: '🇩🇴', region: 'Americas & Caribbean', cuttingKey: '🇩🇴 Dominican Republic', bulkingKey: '🇩🇴🔥 Dominican Republic Bulking' },
-  { name: 'El Salvador', flag: '🇸🇻', region: 'Americas & Caribbean', cuttingKey: '🇸🇻 El Salvador', bulkingKey: '🇸🇻🔥 El Salvador Bulking' },
+  { name: 'Puerto Rico', flag: '🇵🇷', region: 'Americas & Caribbean', cuttingKey: 'Puerto Rico', bulkingKey: 'Puerto Rico Bulking' },
+  { name: 'USA', flag: '🇺🇸', region: 'Americas & Caribbean', cuttingKey: 'USA', bulkingKey: 'USA Bulking' },
+  { name: 'Canada', flag: '🇨🇦', region: 'Americas & Caribbean', cuttingKey: 'Canada', bulkingKey: 'Canada Bulking' },
+  { name: 'Mexico', flag: '🇲🇽', region: 'Americas & Caribbean', cuttingKey: 'Mexico', bulkingKey: 'Mexico Bulking' },
+  { name: 'Dominican Republic', flag: '🇩🇴', region: 'Americas & Caribbean', cuttingKey: 'Dominican Republic', bulkingKey: 'Dominican Republic Bulking' },
+  { name: 'El Salvador', flag: '🇸🇻', region: 'Americas & Caribbean', cuttingKey: 'El Salvador', bulkingKey: 'El Salvador Bulking' },
 
   // South America
-  { name: 'Colombia', flag: '🇨🇴', region: 'South America', cuttingKey: '🇨🇴 Colombia', bulkingKey: '🇨🇴🔥 Colombia Bulking' },
-  { name: 'Brazil', flag: '🇧🇷', region: 'South America', cuttingKey: '🇧🇷 Brazil', bulkingKey: '🇧🇷🔥 Brazil Bulking' },
-  { name: 'Venezuela', flag: '🇻🇪', region: 'South America', cuttingKey: '🇻🇪 Venezuela', bulkingKey: '🇻🇪🔥 Venezuela Bulking' },
-  { name: 'Argentina', flag: '🇦🇷', region: 'South America', cuttingKey: '🇦🇷 Argentina', bulkingKey: '🇦🇷🔥 Argentina Bulking' },
+  { name: 'Colombia', flag: '🇨🇴', region: 'South America', cuttingKey: 'Colombia', bulkingKey: 'Colombia Bulking' },
+  { name: 'Brazil', flag: '🇧🇷', region: 'South America', cuttingKey: 'Brazil', bulkingKey: 'Brazil Bulking' },
+  { name: 'Venezuela', flag: '🇻🇪', region: 'South America', cuttingKey: 'Venezuela', bulkingKey: 'Venezuela Bulking' },
+  { name: 'Argentina', flag: '🇦🇷', region: 'South America', cuttingKey: 'Argentina', bulkingKey: 'Argentina Bulking' },
 
   // Europe
-  { name: 'Spain', flag: '🇪🇸', region: 'Europe', cuttingKey: '🇪🇸 Spain', bulkingKey: '🇪🇸🔥 Spain Bulking' },
-  { name: 'Italy', flag: '🇮🇹', region: 'Europe', cuttingKey: '🇮🇹 Italy', bulkingKey: '🇮🇹🔥 Italy Bulking' },
-  { name: 'France', flag: '🇫🇷', region: 'Europe', cuttingKey: '🇫🇷 France', bulkingKey: '🇫🇷🔥 France Bulking' },
-  { name: 'Germany', flag: '🇩🇪', region: 'Europe', cuttingKey: '🇩🇪 Germany', bulkingKey: '🇩🇪🔥 Germany Bulking' },
-  { name: 'Russia', flag: '🇷🇺', region: 'Europe', cuttingKey: '🇷🇺 Russia', bulkingKey: '🇷🇺🔥 Russia Bulking' },
+  { name: 'Spain', flag: '🇪🇸', region: 'Europe', cuttingKey: 'Spain', bulkingKey: 'Spain Bulking' },
+  { name: 'Italy', flag: '🇮🇹', region: 'Europe', cuttingKey: 'Italy', bulkingKey: 'Italy Bulking' },
+  { name: 'France', flag: '🇫🇷', region: 'Europe', cuttingKey: 'France', bulkingKey: 'France Bulking' },
+  { name: 'Germany', flag: '🇩🇪', region: 'Europe', cuttingKey: 'Germany', bulkingKey: 'Germany Bulking' },
+  { name: 'Russia', flag: '🇷🇺', region: 'Europe', cuttingKey: 'Russia', bulkingKey: 'Russia Bulking' },
 
   // Asia
-  { name: 'Japan', flag: '🇯🇵', region: 'Asia', cuttingKey: '🇯🇵 Japan', bulkingKey: '🇯🇵🔥 Japan Bulking' },
-  { name: 'Korea', flag: '🇰🇷', region: 'Asia', cuttingKey: '🇰🇷 Korea', bulkingKey: '🇰🇷🔥 Korea Bulking' },
-  { name: 'China', flag: '🇨🇳', region: 'Asia', cuttingKey: '🇨🇳 China', bulkingKey: '🇨🇳🔥 China Bulking' },
-  { name: 'India', flag: '🇮🇳', region: 'Asia', cuttingKey: '🇮🇳 India', bulkingKey: '🇮🇳🔥 India Bulking' }
+  { name: 'Japan', flag: '🇯🇵', region: 'Asia', cuttingKey: 'Japan', bulkingKey: 'Japan Bulking' },
+  { name: 'Korea', flag: '🇰🇷', region: 'Asia', cuttingKey: 'Korea', bulkingKey: 'Korea Bulking' },
+  { name: 'China', flag: '🇨🇳', region: 'Asia', cuttingKey: 'China', bulkingKey: 'China Bulking' },
+  { name: 'India', flag: '🇮🇳', region: 'Asia', cuttingKey: 'India', bulkingKey: 'India Bulking' }
 ];
 
 export function getPlanHtmlFilename(countryOrPlan: string | { country: string; id?: string }): string {
-  const country = typeof countryOrPlan === 'string' ? countryOrPlan : countryOrPlan.country;
+  const rawCountry = typeof countryOrPlan === 'string' ? countryOrPlan : countryOrPlan.country;
+  const cleanCountry = rawCountry.replace(/^[^\w\s]+\s*/, '').replace(/^[^\w\s]+\s*/, '').trim();
   const map: Record<string, string> = {
     'Puerto Rico': 'Puerto_Rico_Cutting_Meal_Plan.html',
     'Puerto Rico Bulking': 'Puerto_Rico_Bulking_Meal_Plan.html',
@@ -2971,6 +2972,6 @@ export function getPlanHtmlFilename(countryOrPlan: string | { country: string; i
     '🇺🇸 USA': 'USA_Cutting_Meal_Plan.html',
     '🇺🇸🔥 USA Bulking': 'USA_Bulking_Meal_Plan.html'
   };
-  return '/' + (map[country] || 'Puerto_Rico_Cutting_Meal_Plan.html');
+  return '/' + (map[rawCountry] || map[cleanCountry] || 'Puerto_Rico_Cutting_Meal_Plan.html');
 }
 

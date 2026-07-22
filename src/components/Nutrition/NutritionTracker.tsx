@@ -242,7 +242,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
           </div>
           <div className="flex items-center gap-2">
             <a
-              href={getPlanHtmlFilename(activePlan.country)}
+              href={getPlanHtmlFilename(activePlan.country) + '#print'}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 bg-system-dark hover:bg-system-gold text-system-gold hover:text-black px-3 py-1 rounded-lg text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all cursor-pointer no-underline"

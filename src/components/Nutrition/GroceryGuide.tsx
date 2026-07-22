@@ -54,17 +54,19 @@ export default function GroceryGuide() {
         try { setHiddenItemIds(JSON.parse(savedHidden)); } catch {}
       }
       const savedAisleTemplate = localStorage.getItem('pf_selected_aisle_template');
-      if (savedAisleTemplate && MEAL_PREP_PLANS.some(p => p.country === savedAisleTemplate)) {
-        setSelectedAisleTemplate(savedAisleTemplate);
-        const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === savedAisleTemplate || c.bulkingKey === savedAisleTemplate);
+      const cleanTemplate = savedAisleTemplate ? savedAisleTemplate.replace(/^[^\w\s]+\s*/, '').replace(/^[^\w\s]+\s*/, '').trim() : '';
+      if (cleanTemplate && MEAL_PREP_PLANS.some(p => p.country === cleanTemplate)) {
+        setSelectedAisleTemplate(cleanTemplate);
+        const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === cleanTemplate || c.bulkingKey === cleanTemplate);
         if (matchCuisine) setSelectedNationalCuisine(matchCuisine.name);
       } else {
         setSelectedAisleTemplate('Puerto Rico');
         setSelectedNationalCuisine('Puerto Rico');
       }
       const savedCountryPlan = localStorage.getItem('pf_selected_country_plan');
-      if (savedCountryPlan) {
-        setSelectedCountryPlan(savedCountryPlan);
+      const cleanCountryPlan = savedCountryPlan ? savedCountryPlan.replace(/^[^\w\s]+\s*/, '').replace(/^[^\w\s]+\s*/, '').trim() : '';
+      if (cleanCountryPlan) {
+        setSelectedCountryPlan(cleanCountryPlan);
       }
     }
   }, []);
@@ -324,8 +326,8 @@ export default function GroceryGuide() {
   const categories = ['All', 'Protein', 'Carbs', 'Fats', 'Produce', 'Essentials', 'Toiletries / Non-Grocery'];
 
   const handlePrintPlan = (plan?: typeof MEAL_PREP_PLANS[0]) => {
-    const targetCountry = plan ? plan.country : (selectedAisleTemplate !== 'All' ? selectedAisleTemplate : (selectedCountryPlan !== 'All' ? selectedCountryPlan : '🇵🇷 Puerto Rico'));
-    const url = getPlanHtmlFilename(targetCountry);
+    const targetCountry = plan ? plan.country : (selectedAisleTemplate !== 'All' ? selectedAisleTemplate : (selectedCountryPlan !== 'All' ? selectedCountryPlan : 'Puerto Rico'));
+    const url = getPlanHtmlFilename(targetCountry) + '#print';
     const win = window.open(url, '_blank');
     if (win) {
       win.focus();
@@ -534,7 +536,7 @@ export default function GroceryGuide() {
               return (
                 <>
                   <a
-                    href={getPlanHtmlFilename(currentCuisineObj.cuttingKey)}
+                    href={getPlanHtmlFilename(currentCuisineObj.cuttingKey) + '#print'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-3.5 py-2 rounded-lg bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-system-dark border border-system-gold/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5 no-underline shadow-sm"
@@ -543,7 +545,7 @@ export default function GroceryGuide() {
                     <span>📄 {currentCuisineObj.flag} Cutting PDF ({cuttingPlan?.estCostPerWeek.split(' ')[0] || '$51.74'})</span>
                   </a>
                   <a
-                    href={getPlanHtmlFilename(currentCuisineObj.bulkingKey)}
+                    href={getPlanHtmlFilename(currentCuisineObj.bulkingKey) + '#print'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-3.5 py-2 rounded-lg bg-system-cyan/20 hover:bg-system-cyan text-system-cyan hover:text-system-dark border border-system-cyan/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5 no-underline shadow-sm"
@@ -599,9 +601,9 @@ export default function GroceryGuide() {
               </div>
 
               <button
-                onClick={() => handlePrintPlan(MEAL_PREP_PLANS[0])}
+                onClick={() => handlePrintPlan()}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-system-gold to-yellow-500 text-black font-black uppercase tracking-wider text-xs shadow-glow-gold hover:bg-white transition-all min-h-[38px] cursor-pointer"
-                title="Print or Save as PDF the Pan or Oven Crispy Fried Japanese Teriyaki Chicken & Matcha Latte Blueprint"
+                title="Print or Save as PDF the currently selected Meal Prep Blueprint"
               >
                 <Printer className="w-3.5 h-3.5 text-black" />
                 <span>🖨️ Print Blueprint PDF</span>
@@ -1148,6 +1150,7 @@ export default function GroceryGuide() {
                   <button
                     onClick={() => {
                       handleSelectTemplate(plan.country);
+                      handleSelectCountryPlan(plan.country);
                       setActiveTab('items');
                     }}
                     className="flex items-center gap-2 bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-system-dark px-3.5 py-2 rounded-xl text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all cursor-pointer"

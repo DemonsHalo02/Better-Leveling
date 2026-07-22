@@ -249,38 +249,89 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
+    .print-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      padding: 16px 22px;
+      border-radius: 14px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .print-btn {
+      background: linear-gradient(135deg, #00f0ff, #0284c7);
+      color: #000;
+      border: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      padding: 12px 26px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .print-btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 28px rgba(0, 240, 255, 0.7);
+    }
+
     @media print {
+      .print-actions {
+        display: none !important;
+      }
       body {
-        background-color: #fff;
-        color: #000;
-        padding: 0;
+        background-color: #fff !important;
+        color: #000 !important;
+        padding: 0 !important;
       }
       .container {
-        border: none;
-        box-shadow: none;
-        background: #fff;
-        padding: 20px;
-        max-width: 100%;
+        border: none !important;
+        box-shadow: none !important;
+        background: #fff !important;
+        padding: 15px !important;
+        max-width: 100% !important;
       }
-      h1, .meal-title, h2, .item-name {
-        color: #000;
-        text-shadow: none;
+      * {
+        text-shadow: none !important;
+      }
+      h1, .meal-title, h2, .item-name, ul.ingredients li, ul.ingredients li strong, .item-note, p, span, div {
+        color: #000 !important;
       }
       .sub-badge, .meal-time, .meal-macros, .stat-pill, .description, .meal-card, .grocery-item {
         background: #f8fafc !important;
-        border: 1px solid #cbd5e1 !important;
+        border: 1px solid #94a3b8 !important;
         color: #0f172a !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
       .stat-value, .item-price {
         color: #0284c7 !important;
+        font-weight: 800 !important;
       }
-      ul.ingredients li strong, .item-name {
-        color: #000 !important;
+      .stat-label {
+        color: #475569 !important;
+        font-weight: 800 !important;
       }
       .checkbox {
-        border-color: #334155;
+        border-color: #334155 !important;
+      }
+      .meal-card, .grocery-item, .stat-pill {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      h2 {
+        page-break-after: avoid;
+        break-after: avoid;
+        margin-top: 25px;
+      }
+      .footer {
+        color: #475569 !important;
       }
     }
   </style>
@@ -288,6 +339,14 @@
 <body>
 
   <div class="container">
+    <div class="print-actions">
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 800; color: #00f0ff; text-transform: uppercase;">🖨️ READY FOR PRINT / PDF EXPORT</div>
+        <div style="font-size: 12px; color: #cbd5e1; margin-top: 2px;">Click the button right or press Ctrl+P / Cmd+P to save as physical paper or PDF file.</div>
+      </div>
+      <button class="print-btn" onclick="window.print()">🖨️ Print or Save as PDF</button>
+    </div>
+
     <div class="header">
       <div class="sub-badge">⚡ HUNTER NICK CROSSON • S-RANK NUTRITION BLUEPRINT</div>
       <h1>🇷🇺🔥 Russia Bulking: Garlic Dill Chicken & DOUBLE Grechka/Rice Lean Bulk (~2,680 kcal) ($51.40)</h1>
@@ -592,5 +651,14 @@
     </div>
   </div>
 
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash === '#print' || window.location.search.includes('print=true')) {
+        setTimeout(() => {
+          window.print();
+        }, 400);
+      }
+    });
+  </script>
 </body>
 </html>
