@@ -148,6 +148,27 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
     triggerLevelUpCelebration();
   };
 
+  const handleLogAllMealsForPlan = () => {
+    const newMeals: LoggedMeal[] = activePlan.meals.map((item, idx) => ({
+      id: Date.now().toString() + '-' + idx + Math.random().toString(36).substring(2, 5),
+      name: item.name,
+      calories: item.calories,
+      protein: item.protein,
+      carbs: item.carbs,
+      fat: item.fat,
+      time: item.time || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    }));
+    const updated = [...meals, ...newMeals];
+    saveMealsToStorage(updated);
+
+    const state = loadHunterState();
+    if (!state.completedQuestsToday.calories) state.completedQuestsToday.calories = true;
+    if (!state.completedQuestsToday.protein) state.completedQuestsToday.protein = true;
+    saveHunterState(state);
+    awardXp(300, 'int', state);
+    triggerLevelUpCelebration();
+  };
+
   const calPct = Math.min(100, Math.floor((totalCals / calGoal) * 100));
   const protPct = Math.min(100, Math.floor((totalProt / protGoal) * 100));
 
@@ -240,7 +261,15 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
             </h3>
             <p className="text-xs text-zinc-400">Instantly log your prepped {activePlan.country} blueprint meals with 1 click to fill your HP & Mana bars!</p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={handleLogAllMealsForPlan}
+              className="flex items-center gap-1.5 bg-gradient-to-r from-system-gold to-yellow-500 hover:bg-white text-black px-3 py-1.5 rounded-lg text-xs font-black font-mono shadow-glow-gold transition-all cursor-pointer"
+              title="Instantly add all 4 meals from this template into your daily tracker"
+            >
+              <PlusCircle className="w-3.5 h-3.5 text-black" />
+              <span>⚡ + Log All 4 Meals ({activePlan.country}) (+300 INT XP)</span>
+            </button>
             <a
               href={getPlanHtmlFilename(activePlan.country) + '#print'}
               target="_blank"

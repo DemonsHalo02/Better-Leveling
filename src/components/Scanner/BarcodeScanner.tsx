@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-import { AUBURN_LEWISTON_GROCERY_ITEMS, GroceryItem } from '@/lib/grocery-data';
+import { AUBURN_LEWISTON_GROCERY_ITEMS, GroceryItem, MEAL_PREP_PLANS, NATIONAL_CUISINES_LIST } from '@/lib/grocery-data';
 import { awardXp, loadHunterState, saveHunterState } from '@/lib/hunter-system';
 import { ScanLine, Search, CheckCircle, AlertCircle, Camera, X, PlusCircle, Utensils, Sparkles, ShoppingBag, CheckCircle2 } from 'lucide-react';
 
@@ -19,16 +19,16 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
   const [customServings, setCustomServings] = useState<number>(1);
   const [isInGroceryList, setIsInGroceryList] = useState<boolean>(false);
   const [checkedInGrocery, setCheckedInGrocery] = useState<boolean>(false);
-  const [selectedTemplate, setSelectedTemplate] = useState<string>('China');
+  const [selectedTemplate, setSelectedTemplate] = useState<string>('Puerto Rico');
   const scannerRef = useRef<Html5QrcodeScanner | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const savedTpl = localStorage.getItem('pf_selected_aisle_template');
-      if (savedTpl && ['China', 'China Bulking', 'All'].includes(savedTpl)) {
+      if (savedTpl && (MEAL_PREP_PLANS.some(p => p.country === savedTpl) || savedTpl === 'All')) {
         setSelectedTemplate(savedTpl);
       } else {
-        setSelectedTemplate('China');
+        setSelectedTemplate('Puerto Rico');
       }
     }
   }, []);
@@ -332,24 +332,19 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
               <Utensils className="w-3.5 h-3.5 text-system-gold" />
               <span>Active Meal Plan Template Filter:</span>
             </div>
-            <div className="flex flex-wrap gap-1.5">
-              {['China', 'China Bulking', 'All'].map((tpl) => {
-                const flags: Record<string, string> = { 'China': '🇨🇳', 'China Bulking': '🔥' };
-                return (
-                  <button
-                    key={tpl}
-                    onClick={() => handleSelectTemplate(tpl)}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
-                      selectedTemplate === tpl
-                        ? 'bg-system-gold text-system-dark font-black shadow-glow-gold scale-105'
-                        : 'bg-system-dark text-zinc-400 hover:text-white border border-white/5'
-                    }`}
-                  >
-                    {flags[tpl] && <span>{flags[tpl]}</span>}
-                    <span>{tpl === 'China' ? 'China Cutting (#1 Main)' : tpl === 'China Bulking' ? 'China Bulking (Post-160 Lb)' : '🌐 All'}</span>
-                  </button>
-                );
-              })}
+            <div className="flex flex-wrap items-center gap-2">
+              <select
+                value={selectedTemplate}
+                onChange={(e) => handleSelectTemplate(e.target.value)}
+                className="bg-black/80 border border-system-gold/40 text-system-gold rounded-xl px-3 py-1.5 text-xs font-mono font-bold focus:outline-none focus:border-system-gold shadow-glow-gold"
+              >
+                <option value="All">🌐 All Cuisines / Templates</option>
+                {MEAL_PREP_PLANS.map((plan) => (
+                  <option key={plan.id} value={plan.country}>
+                    {plan.flag} {plan.country} ({plan.estCostPerWeek.split(' ')[0]})
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 

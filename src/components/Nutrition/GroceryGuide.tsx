@@ -100,9 +100,9 @@ export default function GroceryGuide() {
     setCustomItems([]);
   };
 
-  const handleSelectTemplate = (country: string) => {
+  const handleSelectTemplate = (country: string, autoAddItems = true) => {
     setSelectedAisleTemplate(country);
-    const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === country || c.bulkingKey === country);
+    const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === country || c.bulkingKey === country || c.name === country);
     if (matchCuisine) {
       setSelectedNationalCuisine(matchCuisine.name);
       if (matchCuisine.region) setSelectedRegion(matchCuisine.region);
@@ -113,7 +113,18 @@ export default function GroceryGuide() {
     }
     setCustomItems([]);
     setHiddenItemIds([]);
-    setCheckedItems({});
+    
+    if (autoAddItems && country !== 'All') {
+      const matchingItems = allItems.filter(item => {
+        return item.cuisine ? (item.cuisine.includes(country) || item.cuisine.includes('All')) : false;
+      });
+      const newChecked: Record<string, boolean> = {};
+      matchingItems.forEach(i => { newChecked[i.id] = true; });
+      setCheckedItems(newChecked);
+    } else {
+      setCheckedItems({});
+    }
+
     if (typeof window !== 'undefined') {
       if (country === 'All') {
         localStorage.removeItem('pf_selected_aisle_template');
@@ -122,13 +133,20 @@ export default function GroceryGuide() {
       }
       localStorage.removeItem('pf_custom_grocery_items');
       localStorage.removeItem('pf_hidden_grocery_items');
-      localStorage.removeItem('pf_grocery_checked');
+      if (autoAddItems && country !== 'All') {
+        const matchingItems = allItems.filter(item => item.cuisine && (item.cuisine.includes(country) || item.cuisine.includes('All')));
+        const newChecked: Record<string, boolean> = {};
+        matchingItems.forEach(i => { newChecked[i.id] = true; });
+        localStorage.setItem('pf_grocery_checked', JSON.stringify(newChecked));
+      } else {
+        localStorage.removeItem('pf_grocery_checked');
+      }
     }
   };
 
   const handleSelectCountryPlan = (country: string) => {
     setSelectedCountryPlan(country);
-    const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === country || c.bulkingKey === country);
+    const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === country || c.bulkingKey === country || c.name === country);
     if (matchCuisine) {
       setSelectedNationalCuisine(matchCuisine.name);
       if (matchCuisine.region) setSelectedRegion(matchCuisine.region);
@@ -615,6 +633,31 @@ export default function GroceryGuide() {
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add Item</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  const newChecked: Record<string, boolean> = {};
+                  filteredItems.forEach(i => { newChecked[i.id] = true; });
+                  setCheckedItems(newChecked);
+                  if (typeof window !== 'undefined') localStorage.setItem('pf_grocery_checked', JSON.stringify(newChecked));
+                }}
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-system-dark border border-system-gold/40 transition-all text-xs font-black font-mono tracking-wider whitespace-nowrap min-h-[38px] cursor-pointer shadow-sm"
+                title="Check/add all currently displayed template items to cart"
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>☑️ Check All ({filteredItems.length})</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setCheckedItems({});
+                  if (typeof window !== 'undefined') localStorage.removeItem('pf_grocery_checked');
+                }}
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-system-dark hover:bg-white/10 text-zinc-400 hover:text-white border border-white/10 transition-all text-xs font-bold font-mono tracking-wider whitespace-nowrap min-h-[38px] cursor-pointer"
+                title="Uncheck all items in cart"
+              >
+                <span>◻️ Uncheck All</span>
               </button>
 
               <button
