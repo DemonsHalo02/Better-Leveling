@@ -297,11 +297,11 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-pr-kielbasa-cut",
     upc: "078742359999",
-    name: "Hillshire Farm Turkey Kielbasa Smoked Sausage (FOUR 13.5 oz packs)",
+    name: "Hillshire Farm Turkey Kielbasa Smoked Sausage (THREE 13.5 oz packs)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Hillshire Farm",
     category: "Protein",
-    priceEst: "$14.98 (Four packs at $3.74 ea)",
+    priceEst: "$11.22 (Three packs at $3.74 ea)",
     calories: 90,
     protein: 7,
     carbs: 3,
@@ -313,11 +313,11 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-pr-kielbasa-bulk",
     upc: "078742359998",
-    name: "Hillshire Farm Beef Kielbasa Smoked Sausage (FOUR 12 oz packs)",
+    name: "Hillshire Farm Beef Kielbasa Smoked Sausage (THREE 12 oz packs)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Hillshire Farm",
     category: "Protein",
-    priceEst: "$15.98 (Four packs at $3.99 ea)",
+    priceEst: "$11.97 (Three packs at $3.99 ea)",
     calories: 180,
     protein: 6,
     carbs: 2,
@@ -1754,7 +1754,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Packet (1g)",
     coachNote: "Sweetens your morning national coffee/tea and afternoon Greek yogurt bowls with zero added sugar calories (Periodic restock item).",
-    cuisine: ALL_CUISINES_BOTH
+    cuisine: ALL_CUISINES_BOTH.filter(c => c !== "Puerto Rico" && c !== "Puerto Rico Bulking")
   }
 ];
 
@@ -1888,7 +1888,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main Phase 1 Cutting Blueprint ($49.62/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$48.84 Weekly Consumables / $22.20 Periodic Restock ($71.04 Combined Total)",
+    estCostPerWeek: "$63.52 Weekly Consumables / $15.94 Periodic Restock ($79.46 Combined Total)",
     description: "The #1 Main Puerto Rican Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint! Tailored for steady fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target while preserving skin elasticity. Features sweet Café Bustelo con Leche with fat-free milk, a homemade recaito-style egg scramble, Pollo al Horno for lunch, Arroz con Kielbasa (Turkey Kielbasa) for dinner, and a weekly Goya Tostones reward treat!",
     meals: (() => {
       const meals = createMeals(
@@ -1931,7 +1931,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Post-160 Lb Lean Bulk ($50.98/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$49.48 Weekly Consumables / $23.40 Periodic Restock ($72.88 Combined Total)",
+    estCostPerWeek: "$65.27 Weekly Consumables / $21.62 Periodic Restock ($86.89 Combined Total)",
     description: "The #1 Puerto Rican Lean Bulking Blueprint for post-160 lb muscle gain! Features sweet Café Bustelo con Leche with a small spoon of sugar, Pollo al Horno with DOUBLE Arroz con Gandules for lunch, Arroz con Kielbasa (Beef Kielbasa) for dinner, and Goya Tostones reward treat!",
     meals: (() => {
       const meals = createMeals(
