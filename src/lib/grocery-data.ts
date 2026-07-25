@@ -258,7 +258,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 5,
     servingSize: "1 cup (240ml)",
     coachNote: "Creamy milk base whisked with morning national coffees across all 19 cuisines.",
-    cuisine: ALL_CUISINES_BOTH
+    cuisine: ALL_CUISINES_BOTH.filter(c => c !== "Puerto Rico" && c !== "Puerto Rico Bulking")
   },
   // --- Country-Specific Staples, Teas/Coffees, Seasonings & Reward Treats ---
   // 1. 🇵🇷 Puerto Rico
@@ -1770,7 +1770,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Packet (1g)",
     coachNote: "Sweetens your morning national coffee/tea and afternoon Greek yogurt bowls with zero added sugar calories (Periodic restock item).",
-    cuisine: ALL_CUISINES_BOTH
+    cuisine: ALL_CUISINES_BOTH.filter(c => c !== "Puerto Rico" && c !== "Puerto Rico Bulking")
   }
 ];
 
