@@ -91,7 +91,7 @@ const DEFAULT_STATE: HunterState = {
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
     gymName: "Puerto Rican Style Home Bodyweight vs Planet Fitness Gym (Dual Choice + 45m Cardio)",
-    dietName: "Korea: Crispy Gochujang Garlic Chicken, Steamed Rice & Kimchi Broccoli Shred (~2,080 kcal)",
+    dietName: "Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal)",
   },
   completedQuestsToday: {
     workout: false,
@@ -183,13 +183,13 @@ export function loadHunterState(): HunterState {
         localStorage.setItem('pf_fixed_170_weight_bug_v2', 'done');
         needsSave = true;
       }
-      if (!localStorage.getItem('kpop_korea_default_upgrade_done')) {
-        parsed.profile.dietName = "Korea: Crispy Gochujang Garlic Chicken, Steamed Rice & Kimchi Broccoli Shred (~2,080 kcal)";
+      if (!localStorage.getItem('puerto_rico_style_text_upgrade_v1')) {
+        parsed.profile.dietName = "Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal)";
         parsed.profile.gymName = "Puerto Rican Style Home Bodyweight vs Planet Fitness Gym (Dual Choice + 45m Cardio)";
-        localStorage.setItem('kpop_korea_default_upgrade_done', 'done');
-        localStorage.setItem('pf_selected_aisle_template', 'Korea');
-        localStorage.setItem('pf_selected_country_plan', 'Korea');
-        localStorage.setItem('nutrition_deck_country', 'Korea');
+        localStorage.setItem('pf_selected_aisle_template', 'Puerto Rico');
+        localStorage.setItem('pf_selected_country_plan', 'Puerto Rico');
+        localStorage.setItem('nutrition_deck_country', 'Puerto Rico');
+        localStorage.setItem('puerto_rico_style_text_upgrade_v1', 'done');
         needsSave = true;
       }
     }

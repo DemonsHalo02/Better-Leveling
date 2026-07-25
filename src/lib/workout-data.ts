@@ -25,15 +25,15 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
-    splitName: "System Restoration / Puerto Rican Yoga & Deep Stretch (Rest Day)",
+    splitName: "System Restoration / Puerto Rican-Inspired Recovery & Deep Stretch (Rest Day)",
     isRestDay: true,
-    questTitle: "[Daily Quest] Puerto Rican Active Recovery & Flexibility Flow",
-    description: "Sunday is your official System Restoration Day! Inspired by Puerto Rican trainee conditioning and Pilates flexibility routines, focus on gentle mobility flows, deep hamstring/hip stretches, and mindful breathing to prepare your body for Monday's grocery run, Puerto Rican meal prep, and Upper Body Push day. Concludes with your daily 45-minute dual cardio session (30-minute brisk walk + 15-minute run/silent march).",
+    questTitle: "[Daily Quest] Puerto Rican-Inspired Active Recovery & Flexibility Flow",
+    description: "Sunday is your official System Restoration Day. Use gentle mobility flows, deep hamstring and hip stretches, and mindful breathing to prepare for Monday's grocery run, Puerto Rican meal prep, and upper-body push day. Finish with your 45-minute dual cardio session (a 30-minute brisk walk plus a 15-minute run or silent march).",
     xpReward: 300,
     exercises: [
       {
         id: "sun-kpop-1",
-        name: "Puerto Rican Yoga Flow: Cat-Cow to Downward Dog & Child's Pose [15 Minutes]",
+        name: "Recovery Yoga Flow: Cat-Cow to Downward Dog & Child's Pose [15 Minutes]",
         targetGroup: "Full Body",
         sets: 1,
         reps: "15 mins (flow through poses slowly)",
@@ -56,7 +56,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "10 mins (4-4-6 rhythmic breath cycle)",
         equipment: "Quiet Space (Home)",
-        coachTip: "Sit cross-legged with spine perfectly tall or lie flat. Breathe deeply through the nose for 4 counts, hold 4 counts, exhale slowly for 6 counts. Puerto Rican Boricuas use breathwork for mental clarity, stress reduction, and core control."
+        coachTip: "Sit cross-legged with your spine tall or lie flat. Breathe deeply through the nose for 4 counts, hold for 4, then exhale slowly for 6. This reset supports mental clarity, stress reduction, and core control."
       },
       {
         id: "sun-kpop-walk",
@@ -80,12 +80,12 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
     exercises: [
       {
         id: "mon-kpop-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Puerto Rican Gochujang Batch Meal Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Puerto Rican Batch Meal Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
         reps: "Puerto Rican Arroz con Kielbasa & Recaito Scramble Batch Prep (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your Puerto Rican Arroz con Kielbasa weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook chicken breasts with gochujang glaze, jasmine rice, and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
+        coachTip: "Pick up your Puerto Rican Arroz con Kielbasa weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook Pollo al Horno with Goya Adobo & Sofrito, Arroz con Gandules, and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
       },
       {
         id: "mon-kpop-1",
@@ -214,7 +214,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
     splitName: "Puerto Rican Core & Waist Carve (Abs, Obliques, Deep Core)",
     isRestDay: false,
     questTitle: "[Daily Quest] Puerto Rican Core & Waist Carve Session",
-    description: "High-intensity core and waist carving session inspired by Puerto Rican Pilates training. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
+    description: "High-intensity core and waist-carving session for your Puerto Rican-inspired weekly routine. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
     xpReward: 600,
     exercises: [
       {
@@ -464,7 +464,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Finish out your Saturday with your 30-minute brisk walk and 15-minute conditioning run! You have now conquered 7 complete days of Puerto Rican training—ready for Sunday active recovery tomorrow!"
+        coachTip: "Finish Saturday with your 30-minute brisk walk and 15-minute conditioning run. You have completed a full week of your Puerto Rican-inspired training and meal-prep routine—ready for Sunday active recovery tomorrow!"
       }
     ]
   }

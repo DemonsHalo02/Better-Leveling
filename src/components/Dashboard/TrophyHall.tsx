@@ -83,14 +83,14 @@ export default function TrophyHall() {
       unlockCondition: 'Verified S-Rank VIP Account (nickcrossonofficial@outlook.com)'
     },
     {
-      id: 'japanese_shredder',
-      title: "Master of Japanese Teriyaki & Wok Searing",
-      name: "🥢 Japanese Teriyaki Shredder",
-      description: "Successfully log Japanese cutting meals and hit your daily anabolic protein target.",
+      id: 'puerto_rican_shredder',
+      title: "Master of Puerto Rican Pollo al Horno & Sofrito Searing",
+      name: "🇵🇷 Puerto Rican Shredder",
+      description: "Successfully log Puerto Rican cutting meals and hit your daily anabolic protein target.",
       icon: <Sparkles className="w-6 h-6 text-system-cyan" />,
       rarity: 'Epic',
       unlocked: hasMeals || hunterState.completedQuestsToday.calories || hunterState.completedQuestsToday.protein,
-      unlockCondition: "Log any Japanese meal prep item in the Nutrition Tracker"
+      unlockCondition: "Log any Puerto Rican meal prep item in the Nutrition Tracker"
     },
     {
       id: 'iron_monarch',
@@ -159,7 +159,7 @@ export default function TrophyHall() {
 
   const handleCopyShareCard = () => {
     if (!hunterState) return;
-    const text = `👑 [BETTER LEVELING v2 - S-RANK HUNTER GUILD CARD]\n⚔️ Hunter: ${hunterState.profile.name}\n🛡️ Title: ${equippedTitle || 'Awakened Hunter'}\n⚡ Level: ${hunterState.level} | STR: ${hunterState.stats.str}\n🔥 Streak: ${hunterState.streakDays} Days\n🥩 Nutrition Blueprint: 2,080 kcal / 178g Protein (Japanese Style)\n📍 Sector: Planet Fitness Lewiston & Auburn ME`;
+    const text = `👑 [BETTER LEVELING v2 - S-RANK HUNTER GUILD CARD]\n⚔️ Hunter: ${hunterState.profile.name}\n🛡️ Title: ${equippedTitle || 'Awakened Hunter'}\n⚡ Level: ${hunterState.level} | STR: ${hunterState.stats.str}\n🔥 Streak: ${hunterState.streakDays} Days\n🥩 Nutrition Blueprint: 2,080 kcal / 178g Protein (Puerto Rican Style)\n📍 Sector: Planet Fitness Lewiston & Auburn ME`;
     navigator.clipboard.writeText(text);
     setShareCopied(true);
     setTimeout(() => setShareCopied(false), 3000);
@@ -180,7 +180,7 @@ export default function TrophyHall() {
             Hunter Trophy Hall
           </h2>
           <p className="text-xs sm:text-sm text-zinc-300 max-w-2xl leading-relaxed">
-            Unlock legendary titles by crushing your Planet Fitness workouts and Japanese Teriyaki nutrition targets. Equip any unlocked title to display it across your top Hunter Status Bar!
+            Unlock legendary titles by crushing your Planet Fitness workouts and Puerto Rican Pollo al Horno nutrition targets. Equip any unlocked title to display it across your top Hunter Status Bar!
           </p>
         </div>
 
@@ -250,7 +250,7 @@ export default function TrophyHall() {
             </div>
 
             <p className="text-[11px] text-zinc-400 text-center italic">
-              "Arise. Transform from 242 lbs to 160 lbs with Japanese Teriyaki discipline and relentless iron."
+              "Arise. Transform from 242 lbs to 160 lbs with your Puerto Rican-inspired plan and relentless iron."
             </p>
 
             <button

@@ -177,7 +177,7 @@ export default function WorkoutQuestView() {
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
             {planType === 'pf'
               ? 'Tailored specifically for Planet Fitness machines, dumbbells, cables, and Smith machine squats. Daily dual cardio: 30-minute incline treadmill walk + 15-minute jog. Monday includes your Auburn ME Walmart Grocery Run & Weekly Batch Meal Prep from your chosen 19-Country Global Blueprint!'
-              : 'Tailored specifically for Puerto Rican aesthetic bodyweight training (silent, apartment-friendly, zero floor impact, core & waist carving, posture sculpting). Daily dual cardio: 30-minute brisk walk + 15-minute run/silent march or rhythmic Reggaeton active rest steps. Monday includes your Auburn ME Walmart Grocery Run & Weekly Batch Meal Prep from your chosen 19-Country Global Blueprint (featuring Puerto Rican Arroz con Kielbasa as your #1 main plan)!'}
+              : 'A quiet, apartment-friendly bodyweight routine with zero floor impact, core work, and posture training. Daily dual cardio: a 30-minute brisk walk plus a 15-minute run, silent march, or optional salsa/reggaetón active-rest steps. Monday includes your Auburn ME Walmart grocery run and weekly batch meal prep from your selected Puerto Rican blueprint!'}
           </p>
         </div>
 

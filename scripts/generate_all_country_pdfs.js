@@ -529,12 +529,6 @@ function run() {
     fs.writeFileSync(filepath, htmlContent, 'utf8');
     console.log(`✓ Generated: ${filename}`);
 
-    // Backwards compatibility aliases for Puerto Rico
-    if (plan.country === 'Puerto Rico') {
-      fs.writeFileSync(path.join(publicDir, 'Puerto_Rican_Meal_Plan_Under_50.html'), htmlContent, 'utf8');
-    } else if (plan.country === 'Puerto Rico Bulking') {
-      fs.writeFileSync(path.join(publicDir, 'Puerto_Rican_Bulking_Meal_Plan_Under_50.html'), htmlContent, 'utf8');
-    }
   });
 
   console.log(`\n🎉 Successfully generated all ${MEAL_PREP_PLANS.length} national cuisine blueprints!`);

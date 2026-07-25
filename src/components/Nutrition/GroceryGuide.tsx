@@ -355,7 +355,7 @@ export default function GroceryGuide() {
   };
 
   const handleEmailPlan = (plan: typeof MEAL_PREP_PLANS[0]) => {
-    const subject = encodeURIComponent('Better Leveling v2 - ' + plan.title + ' (Under $50)');
+    const subject = encodeURIComponent('Better Leveling v2 - ' + plan.title + ' (Under $50 Weekly / $30 Restock)');
     const bodyText = 'Hunter Nick Crosson,\n\nHere is your S-Rank Meal Prep Template for ' + plan.country + ':\n\n' +
       'PLAN: ' + plan.title + '\n' +
       'EST. COST: ' + plan.estCostPerWeek + '\n' +
@@ -382,7 +382,7 @@ export default function GroceryGuide() {
             Hunter Grocery Companion
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            High-protein, pan or oven crispy fried S-Rank Blueprints priced specifically for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run right around your $50 budget (~$51/wk Consumables / ~$26 Periodic Restock)! Features 19 Global National Cuisines (Puerto Rico, USA, Canada, Mexico, Dominican Republic, El Salvador, Colombia, Brazil, Venezuela, Argentina, Spain, Italy, France, Germany, Russia, Japan, Korea, China, and India), morning Pre-Workout Café Bustelo Espresso Ground Coffee, and authentic national spices.
+            High-protein, pan- or oven-crisped S-Rank Blueprints priced for Auburn Walmart Supercenter (plus Shaw's/Hannaford) to keep your weekly grocery run near your $50 budget (~$50/wk consumables / ~$30 periodic restock). Choose from 19 global cuisines; the default Puerto Rican blueprint includes Café Bustelo, sofrito, recaito, sazón, and other regional staples.
           </p>
         </div>
 
@@ -426,7 +426,7 @@ export default function GroceryGuide() {
               Select National Cuisine & Active Phase Protocol ({selectedNationalCuisine})
             </h3>
             <p className="text-xs text-zinc-300 max-w-3xl">
-              Select from all 19 national cuisines below! Filter by region to keep your workspace clean. Each cuisine features 100% ingredient parity, the exact same Monday Auburn Walmart shopping routine, morning Café Bustelo Espresso Ground Coffee, and authentic recipes. Switch between Phase 1 Cutting (~2,080 kcal) and Phase 2 Bulking (~2,680 kcal) for your chosen cuisine.
+              Select from all 19 national cuisines below and filter by region to keep your workspace clean. Each cuisine includes an ingredient-matched Monday Auburn Walmart shopping routine, a regional coffee or tea, and its own recipes. The default Puerto Rican plan features Café Bustelo, sofrito, recaito, and sazón. Switch between Phase 1 Cutting (~2,080 kcal) and Phase 2 Bulking (~2,680 kcal) for your chosen cuisine.
             </p>
           </div>
         </div>
@@ -560,7 +560,7 @@ export default function GroceryGuide() {
                     className="px-3.5 py-2 rounded-lg bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-system-dark border border-system-gold/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5 no-underline shadow-sm"
                   >
                     <Printer className="w-3.5 h-3.5 shrink-0" />
-                    <span>📄 {currentCuisineObj.flag} Cutting PDF ({cuttingPlan?.estCostPerWeek.split(' ')[0] || '$51.74'})</span>
+                    <span>📄 {currentCuisineObj.flag} Cutting PDF ({cuttingPlan?.estCostPerWeek.split(' ')[0] || '$49.62'})</span>
                   </a>
                   <a
                     href={getPlanHtmlFilename(currentCuisineObj.bulkingKey) + '#print'}
@@ -569,7 +569,7 @@ export default function GroceryGuide() {
                     className="px-3.5 py-2 rounded-lg bg-system-cyan/20 hover:bg-system-cyan text-system-cyan hover:text-system-dark border border-system-cyan/40 text-xs font-black font-mono tracking-wide transition-all cursor-pointer flex items-center gap-1.5 no-underline shadow-sm"
                   >
                     <Printer className="w-3.5 h-3.5 shrink-0" />
-                    <span>📄 🔥 Bulking PDF ({bulkingPlan?.estCostPerWeek.split(' ')[0] || '$51.70'})</span>
+                    <span>📄 🔥 Bulking PDF ({bulkingPlan?.estCostPerWeek.split(' ')[0] || '$50.98'})</span>
                   </a>
                 </>
               );
@@ -689,7 +689,7 @@ export default function GroceryGuide() {
                       {activePlanObj.flag} {activePlanObj.badge || (isBulking ? 'Phase 2 Bulking Blueprint' : 'Phase 1 Cutting Blueprint')}
                     </span>
                     <span className="text-xs text-white font-bold">
-                      {activePlanObj.title} ({activePlanObj.estCostPerWeek} Weekly Consumables / ~$26.80 Periodic Restock!)
+                      {activePlanObj.title} ({activePlanObj.estCostPerWeek} Weekly Consumables / ~$25-$30 Periodic Restock!)
                     </span>
                   </div>
                   <p className="text-xs text-zinc-300">
@@ -1002,7 +1002,7 @@ export default function GroceryGuide() {
                           🧂 Periodic Pantry & Seasoning Restock (Check Kitchen & Buy As Needed)
                         </h3>
                         <p className="text-xs text-zinc-400">
-                          Multi-week sauces, Jade Leaf Matcha, Kikkoman Teriyaki, spices, cornstarch, cooking sprays & sweeteners
+                          Multi-week Goya Sofrito, Recaito, Café Bustelo, Sazón, spices, cornstarch, cooking sprays & sweeteners
                         </p>
                       </div>
                     </div>

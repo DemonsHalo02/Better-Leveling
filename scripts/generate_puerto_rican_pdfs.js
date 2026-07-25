@@ -5,8 +5,8 @@ const publicDir = path.join(__dirname, '..', 'public');
 
 function generateHtml(isBulking) {
   const title = isBulking
-    ? "Puerto Rico Bulking: Pollo al Horno & Arroz con Gandules Lean Bulk Blueprint (~2,680 kcal)"
-    : "Puerto Rico: Crispy Pollo al Horno, Arroz con Gandules & Café Bustelo Shred Blueprint (~2,080 kcal)";
+    ? "Puerto Rico Bulking: Pollo al Horno & Arroz con Kielbasa Lean Bulk Blueprint (~2,680 kcal)"
+    : "Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal)";
   
   const subtitle = isBulking
     ? "🔥 Phase 2: Post-160 Lb Lean Bulk ($51.70/Wk)"
@@ -20,8 +20,8 @@ function generateHtml(isBulking) {
   const combinedCost = isBulking ? "$76.30 Combined Total" : "$76.34 Combined Total";
 
   const description = isBulking
-    ? `<strong>Hunter Nick's Custom S-Rank Lean Bulking Directive:</strong> Designed around your exact schedule with <strong>Monday Grocery Runs at Auburn Maine Walmart Supercenter ($50 regular budget range)</strong> and batch meal prep, starting eating Tuesday (7-Day Cycle). Notice how this bulking plan is $0.04 CHEAPER per week ($51.70 vs $51.74) while adding +600 clean muscle-building calories every day! We swap 4 tubs of yogurt and liquid egg whites for a massive 5 lb bag of Long Grain White Rice, 42 oz of Rolled Oats, 3 tubs of Greek Yogurt, and 36 whole eggs across the week (5 whole eggs daily to naturally boost hormone production and muscle recovery after intense gym or home resistance training!). Features Crispy Puerto Rican Pollo al Horno with DOUBLE Arroz con Gandules & Steamed Broccoli, Café Bustelo Espresso con Leche at 8:00 AM, and your Friday/Saturday Goya Tostones reward treat!`
-    : `<strong>Hunter Nick's Custom S-Rank Phase 1 Cutting Directive:</strong> Designed around your exact schedule with <strong>Monday Grocery Runs at Auburn Maine Walmart Supercenter ($50 regular budget range)</strong> and batch meal prep, starting eating Tuesday (7-Day Cycle). Tailored specifically for steady, sustainable fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target cleanly by 2028 without loose skin or muscle loss. Features authentic dark roast <strong>Café Bustelo Espresso con Leche (brewed strong and whisked with Great Value 2% Milk) + Banana at 8:00 AM</strong> for pre-workout focus right before your choice of Home Quiet Apartment Bodyweight Dojo OR Planet Fitness Gym workout & cardio run! Followed by a cooked-fresh Post-Workout Sofrito & Scallion Egg White Scramble between 10:30–11:00 AM, authentic Crispy Pollo al Horno (Adobo & Sazón garlic chicken breasts) with Arroz con Gandules and Steamed Broccoli for Lunch and Dinner, and slow-release Casein Greek Yogurt bowls (with <strong>4 tubs / 1 Gallon guaranteed</strong> so you never run out!). Plus, includes your once-a-week Goya Tostones reward treat meal!`;
+    ? `<strong>Hunter Nick's Custom S-Rank Lean Bulking Directive:</strong> Designed around your exact schedule with <strong>Monday Grocery Runs at Auburn Maine Walmart Supercenter ($50 regular budget range)</strong> and batch meal prep, starting eating Tuesday (7-Day Cycle). Notice how this bulking plan is $0.04 CHEAPER per week ($51.70 vs $51.74) while adding +600 clean muscle-building calories every day! We swap 4 tubs of yogurt and liquid egg whites for a massive 5 lb bag of Long Grain White Rice, 42 oz of Rolled Oats, 3 tubs of Greek Yogurt, and 36 whole eggs across the week (5 whole eggs daily to naturally boost hormone production and muscle recovery after intense gym or home resistance training!). Features Crispy Puerto Rican Pollo al Horno with DOUBLE Arroz con Gandules at lunch, plus a single Puerto Rican Arroz con Kielbasa dinner with steamed broccoli, Café Bustelo Espresso con Leche at 8:00 AM, and your Friday/Saturday Goya Tostones reward treat!`
+    : `<strong>Hunter Nick's Custom S-Rank Phase 1 Cutting Directive:</strong> Designed around your exact schedule with <strong>Monday Grocery Runs at Auburn Maine Walmart Supercenter ($50 regular budget range)</strong> and batch meal prep, starting eating Tuesday (7-Day Cycle). Tailored specifically for steady, sustainable fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target cleanly by 2028 without loose skin or muscle loss. Features authentic dark roast <strong>Café Bustelo Espresso con Leche (brewed strong and whisked with Great Value 2% Milk) + Banana at 8:00 AM</strong> for pre-workout focus right before your choice of Home Quiet Apartment Bodyweight Dojo OR Planet Fitness Gym workout & cardio run! Followed by a cooked-fresh Post-Workout Sofrito & Scallion Egg White Scramble between 10:30–11:00 AM, authentic Crispy Pollo al Horno (Adobo & Sazón garlic chicken breasts) with Arroz con Gandules and Steamed Broccoli for lunch, and a single Puerto Rican Arroz con Kielbasa dinner with broccoli, plus slow-release Casein Greek Yogurt bowls (with <strong>4 tubs / 1 Gallon guaranteed</strong> so you never run out!). Plus, includes your once-a-week Goya Tostones reward treat meal!`;
 
   const meals = isBulking ? [
     {
@@ -66,15 +66,15 @@ function generateHtml(isBulking) {
       prep: "Scoop 1 cup of Greek yogurt into a bowl, stir in sweetener packet and cinnamon/vanilla until velvety smooth. Satiates hunger and keeps amino acids flowing across afternoon activities."
     },
     {
-      name: "Dinner: Crispy Puerto Rican Pollo al Horno + DOUBLE Arroz con Gandules & Broccoli",
+      name: "Dinner: Puerto Rican Arroz con Kielbasa (Beef) & Steamed Broccoli",
       time: "7:30 PM – 8:00 PM (Evening Recovery & Growth)",
-      macros: "Calories: 640 kcal | Protein: 52g | Carbs: 94g | Fat: 2g",
+      macros: "Calories: 970 kcal | Protein: 30g | Carbs: 100g | Fat: 48g",
       ingredients: [
-        "<strong>~5.7 oz Fresh Chicken Breast cubes prepared Crispy Pollo al Horno:</strong> Coated with Argo Corn Starch, Adobo, Sazón & Garlic Powder, baked crispy outside and juicy inside.",
-        "<strong>2 cups cooked Arroz con Gandules (DOUBLE PORTION):</strong> Reheated warm, complex carbohydrates to fuel overnight muscle repair.",
-        "<strong>1 cup steamed Great Value Frozen Broccoli florets:</strong> Crisp-tender, seasoned with Adobo."
+        "<strong>~6 oz Hillshire Farm Beef Kielbasa:</strong> Pan-seared with 1 tbsp Goya Recaito and 1 tbsp Sofrito for a rich, satisfying Puerto Rican dinner.",
+        "<strong>2 cups cooked DOUBLE Arroz con Gandules:</strong> Reheated warm, providing high-density carbs for overnight muscle repair and recovery.",
+        "<strong>1 cup steamed Great Value Frozen Broccoli florets:</strong> Crisp-tender, seasoned lightly for fiber and micronutrients."
       ],
-      prep: "Reheat container for 90 seconds in microwave. Enjoy with hot tea or water to support evening digestion and muscle recovery."
+      prep: "Pan-sear the beef kielbasa with Recaito and Sofrito until browned, then pair with reheated double-portioned arroz con gandules and broccoli for a simple evening meal."
     },
     {
       name: "Nighttime Muscle Armor: Casein Greek Yogurt Fluff",
@@ -129,15 +129,15 @@ function generateHtml(isBulking) {
       prep: "Scoop 1 cup of Greek yogurt into a bowl, stir in 1 zero-calorie sweetener packet and a dash of cinnamon or vanilla until smooth and velvety. Keeps hunger at bay and supports lean muscle preservation!"
     },
     {
-      name: "Dinner: Crispy Puerto Rican Pollo al Horno + Arroz con Gandules & Steamed Broccoli",
+      name: "Dinner: Puerto Rican Arroz con Kielbasa (Turkey) & Steamed Broccoli",
       time: "7:30 PM – 8:00 PM (Evening Muscle Recovery)",
-      macros: "Calories: 440 kcal | Protein: 47g | Carbs: 50g | Fat: 2g",
+      macros: "Calories: 500 kcal | Protein: 28g | Carbs: 59g | Fat: 15g",
       ingredients: [
-        "<strong>~5.7 oz Fresh Chicken Breast cubes prepared Crispy Pollo al Horno:</strong> Dipped in liquid egg whites, coated with Argo Corn Starch, Adobo, Sazón & Garlic Powder, baked at 400°F until crunchy outside & juicy inside.",
-        "<strong>1 cup cooked Arroz con Gandules:</strong> Reheated warm from batch prep.",
-        "<strong>1 cup steamed Great Value Frozen Broccoli florets:</strong> High fiber, seasoned with Adobo."
+        "<strong>~6 oz Hillshire Farm Turkey Kielbasa:</strong> Pan-seared with 1 tbsp Goya Recaito and 1 tbsp Sofrito for a simple Puerto Rican dinner.",
+        "<strong>1 cup cooked Arroz con Gandules:</strong> Reheated warm from batch prep for steady carbs and flavor.",
+        "<strong>1 cup steamed Great Value Frozen Broccoli florets:</strong> High fiber, seasoned lightly with Adobo."
       ],
-      prep: "Pop container into microwave for 90 seconds. Enjoy with a glass of water or herbal tea for smooth evening digestion."
+      prep: "Pan-sear the turkey kielbasa with Recaito and Sofrito until browned, then pair with reheated arroz con gandules and steamed broccoli for a clean evening meal."
     },
     {
       name: "Nighttime Recovery: Casein Greek Yogurt Fluff",
@@ -633,7 +633,7 @@ function generateHtml(isBulking) {
       <ul class="ingredients" style="list-style-type: decimal; padding-left: 24px;">
         <li style="margin-bottom: 12px;"><strong>Step 1: Arroz con Gandules & Broccoli Batch Prep:</strong> Rinse white rice until clear. In a large pot or saucepan, sauté 2 tbsp Goya Sofrito and 1 packet Goya Sazón with 0-cal canola oil spray. Add dry rice, 1 can Goya Green Pigeon Peas (or 2 cans for bulking), 1/2 tsp Adobo, and water (2:1 water to rice ratio). Bring to boil, cover tightly, and simmer low for 18 minutes until tender and aromatic! Simultaneously, steam both 4 lb bags of frozen broccoli florets until crisp-tender (~6 minutes). Drain well so broccoli isn't watery.</li>
         <li style="margin-bottom: 12px;"><strong>Step 2: Crispy Puerto Rican Pollo al Horno:</strong> Trim excess fat from your ~5.0 lb family pack of chicken breasts and cut into uniform 1-inch bite-sized cubes. Dip cubes lightly in whisked Great Value Liquid Egg Whites and toss in a large bowl with 1 tsp Argo Corn Starch, 1/2 tsp Goya Adobo, 1/4 packet Goya Sazón, and Garlic Powder. Spray baking sheet or non-stick skillet generously with Canola Oil Cooking Spray. Bake at 400°F (or pan crisp sear) for 10–12 minutes until super crispy and crunchy outside and cooked through (165°F internal)! Toss with chopped fresh cilantro or scallions.</li>
-        <li style="margin-bottom: 12px;"><strong>Step 3: Portioning Into Containers:</strong> Set out 14 BPA-free meal prep containers (7 for Lunch, 7 for Dinner). In each container, place exactly 1 cup of cooked Arroz con Gandules (or 2 cups for bulking), 1 cup of steamed broccoli, and ~5.7 oz of Crispy Pollo al Horno. Seal with airtight lids.</li>
+        <li style="margin-bottom: 12px;"><strong>Step 3: Portioning Into Containers:</strong> Set out 14 BPA-free meal prep containers (7 for Lunch, 7 for Dinner). For lunch, portion ~5.7 oz of Crispy Pollo al Horno with 1 cup of cooked Arroz con Gandules (or 2 cups for bulking) and 1 cup of steamed broccoli. For dinner, portion the Puerto Rican Arroz con Kielbasa meal with the same rice and broccoli to keep prep simple and consistent. Seal with airtight lids.</li>
         <li style="margin-bottom: 6px;"><strong>Step 4: Fridge & Freezer Storage Rules:</strong> Store Containers 1 through 6 (first 3 days of lunches and dinners) directly in your refrigerator. Place Containers 7 through 14 in the freezer to keep the chicken completely fresh and juicy. On Thursday evening, move the remaining containers from the freezer to the fridge to thaw overnight for the rest of your week!</li>
       </ul>
     </div>
@@ -687,8 +687,8 @@ function run() {
   const cuttingHtml = generateHtml(false);
   const bulkingHtml = generateHtml(true);
 
-  const cuttingDest = path.join(publicDir, 'Puerto_Rican_Meal_Plan_Under_50.html');
-  const bulkingDest = path.join(publicDir, 'Puerto_Rican_Bulking_Meal_Plan_Under_50.html');
+  const cuttingDest = path.join(publicDir, 'Puerto_Rico_Cutting_Meal_Plan.html');
+  const bulkingDest = path.join(publicDir, 'Puerto_Rico_Bulking_Meal_Plan.html');
 
   fs.writeFileSync(cuttingDest, cuttingHtml, 'utf8');
   fs.writeFileSync(bulkingDest, bulkingHtml, 'utf8');
