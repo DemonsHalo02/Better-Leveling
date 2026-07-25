@@ -162,11 +162,11 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-7",
     upc: "078742357777",
-    name: "Great Value Frozen Broccoli Florets (ONE 4 lb bag / 64 oz total)",
+    name: "Great Value Frozen Broccoli Florets (FOUR 12 oz bags / 48 oz total)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Produce",
-    priceEst: "$4.18 (ONE 4 lb bag)",
+    priceEst: "$4.72 (FOUR 12 oz bags at $1.18 ea)",
     calories: 30,
     protein: 2,
     carbs: 5,
@@ -258,7 +258,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 5,
     servingSize: "1 cup (240ml)",
     coachNote: "Creamy milk base whisked with morning national coffees across all 19 cuisines.",
-    cuisine: ALL_CUISINES_BOTH.filter(c => c !== "Puerto Rico" && c !== "Puerto Rico Bulking")
+    cuisine: ALL_CUISINES_BOTH
   },
   // --- Country-Specific Staples, Teas/Coffees, Seasonings & Reward Treats ---
   // 1. 🇵🇷 Puerto Rico
@@ -339,7 +339,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 12,
     fat: 0,
     servingSize: "1 cup (240ml)",
-    coachNote: "Cost-effective, fresh Fat-Free milk for your morning Café con Leche. Keeps calories low while adding creamy texture (Periodic restock item).",
+    coachNote: "Cost-effective, fresh Fat-Free milk for your morning Café con Leche. Keeps calories low while adding creamy texture.",
     cuisine: ["Puerto Rico", "Puerto Rico Bulking"]
   },
   {
@@ -451,7 +451,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 28,
     fat: 5,
     servingSize: "3 pieces (84g)",
-    coachNote: "Your authentic Puerto Rican reward treat! Golden crispy tostones to pair with your weekend Pollo al Horno (Periodic restock item).",
+    coachNote: "Your once-a-week Puerto Rican reward treat! Golden crispy tostones to pair with your weekend Pollo al Horno.",
     cuisine: ["Puerto Rico", "Puerto Rico Bulking"]
   },
 
@@ -1722,7 +1722,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tbsp (8g)",
     coachNote: "Essential coating ingredient mixed with national seasonings for getting chicken breast cubes super crispy and golden in the oven or pan (Periodic restock item).",
-    cuisine: ALL_CUISINES_BOTH.filter(c => c !== "Puerto Rico" && c !== "Puerto Rico Bulking")
+    cuisine: ALL_CUISINES_BOTH
   },
   {
     id: "g-20",
@@ -1770,7 +1770,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 Packet (1g)",
     coachNote: "Sweetens your morning national coffee/tea and afternoon Greek yogurt bowls with zero added sugar calories (Periodic restock item).",
-    cuisine: ALL_CUISINES_BOTH.filter(c => c !== "Puerto Rico" && c !== "Puerto Rico Bulking")
+    cuisine: ALL_CUISINES_BOTH
   }
 ];
 
@@ -1904,7 +1904,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main Phase 1 Cutting Blueprint ($49.62/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$62.28 Weekly Consumables / $23.38 Periodic Restock ($85.66 Combined Total)",
+    estCostPerWeek: "$62.82 Weekly Consumables / $26.64 Periodic Restock ($89.46 Combined Total)",
     description: "The #1 Main Puerto Rican Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint! Tailored for steady fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target while preserving skin elasticity. Features sweet Café Bustelo con Leche with fat-free milk, a homemade recaito-style egg scramble, Pollo al Horno for lunch, Arroz con Kielbasa (Turkey Kielbasa) for dinner, and a weekly Goya Tostones reward treat!",
     meals: (() => {
       const meals = createMeals(
@@ -1947,7 +1947,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Post-160 Lb Lean Bulk ($50.98/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$64.32 Weekly Consumables / $23.38 Periodic Restock ($87.70 Combined Total)",
+    estCostPerWeek: "$67.39 Weekly Consumables / $26.64 Periodic Restock ($94.03 Combined Total)",
     description: "The #1 Puerto Rican Lean Bulking Blueprint for post-160 lb muscle gain! Features sweet Café Bustelo con Leche with a small spoon of sugar, Pollo al Horno with DOUBLE Arroz con Gandules for lunch, Arroz con Kielbasa (Beef Kielbasa) for dinner, and Goya Tostones reward treat!",
     meals: (() => {
       const meals = createMeals(
@@ -2997,7 +2997,7 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   { name: "Goya Green Pigeon Peas / Beans (15 oz can)", category: "Produce", price: "$1.58", note: "National legume staples (Gandules, Black Beans, Red Beans) for rice dishes." },
   { name: "Great Value Long Grain White Rice (2 lb bag)", category: "Carbs", price: "$1.48", note: "Clean fast-digesting carbohydrates for Phase 1 Cutting national rice dishes." },
   { name: "Great Value Long Grain White Rice (5 lb bag)", category: "Carbs", price: "$3.34", note: "Huge 5 lb bulk bag of clean carbohydrates for double Phase 2 Bulking rice portions." },
-  { name: "Great Value Frozen Broccoli Florets (TWO 4 lb bags / 8 lbs total)", category: "Produce", price: "$4.64", note: "Two massive 4 lb bags (8 lbs total) steamed/seasoned with herbs across all cuisines." },
+  { name: "Great Value Frozen Broccoli Florets (FOUR 12 oz bags / 48 oz total)", category: "Produce", price: "$4.72", note: "Four 12 oz bags steamed/seasoned with herbs across all cuisines." },
   { name: "Fresh Green Onions / Scallions / Cilantro (Two Bunches)", category: "Produce", price: "$1.56", note: "Fresh aromatic garnish and sofrito enhancement for national scrambles and bowls." },
   { name: "Goya Frozen Tostones / Corn Tortillas / Arepas / Pupusas Base", category: "Carbs", price: "$3.48", note: "Your once-a-week authentic national reward treat meal base!" }
 ];
