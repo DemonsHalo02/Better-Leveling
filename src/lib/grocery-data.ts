@@ -393,11 +393,11 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-pr-recaito",
     upc: "078742359002",
-    name: "Homemade Recaito-Style Blend (Cilantro, Garlic, Onion, Oregano)",
+    name: "Homemade Recaito-Style Batch Ingredients (Yellow Onions & Fresh Garlic)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Pantry Blend",
-    category: "Seasonings & Spices",
-    priceEst: "$0.00 (use pantry basics)",
+    brand: "Fresh Produce",
+    category: "Produce",
+    priceEst: "$3.48 (Periodic batch prep ingredients)",
     calories: 10,
     protein: 0,
     carbs: 2,
@@ -409,11 +409,11 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-pr-spices",
     upc: "078742359001",
-    name: "Homemade Sofrito-Style Blend (Garlic, Onion, Cilantro, Oregano, Paprika)",
+    name: "Homemade Sofrito-Style Batch Spices (Great Value Oregano & Paprika)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Pantry Blend",
+    brand: "Great Value",
     category: "Seasonings & Spices",
-    priceEst: "$0.00 (use pantry basics)",
+    priceEst: "$2.36 (Periodic restock: $1.18 ea)",
     calories: 0,
     protein: 0,
     carbs: 0,
@@ -1888,7 +1888,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main Phase 1 Cutting Blueprint ($49.62/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$63.52 Weekly Consumables / $15.94 Periodic Restock ($79.46 Combined Total)",
+    estCostPerWeek: "$63.52 Weekly Consumables / $21.78 Periodic Restock ($85.30 Combined Total)",
     description: "The #1 Main Puerto Rican Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint! Tailored for steady fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target while preserving skin elasticity. Features sweet Café Bustelo con Leche with fat-free milk, a homemade recaito-style egg scramble, Pollo al Horno for lunch, Arroz con Kielbasa (Turkey Kielbasa) for dinner, and a weekly Goya Tostones reward treat!",
     meals: (() => {
       const meals = createMeals(
@@ -1931,7 +1931,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Post-160 Lb Lean Bulk ($50.98/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$65.27 Weekly Consumables / $21.62 Periodic Restock ($86.89 Combined Total)",
+    estCostPerWeek: "$65.27 Weekly Consumables / $27.46 Periodic Restock ($92.73 Combined Total)",
     description: "The #1 Puerto Rican Lean Bulking Blueprint for post-160 lb muscle gain! Features sweet Café Bustelo con Leche with a small spoon of sugar, Pollo al Horno with DOUBLE Arroz con Gandules for lunch, Arroz con Kielbasa (Beef Kielbasa) for dinner, and Goya Tostones reward treat!",
     meals: (() => {
       const meals = createMeals(
