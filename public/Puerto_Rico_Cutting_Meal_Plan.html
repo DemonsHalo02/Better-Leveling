@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal) - Printable PDF</title>
+  <title>🇵🇷 Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal) ($63.52) - Printable PDF</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap');
 
@@ -58,7 +58,7 @@
     }
 
     h1 {
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -194,47 +194,6 @@
       color: #fff;
     }
 
-    .cooking-box {
-      margin-top: 14px;
-      padding: 12px 16px;
-      background: rgba(0, 240, 255, 0.06);
-      border: 1px dashed rgba(0, 240, 255, 0.3);
-      border-radius: 8px;
-      font-size: 13px;
-      color: #e2e8f0;
-    }
-
-    .cooking-box strong {
-      color: var(--primary);
-      text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: 1px;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .weekly-treat-card {
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 140, 0, 0.05) 100%);
-      border: 2px solid rgba(255, 215, 0, 0.5);
-      border-radius: 16px;
-      padding: 24px;
-      margin-top: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15);
-    }
-
-    .weekly-treat-title {
-      font-size: 18px;
-      font-weight: 900;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
     .grocery-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -264,277 +223,261 @@
     .item-name {
       font-weight: 700;
       color: #fff;
-      font-size: 14px;
+      font-size: 14.5px;
     }
 
     .item-price {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--gold);
       margin-top: 2px;
     }
 
     .item-note {
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--muted);
       margin-top: 4px;
     }
 
-    .print-btn-container {
+    .footer {
+      margin-top: 50px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       text-align: center;
-      margin-bottom: 30px;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .print-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      padding: 16px 22px;
+      border-radius: 14px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .print-btn {
-      background: linear-gradient(90deg, #00f0ff, #0080ff);
-      color: #0a0e17;
+      background: linear-gradient(135deg, #00f0ff, #0284c7);
+      color: #000;
       border: none;
-      padding: 14px 36px;
-      font-size: 15px;
+      font-family: 'JetBrains Mono', monospace;
       font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border-radius: 12px;
+      padding: 12px 26px;
+      border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+      font-size: 14px;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .print-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 35px rgba(0, 240, 255, 0.6);
-    }
-
-    .footer {
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 25px;
-      margin-top: 40px;
-      font-size: 12px;
-      color: var(--muted);
+      transform: scale(1.03);
+      box-shadow: 0 0 28px rgba(0, 240, 255, 0.7);
     }
 
     @media print {
+      .print-actions {
+        display: none !important;
+      }
       body {
-        background-color: #fff;
-        color: #000;
-        padding: 0;
+        background-color: #fff !important;
+        color: #000 !important;
+        padding: 0 !important;
       }
       .container {
-        border: none;
-        box-shadow: none;
-        background: #fff;
-        padding: 20px;
-        max-width: 100%;
+        border: none !important;
+        box-shadow: none !important;
+        background: #fff !important;
+        padding: 15px !important;
+        max-width: 100% !important;
       }
-      .print-btn-container {
-        display: none;
+      * {
+        text-shadow: none !important;
       }
-      h1, h2, .meal-title, .item-name {
-        color: #000;
-        text-shadow: none;
+      h1, .meal-title, h2, .item-name, ul.ingredients li, ul.ingredients li strong, .item-note, p, span, div {
+        color: #000 !important;
       }
-      .stat-pill, .meal-card, .grocery-item, .description, .cooking-box, .weekly-treat-card {
-        background: #f8fafc;
-        border: 1px solid #cbd5e1;
-        color: #0f172a;
+      .sub-badge, .meal-time, .meal-macros, .stat-pill, .description, .meal-card, .grocery-item {
+        background: #f8fafc !important;
+        border: 1px solid #94a3b8 !important;
+        color: #0f172a !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
-      .stat-value, .meal-time, .cooking-box strong {
-        color: #0369a1;
+      .stat-value, .item-price {
+        color: #0284c7 !important;
+        font-weight: 800 !important;
       }
-      .stat-pill.cost .stat-value, .item-price, .meal-macros, .weekly-treat-title {
-        color: #d97706;
+      .stat-label {
+        color: #475569 !important;
+        font-weight: 800 !important;
       }
       .checkbox {
-        border-color: #000;
+        border-color: #334155 !important;
       }
-      .sub-badge {
-        background: #fef3c7;
-        color: #b45309;
-        border-color: #fde68a;
+      .meal-card, .grocery-item, .stat-pill {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      h2 {
+        page-break-after: avoid;
+        break-after: avoid;
+        margin-top: 25px;
+      }
+      .footer {
+        color: #475569 !important;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="print-btn-container">
-    <button class="print-btn" onclick="window.print()">🖨️ Print or Save as PDF</button>
-  </div>
-
   <div class="container">
+    <div class="print-actions">
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 800; color: #00f0ff; text-transform: uppercase;">🖨️ READY FOR PRINT / PDF EXPORT</div>
+        <div style="font-size: 12px; color: #cbd5e1; margin-top: 2px;">Click the button right or press Ctrl+P / Cmd+P to save as physical paper or PDF file.</div>
+      </div>
+      <button class="print-btn" onclick="window.print()">🖨️ Print or Save as PDF</button>
+    </div>
+
     <div class="header">
-      <div class="sub-badge">⭐ #1 Main Phase 1 Cutting Blueprint ($51.74/Wk)</div>
-      <h1>Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal)</h1>
+      <div class="sub-badge">⚡ HUNTER NICK CROSSON • S-RANK NUTRITION BLUEPRINT</div>
+      <h1>🇵🇷 Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal) ($63.52)</h1>
       
       <div class="stats-bar">
         <div class="stat-pill">
-          <div class="stat-label">Daily Calories</div>
-          <div class="stat-value">~2,080 kcal</div>
+          <div class="stat-label">Target Calories</div>
+          <div class="stat-value">2080 kcal</div>
         </div>
         <div class="stat-pill">
           <div class="stat-label">Daily Protein</div>
           <div class="stat-value">178g Protein</div>
         </div>
-        <div class="stat-pill">
-          <div class="stat-label">Macro Split</div>
-          <div class="stat-value">200g C / 60g F</div>
-        </div>
-        <div class="stat-pill">
-          <div class="stat-label">Weekly Prep Day</div>
-          <div class="stat-value">Monday Batch Prep</div>
-        </div>
         <div class="stat-pill cost">
-          <div class="stat-label">Weekly Consumables</div>
-          <div class="stat-value">$51.74/wk ($50 Regular Budget)</div>
+          <div class="stat-label">Est. Weekly Cost</div>
+          <div class="stat-value">$63.52 Weekly Consumables / $21.78 Periodic Restock ($85.30 Combined Total)</div>
         </div>
         <div class="stat-pill cost">
           <div class="stat-label">Periodic Restock</div>
-          <div class="stat-value">$24.60 ($25 Restock Target Range)</div>
+          <div class="stat-value">~$25.00 Periodic Restock Range</div>
         </div>
       </div>
     </div>
 
     <div class="description">
-      <strong>Hunter Nick's Custom S-Rank Phase 1 Cutting Directive:</strong> Designed around your exact schedule with <strong>Monday Grocery Runs at Auburn Maine Walmart Supercenter ($50 regular budget range)</strong> and batch meal prep, starting eating Tuesday (7-Day Cycle). Tailored specifically for steady, sustainable fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target cleanly by 2028 without loose skin or muscle loss. Features authentic dark roast <strong>Café Bustelo Espresso con Leche (brewed strong and whisked with Great Value 2% Milk) + Banana at 8:00 AM</strong> for pre-workout focus right before your choice of Home Quiet Apartment Bodyweight Dojo OR Planet Fitness Gym workout & cardio run! Followed by a cooked-fresh Post-Workout Sofrito & Scallion Egg White Scramble between 10:30–11:00 AM, authentic Crispy Pollo al Horno (Adobo & Sazón garlic chicken breasts) with Arroz con Gandules and Steamed Broccoli for lunch, and a single Puerto Rican Arroz con Kielbasa dinner with broccoli, plus slow-release Casein Greek Yogurt bowls (with <strong>4 tubs / 1 Gallon guaranteed</strong> so you never run out!). Plus, includes your once-a-week Goya Tostones reward treat meal!
+      <strong>⭐ Phase 1: S-Rank Cutting Blueprint ($63.52 Weekly Consumables / $21.78 Periodic Restock ($85.30 Combined Total)):</strong> The #1 Main Puerto Rican Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint! Tailored for steady fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target while preserving skin elasticity. Features sweet Café Bustelo con Leche with fat-free milk, a homemade recaito-style egg scramble, Pollo al Horno for lunch, Arroz con Kielbasa (Turkey Kielbasa) for dinner, and a weekly Goya Tostones reward treat! All groceries validated and priced specifically for Auburn Maine Walmart Supercenter ($50 regular budget target). Follow this exact daily checklist to maintain 100% ingredient parity across your weekly batch prep!
     </div>
 
-    <h2>🔥 Daily Meal Blueprint & Cooking Instructions</h2>
-
+    <h2>📋 Daily Meal Timeline & Recipes</h2>
     
     <div class="meal-card">
       <div class="meal-header">
-        <div class="meal-title">Pre-Workout Fuel: Café Bustelo Espresso con Leche & Fresh Banana</div>
-        <div class="meal-time">8:00 AM (Pre-Workout Ignition)</div>
+        <div class="meal-title">🍽️ Pre-Workout Fuel: Sweet Café Bustelo con Leche (small spoon of sugar, optional) & 1 Medium Banana & Fresh Banana</div>
+        <div class="meal-time">🕒 8:00 AM (Pre-Workout)</div>
       </div>
-      <div class="meal-macros">Calories: 200 kcal | Protein: 7g | Carbs: 36g | Fat: 3.5g</div>
+      <div class="meal-macros">
+        🔥 Calories: 250 kcal | 💪 Protein: 7g | 🥖 Carbs: 36g | 🥑 Fat: 3.5g
+      </div>
       <ul class="ingredients">
-        <li><strong>1 Pre-Workout Café Bustelo con Leche:</strong> Brew 1 tbsp Café Bustelo Espresso Ground Coffee strong and whisk with 3/4 cup warm or iced Great Value 2% Reduced Fat Milk (optional: add 1 zero-cal sweetener packet for an authentic sweet Cortadito taste). Provides clean, robust caffeine focus right before your workout & cardio run!</li>
-        <li><strong>1 Medium Fresh Banana:</strong> Peel and eat immediately right before training for rapid-absorbing pre-workout carbohydrates & essential potassium!</li>
+        <li>• 1 Pre-Workout Sweet Café Bustelo con Leche (small spoon of sugar, optional) & 1 Medium Banana: Brew fresh and whisk with warm or iced Great Value 2% Milk (optional: add 1 zero-cal sweetener packet). Provides clean caffeine focus right before your morning workout & cardio run! (145 kcal, 6g p, 9g c, 3.5g f)</li>
+        <li>• 1 Medium Fresh Banana: Peel and eat immediately right before training for rapid-absorbing pre-workout carbohydrates & potassium! (105 kcal, 1g p, 27g c)</li>
       </ul>
-      <div class="cooking-box">
-        <strong>👨‍🍳 Prep & Serving Instructions:</strong>
-        Brew 1 tbsp Café Bustelo espresso with hot water, pour over ice or keep warm, and whisk with 3/4 cup milk. Eat banana alongside coffee exactly at 8:00 AM before starting your workout!
-      </div>
     </div>
-
+    
     <div class="meal-card">
       <div class="meal-header">
-        <div class="meal-title">Post-Workout Breakfast: Puerto Rican Sofrito & Scallion Egg Scramble + Arroz con Gandules</div>
-        <div class="meal-time">10:30 AM – 11:00 AM (Post-Workout)</div>
+        <div class="meal-title">🍽️ Post-Workout Breakfast: Puerto Rican Homemade Seasoning Egg Scramble + Arroz con Gandules</div>
+        <div class="meal-time">🕒 10:30 AM – 11:00 AM (Post-Workout)</div>
       </div>
-      <div class="meal-macros">Calories: 530 kcal | Protein: 36g | Carbs: 44g | Fat: 15g</div>
+      <div class="meal-macros">
+        🔥 Calories: 590 kcal | 💪 Protein: 49g | 🥖 Carbs: 44g | 🥑 Fat: 15g
+      </div>
       <ul class="ingredients">
-        <li><strong>3 Large Grade A White Eggs + 1/2 cup (4 oz) Liquid Egg Whites:</strong> Scrambled in Great Value 0-Cal Cooking Spray. Sauté 1 tbsp Goya Sofrito and chopped fresh scallions/cilantro for 1 minute until fragrant. Whisk 3 whole eggs plus 1/2 cup liquid egg whites with 1/4 tsp Goya Adobo. Pour in skillet and gently fold with spatula over medium heat until fluffy and golden!</li>
-        <li><strong>1 cup cooked Arroz con Gandules (Puerto Rican Rice & Pigeon Peas):</strong> Simmered with Goya Sofrito, Sazón, and Green Pigeon Peas for authentic aromatic flavor and post-workout glycogen replenishment.</li>
+        <li>• 3 Large White Eggs + 1 cup (8 oz) Liquid Egg Whites scrambled with 1 tbsp homemade sofrito-style blend, 1 tbsp homemade recaito-style blend, and chopped scallions/cilantro. (390 kcal, 44g p, 15g f)</li>
+        <li>• 1 cup cooked Arroz con Gandules (Puerto Rican Rice & Pigeon Peas) (reheated warm to replenish post-workout glycogen!). (29 kcal, 5g p, 44g c)</li>
+        <li>• 1 fresh cup of black Sweet or water (0 kcal, post-workout hydration & metabolic support)</li>
       </ul>
-      <div class="cooking-box">
-        <strong>👨‍🍳 Prep & Serving Instructions:</strong>
-        Spray non-stick skillet with 0-cal canola spray over medium heat. Sauté 1 tbsp Sofrito and chopped scallions. Whisk 3 whole eggs and 1/2 cup liquid egg whites with 1/4 tsp Adobo. Scramble for 3-4 minutes until fluffy. Serve alongside 1 cup warm Arroz con Gandules and black coffee or water!
-      </div>
     </div>
-
+    
     <div class="meal-card">
       <div class="meal-header">
-        <div class="meal-title">Lunch: Crispy Puerto Rican Pollo al Horno + Arroz con Gandules & Steamed Broccoli</div>
-        <div class="meal-time">2:00 PM – 2:30 PM (Mid-Day Replenishment)</div>
+        <div class="meal-title">🍽️ Lunch: Crispy Puerto Rican Pollo al Horno + Arroz con Gandules (Puerto Rican Rice & Pigeon Peas) & Steamed Broccoli</div>
+        <div class="meal-time">🕒 2:00 PM – 2:30 PM</div>
       </div>
-      <div class="meal-macros">Calories: 440 kcal | Protein: 47g | Carbs: 50g | Fat: 2g</div>
+      <div class="meal-macros">
+        🔥 Calories: 515 kcal | 💪 Protein: 64g | 🥖 Carbs: 50g | 🥑 Fat: 3g
+      </div>
       <ul class="ingredients">
-        <li><strong>~5.7 oz Fresh Chicken Breast cubes prepared Crispy Pollo al Horno:</strong> Cut chicken breast into bite-sized 1-inch cubes, dip lightly in whisked egg whites, and toss with 1 tsp Argo Corn Starch, 1/2 tsp Goya Adobo, 1/4 packet Goya Sazón, and Garlic Powder. Baked at 400°F (or pan seared) for 10–12 minutes until super crispy outside and juicy inside!</li>
-        <li><strong>1 cup cooked Arroz con Gandules:</strong> Reheated warm and fluffy from Monday batch prep.</li>
-        <li><strong>1 cup steamed Great Value Frozen Broccoli florets:</strong> High-volume fiber and micronutrients seasoned with a pinch of Adobo.</li>
+        <li>• ~8 oz Fresh Chicken Breast cubes coated with Goya Adobo, Sazón & Garlic Powder, air-fried or baked at 400°F. (285 kcal, 57g p, 3g f)</li>
+        <li>• 1 cup cooked Arroz con Gandules (simmered with Sofrito, Sazón, White Rice, and Goya Green Pigeon Peas). (200 kcal, 5g p, 44g c)</li>
+        <li>• 1 cup steamed Great Value Frozen Broccoli florets seasoned with a pinch of garlic powder or national herb seasoning. (30 kcal, 2g p, 6g c)</li>
       </ul>
-      <div class="cooking-box">
-        <strong>👨‍🍳 Prep & Serving Instructions:</strong>
-        Take 1 cutting meal prep container from fridge/freezer, pop in microwave for 90 seconds with a splash of water over the rice to keep it fluffy. Enjoy with fresh chopped cilantro garnish!
-      </div>
     </div>
-
+    
     <div class="meal-card">
       <div class="meal-header">
-        <div class="meal-title">Afternoon Snack: High-Protein Casein Greek Yogurt Bowl</div>
-        <div class="meal-time">5:30 PM (Afternoon Protein Bridge)</div>
+        <div class="meal-title">🍽️ Afternoon Snack: High-Protein Casein Greek Yogurt Power Bowl</div>
+        <div class="meal-time">🕒 5:30 PM</div>
       </div>
-      <div class="meal-macros">Calories: 120 kcal | Protein: 21g | Carbs: 8g | Fat: 0g</div>
+      <div class="meal-macros">
+        🔥 Calories: 120 kcal | 💪 Protein: 21g | 🥖 Carbs: 8g | 🥑 Fat: 0g
+      </div>
       <ul class="ingredients">
-        <li><strong>1 cup (8 oz) Plain Nonfat Greek Yogurt:</strong> Thick, slow-release casein protein pudding.</li>
-        <li><strong>1 Packet Zero-Calorie Sweetener + Dash of Cinnamon/Vanilla:</strong> Adds sweet dessert flavor without added sugar calories.</li>
+        <li>• 1 cup (8 oz) Plain Nonfat Greek Yogurt. Stir until creamy and velvety. Slow-release casein keeps muscles fueled between training and running sessions! (120 kcal, 21g p, 8g c)</li>
       </ul>
-      <div class="cooking-box">
-        <strong>👨‍🍳 Prep & Serving Instructions:</strong>
-        Scoop 1 cup of Greek yogurt into a bowl, stir in 1 zero-calorie sweetener packet and a dash of cinnamon or vanilla until smooth and velvety. Keeps hunger at bay and supports lean muscle preservation!
-      </div>
     </div>
-
+    
     <div class="meal-card">
       <div class="meal-header">
-        <div class="meal-title">Dinner: Puerto Rican Arroz con Kielbasa (Turkey) & Steamed Broccoli</div>
-        <div class="meal-time">7:30 PM – 8:00 PM (Evening Muscle Recovery)</div>
+        <div class="meal-title">🍽️ Dinner: Puerto Rican Arroz con Kielbasa (Turkey) & Steamed Broccoli</div>
+        <div class="meal-time">🕒 7:30 PM – 8:00 PM</div>
       </div>
-      <div class="meal-macros">Calories: 500 kcal | Protein: 28g | Carbs: 59g | Fat: 15g</div>
+      <div class="meal-macros">
+        🔥 Calories: 500 kcal | 💪 Protein: 28g | 🥖 Carbs: 59g | 🥑 Fat: 15g
+      </div>
       <ul class="ingredients">
-        <li><strong>~6 oz Hillshire Farm Turkey Kielbasa:</strong> Pan-seared with 1 tbsp Goya Recaito and 1 tbsp Sofrito for a simple Puerto Rican dinner.</li>
-        <li><strong>1 cup cooked Arroz con Gandules:</strong> Reheated warm from batch prep for steady carbs and flavor.</li>
-        <li><strong>1 cup steamed Great Value Frozen Broccoli florets:</strong> High fiber, seasoned lightly with Adobo.</li>
+        <li>• ~6 oz Hillshire Farm Turkey Kielbasa pan-seared with 1 tbsp homemade recaito-style blend & 1 tbsp homemade sofrito-style blend. Protects skin elasticity with high protein! (270 kcal, 21g p, 15g f, 9g c)</li>
+        <li>• 1 cup cooked Arroz con Gandules (simmered with Sofrito, Sazón, White Rice, and Goya Green Pigeon Peas). (200 kcal, 5g p, 44g c)</li>
+        <li>• 1 cup steamed Great Value Frozen Broccoli florets. (30 kcal, 2g p, 6g c)</li>
       </ul>
-      <div class="cooking-box">
-        <strong>👨‍🍳 Prep & Serving Instructions:</strong>
-        Pan-sear the turkey kielbasa with Recaito and Sofrito until browned, then pair with reheated arroz con gandules and steamed broccoli for a clean evening meal.
-      </div>
     </div>
-
+    
     <div class="meal-card">
       <div class="meal-header">
-        <div class="meal-title">Nighttime Recovery: Casein Greek Yogurt Fluff</div>
-        <div class="meal-time">10:30 PM (Overnight Muscle Protection)</div>
+        <div class="meal-title">🍽️ Nighttime Recovery: Casein Greek Yogurt Fluff</div>
+        <div class="meal-time">🕒 10:30 PM</div>
       </div>
-      <div class="meal-macros">Calories: 90 kcal | Protein: 16g | Carbs: 6g | Fat: 0g</div>
+      <div class="meal-macros">
+        🔥 Calories: 90 kcal | 💪 Protein: 16g | 🥖 Carbs: 6g | 🥑 Fat: 0g
+      </div>
       <ul class="ingredients">
-        <li><strong>3/4 cup (6 oz) Plain Nonfat Greek Yogurt:</strong> Pure slow-release casein protein that feeds muscle recovery for 7-8 hours while sleeping.</li>
-        <li><strong>1 Great Value Zero Calorie Sweetener Packet:</strong> Whisked in for airy dessert fluff consistency.</li>
+        <li>• 3/4 cup (6 oz) Plain Nonfat Greek Yogurt whisked until airy and fluffy. Provides essential overnight amino acids to rebuild muscle fiber while you sleep. (90 kcal, 16g p, 6g c)</li>
       </ul>
-      <div class="cooking-box">
-        <strong>👨‍🍳 Prep & Serving Instructions:</strong>
-        Whisk 6 oz of Greek yogurt with a packet of sweetener in a bowl until light and fluffy. Eat right before bed to guarantee positive nitrogen balance and zero muscle breakdown overnight!
-      </div>
     </div>
-
-    <!-- Weekly Reward Treat Card -->
-    <div class="weekly-treat-card">
-      <div class="weekly-treat-title">🇵🇷 S-Rank Weekly Reward Treat: Goya Tostones (Crispy Green Plantains) & Garlic Pollo</div>
-      <p style="color: #cbd5e1; font-size: 14px; margin-top: 0; margin-bottom: 12px;">
-        Every Friday or Saturday evening, swap out your regular dinner for <strong>3 Goya Frozen Tostones (Crispy Fried Green Plantains, 84g) topped with 4 oz of Crispy Pollo al Horno and garlic sofrito!</strong>
-      </p>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #ffd700; background: rgba(0,0,0,0.4); padding: 10px 14px; border-radius: 8px; margin-bottom: 12px;">
-        Macros: 360 kcal | 28g Protein | 32g Carbs | 10g Fat
-      </div>
-      <div style="font-size: 13px; color: #e2e8f0;">
-        <strong>👨‍🍳 Treat Preparation Tip:</strong> Bake or air-fry 3 Goya Tostones at 400°F for 12 minutes until golden crisp. Serve topped with garlic chicken and a squeeze of fresh lime or sofrito! A deeply satisfying authentic Puerto Rican reward that keeps your adherence at 100% without breaking your weekly budget!
-      </div>
-    </div>
-
-    <!-- Master Meal Prep Tutorial -->
-    <h2>📦 Master Step-by-Step Meal Prep & Batch Cooking Tutorial</h2>
-    <div class="meal-card" style="border-color: rgba(0, 240, 255, 0.5);">
+    
+    <div class="meal-card">
       <div class="meal-header">
-        <div class="meal-title" style="color: var(--primary);">👨‍🍳 Monday Batch Prep Directive (How to Prep, Cook, Portion & Store)</div>
-        <div class="meal-time">Total Time: ~45 Minutes</div>
+        <div class="meal-title">🍽️ Weekly Reward Treat Meal: Goya Tostones (Crispy Fried Green Plantains) & Garlic Pollo</div>
+        <div class="meal-time">🕒 Friday or Saturday Evening (Weekly Reward)</div>
       </div>
-      <p style="font-size: 13.5px; color: #cbd5e1; margin-top: 5px; margin-bottom: 15px;">
-        Follow this systematic Monday workflow right after your grocery run so that from Tuesday through the following Monday, all your meals take under 90 seconds to serve!
-      </p>
-      <ul class="ingredients" style="list-style-type: decimal; padding-left: 24px;">
-        <li style="margin-bottom: 12px;"><strong>Step 1: Arroz con Gandules & Broccoli Batch Prep:</strong> Rinse white rice until clear. In a large pot or saucepan, sauté 2 tbsp Goya Sofrito and 1 packet Goya Sazón with 0-cal canola oil spray. Add dry rice, 1 can Goya Green Pigeon Peas (or 2 cans for bulking), 1/2 tsp Adobo, and water (2:1 water to rice ratio). Bring to boil, cover tightly, and simmer low for 18 minutes until tender and aromatic! Simultaneously, steam both 4 lb bags of frozen broccoli florets until crisp-tender (~6 minutes). Drain well so broccoli isn't watery.</li>
-        <li style="margin-bottom: 12px;"><strong>Step 2: Crispy Puerto Rican Pollo al Horno:</strong> Trim excess fat from your ~5.0 lb family pack of chicken breasts and cut into uniform 1-inch bite-sized cubes. Dip cubes lightly in whisked Great Value Liquid Egg Whites and toss in a large bowl with 1 tsp Argo Corn Starch, 1/2 tsp Goya Adobo, 1/4 packet Goya Sazón, and Garlic Powder. Spray baking sheet or non-stick skillet generously with Canola Oil Cooking Spray. Bake at 400°F (or pan crisp sear) for 10–12 minutes until super crispy and crunchy outside and cooked through (165°F internal)! Toss with chopped fresh cilantro or scallions.</li>
-        <li style="margin-bottom: 12px;"><strong>Step 3: Portioning Into Containers:</strong> Set out 14 BPA-free meal prep containers (7 for Lunch, 7 for Dinner). For lunch, portion ~5.7 oz of Crispy Pollo al Horno with 1 cup of cooked Arroz con Gandules (or 2 cups for bulking) and 1 cup of steamed broccoli. For dinner, portion the Puerto Rican Arroz con Kielbasa meal with the same rice and broccoli to keep prep simple and consistent. Seal with airtight lids.</li>
-        <li style="margin-bottom: 6px;"><strong>Step 4: Fridge & Freezer Storage Rules:</strong> Store Containers 1 through 6 (first 3 days of lunches and dinners) directly in your refrigerator. Place Containers 7 through 14 in the freezer to keep the chicken completely fresh and juicy. On Thursday evening, move the remaining containers from the freezer to the fridge to thaw overnight for the rest of your week!</li>
+      <div class="meal-macros">
+        🔥 Calories: 360 kcal | 💪 Protein: 28g | 🥖 Carbs: 32g | 🥑 Fat: 10g
+      </div>
+      <ul class="ingredients">
+        <li>• 3 Goya Frozen Tostones (84g) air-fried at 400°F for 12 minutes topped with 4 oz Crispy Pollo al Horno and a squeeze of lime! (360 kcal, 28g p, 32g c, 10g f)</li>
       </ul>
     </div>
 
-    <h2>🛒 Section 1: Weekly Consumables Grocery List ($51.74/wk ($50 Regular Budget))</h2>
+    <h2>🛒 Section 1: Weekly Core Replenishment List ($63.52 Weekly Consumables / $21.78 Periodic Restock ($85.30 Combined Total))</h2>
     <p style="font-size: 13px; color: var(--muted); margin-top: -10px; margin-bottom: 20px;">
-      Verified items and prices from <strong>Walmart Supercenter (100 Mount Auburn Ave, Auburn, ME 04210)</strong>. These are your weekly regular grocery run essentials that guarantee exact protein, carbs, and micronutrients for your 7-day cycle!
+      Pick up these core fresh proteins, eggs, dairy, and produce items every Monday at Auburn Maine Walmart Supercenter.
     </p>
 
     <div class="grocery-grid">
@@ -543,17 +486,8 @@
         <div class="checkbox"></div>
         <div>
           <div class="item-name">Fresh Chicken Breasts (ONE Great Value ~5.0 lb Family Pack / 80 oz raw)</div>
-          <div class="item-price">$13.40 (~5.0 lb family pack at $2.68/lb)</div>
-          <div class="item-note">One Great Value ~5.0 lb (80 oz raw) family pack from Auburn Walmart! Provides 11.4 oz raw chicken per day for 7 full days of Lunch (5.7 oz/day) and Dinner (5.7 oz/day) for Crispy Pollo al Horno!</div>
-        </div>
-      </div>
-      
-      <div class="grocery-item">
-        <div class="checkbox"></div>
-        <div>
-          <div class="item-name">Great Value Plain Nonfat Greek Yogurt (FOUR 32 oz tubs / 128 oz / 1 Gallon total)</div>
-          <div class="item-price">$15.92 (FOUR 32 oz tubs at $3.98 ea)</div>
-          <div class="item-note">FOUR tubs (128 oz / 1 full Gallon / 16 cups total) guaranteed for Phase 1 Cutting! Provides 100% enough Greek Yogurt for 7 full days of Afternoon bowls AND Nighttime Fluff without running out!</div>
+          <div class="item-price">$11.98 (~5.0 lb family pack at $2.40/lb)</div>
+          <div class="item-note">One Great Value ~5.0 lb (80 oz raw) family pack from Auburn Walmart! Guaranteed to provide 11.4 oz raw chicken per day for 7 full days of Lunch (5.7 oz/day) and Dinner (5.7 oz/day) hitting 175g+ daily high-value protein across all 19 national cuisines!</div>
         </div>
       </div>
       
@@ -561,53 +495,17 @@
         <div class="checkbox"></div>
         <div>
           <div class="item-name">Great Value Large Grade A White Eggs (36 Count Tray / Two 18 ct Cartons)</div>
-          <div class="item-price">$6.84 (36 count tray / 2 cartons)</div>
-          <div class="item-note">36 eggs guaranteed! Provides 3 whole eggs every morning across all 7 days (21 eggs) plus 15 bonus eggs for extra snacks or meal prep buffer.</div>
+          <div class="item-price">$5.98 (36 count tray / 2 cartons)</div>
+          <div class="item-note">36 eggs guaranteed! Provides 3 to 5 eggs every morning across all 7 days for your post-workout national egg scrambles plus extra meal prep eggs.</div>
         </div>
       </div>
       
       <div class="grocery-item">
         <div class="checkbox"></div>
         <div>
-          <div class="item-name">Great Value Frozen Broccoli Florets (TWO 4 lb bags / 8 lbs / 128 oz total)</div>
-          <div class="item-price">$4.64 (TWO 4 lb bags at $2.32 ea)</div>
-          <div class="item-note">Two massive 4 lb bags (8 lbs / ~32 cups total) guaranteed! Steamed micronutrients and fiber for 7 full days of Lunch and Dinner bowls.</div>
-        </div>
-      </div>
-      
-      <div class="grocery-item">
-        <div class="checkbox"></div>
-        <div>
-          <div class="item-name">Great Value 100% Liquid Egg Whites (32 oz carton)</div>
-          <div class="item-price">$3.48 (32 oz carton ~20 servings)</div>
-          <div class="item-note">Pure protein booster for Phase 1 Cutting! Mix 1/2 cup into morning scrambles to add 13g clean protein, and use as protein egg wash binder for crispy Pollo al Horno.</div>
-        </div>
-      </div>
-      
-      <div class="grocery-item">
-        <div class="checkbox"></div>
-        <div>
-          <div class="item-name">Great Value 2% Reduced Fat Milk (64 fl oz carton / 1/2 Gallon)</div>
-          <div class="item-price">$1.68 (64 fl oz carton)</div>
-          <div class="item-note">Creamy milk whisked with Café Bustelo espresso every morning at 8:00 AM for your authentic pre-workout Cortadito con Leche focus and energy!</div>
-        </div>
-      </div>
-      
-      <div class="grocery-item">
-        <div class="checkbox"></div>
-        <div>
-          <div class="item-name">Goya Green Pigeon Peas (Gandules Verdes) (15 oz can)</div>
-          <div class="item-price">$1.58 (15 oz can)</div>
-          <div class="item-note">The iconic Puerto Rican legume staple! Simmered with white rice, sofrito, and sazón to make authentic, aromatic Arroz con Gandules.</div>
-        </div>
-      </div>
-      
-      <div class="grocery-item">
-        <div class="checkbox"></div>
-        <div>
-          <div class="item-name">Fresh Green Onions / Scallions / Cilantro (Two Bunches)</div>
-          <div class="item-price">$1.56 (Two bunches at $0.78 ea)</div>
-          <div class="item-note">Fresh aromatic scallions and cilantro for sautéing into morning Sofrito egg scrambles and garnishing Pollo al Horno bowls.</div>
+          <div class="item-name">Great Value Plain Nonfat Greek Yogurt (FOUR 32 oz tubs / 128 oz / 1 Gallon total)</div>
+          <div class="item-price">$13.98 (FOUR 32 oz tubs / 128 oz total)</div>
+          <div class="item-note">FOUR tubs (128 oz / 1 full Gallon / 16 cups total) guaranteed for Phase 1 Cutting across all 19 countries! Provides 100% enough Greek Yogurt for 7 full days of Afternoon casein power bowls AND Nighttime Casein Fluff without running out!</div>
         </div>
       </div>
       
@@ -615,8 +513,17 @@
         <div class="checkbox"></div>
         <div>
           <div class="item-name">Great Value Long Grain White Rice (2 lb bag)</div>
-          <div class="item-price">$1.48 (2 lb bag ~20 servings)</div>
-          <div class="item-note">Clean fast-digesting carbohydrates for Phase 1 Cutting Arroz con Gandules to replenish glycogen after your daily workout.</div>
+          <div class="item-price">$1.28 (2 lb bag ~20 servings)</div>
+          <div class="item-note">Clean fast-digesting carbohydrates for Phase 1 Cutting national rice dishes across all 19 cuisines.</div>
+        </div>
+      </div>
+      
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Frozen Broccoli Florets (TWO 4 lb bags / 8 lbs / 128 oz total)</div>
+          <div class="item-price">$4.18 (TWO 4 lb bags at $2.09 ea)</div>
+          <div class="item-note">Two massive 4 lb bags (8 lbs / ~32 cups total) guaranteed! Steamed micronutrients and fiber for 7 full days of national chicken bowls across all 19 cuisines.</div>
         </div>
       </div>
       
@@ -624,15 +531,60 @@
         <div class="checkbox"></div>
         <div>
           <div class="item-name">Fresh Bananas (~2 lb bunch / ~6-7 bananas)</div>
-          <div class="item-price">$1.16 (~2 lb bunch / ~6 bananas)</div>
-          <div class="item-note">Quick potassium and clean pre-workout carbohydrates eaten at 8:00 AM right alongside your morning Café Bustelo before training.</div>
+          <div class="item-price">$0.98 (~2 lb bunch at $0.49/lb)</div>
+          <div class="item-note">Quick potassium and pre-workout carbohydrates to pair with your 8:00 AM morning national coffee or tea!</div>
+        </div>
+      </div>
+      
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Fresh Green Onions / Scallions / Cilantro (Two Bunches)</div>
+          <div class="item-price">$1.28 (Two bunches at $0.64 ea)</div>
+          <div class="item-note">Fresh green aromatics essential for sautéing morning national scrambles and garnishing lunch/dinner bowls.</div>
+        </div>
+      </div>
+      
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value 100% Liquid Egg Whites (32 oz carton)</div>
+          <div class="item-price">$2.98 (32 oz carton)</div>
+          <div class="item-note">Pure fat-free protein booster for morning scrambles and egg wash binder across Phase 1 Cutting plans.</div>
+        </div>
+      </div>
+      
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Goya Green Pigeon Peas (Gandules Verdes) (THREE 15 oz cans)</div>
+          <div class="item-price">$3.98 (Three 15 oz cans at $1.33 ea)</div>
+          <div class="item-note">Three cans of pigeon peas provides enough for a full 7-day batch prep of authentic Arroz con Gandules for your lunches and dinners.</div>
+        </div>
+      </div>
+      
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Hillshire Farm Turkey Kielbasa Smoked Sausage (THREE 13.5 oz packs)</div>
+          <div class="item-price">$11.22 (Three packs at $3.74 ea)</div>
+          <div class="item-note">FOUR packs ensures you have ~6 oz of lean Turkey Kielbasa every single night for a full week. High protein and low fat to protect your skin elasticity and muscle while cutting to 160 lbs.</div>
+        </div>
+      </div>
+      
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Fat-Free Milk (1 Gallon)</div>
+          <div class="item-price">$3.48 (1 gallon)</div>
+          <div class="item-note">Cost-effective, fresh Fat-Free milk for your morning Café con Leche. Keeps calories low while adding creamy texture.</div>
         </div>
       </div>
     </div>
 
-    <h2>🧂 Section 2: Periodic Monday Pantry & Restock List ($24.60 ($25 Restock Target Range))</h2>
+    <h2>🧂 Section 2: Periodic Monday Pantry & Restock List (~$25.00 Periodic Restock Range)</h2>
     <p style="font-size: 13px; color: var(--muted); margin-top: -10px; margin-bottom: 20px;">
-      These items last between 2 to 6 weeks depending on usage. Check your kitchen pantry every Sunday and only pick up what is low during your Auburn Walmart Monday trip!
+      These shelf-stable spices, coffee, cooking sprays, and reward treats last multiple weeks. Check your kitchen pantry every Sunday and only pick up what is low during your Auburn Walmart trip!
     </p>
 
     <div class="grocery-grid">
@@ -640,81 +592,72 @@
       <div class="grocery-item">
         <div class="checkbox"></div>
         <div>
-          <div class="item-name">Café Bustelo Espresso Ground Coffee (10 oz vacuum-packed brick)</div>
-          <div class="item-price">$4.88 (10 oz brick ~35 servings)</div>
-          <div class="item-note">Authentic dark roast espresso coffee stocked at Auburn Maine Walmart! Brewed fresh every morning at 8:00 AM for clean, jitter-free pre-workout energy!</div>
+          <div class="item-name">Café Bustelo Espresso Dark Roast Ground Coffee (10-12 oz canister)</div>
+          <div class="item-price">$6.98 (canister)</div>
+          <div class="item-note">Authentic Puerto Rican espresso focus brewed strong right before your 8:00 AM workout! (Periodic restock item).</div>
         </div>
       </div>
       
       <div class="grocery-item">
         <div class="checkbox"></div>
         <div>
-          <div class="item-name">Goya Frozen Tostones (Crispy Fried Green Plantains, 16 oz bag)</div>
-          <div class="item-price">$3.48 (16 oz bag ~15 tostones)</div>
-          <div class="item-note">Your once-a-week authentic Puerto Rican reward treat meal! Bake or air-fry until golden crisp on Friday or Saturday evening paired with garlic Pollo al Horno.</div>
+          <div class="item-name">Great Value Pure Granulated Sugar (4 lb bag)</div>
+          <div class="item-price">$2.48 (4 lb bag)</div>
+          <div class="item-note">Cheaper periodic restock sweetener for your coffee and yogurt; use only a small spoonful for a smooth Puerto Rican café flavor.</div>
         </div>
       </div>
       
       <div class="grocery-item">
         <div class="checkbox"></div>
         <div>
-          <div class="item-name">Goya Sazón con Culantro y Achiote (3.52 oz box / 20 packets)</div>
-          <div class="item-price">$3.48 (20 packets)</div>
-          <div class="item-note">Gives Arroz con Gandules and Pollo al Horno their vibrant orange-red color, rich culantro aroma, and authentic Puerto Rican flavor.</div>
+          <div class="item-name">Homemade Recaito-Style Batch Ingredients (Yellow Onions & Fresh Garlic)</div>
+          <div class="item-price">$3.48 (Periodic batch prep ingredients)</div>
+          <div class="item-note">Blend cilantro, garlic, onion, and oregano from your standard pantry to make a Puerto Rican-style seasoning that avoids the unavailable Goya jar (Periodic restock).</div>
         </div>
       </div>
       
       <div class="grocery-item">
         <div class="checkbox"></div>
         <div>
-          <div class="item-name">Goya Sofrito Cooking Base (12 oz jar)</div>
-          <div class="item-price">$3.28 (12 oz jar)</div>
-          <div class="item-note">Authentic green sofrito base made with green peppers, onions, garlic, and culantro. Essential for sautéing Arroz con Gandules and morning egg scrambles.</div>
+          <div class="item-name">Homemade Sofrito-Style Batch Spices (Great Value Oregano & Paprika)</div>
+          <div class="item-price">$2.36 (Periodic restock: $1.18 ea)</div>
+          <div class="item-note">Mix garlic, onion, cilantro, oregano, and paprika from your pantry to create a Puerto Rican-style sofrito flavor without buying the unavailable jarred base (Periodic restock item).</div>
         </div>
       </div>
       
       <div class="grocery-item">
         <div class="checkbox"></div>
         <div>
-          <div class="item-name">Great Value 0-Calorie Canola Oil Cooking Spray (8 oz aerosol can)</div>
-          <div class="item-price">$2.24 (8 oz can ~800 sprays)</div>
-          <div class="item-note">Zero-calorie non-stick cooking spray for pan/oven crispy Pollo al Horno and scrambling eggs without adding hidden liquid oil calories.</div>
+          <div class="item-name">Goya Frozen Tostones (Plátanos Fritos) (16 oz box / Weekly Reward Treat)</div>
+          <div class="item-price">$3.48 (16 oz box)</div>
+          <div class="item-note">Your once-a-week Puerto Rican reward treat! Golden crispy tostones to pair with your weekend Pollo al Horno.</div>
         </div>
       </div>
       
       <div class="grocery-item">
         <div class="checkbox"></div>
         <div>
-          <div class="item-name">Goya Adobo All-Purpose Seasoning with Pepper (8 oz shaker)</div>
-          <div class="item-price">$2.18 (8 oz shaker)</div>
-          <div class="item-note">The #1 Puerto Rican base seasoning! Essential blend of garlic, oregano, and black pepper for seasoning Pollo al Horno, eggs, and veggies.</div>
-        </div>
-      </div>
-      
-      <div class="grocery-item">
-        <div class="checkbox"></div>
-        <div>
-          <div class="item-name">Great Value Zero Calorie Sweetener Packets (100 Count Box)</div>
-          <div class="item-price">$2.18 (100 packets)</div>
-          <div class="item-note">Sweetens your morning Café Bustelo Cortadito and afternoon Greek yogurt bowls with zero added sugar calories.</div>
-        </div>
-      </div>
-      
-      <div class="grocery-item">
-        <div class="checkbox"></div>
-        <div>
-          <div class="item-name">Argo 100% Pure Corn Starch (16 oz box)</div>
+          <div class="item-name">Argo 100% Pure Corn Starch / Cooking Coating (16 oz box)</div>
           <div class="item-price">$1.78 (16 oz box)</div>
-          <div class="item-note">Essential coating ingredient mixed with Adobo and garlic powder for getting Pollo al Horno super crispy and golden in the oven or pan.</div>
+          <div class="item-note">Essential coating ingredient mixed with national seasonings for getting chicken breast cubes super crispy and golden in the oven or pan (Periodic restock item).</div>
         </div>
       </div>
       
       <div class="grocery-item">
         <div class="checkbox"></div>
         <div>
-          <div class="item-name">Great Value Garlic Powder (3.4 oz bottle)</div>
+          <div class="item-name">Great Value Canola Oil / Olive Oil 0-Calorie Cooking Spray (8 oz can)</div>
+          <div class="item-price">$2.24 (8 oz aerosol can)</div>
+          <div class="item-note">Zero-calorie non-stick cooking spray for pan/oven crispy chicken and scrambling eggs without adding hidden liquid oil calories (Periodic restock item).</div>
+        </div>
+      </div>
+      
+      <div class="grocery-item">
+        <div class="checkbox"></div>
+        <div>
+          <div class="item-name">Great Value Garlic Powder / Herb Seasoning (3.4 oz bottle)</div>
           <div class="item-price">$1.18 (3.4 oz bottle)</div>
-          <div class="item-note">Essential savory garlic seasoning used for searing chicken breast cubes and broccoli.</div>
+          <div class="item-note">Essential savory garlic/herb seasoning used for searing chicken breast cubes and broccoli across all cuisines (Periodic restock item).</div>
         </div>
       </div>
     </div>
@@ -722,9 +665,18 @@
     <div class="footer">
       <strong>BETTER LEVELING V2 - S-RANK HUNTER SYSTEM</strong><br>
       Created for Hunter Nick Crosson (ncrossonofficial06@gmail.com)<br>
-      Target Weight: 160 LBS by Dec 31, 2027 • Puerto Rican Nutrition Directive
+      Target Weight: 160 LBS • Puerto Rico National Cuisine Directive
     </div>
   </div>
 
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash === '#print' || window.location.search.includes('print=true')) {
+        setTimeout(() => {
+          window.print();
+        }, 400);
+      }
+    });
+  </script>
 </body>
 </html>

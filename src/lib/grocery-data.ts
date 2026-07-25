@@ -1834,7 +1834,7 @@ const createMeals = (
     name: "Afternoon Snack: High-Protein Casein Greek Yogurt Power Bowl",
     time: "5:30 PM",
     ingredients: [
-      `1 cup (8 oz) Plain Nonfat Greek Yogurt. Stir in 1 zero-calorie sweetener packet and a pinch of cinnamon or vanilla until creamy and velvety. Slow-release casein keeps muscles fueled between training and running sessions! (${snackYogurtCalories} kcal, ${snackYogurtProtein}g p, 8g c)`
+      `1 cup (8 oz) Plain Nonfat Greek Yogurt. Stir until creamy and velvety. Slow-release casein keeps muscles fueled between training and running sessions! (${snackYogurtCalories} kcal, ${snackYogurtProtein}g p, 8g c)`
     ],
     calories: snackYogurtCalories,
     protein: snackYogurtProtein,
@@ -1858,7 +1858,7 @@ const createMeals = (
     name: "Nighttime Recovery: Casein Greek Yogurt Fluff",
     time: "10:30 PM",
     ingredients: [
-      "3/4 cup (6 oz) Plain Nonfat Greek Yogurt whisked with 1 Great Value Zero Calorie Sweetener Packet until airy and fluffy. Provides essential overnight amino acids to rebuild muscle fiber while you sleep. (90 kcal, 16g p, 6g c)"
+      "3/4 cup (6 oz) Plain Nonfat Greek Yogurt whisked until airy and fluffy. Provides essential overnight amino acids to rebuild muscle fiber while you sleep. (90 kcal, 16g p, 6g c)"
     ],
     calories: 90,
     protein: 16,
