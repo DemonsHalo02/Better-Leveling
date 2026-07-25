@@ -21,19 +21,19 @@ export interface WorkoutDay {
   exercises: Exercise[];
 }
 
-export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
+export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
-    splitName: "System Restoration / K-Pop Idol Yoga & Deep Stretch (Rest Day)",
+    splitName: "System Restoration / Puerto Rican Yoga & Deep Stretch (Rest Day)",
     isRestDay: true,
-    questTitle: "[Daily Quest] K-Pop Idol Active Recovery & Flexibility Flow",
-    description: "Sunday is your official System Restoration Day! Inspired by K-Pop trainee conditioning and Pilates flexibility routines, focus on gentle mobility flows, deep hamstring/hip stretches, and mindful breathing to prepare your body for Monday's grocery run, Korean meal prep, and Upper Body Push day. Concludes with your daily 45-minute dual cardio session (30-minute brisk walk + 15-minute run/silent march).",
+    questTitle: "[Daily Quest] Puerto Rican Active Recovery & Flexibility Flow",
+    description: "Sunday is your official System Restoration Day! Inspired by Puerto Rican trainee conditioning and Pilates flexibility routines, focus on gentle mobility flows, deep hamstring/hip stretches, and mindful breathing to prepare your body for Monday's grocery run, Puerto Rican meal prep, and Upper Body Push day. Concludes with your daily 45-minute dual cardio session (30-minute brisk walk + 15-minute run/silent march).",
     xpReward: 300,
     exercises: [
       {
         id: "sun-kpop-1",
-        name: "K-Pop Idol Yoga Flow: Cat-Cow to Downward Dog & Child's Pose [15 Minutes]",
+        name: "Puerto Rican Yoga Flow: Cat-Cow to Downward Dog & Child's Pose [15 Minutes]",
         targetGroup: "Full Body",
         sets: 1,
         reps: "15 mins (flow through poses slowly)",
@@ -56,11 +56,11 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "10 mins (4-4-6 rhythmic breath cycle)",
         equipment: "Quiet Space (Home)",
-        coachTip: "Sit cross-legged with spine perfectly tall or lie flat. Breathe deeply through the nose for 4 counts, hold 4 counts, exhale slowly for 6 counts. K-Pop idols use breathwork for mental clarity, stress reduction, and core control."
+        coachTip: "Sit cross-legged with spine perfectly tall or lie flat. Breathe deeply through the nose for 4 counts, hold 4 counts, exhale slowly for 6 counts. Puerto Rican Boricuas use breathwork for mental clarity, stress reduction, and core control."
       },
       {
         id: "sun-kpop-walk",
-        name: "Silent Indoor Marching or Outdoor Walk [45 Minutes Dual Cardio]",
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -72,20 +72,20 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 1, // Monday
     dayName: "Monday",
-    splitName: "K-Pop Upper Body Push Sculpt + Monday Grocery & Korean Meal Prep",
+    splitName: "Puerto Rican Upper Body Push Sculpt + Monday Grocery & Puerto Rican Meal Prep",
     isRestDay: false,
-    questTitle: "[Daily Quest] K-Pop Upper Body Push Sculpt & Korean Meal Prep Monday",
-    description: "Official Monday Grocery Run & Weekly Batch Korean Meal Prep Day + Upper Body Push home workout! Hit Auburn ME Walmart for your weekly Korean Gochujang Chicken grocery staples, batch prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight exercises.",
+    questTitle: "[Daily Quest] Puerto Rican Upper Body Push Sculpt & Puerto Rican Meal Prep Monday",
+    description: "Official Monday Grocery Run & Weekly Batch Puerto Rican Meal Prep Day + Upper Body Push home workout! Hit Auburn ME Walmart for your weekly Puerto Rican Arroz con Kielbasa grocery staples, batch prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight exercises.",
     xpReward: 500,
     exercises: [
       {
         id: "mon-kpop-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Korean Gochujang Batch Meal Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Puerto Rican Gochujang Batch Meal Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Korean Gochujang Chicken & Gyeran-mari Batch Prep (For Tuesday Start)",
+        reps: "Puerto Rican Arroz con Kielbasa & Recaito Scramble Batch Prep (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your Korean Gochujang Chicken weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook chicken breasts with gochujang glaze, jasmine rice, and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
+        coachTip: "Pick up your Puerto Rican Arroz con Kielbasa weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook chicken breasts with gochujang glaze, jasmine rice, and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
       },
       {
         id: "mon-kpop-1",
@@ -134,22 +134,22 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "mon-kpop-walk",
-        name: "Silent Indoor Marching or Outdoor Walk [45 Minutes Dual Cardio]",
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Finish your upper body session with 30 minutes of brisk outdoor walking plus 15 minutes of silent marching in place. Consistent daily cardio ensures clean fat loss while keeping your metabolism elevated!"
+        coachTip: "Finish your upper body session with 30 minutes of brisk outdoor walking plus 15 minutes of rhythmic Salsa/Reggaeton side-stepping. Consistent daily cardio ensures clean fat loss while keeping your metabolism elevated!"
       }
     ]
   },
   {
     dayOfWeek: 2, // Tuesday
     dayName: "Tuesday",
-    splitName: "K-Pop Lower Body Tone & Sculpt - Start Eating Korean Prep!",
+    splitName: "Puerto Rican Lower Body Tone & Sculpt - Start Eating Puerto Rican Prep!",
     isRestDay: false,
-    questTitle: "[Daily Quest] K-Pop Lower Body Sculpt & Start Eating Korean Prep",
-    description: "First day of eating your prepped Korean Gochujang Chicken meals! Build lean, toned legs and a lifted glute profile with silent bodyweight squats, lunges, wall sits, and glute bridges — completely apartment-friendly and zero floor impact.",
+    questTitle: "[Daily Quest] Puerto Rican Lower Body Sculpt & Start Eating Puerto Rican Prep",
+    description: "First day of eating your prepped Puerto Rican Arroz con Kielbasa meals! Build lean, toned legs and a lifted glute profile with silent bodyweight squats, lunges, wall sits, and glute bridges — completely apartment-friendly and zero floor impact.",
     xpReward: 500,
     exercises: [
       {
@@ -199,7 +199,7 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "tue-kpop-walk",
-        name: "Silent Indoor Marching or Outdoor Walk [45 Minutes Dual Cardio]",
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -211,10 +211,10 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 3, // Wednesday
     dayName: "Wednesday",
-    splitName: "K-Pop Core & Waist Carve (Abs, Obliques, Deep Core)",
+    splitName: "Puerto Rican Core & Waist Carve (Abs, Obliques, Deep Core)",
     isRestDay: false,
-    questTitle: "[Daily Quest] K-Pop Core & Waist Carve Session",
-    description: "High-intensity core and waist carving session inspired by K-Pop Pilates training. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
+    questTitle: "[Daily Quest] Puerto Rican Core & Waist Carve Session",
+    description: "High-intensity core and waist carving session inspired by Puerto Rican Pilates training. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
     xpReward: 600,
     exercises: [
       {
@@ -264,7 +264,7 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "wed-kpop-walk",
-        name: "Silent Indoor Marching or Outdoor Walk [45 Minutes Dual Cardio]",
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -276,9 +276,9 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 4, // Thursday
     dayName: "Thursday",
-    splitName: "K-Pop Upper Body Pull & Posture Definition (Back, Shoulders, Arms)",
+    splitName: "Puerto Rican Upper Body Pull & Posture Definition (Back, Shoulders, Arms)",
     isRestDay: false,
-    questTitle: "[Daily Quest] K-Pop Upper Body Pull & Posture Definition",
+    questTitle: "[Daily Quest] Puerto Rican Upper Body Pull & Posture Definition",
     description: "Target upper back posture, shoulder blade stability, and arm definition using bodyweight holds like Superman holds, shoulder taps, and Y-T-W raises — completely silent and equipment-free.",
     xpReward: 500,
     exercises: [
@@ -329,7 +329,7 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "thu-kpop-walk",
-        name: "Silent Indoor Marching or Outdoor Walk [45 Minutes Dual Cardio]",
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -341,9 +341,9 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 5, // Friday
     dayName: "Friday",
-    splitName: "K-Pop Full Body Conditioning & Core Finisher",
+    splitName: "Puerto Rican Full Body Conditioning & Core Finisher",
     isRestDay: false,
-    questTitle: "[Daily Quest] K-Pop Full Body Conditioning & Core Finisher",
+    questTitle: "[Daily Quest] Puerto Rican Full Body Conditioning & Core Finisher",
     description: "High-energy full-body flow combining bodyweight squats, T-rotations, and slow controlled mountain climbers to burn calories, tone muscles, and elevate athletic stamina without jumping or noise.",
     xpReward: 550,
     exercises: [
@@ -394,7 +394,7 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "fri-kpop-walk",
-        name: "Silent Indoor Marching or Outdoor Walk [45 Minutes Dual Cardio]",
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -406,9 +406,9 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 6, // Saturday
     dayName: "Saturday",
-    splitName: "K-Pop Idol Posture & Total Body Isometric Tension Circuit",
+    splitName: "Puerto Rican Posture & Total Body Isometric Tension Circuit",
     isRestDay: false,
-    questTitle: "[Daily Quest] K-Pop Posture & Total Body Isometric Circuit",
+    questTitle: "[Daily Quest] Puerto Rican Posture & Total Body Isometric Circuit",
     description: "Master total body muscular control and endurance with this isometric hold circuit. By holding contractions (wall sits, push-up holds, hollow body holds), you build deep muscle fiber density and poise without heavy lifting.",
     xpReward: 600,
     exercises: [
@@ -459,18 +459,18 @@ export const KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sat-kpop-walk",
-        name: "Silent Indoor Marching or Outdoor Walk [45 Minutes Dual Cardio]",
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Finish out your Saturday with your 30-minute brisk walk and 15-minute conditioning run! You have now conquered 7 complete days of K-Pop Idol training—ready for Sunday active recovery tomorrow!"
+        coachTip: "Finish out your Saturday with your 30-minute brisk walk and 15-minute conditioning run! You have now conquered 7 complete days of Puerto Rican training—ready for Sunday active recovery tomorrow!"
       }
     ]
   }
 ];
 
-export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
+
 
 export const PUERTO_RICAN_PLANET_FITNESS_ROUTINE: WorkoutDay[] = [
   {
@@ -903,12 +903,12 @@ export const PUERTO_RICAN_PLANET_FITNESS_ROUTINE: WorkoutDay[] = [
   }
 ];
 
-export const JAPANESE_HOME_BODYWEIGHT_ROUTINE = KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
-export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE = KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
+export const JAPANESE_HOME_BODYWEIGHT_ROUTINE = PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE;
+export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE = PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE;
 export const PLANET_FITNESS_PPL_ROUTINE = PUERTO_RICAN_PLANET_FITNESS_ROUTINE;
 export const PLANET_FITNESS_LEWISTON_6DAY_ROUTINE = PUERTO_RICAN_PLANET_FITNESS_ROUTINE;
-export const KPOP_HOME_BODYWEIGHT_ROUTINE = KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
-export const JAPANESE_SAMURAI_HOME_BODYWEIGHT_ROUTINE = KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
+export const KPOP_HOME_BODYWEIGHT_ROUTINE = PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE;
+export const JAPANESE_SAMURAI_HOME_BODYWEIGHT_ROUTINE = PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE;
 
 export const getTodayWorkout = (planType: 'home' | 'pf' = 'home'): WorkoutDay => {
   const dayIndex = new Date().getDay();
@@ -918,6 +918,6 @@ export const getTodayWorkout = (planType: 'home' | 'pf' = 'home'): WorkoutDay =>
       planType = savedType;
     }
   }
-  const routine = planType === 'pf' ? PUERTO_RICAN_PLANET_FITNESS_ROUTINE : KPOP_IDOL_HOME_BODYWEIGHT_ROUTINE;
+  const routine = planType === 'pf' ? PUERTO_RICAN_PLANET_FITNESS_ROUTINE : PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE;
   return routine.find(d => d.dayOfWeek === dayIndex) || routine[0];
 };

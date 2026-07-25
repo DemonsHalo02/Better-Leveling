@@ -265,34 +265,82 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-pr-staples",
     upc: "078742353333",
-    name: "Goya Green Pigeon Peas (Gandules Verdes) (15 oz can)",
+    name: "Goya Green Pigeon Peas (Gandules Verdes) (THREE 15 oz cans)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Goya",
     category: "Produce",
-    priceEst: "$1.58 (15 oz can)",
+    priceEst: "$4.74 (Three 15 oz cans at $1.58 ea)",
     calories: 80,
     protein: 5,
     carbs: 14,
     fat: 0,
     servingSize: "1/2 cup (130g)",
-    coachNote: "The iconic Caribbean legume staple simmered with rice and sofrito for authentic Arroz con Gandules.",
+    coachNote: "Three cans of pigeon peas provides enough for a full 7-day batch prep of authentic Arroz con Gandules for your lunches and dinners.",
     cuisine: ["Puerto Rico"]
   },
   {
     id: "g-pr-staples-bulk",
     upc: "078742353333-bulk",
-    name: "Goya Green Pigeon Peas (Gandules Verdes) (Two 15 oz cans)",
+    name: "Goya Green Pigeon Peas (Gandules Verdes) (SIX 15 oz cans)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Goya",
     category: "Produce",
-    priceEst: "$3.16 (Two 15 oz cans at $1.58 ea)",
+    priceEst: "$9.48 (Six 15 oz cans at $1.58 ea)",
     calories: 80,
     protein: 5,
     carbs: 14,
     fat: 0,
     servingSize: "1/2 cup (130g)",
-    coachNote: "Two cans of green pigeon peas to support double bulking rice portions for Puerto Rican Arroz con Gandules.",
+    coachNote: "Six cans of green pigeon peas to support a massive weekly batch of DOUBLE Arroz con Gandules for your post-160 lb bulking phase.",
     cuisine: ["Puerto Rico Bulking"]
+  },
+  {
+    id: "g-pr-kielbasa-cut",
+    upc: "078742359999",
+    name: "Hillshire Farm Turkey Kielbasa Smoked Sausage (FOUR 13.5 oz packs)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Hillshire Farm",
+    category: "Protein",
+    priceEst: "$17.92 (Four packs at $4.48 ea)",
+    calories: 90,
+    protein: 7,
+    carbs: 3,
+    fat: 5,
+    servingSize: "2 oz (56g)",
+    coachNote: "FOUR packs ensures you have ~6 oz of lean Turkey Kielbasa every single night for a full week. High protein and low fat to protect your skin elasticity and muscle while cutting to 160 lbs.",
+    cuisine: ["Puerto Rico"]
+  },
+  {
+    id: "g-pr-kielbasa-bulk",
+    upc: "078742359998",
+    name: "Hillshire Farm Beef Kielbasa Smoked Sausage (FOUR 12 oz packs)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Hillshire Farm",
+    category: "Protein",
+    priceEst: "$19.92 (Four packs at $4.98 ea)",
+    calories: 180,
+    protein: 6,
+    carbs: 2,
+    fat: 16,
+    servingSize: "2 oz (56g)",
+    coachNote: "FOUR packs of Beef Kielbasa provides enough healthy fats and caloric density to run your 7-day post-160 lb lean bulking Arroz con Kielbasa dinners.",
+    cuisine: ["Puerto Rico Bulking"]
+  },
+  {
+    id: "g-pr-milk-cut",
+    upc: "078742358888",
+    name: "Great Value Fat-Free Milk (1 Gallon)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Produce",
+    priceEst: "$2.98",
+    calories: 80,
+    protein: 8,
+    carbs: 12,
+    fat: 0,
+    servingSize: "1 cup (240ml)",
+    coachNote: "Cost-effective, fresh Fat-Free milk for your morning Café con Leche. Keeps calories low while adding creamy texture.",
+    cuisine: ["Puerto Rico", "Puerto Rico Bulking"]
   },
   {
     id: "g-pr-coffee",
@@ -311,9 +359,57 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     cuisine: ["Puerto Rico", "Puerto Rico Bulking"]
   },
   {
+    id: "g-pr-sweetener",
+    upc: "078742357777",
+    name: "Splenda No Calorie Sweetener Packets (100 ct)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Splenda",
+    category: "Essentials",
+    priceEst: "$4.68",
+    calories: 0,
+    protein: 0,
+    carbs: 1,
+    fat: 0,
+    servingSize: "1 packet",
+    coachNote: "Use 3-4 packets to mimic the ultra-sweet authentic Puerto Rican Café con Leche flavor without breaking your 0-calorie cutting limit (Periodic restock).",
+    cuisine: ["Puerto Rico"]
+  },
+  {
+    id: "g-pr-sugar",
+    upc: "078742357778",
+    name: "Great Value Pure Granulated Sugar (4 lb bag)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$3.12",
+    calories: 15,
+    protein: 0,
+    carbs: 4,
+    fat: 0,
+    servingSize: "1 tsp (4g)",
+    coachNote: "Real cane sugar for authentic thickness and calorie surplus during your Café con Leche bulking phase (Periodic restock).",
+    cuisine: ["Puerto Rico Bulking"]
+  },
+  {
+    id: "g-pr-recaito",
+    upc: "078742359002",
+    name: "Goya Recaito Cilantro Cooking Base (12 oz jar)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Goya",
+    category: "Seasonings & Spices",
+    priceEst: "$3.28",
+    calories: 10,
+    protein: 0,
+    carbs: 2,
+    fat: 0,
+    servingSize: "1 tbsp",
+    coachNote: "Mix this cilantro-based Recaito with your Sofrito to dramatically boost the authentic flavor of your Arroz con Kielbasa (Periodic restock).",
+    cuisine: ["Puerto Rico", "Puerto Rico Bulking"]
+  },
+  {
     id: "g-pr-spices",
     upc: "078742359001",
-    name: "Goya Adobo con Pimienta & Recaito/Sofrito Seasoning Base",
+    name: "Goya Adobo con Pimienta & Sofrito Seasoning Base",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Goya",
     category: "Seasonings & Spices",
@@ -1786,55 +1882,89 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
   // 1. Puerto Rico 🇵🇷 (Cutting & Bulking)
   {
     id: "plan-puerto-rico",
-    title: "Puerto Rico: Crispy Pollo al Horno, Arroz con Gandules & Café Bustelo Shred Blueprint (~2,080 kcal)",
+    title: "Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal)",
     country: "Puerto Rico",
     flag: "🇵🇷",
-    badge: "⭐ #1 Main Phase 1 Cutting Blueprint ($51.74/Wk)",
+    badge: "⭐ #1 Main Phase 1 Cutting Blueprint ($59.74/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$51.74 Weekly Consumables / $24.60 Periodic Restock ($76.34 Combined Total)",
-    description: "The #1 Main Puerto Rican Crispy Pollo al Horno, Arroz con Gandules & Café Bustelo Shred Blueprint! Tailored specifically for steady, sustainable fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target cleanly by 2028. Features dark roast Café Bustelo Espresso con Leche + Banana at 8:00 AM before your Home Dojo or Planet Fitness session, post-workout Sofrito & Scallion Egg White Scramble, Crispy Pollo al Horno with Arroz con Gandules & Broccoli for Lunch and Dinner, Casein Greek Yogurt bowls, and a weekly Goya Tostones reward treat!",
-    meals: createMeals(
-      "Puerto Rico", "Café Bustelo Espresso con Leche", 95,
-      "Puerto Rican Sofrito & Scallion Egg Scramble + Arroz con Gandules",
-      "3 Large White Eggs + 1/2 cup (4 oz) Liquid Egg Whites scrambled in 0-Cal Cooking Spray with 1 tbsp Goya Sofrito and chopped scallions/cilantro, seasoned with 1/4 tsp Goya Adobo. (330 kcal, 31g p, 15g f)",
-      530, 36, 44, 15,
-      "Crispy Puerto Rican Pollo al Horno",
-      "~5.7 oz Fresh Chicken Breast cubes dipped in Liquid Egg Whites, coated with 1 tsp Corn Starch, Goya Adobo, Sazón & Garlic Powder, sprayed with 0-Cal Canola Oil and baked at 400°F (or pan crisp seared) for 10-12m. (210 kcal, 40g p, 2g f)",
-      "Arroz con Gandules (Puerto Rican Rice & Pigeon Peas)",
-      "1 cup cooked Arroz con Gandules (simmered with Sofrito, Sazón, White Rice, and Goya Green Pigeon Peas). (200 kcal, 5g p, 44g c)",
-      440, 47, 50, 2,
-      "1 cup", 120, 21,
-      "Goya Tostones (Crispy Fried Green Plantains) & Garlic Pollo",
-      "3 Goya Frozen Tostones (84g) air-fried at 400°F for 12 minutes topped with 4 oz Crispy Pollo al Horno and a squeeze of lime or sofrito! (360 kcal, 28g p, 32g c, 10g f)",
-      360, 28, 32, 10, false
-    )
+    estCostPerWeek: "$59.74 Weekly Consumables / $29.60 Periodic Restock ($89.34 Combined Total)",
+    description: "The #1 Main Puerto Rican Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint! Tailored for steady fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target while preserving skin elasticity. Features sweet Café Bustelo con Leche (with Splenda & Fat-Free Milk), post-workout Recaito Egg Scramble, Pollo al Horno for lunch, Arroz con Kielbasa (Turkey Kielbasa) for dinner, and a weekly Goya Tostones reward treat!",
+    meals: (() => {
+      const meals = createMeals(
+        "Puerto Rico", "Sweet Café Bustelo con Leche (3-4 Splenda Packets) & 1 Medium Banana", 145,
+        "Puerto Rican Recaito & Sofrito Egg Scramble + Arroz con Gandules",
+        "3 Large White Eggs + 1 cup (8 oz) Liquid Egg Whites scrambled with 1 tbsp Goya Sofrito, 1 tbsp Goya Recaito, and chopped scallions/cilantro. (390 kcal, 44g p, 15g f)",
+        590, 49, 44, 15,
+        "Crispy Puerto Rican Pollo al Horno",
+        "~8 oz Fresh Chicken Breast cubes coated with Goya Adobo, Sazón & Garlic Powder, air-fried or baked at 400°F. (285 kcal, 57g p, 3g f)",
+        "Arroz con Gandules (Puerto Rican Rice & Pigeon Peas)",
+        "1 cup cooked Arroz con Gandules (simmered with Sofrito, Sazón, White Rice, and Goya Green Pigeon Peas). (200 kcal, 5g p, 44g c)",
+        515, 64, 50, 3,
+        "1 cup", 120, 21,
+        "Goya Tostones (Crispy Fried Green Plantains) & Garlic Pollo",
+        "3 Goya Frozen Tostones (84g) air-fried at 400°F for 12 minutes topped with 4 oz Crispy Pollo al Horno and a squeeze of lime! (360 kcal, 28g p, 32g c, 10g f)",
+        360, 28, 32, 10, false
+      );
+      // Override Dinner to be Arroz con Kielbasa
+      meals[3] = {
+        name: "Dinner: Puerto Rican Arroz con Kielbasa (Turkey) & Steamed Broccoli",
+        time: "7:30 PM – 8:00 PM",
+        ingredients: [
+          "~6 oz Hillshire Farm Turkey Kielbasa pan-seared with 1 tbsp Goya Recaito & 1 tbsp Sofrito. Protects skin elasticity with high protein! (270 kcal, 21g p, 15g f, 9g c)",
+          "1 cup cooked Arroz con Gandules (simmered with Sofrito, Sazón, White Rice, and Goya Green Pigeon Peas). (200 kcal, 5g p, 44g c)",
+          "1 cup steamed Great Value Frozen Broccoli florets. (30 kcal, 2g p, 6g c)"
+        ],
+        calories: 500,
+        protein: 28,
+        carbs: 59,
+        fat: 15
+      };
+      return meals;
+    })()
   },
   {
     id: "plan-puerto-rico-bulking",
-    title: "Puerto Rico Bulking: Pollo al Horno & DOUBLE Arroz con Gandules Lean Bulk (~2,680 kcal)",
+    title: "Puerto Rico Bulking: Pollo al Horno & Arroz con Kielbasa Lean Bulk (~2,680 kcal)",
     country: "Puerto Rico Bulking",
     flag: "🇵🇷🔥",
-    badge: "🔥 Phase 2: Post-160 Lb Lean Bulk ($51.70/Wk)",
+    badge: "🔥 Phase 2: Post-160 Lb Lean Bulk ($61.70/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$51.70 Weekly Consumables / $24.60 Periodic Restock ($76.30 Combined Total)",
-    description: "The #1 Puerto Rican Lean Bulking Blueprint for post-160 lb muscle gain! Swaps 4 tubs of yogurt and liquid egg whites for a 5 lb bulk bag of White Rice, Rolled Oats, 3 tubs of yogurt, and 5 whole eggs daily. Features Crispy Pollo al Horno with DOUBLE Arroz con Gandules & Broccoli, Café Bustelo con Leche, and Goya Tostones reward treat!",
-    meals: createMeals(
-      "Puerto Rico Bulking", "Café Bustelo Espresso con Leche", 95,
-      "5-Egg Sofrito Scramble + Rolled Oats + Café Bustelo",
-      "5 Large White Eggs scrambled with 1 tbsp Goya Sofrito and chopped scallions, seasoned with 1/4 tsp Goya Adobo. Provides rich amino acids and healthy fats for muscle building. (350 kcal, 30g p, 25g f)",
-      500, 35, 54, 25,
-      "Crispy Puerto Rican Pollo al Horno",
-      "~5.7 oz Fresh Chicken Breast cubes coated with Corn Starch, Goya Adobo, Sazón & Garlic Powder, baked at 400°F until super crunchy outside & juicy inside. (210 kcal, 40g p, 2g f)",
-      "DOUBLE Arroz con Gandules",
-      "2 cups cooked Arroz con Gandules (high-density glycogen replenishment!). (400 kcal, 10g p, 88g c)",
-      640, 52, 94, 2,
-      "1 cup", 120, 21,
-      "Goya Tostones & Garlic Pollo",
-      "3 Goya Frozen Tostones air-fried at 400°F topped with garlic chicken and sofrito! (360 kcal, 28g p, 32g c, 10g f)",
-      360, 28, 32, 10, true
-    )
+    estCostPerWeek: "$61.70 Weekly Consumables / $29.60 Periodic Restock ($91.30 Combined Total)",
+    description: "The #1 Puerto Rican Lean Bulking Blueprint for post-160 lb muscle gain! Features sweet Café Bustelo con Leche (with Real Sugar), Pollo al Horno with DOUBLE Arroz con Gandules for lunch, Arroz con Kielbasa (Beef Kielbasa) for dinner, and Goya Tostones reward treat!",
+    meals: (() => {
+      const meals = createMeals(
+        "Puerto Rico Bulking", "Sweet Café Bustelo con Leche (Real Cane Sugar) & 1 Medium Banana", 185,
+        "5-Egg Recaito Scramble + Rolled Oats + Café Bustelo",
+        "5 Large White Eggs scrambled with 1 tbsp Goya Sofrito, 1 tbsp Goya Recaito, and chopped scallions. Provides rich amino acids and healthy fats for muscle building. (350 kcal, 30g p, 25g f)",
+        500, 35, 54, 25,
+        "Crispy Puerto Rican Pollo al Horno",
+        "~8 oz Fresh Chicken Breast cubes coated with Goya Adobo, Sazón & Garlic Powder, baked at 400°F. (285 kcal, 57g p, 3g f)",
+        "DOUBLE Arroz con Gandules",
+        "2 cups cooked Arroz con Gandules (high-density glycogen replenishment!). (400 kcal, 10g p, 88g c)",
+        715, 69, 94, 3,
+        "1 cup", 120, 21,
+        "Goya Tostones & Garlic Pollo",
+        "3 Goya Frozen Tostones air-fried at 400°F topped with garlic chicken and sofrito! (360 kcal, 28g p, 32g c, 10g f)",
+        360, 28, 32, 10, true
+      );
+      // Override Dinner to be Arroz con Kielbasa Bulking
+      meals[3] = {
+        name: "Dinner: Puerto Rican Arroz con Kielbasa (Beef) & Steamed Broccoli",
+        time: "7:30 PM – 8:00 PM",
+        ingredients: [
+          "~6 oz Hillshire Farm Beef Kielbasa pan-seared with 1 tbsp Goya Recaito & 1 tbsp Sofrito. Rich in calories and fats for lean bulking! (540 kcal, 18g p, 48g f, 6g c)",
+          "2 cups cooked DOUBLE Arroz con Gandules. (400 kcal, 10g p, 88g c)",
+          "1 cup steamed Great Value Frozen Broccoli florets. (30 kcal, 2g p, 6g c)"
+        ],
+        calories: 970,
+        protein: 30,
+        carbs: 100,
+        fat: 48
+      };
+      return meals;
+    })()
   },
 
   // 2. Spain 🇪🇸 (Cutting & Bulking)

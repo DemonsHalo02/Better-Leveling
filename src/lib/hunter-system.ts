@@ -90,7 +90,7 @@ const DEFAULT_STATE: HunterState = {
     dailyProteinGoal: 178,
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
-    gymName: "K-Pop Idol Style Home Bodyweight vs Planet Fitness Gym (Dual Choice + 45m Cardio)",
+    gymName: "Puerto Rican Style Home Bodyweight vs Planet Fitness Gym (Dual Choice + 45m Cardio)",
     dietName: "Korea: Crispy Gochujang Garlic Chicken, Steamed Rice & Kimchi Broccoli Shred (~2,080 kcal)",
   },
   completedQuestsToday: {
@@ -185,7 +185,7 @@ export function loadHunterState(): HunterState {
       }
       if (!localStorage.getItem('kpop_korea_default_upgrade_done')) {
         parsed.profile.dietName = "Korea: Crispy Gochujang Garlic Chicken, Steamed Rice & Kimchi Broccoli Shred (~2,080 kcal)";
-        parsed.profile.gymName = "K-Pop Idol Style Home Bodyweight vs Planet Fitness Gym (Dual Choice + 45m Cardio)";
+        parsed.profile.gymName = "Puerto Rican Style Home Bodyweight vs Planet Fitness Gym (Dual Choice + 45m Cardio)";
         localStorage.setItem('kpop_korea_default_upgrade_done', 'done');
         localStorage.setItem('pf_selected_aisle_template', 'Korea');
         localStorage.setItem('pf_selected_country_plan', 'Korea');
