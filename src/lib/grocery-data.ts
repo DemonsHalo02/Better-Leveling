@@ -1904,7 +1904,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main Phase 1 Cutting Blueprint ($49.62/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$62.82 Weekly Consumables / $26.64 Periodic Restock ($89.46 Combined Total)",
+    estCostPerWeek: "$62.82 Weekly Consumables / $25.16 Periodic Restock ($87.98 Combined Total)",
     description: "The #1 Main Puerto Rican Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint! Tailored for steady fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target while preserving skin elasticity. Features sweet Café Bustelo con Leche with fat-free milk, a homemade recaito-style egg scramble, Pollo al Horno for lunch, Arroz con Kielbasa (Turkey Kielbasa) for dinner, and a weekly Goya Tostones reward treat!",
     meals: (() => {
       const meals = createMeals(
@@ -1947,7 +1947,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Post-160 Lb Lean Bulk ($50.98/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$67.39 Weekly Consumables / $26.64 Periodic Restock ($94.03 Combined Total)",
+    estCostPerWeek: "$67.39 Weekly Consumables / $25.16 Periodic Restock ($92.55 Combined Total)",
     description: "The #1 Puerto Rican Lean Bulking Blueprint for post-160 lb muscle gain! Features sweet Café Bustelo con Leche with a small spoon of sugar, Pollo al Horno with DOUBLE Arroz con Gandules for lunch, Arroz con Kielbasa (Beef Kielbasa) for dinner, and Goya Tostones reward treat!",
     meals: (() => {
       const meals = createMeals(
