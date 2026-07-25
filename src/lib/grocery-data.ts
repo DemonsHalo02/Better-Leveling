@@ -77,7 +77,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-2",
     upc: "078742221612",
-    name: "Great Value Large Grade A White Eggs (36 Count Tray / Two 18 ct Cartons)",
+    name: "Great Value Large Grade A White Eggs (18 Count Carton)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Protein",
@@ -94,17 +94,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-3",
     upc: "078742136039",
-    name: "Great Value Plain Nonfat Greek Yogurt (FOUR 32 oz tubs / 128 oz / 1 Gallon total)",
+    name: "Great Value Plain Nonfat Greek Yogurt (THREE 32 oz tubs / 96 oz total)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Protein",
-    priceEst: "$13.98 (FOUR 32 oz tubs / 128 oz total)",
+    priceEst: "$10.98 (THREE 32 oz tubs at $3.66 ea)",
     calories: 90,
     protein: 16,
     carbs: 6,
     fat: 0,
     servingSize: "3/4 cup (170g / 6 oz)",
-    coachNote: "FOUR tubs (128 oz / 1 full Gallon / 16 cups total) guaranteed for Phase 1 Cutting across all 19 countries! Provides 100% enough Greek Yogurt for 7 full days of Afternoon casein power bowls AND Nighttime Casein Fluff without running out!",
+    coachNote: "THREE tubs (96 oz) guaranteed for Phase 1 Cutting! Provides enough Greek Yogurt for 7 full days of Afternoon casein power bowls AND Nighttime Casein Fluff without running out!",
     cuisine: ALL_CUISINES_CUTTING
   },
   // Greek Yogurt - 3 Tubs for Phase 2 Bulking (Shared by ALL 19 Phase 2 Bulking plans)
@@ -162,11 +162,11 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-7",
     upc: "078742357777",
-    name: "Great Value Frozen Broccoli Florets (TWO 4 lb bags / 8 lbs / 128 oz total)",
+    name: "Great Value Frozen Broccoli Florets (ONE 4 lb bag / 64 oz total)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
     category: "Produce",
-    priceEst: "$4.18 (TWO 4 lb bags at $2.09 ea)",
+    priceEst: "$4.18 (ONE 4 lb bag)",
     calories: 30,
     protein: 2,
     carbs: 5,
@@ -339,17 +339,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 12,
     fat: 0,
     servingSize: "1 cup (240ml)",
-    coachNote: "Cost-effective, fresh Fat-Free milk for your morning Café con Leche. Keeps calories low while adding creamy texture.",
+    coachNote: "Cost-effective, fresh Fat-Free milk for your morning Café con Leche. Keeps calories low while adding creamy texture (Periodic restock item).",
     cuisine: ["Puerto Rico", "Puerto Rico Bulking"]
   },
   {
     id: "g-pr-coffee",
     upc: "078742356601",
-    name: "Café Bustelo Espresso Dark Roast Ground Coffee (10-12 oz canister)",
+    name: "Café Bustelo Espresso Dark Roast Ground Coffee (10 oz vacuum brick)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Café Bustelo",
     category: "Essentials",
-    priceEst: "$6.98 (canister)",
+    priceEst: "$4.88 (10 oz brick)",
     calories: 0,
     protein: 0,
     carbs: 0,
@@ -359,20 +359,36 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     cuisine: ["Puerto Rico", "Puerto Rico Bulking"]
   },
   {
-    id: "g-pr-sweetener",
-    upc: "078742357777",
-    name: "Great Value Pure Granulated Sugar (4 lb bag)",
+    id: "g-pr-adobo",
+    upc: "078742359010",
+    name: "Goya Adobo All-Purpose Seasoning (8 oz shaker)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Great Value",
-    category: "Essentials",
-    priceEst: "$2.48 (4 lb bag)",
-    calories: 15,
+    brand: "Goya",
+    category: "Seasonings & Spices",
+    priceEst: "$2.18 (8 oz shaker)",
+    calories: 0,
     protein: 0,
-    carbs: 4,
+    carbs: 0,
     fat: 0,
-    servingSize: "1 tsp (4g)",
-    coachNote: "Cheaper periodic restock sweetener for your coffee and yogurt; use only a small spoonful for a smooth Puerto Rican café flavor.",
-    cuisine: []
+    servingSize: "1/4 tsp (1g)",
+    coachNote: "The #1 Puerto Rican garlic, oregano, and black pepper base seasoning for Pollo al Horno! Coat chicken cubes generously before baking at 400°F (Periodic restock item).",
+    cuisine: ["Puerto Rico", "Puerto Rico Bulking"]
+  },
+  {
+    id: "g-pr-sazon",
+    upc: "078742359011",
+    name: "Goya Sazón con Culantro y Achiote (36 packets box)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Goya",
+    category: "Seasonings & Spices",
+    priceEst: "$3.48 (36 packets)",
+    calories: 5,
+    protein: 0,
+    carbs: 1,
+    fat: 0,
+    servingSize: "1 packet (1.4g)",
+    coachNote: "Gives Arroz con Gandules and Pollo al Horno their vibrant orange color and authentic culantro/achiote flavor! Use 1 packet per batch of rice and 1 packet per chicken marinade (Periodic restock item).",
+    cuisine: ["Puerto Rico", "Puerto Rico Bulking"]
   },
   {
     id: "g-pr-sugar",
@@ -435,7 +451,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 28,
     fat: 5,
     servingSize: "3 pieces (84g)",
-    coachNote: "Your once-a-week Puerto Rican reward treat! Golden crispy tostones to pair with your weekend Pollo al Horno.",
+    coachNote: "Your authentic Puerto Rican reward treat! Golden crispy tostones to pair with your weekend Pollo al Horno (Periodic restock item).",
     cuisine: ["Puerto Rico", "Puerto Rico Bulking"]
   },
 
@@ -1706,7 +1722,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 0,
     servingSize: "1 tbsp (8g)",
     coachNote: "Essential coating ingredient mixed with national seasonings for getting chicken breast cubes super crispy and golden in the oven or pan (Periodic restock item).",
-    cuisine: ALL_CUISINES_BOTH
+    cuisine: ALL_CUISINES_BOTH.filter(c => c !== "Puerto Rico" && c !== "Puerto Rico Bulking")
   },
   {
     id: "g-20",
@@ -1794,7 +1810,7 @@ const createMeals = (
     ingredients: [
       preWorkoutDrink.includes("Black Iced Coffee") || preWorkoutDrink.includes("FlexBrew")
         ? `1 Pre-Workout ${preWorkoutDrink}: Brew fresh in your FlexBrew machine directly over ice for pure zero-calorie caffeine focus right before your morning workout & cardio run! (${preWorkoutDrinkCalories} kcal, 0g p, 0g c, 0g f)`
-        : `1 Pre-Workout ${preWorkoutDrink}: Brew fresh and whisk with warm or iced Great Value 2% Milk (optional: add 1 zero-cal sweetener packet). Provides clean caffeine focus right before your morning workout & cardio run! (${preWorkoutDrinkCalories} kcal, 6g p, 9g c, 3.5g f)`,
+        : `1 Pre-Workout ${preWorkoutDrink}: Brew fresh and whisk with warm or iced Great Value 2% Milk. Provides clean caffeine focus right before your morning workout & cardio run! (${preWorkoutDrinkCalories} kcal, 6g p, 9g c, 3.5g f)`,
       "1 Medium Fresh Banana: Peel and eat immediately right before training for rapid-absorbing pre-workout carbohydrates & potassium! (105 kcal, 1g p, 27g c)"
     ],
     calories: preWorkoutDrinkCalories + 105,
@@ -1888,11 +1904,11 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main Phase 1 Cutting Blueprint ($49.62/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$63.52 Weekly Consumables / $21.78 Periodic Restock ($85.30 Combined Total)",
+    estCostPerWeek: "$48.52 Weekly Consumables / $29.24 Periodic Restock ($77.76 Combined Total)",
     description: "The #1 Main Puerto Rican Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint! Tailored for steady fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target while preserving skin elasticity. Features sweet Café Bustelo con Leche with fat-free milk, a homemade recaito-style egg scramble, Pollo al Horno for lunch, Arroz con Kielbasa (Turkey Kielbasa) for dinner, and a weekly Goya Tostones reward treat!",
     meals: (() => {
       const meals = createMeals(
-        "Puerto Rico", "Sweet Café Bustelo con Leche (small spoon of sugar, optional) & 1 Medium Banana", 145,
+        "Puerto Rico", "Sweet Café Bustelo con Leche (1 level tsp sugar / 15 kcal) & 1 Medium Banana", 145,
         "Puerto Rican Homemade Seasoning Egg Scramble + Arroz con Gandules",
         "3 Large White Eggs + 1 cup (8 oz) Liquid Egg Whites scrambled with 1 tbsp homemade sofrito-style blend, 1 tbsp homemade recaito-style blend, and chopped scallions/cilantro. (390 kcal, 44g p, 15g f)",
         590, 49, 44, 15,
@@ -1931,11 +1947,11 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Post-160 Lb Lean Bulk ($50.98/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$65.27 Weekly Consumables / $27.46 Periodic Restock ($92.73 Combined Total)",
+    estCostPerWeek: "$52.27 Weekly Consumables / $29.24 Periodic Restock ($81.51 Combined Total)",
     description: "The #1 Puerto Rican Lean Bulking Blueprint for post-160 lb muscle gain! Features sweet Café Bustelo con Leche with a small spoon of sugar, Pollo al Horno with DOUBLE Arroz con Gandules for lunch, Arroz con Kielbasa (Beef Kielbasa) for dinner, and Goya Tostones reward treat!",
     meals: (() => {
       const meals = createMeals(
-        "Puerto Rico Bulking", "Sweet Café Bustelo con Leche (Real Cane Sugar) & 1 Medium Banana", 185,
+        "Puerto Rico Bulking", "Sweet Café Bustelo con Leche (1 level tsp sugar / 15 kcal) & 1 Medium Banana", 185,
         "5-Egg Homemade Seasoning Scramble + Rolled Oats + Café Bustelo",
         "5 Large White Eggs scrambled with 1 tbsp homemade sofrito-style blend, 1 tbsp homemade recaito-style blend, and chopped scallions. Provides rich amino acids and healthy fats for muscle building. (350 kcal, 30g p, 25g f)",
         500, 35, 54, 25,
@@ -2971,8 +2987,8 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   { name: "Great Value Zero Calorie Sweetener Packets (100 ct)", category: "Seasonings & Spices", price: "$2.18", note: "Sweetens morning coffee/tea and afternoon Greek yogurt with zero sugar calories." },
   { name: "Argo 100% Pure Corn Starch (16 oz box)", category: "Seasonings & Spices", price: "$1.78", note: "Lightly coat chicken cubes for super crispy national chicken recipes." },
   // Groceries & Protein Staples
-  { name: "Fresh Chicken Breasts (~5.0 lb Family Tray / 80 oz raw)", category: "Protein", price: "$13.40", note: "Primary lean protein staple (~5.0 lb tray at $2.68/lb) across all 13 cuisines." },
-  { name: "Great Value Large Grade A White Eggs (36 Count Tray)", category: "Protein", price: "$6.84", note: "36 eggs guaranteed (3-5 eggs/day for national scrambles plus extras!)." },
+  { name: "Fresh Chicken Breasts (~3.5 lb Tray / 56 oz raw)", category: "Protein", price: "$13.40", note: "Primary lean protein staple (~5.0 lb tray at $2.68/lb) across all 13 cuisines." },
+  { name: "Great Value Large Grade A White Eggs (36 Count Tray)", category: "Protein", price: "$6.84", note: "18 eggs guaranteed (2 eggs/day for national scrambles plus extras!)." },
   { name: "Great Value Plain Nonfat Greek Yogurt (FOUR 32 oz tubs / 128 oz total)", category: "Protein", price: "$15.92", note: "FOUR tubs (128 oz / 1 Gallon total) for Phase 1 Cutting afternoon & bedtime snacks!" },
   { name: "Great Value Plain Nonfat Greek Yogurt (THREE 32 oz tubs / 96 oz total)", category: "Protein", price: "$11.94", note: "THREE tubs (96 oz / 12 cups total) for Phase 2 Lean Bulking afternoon & bedtime snacks!" },
   { name: "Great Value 100% Liquid Egg Whites (32 oz carton)", category: "Protein", price: "$3.48", note: "Pure protein booster for scrambles and protein egg wash binder for crispy chicken." },
