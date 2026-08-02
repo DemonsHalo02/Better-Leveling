@@ -75,27 +75,31 @@ export default function PomodoroModal() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-24 right-6 sm:bottom-6 sm:right-6 w-14 h-14 bg-gradient-to-r from-[#ce1126] to-[#f5a623] rounded-full shadow-lg shadow-[#ce1126]/50 flex items-center justify-center text-white z-50 hover:scale-110 transition-transform"
+        className="fixed bottom-24 right-6 sm:bottom-6 sm:right-6 w-14 h-14 bg-gradient-to-r from-[#ce1126] to-[#f5a623] rounded-full shadow-lg shadow-[#ce1126]/50 flex items-center justify-center text-white z-50 hover:scale-110 transition-transform border border-white/20"
       >
-        <Timer className="w-6 h-6" />
+        <Timer className="w-6 h-6 drop-shadow-sm" />
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[100] p-4">
-          <div className="bg-[#11182c] border border-white/10 rounded-2xl p-6 max-w-sm w-full shadow-2xl relative">
-            <button onClick={() => setIsOpen(false)} className="absolute top-4 right-4 text-zinc-400 hover:text-white">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-[100] p-4">
+          <div className="bg-[#11182c]/95 backdrop-blur-xl border border-white/15 rounded-3xl p-8 max-w-sm w-full shadow-2xl shadow-black/50 relative overflow-hidden">
+            {/* Glow effects */}
+            <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full blur-3xl opacity-20 ${isBreak ? 'bg-[#4ade80]' : 'bg-[#ce1126]'}`} />
+            
+            <button onClick={() => setIsOpen(false)} className="absolute top-5 right-5 text-zinc-500 hover:text-white transition-colors hover:scale-110 z-10">
               <X className="w-5 h-5" />
             </button>
-            <h3 className="text-xl font-bold font-mono text-center mb-6 text-[#f5a623]">
-              {isBreak ? "Descanso" : "Enfoque"}
+            
+            <h3 className={`text-2xl font-black font-mono text-center mb-8 tracking-tight relative z-10 ${isBreak ? 'text-[#4ade80] drop-shadow-[0_0_10px_rgba(74,222,128,0.5)]' : 'text-[#f5a623] drop-shadow-[0_0_10px_rgba(245,166,35,0.5)]'}`}>
+              {isBreak ? "Break Time" : "Focus Mode"}
             </h3>
 
-            <div className="relative w-48 h-48 mx-auto mb-6 flex items-center justify-center">
-              <svg className="w-full h-full transform -rotate-90">
-                <circle cx="96" cy="96" r="45" className="stroke-white/10" strokeWidth="8" fill="none" />
+            <div className="relative w-52 h-52 mx-auto mb-8 flex items-center justify-center z-10">
+              <svg className="w-full h-full transform -rotate-90 drop-shadow-lg">
+                <circle cx="104" cy="104" r="45" className="stroke-white/5" strokeWidth="8" fill="none" />
                 <circle
-                  cx="96"
-                  cy="96"
+                  cx="104"
+                  cy="104"
                   r="45"
                   className={isBreak ? "stroke-[#4ade80]" : "stroke-[#ce1126]"}
                   strokeWidth="8"
@@ -106,38 +110,39 @@ export default function PomodoroModal() {
                   style={{ transition: "stroke-dashoffset 1s linear" }}
                 />
               </svg>
-              <div className="absolute text-4xl font-black font-mono">
+              <div className="absolute text-5xl font-black font-mono text-white drop-shadow-md">
                 {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
               </div>
             </div>
 
-            <div className="flex justify-center gap-4 mb-6">
+            <div className="flex justify-center gap-4 mb-8 relative z-10">
               <button
                 onClick={toggleTimer}
-                className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+                className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 border shadow-lg hover:scale-110 ${isActive ? 'bg-white/10 border-white/20 text-white hover:bg-white/20' : 'bg-[#ce1126]/20 border-[#ce1126]/40 text-[#ce1126] hover:bg-[#ce1126]/30'}`}
               >
-                {isActive ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-1" />}
+                {isActive ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 ml-0.5" />}
               </button>
               <button
                 onClick={resetTimer}
-                className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+                className="w-14 h-14 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center hover:bg-white/15 transition-all duration-300 text-zinc-400 hover:text-white hover:scale-110 shadow-lg"
               >
                 <RotateCcw className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="flex justify-center gap-2 mb-6">
+            {/* Session dots */}
+            <div className="flex justify-center gap-3 mb-8 relative z-10">
               {Array.from({ length: 4 }).map((_, i) => (
                 <div
                   key={i}
-                  className={`w-3 h-3 rounded-full ${i < (sessions % 4) ? "bg-[#f5a623]" : "bg-white/20"}`}
+                  className={`w-4 h-4 rounded-full border-2 transition-all duration-300 ${i < (sessions % 4) ? "bg-[#f5a623] border-[#f5a623] shadow-[0_0_8px_rgba(245,166,35,0.6)]" : "bg-transparent border-white/20"}`}
                 />
               ))}
             </div>
 
-            <div className="grid grid-cols-2 gap-4 text-sm font-mono text-zinc-400">
+            <div className="grid grid-cols-2 gap-4 text-sm font-mono text-zinc-400 relative z-10">
               <div className="space-y-2">
-                <label>Work (min)</label>
+                <label className="text-xs font-bold uppercase tracking-widest text-zinc-500">Work (min)</label>
                 <input
                   type="number"
                   value={workMinutes}
@@ -145,11 +150,11 @@ export default function PomodoroModal() {
                     const val = parseInt(e.target.value);
                     setWorkMinutes(isNaN(val) ? 25 : val);
                   }}
-                  className="w-full bg-black/50 border border-white/10 rounded p-2 text-center text-white outline-none focus:border-[#ce1126]"
+                  className="w-full bg-black/50 border border-white/10 rounded-xl p-3 text-center text-white font-bold outline-none focus:border-[#ce1126] focus:ring-1 focus:ring-[#ce1126]/50 transition-all shadow-inner"
                 />
               </div>
               <div className="space-y-2">
-                <label>Break (min)</label>
+                <label className="text-xs font-bold uppercase tracking-widest text-zinc-500">Break (min)</label>
                 <input
                   type="number"
                   value={breakMinutes}
@@ -157,7 +162,7 @@ export default function PomodoroModal() {
                     const val = parseInt(e.target.value);
                     setBreakMinutes(isNaN(val) ? 5 : val);
                   }}
-                  className="w-full bg-black/50 border border-white/10 rounded p-2 text-center text-white outline-none focus:border-[#4ade80]"
+                  className="w-full bg-black/50 border border-white/10 rounded-xl p-3 text-center text-white font-bold outline-none focus:border-[#4ade80] focus:ring-1 focus:ring-[#4ade80]/50 transition-all shadow-inner"
                 />
               </div>
             </div>

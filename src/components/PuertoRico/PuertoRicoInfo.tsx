@@ -4,10 +4,10 @@ import React from "react";
 import { Map, Sun, Shield, Heart, CheckCircle2, Navigation, Coffee } from "lucide-react";
 
 const WHY_PR = [
-  { icon: Sun, title: "El Clima", desc: "Tropical year-round. No more Lewiston winters." },
-  { icon: Shield, title: "Comodidad", desc: "US Territory. No passport needed, uses USD, USPS/Amazon works." },
-  { icon: Heart, title: "Cultura & Gente", desc: "Warm, vibrant, family-oriented culture. Rich history." },
-  { icon: Navigation, title: "Accesibilidad", desc: "Short flight to East Coast. Same time zone (AST/EST)." }
+  { icon: Sun, title: "The Climate", desc: "Tropical year-round. No more Lewiston winters." },
+  { icon: Shield, title: "Comfort & Convenience", desc: "US Territory. No passport needed, uses USD, USPS/Amazon works." },
+  { icon: Heart, title: "Culture & People", desc: "Warm, vibrant, family-oriented culture. Rich history." },
+  { icon: Navigation, title: "Accessibility", desc: "Short flight to East Coast. Same time zone (AST/EST)." }
 ];
 
 const CAGUAS_INFO = [
@@ -34,32 +34,37 @@ export default function PuertoRicoInfo() {
     <div className="space-y-8 max-w-4xl mx-auto">
       
       {/* Header */}
-      <div className="relative rounded-2xl overflow-hidden bg-[#11182c] border border-white/10 shadow-xl min-h-[200px] flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#ce1126] via-[#0a3d8f] to-transparent opacity-20" />
-        <div className="absolute right-0 top-0 h-full w-1/2 bg-[url('https://images.unsplash.com/photo-1590418606746-018840f9cb25?q=80&w=1000')] bg-cover bg-center mix-blend-overlay opacity-30 mask-image:linear-gradient(to_left,black,transparent)]" />
+      <div className="relative rounded-3xl overflow-hidden bg-[#11182c]/80 backdrop-blur-md border border-white/10 shadow-2xl min-h-[220px] flex items-center group transition-all duration-500 hover:border-white/20">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#ce1126]/30 via-[#0a3d8f]/20 to-transparent" />
+        <div className="absolute top-0 right-0 w-72 h-72 bg-[#ce1126]/10 rounded-full blur-3xl opacity-50 -mr-20 -mt-20 group-hover:opacity-80 transition-opacity duration-700" />
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#0a3d8f]/10 rounded-full blur-3xl opacity-50 -ml-10 -mb-10 group-hover:opacity-80 transition-opacity duration-700" />
         
-        <div className="relative z-10 p-8">
-          <div className="flex items-center gap-3 mb-2">
-            <Map className="w-8 h-8 text-[#ce1126]" />
-            <h2 className="text-3xl font-black text-white tracking-tight">Puerto Rico</h2>
+        <div className="relative z-10 p-8 sm:p-10">
+          <div className="flex items-center gap-4 mb-3">
+            <div className="bg-[#ce1126]/20 p-3 rounded-2xl border border-[#ce1126]/30 shadow-lg backdrop-blur-sm">
+              <Map className="w-8 h-8 text-[#ce1126] drop-shadow-[0_0_8px_rgba(206,17,38,0.6)]" />
+            </div>
+            <h2 className="text-4xl font-black text-white tracking-tighter drop-shadow-md">Puerto Rico</h2>
           </div>
-          <p className="text-[#f5a623] font-mono font-bold tracking-widest text-sm uppercase">La Isla del Encanto</p>
-          <p className="text-zinc-300 mt-4 max-w-md">Target: April 2031. The culmination of 10 years of study, saving, and physical transformation.</p>
+          <p className="text-[#f5a623] font-mono font-black tracking-[0.3em] text-sm uppercase drop-shadow-sm ml-1">La Isla del Encanto</p>
+          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">Target: April 2031. The culmination of 10 years of study, saving, and physical transformation.</p>
         </div>
       </div>
 
       {/* Why PR Grid */}
       <div>
-        <h3 className="text-lg font-bold text-white mb-4">¿Por Qué Puerto Rico?</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <h3 className="text-2xl font-black text-white mb-6 tracking-tight flex items-center gap-2">
+          <span className="text-[#ce1126]">Why</span> Puerto Rico?
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {WHY_PR.map((item, i) => (
-            <div key={i} className="bg-black/30 border border-white/5 p-4 rounded-xl flex items-start gap-4 hover:bg-white/5 transition-colors">
-              <div className="bg-[#ce1126]/20 p-2 rounded-lg text-[#ce1126]">
+            <div key={i} className="group bg-[#11182c]/80 backdrop-blur-md border border-white/10 p-5 rounded-2xl flex items-start gap-5 hover:border-white/20 hover:bg-white/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl shadow-lg">
+              <div className="bg-[#ce1126]/10 p-3 rounded-xl border border-[#ce1126]/20 text-[#ce1126] group-hover:bg-[#ce1126]/20 group-hover:scale-110 transition-all duration-300 shadow-inner">
                 <item.icon className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="text-white font-bold text-sm mb-1">{item.title}</h4>
-                <p className="text-zinc-400 text-xs leading-relaxed">{item.desc}</p>
+                <h4 className="text-white font-black text-base mb-1.5 tracking-tight">{item.title}</h4>
+                <p className="text-zinc-400 text-sm leading-relaxed font-medium">{item.desc}</p>
               </div>
             </div>
           ))}
@@ -68,38 +73,40 @@ export default function PuertoRicoInfo() {
 
       <div className="grid md:grid-cols-2 gap-6">
         {/* Caguas Recommendations */}
-        <div className="bg-[#0a3d8f]/10 border border-[#0a3d8f]/30 rounded-2xl p-6">
-          <h3 className="text-xl font-black text-[#0a3d8f] mb-2 flex items-center gap-2">
-            <Map className="w-5 h-5" /> Caguas (Recomendado)
-          </h3>
-          <p className="text-zinc-300 text-xs mb-4">El Centro y Corazón de Puerto Rico</p>
+        <div className="bg-[#0a3d8f]/10 backdrop-blur-md border border-[#0a3d8f]/30 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[#0a3d8f]/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           
-          <ul className="space-y-3">
+          <h3 className="text-2xl font-black text-[#0a3d8f] mb-2 flex items-center gap-3 tracking-tight relative z-10">
+            <Map className="w-6 h-6" /> Caguas <span className="text-sm text-zinc-400 font-medium">(Recommended)</span>
+          </h3>
+          <p className="text-zinc-400 text-sm mb-6 font-bold relative z-10">The Center & Heart of Puerto Rico</p>
+          
+          <ul className="space-y-4 relative z-10">
             {CAGUAS_INFO.map((info, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-zinc-200">
-                <CheckCircle2 className="w-4 h-4 text-[#0a3d8f] shrink-0 mt-0.5" />
+              <li key={i} className="flex items-start gap-3 text-sm text-zinc-200 font-medium">
+                <CheckCircle2 className="w-5 h-5 text-[#0a3d8f] shrink-0 mt-0.5 drop-shadow-sm" />
                 <span>{info}</span>
               </li>
             ))}
           </ul>
           
-          <div className="mt-6 pt-4 border-t border-[#0a3d8f]/20">
-            <h4 className="font-mono text-[10px] text-zinc-400 uppercase mb-2">Rent Estimate (2031)</h4>
-            <div className="text-2xl font-black text-white">$700 - $1,100<span className="text-sm text-zinc-500 font-normal"> / mes</span></div>
-            <p className="text-xs text-zinc-400 mt-1">Para un apartamento de 1-2 habitaciones fuera del área turística.</p>
+          <div className="mt-8 pt-6 border-t border-[#0a3d8f]/20 relative z-10">
+            <h4 className="font-mono text-[10px] text-zinc-400 uppercase mb-2 font-bold tracking-widest">Rent Estimate (2031)</h4>
+            <div className="text-3xl font-black text-white drop-shadow-sm">$700 - $1,100<span className="text-sm text-zinc-500 font-medium ml-1">/ month</span></div>
+            <p className="text-xs text-zinc-400 mt-2 font-medium leading-relaxed">For a 1-2 bedroom apartment outside the tourist area.</p>
           </div>
         </div>
 
         {/* Relocation Checklist */}
-        <div className="bg-[#11182c] border border-white/5 rounded-2xl p-6">
-          <h3 className="text-xl font-black text-white mb-4">Checklist de Mudanza</h3>
-          <div className="space-y-3">
+        <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl">
+          <h3 className="text-2xl font-black text-white mb-6 tracking-tight">Relocation Checklist</h3>
+          <div className="space-y-4">
             {CHECKLIST.map((task, i) => (
-              <div key={i} className="flex gap-3 items-start group">
-                <div className="w-5 h-5 rounded border border-white/20 flex items-center justify-center shrink-0 mt-0.5 group-hover:border-[#f5a623] transition-colors">
-                  <div className="w-2.5 h-2.5 rounded-[1px] bg-transparent" />
+              <div key={i} className="flex gap-4 items-start group cursor-pointer">
+                <div className="w-6 h-6 rounded-lg border-2 border-white/20 flex items-center justify-center shrink-0 mt-0.5 group-hover:border-[#f5a623] group-hover:bg-[#f5a623]/10 transition-all duration-300 shadow-inner">
+                  <div className="w-3 h-3 rounded-sm bg-transparent" />
                 </div>
-                <span className="text-sm text-zinc-300 group-hover:text-white transition-colors">{task}</span>
+                <span className="text-sm text-zinc-300 font-medium group-hover:text-white transition-colors duration-300">{task}</span>
               </div>
             ))}
           </div>
@@ -107,26 +114,28 @@ export default function PuertoRicoInfo() {
       </div>
       
       {/* Mini Culture Guide */}
-      <div className="bg-gradient-to-r from-black to-[#11182c] border border-white/10 rounded-2xl p-6 shadow-md">
-        <h3 className="font-bold text-white mb-4 flex items-center gap-2">
-          <Coffee className="w-5 h-5 text-[#f5a623]" /> Cultura Rápida
+      <div className="bg-gradient-to-br from-black/80 to-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+        <div className="absolute bottom-0 right-0 w-48 h-48 bg-[#f5a623]/10 rounded-full blur-3xl opacity-50" />
+        
+        <h3 className="font-black text-xl text-white mb-6 flex items-center gap-3 tracking-tight relative z-10">
+          <Coffee className="w-6 h-6 text-[#f5a623] drop-shadow-[0_0_8px_rgba(245,166,35,0.6)]" /> Quick Culture Guide
         </h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-white/5 p-3 rounded-lg text-center">
-            <div className="text-xs font-mono text-zinc-500 mb-1">Saludo</div>
-            <div className="font-bold text-white text-sm">"Buen día"</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
+          <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
+            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Greeting</div>
+            <div className="font-black text-white text-sm">&quot;Buen d&iacute;a&quot;</div>
           </div>
-          <div className="bg-white/5 p-3 rounded-lg text-center">
-            <div className="text-xs font-mono text-zinc-500 mb-1">Ritmo</div>
-            <div className="font-bold text-white text-sm">Más relajado</div>
+          <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
+            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Pace</div>
+            <div className="font-black text-white text-sm">More Relaxed</div>
           </div>
-          <div className="bg-white/5 p-3 rounded-lg text-center">
-            <div className="text-xs font-mono text-zinc-500 mb-1">Café</div>
-            <div className="font-bold text-white text-sm">Siempre a las 3pm</div>
+          <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
+            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Coffee</div>
+            <div className="font-black text-white text-sm">Always at 3pm</div>
           </div>
-          <div className="bg-white/5 p-3 rounded-lg text-center">
-            <div className="text-xs font-mono text-zinc-500 mb-1">Idioma</div>
-            <div className="font-bold text-white text-sm">Spanglish común</div>
+          <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
+            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Language</div>
+            <div className="font-black text-white text-sm">Spanglish Common</div>
           </div>
         </div>
       </div>

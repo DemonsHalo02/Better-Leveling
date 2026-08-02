@@ -3,12 +3,14 @@
 import { db } from "./firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { loadHunterState, saveHunterState, HunterState } from "./hunter-system";
+import { getPRData, savePRData, PRStorageData } from "./pr-storage";
 
 export interface CloudHunterProfile {
   email: string;
   displayName: string;
   tier: "E-Rank Free" | "S-Rank VIP Guild";
   hunterState: HunterState;
+  prData?: PRStorageData;
   lastSynced: number;
 }
 
@@ -25,6 +27,7 @@ export async function syncHunterToCloud(
   try {
     const cleanEmail = email.trim().toLowerCase();
     const hunterState = loadHunterState();
+    const prData = getPRData();
     
     const docRef = doc(db, "hunters", cleanEmail);
     const payload: CloudHunterProfile = {
@@ -32,6 +35,7 @@ export async function syncHunterToCloud(
       displayName: displayName || cleanEmail.split("@")[0] || "Hunter",
       tier: tier || "E-Rank Free",
       hunterState,
+      prData,
       lastSynced: Date.now(),
     };
 
@@ -68,6 +72,11 @@ export async function restoreHunterFromCloud(email: string): Promise<CloudHunter
       if (data.hunterState && data.hunterState.level) {
         saveHunterState(data.hunterState);
         loadHunterState();
+      }
+
+      // Restore PR data if present
+      if (data.prData) {
+        savePRData(data.prData);
       }
 
       return data;

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import HunterStatusBar from "@/components/Navigation/HunterStatusBar";
 import SystemSidebar, { TabType } from "@/components/Navigation/SystemSidebar";
 import DailyQuestDashboard from "@/components/Dashboard/DailyQuestDashboard";
@@ -24,17 +24,59 @@ import Cursos from "@/components/PuertoRico/Cursos";
 import PuertoRicoInfo from "@/components/PuertoRico/PuertoRicoInfo";
 import Ahorros from "@/components/PuertoRico/Ahorros";
 import Habitos from "@/components/PuertoRico/Habitos";
-import Logros from "@/components/PuertoRico/Logros";
 import TechSetup from "@/components/PuertoRico/TechSetup";
 import PomodoroModal from "@/components/PuertoRico/PomodoroModal";
 import Confetti from "@/components/PuertoRico/Confetti";
 import { getPRData } from "@/lib/pr-storage";
+import { syncHunterToCloud } from "@/lib/cloud-sync";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<string>("inicio");
   const [showConfetti, setShowConfetti] = useState(false);
-  const prData = getPRData();
+  const [prData, setPrData] = useState(() => getPRData());
   const daysSince = Math.floor((new Date().getTime() - new Date("2026-08-03").getTime()) / (1000 * 3600 * 24));
+
+  // Reactive sync: re-read PR data whenever any component updates it
+  useEffect(() => {
+    let syncTimeout: NodeJS.Timeout;
+
+    const triggerCloudSync = () => {
+      clearTimeout(syncTimeout);
+      syncTimeout = setTimeout(() => {
+        try {
+          const userStr = localStorage.getItem("hunter_current_user");
+          if (userStr) {
+            const user = JSON.parse(userStr);
+            if (user && user.email) {
+              syncHunterToCloud(user.email, user.displayName, user.tier);
+            }
+          }
+        } catch (e) {
+          // Ignore parse errors or offline sync issues
+        }
+      }, 2000); // Debounce sync by 2 seconds
+    };
+
+    const handlePRUpdate = () => {
+      setPrData(getPRData());
+      triggerCloudSync();
+    };
+    const handleHunterUpdate = () => {
+      setPrData(getPRData());
+      triggerCloudSync();
+    };
+    const handleConfetti = () => setShowConfetti(true);
+
+    window.addEventListener("prDataUpdated", handlePRUpdate);
+    window.addEventListener("hunterStateChanged", handleHunterUpdate);
+    window.addEventListener("triggerConfetti", handleConfetti);
+
+    return () => {
+      window.removeEventListener("prDataUpdated", handlePRUpdate);
+      window.removeEventListener("hunterStateChanged", handleHunterUpdate);
+      window.removeEventListener("triggerConfetti", handleConfetti);
+    };
+  }, []);
 
 
   return (
@@ -92,7 +134,6 @@ export default function Home() {
           {activeTab === "puertorico" && <PuertoRicoInfo />}
           {activeTab === "ahorros" && <Ahorros />}
           {activeTab === "habitos" && <Habitos />}
-          {activeTab === "logros" && <Logros />}
           {activeTab === "tech" && <TechSetup />}
         </div>
       </main>

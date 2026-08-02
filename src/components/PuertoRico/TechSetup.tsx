@@ -32,43 +32,54 @@ export default function TechSetup() {
     <div className="space-y-6 max-w-4xl mx-auto">
       
       {/* Header */}
-      <div className="bg-gradient-to-r from-zinc-900 to-black rounded-2xl p-6 border border-white/10 flex items-center justify-between shadow-lg">
-        <div>
-          <h2 className="text-2xl font-black text-white flex items-center gap-2 mb-1">
-            <Focus className="w-6 h-6 text-[#00f0ff]" /> Sistema de Enfoque
+      <div className="relative bg-gradient-to-br from-zinc-900/90 to-black/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/10 flex items-center justify-between shadow-2xl overflow-hidden group hover:border-white/20 transition-all duration-500">
+        <div className="absolute top-0 right-0 w-48 h-48 bg-[#00f0ff]/10 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
+        
+        <div className="relative z-10">
+          <h2 className="text-3xl font-black text-white flex items-center gap-3 mb-2 tracking-tighter">
+            <div className="bg-[#00f0ff]/10 p-2 rounded-xl border border-[#00f0ff]/20 shadow-inner">
+              <Focus className="w-7 h-7 text-[#00f0ff] drop-shadow-[0_0_8px_rgba(0,240,255,0.6)]" />
+            </div>
+            Focus System
           </h2>
-          <p className="text-sm text-zinc-400 font-mono">Optimizing your digital environment for the 10-year grind.</p>
+          <p className="text-sm text-zinc-400 font-medium ml-1 max-w-md">Optimizing your digital environment for the 10-year grind.</p>
         </div>
-        <MonitorOff className="w-12 h-12 text-zinc-700 hidden sm:block" />
+        <MonitorOff className="w-16 h-16 text-zinc-800 hidden sm:block relative z-10 group-hover:text-zinc-700 transition-colors" />
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
         
         {/* iPhone Setup */}
-        <div className="bg-[#11182c] border border-white/5 rounded-2xl p-6 shadow-md">
-          <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-            <Smartphone className="w-5 h-5 text-[#ce1126]" /> iPhone Minimalism
+        <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl hover:border-white/20 transition-all duration-300">
+          <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3 tracking-tight">
+            <div className="bg-[#ce1126]/10 p-2 rounded-xl border border-[#ce1126]/20 shadow-inner">
+              <Smartphone className="w-5 h-5 text-[#ce1126]" />
+            </div>
+            iPhone Minimalism
           </h3>
-          <ul className="space-y-3">
+          <ul className="space-y-4">
             {IPHONE_SETUP.map((item, i) => (
-              <li key={i} className="flex gap-3 items-start text-sm text-zinc-300">
-                <CheckCircle2 className="w-4 h-4 text-[#ce1126] shrink-0 mt-0.5" />
-                <span>{item}</span>
+              <li key={i} className="flex gap-4 items-start text-sm text-zinc-300 font-medium group">
+                <CheckCircle2 className="w-5 h-5 text-[#ce1126] shrink-0 mt-0.5 drop-shadow-sm group-hover:scale-110 transition-transform" />
+                <span className="leading-relaxed group-hover:text-white transition-colors">{item}</span>
               </li>
             ))}
           </ul>
         </div>
 
         {/* Mac Setup */}
-        <div className="bg-[#11182c] border border-white/5 rounded-2xl p-6 shadow-md">
-          <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-            <Laptop className="w-5 h-5 text-[#0a3d8f]" /> MacBook Workspace
+        <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl hover:border-white/20 transition-all duration-300">
+          <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3 tracking-tight">
+            <div className="bg-[#0a3d8f]/10 p-2 rounded-xl border border-[#0a3d8f]/20 shadow-inner">
+              <Laptop className="w-5 h-5 text-[#0a3d8f]" />
+            </div>
+            MacBook Workspace
           </h3>
-          <ul className="space-y-3">
+          <ul className="space-y-4">
             {MAC_SETUP.map((item, i) => (
-              <li key={i} className="flex gap-3 items-start text-sm text-zinc-300">
-                <CheckCircle2 className="w-4 h-4 text-[#0a3d8f] shrink-0 mt-0.5" />
-                <span>{item}</span>
+              <li key={i} className="flex gap-4 items-start text-sm text-zinc-300 font-medium group">
+                <CheckCircle2 className="w-5 h-5 text-[#0a3d8f] shrink-0 mt-0.5 drop-shadow-sm group-hover:scale-110 transition-transform" />
+                <span className="leading-relaxed group-hover:text-white transition-colors">{item}</span>
               </li>
             ))}
           </ul>
@@ -77,19 +88,22 @@ export default function TechSetup() {
       </div>
 
       {/* Apps list */}
-      <div className="bg-[#11182c] border border-white/5 rounded-2xl p-6 shadow-md">
-        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-          <Wifi className="w-5 h-5 text-[#4ade80]" /> Aplicaciones Esenciales
+      <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl">
+        <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3 tracking-tight">
+          <div className="bg-[#4ade80]/10 p-2 rounded-xl border border-[#4ade80]/20 shadow-inner">
+            <Wifi className="w-5 h-5 text-[#4ade80] drop-shadow-[0_0_6px_rgba(74,222,128,0.6)]" />
+          </div>
+          Essential Apps
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {APPS.map((app, i) => (
-            <div key={i} className="bg-black/30 border border-white/5 p-4 rounded-xl flex items-start gap-4 hover:bg-white/5 transition-colors">
+            <div key={i} className="group bg-black/30 border border-white/5 p-5 rounded-2xl flex items-start gap-4 hover:bg-white/5 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               <div className="flex-1">
-                <div className="flex justify-between items-start mb-1">
-                  <h4 className="font-bold text-white text-sm">{app.name}</h4>
-                  <span className="text-[10px] font-mono bg-white/10 px-2 py-0.5 rounded text-zinc-400">{app.platform}</span>
+                <div className="flex justify-between items-start mb-2">
+                  <h4 className="font-black text-white text-base group-hover:text-[#f5a623] transition-colors">{app.name}</h4>
+                  <span className="text-[10px] font-mono font-bold bg-white/10 px-2.5 py-1 rounded-md text-zinc-400 border border-white/5 uppercase tracking-wider shadow-inner">{app.platform}</span>
                 </div>
-                <p className="text-xs text-zinc-500">{app.desc}</p>
+                <p className="text-sm text-zinc-500 font-medium leading-relaxed group-hover:text-zinc-400 transition-colors">{app.desc}</p>
               </div>
             </div>
           ))}

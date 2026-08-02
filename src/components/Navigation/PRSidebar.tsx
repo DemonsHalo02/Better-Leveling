@@ -1,9 +1,9 @@
 "use client";
 
 import React from 'react';
-import { Home, CalendarClock, BookOpen, Map, PiggyBank, Target, Award, Smartphone, CalendarDays } from 'lucide-react';
+import { Home, CalendarClock, BookOpen, Map, PiggyBank, Target, Smartphone, CalendarDays } from 'lucide-react';
 
-export type PRTabType = 'inicio' | 'timeline' | 'diario' | 'cursos' | 'puertorico' | 'ahorros' | 'habitos' | 'logros' | 'tech';
+export type PRTabType = 'inicio' | 'timeline' | 'diario' | 'cursos' | 'puertorico' | 'ahorros' | 'habitos' | 'tech';
 
 interface PRSidebarProps {
   activeTab: string;
@@ -16,63 +16,15 @@ const SafeIcon = ({ icon: Icon, className }: { icon: any, className: string }) =
 };
 
 export default function PRSidebar({ activeTab, setActiveTab }: PRSidebarProps) {
-  const prNavItems: { id: PRTabType; label: string; mobileLabel: string; icon: any; badge?: string }[] = [
-    {
-      id: 'inicio',
-      label: 'Inicio',
-      mobileLabel: 'Inicio',
-      icon: Home
-    },
-    {
-      id: 'timeline',
-      label: 'Línea de Tiempo',
-      mobileLabel: 'Timeline',
-      icon: CalendarClock
-    },
-    {
-      id: 'diario',
-      label: 'Diario',
-      mobileLabel: 'Diario',
-      icon: CalendarDays,
-      badge: 'Hoy'
-    },
-    {
-      id: 'cursos',
-      label: 'Cursos',
-      mobileLabel: 'Cursos',
-      icon: BookOpen
-    },
-    {
-      id: 'puertorico',
-      label: 'Puerto Rico',
-      mobileLabel: 'PR',
-      icon: Map,
-      badge: '2031'
-    },
-    {
-      id: 'ahorros',
-      label: 'Ahorros',
-      mobileLabel: 'Ahorros',
-      icon: PiggyBank
-    },
-    {
-      id: 'habitos',
-      label: 'Hábitos',
-      mobileLabel: 'Hábitos',
-      icon: Target
-    },
-    {
-      id: 'logros',
-      label: 'Logros',
-      mobileLabel: 'Logros',
-      icon: Award
-    },
-    {
-      id: 'tech',
-      label: 'Tech Setup',
-      mobileLabel: 'Tech',
-      icon: Smartphone
-    }
+  const prNavItems = [
+    { id: "inicio", label: "Home", mobileLabel: "Home", icon: Home, badge: undefined },
+    { id: "timeline", label: "Timeline", mobileLabel: "Timeline", icon: CalendarClock, badge: undefined },
+    { id: "diario", label: "Daily", mobileLabel: "Daily", icon: CalendarDays, badge: 'Today' },
+    { id: "cursos", label: "Courses", mobileLabel: "Courses", icon: BookOpen, badge: undefined },
+    { id: "puertorico", label: "PR Info", mobileLabel: "PR", icon: Map, badge: '2031' },
+    { id: "ahorros", label: "Savings", mobileLabel: "Savings", icon: PiggyBank, badge: undefined },
+    { id: "habitos", label: "Habits", mobileLabel: "Habits", icon: Target, badge: undefined },
+    { id: "tech", label: "Tech Setup", mobileLabel: "Tech", icon: Smartphone, badge: undefined }
   ];
 
   return (
