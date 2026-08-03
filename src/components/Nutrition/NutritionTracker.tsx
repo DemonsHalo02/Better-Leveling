@@ -24,7 +24,7 @@ interface NutritionTrackerProps {
 export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) {
   const [hunterState, setHunterState] = useState(() => (typeof window !== 'undefined' ? loadHunterState() : null));
   const [meals, setMeals] = useState<LoggedMeal[]>([]);
-  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('🇵🇷 Puerto Rico');
+  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('�🇷 Korea');
   const [selectedDeckRegion, setSelectedDeckRegion] = useState<string>('All Regions');
   const [showManualModal, setShowManualModal] = useState(false);
   const [manualName, setManualName] = useState('');
@@ -58,7 +58,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
         const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === savedCountry || c.bulkingKey === savedCountry);
         if (matchCuisine?.region) setSelectedDeckRegion(matchCuisine.region);
       } else {
-        setSelectedDeckCountry('🇵🇷 Puerto Rico');
+        setSelectedDeckCountry('�🇷 Korea');
       }
     }
   }, [today]);

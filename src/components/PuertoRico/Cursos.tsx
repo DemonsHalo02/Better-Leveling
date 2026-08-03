@@ -12,7 +12,7 @@ interface Course {
 
 const COURSES = {
   coding: [
-    { id: "c01", title: "The Complete Python Bootcamp From Zero to Hero in Python", dates: "Aug 3–14" },
+    { id: "c01", title: "The Complete Python Bootcamp From Zero to Hero in Python", dates: "Aug 4–15" },
     { id: "c02", title: "The Complete SQL Bootcamp: Go from Zero to Hero", dates: "Aug 15–21" },
     { id: "c03", title: "The Complete Full-Stack Web Development Bootcamp", dates: "Aug 22–Oct 10" },
     { id: "c04", title: "Next.js & React - The Complete Guide", dates: "Oct 11–Nov 1" },
@@ -33,7 +33,7 @@ const COURSES = {
     { id: "c11", title: "Ultimate AWS Certified Cloud Practitioner CLF-C02", dates: "Jan 23–Feb 5 2027" }
   ],
   art: [
-    { id: "c12", title: "Perspective Art School: The Complete Drawing Course", dates: "Aug 3–Sep 14" },
+    { id: "c12", title: "Perspective Art School: The Complete Drawing Course", dates: "Aug 4–Sep 14" },
     { id: "c13", title: "Anatomy Art School: Drawing the Human Form", dates: "Sep 15–Oct 31" },
     { id: "c14", title: "Manga Art School: The Complete Anime & Manga Course", dates: "Nov 1–Dec 15" },
     { id: "c15", title: "Character Art School: Complete Character Drawing", dates: "Dec 16–Jan 31" },
@@ -172,7 +172,7 @@ export default function Cursos() {
             <Star className="w-8 h-8 fill-current text-[#f5a623] drop-shadow-[0_0_10px_rgba(245,166,35,0.8)]" />
             Course Plan <span className="text-xl sm:text-2xl opacity-90">(25 Masterclasses)</span>
           </h2>
-          <p className="font-mono text-sm sm:text-base font-medium opacity-90 tracking-wide drop-shadow-sm mb-6">Aug 3 2026 → Feb 16 2027 · ~520 total hours</p>
+          <p className="font-mono text-sm sm:text-base font-medium opacity-90 tracking-wide drop-shadow-sm mb-6">Aug 4 2026 → Feb 16 2027 · ~520 total hours</p>
           
           <div className="flex flex-wrap gap-4 text-sm font-bold bg-black/30 p-4 rounded-2xl border border-white/20 shadow-inner backdrop-blur-sm">
             <div className="flex items-baseline gap-2">

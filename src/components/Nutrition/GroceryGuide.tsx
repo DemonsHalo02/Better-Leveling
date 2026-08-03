@@ -12,8 +12,8 @@ export default function GroceryGuide() {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [activeTab, setActiveTab] = useState<'items' | 'plans'>('items');
   const [selectedCountryPlan, setSelectedCountryPlan] = useState<string>('All');
-  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('🇵🇷 Puerto Rico');
-  const [selectedNationalCuisine, setSelectedNationalCuisine] = useState<string>('Puerto Rico');
+  const [selectedAisleTemplate, setSelectedAisleTemplate] = useState<string>('�🇷 Korea');
+  const [selectedNationalCuisine, setSelectedNationalCuisine] = useState<string>('Korea');
   const [selectedRegion, setSelectedRegion] = useState<string>('All Regions');
 
   const [customItems, setCustomItems] = useState<GroceryItem[]>([]);
@@ -178,7 +178,7 @@ export default function GroceryGuide() {
       carbs: 0,
       fat: 0,
       servingSize: "1 unit",
-      coachNote: customNote.trim() || "Custom added item for weekly Puerto Rican prep.",
+      coachNote: customNote.trim() || "Custom added item for weekly Korean prep.",
       cuisine: [selectedAisleTemplate === 'All' ? 'All' : selectedAisleTemplate]
     };
 

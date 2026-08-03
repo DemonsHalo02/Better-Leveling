@@ -66,7 +66,7 @@ export default function Inicio() {
           
           <div className="flex flex-wrap gap-3 sm:gap-4 font-mono text-xs font-bold">
             <span className="bg-white/10 px-4 py-2 rounded-xl border border-white/20 backdrop-blur-md text-white flex items-center gap-2 shadow-lg">
-              <span className="text-lg">🚀</span> Aug 3, 2026
+              <span className="text-lg">🚀</span> Aug 4, 2026
             </span>
             <span className="bg-white/10 px-4 py-2 rounded-xl border border-white/20 backdrop-blur-md text-[#4ade80] flex items-center gap-2 shadow-lg">
               <span className="text-lg">🗣️</span> TOPIK: Dec 2028

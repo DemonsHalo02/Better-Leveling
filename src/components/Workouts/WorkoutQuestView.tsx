@@ -169,11 +169,11 @@ export default function WorkoutQuestView() {
             <span>
               {planType === 'pf'
                 ? 'Planet Fitness Gym Blueprint | 7-Day Machine & Equipment Routine'
-                : 'Puerto Rican Home Bodyweight | 7-Day Silent Apartment Routine'}
+                : 'Korean Study-Ready Home Bodyweight | 7-Day Silent Apartment Routine'}
             </span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            {planType === 'pf' ? 'Planet Fitness Gym Dojo' : 'Puerto Rican Style Home Bodyweight Plan'}
+            {planType === 'pf' ? 'Planet Fitness Gym Dojo' : 'K-pop Idol Style Home Bodyweight Plan'}
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
             {planType === 'pf'

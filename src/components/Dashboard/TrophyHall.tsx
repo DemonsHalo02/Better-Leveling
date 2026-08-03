@@ -160,7 +160,7 @@ export default function TrophyHall() {
 
   const handleCopyShareCard = () => {
     if (!hunterState) return;
-    const text = `👑 [BETTER LEVELING v2 - S-RANK HUNTER GUILD CARD]\n⚔️ Hunter: ${hunterState.profile.name}\n🛡️ Title: ${equippedTitle || 'Awakened Hunter'}\n⚡ Level: ${hunterState.level} | STR: ${hunterState.stats.str}\n🔥 Streak: ${hunterState.streakDays} Days\n🥩 Nutrition Blueprint: 2,080 kcal / 178g Protein (Puerto Rican Style)\n📍 Sector: Planet Fitness Lewiston & Auburn ME`;
+    const text = `👑 [BETTER LEVELING v2 - S-RANK HUNTER GUILD CARD]\n⚔️ Hunter: ${hunterState.profile.name}\n🛡️ Title: ${equippedTitle || 'Awakened Hunter'}\n⚡ Level: ${hunterState.level} | STR: ${hunterState.stats.str}\n🔥 Streak: ${hunterState.streakDays} Days\n🥩 Nutrition Blueprint: 2,080 kcal / 178g Protein (Korean Style)\n📍 Sector: Planet Fitness Lewiston & Auburn ME`;
     navigator.clipboard.writeText(text);
     setShareCopied(true);
     setTimeout(() => setShareCopied(false), 3000);
