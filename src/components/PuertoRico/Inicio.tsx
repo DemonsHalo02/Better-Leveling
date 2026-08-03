@@ -50,6 +50,10 @@ export default function Inicio() {
   
   const deleLevels = ["A1", "A2", "B1", "B2", "C1"];
   const currentDeleLevel = deleLevels.filter(l => data.deleProgress[l]).length;
+  const startDate = new Date("2026-08-04");
+  const daysSinceStart = Math.max(0, Math.floor((today.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) + 1);
+  const weeklyStudyHours = Math.min(40, Math.max(0, Math.round((daysSinceStart / 7) * 18)));
+  const nextMilestone = currentDeleLevel >= 1 ? "TOPIK A2 checkpoint" : "First Korean study streak";
 
   return (
     <div className="space-y-6">
@@ -95,6 +99,27 @@ export default function Inicio() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Launch Week Actions */}
+      <div className="bg-[#11182c]/80 backdrop-blur-md border border-[#f5a623]/20 rounded-3xl p-6 sm:p-8 shadow-xl">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-[#f5a623] font-mono font-bold">Launch Week Focus</p>
+            <h2 className="text-xl font-black text-white mt-1">Classes start Aug 4 — this week is about consistency</h2>
+            <p className="text-sm text-zinc-400 mt-2">Aim for 18 study hours this week, one Korean lesson every day, and one progress check after each course block.</p>
+          </div>
+          <div className="grid grid-cols-2 gap-3 min-w-[260px]">
+            <div className="rounded-2xl border border-white/10 bg-black/20 p-3">
+              <div className="text-[10px] uppercase tracking-[0.25em] text-zinc-400">Study hours</div>
+              <div className="text-2xl font-black text-white mt-1">{weeklyStudyHours}h</div>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-black/20 p-3">
+              <div className="text-[10px] uppercase tracking-[0.25em] text-zinc-400">Next milestone</div>
+              <div className="text-sm font-black text-[#4ade80] mt-1">{nextMilestone}</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Progress Bars */}

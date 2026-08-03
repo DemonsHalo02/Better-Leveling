@@ -1898,14 +1898,14 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
   // 1. Puerto Rico 🇵🇷 (Cutting & Bulking)
   {
     id: "plan-puerto-rico",
-    title: "Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal)",
-    country: "Puerto Rico",
+    title: "Korea Study Plan: Gochujang Chicken, Rice Bowls & Korean Tea Shred Blueprint (~2,080 kcal)",
+    country: "Korea",
     flag: "🇵🇷",
-    badge: "⭐ #1 Main Phase 1 Cutting Blueprint ($49.62/Wk)",
+    badge: "⭐ Korea Study-Ready Phase 1 Cutting Blueprint ($49.62/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
     estCostPerWeek: "$62.82 Weekly Consumables / $25.16 Periodic Restock ($87.98 Combined Total)",
-    description: "The #1 Main Puerto Rican Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint! Tailored for steady fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target while preserving skin elasticity. Features sweet Café Bustelo con Leche with fat-free milk, a homemade recaito-style egg scramble, Pollo al Horno for lunch, Arroz con Kielbasa (Turkey Kielbasa) for dinner, and a weekly Goya Tostones reward treat!",
+    description: "A Korea-focused study-and-work meal blueprint built for steady fat loss and high focus. It features protein-rich rice bowls, Korean-style seasonings, and simple prep that fits your daily study blocks and quiet apartment routine.",
     meals: (() => {
       const meals = createMeals(
         "Puerto Rico", "Sweet Café Bustelo con Leche (1 level tsp sugar / 15 kcal) & 1 Medium Banana", 145,
@@ -1941,14 +1941,14 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
   },
   {
     id: "plan-puerto-rico-bulking",
-    title: "Puerto Rico Bulking: Pollo al Horno & Arroz con Kielbasa Lean Bulk (~2,680 kcal)",
-    country: "Puerto Rico Bulking",
+    title: "Korea Bulking: Gochujang Chicken & Rice Bowls Lean Bulk (~2,680 kcal)",
+    country: "Korea Bulking",
     flag: "🇵🇷🔥",
-    badge: "🔥 Phase 2: Post-160 Lb Lean Bulk ($50.98/Wk)",
+    badge: "🔥 Korea Study-Ready Lean Bulk ($50.98/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
     estCostPerWeek: "$67.39 Weekly Consumables / $25.16 Periodic Restock ($92.55 Combined Total)",
-    description: "The #1 Puerto Rican Lean Bulking Blueprint for post-160 lb muscle gain! Features sweet Café Bustelo con Leche with a small spoon of sugar, Pollo al Horno with DOUBLE Arroz con Gandules for lunch, Arroz con Kielbasa (Beef Kielbasa) for dinner, and Goya Tostones reward treat!",
+    description: "A Korea-focused lean bulking blueprint for sustained study energy and muscle gain. It pairs protein-rich meals with simple rice bowls, Korean pantry staples, and a practical prep routine for a calm apartment lifestyle.",
     meals: (() => {
       const meals = createMeals(
         "Puerto Rico Bulking", "Sweet Café Bustelo con Leche (1 level tsp sugar / 15 kcal) & 1 Medium Banana", 185,
