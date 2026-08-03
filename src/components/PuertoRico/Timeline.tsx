@@ -16,8 +16,9 @@ interface TimelineEvent {
 
 const TIMELINE_EVENTS: TimelineEvent[] = [
   { id: "aug-2026", year: 2026, monthStr: "August 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "The Journey Begins", desc: [
-      "Aug 4: DAY 1! Python Bootcamp starts. Perspective Art parallel.",
-      "Aug 4: Korean daily 90min begins. Korean tea and morning focus ritual.",
+      "Aug 4: DAY 1! Python Bootcamp starts; first Korean study block begins at 90 minutes.",
+      "Aug 4–10: Daily coding practice, Korean grammar, Anki review, and one art session each week.",
+      "Aug 11–17: SQL + study consistency week; keep one deep focus block for Microsoft learning.",
       "Aug 22: Full-Stack Web Dev Bootcamp begins (Dr. Angela Yu)."
   ]},
   { id: "oct-2026", year: 2026, monthStr: "October 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Web Dev & Next.js", desc: [
@@ -63,6 +64,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
       "Dec 2029: Consider TOPIK III. Savings ~$26K."
   ]},
   { id: "mar-2031", year: 2031, monthStr: "March 2031", badge: "Phase 5 ✈️", color: "#ce1126", title: "The Final Month", desc: [
+      "Mar 2031: TOPIK IV/VI exam window; relocation readiness checkpoint.",
       "Mar 2031: Final month Lewiston. $35K saved!"
   ]},
   { id: "apr-2031", year: 2031, monthStr: "April 2031", badge: "Phase 5 ✈️", color: "#ce1126", title: "Departure", desc: [

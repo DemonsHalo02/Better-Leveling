@@ -47,11 +47,11 @@ const COURSES = {
 };
 
 const DELE_MILESTONES = [
-  { id: "dele-a1", label: "A1 Internal (Aug–Dec 2026): Duolingo basics + 500 vocab" },
-  { id: "dele-a2", label: "A2 Internal (Jan–Jun 2027): Grammar solid + 1,500 vocab" },
-  { id: "dele-b1", label: "DELE B1 EXAM — December 2027" },
-  { id: "dele-b2", label: "DELE B2 EXAM — December 2028" },
-  { id: "dele-c1", label: "DELE C1 EXAM — December 2030" },
+  { id: "dele-a1", label: "TOPIK I (Aug 2027): Basics + 500 vocab" },
+  { id: "dele-a2", label: "TOPIK II (Apr 2029): Intermediate grammar + 1,500 vocab" },
+  { id: "dele-b1", label: "TOPIK III (Mar 2030): Reading + conversation strength" },
+  { id: "dele-b2", label: "TOPIK IV (Dec 2030): Advanced prep for relocation" },
+  { id: "dele-c1", label: "TOPIK VI (Mar 2031): Relocation-ready exam" },
 ];
 
 export default function Cursos() {
@@ -194,6 +194,28 @@ export default function Cursos() {
         </div>
       </div>
 
+      <div className="bg-[#0a3d8f]/10 border border-white/10 rounded-2xl p-5 shadow-inner">
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <div>
+            <h3 className="text-lg font-black text-white">Detailed Launch Schedule</h3>
+            <p className="text-sm text-zinc-400 mt-1">A more practical first month so classes and study blocks feel easier to follow.</p>
+          </div>
+        </div>
+        <div className="grid md:grid-cols-2 gap-3">
+          {[
+            { title: "Week 1 — Aug 4–10", detail: "Start Python bootcamp, 90m Korean daily, 45m art practice, and one review session every evening." },
+            { title: "Week 2 — Aug 11–17", detail: "Continue Python, add SQL practice, and keep Korean grammar + vocabulary blocks consistent." },
+            { title: "Week 3 — Aug 18–24", detail: "Move into full-stack web dev work, keep one deep study block for Microsoft learning, and review notes." },
+            { title: "Week 4 — Aug 25–31", detail: "Build momentum with one coding project, one Korean speaking practice block, and one rest day for recovery." }
+          ].map((block) => (
+            <div key={block.title} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+              <div className="text-sm font-black text-[#f5a623]">{block.title}</div>
+              <div className="text-sm text-zinc-300 mt-2">{block.detail}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="space-y-4">
         {renderSection("coding", "💻 SECTION 1 — CODING (5)", "from-[#0a3d8f]/30 to-transparent border-l-4 border-l-[#0a3d8f]", COURSES.coding)}
         {renderSection("cloud", "☁️ SECTION 2 — CLOUD & TECH (12)", "from-[#ce1126]/30 to-transparent border-l-4 border-l-[#ce1126]", COURSES.cloud)}
@@ -204,9 +226,9 @@ export default function Cursos() {
       {/* DELE Tracker */}
       <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl mt-8">
         <h3 className="text-2xl font-black text-white font-mono mb-2 flex items-center gap-3 tracking-tight">
-          <span className="text-3xl drop-shadow-md">�🇷</span> TOPIK Master Plan
+          <span className="text-3xl drop-shadow-md">🇰🇷</span> TOPIK Master Plan
         </h3>
-        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">Official Korean Language Certification Track</p>
+        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">Official TOPIK preparation track aligned to your relocation timeline</p>
         
         <div className="space-y-4">
           {DELE_MILESTONES.map((ms) => {

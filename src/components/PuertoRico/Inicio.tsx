@@ -73,7 +73,7 @@ export default function Inicio() {
               <span className="text-lg">🚀</span> Aug 4, 2026
             </span>
             <span className="bg-white/10 px-4 py-2 rounded-xl border border-white/20 backdrop-blur-md text-[#4ade80] flex items-center gap-2 shadow-lg">
-              <span className="text-lg">🗣️</span> TOPIK: Dec 2028
+              <span className="text-lg">🗣️</span> TOPIK: Mar 2031
             </span>
             <span className="bg-white/10 px-4 py-2 rounded-xl border border-[#f5a623]/40 backdrop-blur-md text-[#f5a623] flex items-center gap-2 shadow-lg">
               <span className="text-lg">✈️</span> Korea Study + Work Path: Apr 2031
