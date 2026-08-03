@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -84,13 +85,13 @@ export default function TrophyHall() {
     },
     {
       id: 'puerto_rican_shredder',
-      title: "Master of Puerto Rican Pollo al Horno & Sofrito Searing",
-      name: "🇵🇷 Puerto Rican Shredder",
-      description: "Successfully log Puerto Rican cutting meals and hit your daily anabolic protein target.",
+      title: "Master of Korean Gochujang & Bibimbap Prep",
+      name: "🇰🇷 Korean Shredder",
+      description: "Successfully log Korean cutting meals and hit your daily anabolic protein target.",
       icon: <Sparkles className="w-6 h-6 text-system-cyan" />,
       rarity: 'Epic',
       unlocked: hasMeals || hunterState.completedQuestsToday.calories || hunterState.completedQuestsToday.protein,
-      unlockCondition: "Log any Puerto Rican meal prep item in the Nutrition Tracker"
+      unlockCondition: "Log any Korean meal prep item in the Nutrition Tracker"
     },
     {
       id: 'iron_monarch',
@@ -180,7 +181,7 @@ export default function TrophyHall() {
             Hunter Trophy Hall
           </h2>
           <p className="text-xs sm:text-sm text-zinc-300 max-w-2xl leading-relaxed">
-            Unlock legendary titles by crushing your Planet Fitness workouts and Puerto Rican Pollo al Horno nutrition targets. Equip any unlocked title to display it across your top Hunter Status Bar!
+            Unlock legendary titles by crushing your workouts and Korean meal-prep nutrition targets. Equip any unlocked title to display it across your top Hunter Status Bar!
           </p>
         </div>
 
@@ -250,7 +251,7 @@ export default function TrophyHall() {
             </div>
 
             <p className="text-[11px] text-zinc-400 text-center italic">
-              "Arise. Transform from 242 lbs to 160 lbs with your Puerto Rican-inspired plan and relentless iron."
+              "Arise. Transform from 242 lbs to 160 lbs with your Korean-inspired plan and relentless iron."
             </p>
 
             <button

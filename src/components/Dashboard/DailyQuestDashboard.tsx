@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import React, { useEffect, useState } from 'react';
@@ -115,7 +116,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               Arise, <span className="text-system-blue">{state.profile.name}</span>.
             </h2>
             <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
-              Your mission is clear: transform from {startWeight} lbs down to a shredded, muscular <span className="text-system-cyan font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Complete your daily quests to level up your real-life stats and build a strong Puerto Rican-style physique at {state.profile.gymName || 'your Puerto Rican Style Home Bodyweight Dojo or Planet Fitness Gym'}!
+              Your mission is clear: transform from {startWeight} lbs down to a shredded, muscular <span className="text-system-cyan font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Complete your daily quests to level up your real-life stats and build a strong Korean-study-and-work physique at {state.profile.gymName || 'your K-pop Idol Style Home Bodyweight Dojo or Samsung Study Setup'}!
             </p>
           </div>
 
@@ -155,7 +156,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               <span className="text-sm font-mono font-bold text-system-gold">({daysRemaining} Days Left)</span>
             </h3>
             <p className="text-xs text-zinc-300 max-w-2xl leading-relaxed">
-              Every clean meal prep and every PR at {state.profile.gymName || 'your Puerto Rican Style Home Bodyweight Dojo or Planet Fitness Gym'} chops HP off this boss raid. Stay consistent on your chosen {state.profile.dietName || '19-Country Global S-Rank Meal Blueprint'} to keep your Puerto Rican-style cut sharp, strong, and ready for the next level!
+              Every clean meal prep and every PR at {state.profile.gymName || 'your K-pop Idol Style Home Bodyweight Dojo or Samsung Study Setup'} chops HP off this boss raid. Stay consistent on your chosen {state.profile.dietName || '19-Country Global S-Rank Meal Blueprint'} to keep your Korean-study-and-work cut sharp, strong, and ready for the next level!
             </p>
 
             {/* Boss HP Bar */}

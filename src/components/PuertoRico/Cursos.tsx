@@ -41,7 +41,7 @@ const COURSES = {
   ],
   important: [
     { id: "c17", title: "Video Editing in CapCut | Beginner to Pro", dates: "Feb 6–15 2027" },
-    { id: "c18", title: "Complete Spanish Course: Master Spanish Beginner to Advanced", dates: "DAILY 90min" },
+    { id: "c18", title: "The Complete Korean Course for Beginners | 10 courses in 1! by Keehwan Kim", dates: "DAILY 90min" },
     { id: "c19", title: "HSE/GED/TASC/HiSET Prep: Complete Mathematics", dates: "Starts Apr 2027" }
   ]
 };
@@ -182,7 +182,7 @@ export default function Cursos() {
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
             <div className="flex items-center gap-2">
-              <span className="text-zinc-300 uppercase tracking-wider text-xs">Spanish:</span> 
+              <span className="text-zinc-300 uppercase tracking-wider text-xs">Korean:</span> 
               <span className="text-[#0a3d8f] bg-white px-2 py-0.5 rounded text-xs drop-shadow-sm">EVERY DAY</span>
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
@@ -204,9 +204,9 @@ export default function Cursos() {
       {/* DELE Tracker */}
       <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl mt-8">
         <h3 className="text-2xl font-black text-white font-mono mb-2 flex items-center gap-3 tracking-tight">
-          <span className="text-3xl drop-shadow-md">🇵🇷</span> DELE Master Plan
+          <span className="text-3xl drop-shadow-md">�🇷</span> TOPIK Master Plan
         </h3>
-        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">Instituto Cervantes Official Certification Track</p>
+        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">Official Korean Language Certification Track</p>
         
         <div className="space-y-4">
           {DELE_MILESTONES.map((ms) => {

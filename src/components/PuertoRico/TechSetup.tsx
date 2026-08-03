@@ -4,27 +4,27 @@ import React from "react";
 import { Smartphone, Laptop, CheckCircle2, MonitorOff, Focus, Wifi } from "lucide-react";
 
 const APPS = [
-  { name: "Anki", platform: "iOS & Mac", desc: "Spaced repetition for Spanish vocab & Cloud Certs." },
-  { name: "VS Code", platform: "Mac", desc: "Primary code editor. Extensions: Prettier, ESLint, Tailwind." },
-  { name: "Udemy / Microsoft Learn", platform: "iOS & Mac", desc: "Download study material offline for focus blocks." },
-  { name: "CapCut", platform: "iOS & Mac", desc: "For phase 2 video editing skills." },
+  { name: "Anki", platform: "Android & Samsung", desc: "Spaced repetition for Korean vocab and study goals." },
+  { name: "VS Code", platform: "Windows / Web", desc: "Primary code editor. Extensions: Prettier, ESLint, Tailwind." },
+  { name: "Keehwan Kim Korean Course / Microsoft Learn", platform: "Android & Web", desc: "Download study material offline for focus blocks." },
+  { name: "CapCut", platform: "Android & Samsung", desc: "For video editing skills and content practice." },
   { name: "Better Leveling", platform: "Web", desc: "This app. Install as PWA to home screen." },
 ];
 
-const IPHONE_SETUP = [
+const PHONE_SETUP = [
   "Delete TikTok, Instagram, Twitter, Facebook.",
-  "Turn on 'Grayscale' in Accessibility (Triple-click power button to toggle).",
+  "Turn on 'Grayscale' in Accessibility for a cleaner focus experience.",
   "Set up 'Study Focus' mode: Only allow calls from family. Block all non-essential app notifications.",
   "Home Screen: Only Anki, Calendar, Notes, Microsoft Learn, and Better Leveling (PWA).",
-  "No phone in bedroom after 9:30 PM."
+  "No phone in bedroom after 10:30 PM."
 ];
 
-const MAC_SETUP = [
-  "Create a dedicated 'Study' user account with no games or entertainment apps installed.",
-  "Use 'SelfControl' app to block Reddit/YouTube during 90-min Pomodoro blocks.",
-  "Organize Desktop: Clean desktop every Friday.",
-  "Folder Structure: /Development, /CloudCerts, /Spanish, /Art.",
-  "Keep terminal and VS Code pinned to dock."
+const SAMSUNG_SETUP = [
+  "Use Samsung Focus Mode and One UI routines to block distractions during 90-minute study blocks.",
+  "Keep a clean home screen and use Samsung Notes for daily plans and Korean vocab.",
+  "Create folders: /Development, /CloudCerts, /Korean, /Art.",
+  "No MacBook needed — use your Samsung Galaxy Z Fold 8 as the main daily study device.",
+  "Keep your study apps pinned to the taskbar and home screen."
 ];
 
 export default function TechSetup() {
@@ -49,16 +49,16 @@ export default function TechSetup() {
 
       <div className="grid md:grid-cols-2 gap-6">
         
-        {/* iPhone Setup */}
+        {/* Samsung Setup */}
         <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl hover:border-white/20 transition-all duration-300">
           <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3 tracking-tight">
             <div className="bg-[#ce1126]/10 p-2 rounded-xl border border-[#ce1126]/20 shadow-inner">
               <Smartphone className="w-5 h-5 text-[#ce1126]" />
             </div>
-            iPhone Minimalism
+            Samsung Z Fold 8 Minimalism
           </h3>
           <ul className="space-y-4">
-            {IPHONE_SETUP.map((item, i) => (
+            {PHONE_SETUP.map((item, i) => (
               <li key={i} className="flex gap-4 items-start text-sm text-zinc-300 font-medium group">
                 <CheckCircle2 className="w-5 h-5 text-[#ce1126] shrink-0 mt-0.5 drop-shadow-sm group-hover:scale-110 transition-transform" />
                 <span className="leading-relaxed group-hover:text-white transition-colors">{item}</span>
@@ -67,16 +67,16 @@ export default function TechSetup() {
           </ul>
         </div>
 
-        {/* Mac Setup */}
+        {/* Samsung Workspace */}
         <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl hover:border-white/20 transition-all duration-300">
           <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3 tracking-tight">
             <div className="bg-[#0a3d8f]/10 p-2 rounded-xl border border-[#0a3d8f]/20 shadow-inner">
               <Laptop className="w-5 h-5 text-[#0a3d8f]" />
             </div>
-            MacBook Workspace
+            Samsung Workspace
           </h3>
           <ul className="space-y-4">
-            {MAC_SETUP.map((item, i) => (
+            {SAMSUNG_SETUP.map((item, i) => (
               <li key={i} className="flex gap-4 items-start text-sm text-zinc-300 font-medium group">
                 <CheckCircle2 className="w-5 h-5 text-[#0a3d8f] shrink-0 mt-0.5 drop-shadow-sm group-hover:scale-110 transition-transform" />
                 <span className="leading-relaxed group-hover:text-white transition-colors">{item}</span>

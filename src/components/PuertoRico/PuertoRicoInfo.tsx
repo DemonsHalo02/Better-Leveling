@@ -20,7 +20,7 @@ const CAGUAS_INFO = [
 
 const CHECKLIST = [
   "Save $35,000 (Safety net + moving costs)",
-  "Achieve DELE B2 Spanish Certification",
+  "Achieve TOPIK Korean Certification",
   "Secure 100% Remote Tech Income",
   "Hit 160 lbs (Health & Fitness prime)",
   "Visit PR for a 2-week scouting trip (2030)",
@@ -44,7 +44,7 @@ export default function PuertoRicoInfo() {
             <div className="bg-[#ce1126]/20 p-3 rounded-2xl border border-[#ce1126]/30 shadow-lg backdrop-blur-sm">
               <Map className="w-8 h-8 text-[#ce1126] drop-shadow-[0_0_8px_rgba(206,17,38,0.6)]" />
             </div>
-            <h2 className="text-4xl font-black text-white tracking-tighter drop-shadow-md">Puerto Rico</h2>
+            <h2 className="text-4xl font-black text-white tracking-tighter drop-shadow-md">Korea</h2>
           </div>
           <p className="text-[#f5a623] font-mono font-black tracking-[0.3em] text-sm uppercase drop-shadow-sm ml-1">La Isla del Encanto</p>
           <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">Target: April 2031. The culmination of 10 years of study, saving, and physical transformation.</p>
@@ -54,7 +54,7 @@ export default function PuertoRicoInfo() {
       {/* Why PR Grid */}
       <div>
         <h3 className="text-2xl font-black text-white mb-6 tracking-tight flex items-center gap-2">
-          <span className="text-[#ce1126]">Why</span> Puerto Rico?
+          <span className="text-[#ce1126]">Why</span> Korea?
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {WHY_PR.map((item, i) => (
@@ -79,7 +79,7 @@ export default function PuertoRicoInfo() {
           <h3 className="text-2xl font-black text-[#0a3d8f] mb-2 flex items-center gap-3 tracking-tight relative z-10">
             <Map className="w-6 h-6" /> Caguas <span className="text-sm text-zinc-400 font-medium">(Recommended)</span>
           </h3>
-          <p className="text-zinc-400 text-sm mb-6 font-bold relative z-10">The Center & Heart of Puerto Rico</p>
+          <p className="text-zinc-400 text-sm mb-6 font-bold relative z-10">The Center & Heart of Korea for school, work, and visa goals</p>
           
           <ul className="space-y-4 relative z-10">
             {CAGUAS_INFO.map((info, i) => (

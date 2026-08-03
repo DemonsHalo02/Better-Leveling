@@ -17,7 +17,7 @@ interface TimelineEvent {
 const TIMELINE_EVENTS: TimelineEvent[] = [
   { id: "aug-2026", year: 2026, monthStr: "August 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "The Journey Begins", desc: [
       "Aug 3: DAY 1! Python Bootcamp starts. Perspective Art parallel.",
-      "Aug 3: Spanish daily 90min begins. Café con Leche Helado morning ritual.",
+      "Aug 3: Korean daily 90min begins. Korean tea and morning focus ritual.",
       "Aug 22: Full-Stack Web Dev Bootcamp begins (Dr. Angela Yu)."
   ]},
   { id: "oct-2026", year: 2026, monthStr: "October 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Web Dev & Next.js", desc: [
@@ -40,8 +40,8 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
       "Feb 6: CapCut Desktop+Mobile: Beginner to Pro.",
       "Feb 16: ✅ ALL 25 COURSES COMPLETE!"
   ]},
-  { id: "apr-2027", year: 2027, monthStr: "April 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "Math & Spanish Grind", desc: [
-      "Apr 2027: HiSET Math Prep begins. Spanish DELE B1 grind intensifies."
+  { id: "apr-2027", year: 2027, monthStr: "April 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "Math & Korean Grind", desc: [
+      "Apr 2027: HiSET Math Prep begins. Korean TOPIK grind intensifies."
   ]},
   { id: "may-2027", year: 2027, monthStr: "May 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "First Cert", desc: [
       "May 2027: First Microsoft/Azure cert exam."
@@ -49,27 +49,27 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   { id: "jun-2027", year: 2027, monthStr: "June 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "Income Milestone", desc: [
       "Jun 2027: 🎉 First remote IT income!"
   ]},
-  { id: "dec-2027", year: 2027, monthStr: "December 2027", badge: "Phase 3 💼", color: "#f5a623", title: "DELE B1", desc: [
-      "Dec 2027: 🗣️ DELE B1 EXAM — register by Sep 2027!"
+  { id: "dec-2027", year: 2027, monthStr: "December 2027", badge: "Phase 3 💼", color: "#f5a623", title: "TOPIK", desc: [
+      "Dec 2027: 🗣️ TOPIK EXAM — register by Sep 2027!"
   ]},
   { id: "jan-2028", year: 2028, monthStr: "January 2028", badge: "Phase 3 💼", color: "#f5a623", title: "Education Milestone", desc: [
-      "Jan 2028: HiSET complete! DELE B1 passed!"
+      "Jan 2028: HiSET complete! TOPIK passed!"
   ]},
   { id: "dec-2028", year: 2028, monthStr: "December 2028", badge: "Phase 4 💪", color: "#4ade80", title: "Body & B2 Mastery", desc: [
       "Dec 2028: 💪 160 LBS ACHIEVED! ~1,600 Spanish hrs.",
-      "Dec 2028: 🗣️ DELE B2 EXAM!"
+      "Dec 2028: 🗣️ TOPIK II EXAM!"
   ]},
   { id: "dec-2029", year: 2029, monthStr: "December 2029", badge: "Phase 4 💪", color: "#4ade80", title: "C1 Prep & Savings", desc: [
-      "Dec 2029: Consider DELE C1. Savings ~$26K."
+      "Dec 2029: Consider TOPIK III. Savings ~$26K."
   ]},
   { id: "mar-2031", year: 2031, monthStr: "March 2031", badge: "Phase 5 ✈️", color: "#ce1126", title: "The Final Month", desc: [
       "Mar 2031: Final month Lewiston. $35K saved!"
   ]},
   { id: "apr-2031", year: 2031, monthStr: "April 2031", badge: "Phase 5 ✈️", color: "#ce1126", title: "Departure", desc: [
-      "Apr 2031: ✈️ FLY TO PUERTO RICO! New life begins!"
+      "Apr 2031: ✈️ FLY TO KOREA for school, career growth, and visa pursuit!"
   ]},
   { id: "year-2036", year: 2036, monthStr: "2036", badge: "Phase 6 🌴", color: "#0a3d8f", title: "Established", desc: [
-      "2036: 🌴 10 YEARS. GOAL ACHIEVED. Fully established in Puerto Rico!"
+      "2036: �🇷 10 YEARS. GOAL ACHIEVED. Fully established in Korea!"
   ]}
 ];
 

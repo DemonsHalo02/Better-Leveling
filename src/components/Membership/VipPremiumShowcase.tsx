@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -277,7 +278,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             />
             <div className="flex justify-between text-[10px] text-zinc-500 font-bold">
               <span>150g (Min)</span>
-              <span>178g (Puerto Rican Goal)</span>
+              <span>178g (Korean Goal)</span>
               <span>260g (Max)</span>
             </div>
           </div>

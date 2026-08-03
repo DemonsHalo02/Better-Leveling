@@ -25,10 +25,10 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
-    splitName: "System Restoration / Puerto Rican-Inspired Recovery & Deep Stretch (Rest Day)",
+    splitName: "System Restoration / K-pop Idol-Inspired Recovery & Deep Stretch (Rest Day)",
     isRestDay: true,
-    questTitle: "[Daily Quest] Puerto Rican-Inspired Active Recovery & Flexibility Flow",
-    description: "Sunday is your official System Restoration Day. Use gentle mobility flows, deep hamstring and hip stretches, and mindful breathing to prepare for Monday's grocery run, Puerto Rican meal prep, and upper-body push day. Finish with your 45-minute dual cardio session (a 30-minute brisk walk plus a 15-minute run or silent march).",
+    questTitle: "[Daily Quest] K-pop Idol-Inspired Active Recovery & Flexibility Flow",
+    description: "Sunday is your official System Restoration Day. Use gentle mobility flows, deep hamstring and hip stretches, and mindful breathing to prepare for Monday's apartment-friendly meal prep and upper-body push day. Finish with your 45-minute dual cardio session (a 30-minute brisk walk plus a 15-minute silent march).",
     xpReward: 300,
     exercises: [
       {
@@ -65,7 +65,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Complete 30 minutes of brisk steady walking followed by 15 minutes of silent indoor marching or light jogging. Low-impact steady-state cardio maximizes fat oxidation while preserving lean muscle mass!"
+        coachTip: "Complete 30 minutes of brisk steady walking followed by 15 minutes of silent indoor marching or light jogging. Low-impact steady-state cardio maximizes fat oxidation while preserving lean muscle mass in a quiet apartment!"
       }
     ]
   },

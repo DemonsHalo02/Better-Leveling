@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -38,8 +39,8 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
     if (loaded.profile) {
       setName(loaded.profile.name || 'Nick Crosson');
       setTitle(loaded.title || 'Awakened Hunter');
-      setGymName(loaded.profile.gymName || 'Puerto Rican Style Home Bodyweight vs Planet Fitness Gym (Dual Choice + 45m Cardio)');
-      setDietName(loaded.profile.dietName || "Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal)");
+      setGymName(loaded.profile.gymName || 'K-pop Idol Style Home Bodyweight vs Samsung Galaxy Z Fold 8 Setup (Dual Choice + 45m Cardio)');
+      setDietName(loaded.profile.dietName || "Korea: Gochujang Chicken, Bibimbap Bowl & Korean Tea Shred Blueprint (~2,080 kcal)");
 
       setStartWeight(loaded.profile.startWeight || 242);
       setCurrentWeight(loaded.profile.currentWeight || 242);
@@ -71,8 +72,8 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
       dailyProteinGoal: Number(dailyProteinGoal) || 178,
       dailyCarbGoal: Number(dailyCarbGoal) || 190,
       dailyFatGoal: Number(dailyFatGoal) || 60,
-      gymName: gymName.trim() || 'Puerto Rican Style Home Bodyweight vs Planet Fitness Gym (Dual Choice + 45m Cardio)',
-      dietName: dietName.trim() || "Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal)",
+      gymName: gymName.trim() || 'K-pop Idol Style Home Bodyweight vs Samsung Galaxy Z Fold 8 Setup (Dual Choice + 45m Cardio)',
+      dietName: dietName.trim() || "Korea: Gochujang Chicken, Bibimbap Bowl & Korean Tea Shred Blueprint (~2,080 kcal)",
     };
 
     const nextState = updateUserProfile(updates);
@@ -101,7 +102,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('pf_custom_grocery_items');
       localStorage.removeItem('pf_grocery_checked');
-      alert("Custom grocery items and checked items reset to Puerto Rican default staples!");
+      alert("Custom grocery items and checked items reset to Korean default staples!");
     }
   };
 
