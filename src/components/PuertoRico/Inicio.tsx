@@ -14,7 +14,7 @@ export default function Inicio() {
     setHunter(loadHunterState());
     
     const handleStorage = () => setData(getPRData());
-    const handleHunter = (e: any) => setHunter(e.detail || loadHunterState());
+    const handleHunter = (e: any) => setHunter(e.detail || loadHunterState()); // eslint-disable-line @typescript-eslint/no-explicit-any
     
     window.addEventListener("prDataUpdated", handleStorage);
     window.addEventListener("hunterStateChanged", handleHunter);
@@ -82,7 +82,7 @@ export default function Inicio() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           { icon: Calendar, color: "text-[#ce1126]", border: "border-l-[#ce1126]", label: "Days to PR", val: daysToMove },
-          { icon: BookOpen, color: "text-[#0a3d8f]", border: "border-l-[#0a3d8f]", label: "Courses", val: `${completedCourses}/19` },
+          { icon: BookOpen, color: "text-[#0a3d8f]", border: "border-l-[#0a3d8f]", label: "Courses", val: `${completedCourses}/25` },
           { icon: Target, color: "text-[#f5a623]", border: "border-l-[#f5a623]", label: "Streak", val: `${currentStreak}d` },
           { icon: PiggyBank, color: "text-[#4ade80]", border: "border-l-[#4ade80]", label: "Savings", val: `$${totalSaved.toLocaleString()}` }
         ].map((stat, i) => (
@@ -106,7 +106,7 @@ export default function Inicio() {
         
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-8">
           <div className="space-y-8">
-            <ProgressBar title="📚 Udemy Courses" current={completedCourses} max={19} color="from-[#ce1126] to-[#f5a623]" />
+            <ProgressBar title="📚 Course Progress" current={completedCourses} max={25} color="from-[#ce1126] to-[#f5a623]" />
             <ProgressBar title="🇵🇷 Spanish Level (A1→C1)" current={currentDeleLevel} max={5} color="from-[#0a3d8f] to-[#00f0ff]" labelOverride={currentDeleLevel === 0 ? "A0" : deleLevels[currentDeleLevel - 1]} />
             <ProgressBar title="💰 Savings ($35k Goal)" current={totalSaved} max={35000} color="from-[#4ade80] to-[#00ff88]" labelOverride={`$${totalSaved.toLocaleString()}`} />
           </div>

@@ -25,26 +25,26 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   ]},
   { id: "nov-2026", year: 2026, monthStr: "November 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "TypeScript & Cloud", desc: [
       "Nov 2: TypeScript: The Complete Developer's Guide (Stephen Grider).",
-      "Nov 23: GCP for Beginners — Google Cloud Digital Leader."
+      "Nov 23: Microsoft Graph API & PowerShell begins."
   ]},
-  { id: "dec-2026", year: 2026, monthStr: "December 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "AI & GenAI Mastery", desc: [
-      "Dec 4: Google Cloud Generative AI Leader Full Course 2026.",
-      "Dec 16: Google AI Studio Bootcamp: Build Apps, Media & Master Gen AI."
+  { id: "dec-2026", year: 2026, monthStr: "December 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Microsoft Cloud & Security", desc: [
+      "Dec 4: SC-900 prep & Microsoft Security.",
+      "Dec 16: PL-900 prep & Power Platform Fundamentals."
   ]},
-  { id: "jan-2027", year: 2027, monthStr: "January 2027", badge: "Phase 1 🚀", color: "#ce1126", title: "Firebase & AWS", desc: [
-      "Jan 1: Build Dynamic Web Apps with React & Firebase.",
-      "Jan 13: Firebase In Depth (Angular University).",
+  { id: "jan-2027", year: 2027, monthStr: "January 2027", badge: "Phase 1 🚀", color: "#ce1126", title: "M365 & AWS", desc: [
+      "Jan 1: Microsoft 365 Fundamentals.",
+      "Jan 13: Power Automate & Apps Mastery.",
       "Jan 23: Ultimate AWS Certified Cloud Practitioner CLF-C02 2026."
   ]},
   { id: "feb-2027", year: 2027, monthStr: "February 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "Course Completion", desc: [
       "Feb 6: CapCut Desktop+Mobile: Beginner to Pro.",
-      "Feb 16: ✅ ALL 19 UDEMY COURSES COMPLETE!"
+      "Feb 16: ✅ ALL 25 COURSES COMPLETE!"
   ]},
   { id: "apr-2027", year: 2027, monthStr: "April 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "Math & Spanish Grind", desc: [
       "Apr 2027: HiSET Math Prep begins. Spanish DELE B1 grind intensifies."
   ]},
   { id: "may-2027", year: 2027, monthStr: "May 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "First Cert", desc: [
-      "May 2027: First Google Cloud cert exam."
+      "May 2027: First Microsoft/Azure cert exam."
   ]},
   { id: "jun-2027", year: 2027, monthStr: "June 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "Income Milestone", desc: [
       "Jun 2027: 🎉 First remote IT income!"

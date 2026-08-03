@@ -15,9 +15,9 @@ const HORARIO = [
   { time: "10:05 AM", task: "🧘 Cool down + stretch", dur: "15min" },
   { time: "10:20 AM", task: "🚿 Shower + recovery", dur: "20min" },
   { time: "10:40 AM", task: "🍳 Post-workout meal", dur: "25min" },
-  { time: "12:00 PM", task: "💻 Udemy Study Block 1", dur: "90min", habitId: "h4" },
+  { time: "12:00 PM", task: "💻 Microsoft Study Block 1", dur: "90min", habitId: "h4" },
   { time: "1:30 PM", task: "🍱 Lunch", dur: "30min" },
-  { time: "2:00 PM", task: "💻 Udemy Study Block 2", dur: "60min", habitId: "h5" },
+  { time: "2:00 PM", task: "💻 Microsoft Study Block 2", dur: "60min", habitId: "h5" },
   { time: "3:00 PM", task: "🇵🇷 Spanish Immersion (music/podcasts/TV)", dur: "30min" },
   { time: "3:30 PM", task: "🥛 Snack — Greek yogurt", dur: "10min" },
   { time: "5:00 PM", task: "🎨 Art / PR culture / rest", dur: "90min", habitId: "h6" },
@@ -222,7 +222,7 @@ export default function Diario() {
                 </div>
                 
                 <StudyBlock title="🇵🇷 Spanish" dur="90m" color="bg-[#ce1126]/10 text-[#ce1126] border-[#ce1126]/30 hover:bg-[#ce1126]/20 hover:border-[#ce1126]/50" />
-                <StudyBlock title="💻 Udemy" dur="150m" color="bg-[#0a3d8f]/10 text-[#0a3d8f] border-[#0a3d8f]/30 hover:bg-[#0a3d8f]/20 hover:border-[#0a3d8f]/50" />
+                <StudyBlock title="💻 Microsoft Study" dur="150m" color="bg-[#0a3d8f]/10 text-[#0a3d8f] border-[#0a3d8f]/30 hover:bg-[#0a3d8f]/20 hover:border-[#0a3d8f]/50" />
                 <StudyBlock title="🎨 Art" dur="45m" color="bg-[#f5a623]/10 text-[#f5a623] border-[#f5a623]/30 hover:bg-[#f5a623]/20 hover:border-[#f5a623]/50" />
                 <StudyBlock title="🧠 Anki" dur="20m" color="bg-[#4ade80]/10 text-[#4ade80] border-[#4ade80]/30 hover:bg-[#4ade80]/20 hover:border-[#4ade80]/50" />
               </div>

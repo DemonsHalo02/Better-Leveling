@@ -19,11 +19,17 @@ const COURSES = {
     { id: "c05", title: "Typescript: The Complete Developer's Guide", dates: "Nov 2–22" }
   ],
   cloud: [
-    { id: "c06", title: "GCP for Beginners - Become a Google Cloud Digital Leader", dates: "Nov 23–Dec 3" },
-    { id: "c07", title: "Google Cloud Generative AI Leader Full Course 2026", dates: "Dec 4–15" },
-    { id: "c08", title: "Google AI Studio Bootcamp: Build Apps, Media & Master Gen AI", dates: "Dec 16–31" },
-    { id: "c09", title: "Build Dynamic Web Apps with React & Firebase", dates: "Jan 1–12 2027" },
-    { id: "c10", title: "Firebase In Depth", dates: "Jan 13–22 2027" },
+    { id: "c_ms1", title: "Complete Guide of Microsoft Graph API using PowerShell - 2026", dates: "TBD" },
+    { id: "c_ms2", title: "SC-900 prep: Microsoft Security, Compliance, Identity", dates: "TBD" },
+    { id: "c_ms3", title: "PL-900 prep: Microsoft Power Platform Fundamentals", dates: "TBD" },
+    { id: "c_ms4", title: "Microsoft 365 Fundamentals: Real Skills and Hands-On Sims", dates: "TBD" },
+    { id: "c_ms5", title: "Power Automate - Complete Guide to Microsoft Power Automate", dates: "TBD" },
+    { id: "c_ms6", title: "Mastering Microsoft Power Apps 2026: From Zero to Hero", dates: "TBD" },
+    { id: "c_ms7", title: "Master Microsoft Azure Fundamentals: AZ-900 Exam Prep 2026", dates: "TBD" },
+    { id: "c_ms8", title: "Data Analysis with Pandas and Python [2026]", dates: "TBD" },
+    { id: "c_ms9", title: "AZ-104 Microsoft Azure Administrator - Complete Exam Prep", dates: "TBD" },
+    { id: "c_ms10", title: "Ultimate C# Masterclass for 2026", dates: "TBD" },
+    { id: "c_ms11", title: "Java Masterclass 2025: 130+ Hours of Expert Lessons", dates: "TBD" },
     { id: "c11", title: "Ultimate AWS Certified Cloud Practitioner CLF-C02", dates: "Jan 23–Feb 5 2027" }
   ],
   art: [
@@ -164,14 +170,14 @@ export default function Cursos() {
         <div className="relative z-10">
           <h2 className="text-3xl sm:text-4xl font-black mb-3 tracking-tighter drop-shadow-md flex items-center gap-3">
             <Star className="w-8 h-8 fill-current text-[#f5a623] drop-shadow-[0_0_10px_rgba(245,166,35,0.8)]" />
-            Course Plan <span className="text-xl sm:text-2xl opacity-90">(19 Masterclasses)</span>
+            Course Plan <span className="text-xl sm:text-2xl opacity-90">(25 Masterclasses)</span>
           </h2>
           <p className="font-mono text-sm sm:text-base font-medium opacity-90 tracking-wide drop-shadow-sm mb-6">Aug 3 2026 → Feb 16 2027 · ~520 total hours</p>
           
           <div className="flex flex-wrap gap-4 text-sm font-bold bg-black/30 p-4 rounded-2xl border border-white/20 shadow-inner backdrop-blur-sm">
             <div className="flex items-baseline gap-2">
               <span className="text-2xl text-white drop-shadow-md">{completedCount}</span> 
-              <span className="text-zinc-300">/ 19</span> 
+              <span className="text-zinc-300">/ 25</span> 
               <span className="opacity-80 text-xs ml-1 uppercase tracking-wider">Completed</span>
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
@@ -190,7 +196,7 @@ export default function Cursos() {
 
       <div className="space-y-4">
         {renderSection("coding", "💻 SECTION 1 — CODING (5)", "from-[#0a3d8f]/30 to-transparent border-l-4 border-l-[#0a3d8f]", COURSES.coding)}
-        {renderSection("cloud", "☁️ SECTION 2 — GOOGLE & CLOUD (6)", "from-[#ce1126]/30 to-transparent border-l-4 border-l-[#ce1126]", COURSES.cloud)}
+        {renderSection("cloud", "☁️ SECTION 2 — CLOUD & TECH (12)", "from-[#ce1126]/30 to-transparent border-l-4 border-l-[#ce1126]", COURSES.cloud)}
         {renderSection("art", "🎨 SECTION 3 — ART PARALLEL (5)", "from-[#f5a623]/30 to-transparent border-l-4 border-l-[#f5a623]", COURSES.art)}
         {renderSection("important", "⭐ SECTION 4 — IMPORTANT (3)", "from-[#4ade80]/30 to-transparent border-l-4 border-l-[#4ade80]", COURSES.important)}
       </div>

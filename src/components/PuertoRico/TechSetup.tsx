@@ -6,7 +6,7 @@ import { Smartphone, Laptop, CheckCircle2, MonitorOff, Focus, Wifi } from "lucid
 const APPS = [
   { name: "Anki", platform: "iOS & Mac", desc: "Spaced repetition for Spanish vocab & Cloud Certs." },
   { name: "VS Code", platform: "Mac", desc: "Primary code editor. Extensions: Prettier, ESLint, Tailwind." },
-  { name: "Udemy", platform: "iOS & Mac", desc: "Download courses offline for distraction-free study." },
+  { name: "Udemy / Microsoft Learn", platform: "iOS & Mac", desc: "Download study material offline for focus blocks." },
   { name: "CapCut", platform: "iOS & Mac", desc: "For phase 2 video editing skills." },
   { name: "Better Leveling", platform: "Web", desc: "This app. Install as PWA to home screen." },
 ];
@@ -15,7 +15,7 @@ const IPHONE_SETUP = [
   "Delete TikTok, Instagram, Twitter, Facebook.",
   "Turn on 'Grayscale' in Accessibility (Triple-click power button to toggle).",
   "Set up 'Study Focus' mode: Only allow calls from family. Block all non-essential app notifications.",
-  "Home Screen: Only Anki, Calendar, Notes, Udemy, and Better Leveling (PWA).",
+  "Home Screen: Only Anki, Calendar, Notes, Microsoft Learn, and Better Leveling (PWA).",
   "No phone in bedroom after 9:30 PM."
 ];
 
