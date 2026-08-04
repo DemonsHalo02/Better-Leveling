@@ -10,7 +10,7 @@ const HORARIO = [
   { time: "5:20 AM", task: "🧼 Morning hygiene + mobility", dur: "15min" },
   { time: "5:45 AM", task: "🇰🇷 Korean — Anki flashcards", dur: "30min", habitId: "h1" },
   { time: "6:15 AM", task: "🇰🇷 Korean — Grammar/textbook", dur: "60min", habitId: "h2" },
-  { time: "7:15 AM", task: "🍳 Breakfast — Gyeran-mari scramble + rolled oats", dur: "20min" },
+  { time: "7:15 AM", task: "🍳 Breakfast — Gyeran-mari scramble + egg whites", dur: "20min" },
   { time: "7:45 AM", task: "🍌 Pre-workout banana", dur: "5min" },
   { time: "7:50 AM", task: "🏋️ Workout (Mon-Sat)", dur: "75–90min", habitId: "h3" },
   { time: "9:20 AM", task: "🧘 Cool down + stretch", dur: "15min" },
