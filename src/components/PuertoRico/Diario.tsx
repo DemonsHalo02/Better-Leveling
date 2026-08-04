@@ -5,27 +5,27 @@ import { getPRData, savePRData, PRStorageData } from "@/lib/pr-storage";
 import { Clock, Calendar, CheckCircle2, Circle, ChevronLeft, ChevronRight, Timer } from "lucide-react";
 
 const HORARIO = [
-  { time: "5:00 AM", task: "💧 Wake up, 16oz water", dur: "5min", habitId: "h0" },
-  { time: "5:15 AM", task: "☕ Brew Starbucks Black Iced Coffee", dur: "10min" },
-  { time: "5:30 AM", task: "🧼 Morning hygiene + mobility", dur: "15min" },
-  { time: "6:00 AM", task: "🇰🇷 Korean — Anki flashcards", dur: "30min", habitId: "h1" },
-  { time: "6:30 AM", task: "🇰🇷 Korean — Grammar/textbook", dur: "60min", habitId: "h2" },
+  { time: "6:00 AM", task: "💧 Wake up, 16oz water", dur: "5min", habitId: "h0" },
+  { time: "6:15 AM", task: "☕ Make Iced Café con Leche", dur: "10min" },
+  { time: "6:30 AM", task: "🧼 Morning hygiene + mobility", dur: "15min" },
+  { time: "7:00 AM", task: "🇵🇷 Spanish — Anki flashcards", dur: "30min", habitId: "h1" },
+  { time: "7:30 AM", task: "🇵🇷 Spanish — Grammar/textbook", dur: "60min", habitId: "h2" },
   { time: "8:30 AM", task: "🍌 Pre-workout banana", dur: "5min" },
-  { time: "9:00 AM", task: "🏋️ Workout (Mon-Sat)", dur: "75–90min", habitId: "h3" },
-  { time: "10:30 AM", task: "🧘 Cool down + stretch", dur: "15min" },
-  { time: "10:45 AM", task: "🚿 Shower + recovery", dur: "20min" },
-  { time: "11:05 AM", task: "🍳 Post-workout meal", dur: "25min" },
-  { time: "12:30 PM", task: "💻 Microsoft Study Block 1", dur: "90min", habitId: "h4" },
-  { time: "1:00 PM", task: "🍱 Lunch — Korean rice bowl + kimchi", dur: "30min" },
-  { time: "1:30 PM", task: "💻 Microsoft Study Block 2", dur: "60min", habitId: "h5" },
-  { time: "2:30 PM", task: "🇰🇷 Korean immersion (music/podcasts/TV)", dur: "30min" },
-  { time: "3:00 PM", task: "🥛 Snack — Greek yogurt", dur: "10min" },
-  { time: "4:30 PM", task: "🎨 Art / study / rest", dur: "90min", habitId: "h6" },
-  { time: "6:30 PM", task: "🍚 Dinner — gochujang chicken + rice + broccoli", dur: "30min" },
-  { time: "7:30 PM", task: "🇰🇷 Night Korean — dramas/shadowing", dur: "30min" },
-  { time: "8:00 PM", task: "📓 Journal + plan tomorrow", dur: "20min", habitId: "h7" },
-  { time: "8:45 PM", task: "📵 Screens off", dur: "" },
-  { time: "9:00 PM", task: "😴 Sleep", dur: "" },
+  { time: "8:35 AM", task: "🏋️ Workout (Mon-Sat)", dur: "75–90min", habitId: "h3" },
+  { time: "10:05 AM", task: "🧘 Cool down + stretch", dur: "15min" },
+  { time: "10:20 AM", task: "🚿 Shower + recovery", dur: "20min" },
+  { time: "10:40 AM", task: "🍳 Post-workout meal", dur: "25min" },
+  { time: "12:00 PM", task: "💻 Udemy Study Block 1", dur: "90min", habitId: "h4" },
+  { time: "1:30 PM", task: "🍱 Lunch", dur: "30min" },
+  { time: "2:00 PM", task: "💻 Udemy Study Block 2", dur: "60min", habitId: "h5" },
+  { time: "3:00 PM", task: "🇵🇷 Spanish Immersion (music/podcasts/TV)", dur: "30min" },
+  { time: "3:30 PM", task: "🥛 Snack — Greek yogurt", dur: "10min" },
+  { time: "5:00 PM", task: "🎨 Art / PR culture / rest", dur: "90min", habitId: "h6" },
+  { time: "7:00 PM", task: "🍚 Dinner", dur: "30min" },
+  { time: "8:00 PM", task: "🇵🇷 Night Spanish — shadowing/telenovelas", dur: "30min" },
+  { time: "8:30 PM", task: "📓 Journal + plan tomorrow", dur: "20min", habitId: "h7" },
+  { time: "9:30 PM", task: "📵 Screens off", dur: "" },
+  { time: "10:00 PM", task: "😴 Sleep", dur: "" },
 ];
 
 export default function Diario() {
@@ -221,8 +221,8 @@ export default function Diario() {
                   {day}
                 </div>
                 
-                <StudyBlock title="�🇷 Korean" dur="90m" color="bg-[#ce1126]/10 text-[#ce1126] border-[#ce1126]/30 hover:bg-[#ce1126]/20 hover:border-[#ce1126]/50" />
-                <StudyBlock title="💻 Microsoft Study" dur="150m" color="bg-[#0a3d8f]/10 text-[#0a3d8f] border-[#0a3d8f]/30 hover:bg-[#0a3d8f]/20 hover:border-[#0a3d8f]/50" />
+                <StudyBlock title="🇵🇷 Spanish" dur="90m" color="bg-[#ce1126]/10 text-[#ce1126] border-[#ce1126]/30 hover:bg-[#ce1126]/20 hover:border-[#ce1126]/50" />
+                <StudyBlock title="💻 Udemy" dur="150m" color="bg-[#0a3d8f]/10 text-[#0a3d8f] border-[#0a3d8f]/30 hover:bg-[#0a3d8f]/20 hover:border-[#0a3d8f]/50" />
                 <StudyBlock title="🎨 Art" dur="45m" color="bg-[#f5a623]/10 text-[#f5a623] border-[#f5a623]/30 hover:bg-[#f5a623]/20 hover:border-[#f5a623]/50" />
                 <StudyBlock title="🧠 Anki" dur="20m" color="bg-[#4ade80]/10 text-[#4ade80] border-[#4ade80]/30 hover:bg-[#4ade80]/20 hover:border-[#4ade80]/50" />
               </div>

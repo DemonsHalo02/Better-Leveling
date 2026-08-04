@@ -39,7 +39,6 @@ export default function PomodoroModal() {
   const playBeep = () => {
     try {
       if (!audioCtxRef.current) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         audioCtxRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
       }
       const ctx = audioCtxRef.current;

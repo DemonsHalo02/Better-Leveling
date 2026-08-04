@@ -1,4 +1,3 @@
-/* eslint-disable */
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -180,7 +179,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
               <Utensils className="w-4 h-4" /> 2. 19-Country Global Meal Blueprints
             </div>
             <p className="text-xs text-zinc-300 leading-relaxed">
-              <strong>VIP Meal Blueprint Suite:</strong> Access all 38 Cutting & Bulking plans across 19 world-class cuisines (USA, Canada, Mexico, Dominican Republic, El Salvador, Colombia, Brazil, Venezuela, Argentina, Spain, Italy, France, Germany, Russia, Japan, Korea, China, and India)! Each blueprint features pan or oven crispy chicken, authentic regional spices, clean complex carbs, and your morning national coffee/tea. <strong>Stats:</strong> ~2,080 kcal (Cutting) or ~2,680 kcal (Bulking), 178g+ Protein!
+              <strong>VIP Meal Blueprint Suite:</strong> Access all 38 Cutting & Bulking plans across 19 world-class cuisines (Puerto Rico, USA, Canada, Mexico, Dominican Republic, El Salvador, Colombia, Brazil, Venezuela, Argentina, Spain, Italy, France, Germany, Russia, Japan, Korea, China, and India)! Each blueprint features pan or oven crispy chicken, authentic regional spices, clean complex carbs, and your morning national coffee/tea. <strong>Stats:</strong> ~2,080 kcal (Cutting) or ~2,680 kcal (Bulking), 178g+ Protein!
             </p>
           </div>
 
@@ -278,7 +277,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             />
             <div className="flex justify-between text-[10px] text-zinc-500 font-bold">
               <span>150g (Min)</span>
-              <span>178g (Korean Goal)</span>
+              <span>178g (Puerto Rican Goal)</span>
               <span>260g (Max)</span>
             </div>
           </div>

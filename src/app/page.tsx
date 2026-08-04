@@ -34,7 +34,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<string>("inicio");
   const [showConfetti, setShowConfetti] = useState(false);
   const [prData, setPrData] = useState(() => getPRData());
-  const daysSince = Math.floor((new Date().getTime() - new Date("2026-08-04").getTime()) / (1000 * 3600 * 24));
+  const daysSince = Math.floor((new Date().getTime() - new Date("2026-08-03").getTime()) / (1000 * 3600 * 24));
 
   // Reactive sync: re-read PR data whenever any component updates it
   useEffect(() => {
@@ -91,9 +91,9 @@ export default function Home() {
       {/* Sticky PR Stats Bar */}
       <div className="sticky top-[182px] md:top-[173px] z-20 w-full bg-[#11182c]/90 backdrop-blur-md border-b border-[#ce1126]/20 py-2 px-4 shadow-md">
         <div className="max-w-7xl mx-auto flex items-center justify-between sm:justify-center sm:gap-8 overflow-x-auto no-scrollbar font-mono text-[10px] sm:text-xs text-zinc-300 whitespace-nowrap">
-          <span className="flex items-center gap-1.5"><span className="text-[#f5a623]">🚀</span> Day {daysSince > 0 ? daysSince : 0} since Aug 4 2026</span>
+          <span className="flex items-center gap-1.5"><span className="text-[#f5a623]">🚀</span> Day {daysSince > 0 ? daysSince : 0} since Aug 3 2026</span>
           <span className="hidden sm:inline text-zinc-700">|</span>
-          <span className="flex items-center gap-1.5"><span className="text-[#0a3d8f]">📚</span> {Object.values(prData.courseProgress).filter(p => p === 100).length}/25 Courses</span>
+          <span className="flex items-center gap-1.5"><span className="text-[#0a3d8f]">📚</span> {Object.values(prData.courseProgress).filter(p => p === 100).length}/19 Courses</span>
           <span className="hidden sm:inline text-zinc-700">|</span>
           <span className="flex items-center gap-1.5"><span className="text-[#ce1126]">🔥</span> {Math.max(0, ...Object.values(prData.habitStreaks))}d Streak</span>
           <span className="hidden sm:inline text-zinc-700">|</span>

@@ -90,8 +90,8 @@ const DEFAULT_STATE: HunterState = {
     dailyProteinGoal: 178,
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
-    gymName: "K-pop Idol Style Home Bodyweight vs Samsung Galaxy Z Fold 8 Setup (Dual Choice + 45m Cardio)",
-    dietName: "Korea: Gochujang Chicken, Bibimbap Bowl & Korean Tea Shred Blueprint (~2,080 kcal)",
+    gymName: "Puerto Rican Style Home Bodyweight vs Planet Fitness Gym (Dual Choice + 45m Cardio)",
+    dietName: "Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal)",
   },
   completedQuestsToday: {
     workout: false,
@@ -184,11 +184,11 @@ export function loadHunterState(): HunterState {
         needsSave = true;
       }
       if (!localStorage.getItem('puerto_rico_style_text_upgrade_v1')) {
-        parsed.profile.dietName = "Korea: Gochujang Chicken, Bibimbap Bowl & Korean Tea Shred Blueprint (~2,080 kcal)";
-        parsed.profile.gymName = "K-pop Idol Style Home Bodyweight vs Samsung Galaxy Z Fold 8 Setup (Dual Choice + 45m Cardio)";
-        localStorage.setItem('pf_selected_aisle_template', 'Korea');
-        localStorage.setItem('pf_selected_country_plan', 'Korea');
-        localStorage.setItem('nutrition_deck_country', 'Korea');
+        parsed.profile.dietName = "Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal)";
+        parsed.profile.gymName = "Puerto Rican Style Home Bodyweight vs Planet Fitness Gym (Dual Choice + 45m Cardio)";
+        localStorage.setItem('pf_selected_aisle_template', 'Puerto Rico');
+        localStorage.setItem('pf_selected_country_plan', 'Puerto Rico');
+        localStorage.setItem('nutrition_deck_country', 'Puerto Rico');
         localStorage.setItem('puerto_rico_style_text_upgrade_v1', 'done');
         needsSave = true;
       }

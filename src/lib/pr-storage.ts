@@ -13,8 +13,6 @@ export interface PRStorageData {
   habitHistory: Record<string, boolean>;
   unlockedAchievements: Record<string, boolean>;
   weightLogs: Array<{ date: string; weight: number }>;
-  studyHours: Record<string, number>;
-  milestoneChecks: Record<string, boolean>;
 }
 
 const STORAGE_KEY = "npuertorico2026";
@@ -31,9 +29,7 @@ const DEFAULT_DATA: PRStorageData = {
   habitStreaks: {},
   habitHistory: {},
   unlockedAchievements: {},
-  weightLogs: [],
-  studyHours: {},
-  milestoneChecks: {}
+  weightLogs: []
 };
 
 export function getPRData(): PRStorageData {
@@ -58,9 +54,7 @@ export function getPRData(): PRStorageData {
           habitStreaks: parsed.habitStreaks !== undefined && parsed.habitStreaks !== null ? parsed.habitStreaks : DEFAULT_DATA.habitStreaks,
           habitHistory: parsed.habitHistory !== undefined && parsed.habitHistory !== null ? parsed.habitHistory : DEFAULT_DATA.habitHistory,
           unlockedAchievements: parsed.unlockedAchievements !== undefined && parsed.unlockedAchievements !== null ? parsed.unlockedAchievements : DEFAULT_DATA.unlockedAchievements,
-          weightLogs: parsed.weightLogs !== undefined && Array.isArray(parsed.weightLogs) ? parsed.weightLogs : DEFAULT_DATA.weightLogs,
-          studyHours: parsed.studyHours !== undefined && parsed.studyHours !== null ? parsed.studyHours : DEFAULT_DATA.studyHours,
-          milestoneChecks: parsed.milestoneChecks !== undefined && parsed.milestoneChecks !== null ? parsed.milestoneChecks : DEFAULT_DATA.milestoneChecks
+          weightLogs: parsed.weightLogs !== undefined && Array.isArray(parsed.weightLogs) ? parsed.weightLogs : DEFAULT_DATA.weightLogs
         };
       }
     }
@@ -85,9 +79,7 @@ export function savePRData(data: Partial<PRStorageData>): PRStorageData {
     habitStreaks: data.habitStreaks !== undefined ? data.habitStreaks : currentData.habitStreaks,
     habitHistory: data.habitHistory !== undefined ? data.habitHistory : currentData.habitHistory,
     unlockedAchievements: data.unlockedAchievements !== undefined ? data.unlockedAchievements : currentData.unlockedAchievements,
-    weightLogs: data.weightLogs !== undefined ? data.weightLogs : currentData.weightLogs,
-    studyHours: data.studyHours !== undefined ? data.studyHours : currentData.studyHours,
-    milestoneChecks: data.milestoneChecks !== undefined ? data.milestoneChecks : currentData.milestoneChecks
+    weightLogs: data.weightLogs !== undefined ? data.weightLogs : currentData.weightLogs
   };
 
   if (typeof window !== 'undefined') {

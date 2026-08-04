@@ -1,4 +1,3 @@
-/* eslint-disable */
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -8,13 +7,13 @@ import confetti from 'canvas-confetti';
 
 const DIRECTIVE_QUOTES = [
   {
-    quote: "A hunter who fears the weights will never rise above E-Rank. Build discipline through Korean study, quiet workouts, and daily focus.",
-    author: "Korean Shadow Monarch",
+    quote: "A hunter who fears the weights will never rise above E-Rank. Step into Planet Fitness and conquer the iron with Boricua discipline.",
+    author: "Boricua Shadow Monarch",
     stat: "STR FOCUS"
   },
   {
-    quote: "Your target weight of 160 LBS is not a dream—it is an inevitability forged through daily discipline, smart Korean meal prep, and macro precision.",
-    author: "Korean Shred Blueprint Codex",
+    quote: "Your target weight of 160 LBS is not a dream—it is an inevitability forged through daily discipline, smart Puerto Rican meal prep, and macro precision.",
+    author: "Puerto Rican Shred Blueprint Codex",
     stat: "VIT FOCUS"
   },
   {

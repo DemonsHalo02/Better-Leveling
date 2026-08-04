@@ -1,4 +1,3 @@
-/* eslint-disable */
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -20,7 +19,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
   const [customServings, setCustomServings] = useState<number>(1);
   const [isInGroceryList, setIsInGroceryList] = useState<boolean>(false);
   const [checkedInGrocery, setCheckedInGrocery] = useState<boolean>(false);
-  const [selectedTemplate, setSelectedTemplate] = useState<string>('Korea');
+  const [selectedTemplate, setSelectedTemplate] = useState<string>('Puerto Rico');
   const scannerRef = useRef<Html5QrcodeScanner | null>(null);
 
   useEffect(() => {
@@ -29,7 +28,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
       if (savedTpl && (MEAL_PREP_PLANS.some(p => p.country === savedTpl) || savedTpl === 'All')) {
         setSelectedTemplate(savedTpl);
       } else {
-        setSelectedTemplate('Korea');
+        setSelectedTemplate('Puerto Rico');
       }
     }
   }, []);
