@@ -12,40 +12,35 @@ interface Course {
 
 const COURSES = {
   coding: [
-    { id: "c01", title: "The Complete Python Bootcamp From Zero to Hero in Python", dates: "Aug 3–14" },
-    { id: "c02", title: "The Complete SQL Bootcamp: Go from Zero to Hero", dates: "Aug 15–21" },
-    { id: "c03", title: "The Complete Full-Stack Web Development Bootcamp", dates: "Aug 22–Oct 10" },
-    { id: "c04", title: "Next.js & React - The Complete Guide", dates: "Oct 11–Nov 1" },
-    { id: "c05", title: "Typescript: The Complete Developer's Guide", dates: "Nov 2–22" }
-  ],
-  cloud: [
-    { id: "c06", title: "GCP for Beginners - Become a Google Cloud Digital Leader", dates: "Nov 23–Dec 3" },
-    { id: "c07", title: "Google Cloud Generative AI Leader Full Course 2026", dates: "Dec 4–15" },
-    { id: "c08", title: "Google AI Studio Bootcamp: Build Apps, Media & Master Gen AI", dates: "Dec 16–31" },
-    { id: "c09", title: "Build Dynamic Web Apps with React & Firebase", dates: "Jan 1–12 2027" },
-    { id: "c10", title: "Firebase In Depth", dates: "Jan 13–22 2027" },
-    { id: "c11", title: "Ultimate AWS Certified Cloud Practitioner CLF-C02", dates: "Jan 23–Feb 5 2027" }
+    { id: "c01", title: "The Complete Python Bootcamp From Zero to Hero in Python", dates: "Aug 8–19" },
+    { id: "c02", title: "The Complete SQL Bootcamp: Go from Zero to Hero", dates: "Aug 20–26" },
+    { id: "c03", title: "The Complete Full-Stack Web Development Bootcamp", dates: "Aug 27–Oct 15" },
+    { id: "c04", title: "Next.js & React - The Complete Guide", dates: "Oct 16–Nov 5" },
+    { id: "c05", title: "Next.js 15 & Firebase", dates: "Nov 6–19" },
+    { id: "c06", title: "Tailwind CSS From Scratch | Learn By Building Projects", dates: "Nov 20–26" },
+    { id: "c07", title: "Data Analysis with Pandas and Python [2026]", dates: "Nov 27–Dec 10" }
   ],
   art: [
-    { id: "c12", title: "Perspective Art School: The Complete Drawing Course", dates: "Aug 3–Sep 14" },
-    { id: "c13", title: "Anatomy Art School: Drawing the Human Form", dates: "Sep 15–Oct 31" },
-    { id: "c14", title: "Manga Art School: The Complete Anime & Manga Course", dates: "Nov 1–Dec 15" },
-    { id: "c15", title: "Character Art School: Complete Character Drawing", dates: "Dec 16–Jan 31" },
-    { id: "c16", title: "Character Art School: Complete Coloring & Painting", dates: "Feb 1–Mar 15" }
+    { id: "c08", title: "Perspective Art School: The Complete Drawing Course", dates: "Aug 8–Sep 20" },
+    { id: "c09", title: "Anatomy Art School: Drawing the Human Form", dates: "Sep 21–Nov 6" },
+    { id: "c10", title: "Manga Art School: The Complete Anime & Manga Course", dates: "Nov 7–Dec 21" },
+    { id: "c11", title: "Character Art School: Complete Character Drawing", dates: "Dec 22–Feb 6 2027" },
+    { id: "c12", title: "Character Art School: Complete Coloring & Painting", dates: "Feb 7–Mar 21 2027" }
   ],
   important: [
-    { id: "c17", title: "Video Editing in CapCut | Beginner to Pro", dates: "Feb 6–15 2027" },
-    { id: "c18", title: "Complete Spanish Course: Master Spanish Beginner to Advanced", dates: "DAILY 90min" },
-    { id: "c19", title: "HSE/GED/TASC/HiSET Prep: Complete Mathematics", dates: "Starts Apr 2027" }
+    { id: "c13", title: "HSE/GED/TASC/HiSET Prep: A Complete Mathematics Curriculum", dates: "Aug 8–Sep 5" },
+    { id: "c14", title: "The Complete Korean Course for Beginners | 10 courses in 1!", dates: "DAILY 90min" },
+    { id: "c15", title: "Video Editing in CapCut | Beginner to Pro | Desktop + Mobile", dates: "Dec 11–20" },
+    { id: "c16", title: "Running a Web Development Business: The Complete Guide", dates: "Mar 22–Apr 2 2027" }
   ]
 };
 
-const DELE_MILESTONES = [
-  { id: "dele-a1", label: "A1 Internal (Aug–Dec 2026): Duolingo basics + 500 vocab" },
-  { id: "dele-a2", label: "A2 Internal (Jan–Jun 2027): Grammar solid + 1,500 vocab" },
-  { id: "dele-b1", label: "DELE B1 EXAM — December 2027" },
-  { id: "dele-b2", label: "DELE B2 EXAM — December 2028" },
-  { id: "dele-c1", label: "DELE C1 EXAM — December 2030" },
+const TOPIK_MILESTONES = [
+  { id: "topik-1", label: "Level 1-2 Internal (Aug–Dec 2026): Hangul + basic grammar + 500 vocab" },
+  { id: "topik-2", label: "Level 3 Internal (Jan–Jun 2027): Intermediate grammar + 1,500 vocab" },
+  { id: "topik-3", label: "TOPIK II Level 4 EXAM — December 2027" },
+  { id: "topik-4", label: "TOPIK II Level 5 EXAM — December 2028" },
+  { id: "topik-5", label: "TOPIK II Level 6 EXAM — December 2030" },
 ];
 
 export default function Cursos() {
@@ -164,19 +159,19 @@ export default function Cursos() {
         <div className="relative z-10">
           <h2 className="text-3xl sm:text-4xl font-black mb-3 tracking-tighter drop-shadow-md flex items-center gap-3">
             <Star className="w-8 h-8 fill-current text-[#f5a623] drop-shadow-[0_0_10px_rgba(245,166,35,0.8)]" />
-            Course Plan <span className="text-xl sm:text-2xl opacity-90">(19 Masterclasses)</span>
+            Course Plan <span className="text-xl sm:text-2xl opacity-90">(16 Masterclasses)</span>
           </h2>
-          <p className="font-mono text-sm sm:text-base font-medium opacity-90 tracking-wide drop-shadow-sm mb-6">Aug 3 2026 → Feb 16 2027 · ~520 total hours</p>
+          <p className="font-mono text-sm sm:text-base font-medium opacity-90 tracking-wide drop-shadow-sm mb-6">Aug 8 2026 → Apr 2 2027 · ~420 total hours</p>
           
           <div className="flex flex-wrap gap-4 text-sm font-bold bg-black/30 p-4 rounded-2xl border border-white/20 shadow-inner backdrop-blur-sm">
             <div className="flex items-baseline gap-2">
               <span className="text-2xl text-white drop-shadow-md">{completedCount}</span> 
-              <span className="text-zinc-300">/ 19</span> 
+              <span className="text-zinc-300">/ 16</span> 
               <span className="opacity-80 text-xs ml-1 uppercase tracking-wider">Completed</span>
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
             <div className="flex items-center gap-2">
-              <span className="text-zinc-300 uppercase tracking-wider text-xs">Spanish:</span> 
+              <span className="text-zinc-300 uppercase tracking-wider text-xs">Korean:</span> 
               <span className="text-[#0a3d8f] bg-white px-2 py-0.5 rounded text-xs drop-shadow-sm">EVERY DAY</span>
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
@@ -189,21 +184,20 @@ export default function Cursos() {
       </div>
 
       <div className="space-y-4">
-        {renderSection("coding", "💻 SECTION 1 — CODING (5)", "from-[#0a3d8f]/30 to-transparent border-l-4 border-l-[#0a3d8f]", COURSES.coding)}
-        {renderSection("cloud", "☁️ SECTION 2 — GOOGLE & CLOUD (6)", "from-[#ce1126]/30 to-transparent border-l-4 border-l-[#ce1126]", COURSES.cloud)}
-        {renderSection("art", "🎨 SECTION 3 — ART PARALLEL (5)", "from-[#f5a623]/30 to-transparent border-l-4 border-l-[#f5a623]", COURSES.art)}
-        {renderSection("important", "⭐ SECTION 4 — IMPORTANT (3)", "from-[#4ade80]/30 to-transparent border-l-4 border-l-[#4ade80]", COURSES.important)}
+        {renderSection("coding", "💻 SECTION 1 — CODING (7)", "from-[#0a3d8f]/30 to-transparent border-l-4 border-l-[#0a3d8f]", COURSES.coding)}
+        {renderSection("art", "🎨 SECTION 2 — ART PARALLEL (5)", "from-[#f5a623]/30 to-transparent border-l-4 border-l-[#f5a623]", COURSES.art)}
+        {renderSection("important", "⭐ SECTION 3 — IMPORTANT (4)", "from-[#4ade80]/30 to-transparent border-l-4 border-l-[#4ade80]", COURSES.important)}
       </div>
 
-      {/* DELE Tracker */}
+      {/* TOPIK Tracker */}
       <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl mt-8">
         <h3 className="text-2xl font-black text-white font-mono mb-2 flex items-center gap-3 tracking-tight">
-          <span className="text-3xl drop-shadow-md">🇵🇷</span> DELE Master Plan
+          <span className="text-3xl drop-shadow-md">🇰🇷</span> TOPIK Master Plan
         </h3>
-        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">Instituto Cervantes Official Certification Track</p>
+        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">Official Test of Proficiency in Korean (TOPIK) Certification Track</p>
         
         <div className="space-y-4">
-          {DELE_MILESTONES.map((ms) => {
+          {TOPIK_MILESTONES.map((ms) => {
             const isDone = data.deleProgress[ms.id] ? true : false;
             return (
               <label key={ms.id} className={`flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 cursor-pointer ${isDone ? 'bg-[#0a3d8f]/20 border-[#0a3d8f]/50 shadow-[0_0_15px_rgba(10,61,143,0.15)]' : 'bg-black/30 border-white/10 hover:border-white/30 hover:bg-black/40 hover:-translate-y-0.5'}`}>

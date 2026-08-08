@@ -25,10 +25,10 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
-    splitName: "System Restoration / Puerto Rican-Inspired Recovery & Deep Stretch (Rest Day)",
+    splitName: "System Restoration / K-pop-Inspired Recovery & Deep Stretch (Rest Day)",
     isRestDay: true,
-    questTitle: "[Daily Quest] Puerto Rican-Inspired Active Recovery & Flexibility Flow",
-    description: "Sunday is your official System Restoration Day. Use gentle mobility flows, deep hamstring and hip stretches, and mindful breathing to prepare for Monday's grocery run, Puerto Rican meal prep, and upper-body push day. Finish with your 45-minute dual cardio session (a 30-minute brisk walk plus a 15-minute run or silent march).",
+    questTitle: "[Daily Quest] K-pop-Inspired Active Recovery & Flexibility Flow",
+    description: "Sunday is your official System Restoration Day. Use gentle mobility flows, deep hamstring and hip stretches, and mindful breathing to prepare for Monday's grocery run, Korea meal prep, and upper-body push day. Finish with your 45-minute dual cardio session (a 30-minute brisk walk plus a 15-minute run or silent march).",
     xpReward: 300,
     exercises: [
       {
@@ -60,32 +60,32 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sun-kpop-walk",
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Complete 30 minutes of brisk steady walking followed by 15 minutes of silent indoor marching or light jogging. Low-impact steady-state cardio maximizes fat oxidation while preserving lean muscle mass!"
+        coachTip: "Complete 30 minutes of brisk steady walking (a calm, steady K-pop idol ‘practice room’ pace) followed by 15 minutes of silent indoor marching or light jogging. Low-impact steady-state cardio maximizes fat oxidation while preserving lean muscle mass!"
       }
     ]
   },
   {
     dayOfWeek: 1, // Monday
     dayName: "Monday",
-    splitName: "Puerto Rican Upper Body Push Sculpt + Monday Grocery & Puerto Rican Meal Prep",
+    splitName: "K-pop-Style Upper Body Push Sculpt + Monday Grocery & Korea Meal Prep",
     isRestDay: false,
-    questTitle: "[Daily Quest] Puerto Rican Upper Body Push Sculpt & Puerto Rican Meal Prep Monday",
-    description: "Official Monday Grocery Run & Weekly Batch Puerto Rican Meal Prep Day + Upper Body Push home workout! Hit Auburn ME Walmart for your weekly Puerto Rican Arroz con Kielbasa grocery staples, batch prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight exercises.",
+    questTitle: "[Daily Quest] K-pop-Style Upper Body Push Sculpt & Korea Meal Prep Monday",
+    description: "Official Monday Grocery Run & Weekly Batch Korea Meal Prep Day + Upper Body Push home workout! Hit Auburn ME Walmart for your weekly Korea Crispy Gochujang Chicken & Steamed Rice grocery staples, batch prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight exercises.",
     xpReward: 500,
     exercises: [
       {
         id: "mon-kpop-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Puerto Rican Batch Meal Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Korea Batch Meal Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Puerto Rican Arroz con Kielbasa & Recaito Scramble Batch Prep (For Tuesday Start)",
+        reps: "Korea Crispy Gochujang Chicken & Steamed Rice & Scallion Egg Scramble Batch Prep (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your Puerto Rican Arroz con Kielbasa weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook Pollo al Horno with Goya Adobo & Sofrito, Arroz con Gandules, and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
+        coachTip: "Pick up your Korea Crispy Gochujang Chicken & Steamed Rice weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook Gochujang Chicken with Steamed White Rice and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
       },
       {
         id: "mon-kpop-1",
@@ -134,22 +134,22 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "mon-kpop-walk",
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Finish your upper body session with 30 minutes of brisk outdoor walking plus 15 minutes of rhythmic Salsa/Reggaeton side-stepping. Consistent daily cardio ensures clean fat loss while keeping your metabolism elevated!"
+        coachTip: "Finish your upper body session with 30 minutes of brisk outdoor walking plus 15 minutes of quiet, rhythmic power-stepping. Consistent daily cardio ensures clean fat loss while keeping your metabolism elevated!"
       }
     ]
   },
   {
     dayOfWeek: 2, // Tuesday
     dayName: "Tuesday",
-    splitName: "Puerto Rican Lower Body Tone & Sculpt - Start Eating Puerto Rican Prep!",
+    splitName: "K-pop-Style Lower Body Tone & Sculpt - Start Eating Korea Prep!",
     isRestDay: false,
-    questTitle: "[Daily Quest] Puerto Rican Lower Body Sculpt & Start Eating Puerto Rican Prep",
-    description: "First day of eating your prepped Puerto Rican Arroz con Kielbasa meals! Build lean, toned legs and a lifted glute profile with silent bodyweight squats, lunges, wall sits, and glute bridges — completely apartment-friendly and zero floor impact.",
+    questTitle: "[Daily Quest] K-pop-Style Lower Body Sculpt & Start Eating Korea Prep",
+    description: "First day of eating your prepped Korea Crispy Gochujang Chicken & Steamed Rice meals! Build lean, toned legs and a lifted glute profile with silent bodyweight squats, lunges, wall sits, and glute bridges — completely apartment-friendly and zero floor impact.",
     xpReward: 500,
     exercises: [
       {
@@ -199,7 +199,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "tue-kpop-walk",
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -211,10 +211,10 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 3, // Wednesday
     dayName: "Wednesday",
-    splitName: "Puerto Rican Core & Waist Carve (Abs, Obliques, Deep Core)",
+    splitName: "K-pop-Style Core & Waist Carve (Abs, Obliques, Deep Core)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Puerto Rican Core & Waist Carve Session",
-    description: "High-intensity core and waist-carving session for your Puerto Rican-inspired weekly routine. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
+    questTitle: "[Daily Quest] K-pop-Style Core & Waist Carve Session",
+    description: "High-intensity core and waist-carving session for your K-pop-inspired weekly routine. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
     xpReward: 600,
     exercises: [
       {
@@ -264,7 +264,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "wed-kpop-walk",
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -276,9 +276,9 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 4, // Thursday
     dayName: "Thursday",
-    splitName: "Puerto Rican Upper Body Pull & Posture Definition (Back, Shoulders, Arms)",
+    splitName: "K-pop-Style Upper Body Pull & Posture Definition (Back, Shoulders, Arms)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Puerto Rican Upper Body Pull & Posture Definition",
+    questTitle: "[Daily Quest] K-pop-Style Upper Body Pull & Posture Definition",
     description: "Target upper back posture, shoulder blade stability, and arm definition using bodyweight holds like Superman holds, shoulder taps, and Y-T-W raises — completely silent and equipment-free.",
     xpReward: 500,
     exercises: [
@@ -329,7 +329,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "thu-kpop-walk",
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -341,9 +341,9 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 5, // Friday
     dayName: "Friday",
-    splitName: "Puerto Rican Full Body Conditioning & Core Finisher",
+    splitName: "K-pop-Style Full Body Conditioning & Core Finisher",
     isRestDay: false,
-    questTitle: "[Daily Quest] Puerto Rican Full Body Conditioning & Core Finisher",
+    questTitle: "[Daily Quest] K-pop-Style Full Body Conditioning & Core Finisher",
     description: "High-energy full-body flow combining bodyweight squats, T-rotations, and slow controlled mountain climbers to burn calories, tone muscles, and elevate athletic stamina without jumping or noise.",
     xpReward: 550,
     exercises: [
@@ -394,7 +394,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "fri-kpop-walk",
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -406,9 +406,9 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 6, // Saturday
     dayName: "Saturday",
-    splitName: "Puerto Rican Posture & Total Body Isometric Tension Circuit",
+    splitName: "K-pop-Style Posture & Total Body Isometric Tension Circuit",
     isRestDay: false,
-    questTitle: "[Daily Quest] Puerto Rican Posture & Total Body Isometric Circuit",
+    questTitle: "[Daily Quest] K-pop-Style Posture & Total Body Isometric Circuit",
     description: "Master total body muscular control and endurance with this isometric hold circuit. By holding contractions (wall sits, push-up holds, hollow body holds), you build deep muscle fiber density and poise without heavy lifting.",
     xpReward: 600,
     exercises: [
@@ -459,12 +459,12 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sat-kpop-walk",
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Finish Saturday with your 30-minute brisk walk and 15-minute conditioning run. You have completed a full week of your Puerto Rican-inspired training and meal-prep routine—ready for Sunday active recovery tomorrow!"
+        coachTip: "Finish Saturday with your 30-minute brisk walk and 15-minute conditioning run. You have completed a full week of your K-pop-inspired training and meal-prep routine—ready for Sunday active recovery tomorrow!"
       }
     ]
   }

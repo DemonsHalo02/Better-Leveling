@@ -1,13 +1,15 @@
 "use client";
 
 import React from "react";
-import { Smartphone, Laptop, CheckCircle2, MonitorOff, Focus, Wifi } from "lucide-react";
+import { Smartphone, Laptop, CheckCircle2, MonitorOff, Focus, Wifi, Sparkles } from "lucide-react";
 
 const APPS = [
-  { name: "Anki", platform: "iOS & Mac", desc: "Spaced repetition for Spanish vocab & Cloud Certs." },
-  { name: "VS Code", platform: "Mac", desc: "Primary code editor. Extensions: Prettier, ESLint, Tailwind." },
-  { name: "Udemy", platform: "iOS & Mac", desc: "Download courses offline for distraction-free study." },
-  { name: "CapCut", platform: "iOS & Mac", desc: "For phase 2 video editing skills." },
+  { name: "Naver Dictionary", platform: "iOS & Android", desc: "Best Korean-English dictionary. Way better than Google Translate for grammar." },
+  { name: "Papago", platform: "iOS & Android", desc: "Naver's translation app — more accurate for Korean than Google Translate." },
+  { name: "Anki", platform: "iOS & Android", desc: "Spaced repetition for Korean vocab & HiSET terms." },
+  { name: "VS Code", platform: "Windows", desc: "Primary code editor. Extensions: Prettier, ESLint, Tailwind." },
+  { name: "Udemy", platform: "iOS & Windows", desc: "Download courses offline for distraction-free study." },
+  { name: "CapCut", platform: "iOS & Windows", desc: "For your video editing course and future content skills." },
   { name: "Better Leveling", platform: "Web", desc: "This app. Install as PWA to home screen." },
 ];
 
@@ -15,16 +17,32 @@ const IPHONE_SETUP = [
   "Delete TikTok, Instagram, Twitter, Facebook.",
   "Turn on 'Grayscale' in Accessibility (Triple-click power button to toggle).",
   "Set up 'Study Focus' mode: Only allow calls from family. Block all non-essential app notifications.",
-  "Home Screen: Only Anki, Calendar, Notes, Udemy, and Better Leveling (PWA).",
+  "Home Screen: Only Anki, Papago, Calendar, Notes, Udemy, and Better Leveling (PWA).",
   "No phone in bedroom after 9:30 PM."
 ];
 
-const MAC_SETUP = [
-  "Create a dedicated 'Study' user account with no games or entertainment apps installed.",
-  "Use 'SelfControl' app to block Reddit/YouTube during 90-min Pomodoro blocks.",
+const S10FE_SETUP = [
+  "Same minimalist home screen as iPhone: Anki, Papago, Naver Dictionary, Udemy, Better Leveling (PWA).",
+  "Enable Samsung's Digital Wellbeing 'Focus Mode' during 90-min Pomodoro blocks.",
+  "Install Good Lock for extra home screen control.",
+  "Use as your dedicated Korean-study phone: keep it charged next to your study desk.",
+  "No phone in bedroom after 9:30 PM."
+];
+
+const VIVOBOOK_SETUP = [
+  "Create a dedicated 'Study' Windows account with no games or entertainment apps installed.",
+  "Use Windows Focus Assist to block Reddit/YouTube during 90-min Pomodoro blocks.",
   "Organize Desktop: Clean desktop every Friday.",
-  "Folder Structure: /Development, /CloudCerts, /Spanish, /Art.",
-  "Keep terminal and VS Code pinned to dock."
+  "Folder Structure: /Development, /Korean, /Art, /HiSET.",
+  "Keep Windows Terminal and VS Code pinned to the taskbar."
+];
+
+const FUTURE_SETUP = [
+  "Galaxy S26 Ultra: set up Samsung DeX to turn the phone into a study workstation on any monitor/TV.",
+  "Galaxy S26 Ultra: use S Pen + Samsung Notes for handwritten Korean/Hangul practice.",
+  "Galaxy Book 6 Ultra: enable Quick Share + Second Screen so the S26 Ultra and laptop work as one system.",
+  "Set both devices to Korean as a secondary system language for passive immersion.",
+  "Migrate Anki, Papago, Naver Dictionary, and Udemy data over before retiring the Vivobook/S10 FE."
 ];
 
 export default function TechSetup() {
@@ -67,18 +85,54 @@ export default function TechSetup() {
           </ul>
         </div>
 
-        {/* Mac Setup */}
+        {/* Galaxy S10 FE Setup */}
         <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl hover:border-white/20 transition-all duration-300">
           <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3 tracking-tight">
             <div className="bg-[#0a3d8f]/10 p-2 rounded-xl border border-[#0a3d8f]/20 shadow-inner">
-              <Laptop className="w-5 h-5 text-[#0a3d8f]" />
+              <Smartphone className="w-5 h-5 text-[#0a3d8f]" />
             </div>
-            MacBook Workspace
+            Galaxy S10 FE Minimalism
           </h3>
           <ul className="space-y-4">
-            {MAC_SETUP.map((item, i) => (
+            {S10FE_SETUP.map((item, i) => (
               <li key={i} className="flex gap-4 items-start text-sm text-zinc-300 font-medium group">
                 <CheckCircle2 className="w-5 h-5 text-[#0a3d8f] shrink-0 mt-0.5 drop-shadow-sm group-hover:scale-110 transition-transform" />
+                <span className="leading-relaxed group-hover:text-white transition-colors">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Vivobook Setup */}
+        <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl hover:border-white/20 transition-all duration-300">
+          <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3 tracking-tight">
+            <div className="bg-[#f5a623]/10 p-2 rounded-xl border border-[#f5a623]/20 shadow-inner">
+              <Laptop className="w-5 h-5 text-[#f5a623]" />
+            </div>
+            Vivobook Workspace
+          </h3>
+          <ul className="space-y-4">
+            {VIVOBOOK_SETUP.map((item, i) => (
+              <li key={i} className="flex gap-4 items-start text-sm text-zinc-300 font-medium group">
+                <CheckCircle2 className="w-5 h-5 text-[#f5a623] shrink-0 mt-0.5 drop-shadow-sm group-hover:scale-110 transition-transform" />
+                <span className="leading-relaxed group-hover:text-white transition-colors">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Future Setup: S26 Ultra + Galaxy Book 6 Ultra */}
+        <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl hover:border-white/20 transition-all duration-300">
+          <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3 tracking-tight">
+            <div className="bg-[#4ade80]/10 p-2 rounded-xl border border-[#4ade80]/20 shadow-inner">
+              <Sparkles className="w-5 h-5 text-[#4ade80]" />
+            </div>
+            Future: S26 Ultra + Book 6 Ultra
+          </h3>
+          <ul className="space-y-4">
+            {FUTURE_SETUP.map((item, i) => (
+              <li key={i} className="flex gap-4 items-start text-sm text-zinc-300 font-medium group">
+                <CheckCircle2 className="w-5 h-5 text-[#4ade80] shrink-0 mt-0.5 drop-shadow-sm group-hover:scale-110 transition-transform" />
                 <span className="leading-relaxed group-hover:text-white transition-colors">{item}</span>
               </li>
             ))}

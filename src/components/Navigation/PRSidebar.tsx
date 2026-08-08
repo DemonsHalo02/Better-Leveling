@@ -21,7 +21,7 @@ export default function PRSidebar({ activeTab, setActiveTab }: PRSidebarProps) {
     { id: "timeline", label: "Timeline", mobileLabel: "Timeline", icon: CalendarClock, badge: undefined },
     { id: "diario", label: "Daily", mobileLabel: "Daily", icon: CalendarDays, badge: 'Today' },
     { id: "cursos", label: "Courses", mobileLabel: "Courses", icon: BookOpen, badge: undefined },
-    { id: "puertorico", label: "PR Info", mobileLabel: "PR", icon: Map, badge: '2031' },
+    { id: "puertorico", label: "Korea Info", mobileLabel: "Korea", icon: Map, badge: '2031' },
     { id: "ahorros", label: "Savings", mobileLabel: "Savings", icon: PiggyBank, badge: undefined },
     { id: "habitos", label: "Habits", mobileLabel: "Habits", icon: Target, badge: undefined },
     { id: "tech", label: "Tech Setup", mobileLabel: "Tech", icon: Smartphone, badge: undefined }
