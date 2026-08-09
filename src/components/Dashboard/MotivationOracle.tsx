@@ -7,13 +7,13 @@ import confetti from 'canvas-confetti';
 
 const DIRECTIVE_QUOTES = [
   {
-    quote: "A hunter who fears the weights will never rise above E-Rank. Step into Planet Fitness and conquer the iron with Boricua discipline.",
-    author: "Boricua Shadow Monarch",
+    quote: "A hunter who fears the weights will never rise above E-Rank. Step into Planet Fitness and conquer the iron with the discipline of a true S-Rank.",
+    author: "Shadow Monarch Directive",
     stat: "STR FOCUS"
   },
   {
-    quote: "Your target weight of 160 LBS is not a dream—it is an inevitability forged through daily discipline, smart Puerto Rican meal prep, and macro precision.",
-    author: "Puerto Rican Shred Blueprint Codex",
+    quote: "Your target weight of 160 LBS is not a dream—it is an inevitability forged through daily discipline, smart meal prep, and macro precision.",
+    author: "S-Rank Shred Blueprint Codex",
     stat: "VIT FOCUS"
   },
   {

@@ -25,10 +25,10 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
-    splitName: "System Restoration / Japanese-Inspired Recovery & Deep Stretch (Rest Day)",
+    splitName: "System Restoration / Recovery & Deep Stretch (Rest Day)",
     isRestDay: true,
-    questTitle: "[Daily Quest] Japanese-Inspired Active Recovery & Flexibility Flow",
-    description: "Sunday is your official System Restoration Day. Use gentle mobility flows, deep hamstring and hip stretches, and mindful breathing to prepare for Monday's grocery run, Japan meal prep, and upper-body push day. Finish with your 45-minute dual cardio session (a 30-minute brisk walk plus a 15-minute run or silent march).",
+    questTitle: "[Daily Quest] Active Recovery & Flexibility Flow",
+    description: "Sunday is your official System Restoration Day. Use gentle mobility flows, deep hamstring and hip stretches, and mindful breathing to prepare for Monday's grocery run, meal prep, and upper-body push day. Finish with your 45-minute dual cardio session (a 30-minute brisk walk plus a 15-minute run or silent march).",
     xpReward: 300,
     exercises: [
       {
@@ -60,32 +60,32 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sun-kpop-walk",
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+        name: "Silent Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Complete 30 minutes of brisk steady walking (a Japanese shinrin-yoku style 'forest bathing' pace) followed by 15 minutes of silent indoor marching or light jogging. Low-impact steady-state cardio maximizes fat oxidation while preserving lean muscle mass!"
+        coachTip: "Complete 30 minutes of brisk steady walking (a steady moderate pace) followed by 15 minutes of silent indoor marching or light jogging. Low-impact steady-state cardio maximizes fat oxidation while preserving lean muscle mass!"
       }
     ]
   },
   {
     dayOfWeek: 1, // Monday
     dayName: "Monday",
-    splitName: "Japanese-Style Upper Body Push Sculpt + Monday Grocery & Japan Meal Prep",
+    splitName: "Home-Style Upper Body Push Sculpt + Monday Grocery & Meal Prep",
     isRestDay: false,
-    questTitle: "[Daily Quest] Japanese-Style Upper Body Push Sculpt & Japan Meal Prep Monday",
-    description: "Official Monday Grocery Run & Weekly Batch Japan Meal Prep Day + Upper Body Push home workout! Hit Auburn ME Walmart for your weekly Japan Crispy Teriyaki Chicken & Steamed Rice grocery staples, batch prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight exercises.",
+    questTitle: "[Daily Quest] Home-Style Upper Body Push Sculpt & Meal Prep Monday",
+    description: "Official Monday Grocery Run & Weekly Batch Meal Prep Day + Upper Body Push home workout! Hit Auburn ME Walmart for your weekly Crispy Chicken & Steamed Rice grocery staples, batch prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight exercises.",
     xpReward: 500,
     exercises: [
       {
         id: "mon-kpop-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Japan Batch Meal Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Batch Meal Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Japan Crispy Teriyaki Chicken & Steamed Rice & Scallion Egg Scramble Batch Prep (For Tuesday Start)",
+        reps: "Crispy Chicken & Steamed Rice & Scallion Egg Scramble Batch Prep (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your Japan Crispy Teriyaki Chicken & Steamed Rice weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook Teriyaki Chicken with Steamed White Rice and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
+        coachTip: "Pick up your Crispy Chicken & Steamed Rice weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook Teriyaki Chicken with Steamed White Rice and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
       },
       {
         id: "mon-kpop-1",
@@ -134,7 +134,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "mon-kpop-walk",
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+        name: "Silent Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -146,10 +146,10 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 2, // Tuesday
     dayName: "Tuesday",
-    splitName: "Japanese-Style Lower Body Tone & Sculpt - Start Eating Japan Prep!",
+    splitName: "Home-Style Lower Body Tone & Sculpt - Start Eating Meal Prep!",
     isRestDay: false,
-    questTitle: "[Daily Quest] Japanese-Style Lower Body Sculpt & Start Eating Japan Prep",
-    description: "First day of eating your prepped Japan Crispy Teriyaki Chicken & Steamed Rice meals! Build lean, toned legs and a lifted glute profile with silent bodyweight squats, lunges, wall sits, and glute bridges — completely apartment-friendly and zero floor impact.",
+    questTitle: "[Daily Quest] Home-Style Lower Body Sculpt & Start Eating Meal Prep",
+    description: "First day of eating your prepped Crispy Chicken & Steamed Rice meals! Build lean, toned legs and a lifted glute profile with silent bodyweight squats, lunges, wall sits, and glute bridges — completely apartment-friendly and zero floor impact.",
     xpReward: 500,
     exercises: [
       {
@@ -199,7 +199,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "tue-kpop-walk",
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+        name: "Silent Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -211,10 +211,10 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 3, // Wednesday
     dayName: "Wednesday",
-    splitName: "Japanese-Style Core & Waist Carve (Abs, Obliques, Deep Core)",
+    splitName: "Home-Style Core & Waist Carve (Abs, Obliques, Deep Core)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Japanese-Style Core & Waist Carve Session",
-    description: "High-intensity core and waist-carving session for your Japanese-inspired weekly routine. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
+    questTitle: "[Daily Quest] Home-Style Core & Waist Carve Session",
+    description: "High-intensity core and waist-carving session for your weekly routine. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
     xpReward: 600,
     exercises: [
       {
@@ -264,7 +264,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "wed-kpop-walk",
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+        name: "Silent Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -276,9 +276,9 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 4, // Thursday
     dayName: "Thursday",
-    splitName: "Japanese-Style Upper Body Pull & Posture Definition (Back, Shoulders, Arms)",
+    splitName: "Home-Style Upper Body Pull & Posture Definition (Back, Shoulders, Arms)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Japanese-Style Upper Body Pull & Posture Definition",
+    questTitle: "[Daily Quest] Home-Style Upper Body Pull & Posture Definition",
     description: "Target upper back posture, shoulder blade stability, and arm definition using bodyweight holds like Superman holds, shoulder taps, and Y-T-W raises — completely silent and equipment-free.",
     xpReward: 500,
     exercises: [
@@ -329,7 +329,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "thu-kpop-walk",
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+        name: "Silent Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -341,9 +341,9 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 5, // Friday
     dayName: "Friday",
-    splitName: "Japanese-Style Full Body Conditioning & Core Finisher",
+    splitName: "Home-Style Full Body Conditioning & Core Finisher",
     isRestDay: false,
-    questTitle: "[Daily Quest] Japanese-Style Full Body Conditioning & Core Finisher",
+    questTitle: "[Daily Quest] Home-Style Full Body Conditioning & Core Finisher",
     description: "High-energy full-body flow combining bodyweight squats, T-rotations, and slow controlled mountain climbers to burn calories, tone muscles, and elevate athletic stamina without jumping or noise.",
     xpReward: 550,
     exercises: [
@@ -394,7 +394,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "fri-kpop-walk",
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+        name: "Silent Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -406,9 +406,9 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 6, // Saturday
     dayName: "Saturday",
-    splitName: "Japanese-Style Posture & Total Body Isometric Tension Circuit",
+    splitName: "Home-Style Posture & Total Body Isometric Tension Circuit",
     isRestDay: false,
-    questTitle: "[Daily Quest] Japanese-Style Posture & Total Body Isometric Circuit",
+    questTitle: "[Daily Quest] Home-Style Posture & Total Body Isometric Circuit",
     description: "Master total body muscular control and endurance with this isometric hold circuit. By holding contractions (wall sits, push-up holds, hollow body holds), you build deep muscle fiber density and poise without heavy lifting.",
     xpReward: 600,
     exercises: [
@@ -459,12 +459,12 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sat-kpop-walk",
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+        name: "Silent Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Finish Saturday with your 30-minute brisk walk and 15-minute conditioning run. You have completed a full week of your Japanese-inspired training and meal-prep routine—ready for Sunday active recovery tomorrow!"
+        coachTip: "Finish Saturday with your 30-minute brisk walk and 15-minute conditioning run. You have completed a full week of your training and meal-prep routine—ready for Sunday active recovery tomorrow!"
       }
     ]
   }
@@ -921,3 +921,4 @@ export const getTodayWorkout = (planType: 'home' | 'pf' = 'home'): WorkoutDay =>
   const routine = planType === 'pf' ? PUERTO_RICAN_PLANET_FITNESS_ROUTINE : PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE;
   return routine.find(d => d.dayOfWeek === dayIndex) || routine[0];
 };
+
