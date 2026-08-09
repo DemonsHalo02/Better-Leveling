@@ -1,15 +1,22 @@
 "use client";
 
 import React from "react";
-import { Smartphone, Laptop, CheckCircle2, MonitorOff, Focus, Wifi, Sparkles } from "lucide-react";
+import { Smartphone, Laptop, CheckCircle2, MonitorOff, Focus, Wifi } from "lucide-react";
 
 const APPS = [
+<<<<<<< HEAD
   { name: "Takoboto", platform: "Android (iOS: Yomiwa)", desc: "Best Japanese-English dictionary with handwriting/kanji lookup support." },
   { name: "DeepL Translate", platform: "iOS & Android", desc: "More accurate than Google Translate for Japanese grammar and nuance." },
   { name: "Anki", platform: "iOS & Android", desc: "Spaced repetition for Japanese vocab & HiSET terms." },
   { name: "VS Code", platform: "Windows", desc: "Primary code editor. Extensions: Prettier, ESLint, Tailwind." },
   { name: "Udemy", platform: "iOS & Windows", desc: "Download courses offline for distraction-free study." },
   { name: "CapCut", platform: "iOS & Windows", desc: "For your video editing course and future content skills." },
+=======
+  { name: "Anki", platform: "iOS & Mac", desc: "Spaced repetition for Spanish vocab & Cloud Certs." },
+  { name: "VS Code", platform: "Mac", desc: "Primary code editor. Extensions: Prettier, ESLint, Tailwind." },
+  { name: "Udemy", platform: "iOS & Mac", desc: "Download courses offline for distraction-free study." },
+  { name: "CapCut", platform: "iOS & Mac", desc: "For phase 2 video editing skills." },
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
   { name: "Better Leveling", platform: "Web", desc: "This app. Install as PWA to home screen." },
 ];
 
@@ -17,6 +24,7 @@ const IPHONE_SETUP = [
   "Delete TikTok, Instagram, Twitter, Facebook.",
   "Turn on 'Grayscale' in Accessibility (Triple-click power button to toggle).",
   "Set up 'Study Focus' mode: Only allow calls from family. Block all non-essential app notifications.",
+<<<<<<< HEAD
   "Home Screen: Only Anki, Takoboto, Calendar, Notes, Udemy, and Better Leveling (PWA).",
   "No phone in bedroom after 9:30 PM."
 ];
@@ -43,6 +51,18 @@ const FUTURE_SETUP = [
   "Galaxy Book 6 Ultra: enable Quick Share + Second Screen so the S26 Ultra and laptop work as one system.",
   "Set both devices to Japanese as a secondary system language for passive immersion.",
   "Migrate Anki, Takoboto, DeepL Translate, and Udemy data over before retiring the Vivobook/S10 FE."
+=======
+  "Home Screen: Only Anki, Calendar, Notes, Udemy, and Better Leveling (PWA).",
+  "No phone in bedroom after 9:30 PM."
+];
+
+const MAC_SETUP = [
+  "Create a dedicated 'Study' user account with no games or entertainment apps installed.",
+  "Use 'SelfControl' app to block Reddit/YouTube during 90-min Pomodoro blocks.",
+  "Organize Desktop: Clean desktop every Friday.",
+  "Folder Structure: /Development, /CloudCerts, /Spanish, /Art.",
+  "Keep terminal and VS Code pinned to dock."
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
 ];
 
 export default function TechSetup() {
@@ -85,54 +105,18 @@ export default function TechSetup() {
           </ul>
         </div>
 
-        {/* Galaxy S10 FE Setup */}
+        {/* Mac Setup */}
         <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl hover:border-white/20 transition-all duration-300">
           <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3 tracking-tight">
             <div className="bg-[#0a3d8f]/10 p-2 rounded-xl border border-[#0a3d8f]/20 shadow-inner">
-              <Smartphone className="w-5 h-5 text-[#0a3d8f]" />
+              <Laptop className="w-5 h-5 text-[#0a3d8f]" />
             </div>
-            Galaxy S10 FE Minimalism
+            MacBook Workspace
           </h3>
           <ul className="space-y-4">
-            {S10FE_SETUP.map((item, i) => (
+            {MAC_SETUP.map((item, i) => (
               <li key={i} className="flex gap-4 items-start text-sm text-zinc-300 font-medium group">
                 <CheckCircle2 className="w-5 h-5 text-[#0a3d8f] shrink-0 mt-0.5 drop-shadow-sm group-hover:scale-110 transition-transform" />
-                <span className="leading-relaxed group-hover:text-white transition-colors">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Vivobook Setup */}
-        <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl hover:border-white/20 transition-all duration-300">
-          <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3 tracking-tight">
-            <div className="bg-[#f5a623]/10 p-2 rounded-xl border border-[#f5a623]/20 shadow-inner">
-              <Laptop className="w-5 h-5 text-[#f5a623]" />
-            </div>
-            Vivobook Workspace
-          </h3>
-          <ul className="space-y-4">
-            {VIVOBOOK_SETUP.map((item, i) => (
-              <li key={i} className="flex gap-4 items-start text-sm text-zinc-300 font-medium group">
-                <CheckCircle2 className="w-5 h-5 text-[#f5a623] shrink-0 mt-0.5 drop-shadow-sm group-hover:scale-110 transition-transform" />
-                <span className="leading-relaxed group-hover:text-white transition-colors">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Future Setup: S26 Ultra + Galaxy Book 6 Ultra */}
-        <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl hover:border-white/20 transition-all duration-300">
-          <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3 tracking-tight">
-            <div className="bg-[#4ade80]/10 p-2 rounded-xl border border-[#4ade80]/20 shadow-inner">
-              <Sparkles className="w-5 h-5 text-[#4ade80]" />
-            </div>
-            Future: S26 Ultra + Book 6 Ultra
-          </h3>
-          <ul className="space-y-4">
-            {FUTURE_SETUP.map((item, i) => (
-              <li key={i} className="flex gap-4 items-start text-sm text-zinc-300 font-medium group">
-                <CheckCircle2 className="w-5 h-5 text-[#4ade80] shrink-0 mt-0.5 drop-shadow-sm group-hover:scale-110 transition-transform" />
                 <span className="leading-relaxed group-hover:text-white transition-colors">{item}</span>
               </li>
             ))}

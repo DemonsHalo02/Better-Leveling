@@ -23,7 +23,7 @@ export default function Ahorros() {
   const progress = Math.min(100, (totalSaved / goal) * 100);
 
   const surplus = data.savingsIncome - data.savingsExpenses;
-  const monthsRemaining = 56; // Approx from Aug 2026 to Apr 2031 (HiSET + job + vocational school savings)
+  const monthsRemaining = 56; // Approx from Aug 2026 to Apr 2031
   const projectedTotal = totalSaved + (surplus * monthsRemaining);
 
   const handleUpdateMonthly = (income: number, expenses: number) => {
@@ -153,7 +153,11 @@ export default function Ahorros() {
             {projectedTotal < goal && (
               <div className="mt-4 bg-[#ce1126]/10 border border-[#ce1126]/30 p-3 rounded-xl">
                 <p className="text-[11px] font-medium text-[#ce1126] leading-relaxed">
+<<<<<<< HEAD
                   <span className="font-bold">Warning:</span> Current surplus trajectory falls short of $40k goal by Apr 2031. Need to increase income to cover Japan senmon gakko tuition, JLPT/cert fees, and visa costs!
+=======
+                  <span className="font-bold">Warning:</span> Current surplus trajectory falls short of $35k goal by Apr 2031. Need to increase remote income!
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
                 </p>
               </div>
             )}

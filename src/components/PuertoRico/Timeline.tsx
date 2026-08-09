@@ -16,6 +16,7 @@ interface TimelineEvent {
 
 const TIMELINE_EVENTS: TimelineEvent[] = [
   { id: "aug-2026", year: 2026, monthStr: "August 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "The Journey Begins", desc: [
+<<<<<<< HEAD
       "Aug 8: DAY 1! Python Bootcamp, HiSET Math Prep, and Perspective Art all in progress.",
       "Aug 8: Speak Like a Native JLPT N5-N1 Bootcamp daily 90min begins. Matcha morning ritual.",
       "Aug 27: Full-Stack Web Dev Bootcamp begins (Dr. Angela Yu)."
@@ -23,27 +24,36 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   { id: "sep-2026", year: 2026, monthStr: "September 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "HiSET Math & Anatomy", desc: [
       "Sep 5: HiSET Mathematics Prep course complete — HiSET Math exam scheduling begins.",
       "Sep 21: Anatomy Art School begins."
+=======
+      "Aug 3: DAY 1! Python Bootcamp starts. Perspective Art parallel.",
+      "Aug 3: Spanish daily 90min begins. Café con Leche Helado morning ritual.",
+      "Aug 22: Full-Stack Web Dev Bootcamp begins (Dr. Angela Yu)."
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
   ]},
   { id: "oct-2026", year: 2026, monthStr: "October 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Web Dev & Next.js", desc: [
-      "Oct 16: Next.js & React - The Complete Guide begins (Maximilian Schwarzmüller)."
+      "Oct 11: Next.js & React begins (Maximilian Schwarzmüller)."
   ]},
-  { id: "nov-2026", year: 2026, monthStr: "November 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Next.js 15 & Firebase", desc: [
-      "Nov 6: Next.js 15 & Firebase begins.",
-      "Nov 7: Manga Art School begins.",
-      "Nov 20: Tailwind CSS From Scratch begins."
+  { id: "nov-2026", year: 2026, monthStr: "November 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "TypeScript & Cloud", desc: [
+      "Nov 2: TypeScript: The Complete Developer's Guide (Stephen Grider).",
+      "Nov 23: GCP for Beginners — Google Cloud Digital Leader."
   ]},
-  { id: "dec-2026", year: 2026, monthStr: "December 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Data Analysis & CapCut", desc: [
-      "Dec 11: Data Analysis with Pandas and Python complete, CapCut Video Editing begins."
+  { id: "dec-2026", year: 2026, monthStr: "December 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "AI & GenAI Mastery", desc: [
+      "Dec 4: Google Cloud Generative AI Leader Full Course 2026.",
+      "Dec 16: Google AI Studio Bootcamp: Build Apps, Media & Master Gen AI."
   ]},
-  { id: "jan-2027", year: 2027, monthStr: "January 2027", badge: "Phase 1 🚀", color: "#ce1126", title: "Character Art School", desc: [
-      "Jan: Character Art School: Complete Character Drawing continues."
+  { id: "jan-2027", year: 2027, monthStr: "January 2027", badge: "Phase 1 🚀", color: "#ce1126", title: "Firebase & AWS", desc: [
+      "Jan 1: Build Dynamic Web Apps with React & Firebase.",
+      "Jan 13: Firebase In Depth (Angular University).",
+      "Jan 23: Ultimate AWS Certified Cloud Practitioner CLF-C02 2026."
   ]},
-  { id: "feb-2027", year: 2027, monthStr: "February 2027", badge: "Phase 1 🚀", color: "#ce1126", title: "Coloring & Painting", desc: [
-      "Feb 7: Character Art School: Complete Coloring & Painting begins."
+  { id: "feb-2027", year: 2027, monthStr: "February 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "Course Completion", desc: [
+      "Feb 6: CapCut Desktop+Mobile: Beginner to Pro.",
+      "Feb 16: ✅ ALL 19 UDEMY COURSES COMPLETE!"
   ]},
-  { id: "mar-2027", year: 2027, monthStr: "March 2027", badge: "Phase 1 🚀", color: "#ce1126", title: "Final Course Stretch", desc: [
-      "Mar 22: Running a Web Development Business — final course begins."
+  { id: "apr-2027", year: 2027, monthStr: "April 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "Math & Spanish Grind", desc: [
+      "Apr 2027: HiSET Math Prep begins. Spanish DELE B1 grind intensifies."
   ]},
+<<<<<<< HEAD
   { id: "apr-2027", year: 2027, monthStr: "April 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "All Courses Complete", desc: [
       "Apr 2: ✅ ALL 16 UDEMY COURSES COMPLETE!",
       "Apr 2027: Remaining HiSET subjects (Reading, Writing, Social Studies) scheduled. JLPT N4 grind intensifies."
@@ -76,6 +86,35 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   ]},
   { id: "year-2036", year: 2036, monthStr: "2036", badge: "Phase 6 🎌", color: "#0a3d8f", title: "Established", desc: [
       "2036: 🎌 10 YEARS. GOAL ACHIEVED. Fully established as a developer in Japan!"
+=======
+  { id: "may-2027", year: 2027, monthStr: "May 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "First Cert", desc: [
+      "May 2027: First Google Cloud cert exam."
+  ]},
+  { id: "jun-2027", year: 2027, monthStr: "June 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "Income Milestone", desc: [
+      "Jun 2027: 🎉 First remote IT income!"
+  ]},
+  { id: "dec-2027", year: 2027, monthStr: "December 2027", badge: "Phase 3 💼", color: "#f5a623", title: "DELE B1", desc: [
+      "Dec 2027: 🗣️ DELE B1 EXAM — register by Sep 2027!"
+  ]},
+  { id: "jan-2028", year: 2028, monthStr: "January 2028", badge: "Phase 3 💼", color: "#f5a623", title: "Education Milestone", desc: [
+      "Jan 2028: HiSET complete! DELE B1 passed!"
+  ]},
+  { id: "dec-2028", year: 2028, monthStr: "December 2028", badge: "Phase 4 💪", color: "#4ade80", title: "Body & B2 Mastery", desc: [
+      "Dec 2028: 💪 160 LBS ACHIEVED! ~1,600 Spanish hrs.",
+      "Dec 2028: 🗣️ DELE B2 EXAM!"
+  ]},
+  { id: "dec-2029", year: 2029, monthStr: "December 2029", badge: "Phase 4 💪", color: "#4ade80", title: "C1 Prep & Savings", desc: [
+      "Dec 2029: Consider DELE C1. Savings ~$26K."
+  ]},
+  { id: "mar-2031", year: 2031, monthStr: "March 2031", badge: "Phase 5 ✈️", color: "#ce1126", title: "The Final Month", desc: [
+      "Mar 2031: Final month Lewiston. $35K saved!"
+  ]},
+  { id: "apr-2031", year: 2031, monthStr: "April 2031", badge: "Phase 5 ✈️", color: "#ce1126", title: "Departure", desc: [
+      "Apr 2031: ✈️ FLY TO PUERTO RICO! New life begins!"
+  ]},
+  { id: "year-2036", year: 2036, monthStr: "2036", badge: "Phase 6 🌴", color: "#0a3d8f", title: "Established", desc: [
+      "2036: 🌴 10 YEARS. GOAL ACHIEVED. Fully established in Puerto Rico!"
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
   ]}
 ];
 

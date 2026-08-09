@@ -21,7 +21,11 @@ export default function PRSidebar({ activeTab, setActiveTab }: PRSidebarProps) {
     { id: "timeline", label: "Timeline", mobileLabel: "Timeline", icon: CalendarClock, badge: undefined },
     { id: "diario", label: "Daily", mobileLabel: "Daily", icon: CalendarDays, badge: 'Today' },
     { id: "cursos", label: "Courses", mobileLabel: "Courses", icon: BookOpen, badge: undefined },
+<<<<<<< HEAD
     { id: "puertorico", label: "Japan Info", mobileLabel: "Japan", icon: Map, badge: '2031' },
+=======
+    { id: "puertorico", label: "PR Info", mobileLabel: "PR", icon: Map, badge: '2031' },
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
     { id: "ahorros", label: "Savings", mobileLabel: "Savings", icon: PiggyBank, badge: undefined },
     { id: "habitos", label: "Habits", mobileLabel: "Habits", icon: Target, badge: undefined },
     { id: "tech", label: "Tech Setup", mobileLabel: "Tech", icon: Smartphone, badge: undefined }

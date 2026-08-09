@@ -25,10 +25,17 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
+<<<<<<< HEAD
     splitName: "System Restoration / Japanese-Inspired Recovery & Deep Stretch (Rest Day)",
     isRestDay: true,
     questTitle: "[Daily Quest] Japanese-Inspired Active Recovery & Flexibility Flow",
     description: "Sunday is your official System Restoration Day. Use gentle mobility flows, deep hamstring and hip stretches, and mindful breathing to prepare for Monday's grocery run, Japan meal prep, and upper-body push day. Finish with your 45-minute dual cardio session (a 30-minute brisk walk plus a 15-minute run or silent march).",
+=======
+    splitName: "System Restoration / Puerto Rican-Inspired Recovery & Deep Stretch (Rest Day)",
+    isRestDay: true,
+    questTitle: "[Daily Quest] Puerto Rican-Inspired Active Recovery & Flexibility Flow",
+    description: "Sunday is your official System Restoration Day. Use gentle mobility flows, deep hamstring and hip stretches, and mindful breathing to prepare for Monday's grocery run, Puerto Rican meal prep, and upper-body push day. Finish with your 45-minute dual cardio session (a 30-minute brisk walk plus a 15-minute run or silent march).",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
     xpReward: 300,
     exercises: [
       {
@@ -60,32 +67,56 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sun-kpop-walk",
+<<<<<<< HEAD
         name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+=======
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
+<<<<<<< HEAD
         coachTip: "Complete 30 minutes of brisk steady walking (a Japanese shinrin-yoku style 'forest bathing' pace) followed by 15 minutes of silent indoor marching or light jogging. Low-impact steady-state cardio maximizes fat oxidation while preserving lean muscle mass!"
+=======
+        coachTip: "Complete 30 minutes of brisk steady walking followed by 15 minutes of silent indoor marching or light jogging. Low-impact steady-state cardio maximizes fat oxidation while preserving lean muscle mass!"
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
       }
     ]
   },
   {
     dayOfWeek: 1, // Monday
     dayName: "Monday",
+<<<<<<< HEAD
     splitName: "Japanese-Style Upper Body Push Sculpt + Monday Grocery & Japan Meal Prep",
     isRestDay: false,
     questTitle: "[Daily Quest] Japanese-Style Upper Body Push Sculpt & Japan Meal Prep Monday",
     description: "Official Monday Grocery Run & Weekly Batch Japan Meal Prep Day + Upper Body Push home workout! Hit Auburn ME Walmart for your weekly Japan Crispy Teriyaki Chicken & Steamed Rice grocery staples, batch prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight exercises.",
+=======
+    splitName: "Puerto Rican Upper Body Push Sculpt + Monday Grocery & Puerto Rican Meal Prep",
+    isRestDay: false,
+    questTitle: "[Daily Quest] Puerto Rican Upper Body Push Sculpt & Puerto Rican Meal Prep Monday",
+    description: "Official Monday Grocery Run & Weekly Batch Puerto Rican Meal Prep Day + Upper Body Push home workout! Hit Auburn ME Walmart for your weekly Puerto Rican Arroz con Kielbasa grocery staples, batch prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight exercises.",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
     xpReward: 500,
     exercises: [
       {
         id: "mon-kpop-prep",
+<<<<<<< HEAD
         name: "Monday Auburn ME Walmart Grocery Run & Japan Batch Meal Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
         reps: "Japan Crispy Teriyaki Chicken & Steamed Rice & Scallion Egg Scramble Batch Prep (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
         coachTip: "Pick up your Japan Crispy Teriyaki Chicken & Steamed Rice weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook Teriyaki Chicken with Steamed White Rice and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
+=======
+        name: "Monday Auburn ME Walmart Grocery Run & Puerto Rican Batch Meal Prep",
+        targetGroup: "Nutrition / Batch Prep",
+        sets: 1,
+        reps: "Puerto Rican Arroz con Kielbasa & Recaito Scramble Batch Prep (For Tuesday Start)",
+        equipment: "Auburn ME Walmart & Kitchen",
+        coachTip: "Pick up your Puerto Rican Arroz con Kielbasa weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook Pollo al Horno with Goya Adobo & Sofrito, Arroz con Gandules, and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
       },
       {
         id: "mon-kpop-1",
@@ -134,22 +165,37 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "mon-kpop-walk",
+<<<<<<< HEAD
         name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+=======
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
+<<<<<<< HEAD
         coachTip: "Finish your upper body session with 30 minutes of brisk outdoor walking plus 15 minutes of quiet, mindful power-stepping. Consistent daily cardio ensures clean fat loss while keeping your metabolism elevated!"
+=======
+        coachTip: "Finish your upper body session with 30 minutes of brisk outdoor walking plus 15 minutes of rhythmic Salsa/Reggaeton side-stepping. Consistent daily cardio ensures clean fat loss while keeping your metabolism elevated!"
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
       }
     ]
   },
   {
     dayOfWeek: 2, // Tuesday
     dayName: "Tuesday",
+<<<<<<< HEAD
     splitName: "Japanese-Style Lower Body Tone & Sculpt - Start Eating Japan Prep!",
     isRestDay: false,
     questTitle: "[Daily Quest] Japanese-Style Lower Body Sculpt & Start Eating Japan Prep",
     description: "First day of eating your prepped Japan Crispy Teriyaki Chicken & Steamed Rice meals! Build lean, toned legs and a lifted glute profile with silent bodyweight squats, lunges, wall sits, and glute bridges — completely apartment-friendly and zero floor impact.",
+=======
+    splitName: "Puerto Rican Lower Body Tone & Sculpt - Start Eating Puerto Rican Prep!",
+    isRestDay: false,
+    questTitle: "[Daily Quest] Puerto Rican Lower Body Sculpt & Start Eating Puerto Rican Prep",
+    description: "First day of eating your prepped Puerto Rican Arroz con Kielbasa meals! Build lean, toned legs and a lifted glute profile with silent bodyweight squats, lunges, wall sits, and glute bridges — completely apartment-friendly and zero floor impact.",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
     xpReward: 500,
     exercises: [
       {
@@ -199,7 +245,11 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "tue-kpop-walk",
+<<<<<<< HEAD
         name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+=======
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -211,10 +261,17 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 3, // Wednesday
     dayName: "Wednesday",
+<<<<<<< HEAD
     splitName: "Japanese-Style Core & Waist Carve (Abs, Obliques, Deep Core)",
     isRestDay: false,
     questTitle: "[Daily Quest] Japanese-Style Core & Waist Carve Session",
     description: "High-intensity core and waist-carving session for your Japanese-inspired weekly routine. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
+=======
+    splitName: "Puerto Rican Core & Waist Carve (Abs, Obliques, Deep Core)",
+    isRestDay: false,
+    questTitle: "[Daily Quest] Puerto Rican Core & Waist Carve Session",
+    description: "High-intensity core and waist-carving session for your Puerto Rican-inspired weekly routine. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
     xpReward: 600,
     exercises: [
       {
@@ -264,7 +321,11 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "wed-kpop-walk",
+<<<<<<< HEAD
         name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+=======
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -276,9 +337,15 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 4, // Thursday
     dayName: "Thursday",
+<<<<<<< HEAD
     splitName: "Japanese-Style Upper Body Pull & Posture Definition (Back, Shoulders, Arms)",
     isRestDay: false,
     questTitle: "[Daily Quest] Japanese-Style Upper Body Pull & Posture Definition",
+=======
+    splitName: "Puerto Rican Upper Body Pull & Posture Definition (Back, Shoulders, Arms)",
+    isRestDay: false,
+    questTitle: "[Daily Quest] Puerto Rican Upper Body Pull & Posture Definition",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
     description: "Target upper back posture, shoulder blade stability, and arm definition using bodyweight holds like Superman holds, shoulder taps, and Y-T-W raises — completely silent and equipment-free.",
     xpReward: 500,
     exercises: [
@@ -329,7 +396,11 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "thu-kpop-walk",
+<<<<<<< HEAD
         name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+=======
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -341,9 +412,15 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 5, // Friday
     dayName: "Friday",
+<<<<<<< HEAD
     splitName: "Japanese-Style Full Body Conditioning & Core Finisher",
     isRestDay: false,
     questTitle: "[Daily Quest] Japanese-Style Full Body Conditioning & Core Finisher",
+=======
+    splitName: "Puerto Rican Full Body Conditioning & Core Finisher",
+    isRestDay: false,
+    questTitle: "[Daily Quest] Puerto Rican Full Body Conditioning & Core Finisher",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
     description: "High-energy full-body flow combining bodyweight squats, T-rotations, and slow controlled mountain climbers to burn calories, tone muscles, and elevate athletic stamina without jumping or noise.",
     xpReward: 550,
     exercises: [
@@ -394,7 +471,11 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "fri-kpop-walk",
+<<<<<<< HEAD
         name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+=======
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -406,9 +487,15 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 6, // Saturday
     dayName: "Saturday",
+<<<<<<< HEAD
     splitName: "Japanese-Style Posture & Total Body Isometric Tension Circuit",
     isRestDay: false,
     questTitle: "[Daily Quest] Japanese-Style Posture & Total Body Isometric Circuit",
+=======
+    splitName: "Puerto Rican Posture & Total Body Isometric Tension Circuit",
+    isRestDay: false,
+    questTitle: "[Daily Quest] Puerto Rican Posture & Total Body Isometric Circuit",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
     description: "Master total body muscular control and endurance with this isometric hold circuit. By holding contractions (wall sits, push-up holds, hollow body holds), you build deep muscle fiber density and poise without heavy lifting.",
     xpReward: 600,
     exercises: [
@@ -459,12 +546,20 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sat-kpop-walk",
+<<<<<<< HEAD
         name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
+=======
+        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
+<<<<<<< HEAD
         coachTip: "Finish Saturday with your 30-minute brisk walk and 15-minute conditioning run. You have completed a full week of your Japanese-inspired training and meal-prep routine—ready for Sunday active recovery tomorrow!"
+=======
+        coachTip: "Finish Saturday with your 30-minute brisk walk and 15-minute conditioning run. You have completed a full week of your Puerto Rican-inspired training and meal-prep routine—ready for Sunday active recovery tomorrow!"
+>>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
       }
     ]
   }
