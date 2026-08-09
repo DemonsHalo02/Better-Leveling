@@ -7,7 +7,7 @@ const WHY_PR = [
   { icon: Sun, title: "Full-Stack Development", desc: "A flexible, in-demand skill set that works whether you land a job or go freelance — and it's the foundation everything else builds on." },
   { icon: Shield, title: "Content Creation", desc: "Documenting the coding + art journey builds a portfolio and an audience at the same time. Low pressure, mixed format — whatever's fun that week." },
   { icon: Heart, title: "Digital Art (Hobby)", desc: "No monetization pressure. Just consistent practice to get better and have a creative outlet outside of code." },
-  { icon: Navigation, title: "Casual Spanish", desc: "No exams, no certification track — just enough to travel comfortably and enjoy the language." }
+  { icon: Navigation, title: "Casual Korean", desc: "No exams, no certification track — just enough to travel comfortably and enjoy KDramas." }
 ];
 
 const CAGUAS_INFO = [
@@ -25,7 +25,7 @@ const CHECKLIST = [
   "Set up a GitHub, portfolio site, and (if going freelance) an Upwork/Fiverr profile",
   "Launch a content channel once there's real progress to show",
   "Practice digital art consistently — no pressure, just enjoy it",
-  "Learn enough Spanish for a comfortable trip",
+  "Learn enough Korean for KDramas and a comfortable trip",
   "Save $15,000 toward a MacBook Pro + iPad Pro + emergency fund",
   "Hit 160 lbs (Health & Fitness prime)"
 ];
@@ -48,7 +48,7 @@ export default function PuertoRicoInfo() {
             <h2 className="text-4xl font-black text-white tracking-tighter drop-shadow-md">Future Plan</h2>
           </div>
           <p className="text-[#f5a623] font-mono font-black tracking-[0.3em] text-sm uppercase drop-shadow-sm ml-1">Staying in the USA — Building a Life Here</p>
-          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">HiSET, a full-stack dev career (job or freelance), casual Spanish, digital art as a hobby, and content creation — the culmination of 10 years of study, saving, and physical transformation, all built right here at home.</p>
+          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">HiSET, a full-stack dev career (job or freelance), casual Korean, digital art as a hobby, and content creation — the culmination of 10 years of study, saving, and physical transformation, all built right here at home.</p>
         </div>
       </div>
 
@@ -127,7 +127,7 @@ export default function PuertoRicoInfo() {
             <div className="font-black text-white text-sm">Next.js + React</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
-            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Spanish</div>
+            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Korean</div>
             <div className="font-black text-white text-sm">30min/day, No Pressure</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">

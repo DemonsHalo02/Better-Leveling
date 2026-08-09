@@ -17,7 +17,7 @@ interface TimelineEvent {
 const TIMELINE_EVENTS: TimelineEvent[] = [
   { id: "aug-2026", year: 2026, monthStr: "August 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "The Journey Begins", desc: [
       "Aug 8: DAY 1! Git & GitHub, HiSET Math Prep, and Perspective Art all in progress.",
-      "Aug 8: Casual Spanish practice begins — 30min/day, no pressure.",
+      "Aug 8: Casual Korean practice begins — 30min/day, no pressure.",
       "Aug 22: Full-Stack Web Dev Bootcamp begins (Dr. Angela Yu)."
   ]},
   { id: "sep-2026", year: 2026, monthStr: "September 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "HiSET Math & Anatomy", desc: [
@@ -66,8 +66,8 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
       "Dec 2028: 💪 160 LBS ACHIEVED!",
       "Dec 2028: Content channel and art skills both leveling up steadily."
   ]},
-  { id: "dec-2029", year: 2029, monthStr: "December 2029", badge: "Phase 4 🎨", color: "#4ade80", title: "Spanish Comfortable", desc: [
-      "Dec 2029: 🗣️ Comfortable holding a casual conversation in Spanish — no textbook needed!",
+  { id: "dec-2029", year: 2029, monthStr: "December 2029", badge: "Phase 4 🎨", color: "#4ade80", title: "Korean Comfortable", desc: [
+      "Dec 2029: 🗣️ Comfortable holding a casual conversation in Korean — no textbook needed!",
       "Dec 2029: Savings ~$10K toward the MacBook Pro + iPad Pro + emergency fund."
   ]},
   { id: "mar-2030", year: 2030, monthStr: "March 2030", badge: "Phase 5 💰", color: "#ce1126", title: "Tech Upgrade", desc: [

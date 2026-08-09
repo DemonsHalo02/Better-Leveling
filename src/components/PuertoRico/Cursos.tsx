@@ -30,17 +30,17 @@ const COURSES = {
   ],
   important: [
     { id: "c14", title: "HSE/GED/TASC/HiSET Prep: A Complete Mathematics Curriculum", dates: "Aug 8–Sep 5" },
-    { id: "c15", title: "Complete Spanish Course: Master Spanish Beginner to Advanced", dates: "DAILY 30min" },
+    { id: "c15", title: "The Complete Korean Course for Beginners | 10 courses in 1!", dates: "DAILY 30min" },
     { id: "c16", title: "Running a Web Development Business: The Complete Guide", dates: "Mar 22–Apr 2 2027" }
   ]
 };
 
-const SPANISH_MILESTONES = [
-  { id: "es-basics", label: "Basics (Aug–Dec 2026): Alphabet, greetings, numbers, travel phrases" },
-  { id: "es-conversational", label: "Conversational (Jan–Jun 2027): Order food, small talk, directions" },
-  { id: "es-comfortable", label: "Comfortable — Hold a casual 10-minute conversation (by Dec 2027)" },
-  { id: "es-immersion", label: "Immersion Ready — Watch a show with Spanish audio + English subs (by Dec 2028)" },
-  { id: "es-travel", label: "Travel Fluent — Confidently travel to a Spanish-speaking country solo (by 2030)" },
+const KOREAN_MILESTONES = [
+  { id: "ko-basics", label: "Basics (Aug–Dec 2026): Hangul, greetings, numbers, survival phrases" },
+  { id: "ko-conversational", label: "Conversational (Jan–Jun 2027): Order food, small talk, directions" },
+  { id: "ko-comfortable", label: "Comfortable — Hold a casual 10-minute conversation (by Dec 2027)" },
+  { id: "ko-immersion", label: "Immersion Ready — Watch a KDrama with Korean audio + English subs (by Dec 2028)" },
+  { id: "ko-travel", label: "Travel Fluent — Confidently travel to Korea solo (by 2030)" },
 ];
 
 export default function Cursos() {
@@ -171,7 +171,7 @@ export default function Cursos() {
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
             <div className="flex items-center gap-2">
-              <span className="text-zinc-300 uppercase tracking-wider text-xs">Spanish:</span> 
+              <span className="text-zinc-300 uppercase tracking-wider text-xs">Korean:</span> 
               <span className="text-[#0a3d8f] bg-white px-2 py-0.5 rounded text-xs drop-shadow-sm">EVERY DAY</span>
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
@@ -189,15 +189,15 @@ export default function Cursos() {
         {renderSection("important", "⭐ SECTION 3 — IMPORTANT (3)", "from-[#4ade80]/30 to-transparent border-l-4 border-l-[#4ade80]", COURSES.important)}
       </div>
 
-      {/* Spanish Tracker */}
+      {/* Korean Tracker */}
       <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl mt-8">
         <h3 className="text-2xl font-black text-white font-mono mb-2 flex items-center gap-3 tracking-tight">
-          <span className="text-3xl drop-shadow-md">🇪🇸</span> Casual Spanish Plan
+          <span className="text-3xl drop-shadow-md">🇰🇷</span> Casual Korean Plan
         </h3>
-        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">No exams, no pressure — just enough for travel and fun</p>
+        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">No exams, no pressure — just enough for travel and KDramas</p>
         
         <div className="space-y-4">
-          {SPANISH_MILESTONES.map((ms) => {
+          {KOREAN_MILESTONES.map((ms) => {
             const isDone = data.deleProgress[ms.id] ? true : false;
             return (
               <label key={ms.id} className={`flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 cursor-pointer ${isDone ? 'bg-[#0a3d8f]/20 border-[#0a3d8f]/50 shadow-[0_0_15px_rgba(10,61,143,0.15)]' : 'bg-black/30 border-white/10 hover:border-white/30 hover:bg-black/40 hover:-translate-y-0.5'}`}>

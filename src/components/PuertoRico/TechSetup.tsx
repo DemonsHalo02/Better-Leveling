@@ -4,8 +4,8 @@ import React from "react";
 import { Smartphone, Laptop, CheckCircle2, MonitorOff, Focus, Wifi, Sparkles, Tablet } from "lucide-react";
 
 const APPS = [
-  { name: "Duolingo", platform: "iOS & Windows", desc: "Casual, low-pressure Spanish practice — a few minutes a day, no exam prep." },
-  { name: "Anki", platform: "iOS & Windows", desc: "Spaced repetition for Spanish vocab & HiSET terms." },
+  { name: "Duolingo", platform: "iOS & Windows", desc: "Casual, low-pressure Korean practice — a few minutes a day, no exam prep." },
+  { name: "Anki", platform: "iOS & Windows", desc: "Spaced repetition for Korean vocab & HiSET terms." },
   { name: "VS Code", platform: "Windows & macOS", desc: "Primary code editor. Extensions: Prettier, ESLint, Tailwind." },
   { name: "Udemy", platform: "iOS & Windows/macOS", desc: "Download courses offline for distraction-free study." },
   { name: "CapCut", platform: "iOS & Windows/macOS", desc: "Video editing for content creation." },
@@ -25,14 +25,14 @@ const VIVOBOOK_SETUP = [
   "Create a dedicated 'Study' Windows account with no games or entertainment apps installed.",
   "Use Windows Focus Assist to block Reddit/YouTube during 90-min Pomodoro blocks.",
   "Organize Desktop: Clean desktop every Friday.",
-  "Folder Structure: /Development, /Spanish, /Art, /Content, /HiSET.",
+  "Folder Structure: /Development, /Korean, /Art, /Content, /HiSET.",
   "Keep Windows Terminal and VS Code pinned to the taskbar."
 ];
 
 const MACBOOK_SETUP = [
   "Set up a dedicated dev environment: VS Code, Node/npm, Git, Docker (if needed) via Homebrew.",
   "Use macOS Focus modes to silence notifications during deep-work blocks.",
-  "Mirror the same folder structure as the Vivobook: ~/Development, ~/Spanish, ~/Art, ~/Content, ~/HiSET.",
+  "Mirror the same folder structure as the Vivobook: ~/Development, ~/Korean, ~/Art, ~/Content, ~/HiSET.",
   "Set up Xcode Simulator or a browser dev-tools workflow for responsive testing.",
   "Migrate Anki, Duolingo, and Udemy progress over before retiring the Vivobook."
 ];
@@ -167,3 +167,4 @@ export default function TechSetup() {
     </div>
   );
 }
+
