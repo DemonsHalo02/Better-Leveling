@@ -17,7 +17,7 @@ interface TimelineEvent {
 const TIMELINE_EVENTS: TimelineEvent[] = [
   { id: "aug-2026", year: 2026, monthStr: "August 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "The Journey Begins", desc: [
       "Aug 8: DAY 1! Python Bootcamp, HiSET Math Prep, and Perspective Art all in progress.",
-      "Aug 8: Complete Korean Course (10-in-1) daily 90min begins. Hangul mastery ritual.",
+      "Aug 8: Speak Like a Native JLPT N5-N1 Bootcamp daily 90min begins. Matcha morning ritual.",
       "Aug 27: Full-Stack Web Dev Bootcamp begins (Dr. Angela Yu)."
   ]},
   { id: "sep-2026", year: 2026, monthStr: "September 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "HiSET Math & Anatomy", desc: [
@@ -44,37 +44,38 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   { id: "mar-2027", year: 2027, monthStr: "March 2027", badge: "Phase 1 🚀", color: "#ce1126", title: "Final Course Stretch", desc: [
       "Mar 22: Running a Web Development Business — final course begins."
   ]},
-  { id: "apr-2027", year: 2027, monthStr: "April 2027", badge: "Phase 2 🎓", color: "#0a3d8f", title: "All Courses Complete", desc: [
+  { id: "apr-2027", year: 2027, monthStr: "April 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "All Courses Complete", desc: [
       "Apr 2: ✅ ALL 16 UDEMY COURSES COMPLETE!",
-      "Apr 2027: Remaining HiSET subjects (Reading, Writing, Social Studies) scheduled. Korean Level 3 grind intensifies."
+      "Apr 2027: Remaining HiSET subjects (Reading, Writing, Social Studies) scheduled. JLPT N4 grind intensifies."
   ]},
-  { id: "jun-2027", year: 2027, monthStr: "June 2027", badge: "Phase 2 🎓", color: "#0a3d8f", title: "HiSET Complete", desc: [
+  { id: "jun-2027", year: 2027, monthStr: "June 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "HiSET Complete", desc: [
       "Jun 2027: 🎓 HiSET diploma earned — Science, Math, Reading, Writing, and Social Studies all done!"
   ]},
-  { id: "aug-2027", year: 2027, monthStr: "August 2027", badge: "Phase 2 🎓", color: "#0a3d8f", title: "College Begins", desc: [
-      "Aug 2027: 🎉 First semester of college starts, using HiSET diploma + Udemy portfolio!"
+  { id: "aug-2027", year: 2027, monthStr: "August 2027", badge: "Phase 2 🗣️", color: "#0a3d8f", title: "Job Secured", desc: [
+      "Aug 2027: 🎉 First stable job landed using HiSET diploma + Udemy full-stack portfolio!"
   ]},
-  { id: "dec-2027", year: 2027, monthStr: "December 2027", badge: "Phase 3 📖", color: "#f5a623", title: "TOPIK Level 4", desc: [
-      "Dec 2027: 🗣️ TOPIK II Level 4 EXAM — register by Sep 2027!"
+  { id: "dec-2027", year: 2027, monthStr: "December 2027", badge: "Phase 3 💼", color: "#f5a623", title: "JLPT N3", desc: [
+      "Dec 2027: 🗣️ JLPT N3 EXAM — register by Sep 2027!"
   ]},
-  { id: "jan-2028", year: 2028, monthStr: "January 2028", badge: "Phase 3 📖", color: "#f5a623", title: "College & Saving", desc: [
-      "Jan 2028: Second year of college underway + TOPIK Level 4 passed! Savings account opened for Korea fund."
+  { id: "jan-2028", year: 2028, monthStr: "January 2028", badge: "Phase 3 💼", color: "#f5a623", title: "Working & Saving", desc: [
+      "Jan 2028: Full-time job + JLPT N3 passed! Savings account opened for the Japan senmon gakko fund.",
+      "Jan 2028: Start shortlisting IT/Full-Stack senmon gakko programs and their JLPT N2 admission timelines."
   ]},
-  { id: "dec-2028", year: 2028, monthStr: "December 2028", badge: "Phase 4 💪", color: "#4ade80", title: "Body & Level 5 Mastery", desc: [
-      "Dec 2028: 💪 160 LBS ACHIEVED! ~1,600 Korean study hrs.",
-      "Dec 2028: 🗣️ TOPIK II Level 5 EXAM!"
+  { id: "dec-2028", year: 2028, monthStr: "December 2028", badge: "Phase 4 💪", color: "#4ade80", title: "Body & N2 Mastery", desc: [
+      "Dec 2028: 💪 160 LBS ACHIEVED! ~1,600 Japanese study hrs.",
+      "Dec 2028: 🗣️ JLPT N2 EXAM — the minimum bar for senmon gakko admission!"
   ]},
-  { id: "dec-2029", year: 2029, monthStr: "December 2029", badge: "Phase 4 💪", color: "#4ade80", title: "Level 6 Prep & Savings", desc: [
-      "Dec 2029: Consider TOPIK II Level 6. Savings ~$26K toward relocation."
+  { id: "dec-2029", year: 2029, monthStr: "December 2029", badge: "Phase 4 💪", color: "#4ade80", title: "N1 Prep, Applications & Savings", desc: [
+      "Dec 2029: Consider JLPT N1. Apply to Full-Stack Web Development senmon gakko programs. Savings ~$30K toward tuition + fees."
   ]},
   { id: "mar-2031", year: 2031, monthStr: "March 2031", badge: "Phase 5 ✈️", color: "#ce1126", title: "The Final Month", desc: [
-      "Mar 2031: Final month in Lewiston. $35K saved for the move, TOPIK/cert fees, and visa costs!"
+      "Mar 2031: Final month in Lewiston. $40K saved for senmon gakko tuition, JLPT/cert fees, and moving costs!"
   ]},
   { id: "apr-2031", year: 2031, monthStr: "April 2031", badge: "Phase 5 ✈️", color: "#ce1126", title: "Departure", desc: [
-      "Apr 2031: ✈️ FLY TO KOREA! New life begins!"
+      "Apr 2031: ✈️ FLY TO JAPAN! Full-Stack Development senmon gakko begins. New life begins!"
   ]},
   { id: "year-2036", year: 2036, monthStr: "2036", badge: "Phase 6 🎌", color: "#0a3d8f", title: "Established", desc: [
-      "2036: 🎌 10 YEARS. GOAL ACHIEVED. Fully established in Korea!"
+      "2036: 🎌 10 YEARS. GOAL ACHIEVED. Fully established as a developer in Japan!"
   ]}
 ];
 

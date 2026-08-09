@@ -4,29 +4,30 @@ import React from "react";
 import { Map, Sun, Shield, Heart, CheckCircle2, Navigation, Coffee } from "lucide-react";
 
 const WHY_PR = [
-  { icon: Sun, title: "The Culture", desc: "Safety, cleanliness, and a strong sense of community. A total change from Lewiston winters." },
-  { icon: Shield, title: "Education & Career Path", desc: "Strong universities, tech/creative industries, and a culture that values continuous self-improvement." },
-  { icon: Heart, title: "Language & People", desc: "Warm but respectful culture, K-pop/K-drama influence worldwide, and a rich blend of tradition and modern innovation." },
-  { icon: Navigation, title: "Accessibility", desc: "World-class public transit. No car needed once settled — subways and buses run everywhere." }
+  { icon: Sun, title: "The Culture", desc: "Safety, cleanliness, and craftsmanship. A total change from Lewiston winters." },
+  { icon: Shield, title: "Vocational Path", desc: "Japan's senmon gakko (vocational schools) offer focused, hands-on IT training with strong job placement into dev roles." },
+  { icon: Heart, title: "Language & People", desc: "Disciplined, respectful, detail-oriented culture. Deep history and modern innovation side by side." },
+  { icon: Navigation, title: "Accessibility", desc: "World-class public transit. No car needed once settled — trains and buses run everywhere." }
 ];
 
 const CAGUAS_INFO = [
-  "Mid-size coastal city with lower rent than Seoul.",
-  "Lower cost of living compared to the capital.",
-  "Good hospitals and full National Health Insurance coverage once eligible.",
-  "Quieter pace than Seoul, still has a big-city job market and nightlife.",
-  "Well connected by KTX high-speed rail to Seoul in about 2.5 hours."
+  "Mid-size city with lower rent than Tokyo/Osaka centers.",
+  "Lower cost of living compared to major metro areas.",
+  "Good clinics/hospitals and full national health insurance coverage.",
+  "Quieter pace than the big cities, easier to focus on school.",
+  "Still close enough to a major city hub for extra part-time work."
 ];
 
 const CHECKLIST = [
-  "Save $35,000 (Moving costs + TOPIK/cert fees + relocation safety net)",
-  "Complete remaining HiSET subjects and start college",
-  "Achieve TOPIK Level 5 Certification",
-  "Research Korean visa options (F-4, work visa, or student visa route)",
+  "Save $40,000 (Senmon gakko tuition + JLPT/cert fees + moving costs)",
+  "Complete HiSET and get a stable job",
+  "Achieve JLPT N2 Certification (minimum admission requirement for senmon gakko)",
+  "Research IT-focused senmon gakko programs with a Full-Stack Web Development track",
+  "Secure Student Visa (COE) for chosen senmon gakko",
   "Hit 160 lbs (Health & Fitness prime)",
-  "Visit Korea for a 2-week scouting trip (2030)",
+  "Visit Japan for a 2-week scouting trip (2030)",
   "Downsize belongings in Lewiston",
-  "Research cost of living, housing (jeonse/wolse), and job market in target city"
+  "Research senmon gakko costs (~¥900K-1.5M/year), dorms, and part-time work (arubaito) rules on a student visa"
 ];
 
 export default function PuertoRicoInfo() {
@@ -44,17 +45,17 @@ export default function PuertoRicoInfo() {
             <div className="bg-[#ce1126]/20 p-3 rounded-2xl border border-[#ce1126]/30 shadow-lg backdrop-blur-sm">
               <Map className="w-8 h-8 text-[#ce1126] drop-shadow-[0_0_8px_rgba(206,17,38,0.6)]" />
             </div>
-            <h2 className="text-4xl font-black text-white tracking-tighter drop-shadow-md">Korea</h2>
+            <h2 className="text-4xl font-black text-white tracking-tighter drop-shadow-md">Japan</h2>
           </div>
-          <p className="text-[#f5a623] font-mono font-black tracking-[0.3em] text-sm uppercase drop-shadow-sm ml-1">대한민국 — Korea Bound</p>
-          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">Target: April 2031. Remaining HiSET subjects, college, TOPIK fluency, and $35K saved — the culmination of 10 years of study, saving, and physical transformation.</p>
+          <p className="text-[#f5a623] font-mono font-black tracking-[0.3em] text-sm uppercase drop-shadow-sm ml-1">日本 — Vocational School Bound</p>
+          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">Target: April 2031. HiSET, a stable job, JLPT fluency, and $40K saved for a Full-Stack Development senmon gakko — the culmination of 10 years of study, saving, and physical transformation.</p>
         </div>
       </div>
 
       {/* Why PR Grid */}
       <div>
         <h3 className="text-2xl font-black text-white mb-6 tracking-tight flex items-center gap-2">
-          <span className="text-[#ce1126]">Why</span> Korea?
+          <span className="text-[#ce1126]">Why</span> Japan?
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {WHY_PR.map((item, i) => (
@@ -77,9 +78,9 @@ export default function PuertoRicoInfo() {
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#0a3d8f]/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           
           <h3 className="text-2xl font-black text-[#0a3d8f] mb-2 flex items-center gap-3 tracking-tight relative z-10">
-            <Map className="w-6 h-6" /> Busan <span className="text-sm text-zinc-400 font-medium">(Recommended)</span>
+            <Map className="w-6 h-6" /> Osaka <span className="text-sm text-zinc-400 font-medium">(Recommended)</span>
           </h3>
-          <p className="text-zinc-400 text-sm mb-6 font-bold relative z-10">Coastal, Affordable, and Well-Connected to Seoul</p>
+          <p className="text-zinc-400 text-sm mb-6 font-bold relative z-10">Affordable, Friendly, and Full of IT-Focused Senmon Gakko</p>
           
           <ul className="space-y-4 relative z-10">
             {CAGUAS_INFO.map((info, i) => (
@@ -92,8 +93,8 @@ export default function PuertoRicoInfo() {
           
           <div className="mt-8 pt-6 border-t border-[#0a3d8f]/20 relative z-10">
             <h4 className="font-mono text-[10px] text-zinc-400 uppercase mb-2 font-bold tracking-widest">Rent Estimate (2031)</h4>
-            <div className="text-3xl font-black text-white drop-shadow-sm">$400 - $750<span className="text-sm text-zinc-500 font-medium ml-1">/ month</span></div>
-            <p className="text-xs text-zinc-400 mt-2 font-medium leading-relaxed">For a 1-room officetel via wolse (monthly rent + smaller deposit).</p>
+            <div className="text-3xl font-black text-white drop-shadow-sm">$450 - $800<span className="text-sm text-zinc-500 font-medium ml-1">/ month</span></div>
+            <p className="text-xs text-zinc-400 mt-2 font-medium leading-relaxed">For a 1K studio or dorm-style student housing near campus.</p>
           </div>
         </div>
 
@@ -123,19 +124,19 @@ export default function PuertoRicoInfo() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
             <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Greeting</div>
-            <div className="font-black text-white text-sm">&quot;Annyeonghaseyo&quot;</div>
+            <div className="font-black text-white text-sm">&quot;Ohayou Gozaimasu&quot;</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
             <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Pace</div>
-            <div className="font-black text-white text-sm">Ppalli Ppalli (Fast)</div>
+            <div className="font-black text-white text-sm">Punctual & Precise</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
             <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Drink</div>
-            <div className="font-black text-white text-sm">Cafe Americano</div>
+            <div className="font-black text-white text-sm">Matcha at 3pm</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
             <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Language</div>
-            <div className="font-black text-white text-sm">Honorifics Matter</div>
+            <div className="font-black text-white text-sm">Keigo (Polite Form)</div>
           </div>
         </div>
       </div>

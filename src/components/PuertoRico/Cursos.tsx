@@ -29,18 +29,18 @@ const COURSES = {
   ],
   important: [
     { id: "c13", title: "HSE/GED/TASC/HiSET Prep: A Complete Mathematics Curriculum", dates: "Aug 8–Sep 5" },
-    { id: "c14", title: "The Complete Korean Course for Beginners | 10 courses in 1!", dates: "DAILY 90min" },
+    { id: "c14", title: "Speak Like a Native: JLPT N5-N1 Japanese Bootcamp", dates: "DAILY 90min" },
     { id: "c15", title: "Video Editing in CapCut | Beginner to Pro | Desktop + Mobile", dates: "Dec 11–20" },
     { id: "c16", title: "Running a Web Development Business: The Complete Guide", dates: "Mar 22–Apr 2 2027" }
   ]
 };
 
-const TOPIK_MILESTONES = [
-  { id: "topik-1", label: "Level 1-2 Internal (Aug–Dec 2026): Hangul + basic grammar + 500 vocab" },
-  { id: "topik-2", label: "Level 3 Internal (Jan–Jun 2027): Intermediate grammar + 1,500 vocab" },
-  { id: "topik-3", label: "TOPIK II Level 4 EXAM — December 2027" },
-  { id: "topik-4", label: "TOPIK II Level 5 EXAM — December 2028" },
-  { id: "topik-5", label: "TOPIK II Level 6 EXAM — December 2030" },
+const JLPT_MILESTONES = [
+  { id: "jlpt-n5", label: "N5 Internal (Aug–Dec 2026): Hiragana/Katakana + 500 vocab" },
+  { id: "jlpt-n4", label: "N4 Internal (Jan–Jun 2027): Core grammar + 1,500 vocab" },
+  { id: "jlpt-n3", label: "JLPT N3 EXAM — December 2027" },
+  { id: "jlpt-n2", label: "JLPT N2 EXAM — December 2028" },
+  { id: "jlpt-n1", label: "JLPT N1 EXAM — December 2030" },
 ];
 
 export default function Cursos() {
@@ -171,7 +171,7 @@ export default function Cursos() {
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
             <div className="flex items-center gap-2">
-              <span className="text-zinc-300 uppercase tracking-wider text-xs">Korean:</span> 
+              <span className="text-zinc-300 uppercase tracking-wider text-xs">Japanese:</span> 
               <span className="text-[#0a3d8f] bg-white px-2 py-0.5 rounded text-xs drop-shadow-sm">EVERY DAY</span>
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
@@ -189,15 +189,15 @@ export default function Cursos() {
         {renderSection("important", "⭐ SECTION 3 — IMPORTANT (4)", "from-[#4ade80]/30 to-transparent border-l-4 border-l-[#4ade80]", COURSES.important)}
       </div>
 
-      {/* TOPIK Tracker */}
+      {/* JLPT Tracker */}
       <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl mt-8">
         <h3 className="text-2xl font-black text-white font-mono mb-2 flex items-center gap-3 tracking-tight">
-          <span className="text-3xl drop-shadow-md">🇰🇷</span> TOPIK Master Plan
+          <span className="text-3xl drop-shadow-md">🇯🇵</span> JLPT Master Plan
         </h3>
-        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">Official Test of Proficiency in Korean (TOPIK) Certification Track</p>
+        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">Japan Foundation Official JLPT Certification Track</p>
         
         <div className="space-y-4">
-          {TOPIK_MILESTONES.map((ms) => {
+          {JLPT_MILESTONES.map((ms) => {
             const isDone = data.deleProgress[ms.id] ? true : false;
             return (
               <label key={ms.id} className={`flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 cursor-pointer ${isDone ? 'bg-[#0a3d8f]/20 border-[#0a3d8f]/50 shadow-[0_0_15px_rgba(10,61,143,0.15)]' : 'bg-black/30 border-white/10 hover:border-white/30 hover:bg-black/40 hover:-translate-y-0.5'}`}>

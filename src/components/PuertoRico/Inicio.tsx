@@ -48,8 +48,8 @@ export default function Inicio() {
     ? 100 
     : Math.max(0, Math.min(100, ((startWeight - currentWeight) / (startWeight - targetWeight)) * 100));
   
-  const topikLevels = ["Lvl 2", "Lvl 3", "Lvl 4", "Lvl 5", "Lvl 6"];
-  const currentTopikLevel = topikLevels.filter(l => data.deleProgress[l]).length;
+  const jlptLevels = ["N5", "N4", "N3", "N2", "N1"];
+  const currentJlptLevel = jlptLevels.filter(l => data.deleProgress[l]).length;
 
   return (
     <div className="space-y-6">
@@ -58,10 +58,10 @@ export default function Inicio() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-[#f5a623]/20 via-[#4ade80]/10 to-transparent rounded-full blur-3xl -mr-32 -mt-32 transition-transform duration-700 group-hover:scale-110"></div>
         <div className="relative z-10">
           <h1 className="text-4xl sm:text-5xl font-black text-white mb-2 tracking-tighter drop-shadow-md">
-            Welcome, Nicholas! 🇰🇷
+            Welcome, Nicholas! 🇯🇵
           </h1>
           <p className="text-zinc-200 font-medium text-sm sm:text-lg mb-8 tracking-wide drop-shadow-sm">
-            10 Years: Lewiston, ME → Life in Korea 🎌
+            10 Years: Lewiston, ME → Vocational School in Japan 🎌
           </p>
           
           <div className="flex flex-wrap gap-3 sm:gap-4 font-mono text-xs font-bold">
@@ -69,10 +69,10 @@ export default function Inicio() {
               <span className="text-lg">🚀</span> Aug 8, 2026
             </span>
             <span className="bg-white/10 px-4 py-2 rounded-xl border border-white/20 backdrop-blur-md text-[#4ade80] flex items-center gap-2 shadow-lg">
-              <span className="text-lg">🗣️</span> TOPIK Lvl 5: Dec 2028
+              <span className="text-lg">🗣️</span> JLPT N2: Dec 2028
             </span>
             <span className="bg-white/10 px-4 py-2 rounded-xl border border-[#f5a623]/40 backdrop-blur-md text-[#f5a623] flex items-center gap-2 shadow-lg">
-              <span className="text-lg">✈️</span> KR: Apr 2031
+              <span className="text-lg">✈️</span> JP: Apr 2031
             </span>
           </div>
         </div>
@@ -81,7 +81,7 @@ export default function Inicio() {
       {/* 4 Stat Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { icon: Calendar, color: "text-[#ce1126]", border: "border-l-[#ce1126]", label: "Days to Korea", val: daysToMove },
+          { icon: Calendar, color: "text-[#ce1126]", border: "border-l-[#ce1126]", label: "Days to Japan", val: daysToMove },
           { icon: BookOpen, color: "text-[#0a3d8f]", border: "border-l-[#0a3d8f]", label: "Courses", val: `${completedCourses}/16` },
           { icon: Target, color: "text-[#f5a623]", border: "border-l-[#f5a623]", label: "Streak", val: `${currentStreak}d` },
           { icon: PiggyBank, color: "text-[#4ade80]", border: "border-l-[#4ade80]", label: "Savings", val: `$${totalSaved.toLocaleString()}` }
@@ -107,8 +107,8 @@ export default function Inicio() {
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-8">
           <div className="space-y-8">
             <ProgressBar title="📚 Udemy Courses (Done by Apr 2, 2027)" current={completedCourses} max={16} color="from-[#ce1126] to-[#f5a623]" />
-            <ProgressBar title="🇰🇷 Korean Level (Lvl 2→6)" current={currentTopikLevel} max={5} color="from-[#0a3d8f] to-[#00f0ff]" labelOverride={currentTopikLevel === 0 ? "Pre-Level 2" : topikLevels[currentTopikLevel - 1]} />
-            <ProgressBar title="💰 Savings ($35k Goal)" current={totalSaved} max={35000} color="from-[#4ade80] to-[#00ff88]" labelOverride={`$${totalSaved.toLocaleString()}`} />
+            <ProgressBar title="🇯🇵 Japanese Level (N5→N1)" current={currentJlptLevel} max={5} color="from-[#0a3d8f] to-[#00f0ff]" labelOverride={currentJlptLevel === 0 ? "Pre-N5" : jlptLevels[currentJlptLevel - 1]} />
+            <ProgressBar title="💰 Savings ($40k Goal)" current={totalSaved} max={40000} color="from-[#4ade80] to-[#00ff88]" labelOverride={`$${totalSaved.toLocaleString()}`} />
           </div>
           <div className="space-y-8">
             <ProgressBar title={`⚖️ Body Goal (${startWeight}→${targetWeight} lbs)`} current={weightProgress} max={100} color="from-[#ff3366] to-[#ff9900]" labelOverride={`${currentWeight} lbs`} />
@@ -122,12 +122,12 @@ export default function Inicio() {
       <div>
         <h2 className="text-xl font-black text-white mb-6 ml-2 tracking-tight">Phase Roadmap</h2>
         <div className="flex overflow-x-auto pb-6 gap-4 no-scrollbar snap-x px-2">
-          <PhaseCard title="Phase 1 🚀" desc="Courses + Remaining HiSET Subjects + Korean" date="Aug 2026–Apr 2027" color="border-t-[#ce1126] hover:shadow-[#ce1126]/20" />
-          <PhaseCard title="Phase 2 🎓" desc="HiSET Complete, Start College" date="Apr–Dec 2027" color="border-t-[#0a3d8f] hover:shadow-[#0a3d8f]/20" />
-          <PhaseCard title="Phase 3 📖" desc="College + TOPIK Level 5" date="2027–2028" color="border-t-[#f5a623] hover:shadow-[#f5a623]/20" />
-          <PhaseCard title="Phase 4 💪" desc="Save $35K (Moving + TOPIK + Visa)" date="2028–2030" color="border-t-[#4ade80] hover:shadow-[#4ade80]/20" />
-          <PhaseCard title="Phase 5 ✈️" desc="Move to Korea" date="Apr 2031" color="border-t-[#ce1126] hover:shadow-[#ce1126]/20" />
-          <PhaseCard title="Phase 6 🎌" desc="Korea Life + Career" date="2031–2036" color="border-t-[#0a3d8f] hover:shadow-[#0a3d8f]/20" />
+          <PhaseCard title="Phase 1 🚀" desc="Courses + Remaining HiSET Subjects + JLPT" date="Aug 2026–Apr 2027" color="border-t-[#ce1126] hover:shadow-[#ce1126]/20" />
+          <PhaseCard title="Phase 2 🗣️" desc="HiSET Complete, Land a Job" date="Apr–Dec 2027" color="border-t-[#0a3d8f] hover:shadow-[#0a3d8f]/20" />
+          <PhaseCard title="Phase 3 💼" desc="Working + JLPT N2" date="2027–2028" color="border-t-[#f5a623] hover:shadow-[#f5a623]/20" />
+          <PhaseCard title="Phase 4 💪" desc="Save $40K (Tuition + JLPT + Visa)" date="2028–2030" color="border-t-[#4ade80] hover:shadow-[#4ade80]/20" />
+          <PhaseCard title="Phase 5 ✈️" desc="Move to Japan for Senmon Gakko (Full-Stack IT Program)" date="Apr 2031" color="border-t-[#ce1126] hover:shadow-[#ce1126]/20" />
+          <PhaseCard title="Phase 6 🎌" desc="Japan Life + Dev Career" date="2031–2036" color="border-t-[#0a3d8f] hover:shadow-[#0a3d8f]/20" />
         </div>
       </div>
     </div>

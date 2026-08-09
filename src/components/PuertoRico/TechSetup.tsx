@@ -4,9 +4,9 @@ import React from "react";
 import { Smartphone, Laptop, CheckCircle2, MonitorOff, Focus, Wifi, Sparkles } from "lucide-react";
 
 const APPS = [
-  { name: "Naver Dictionary", platform: "iOS & Android", desc: "Best Korean-English dictionary. Way better than Google Translate for grammar." },
-  { name: "Papago", platform: "iOS & Android", desc: "Naver's translation app — more accurate for Korean than Google Translate." },
-  { name: "Anki", platform: "iOS & Android", desc: "Spaced repetition for Korean vocab & HiSET terms." },
+  { name: "Takoboto", platform: "Android (iOS: Yomiwa)", desc: "Best Japanese-English dictionary with handwriting/kanji lookup support." },
+  { name: "DeepL Translate", platform: "iOS & Android", desc: "More accurate than Google Translate for Japanese grammar and nuance." },
+  { name: "Anki", platform: "iOS & Android", desc: "Spaced repetition for Japanese vocab & HiSET terms." },
   { name: "VS Code", platform: "Windows", desc: "Primary code editor. Extensions: Prettier, ESLint, Tailwind." },
   { name: "Udemy", platform: "iOS & Windows", desc: "Download courses offline for distraction-free study." },
   { name: "CapCut", platform: "iOS & Windows", desc: "For your video editing course and future content skills." },
@@ -17,15 +17,15 @@ const IPHONE_SETUP = [
   "Delete TikTok, Instagram, Twitter, Facebook.",
   "Turn on 'Grayscale' in Accessibility (Triple-click power button to toggle).",
   "Set up 'Study Focus' mode: Only allow calls from family. Block all non-essential app notifications.",
-  "Home Screen: Only Anki, Papago, Calendar, Notes, Udemy, and Better Leveling (PWA).",
+  "Home Screen: Only Anki, Takoboto, Calendar, Notes, Udemy, and Better Leveling (PWA).",
   "No phone in bedroom after 9:30 PM."
 ];
 
 const S10FE_SETUP = [
-  "Same minimalist home screen as iPhone: Anki, Papago, Naver Dictionary, Udemy, Better Leveling (PWA).",
+  "Same minimalist home screen as iPhone: Anki, Takoboto, DeepL Translate, Udemy, Better Leveling (PWA).",
   "Enable Samsung's Digital Wellbeing 'Focus Mode' during 90-min Pomodoro blocks.",
   "Install Good Lock for extra home screen control.",
-  "Use as your dedicated Korean-study phone: keep it charged next to your study desk.",
+  "Use as your dedicated Japanese-study phone: keep it charged next to your study desk.",
   "No phone in bedroom after 9:30 PM."
 ];
 
@@ -33,16 +33,16 @@ const VIVOBOOK_SETUP = [
   "Create a dedicated 'Study' Windows account with no games or entertainment apps installed.",
   "Use Windows Focus Assist to block Reddit/YouTube during 90-min Pomodoro blocks.",
   "Organize Desktop: Clean desktop every Friday.",
-  "Folder Structure: /Development, /Korean, /Art, /HiSET.",
+  "Folder Structure: /Development, /Japanese, /Art, /HiSET.",
   "Keep Windows Terminal and VS Code pinned to the taskbar."
 ];
 
 const FUTURE_SETUP = [
   "Galaxy S26 Ultra: set up Samsung DeX to turn the phone into a study workstation on any monitor/TV.",
-  "Galaxy S26 Ultra: use S Pen + Samsung Notes for handwritten Korean/Hangul practice.",
+  "Galaxy S26 Ultra: use S Pen + Samsung Notes for handwritten Japanese/kanji practice.",
   "Galaxy Book 6 Ultra: enable Quick Share + Second Screen so the S26 Ultra and laptop work as one system.",
-  "Set both devices to Korean as a secondary system language for passive immersion.",
-  "Migrate Anki, Papago, Naver Dictionary, and Udemy data over before retiring the Vivobook/S10 FE."
+  "Set both devices to Japanese as a secondary system language for passive immersion.",
+  "Migrate Anki, Takoboto, DeepL Translate, and Udemy data over before retiring the Vivobook/S10 FE."
 ];
 
 export default function TechSetup() {
