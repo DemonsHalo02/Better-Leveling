@@ -28,8 +28,8 @@ export default function Inicio() {
   if (!data || !hunter) return null;
 
   const today = new Date();
-  const moveDate = new Date("2031-08-01");
-  const daysToMove = Math.max(0, Math.floor((moveDate.getTime() - today.getTime()) / (1000 * 3600 * 24)));
+  const launchDate = new Date("2027-08-01");
+  const daysToLaunch = Math.max(0, Math.floor((launchDate.getTime() - today.getTime()) / (1000 * 3600 * 24)));
   const completedCourses = Object.values(data.courseProgress).filter(p => p === 100).length;
   const currentStreak = Math.max(0, ...Object.values(data.habitStreaks), 0);
   const totalSaved = data.savingsIncome - data.savingsExpenses;
@@ -48,34 +48,31 @@ export default function Inicio() {
     ? 100 
     : Math.max(0, Math.min(100, ((startWeight - currentWeight) / (startWeight - targetWeight)) * 100));
   
-  const topikLevels = ["Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6"];
-  const currentTopikLevel = topikLevels.filter(l => data.deleProgress[l]).length;
+  const spanishLevels = ["Basics", "Conversational", "Comfortable", "Immersion Ready", "Travel Fluent"];
+  const currentSpanishLevel = spanishLevels.filter(l => data.deleProgress[l]).length;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Hero Card */}
-      <div className="group bg-gradient-to-br from-indigo-900 via-purple-900 to-black rounded-3xl p-8 sm:p-10 shadow-2xl border border-white/10 relative overflow-hidden transition-all duration-500 hover:border-indigo-500/50 backdrop-blur-xl">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-indigo-500/20 via-purple-500/10 to-transparent rounded-full blur-3xl -mr-32 -mt-32 transition-transform duration-700 group-hover:scale-110"></div>
+      <div className="group bg-gradient-to-br from-[#ce1126]/90 via-[#0a3d8f]/80 to-[#050811] rounded-3xl p-6 sm:p-8 shadow-2xl shadow-[#ce1126]/20 border border-white/10 relative overflow-hidden transition-all duration-500 hover:shadow-[#ce1126]/40 backdrop-blur-xl">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-[#f5a623]/20 via-[#4ade80]/10 to-transparent rounded-full blur-3xl -mr-32 -mt-32 transition-transform duration-700 group-hover:scale-110"></div>
         <div className="relative z-10">
           <h1 className="text-4xl sm:text-5xl font-black text-white mb-2 tracking-tighter drop-shadow-md">
-            Welcome, Nicholas! 🇰🇷
+            Welcome, Nicholas! 🚀
           </h1>
           <p className="text-zinc-200 font-medium text-sm sm:text-lg mb-8 tracking-wide drop-shadow-sm">
-            The Goal: US College Degree → Tech Career in Seoul
+            10-Year Growth Plan: Full-Stack Dev + Art + Content + Spanish 🎯
           </p>
           
           <div className="flex flex-wrap gap-3 sm:gap-4 font-mono text-xs font-bold">
-            <span className="bg-black/30 px-4 py-2 rounded-xl border border-white/10 backdrop-blur-md text-white flex items-center gap-2 shadow-lg hover:bg-white/5 transition-colors">
-              <span className="text-lg">🚀</span> Aug 2026
+            <span className="bg-white/10 px-4 py-2 rounded-xl border border-white/20 backdrop-blur-md text-white flex items-center gap-2 shadow-lg">
+              <span className="text-lg">🚀</span> Aug 8, 2026
             </span>
-            <span className="bg-black/30 px-4 py-2 rounded-xl border border-white/10 backdrop-blur-md text-purple-400 flex items-center gap-2 shadow-lg hover:bg-white/5 transition-colors">
-              <span className="text-lg">🎓</span> College
+            <span className="bg-white/10 px-4 py-2 rounded-xl border border-white/20 backdrop-blur-md text-[#4ade80] flex items-center gap-2 shadow-lg">
+              <span className="text-lg">💻</span> Job/Freelance: 2027
             </span>
-            <span className="bg-black/30 px-4 py-2 rounded-xl border border-white/10 backdrop-blur-md text-emerald-400 flex items-center gap-2 shadow-lg hover:bg-white/5 transition-colors">
-              <span className="text-lg">🗣️</span> TOPIK Lvl 5
-            </span>
-            <span className="bg-indigo-500/20 px-4 py-2 rounded-xl border border-indigo-500/30 backdrop-blur-md text-indigo-300 flex items-center gap-2 shadow-lg hover:bg-indigo-500/30 transition-colors">
-              <span className="text-lg">✈️</span> KR: Aug 2031
+            <span className="bg-white/10 px-4 py-2 rounded-xl border border-[#f5a623]/40 backdrop-blur-md text-[#f5a623] flex items-center gap-2 shadow-lg">
+              <span className="text-lg">🎥</span> Content Launch: 2027
             </span>
           </div>
         </div>
@@ -84,16 +81,16 @@ export default function Inicio() {
       {/* 4 Stat Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { icon: Calendar, color: "text-indigo-400", border: "border-l-indigo-500", label: "Days to Korea", val: daysToMove },
-          { icon: BookOpen, color: "text-purple-400", border: "border-l-purple-500", label: "Courses", val: `${completedCourses}/16` },
-          { icon: Target, color: "text-emerald-400", border: "border-l-emerald-500", label: "Streak", val: `${currentStreak}d` },
-          { icon: PiggyBank, color: "text-blue-400", border: "border-l-blue-500", label: "Savings", val: `$${totalSaved.toLocaleString()}` }
+          { icon: Calendar, color: "text-[#ce1126]", border: "border-l-[#ce1126]", label: "Days to Launch", val: daysToLaunch },
+          { icon: BookOpen, color: "text-[#0a3d8f]", border: "border-l-[#0a3d8f]", label: "Courses", val: `${completedCourses}/16` },
+          { icon: Target, color: "text-[#f5a623]", border: "border-l-[#f5a623]", label: "Streak", val: `${currentStreak}d` },
+          { icon: PiggyBank, color: "text-[#4ade80]", border: "border-l-[#4ade80]", label: "Savings", val: `$${totalSaved.toLocaleString()}` }
         ].map((stat, i) => (
-          <div key={i} className={`bg-[#0a0a0a]/80 backdrop-blur-md border-l-4 ${stat.border} p-5 rounded-2xl shadow-lg border-y border-r border-white/5 hover:bg-white/5 transition-all duration-300 hover:-translate-y-1`}>
-            <div className="text-zinc-400 font-sans text-xs uppercase flex items-center gap-2 mb-2 tracking-wider font-bold">
+          <div key={i} className={`bg-[#11182c]/80 backdrop-blur-md border-l-4 ${stat.border} p-5 rounded-2xl shadow-lg border-y border-r border-white/5 hover:bg-[#1a233a]/90 transition-colors duration-300`}>
+            <div className="text-zinc-400 font-mono text-[10px] sm:text-xs uppercase flex items-center gap-2 mb-2 tracking-wider font-semibold">
               <stat.icon className={`w-4 h-4 ${stat.color}`} /> {stat.label}
             </div>
-            <div className="text-3xl sm:text-4xl font-black text-white font-sans tracking-tighter">
+            <div className="text-3xl sm:text-4xl font-black text-white font-mono tracking-tighter">
               {stat.val}
             </div>
           </div>
@@ -101,35 +98,36 @@ export default function Inicio() {
       </div>
 
       {/* Progress Bars */}
-      <div className="bg-[#0a0a0a]/80 backdrop-blur-md border border-white/5 rounded-3xl p-6 sm:p-8 shadow-xl">
-        <h2 className="text-2xl font-black text-white mb-8 flex items-center gap-3 tracking-tight">
-          <Brain className="w-6 h-6 text-indigo-400" />
+      <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/5 rounded-3xl p-6 sm:p-8 shadow-xl">
+        <h2 className="text-xl font-black text-white mb-8 flex items-center gap-3 tracking-tight">
+          <Brain className="w-6 h-6 text-[#0a3d8f]" />
           Master Plan Progress
         </h2>
         
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-8">
           <div className="space-y-8">
-            <ProgressBar title="📚 Masterclasses (Done by Apr 2027)" current={completedCourses} max={16} color="from-indigo-600 to-purple-500" />
-            <ProgressBar title="🇰🇷 Korean Level (Lvl 1→6)" current={currentTopikLevel} max={6} color="from-purple-600 to-pink-500" labelOverride={currentTopikLevel === 0 ? "Beginner" : topikLevels[currentTopikLevel - 1]} />
-            <ProgressBar title="💰 Savings ($35k Goal)" current={totalSaved} max={35000} color="from-emerald-600 to-teal-400" labelOverride={`$${totalSaved.toLocaleString()}`} />
+            <ProgressBar title="📚 Udemy Courses (Done by Apr 2, 2027)" current={completedCourses} max={16} color="from-[#ce1126] to-[#f5a623]" />
+            <ProgressBar title="🇪🇸 Spanish (Casual)" current={currentSpanishLevel} max={5} color="from-[#0a3d8f] to-[#00f0ff]" labelOverride={currentSpanishLevel === 0 ? "Just Starting" : spanishLevels[currentSpanishLevel - 1]} />
+            <ProgressBar title="💰 Savings ($15k Goal)" current={totalSaved} max={15000} color="from-[#4ade80] to-[#00ff88]" labelOverride={`$${totalSaved.toLocaleString()}`} />
           </div>
           <div className="space-y-8">
-            <ProgressBar title={`⚖️ Body Goal (${startWeight}→${targetWeight} lbs)`} current={weightProgress} max={100} color="from-blue-600 to-indigo-500" labelOverride={`${currentWeight} lbs`} />
-            <ProgressBar title="🎯 Habits Today" current={habitsDoneToday} max={8} color="from-orange-500 to-amber-400" />
-            <ProgressBar title="🔥 30-Day Streak Goal" current={Math.min(currentStreak, 30)} max={30} color="from-rose-600 to-red-500" />
+            <ProgressBar title={`⚖️ Body Goal (${startWeight}→${targetWeight} lbs)`} current={weightProgress} max={100} color="from-[#ff3366] to-[#ff9900]" labelOverride={`${currentWeight} lbs`} />
+            <ProgressBar title="🎯 Habits Today" current={habitsDoneToday} max={8} color="from-[#f5a623] to-[#ff3366]" />
+            <ProgressBar title="🔥 30-Day Streak Goal" current={Math.min(currentStreak, 30)} max={30} color="from-[#ce1126] to-[#ff3366]" />
           </div>
         </div>
       </div>
 
       {/* Phase Roadmap */}
       <div>
-        <h2 className="text-2xl font-black text-white mb-6 ml-2 tracking-tight">Phase Roadmap</h2>
+        <h2 className="text-xl font-black text-white mb-6 ml-2 tracking-tight">Phase Roadmap</h2>
         <div className="flex overflow-x-auto pb-6 gap-4 no-scrollbar snap-x px-2">
-          <PhaseCard title="Phase 1 🚀" desc="Courses + Content Creation + Frontend" date="Aug 2026–Apr 2027" color="border-t-indigo-500 hover:shadow-indigo-500/20" />
-          <PhaseCard title="Phase 2 🎓" desc="HiSET Complete, Start College, Freelance" date="Apr–Dec 2027" color="border-t-purple-500 hover:shadow-purple-500/20" />
-          <PhaseCard title="Phase 3 📚" desc="College + TOPIK Level 5 + Portfolio" date="2027–2031" color="border-t-pink-500 hover:shadow-pink-500/20" />
-          <PhaseCard title="Phase 4 ✈️" desc="Graduate College & Move to Korea" date="Aug 2031" color="border-t-emerald-500 hover:shadow-emerald-500/20" />
-          <PhaseCard title="Phase 5 🇰🇷" desc="Korea Life + Developer/Creator Career" date="2031–2036" color="border-t-blue-500 hover:shadow-blue-500/20" />
+          <PhaseCard title="Phase 1 🚀" desc="Courses + Remaining HiSET Subjects + Casual Spanish" date="Aug 2026–Apr 2027" color="border-t-[#ce1126] hover:shadow-[#ce1126]/20" />
+          <PhaseCard title="Phase 2 🎓" desc="HiSET Complete, Build Portfolio" date="Apr–Aug 2027" color="border-t-[#0a3d8f] hover:shadow-[#0a3d8f]/20" />
+          <PhaseCard title="Phase 3 💼" desc="Land Job or First Freelance Client + Launch Content" date="Aug–Dec 2027" color="border-t-[#f5a623] hover:shadow-[#f5a623]/20" />
+          <PhaseCard title="Phase 4 🎨" desc="Grow Content + Art Practice + Conversational Spanish" date="2028–2029" color="border-t-[#4ade80] hover:shadow-[#4ade80]/20" />
+          <PhaseCard title="Phase 5 💰" desc="Career Stable, Save for MacBook Pro + iPad Pro" date="2029–2030" color="border-t-[#ce1126] hover:shadow-[#ce1126]/20" />
+          <PhaseCard title="Phase 6 🌟" desc="Established Dev Career + Creative Life" date="2030–2036" color="border-t-[#0a3d8f] hover:shadow-[#0a3d8f]/20" />
         </div>
       </div>
     </div>
@@ -141,13 +139,13 @@ function ProgressBar({ title, current, max, color, labelOverride }: { title: str
   
   return (
     <div className="group">
-      <div className="flex justify-between items-end mb-2.5 font-sans font-bold text-xs sm:text-sm">
-        <span className="text-zinc-400 group-hover:text-white transition-colors">{title}</span>
-        <span className="text-white font-black bg-white/10 px-2 py-0.5 rounded-md shadow-sm border border-white/5">{labelOverride ? labelOverride : `${current}/${max}`}</span>
+      <div className="flex justify-between items-end mb-2.5 font-mono text-xs sm:text-sm">
+        <span className="text-zinc-400 group-hover:text-zinc-200 transition-colors">{title}</span>
+        <span className="text-white font-bold bg-white/10 px-2 py-0.5 rounded-md shadow-sm">{labelOverride ? labelOverride : `${current}/${max}`}</span>
       </div>
       <div className="h-3 w-full bg-black/60 rounded-full overflow-hidden border border-white/10 shadow-inner">
         <div 
-          className={`h-full bg-gradient-to-r ${color} transition-all duration-1000 ease-out shadow-[0_0_15px_rgba(255,255,255,0.3)]`} 
+          className={`h-full bg-gradient-to-r ${color} transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(255,255,255,0.2)]`} 
           style={{ width: `${percentage}%` }}
         />
       </div>
@@ -157,9 +155,9 @@ function ProgressBar({ title, current, max, color, labelOverride }: { title: str
 
 function PhaseCard({ title, desc, date, color }: { title: string, desc: string, date: string, color: string }) {
   return (
-    <div className={`min-w-[240px] snap-center bg-[#0a0a0a]/80 backdrop-blur-md border border-white/5 rounded-2xl p-6 shadow-lg border-t-4 ${color} transition-all duration-300 hover:-translate-y-2 hover:bg-white/5`}>
-      <h3 className="font-black text-white font-sans text-lg mb-2 tracking-tight">{title}</h3>
-      <p className="text-zinc-400 text-sm mb-6 font-medium leading-relaxed">{desc}</p>
+    <div className={`min-w-[220px] snap-center bg-[#11182c]/80 backdrop-blur-sm border border-white/5 rounded-2xl p-5 shadow-lg border-t-4 ${color} transition-all duration-300 hover:-translate-y-1 hover:bg-[#1a233a]`}>
+      <h3 className="font-black text-white font-mono text-base mb-1 tracking-tight">{title}</h3>
+      <p className="text-zinc-400 text-sm mb-4 font-medium">{desc}</p>
       <div className="text-[10px] text-zinc-300 font-mono font-bold uppercase bg-black/50 px-3 py-1.5 rounded-lg inline-block border border-white/10 shadow-inner">
         {date}
       </div>

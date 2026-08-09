@@ -144,7 +144,7 @@ export default function WorkoutQuestView() {
             }`}
           >
             <Home className="w-4 h-4" />
-            <span>K-pop Style (Home Bodyweight)</span>
+            <span>Japanese Style (Home Bodyweight)</span>
           </button>
           <button
             onClick={() => handlePlanToggle('pf')}
@@ -168,16 +168,16 @@ export default function WorkoutQuestView() {
             <span>
               {planType === 'pf'
                 ? 'Planet Fitness Gym Blueprint | 7-Day Machine & Equipment Routine'
-                : 'K-pop Home Bodyweight | 7-Day Silent Apartment Routine'}
+                : 'Japanese Home Bodyweight | 7-Day Silent Apartment Routine'}
             </span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            {planType === 'pf' ? 'Planet Fitness Gym Dojo' : 'K-pop Style Home Bodyweight Plan'}
+            {planType === 'pf' ? 'Planet Fitness Gym Dojo' : 'Japanese Style Home Bodyweight Plan'}
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
             {planType === 'pf'
-              ? 'Tailored specifically for Planet Fitness machines, dumbbells, cables, and Smith machine squats. Daily dual cardio: 30-minute incline treadmill walk + 15-minute jog. Monday includes your Auburn ME Walmart Grocery Run & Weekly Batch Meal Prep from your chosen global blueprint!'
-              : 'A quiet, apartment-friendly bodyweight routine with zero floor impact, core work, and posture training. Daily dual cardio: a 30-minute brisk walk plus a 15-minute run, silent march, or optional quiet K-pop-choreo active-rest steps. Monday includes your Auburn ME Walmart grocery run and weekly batch meal prep from your selected Korea blueprint!'}
+              ? 'Tailored specifically for Planet Fitness machines, dumbbells, cables, and Smith machine squats. Daily dual cardio: 30-minute incline treadmill walk + 15-minute jog. Monday includes your Auburn ME Walmart Grocery Run & Weekly Batch Meal Prep from your chosen 19-Country Global Blueprint!'
+              : 'A quiet, apartment-friendly bodyweight routine with zero floor impact, core work, and posture training. Daily dual cardio: a 30-minute brisk walk plus a 15-minute run, silent march, or optional quiet shinrin-yoku style active-rest steps. Monday includes your Auburn ME Walmart grocery run and weekly batch meal prep from your selected Japan blueprint!'}
           </p>
         </div>
 

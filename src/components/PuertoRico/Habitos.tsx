@@ -7,7 +7,7 @@ import { Target, Droplets, Brain, BookOpen, Dumbbell, Code, Palette, Book, Flame
 const HABITS = [
   { id: "h0", title: "16oz Water Upon Waking", icon: Droplets, color: "#00f0ff" },
   { id: "h1", title: "Anki Flashcards", icon: Brain, color: "#4ade80" },
-  { id: "h2", title: "Korean Study", icon: BookOpen, color: "#0a3d8f" },
+  { id: "h2", title: "Spanish Practice", icon: BookOpen, color: "#0a3d8f" },
   { id: "h3", title: "Workout (160lbs)", icon: Dumbbell, color: "#ff3366" },
   { id: "h4", title: "Udemy Block 1", icon: Code, color: "#ce1126" },
   { id: "h5", title: "Udemy Block 2", icon: Code, color: "#ce1126" },

@@ -15,53 +15,73 @@ interface TimelineEvent {
 }
 
 const TIMELINE_EVENTS: TimelineEvent[] = [
-  { id: "aug-2026", year: 2026, monthStr: "August 2026", badge: "Phase 1 🚀", color: "#6366f1", title: "The Journey Begins", desc: [
-      "Aug 2026: DAY 1! Korean Course, Art Courses, and Figma design all in progress.",
+  { id: "aug-2026", year: 2026, monthStr: "August 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "The Journey Begins", desc: [
+      "Aug 8: DAY 1! Git & GitHub, HiSET Math Prep, and Perspective Art all in progress.",
+      "Aug 8: Casual Spanish practice begins — 30min/day, no pressure.",
       "Aug 22: Full-Stack Web Dev Bootcamp begins (Dr. Angela Yu)."
   ]},
-  { id: "oct-2026", year: 2026, monthStr: "October 2026", badge: "Phase 1 🚀", color: "#6366f1", title: "Next.js & Frontend", desc: [
-      "Oct 11: Next.js & React course begins.",
-      "Focus heavily on building stunning frontend portfolios for freelance."
+  { id: "sep-2026", year: 2026, monthStr: "September 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "HiSET Math & Anatomy", desc: [
+      "Sep 5: HiSET Mathematics Prep course complete — HiSET Math exam scheduling begins.",
+      "Sep 21: Anatomy Art School begins."
   ]},
-  { id: "dec-2026", year: 2026, monthStr: "December 2026", badge: "Phase 1 🚀", color: "#6366f1", title: "Creator Era", desc: [
-      "Dec 11: DaVinci Resolve Mastery begins.",
-      "Start creating content using the Z Flip 8 setup."
+  { id: "oct-2026", year: 2026, monthStr: "October 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "TypeScript & Tailwind", desc: [
+      "Oct 11: Understanding TypeScript begins (Maximilian Schwarzmüller).",
+      "Oct 25: Tailwind CSS From Scratch begins (Brad Traversy)."
   ]},
-  { id: "jan-2027", year: 2027, monthStr: "January 2027", badge: "Phase 1 🚀", color: "#6366f1", title: "Java Backend", desc: [
-      "Jan 1: Spring Boot & Hibernate begins.",
-      "Building enterprise backend skills for the future Korean job market."
+  { id: "nov-2026", year: 2026, monthStr: "November 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Next.js & React", desc: [
+      "Nov 1: Next.js & React - The Complete Guide begins.",
+      "Nov 7: Manga Art School begins.",
+      "Nov 22: Next.js 15 & Firebase begins."
   ]},
-  { id: "apr-2027", year: 2027, monthStr: "April 2027", badge: "Phase 2 🎓", color: "#8b5cf6", title: "HiSET & College Prep", desc: [
-      "Apr 2: ✅ ALL 16 COURSES COMPLETE!",
-      "Complete remaining HiSET subjects (Math, Science, etc.)."
+  { id: "dec-2026", year: 2026, monthStr: "December 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "E-Commerce Capstone", desc: [
+      "Dec 6: Master Next.js 15 - Build and Deploy an E-Commerce Project begins — the coding capstone!"
   ]},
-  { id: "jun-2027", year: 2027, monthStr: "June 2027", badge: "Phase 2 🎓", color: "#8b5cf6", title: "HiSET Complete", desc: [
+  { id: "jan-2027", year: 2027, monthStr: "January 2027", badge: "Phase 1 🚀", color: "#ce1126", title: "Character Art School", desc: [
+      "Jan: Character Art School: Complete Character Drawing continues."
+  ]},
+  { id: "feb-2027", year: 2027, monthStr: "February 2027", badge: "Phase 1 🚀", color: "#ce1126", title: "Coloring & Painting", desc: [
+      "Feb 7: Character Art School: Complete Coloring & Painting begins."
+  ]},
+  { id: "mar-2027", year: 2027, monthStr: "March 2027", badge: "Phase 1 🚀", color: "#ce1126", title: "Final Course Stretch", desc: [
+      "Mar 22: Running a Web Development Business — final course begins."
+  ]},
+  { id: "apr-2027", year: 2027, monthStr: "April 2027", badge: "Phase 2 🎓", color: "#0a3d8f", title: "All Courses Complete", desc: [
+      "Apr 2: ✅ ALL 16 UDEMY COURSES COMPLETE!",
+      "Apr 2027: Remaining HiSET subjects (Reading, Writing, Social Studies) scheduled. Start building portfolio projects."
+  ]},
+  { id: "jun-2027", year: 2027, monthStr: "June 2027", badge: "Phase 2 🎓", color: "#0a3d8f", title: "HiSET Complete", desc: [
       "Jun 2027: 🎓 HiSET diploma earned — Science, Math, Reading, Writing, and Social Studies all done!"
   ]},
-  { id: "aug-2027", year: 2027, monthStr: "August 2027", badge: "Phase 3 📚", color: "#a855f7", title: "College Begins", desc: [
-      "Aug 2027: 🎉 First semester of college starts!",
-      "Start taking on freelance web dev clients on the side."
+  { id: "aug-2027", year: 2027, monthStr: "August 2027", badge: "Phase 3 💼", color: "#f5a623", title: "Job or Freelance Launch", desc: [
+      "Aug 2027: 🎉 Portfolio ready! Applying to full-stack jobs and pitching freelance clients simultaneously.",
+      "Aug 2027: Content creation channel launches — coding + art + life updates."
   ]},
-  { id: "dec-2027", year: 2027, monthStr: "December 2027", badge: "Phase 3 📚", color: "#a855f7", title: "TOPIK Level 4", desc: [
-      "Dec 2027: 🗣️ TOPIK II Level 4 EXAM — register by Sep 2027!"
+  { id: "dec-2027", year: 2027, monthStr: "December 2027", badge: "Phase 3 💼", color: "#f5a623", title: "First Win", desc: [
+      "Dec 2027: 💼 First job offer or first paid freelance client — whichever comes first!"
   ]},
-  { id: "dec-2028", year: 2028, monthStr: "December 2028", badge: "Phase 3 📚", color: "#a855f7", title: "Body & Level 5 Mastery", desc: [
+  { id: "jan-2028", year: 2028, monthStr: "January 2028", badge: "Phase 3 💼", color: "#f5a623", title: "Working & Creating", desc: [
+      "Jan 2028: Full-stack income flowing! Content creation and art practice continue as steady side habits."
+  ]},
+  { id: "dec-2028", year: 2028, monthStr: "December 2028", badge: "Phase 4 🎨", color: "#4ade80", title: "Body Goal & Momentum", desc: [
       "Dec 2028: 💪 160 LBS ACHIEVED!",
-      "Dec 2028: 🗣️ TOPIK II Level 5 EXAM!"
+      "Dec 2028: Content channel and art skills both leveling up steadily."
   ]},
-  { id: "may-2031", year: 2031, monthStr: "May 2031", badge: "Phase 4 ✈️", color: "#3b82f6", title: "Graduation & Job Hunt", desc: [
-      "May 2031: 🎓 College Graduation!",
-      "Begin aggressive application process for E-7 Visa tech roles in Seoul."
+  { id: "dec-2029", year: 2029, monthStr: "December 2029", badge: "Phase 4 🎨", color: "#4ade80", title: "Spanish Comfortable", desc: [
+      "Dec 2029: 🗣️ Comfortable holding a casual conversation in Spanish — no textbook needed!",
+      "Dec 2029: Savings ~$10K toward the MacBook Pro + iPad Pro + emergency fund."
   ]},
-  { id: "aug-2031", year: 2031, monthStr: "August 2031", badge: "Phase 4 ✈️", color: "#3b82f6", title: "Departure", desc: [
-      "Aug 2031: ✈️ FLY TO KOREA! New life begins with degree and job in hand!"
+  { id: "mar-2030", year: 2030, monthStr: "March 2030", badge: "Phase 5 💰", color: "#ce1126", title: "Tech Upgrade", desc: [
+      "Mar 2030: $15K saved! MacBook Pro + iPad Pro purchased for dev, art, and content work."
   ]},
-  { id: "year-2036", year: 2036, monthStr: "2036", badge: "Phase 5 🇰🇷", color: "#14b8a6", title: "Established", desc: [
-      "2036: 🇰🇷 10 YEARS. GOAL ACHIEVED. Fully established developer/creator in Korea!"
+  { id: "dec-2030", year: 2030, monthStr: "December 2030", badge: "Phase 5 💰", color: "#ce1126", title: "Career Stable", desc: [
+      "Dec 2030: Full-stack career (job or freelance) fully established and stable."
+  ]},
+  { id: "year-2036", year: 2036, monthStr: "2036", badge: "Phase 6 🌟", color: "#0a3d8f", title: "Established", desc: [
+      "2036: 🌟 10 YEARS. GOAL ACHIEVED. Full-stack career, creative hobbies, and a content channel — all built right here in the USA!"
   ]}
 ];
 
-const YEARS = [2026, 2027, 2028, 2029, 2030, 2031, 2032];
+const YEARS = [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036];
 
 export default function Timeline() {
   const [data, setData] = useState<PRStorageData | null>(null);
@@ -101,7 +121,7 @@ export default function Timeline() {
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
       <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
-        <h2 className="text-2xl font-black text-white font-sans tracking-tight">📅 Master Plan</h2>
+        <h2 className="text-2xl font-black text-white font-mono tracking-tight">📅 Timeline</h2>
         <div className="relative w-full sm:w-64">
           <Search className="absolute left-3 top-2.5 w-4 h-4 text-zinc-500" />
           <input 
@@ -109,7 +129,7 @@ export default function Timeline() {
             placeholder="Search events..." 
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-[#0a0a0a]/80 backdrop-blur-sm border border-white/10 rounded-xl py-2 pl-9 pr-4 text-sm text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/50 outline-none transition-all shadow-inner"
+            className="w-full bg-[#11182c]/80 backdrop-blur-sm border border-white/10 rounded-xl py-2 pl-9 pr-4 text-sm text-white focus:border-[#0a3d8f] focus:ring-1 focus:ring-[#0a3d8f]/50 outline-none transition-all shadow-inner"
           />
         </div>
       </div>
@@ -117,7 +137,7 @@ export default function Timeline() {
       <div className="flex flex-wrap gap-2">
         <button 
           onClick={() => setFilterYear(null)}
-          className={`px-4 py-1.5 rounded-full text-xs font-mono font-bold transition-all shadow-sm ${filterYear === null ? "bg-white text-black scale-105" : "bg-[#0a0a0a]/80 backdrop-blur-sm text-zinc-400 hover:text-white border border-white/10 hover:border-white/30"}`}
+          className={`px-4 py-1.5 rounded-full text-xs font-mono font-bold transition-all shadow-sm ${filterYear === null ? "bg-white text-black scale-105" : "bg-[#11182c]/80 backdrop-blur-sm text-zinc-400 hover:text-white border border-white/10 hover:border-white/30"}`}
         >
           All
         </button>
@@ -125,14 +145,14 @@ export default function Timeline() {
           <button 
             key={y}
             onClick={() => setFilterYear(y)}
-            className={`px-4 py-1.5 rounded-full text-xs font-mono font-bold transition-all shadow-sm ${filterYear === y ? "bg-indigo-500 text-white scale-105 shadow-[0_0_10px_rgba(99,102,241,0.5)] border-transparent" : "bg-[#0a0a0a]/80 backdrop-blur-sm text-zinc-400 hover:text-white border border-white/10 hover:border-white/30"}`}
+            className={`px-4 py-1.5 rounded-full text-xs font-mono font-bold transition-all shadow-sm ${filterYear === y ? "bg-[#ce1126] text-white scale-105 shadow-[0_0_10px_rgba(206,17,38,0.5)] border-transparent" : "bg-[#11182c]/80 backdrop-blur-sm text-zinc-400 hover:text-white border border-white/10 hover:border-white/30"}`}
           >
             {y === 2032 ? "2032+" : y}
           </button>
         ))}
       </div>
 
-      <div className="space-y-4 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-indigo-500 before:via-purple-500 before:to-emerald-500 before:opacity-40">
+      <div className="space-y-4 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-[#ce1126] before:via-[#0a3d8f] before:to-[#f5a623] before:opacity-40">
         {filteredEvents.map(event => {
           const isExp = expanded[event.id] ? true : false;
           return (
@@ -141,14 +161,14 @@ export default function Timeline() {
                 <div className="w-2.5 h-2.5 rounded-full shadow-inner" style={{ backgroundColor: event.color }} />
               </div>
               
-              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#0a0a0a]/80 backdrop-blur-md border border-white/10 p-5 rounded-2xl shadow-xl hover:border-white/20 hover:bg-white/5 transition-all duration-300">
+              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-[#11182c]/80 backdrop-blur-md border border-white/10 p-5 rounded-2xl shadow-xl hover:border-white/20 hover:bg-[#1a233a] transition-all duration-300">
                 <div className="flex items-start justify-between cursor-pointer" onClick={() => toggleExpand(event.id)}>
                   <div>
                     <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md uppercase shadow-sm border border-white/5" style={{ backgroundColor: `${event.color}30`, color: event.color }}>
                       {event.badge}
                     </span>
                     <h3 className="text-white font-bold mt-2">{event.monthStr}</h3>
-                    <p className="text-sm font-sans" style={{ color: event.color }}>{event.title}</p>
+                    <p className="text-sm text-[#f5a623] font-mono">{event.title}</p>
                   </div>
                   <button className="text-zinc-500 hover:text-white transition-colors">
                     {isExp ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
@@ -160,7 +180,7 @@ export default function Timeline() {
                     <ul className="space-y-2 text-sm text-zinc-300">
                       {event.desc.map((d, i) => (
                         <li key={i} className="flex gap-2">
-                          <span className="mt-0.5" style={{ color: event.color }}>•</span>
+                          <span className="text-[#ce1126] mt-0.5">•</span>
                           <span>{d}</span>
                         </li>
                       ))}
@@ -169,7 +189,7 @@ export default function Timeline() {
                       placeholder="Add personal notes for this milestone..."
                       value={data.timelineNotes[event.id] ? data.timelineNotes[event.id] : ""}
                       onChange={(e) => handleNoteChange(event.id, e.target.value)}
-                      className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm text-white outline-none focus:border-indigo-500 resize-none h-24"
+                      className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm text-white outline-none focus:border-[#0a3d8f] resize-none h-24"
                     />
                   </div>
                 )}
