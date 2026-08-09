@@ -21,7 +21,7 @@ import Inicio from "@/components/PuertoRico/Inicio";
 import Timeline from "@/components/PuertoRico/Timeline";
 import Diario from "@/components/PuertoRico/Diario";
 import Cursos from "@/components/PuertoRico/Cursos";
-import PuertoRicoInfo from "@/components/PuertoRico/PuertoRicoInfo";
+import KoreaRelocationInfo from "@/components/PuertoRico/KoreaRelocationInfo";
 import Ahorros from "@/components/PuertoRico/Ahorros";
 import Habitos from "@/components/PuertoRico/Habitos";
 import TechSetup from "@/components/PuertoRico/TechSetup";
@@ -131,7 +131,7 @@ export default function Home() {
           {activeTab === "timeline" && <Timeline />}
           {activeTab === "diario" && <Diario />}
           {activeTab === "cursos" && <Cursos />}
-          {activeTab === "puertorico" && <PuertoRicoInfo />}
+          {activeTab === "koreainfo" && <KoreaRelocationInfo />}
           {activeTab === "ahorros" && <Ahorros />}
           {activeTab === "habitos" && <Habitos />}
           {activeTab === "tech" && <TechSetup />}

@@ -19,7 +19,7 @@ export default function Ahorros() {
   if (!data) return null;
 
   const totalSaved = data.savingsEntries.reduce((acc, curr) => acc + curr.amount, 0);
-  const goal = 40000;
+  const goal = 35000;
   const progress = Math.min(100, (totalSaved / goal) * 100);
 
   const surplus = data.savingsIncome - data.savingsExpenses;
@@ -72,7 +72,7 @@ export default function Ahorros() {
           
           <h2 className="text-2xl font-black text-white font-mono mb-8 tracking-tight z-10 flex items-center gap-2">
             <PiggyBank className="w-6 h-6 text-[#4ade80] drop-shadow-sm" /> 
-            Goal: $40,000
+            Goal: $35,000
           </h2>
           
           <div className="relative w-48 h-48 flex items-center justify-center mb-6 z-10">
@@ -153,11 +153,7 @@ export default function Ahorros() {
             {projectedTotal < goal && (
               <div className="mt-4 bg-[#ce1126]/10 border border-[#ce1126]/30 p-3 rounded-xl">
                 <p className="text-[11px] font-medium text-[#ce1126] leading-relaxed">
-<<<<<<< HEAD
-                  <span className="font-bold">Warning:</span> Current surplus trajectory falls short of $40k goal by Apr 2031. Need to increase income to cover Japan senmon gakko tuition, JLPT/cert fees, and visa costs!
-=======
-                  <span className="font-bold">Warning:</span> Current surplus trajectory falls short of $35k goal by Apr 2031. Need to increase remote income!
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+                  <span className="font-bold">Warning:</span> Current surplus trajectory falls short of $35k goal by Apr 2031. Need to increase income to cover Korea relocation costs, TOPIK/cert fees, and visa costs!
                 </p>
               </div>
             )}

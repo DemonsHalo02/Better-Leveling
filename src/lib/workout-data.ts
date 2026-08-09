@@ -25,17 +25,10 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 0, // Sunday
     dayName: "Sunday",
-<<<<<<< HEAD
-    splitName: "System Restoration / Japanese-Inspired Recovery & Deep Stretch (Rest Day)",
+    splitName: "System Restoration / K-pop-Inspired Recovery & Deep Stretch (Rest Day)",
     isRestDay: true,
-    questTitle: "[Daily Quest] Japanese-Inspired Active Recovery & Flexibility Flow",
-    description: "Sunday is your official System Restoration Day. Use gentle mobility flows, deep hamstring and hip stretches, and mindful breathing to prepare for Monday's grocery run, Japan meal prep, and upper-body push day. Finish with your 45-minute dual cardio session (a 30-minute brisk walk plus a 15-minute run or silent march).",
-=======
-    splitName: "System Restoration / Puerto Rican-Inspired Recovery & Deep Stretch (Rest Day)",
-    isRestDay: true,
-    questTitle: "[Daily Quest] Puerto Rican-Inspired Active Recovery & Flexibility Flow",
-    description: "Sunday is your official System Restoration Day. Use gentle mobility flows, deep hamstring and hip stretches, and mindful breathing to prepare for Monday's grocery run, Puerto Rican meal prep, and upper-body push day. Finish with your 45-minute dual cardio session (a 30-minute brisk walk plus a 15-minute run or silent march).",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+    questTitle: "[Daily Quest] K-pop-Inspired Active Recovery & Flexibility Flow",
+    description: "Sunday is your official System Restoration Day. Use gentle mobility flows, deep hamstring and hip stretches, and mindful breathing to prepare for Monday's grocery run, Korea meal prep, and upper-body push day. Finish with your 45-minute dual cardio session (a 30-minute brisk walk plus a 15-minute run or silent march).",
     xpReward: 300,
     exercises: [
       {
@@ -67,56 +60,32 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sun-kpop-walk",
-<<<<<<< HEAD
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
-=======
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
-<<<<<<< HEAD
-        coachTip: "Complete 30 minutes of brisk steady walking (a Japanese shinrin-yoku style 'forest bathing' pace) followed by 15 minutes of silent indoor marching or light jogging. Low-impact steady-state cardio maximizes fat oxidation while preserving lean muscle mass!"
-=======
-        coachTip: "Complete 30 minutes of brisk steady walking followed by 15 minutes of silent indoor marching or light jogging. Low-impact steady-state cardio maximizes fat oxidation while preserving lean muscle mass!"
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+        coachTip: "Complete 30 minutes of brisk steady walking (a calm, steady K-pop idol 'practice room' pace) followed by 15 minutes of silent indoor marching or light jogging. Low-impact steady-state cardio maximizes fat oxidation while preserving lean muscle mass!"
       }
     ]
   },
   {
     dayOfWeek: 1, // Monday
     dayName: "Monday",
-<<<<<<< HEAD
-    splitName: "Japanese-Style Upper Body Push Sculpt + Monday Grocery & Japan Meal Prep",
+    splitName: "K-pop-Style Upper Body Push Sculpt + Monday Grocery & Korea Meal Prep",
     isRestDay: false,
-    questTitle: "[Daily Quest] Japanese-Style Upper Body Push Sculpt & Japan Meal Prep Monday",
-    description: "Official Monday Grocery Run & Weekly Batch Japan Meal Prep Day + Upper Body Push home workout! Hit Auburn ME Walmart for your weekly Japan Crispy Teriyaki Chicken & Steamed Rice grocery staples, batch prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight exercises.",
-=======
-    splitName: "Puerto Rican Upper Body Push Sculpt + Monday Grocery & Puerto Rican Meal Prep",
-    isRestDay: false,
-    questTitle: "[Daily Quest] Puerto Rican Upper Body Push Sculpt & Puerto Rican Meal Prep Monday",
-    description: "Official Monday Grocery Run & Weekly Batch Puerto Rican Meal Prep Day + Upper Body Push home workout! Hit Auburn ME Walmart for your weekly Puerto Rican Arroz con Kielbasa grocery staples, batch prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight exercises.",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+    questTitle: "[Daily Quest] K-pop-Style Upper Body Push Sculpt & Korea Meal Prep Monday",
+    description: "Official Monday Grocery Run & Weekly Batch Korea Meal Prep Day + Upper Body Push home workout! Hit Auburn ME Walmart for your weekly Korea Crispy Gochujang Chicken & Steamed Rice grocery staples, batch prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight exercises.",
     xpReward: 500,
     exercises: [
       {
         id: "mon-kpop-prep",
-<<<<<<< HEAD
-        name: "Monday Auburn ME Walmart Grocery Run & Japan Batch Meal Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Korea Batch Meal Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Japan Crispy Teriyaki Chicken & Steamed Rice & Scallion Egg Scramble Batch Prep (For Tuesday Start)",
+        reps: "Korea Crispy Gochujang Chicken & Steamed Rice & Scallion Egg Scramble Batch Prep (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your Japan Crispy Teriyaki Chicken & Steamed Rice weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook Teriyaki Chicken with Steamed White Rice and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
-=======
-        name: "Monday Auburn ME Walmart Grocery Run & Puerto Rican Batch Meal Prep",
-        targetGroup: "Nutrition / Batch Prep",
-        sets: 1,
-        reps: "Puerto Rican Arroz con Kielbasa & Recaito Scramble Batch Prep (For Tuesday Start)",
-        equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your Puerto Rican Arroz con Kielbasa weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook Pollo al Horno with Goya Adobo & Sofrito, Arroz con Gandules, and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+        coachTip: "Pick up your Korea Crispy Gochujang Chicken & Steamed Rice weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook Gochujang Chicken with Steamed White Rice and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
       },
       {
         id: "mon-kpop-1",
@@ -165,37 +134,22 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "mon-kpop-walk",
-<<<<<<< HEAD
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
-=======
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
-<<<<<<< HEAD
-        coachTip: "Finish your upper body session with 30 minutes of brisk outdoor walking plus 15 minutes of quiet, mindful power-stepping. Consistent daily cardio ensures clean fat loss while keeping your metabolism elevated!"
-=======
-        coachTip: "Finish your upper body session with 30 minutes of brisk outdoor walking plus 15 minutes of rhythmic Salsa/Reggaeton side-stepping. Consistent daily cardio ensures clean fat loss while keeping your metabolism elevated!"
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+        coachTip: "Finish your upper body session with 30 minutes of brisk outdoor walking plus 15 minutes of quiet, rhythmic power-stepping. Consistent daily cardio ensures clean fat loss while keeping your metabolism elevated!"
       }
     ]
   },
   {
     dayOfWeek: 2, // Tuesday
     dayName: "Tuesday",
-<<<<<<< HEAD
-    splitName: "Japanese-Style Lower Body Tone & Sculpt - Start Eating Japan Prep!",
+    splitName: "K-pop-Style Lower Body Tone & Sculpt - Start Eating Korea Prep!",
     isRestDay: false,
-    questTitle: "[Daily Quest] Japanese-Style Lower Body Sculpt & Start Eating Japan Prep",
-    description: "First day of eating your prepped Japan Crispy Teriyaki Chicken & Steamed Rice meals! Build lean, toned legs and a lifted glute profile with silent bodyweight squats, lunges, wall sits, and glute bridges — completely apartment-friendly and zero floor impact.",
-=======
-    splitName: "Puerto Rican Lower Body Tone & Sculpt - Start Eating Puerto Rican Prep!",
-    isRestDay: false,
-    questTitle: "[Daily Quest] Puerto Rican Lower Body Sculpt & Start Eating Puerto Rican Prep",
-    description: "First day of eating your prepped Puerto Rican Arroz con Kielbasa meals! Build lean, toned legs and a lifted glute profile with silent bodyweight squats, lunges, wall sits, and glute bridges — completely apartment-friendly and zero floor impact.",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+    questTitle: "[Daily Quest] K-pop-Style Lower Body Sculpt & Start Eating Korea Prep",
+    description: "First day of eating your prepped Korea Crispy Gochujang Chicken & Steamed Rice meals! Build lean, toned legs and a lifted glute profile with silent bodyweight squats, lunges, wall sits, and glute bridges — completely apartment-friendly and zero floor impact.",
     xpReward: 500,
     exercises: [
       {
@@ -245,11 +199,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "tue-kpop-walk",
-<<<<<<< HEAD
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
-=======
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -261,17 +211,10 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 3, // Wednesday
     dayName: "Wednesday",
-<<<<<<< HEAD
-    splitName: "Japanese-Style Core & Waist Carve (Abs, Obliques, Deep Core)",
+    splitName: "K-pop-Style Core & Waist Carve (Abs, Obliques, Deep Core)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Japanese-Style Core & Waist Carve Session",
-    description: "High-intensity core and waist-carving session for your Japanese-inspired weekly routine. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
-=======
-    splitName: "Puerto Rican Core & Waist Carve (Abs, Obliques, Deep Core)",
-    isRestDay: false,
-    questTitle: "[Daily Quest] Puerto Rican Core & Waist Carve Session",
-    description: "High-intensity core and waist-carving session for your Puerto Rican-inspired weekly routine. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+    questTitle: "[Daily Quest] K-pop-Style Core & Waist Carve Session",
+    description: "High-intensity core and waist-carving session for your K-pop-inspired weekly routine. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
     xpReward: 600,
     exercises: [
       {
@@ -321,11 +264,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "wed-kpop-walk",
-<<<<<<< HEAD
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
-=======
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -337,15 +276,9 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 4, // Thursday
     dayName: "Thursday",
-<<<<<<< HEAD
-    splitName: "Japanese-Style Upper Body Pull & Posture Definition (Back, Shoulders, Arms)",
+    splitName: "K-pop-Style Upper Body Pull & Posture Definition (Back, Shoulders, Arms)",
     isRestDay: false,
-    questTitle: "[Daily Quest] Japanese-Style Upper Body Pull & Posture Definition",
-=======
-    splitName: "Puerto Rican Upper Body Pull & Posture Definition (Back, Shoulders, Arms)",
-    isRestDay: false,
-    questTitle: "[Daily Quest] Puerto Rican Upper Body Pull & Posture Definition",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+    questTitle: "[Daily Quest] K-pop-Style Upper Body Pull & Posture Definition",
     description: "Target upper back posture, shoulder blade stability, and arm definition using bodyweight holds like Superman holds, shoulder taps, and Y-T-W raises — completely silent and equipment-free.",
     xpReward: 500,
     exercises: [
@@ -396,11 +329,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "thu-kpop-walk",
-<<<<<<< HEAD
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
-=======
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -412,15 +341,9 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 5, // Friday
     dayName: "Friday",
-<<<<<<< HEAD
-    splitName: "Japanese-Style Full Body Conditioning & Core Finisher",
+    splitName: "K-pop-Style Full Body Conditioning & Core Finisher",
     isRestDay: false,
-    questTitle: "[Daily Quest] Japanese-Style Full Body Conditioning & Core Finisher",
-=======
-    splitName: "Puerto Rican Full Body Conditioning & Core Finisher",
-    isRestDay: false,
-    questTitle: "[Daily Quest] Puerto Rican Full Body Conditioning & Core Finisher",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+    questTitle: "[Daily Quest] K-pop-Style Full Body Conditioning & Core Finisher",
     description: "High-energy full-body flow combining bodyweight squats, T-rotations, and slow controlled mountain climbers to burn calories, tone muscles, and elevate athletic stamina without jumping or noise.",
     xpReward: 550,
     exercises: [
@@ -471,11 +394,7 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "fri-kpop-walk",
-<<<<<<< HEAD
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
-=======
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
@@ -487,15 +406,9 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 6, // Saturday
     dayName: "Saturday",
-<<<<<<< HEAD
-    splitName: "Japanese-Style Posture & Total Body Isometric Tension Circuit",
+    splitName: "K-pop-Style Posture & Total Body Isometric Tension Circuit",
     isRestDay: false,
-    questTitle: "[Daily Quest] Japanese-Style Posture & Total Body Isometric Circuit",
-=======
-    splitName: "Puerto Rican Posture & Total Body Isometric Tension Circuit",
-    isRestDay: false,
-    questTitle: "[Daily Quest] Puerto Rican Posture & Total Body Isometric Circuit",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+    questTitle: "[Daily Quest] K-pop-Style Posture & Total Body Isometric Circuit",
     description: "Master total body muscular control and endurance with this isometric hold circuit. By holding contractions (wall sits, push-up holds, hollow body holds), you build deep muscle fiber density and poise without heavy lifting.",
     xpReward: 600,
     exercises: [
@@ -546,26 +459,16 @@ export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
       },
       {
         id: "sat-kpop-walk",
-<<<<<<< HEAD
-        name: "Silent Shinrin-Yoku Power Walk [45 Minutes Dual Cardio]",
-=======
-        name: "Salsa/Reggaeton Active Rest Steps or Walk [45 Minutes Dual Cardio]",
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+        name: "Silent K-pop Practice-Room Power Walk [45 Minutes Dual Cardio]",
         targetGroup: "Cardio",
         sets: 1,
         reps: "45 mins total (30m brisk walk + 15m run/march)",
         equipment: "Outdoors / Silent Apartment Track",
-<<<<<<< HEAD
-        coachTip: "Finish Saturday with your 30-minute brisk walk and 15-minute conditioning run. You have completed a full week of your Japanese-inspired training and meal-prep routine—ready for Sunday active recovery tomorrow!"
-=======
-        coachTip: "Finish Saturday with your 30-minute brisk walk and 15-minute conditioning run. You have completed a full week of your Puerto Rican-inspired training and meal-prep routine—ready for Sunday active recovery tomorrow!"
->>>>>>> parent of 99b8023 (Convert relocation plan theme from Japan to Korea)
+        coachTip: "Finish Saturday with your 30-minute brisk walk and 15-minute conditioning run. You have completed a full week of your K-pop-inspired training and meal-prep routine—ready for Sunday active recovery tomorrow!"
       }
     ]
   }
 ];
-
-
 
 export const PUERTO_RICAN_PLANET_FITNESS_ROUTINE: WorkoutDay[] = [
   {
@@ -620,18 +523,18 @@ export const PUERTO_RICAN_PLANET_FITNESS_ROUTINE: WorkoutDay[] = [
     dayName: "Monday",
     splitName: "Planet Fitness Chest & Triceps Push Day + Monday Grocery & Batch Meal Prep",
     isRestDay: false,
-    questTitle: "[Daily Quest] Planet Fitness Push Day & 19-Country Global Meal Prep Monday",
-    description: "Official Monday Grocery Run at Auburn ME Walmart & Weekly Batch Meal Prep Day + Planet Fitness Chest & Tricep training! Grab your exact items from your chosen 19-Country Global Blueprint (Puerto Rico, USA, Canada, Mexico, Dominican Republic, El Salvador, Colombia, Brazil, Venezuela, Argentina, Spain, Italy, France, Germany, Russia, Japan, Korea, China, or India), prep your meals for Tuesday start, and hit the Planet Fitness machines and dumbbells for a massive chest & tricep pump.",
+    questTitle: "[Daily Quest] Planet Fitness Push Day & Korea Meal Prep Monday",
+    description: "Official Monday Grocery Run at Auburn ME Walmart & Weekly Batch Meal Prep Day + Planet Fitness Chest & Tricep training! Grab your exact items for Korea Crispy Gochujang Chicken, prep your meals for Tuesday start, and hit the Planet Fitness machines and dumbbells for a massive chest & tricep pump.",
     xpReward: 500,
     exercises: [
       {
         id: "mon-pf-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & 19-Country Global Batch Meal Prep",
+        name: "Monday Auburn ME Walmart Grocery Run & Korea Batch Meal Prep",
         targetGroup: "Nutrition / Batch Prep",
         sets: 1,
-        reps: "Batch Prep Your Chosen 19-Country Global S-Rank Chicken & Carbs (For Tuesday Start)",
+        reps: "Batch Prep Your Korea Crispy Gochujang Chicken & Rice (For Tuesday Start)",
         equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Head to Auburn ME Walmart and pick up your exact items from your selected national cuisine blueprint! Once home, batch bake or pan sear your crispy chicken breast cubes and prepare your complex carb staple so your high-protein eating begins seamlessly on Tuesday morning!"
+        coachTip: "Head to Auburn ME Walmart and pick up your exact items! Once home, batch prep your Gochujang chicken and rice so your high-protein eating begins seamlessly on Tuesday morning!"
       },
       {
         id: "mon-pf-1",
@@ -692,10 +595,10 @@ export const PUERTO_RICAN_PLANET_FITNESS_ROUTINE: WorkoutDay[] = [
   {
     dayOfWeek: 2, // Tuesday
     dayName: "Tuesday",
-    splitName: "Planet Fitness Lower Body & Glute Power - Start Eating Puerto Rican Prep!",
+    splitName: "Planet Fitness Lower Body & Glute Power - Start Eating Korea Prep!",
     isRestDay: false,
-    questTitle: "[Daily Quest] Planet Fitness Leg Day & Start Eating Puerto Rican Prep",
-    description: "First official day eating your prepped Crispy Pollo al Horno & Arroz con Gandules meals! Hit the Planet Fitness leg press, leg curls, leg extensions, and Smith machine squats for lean, powerful leg definition and glute lift.",
+    questTitle: "[Daily Quest] Planet Fitness Leg Day & Start Eating Korea Prep",
+    description: "First official day eating your prepped Korea Crispy Gochujang Chicken meals! Hit the Planet Fitness leg press, leg curls, leg extensions, and Smith machine squats for lean, powerful leg definition and glute lift.",
     xpReward: 500,
     exercises: [
       {
@@ -704,44 +607,44 @@ export const PUERTO_RICAN_PLANET_FITNESS_ROUTINE: WorkoutDay[] = [
         targetGroup: "Legs",
         sets: 4,
         reps: "12-15 reps",
-        equipment: "Planet Fitness Sled Leg Press Machine",
-        coachTip: "Place feet shoulder-width apart on sled platform. Lower weight smoothly until knees reach 90 degrees without letting lower back lift off pad, then press up through heels and mid-foot."
+        equipment: "Planet Fitness Leg Press",
+        coachTip: "Place feet midway up the sled, shoulder-width apart. Lower sled slowly until knees are 90 degrees, then drive through your heels to press up. Do not lock knees at the top."
       },
       {
         id: "tue-pf-2",
-        name: "Seated Leg Extension Machine [Quad Rectus Femoris Peak Isolation]",
+        name: "Smith Machine Squats [Glute & Quad Builder]",
         targetGroup: "Legs",
-        sets: 4,
-        reps: "15 reps (hold 1 sec at top extension)",
-        equipment: "Planet Fitness Leg Extension Machine",
-        coachTip: "Extend legs until straight, hold frozen for 1 second squeezing your quad teardrop muscles, then lower under 2-second negative control."
+        sets: 3,
+        reps: "10-12 reps",
+        equipment: "Planet Fitness Smith Machine",
+        coachTip: "Set bar across traps, feet slightly forward of the bar to emphasize glutes and keep torso upright. Squat until thighs are parallel to the floor, pushing up through heels."
       },
       {
         id: "tue-pf-3",
-        name: "Seated or Lying Leg Curl Machine [Hamstring & Posterior Chain]",
+        name: "Seated Leg Extensions [Quad Isolation & Teardrop Sculpt]",
+        targetGroup: "Legs",
+        sets: 4,
+        reps: "15 reps",
+        equipment: "Planet Fitness Leg Extension Machine",
+        coachTip: "Squeeze quads hard at the top of the extension for 1 full second. Lower the weight slowly (3-second negative) to maximize time under tension."
+      },
+      {
+        id: "tue-pf-4",
+        name: "Lying or Seated Leg Curls [Hamstring Sweep Isolation]",
         targetGroup: "Legs",
         sets: 4,
         reps: "12-15 reps",
         equipment: "Planet Fitness Leg Curl Machine",
-        coachTip: "Curl pad toward glutes while keeping hips pressed into the bench. Builds balanced hamstring strength and protects knee health."
-      },
-      {
-        id: "tue-pf-4",
-        name: "Smith Machine Reverse Lunges or Hip Thrusts [Glute & Hip Power]",
-        targetGroup: "Legs",
-        sets: 3,
-        reps: "10-12 reps per leg (or 12-15 hip thrusts)",
-        equipment: "Planet Fitness Smith Machine",
-        coachTip: "Position bar securely across shoulders or across hips on a bench. For lunges step back cleanly with 90-degree knee tracking. For hip thrusts drive hips up squeezing glutes hard at peak."
+        coachTip: "Contract hamstrings to curl the pad toward your glutes. This balances out your quad development and creates a complete aesthetic leg profile."
       },
       {
         id: "tue-pf-5",
-        name: "Seated Calf Raise or Leg Press Calf Extension [Calf & Ankle Strength]",
+        name: "Calf Raises (On Leg Press or Smith Machine) [Lower Leg Definition]",
         targetGroup: "Legs",
         sets: 4,
-        reps: "15-20 reps with full stretch at bottom",
-        equipment: "Planet Fitness Leg Press or Calf Machine",
-        coachTip: "Allow heels to drop for a deep calf stretch at the bottom of the movement, then rise onto toes holding peak contraction for 1 second."
+        reps: "20 reps",
+        equipment: "Planet Fitness Leg Press / Smith Machine",
+        coachTip: "Place toes on edge of platform. Get a deep stretch at the bottom and push all the way up onto your big toes at the top. High reps are required to grow stubborn calves."
       },
       {
         id: "tue-pf-cardio",
@@ -750,63 +653,63 @@ export const PUERTO_RICAN_PLANET_FITNESS_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "45 mins total (30m 3.5mph walk at 6-8% incline + 15m 5.5mph jog)",
         equipment: "Planet Fitness Treadmill",
-        coachTip: "Flush leg lactic acid and keep weekly fat loss roaring with your 45-minute treadmill dual cardio session right after leg training!"
+        coachTip: "Flush lactic acid from your leg workout by hitting the treadmill for your 45-minute incline walk and jog."
       }
     ]
   },
   {
     dayOfWeek: 3, // Wednesday
     dayName: "Wednesday",
-    splitName: "Planet Fitness Back & Bicep Pull Day + Core & Oblique Carve",
+    splitName: "Planet Fitness Back, Biceps & Posture Day",
     isRestDay: false,
-    questTitle: "[Daily Quest] Planet Fitness Back, Bicep & Core Session",
-    description: "Develop a wide, V-taper back and dense biceps using Planet Fitness lat pulldowns, seated cable rows, and dumbbell curls, paired with cable crunches and hanging knee raises for an iron midsection.",
+    questTitle: "[Daily Quest] Planet Fitness Back & Biceps Pull Day",
+    description: "Build a wide V-taper, thick upper back for regal posture, and peaked biceps using Planet Fitness lat pulldowns, cable rows, and dumbbell curls.",
     xpReward: 600,
     exercises: [
       {
         id: "wed-pf-1",
-        name: "Lat Pulldown Machine (Wide Grip) [Upper Lat Width & V-Taper]",
+        name: "Wide-Grip Lat Pulldown [Lats & V-Taper Width]",
         targetGroup: "Back",
         sets: 4,
         reps: "10-12 reps",
         equipment: "Planet Fitness Lat Pulldown Station",
-        coachTip: "Grip bar wider than shoulders. Drive elbows straight down toward ribs while puffing chest up. Pause 1 second at collarbone squeezing lats before slowly letting bar rise."
+        coachTip: "Grip bar wider than shoulders. Lean back slightly and pull the bar down to your upper chest by driving your elbows down and back. Squeeze lats hard at the bottom."
       },
       {
         id: "wed-pf-2",
-        name: "Seated Cable Row (Close V-Grip or Wide Bar) [Mid-Back Thickness & Rhomboids]",
+        name: "Seated Cable Row [Mid-Back Thickness & Posture]",
         targetGroup: "Back",
         sets: 4,
-        reps: "12 reps",
-        equipment: "Planet Fitness Seated Row Cable Station",
-        coachTip: "Keep torso upright with slight knee bend. Pull V-handle right into upper abdomen, pinching shoulder blades together tightly at the completion of the stroke."
+        reps: "10-12 reps",
+        equipment: "Planet Fitness Seated Row Station",
+        coachTip: "Use the close-grip V-handle or straight bar. Keep chest tall, pull handle into your stomach, and pinch shoulder blades together tightly to build back thickness."
       },
       {
         id: "wed-pf-3",
-        name: "Standing Dumbbell Alternating or Hammer Curls [Bicep Peak & Brachialis]",
+        name: "Dumbbell or Machine Preacher Curls [Bicep Peak Isolation]",
         targetGroup: "Biceps",
-        sets: 4,
-        reps: "12 reps per arm",
-        equipment: "Planet Fitness Dumbbells",
-        coachTip: "Keep elbows fixed tight beside your hips without swinging. Curl dumbbell smoothly twisting palm upward at the top (or hammer grip) for full bicep activation."
+        sets: 3,
+        reps: "12 reps",
+        equipment: "Planet Fitness Preacher Curl Bench / Machine",
+        coachTip: "Lock your upper arms onto the pad. Curl the weight up, squeezing the bicep peak, and lower it fully to get a deep stretch. Do not swing or use momentum."
       },
       {
         id: "wed-pf-4",
-        name: "Preacher Curl Machine or Cable Curl [Bicep Isolation & Burnout]",
+        name: "Alternating Dumbbell Hammer Curls [Brachialis & Forearm Thickness]",
         targetGroup: "Biceps",
         sets: 3,
-        reps: "12-15 reps",
-        equipment: "Planet Fitness Preacher Machine or Cable",
-        coachTip: "Rest triceps firmly against the angled pad so shoulders cannot assist. Curl weight smoothly and control the descent completely."
+        reps: "10-12 reps per arm",
+        equipment: "Planet Fitness Dumbbells",
+        coachTip: "Hold dumbbells with a neutral grip (palms facing each other). Curl up toward the shoulder. This builds the brachialis muscle which pushes the bicep up, making arms look thicker."
       },
       {
         id: "wed-pf-5",
-        name: "Cable Rope Crunches or Captain's Chair Knee Raises [Deep Core & Ab Carve]",
-        targetGroup: "Abs",
-        sets: 4,
-        reps: "15-20 reps",
-        equipment: "Planet Fitness Cable Station or Captain's Chair",
-        coachTip: "For cable crunches kneel holding rope behind ears and crunch torso downward contracting abs. For Captain's chair raise knees to chest while rounding lower lumbar."
+        name: "Smith Machine Shrugs or Dumbbell Shrugs [Upper Trap Definition]",
+        targetGroup: "Shoulders",
+        sets: 3,
+        reps: "15 reps",
+        equipment: "Planet Fitness Smith Machine / Dumbbells",
+        coachTip: "Hold heavy dumbbells or the Smith bar. Shrug shoulders straight up toward your ears, hold for a 1-second contraction, and lower slowly. Avoid rolling the shoulders."
       },
       {
         id: "wed-pf-cardio",
@@ -815,63 +718,63 @@ export const PUERTO_RICAN_PLANET_FITNESS_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "45 mins total (30m 3.5mph walk at 6-8% incline + 15m 5.5mph jog)",
         equipment: "Planet Fitness Treadmill",
-        coachTip: "Complete your Wednesday treadmill session! 30 minutes of incline walking plus 15 minutes of jogging keeps your cardiovascular system peak and abs visible."
+        coachTip: "Hit the treadmill post-lift. 30 minutes incline walking, 15 minutes jogging to torch fat and keep cardiovascular health elite."
       }
     ]
   },
   {
     dayOfWeek: 4, // Thursday
     dayName: "Thursday",
-    splitName: "Planet Fitness Shoulder Cannon & Core Sculpt Day",
+    splitName: "Planet Fitness Shoulders, Abs & Core Armor",
     isRestDay: false,
-    questTitle: "[Daily Quest] Planet Fitness Shoulder & Core Sculpt Session",
-    description: "Build rounded, capped 3D shoulders using Planet Fitness dumbbell overhead presses, lateral raises, face pulls, and reverse pec deck, paired with Russian twists and side planks.",
+    questTitle: "[Daily Quest] Planet Fitness Boulder Shoulders & Core Armor",
+    description: "Carve out 3D capped shoulders and a shredded 6-pack midsection using overhead presses, lateral raises, and the Planet Fitness ab machines / mat area.",
     xpReward: 500,
     exercises: [
       {
         id: "thu-pf-1",
-        name: "Seated Dumbbell or Machine Shoulder Press [Anterior & Lateral Deltoid Mass]",
+        name: "Dumbbell or Smith Machine Overhead Press [Anterior Delt Mass]",
         targetGroup: "Shoulders",
         sets: 4,
         reps: "10-12 reps",
-        equipment: "Planet Fitness Dumbbells or Shoulder Press Machine",
-        coachTip: "Sit upright with back supported. Press dumbbells smoothly overhead until nearly touching, then lower until dumbbells reach ear level for full deltoid stretch."
+        equipment: "Planet Fitness Dumbbells / Smith Machine",
+        coachTip: "Set bench backrest upright. Press weight overhead until arms are nearly locked out, then lower slowly until elbows are just below 90 degrees. Keeps constant tension on the delts."
       },
       {
         id: "thu-pf-2",
-        name: "Standing Dumbbell Lateral Raises [Deltoid Width & 3D Capping]",
+        name: "Dumbbell Lateral Raises [Medial Delt Cap & Width]",
         targetGroup: "Shoulders",
         sets: 4,
-        reps: "12-15 reps",
+        reps: "15 reps",
         equipment: "Planet Fitness Dumbbells",
-        coachTip: "Maintain slight elbow bend and raise arms directly out to your sides until parallel to the floor (like pouring water out of a pitcher). Controls descent over 2 seconds."
+        coachTip: "With a slight bend in elbows, raise dumbbells out to your sides until parallel with the floor. Pour water out of a pitcher at the top to isolate the side delt for maximum shoulder width."
       },
       {
         id: "thu-pf-3",
-        name: "Cable Face Pulls with Rope Attachment [Rear Deltoids, Rotator Cuff & Posture]",
+        name: "Machine or Cable Reverse Flyes [Rear Delt Posture & 3D Look]",
         targetGroup: "Shoulders",
-        sets: 4,
-        reps: "15 reps with 1-sec hold at bridge of nose",
-        equipment: "Planet Fitness High Pulley Cable Station",
-        coachTip: "Set pulley at upper chest height. Pull rope handles directly toward nose and ears while separating ends wide and rotating knuckles backward. Exceptional posture builder."
+        sets: 3,
+        reps: "15 reps",
+        equipment: "Planet Fitness Pec Deck (Reverse) / Cables",
+        coachTip: "Face the machine chest-first. Pull handles backward squeezing your rear delts and upper back. This is critical for pulling shoulders back and improving posture."
       },
       {
         id: "thu-pf-4",
-        name: "Reverse Pec Deck Machine [Rear Deltoid & Upper Back Isolation]",
-        targetGroup: "Shoulders",
-        sets: 3,
-        reps: "12-15 reps",
-        equipment: "Planet Fitness Pec Deck Machine (Reverse Setup)",
-        coachTip: "Sit facing the machine pad with arms extended forward. Sweep handles outward and backward squeezing rear deltoids and scapulae tightly."
-      },
-      {
-        id: "thu-pf-5",
-        name: "Abdominal Crunch Machine or Russian Twists [Abdominal & Oblique Definition]",
+        name: "Planet Fitness Ab Crunch Machine [Upper/Mid Ab Thickness]",
         targetGroup: "Abs",
         sets: 4,
         reps: "15-20 reps",
-        equipment: "Planet Fitness Ab Machine or Turf Mat",
-        coachTip: "Execute crisp, controlled repetitions squeezing abdominal wall at peak flexion without relying on hip flexor momentum."
+        equipment: "Planet Fitness Ab Machine",
+        coachTip: "Adjust seat appropriately. Crunch forward using only your abdominal muscles (don't pull with arms). Hold the contraction for 1 second at the bottom."
+      },
+      {
+        id: "thu-pf-5",
+        name: "Hanging Knee Raises or Captain's Chair [Lower Ab V-Taper Sculpt]",
+        targetGroup: "Abs",
+        sets: 4,
+        reps: "15 reps",
+        equipment: "Planet Fitness Captain's Chair Tower",
+        coachTip: "Support yourself on the arm pads. Bring knees up toward your chest, rounding your lower back slightly at the top to fully contract the lower abs. Lower slowly to prevent swinging."
       },
       {
         id: "thu-pf-cardio",
@@ -880,54 +783,63 @@ export const PUERTO_RICAN_PLANET_FITNESS_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "45 mins total (30m 3.5mph walk at 6-8% incline + 15m 5.5mph jog)",
         equipment: "Planet Fitness Treadmill",
-        coachTip: "Thursday cardio check! Hit your 30-minute incline walk and 15-minute conditioning jog to maintain daily calorie deficit."
+        coachTip: "Finish off shoulder and ab day with your mandatory 45 minutes on the treadmill."
       }
     ]
   },
   {
     dayOfWeek: 5, // Friday
     dayName: "Friday",
-    splitName: "Planet Fitness Total Upper Body Hypertrophy & Weekly Tostones Treat Meal!",
+    splitName: "Planet Fitness Upper Body Pump / Weak Point Finisher",
     isRestDay: false,
-    questTitle: "[Daily Quest] Friday Upper Body Pump & Tostones Treat",
-    description: "Friday full upper body pump circuit across chest, back, shoulders, and arms to maximize nutrient uptake right before enjoying your weekly reward meal of Goya Tostones & garlic Pollo al Horno!",
-    xpReward: 600,
+    questTitle: "[Daily Quest] Planet Fitness Upper Body Pump & Finisher",
+    description: "A high-volume, fast-paced pump session targeting your chest, back, and arms to drive nutrient-rich blood into the muscles for weekend recovery and growth.",
+    xpReward: 550,
     exercises: [
       {
         id: "fri-pf-1",
-        name: "Incline Dumbbell Press or Machine Press [Upper Chest Hypertrophy]",
+        name: "Cable Crossovers (High to Low) [Lower Pec Definition]",
         targetGroup: "Chest",
-        sets: 4,
-        reps: "10-12 reps",
-        equipment: "Planet Fitness Dumbbells or Incline Machine",
-        coachTip: "Target the upper pectoral fibers by pressing cleanly at a 30-degree bench incline. Keep shoulders tucked down and back."
+        sets: 3,
+        reps: "15 reps",
+        equipment: "Planet Fitness Cable Station",
+        coachTip: "Set pulleys high. Press cables down and together in front of your waist. Flex lower chest hard at the bottom of the movement."
       },
       {
         id: "fri-pf-2",
-        name: "Machine Assist Pull-Ups or Close-Grip Lat Pulldowns [Lats & Bicep Integration]",
+        name: "Straight-Arm Cable Pulldowns [Lat Isolation & Sweep]",
         targetGroup: "Back",
-        sets: 4,
-        reps: "10-12 reps",
-        equipment: "Planet Fitness Assisted Pull-Up or Lat Station",
-        coachTip: "Use underhand or neutral close grip. Pull chin smoothly above bar (or bar down to chest) contracting lats and biceps simultaneously."
+        sets: 3,
+        reps: "15 reps",
+        equipment: "Planet Fitness Cable Station",
+        coachTip: "Use a straight bar or rope on a high pulley. Keep arms mostly straight and push the bar down in an arc to your thighs, squeezing the lats without engaging the biceps."
       },
       {
         id: "fri-pf-3",
-        name: "Cable Lateral Raise or Upright Row [Side Deltoid & Trap Pump]",
-        targetGroup: "Shoulders",
+        name: "Cable Rope Hammer Curls [Brachioradialis / Forearm Pump]",
+        targetGroup: "Biceps",
         sets: 3,
-        reps: "12-15 reps",
-        equipment: "Planet Fitness Low Cable Station",
-        coachTip: "Using low cable pulley, raise handle laterally across body for continuous cable tension that builds rounded lateral deltoid heads."
+        reps: "15 reps",
+        equipment: "Planet Fitness Cable Station",
+        coachTip: "Use the rope attachment on a low pulley. Curl up with a neutral grip to target the outer bicep and forearms."
       },
       {
         id: "fri-pf-4",
-        name: "Cable Tricep Pushdown & Bicep Curl Super-Set [Complete Arm Pump]",
-        targetGroup: "Full Body",
+        name: "Overhead Rope Tricep Extensions [Long Head Pump]",
+        targetGroup: "Triceps",
         sets: 3,
-        reps: "12 tricep pushdowns immediately into 12 cable bicep curls",
+        reps: "15 reps",
         equipment: "Planet Fitness Cable Station",
-        coachTip: "Perform 12 crisp tricep pushdowns and immediately switch cable attachment to perform 12 bicep curls without rest. Massive upper arm blood flow and sleeve-stretching pump!"
+        coachTip: "Face away from a high or low pulley. Extend rope overhead, spreading the rope at the top to maximally contract the triceps."
+      },
+      {
+        id: "fri-pf-5",
+        name: "Cable Woodchoppers (High to Low) [Oblique Torque]",
+        targetGroup: "Abs",
+        sets: 3,
+        reps: "12 reps per side",
+        equipment: "Planet Fitness Cable Station",
+        coachTip: "Set pulley high. Grab handle with both hands and chop diagonally downward across your body, twisting your torso and engaging your obliques."
       },
       {
         id: "fri-pf-cardio",
@@ -936,54 +848,63 @@ export const PUERTO_RICAN_PLANET_FITNESS_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "45 mins total (30m 3.5mph walk at 6-8% incline + 15m 5.5mph jog)",
         equipment: "Planet Fitness Treadmill",
-        coachTip: "Earn your Friday Goya Tostones reward treat! Complete your 45-minute treadmill session and enjoy your savory Puerto Rican evening meal with 100% adherence and zero guilt!"
+        coachTip: "Complete 45 minutes of daily dual cardio right after your upper body pump session."
       }
     ]
   },
   {
     dayOfWeek: 6, // Saturday
     dayName: "Saturday",
-    splitName: "Planet Fitness Total Body Conditioning & Glute/Ab Circuit",
+    splitName: "Planet Fitness Full Body Machines & Core Circuit",
     isRestDay: false,
-    questTitle: "[Daily Quest] Saturday Total Body Conditioning Circuit",
-    description: "Cap off your training week with a high-energy Planet Fitness total body conditioning and core/glute circuit using dumbbell squats, cable rows, push-ups, and hanging leg raises before your weekend cardio run!",
-    xpReward: 500,
+    questTitle: "[Daily Quest] Planet Fitness 360 Machine Circuit",
+    description: "Run through the Planet Fitness 30-Minute Express Circuit area or use standalone machines for a full-body mechanical tension workout, followed by mat core work.",
+    xpReward: 600,
     exercises: [
       {
         id: "sat-pf-1",
-        name: "Goblet Dumbbell Squats or Smith Machine Squats [Total Lower Body Power]",
-        targetGroup: "Legs",
-        sets: 4,
-        reps: "12-15 reps",
-        equipment: "Planet Fitness Dumbbells or Smith Machine",
-        coachTip: "Hold a dumbbell vertically against chest or position Smith bar across shoulders. Squat deep below parallel with upright torso and drive up hard through mid-foot."
+        name: "Chest Press Machine [Chest & Triceps]",
+        targetGroup: "Chest",
+        sets: 3,
+        reps: "15 reps",
+        equipment: "Planet Fitness Machine Circuit",
+        coachTip: "Smooth, controlled reps. Focus on the muscle stretch and contraction without resting at the top or bottom."
       },
       {
         id: "sat-pf-2",
-        name: "Seated Cable Row to Push-Up Super-Set [Back & Chest Balance]",
-        targetGroup: "Full Body",
+        name: "Seated Row or Pulldown Machine [Back & Biceps]",
+        targetGroup: "Back",
         sets: 3,
-        reps: "12 cable rows immediately into 12 strict push-ups on turf",
-        equipment: "Planet Fitness Cable Row & Turf Area",
-        coachTip: "Complete 12 seated cable rows squeezing rhomboids and immediately step onto the turf to execute 12 strict push-ups. Dynamic anterior and posterior balance."
+        reps: "15 reps",
+        equipment: "Planet Fitness Machine Circuit",
+        coachTip: "Pull with your elbows, not your hands. Squeeze your shoulder blades together on every rep."
       },
       {
         id: "sat-pf-3",
-        name: "Dumbbell Romanian Deadlifts (RDLs) [Hamstring Stretch & Glute Engagement]",
+        name: "Leg Press or Leg Extension Machine [Quads & Glutes]",
         targetGroup: "Legs",
         sets: 3,
-        reps: "12 reps (3 sec lower down shins)",
-        equipment: "Planet Fitness Dumbbells",
-        coachTip: "Hold dumbbells in front of thighs, hinge hips backward while keeping back flat and slight knee bend. Lower until feeling a deep hamstring stretch, then squeeze glutes to return vertical."
+        reps: "15 reps",
+        equipment: "Planet Fitness Machine Circuit",
+        coachTip: "Keep tension on the legs the entire time. Don't lock out the knees."
       },
       {
         id: "sat-pf-4",
-        name: "Captain's Chair Hanging Leg Raises & Plank Hold Combo [Core Armor]",
+        name: "Shoulder Press Machine [Deltoids]",
+        targetGroup: "Shoulders",
+        sets: 3,
+        reps: "15 reps",
+        equipment: "Planet Fitness Machine Circuit",
+        coachTip: "Press overhead under control. Keep your lower back pressed firmly against the pad."
+      },
+      {
+        id: "sat-pf-5",
+        name: "Planet Fitness Mat Area Core Circuit (Planks & Crunches) [Total Core]",
         targetGroup: "Abs",
         sets: 3,
-        reps: "15 leg raises into 45 sec turf forearm plank hold",
-        equipment: "Planet Fitness Captain's Chair & Turf",
-        coachTip: "Perform 15 hanging knee/leg raises and step directly onto the turf for a 45-second forearm plank hold to lock in an iron abdominal wall!"
+        reps: "60s Plank + 20 Crunches",
+        equipment: "Planet Fitness Turf / Mat Area",
+        coachTip: "Superset a 60-second forearm plank immediately into 20 strict abdominal crunches. Rest 45 seconds, then repeat 3 times."
       },
       {
         id: "sat-pf-cardio",
@@ -992,27 +913,19 @@ export const PUERTO_RICAN_PLANET_FITNESS_ROUTINE: WorkoutDay[] = [
         sets: 1,
         reps: "45 mins total (30m 3.5mph walk at 6-8% incline + 15m 5.5mph jog)",
         equipment: "Planet Fitness Treadmill",
-        coachTip: "Finish out your Saturday with your 30-minute incline walk and 15-minute conditioning jog! You have now conquered 7 complete days of Planet Fitness training—ready for Sunday active recovery tomorrow!"
+        coachTip: "Finish Saturday with your 45-minute treadmill routine. You've completed a full week of Planet Fitness training and Korea meal-prep—ready for Sunday active recovery tomorrow!"
       }
     ]
   }
 ];
 
-export const JAPANESE_HOME_BODYWEIGHT_ROUTINE = PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE;
-export const QUIET_APARTMENT_BODYWEIGHT_ROUTINE = PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE;
-export const PLANET_FITNESS_PPL_ROUTINE = PUERTO_RICAN_PLANET_FITNESS_ROUTINE;
-export const PLANET_FITNESS_LEWISTON_6DAY_ROUTINE = PUERTO_RICAN_PLANET_FITNESS_ROUTINE;
-export const KPOP_HOME_BODYWEIGHT_ROUTINE = PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE;
-export const JAPANESE_SAMURAI_HOME_BODYWEIGHT_ROUTINE = PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE;
 
-export const getTodayWorkout = (planType: 'home' | 'pf' = 'home'): WorkoutDay => {
-  const dayIndex = new Date().getDay();
-  if (typeof window !== 'undefined') {
-    const savedType = localStorage.getItem('active_workout_routine_type') as 'home' | 'pf' | null;
-    if (savedType === 'home' || savedType === 'pf') {
-      planType = savedType;
-    }
-  }
-  const routine = planType === 'pf' ? PUERTO_RICAN_PLANET_FITNESS_ROUTINE : PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE;
-  return routine.find(d => d.dayOfWeek === dayIndex) || routine[0];
-};
+// Helper: returns today's workout from the home bodyweight routine
+export function getTodayWorkout(): WorkoutDay {
+  const todayDow = new Date().getDay(); // 0=Sun, 1=Mon, ...
+  return (
+    PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE.find(d => d.dayOfWeek === todayDow) ||
+    PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE[0]
+  );
+}
+
