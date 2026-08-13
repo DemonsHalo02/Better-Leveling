@@ -12,6 +12,10 @@ export default function WorkoutQuestView() {
   const [exerciseWeights, setExerciseWeights] = useState<Record<string, string>>({});
   const [questCleared, setQuestCleared] = useState<boolean>(false);
   const [planType, setPlanType] = useState<'home' | 'pf'>('home');
+  // Per-set rep logging for until-failure exercises: key = `${exerciseId}_set${n}`, value = reps string
+  const [setReps, setSetReps] = useState<Record<string, string>>({});
+  // Personal records: key = exerciseId, value = best single-set rep count ever
+  const [personalRecords, setPersonalRecords] = useState<Record<string, number>>({});
 
   // Planet Fitness Treadmill Cardio State (45 mins daily target: 30m walk + 15m run)
   const [treadmillMinutes, setTreadmillMinutes] = useState<number>(0);
@@ -35,6 +39,14 @@ export default function WorkoutQuestView() {
       const savedWeights = localStorage.getItem(`pf_weights`);
       if (savedWeights) setExerciseWeights(JSON.parse(savedWeights));
       else setExerciseWeights({});
+
+      const savedSetReps = localStorage.getItem(`jp_set_reps_${selectedDay}`);
+      if (savedSetReps) setSetReps(JSON.parse(savedSetReps));
+      else setSetReps({});
+
+      const savedPRs = localStorage.getItem(`jp_personal_records`);
+      if (savedPRs) setPersonalRecords(JSON.parse(savedPRs));
+      else setPersonalRecords({});
 
       const todayKey = new Date().toISOString().split('T')[0];
       const savedMinutes = localStorage.getItem(`pf_treadmill_minutes_${todayKey}`);
@@ -103,6 +115,28 @@ export default function WorkoutQuestView() {
     }
   };
 
+  const handleSetRepChange = (exerciseId: string, setIndex: number, value: string) => {
+    const key = `${exerciseId}_set${setIndex}`;
+    const updated = { ...setReps, [key]: value };
+    setSetReps(updated);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(`jp_set_reps_${selectedDay}`, JSON.stringify(updated));
+    }
+    // Check if new PR
+    const numVal = parseInt(value.replace(/\D/g, ''), 10);
+    if (!isNaN(numVal) && numVal > 0) {
+      const currentPR = personalRecords[exerciseId] || 0;
+      if (numVal > currentPR) {
+        const updatedPRs = { ...personalRecords, [exerciseId]: numVal };
+        setPersonalRecords(updatedPRs);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(`jp_personal_records`, JSON.stringify(updatedPRs));
+        }
+        window.dispatchEvent(new Event('triggerConfetti'));
+      }
+    }
+  };
+
   const calculateDayProgress = () => {
     const totalSets = currentDayWorkout.exercises.reduce((acc, ex) => acc + ex.sets, 0);
     if (totalSets === 0) return 100;
@@ -144,7 +178,7 @@ export default function WorkoutQuestView() {
             }`}
           >
             <Home className="w-4 h-4" />
-            <span>K-Pop Idol Style (Home Bodyweight)</span>
+            <span>Japanese Style (Daily Bodyweight)</span>
           </button>
           <button
             onClick={() => handlePlanToggle('pf')}
@@ -168,16 +202,16 @@ export default function WorkoutQuestView() {
             <span>
               {planType === 'pf'
                 ? 'Planet Fitness Gym Blueprint | 7-Day Machine & Equipment Routine'
-                : 'K-Pop Idol Home Bodyweight | 7-Day Silent Apartment Routine'}
+                : 'Japanese-Style Daily Training | Run + Push-Ups + Sit-Ups + Squats'}
             </span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            {planType === 'pf' ? 'Planet Fitness Gym Dojo' : 'K-Pop Idol Style Home Bodyweight Plan'}
+            {planType === 'pf' ? 'Planet Fitness Gym Dojo' : '🇯🇵 Japanese-Style Daily Fitness'}
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
             {planType === 'pf'
               ? 'Tailored specifically for Planet Fitness machines, dumbbells, cables, and Smith machine squats. Daily dual cardio: 30-minute incline treadmill walk + 15-minute jog. Monday includes your Auburn ME Walmart Grocery Run & Weekly Batch Meal Prep from your chosen 19-Country Global Blueprint!'
-              : 'A quiet, apartment-friendly bodyweight routine with zero floor impact, core work, and posture training. Daily dual cardio: a 30-minute brisk walk plus a 15-minute run, silent march, or optional quiet steady active-rest steps. Monday includes your Auburn ME Walmart grocery run and weekly batch meal prep from your selected blueprint!'}
+              : '15-minute run followed by 3 sets each of push-ups, sit-ups, and squats — all until failure. Done EVERY DAY until you hit your goal weight. Log your reps per set and watch your personal records climb!'}
           </p>
         </div>
 
@@ -395,8 +429,8 @@ export default function WorkoutQuestView() {
                 {/* Sets & Weight Input Action */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between sm:justify-end gap-3 sm:gap-4 w-full lg:w-auto border-t lg:border-t-0 pt-3.5 lg:pt-0 border-white/10">
                   
-                  {/* Weight / Reps Input */}
-                  {!currentDayWorkout.isRestDay && (
+                  {/* Weight / Reps Input — normal exercises */}
+                  {!currentDayWorkout.isRestDay && !exercise.untilFailure && (
                     <div className="flex items-center justify-between sm:justify-start gap-2 bg-system-dark px-3.5 py-2 rounded-xl border border-white/10 shadow-inner">
                       <span className="text-xs text-zinc-400 font-bold uppercase font-mono">Weight / Reps:</span>
                       <input
@@ -406,6 +440,36 @@ export default function WorkoutQuestView() {
                         onChange={(e) => handleWeightChange(exercise.id, e.target.value)}
                         className="w-36 bg-transparent text-xs sm:text-sm font-mono font-bold text-white focus:outline-none placeholder:text-zinc-600 text-right"
                       />
+                    </div>
+                  )}
+
+                  {/* Until-Failure: per-set rep inputs + PR badge */}
+                  {exercise.untilFailure && (
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        {Array.from({ length: exercise.sets }).map((_, si) => {
+                          const key = `${exercise.id}_set${si + 1}`;
+                          return (
+                            <div key={key} className="flex items-center gap-1.5 bg-system-dark border border-white/10 px-3 py-1.5 rounded-xl shadow-inner">
+                              <span className="text-[10px] text-zinc-500 font-mono font-bold uppercase">Set {si + 1}:</span>
+                              <input
+                                type="number"
+                                min="0"
+                                placeholder="reps"
+                                value={setReps[key] || ''}
+                                onChange={(e) => handleSetRepChange(exercise.id, si + 1, e.target.value)}
+                                className="w-14 bg-transparent text-sm font-black text-white focus:outline-none placeholder:text-zinc-600 text-center"
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+                      {personalRecords[exercise.id] ? (
+                        <div className="flex items-center gap-1.5 text-[10px] font-mono font-bold text-system-gold uppercase tracking-wider">
+                          <Trophy className="w-3.5 h-3.5" />
+                          <span>PR: {personalRecords[exercise.id]} reps</span>
+                        </div>
+                      ) : null}
                     </div>
                   )}
 

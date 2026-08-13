@@ -12,35 +12,33 @@ interface Course {
 
 const COURSES = {
   coding: [
-    { id: "c01", title: "Git & GitHub - The Practical Guide", dates: "Aug 8–14" },
-    { id: "c02", title: "The Complete SQL Bootcamp: Go from Zero to Hero", dates: "Aug 15–21" },
-    { id: "c03", title: "The Complete Full-Stack Web Development Bootcamp", dates: "Aug 22–Oct 10" },
-    { id: "c04", title: "Understanding TypeScript", dates: "Oct 11–24" },
-    { id: "c05", title: "Tailwind CSS From Scratch | Learn By Building Projects", dates: "Oct 25–31" },
-    { id: "c06", title: "Next.js & React - The Complete Guide", dates: "Nov 1–21" },
-    { id: "c07", title: "Next.js 15 & Firebase", dates: "Nov 22–Dec 5" },
-    { id: "c08", title: "Master Next.js 15 - Build and Deploy an E-Commerce Project", dates: "Dec 6–19" }
+    { id: "c01", title: "Tailwind CSS From Scratch | Learn By Building Projects", dates: "Sep 3–14" },
+    { id: "c02", title: "Git & GitHub - The Practical Guide", dates: "Sep 15–21" },
+    { id: "c03", title: "Next.js & React - The Complete Guide", dates: "Sep 22–Oct 20" },
+    { id: "c04", title: "iOS Development Masterclass 2027 - SwiftUI, SwiftData, AI", dates: "Oct 21–Nov 20" },
+    { id: "c05", title: "The Complete Full-Stack Web Development Bootcamp", dates: "Nov 21–Jan 10" },
+    { id: "c06", title: "Understanding TypeScript", dates: "Jan 11–24" },
+    { id: "c07", title: "The Complete Python Bootcamp From Zero to Hero in Python", dates: "Jan 25–Feb 15" },
+    { id: "c08", title: "Java Masterclass 2025: 130+ Hours of Expert Lessons", dates: "Feb 16–Apr 2" }
   ],
-  art: [
-    { id: "c09", title: "Perspective Art School: The Complete Drawing Course", dates: "Aug 8–Sep 20" },
-    { id: "c10", title: "Anatomy Art School: Drawing the Human Form", dates: "Sep 21–Nov 6" },
-    { id: "c11", title: "Manga Art School: The Complete Anime & Manga Course", dates: "Nov 7–Dec 21" },
-    { id: "c12", title: "Character Art School: Complete Character Drawing", dates: "Dec 22–Feb 6 2027" },
-    { id: "c13", title: "Character Art School: Complete Coloring & Painting", dates: "Feb 7–Mar 21 2027" }
+  filmmaking: [
+    { id: "c09", title: "iPhone Filmmaker Masterclass", dates: "Sep 3–30" },
+    { id: "c10", title: "The Freelance Masterclass: For Creatives", dates: "Oct 1–Nov 15" },
+    { id: "c11", title: "Final Cut Pro X - Beginner To Advanced (FCP MASTERY 2026)", dates: "Nov 16–Jan 15" },
+    { id: "c12", title: "Local Marketing 2026: Google My Business, SEO, Social Media", dates: "Jan 16–Feb 28" }
   ],
   important: [
-    { id: "c14", title: "HSE/GED/TASC/HiSET Prep: A Complete Mathematics Curriculum", dates: "Aug 8–Sep 5" },
-    { id: "c15", title: "The Complete Korean Course for Beginners | 10 courses in 1!", dates: "DAILY 30min" },
-    { id: "c16", title: "Running a Web Development Business: The Complete Guide", dates: "Mar 22–Apr 2 2027" }
+    { id: "c14", title: "HSE/GED/TASC/HiSET Prep: A Complete Mathematics Curriculum", dates: "Sep 3–Oct 15" },
+    { id: "c15", title: "Ultimate Japanese Bootcamp: Speak Like a Native + JLPT N5-N1", dates: "DAILY 30min" }
   ]
 };
 
-const KOREAN_MILESTONES = [
-  { id: "ko-basics", label: "Basics (Aug–Dec 2026): Hangul, greetings, numbers, survival phrases" },
-  { id: "ko-conversational", label: "Conversational (Jan–Jun 2027): Order food, small talk, directions" },
-  { id: "ko-comfortable", label: "Comfortable — Hold a casual 10-minute conversation (by Dec 2027)" },
-  { id: "ko-immersion", label: "Immersion Ready — Watch a KDrama with Korean audio + English subs (by Dec 2028)" },
-  { id: "ko-travel", label: "Travel Fluent — Confidently travel to Korea solo (by 2030)" },
+const JAPANESE_MILESTONES = [
+  { id: "ja-basics", label: "Hiragana & Katakana (Sep–Dec 2026): Master the basic writing systems" },
+  { id: "ja-conversational", label: "JLPT N5 (Jan–Jun 2027): Basic vocabulary, particles, and simple sentences" },
+  { id: "ja-comfortable", label: "JLPT N4 — Basic conversational ability and reading everyday topics (by Dec 2027)" },
+  { id: "ja-immersion", label: "JLPT N3 — Understand everyday situations and read specific contents (by Dec 2028)" },
+  { id: "ja-travel", label: "JLPT N2 & N1 — IT Vocational School Ready and Business Fluent (by 2030)" },
 ];
 
 export default function Cursos() {
@@ -159,24 +157,24 @@ export default function Cursos() {
         <div className="relative z-10">
           <h2 className="text-3xl sm:text-4xl font-black mb-3 tracking-tighter drop-shadow-md flex items-center gap-3">
             <Star className="w-8 h-8 fill-current text-[#f5a623] drop-shadow-[0_0_10px_rgba(245,166,35,0.8)]" />
-            Course Plan <span className="text-xl sm:text-2xl opacity-90">(16 Masterclasses)</span>
+            Course Plan <span className="text-xl sm:text-2xl opacity-90">(14 Masterclasses)</span>
           </h2>
-          <p className="font-mono text-sm sm:text-base font-medium opacity-90 tracking-wide drop-shadow-sm mb-6">Aug 8 2026 → Apr 2 2027 · ~420 total hours</p>
+          <p className="font-mono text-sm sm:text-base font-medium opacity-90 tracking-wide drop-shadow-sm mb-6">Sept 3 2026 → Apr 2 2027</p>
           
           <div className="flex flex-wrap gap-4 text-sm font-bold bg-black/30 p-4 rounded-2xl border border-white/20 shadow-inner backdrop-blur-sm">
             <div className="flex items-baseline gap-2">
               <span className="text-2xl text-white drop-shadow-md">{completedCount}</span> 
-              <span className="text-zinc-300">/ 16</span> 
+              <span className="text-zinc-300">/ 14</span> 
               <span className="opacity-80 text-xs ml-1 uppercase tracking-wider">Completed</span>
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
             <div className="flex items-center gap-2">
-              <span className="text-zinc-300 uppercase tracking-wider text-xs">Korean:</span> 
+              <span className="text-zinc-300 uppercase tracking-wider text-xs">Japanese:</span> 
               <span className="text-[#0a3d8f] bg-white px-2 py-0.5 rounded text-xs drop-shadow-sm">EVERY DAY</span>
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
             <div className="flex items-center gap-2">
-              <span className="text-zinc-300 uppercase tracking-wider text-xs">Art:</span> 
+              <span className="text-zinc-300 uppercase tracking-wider text-xs">Filmmaking:</span> 
               <span className="text-[#4ade80] bg-black/50 border border-[#4ade80]/50 px-2 py-0.5 rounded text-xs drop-shadow-sm">PARALLEL</span>
             </div>
           </div>
@@ -185,19 +183,19 @@ export default function Cursos() {
 
       <div className="space-y-4">
         {renderSection("coding", "💻 SECTION 1 — CODING (8)", "from-[#0a3d8f]/30 to-transparent border-l-4 border-l-[#0a3d8f]", COURSES.coding)}
-        {renderSection("art", "🎨 SECTION 2 — ART PARALLEL (5)", "from-[#f5a623]/30 to-transparent border-l-4 border-l-[#f5a623]", COURSES.art)}
-        {renderSection("important", "⭐ SECTION 3 — IMPORTANT (3)", "from-[#4ade80]/30 to-transparent border-l-4 border-l-[#4ade80]", COURSES.important)}
+        {renderSection("filmmaking", "🎥 SECTION 2 — FILMMAKING (4)", "from-[#f5a623]/30 to-transparent border-l-4 border-l-[#f5a623]", COURSES.filmmaking)}
+        {renderSection("important", "⭐ SECTION 3 — IMPORTANT (2)", "from-[#4ade80]/30 to-transparent border-l-4 border-l-[#4ade80]", COURSES.important)}
       </div>
 
-      {/* Korean Tracker */}
+      {/* Japanese Tracker */}
       <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl mt-8">
         <h3 className="text-2xl font-black text-white font-mono mb-2 flex items-center gap-3 tracking-tight">
-          <span className="text-3xl drop-shadow-md">🇰🇷</span> Casual Korean Plan
+          <span className="text-3xl drop-shadow-md">🇯🇵</span> Japanese Plan (JLPT)
         </h3>
-        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">No exams, no pressure — just enough for travel and KDramas</p>
+        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">Goal: IT Vocational School in Japan & Work Visa</p>
         
         <div className="space-y-4">
-          {KOREAN_MILESTONES.map((ms) => {
+          {JAPANESE_MILESTONES.map((ms) => {
             const isDone = data.deleProgress[ms.id] ? true : false;
             return (
               <label key={ms.id} className={`flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 cursor-pointer ${isDone ? 'bg-[#0a3d8f]/20 border-[#0a3d8f]/50 shadow-[0_0_15px_rgba(10,61,143,0.15)]' : 'bg-black/30 border-white/10 hover:border-white/30 hover:bg-black/40 hover:-translate-y-0.5'}`}>

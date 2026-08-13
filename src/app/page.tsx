@@ -88,18 +88,7 @@ export default function Home() {
       <SystemSidebar activeTab={activeTab as TabType} setActiveTab={setActiveTab} />
       <PRSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* Sticky PR Stats Bar */}
-      <div className="sticky top-[182px] md:top-[173px] z-20 w-full bg-[#11182c]/90 backdrop-blur-md border-b border-[#ce1126]/20 py-2 px-4 shadow-md">
-        <div className="max-w-7xl mx-auto flex items-center justify-between sm:justify-center sm:gap-8 overflow-x-auto no-scrollbar font-mono text-[10px] sm:text-xs text-zinc-300 whitespace-nowrap">
-          <span className="flex items-center gap-1.5"><span className="text-[#f5a623]">🚀</span> Day {daysSince > 0 ? daysSince : 0} since Aug 3 2026</span>
-          <span className="hidden sm:inline text-zinc-700">|</span>
-          <span className="flex items-center gap-1.5"><span className="text-[#0a3d8f]">📚</span> {Object.values(prData.courseProgress).filter(p => p === 100).length}/19 Courses</span>
-          <span className="hidden sm:inline text-zinc-700">|</span>
-          <span className="flex items-center gap-1.5"><span className="text-[#ce1126]">🔥</span> {Math.max(0, ...Object.values(prData.habitStreaks))}d Streak</span>
-          <span className="hidden sm:inline text-zinc-700">|</span>
-          <span className="flex items-center gap-1.5"><span className="text-[#4ade80]">💰</span> ${prData.savingsIncome - prData.savingsExpenses} Saved</span>
-        </div>
-      </div>
+
 
       {/* Main Content Area - pb-28 on mobile prevents bottom nav overlap */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-8 pb-28 md:pb-12">

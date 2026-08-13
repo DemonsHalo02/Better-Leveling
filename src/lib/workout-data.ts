@@ -8,6 +8,7 @@ export interface Exercise {
   coachTip: string;
   weightUsed?: number;
   completedSets?: number;
+  untilFailure?: boolean; // If true, user does reps until failure and logs the count
 }
 
 export interface WorkoutDay {
@@ -21,454 +22,131 @@ export interface WorkoutDay {
   exercises: Exercise[];
 }
 
+// ─── Japanese-Style Daily Home Routine ─────────────────────────────────────
+// 15-min run + 3 sets each of pushups, situps, squats — all until failure.
+// Done EVERY DAY until goal weight is reached (no muscle loss, no loose skin).
+// Each exercise has untilFailure: true so the UI shows a reps-logged input.
+
+const DAILY_EXERCISES: Exercise[] = [
+  {
+    id: "jp-run",
+    name: "15-Minute Run",
+    targetGroup: "Cardio",
+    sets: 1,
+    reps: "15 minutes",
+    equipment: "Outdoors or Treadmill",
+    coachTip: "Keep a steady pace you can maintain for the full 15 minutes. Breathe through your nose when possible. Gradually increase speed as your cardio improves over weeks.",
+    untilFailure: false,
+  },
+  {
+    id: "jp-pushups",
+    name: "Push-Ups",
+    targetGroup: "Chest",
+    sets: 3,
+    reps: "Until failure",
+    equipment: "Bodyweight Only",
+    coachTip: "Full range of motion — chest touches the floor, arms lock out at top. Keep your core rigid and hips level. Log every rep of each set and beat your previous best!",
+    untilFailure: true,
+  },
+  {
+    id: "jp-situps",
+    name: "Sit-Ups",
+    targetGroup: "Abs",
+    sets: 3,
+    reps: "Until failure",
+    equipment: "Mat or Carpet",
+    coachTip: "Hands behind your head or crossed over chest. Come all the way up until elbows touch knees, then lower slowly. Controlled breathing — exhale on the way up.",
+    untilFailure: true,
+  },
+  {
+    id: "jp-squats",
+    name: "Squats",
+    targetGroup: "Legs",
+    sets: 3,
+    reps: "Until failure",
+    equipment: "Bodyweight Only",
+    coachTip: "Feet shoulder-width apart, toes slightly out. Squat until thighs are parallel to the floor (or lower). Drive through your heels to stand. Chest up the entire time.",
+    untilFailure: true,
+  },
+];
+
+// Build 7 identical workout days (same routine every day)
 export const PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE: WorkoutDay[] = [
   {
-    dayOfWeek: 0, // Sunday
+    dayOfWeek: 0,
     dayName: "Sunday",
-    splitName: "System Restoration / Recovery & Deep Stretch (Rest Day)",
-    isRestDay: true,
-    questTitle: "[Daily Quest] Active Recovery & Flexibility Flow",
-    description: "Sunday is your official System Restoration Day. Use gentle mobility flows, deep hamstring and hip stretches, and mindful breathing to prepare for Monday's grocery run, meal prep, and upper-body push day. Finish with your 45-minute dual cardio session (a 30-minute brisk walk plus a 15-minute run or silent march).",
-    xpReward: 300,
-    exercises: [
-      {
-        id: "sun-kpop-1",
-        name: "Recovery Yoga Flow: Cat-Cow to Downward Dog & Child's Pose [15 Minutes]",
-        targetGroup: "Full Body",
-        sets: 1,
-        reps: "15 mins (flow through poses slowly)",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Start on all fours on your mat. Alternate between Cat (round spine up) and Cow (arch spine down) for 10 slow breaths, then push hips high into Downward Dog holding 30 seconds to lengthen calves and hamstrings. Transition gently into Child's Pose to decompress the spine and improve posture."
-      },
-      {
-        id: "sun-kpop-2",
-        name: "Full Body Deep Stretch: Hip Flexors, Hamstrings & Shoulder Openers [15 Minutes]",
-        targetGroup: "Full Body",
-        sets: 1,
-        reps: "15 mins (hold each stretch 30-60 sec)",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Hold each stretch for 30-60 seconds: pigeon pose for hips, seated forward fold for hamstrings, and doorway chest stretch for shoulders. Deep breathing throughout promotes muscle recovery and skin elasticity without adding bulky mass."
-      },
-      {
-        id: "sun-kpop-3",
-        name: "Mindful Breathing & Posture Alignment [10 Minutes]",
-        targetGroup: "Full Body",
-        sets: 1,
-        reps: "10 mins (4-4-6 rhythmic breath cycle)",
-        equipment: "Quiet Space (Home)",
-        coachTip: "Sit cross-legged with your spine tall or lie flat. Breathe deeply through the nose for 4 counts, hold for 4, then exhale slowly for 6. This reset supports mental clarity, stress reduction, and core control."
-      },
-      {
-        id: "sun-kpop-walk",
-        name: "Silent Power Walk [45 Minutes Dual Cardio]",
-        targetGroup: "Cardio",
-        sets: 1,
-        reps: "45 mins total (30m brisk walk + 15m run/march)",
-        equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Complete 30 minutes of brisk steady walking (a steady moderate pace) followed by 15 minutes of silent indoor marching or light jogging. Low-impact steady-state cardio maximizes fat oxidation while preserving lean muscle mass!"
-      }
-    ]
+    splitName: "Japanese Daily Training",
+    isRestDay: false,
+    questTitle: "[Daily Quest] Japanese-Style Fitness Routine",
+    description: "Run for 15 minutes then complete 3 sets each of push-ups, sit-ups, and squats — all until failure. Log your reps to track personal records. Do this every single day until you hit your goal weight.",
+    xpReward: 400,
+    exercises: DAILY_EXERCISES,
   },
   {
-    dayOfWeek: 1, // Monday
+    dayOfWeek: 1,
     dayName: "Monday",
-    splitName: "Home-Style Upper Body Push Sculpt + Monday Grocery & Meal Prep",
+    splitName: "Japanese Daily Training",
     isRestDay: false,
-    questTitle: "[Daily Quest] Home-Style Upper Body Push Sculpt & Meal Prep Monday",
-    description: "Official Monday Grocery Run & Weekly Batch Meal Prep Day + Upper Body Push home workout! Hit Auburn ME Walmart for your weekly Crispy Chicken & Steamed Rice grocery staples, batch prep your meals for Tuesday start, and sculpt your chest, shoulders, and triceps with silent bodyweight exercises.",
-    xpReward: 500,
-    exercises: [
-      {
-        id: "mon-kpop-prep",
-        name: "Monday Auburn ME Walmart Grocery Run & Batch Meal Prep",
-        targetGroup: "Nutrition / Batch Prep",
-        sets: 1,
-        reps: "Crispy Chicken & Steamed Rice & Scallion Egg Scramble Batch Prep (For Tuesday Start)",
-        equipment: "Auburn ME Walmart & Kitchen",
-        coachTip: "Pick up your Crispy Chicken & Steamed Rice weekly groceries at Auburn ME Walmart using your active template filter. Batch-cook Teriyaki Chicken with Steamed White Rice and broccoli on Monday so your high-protein eating begins seamlessly on Tuesday!"
-      },
-      {
-        id: "mon-kpop-1",
-        name: "Standard Push-Ups [Chest & Tricep Compound Tone]",
-        targetGroup: "Chest",
-        sets: 4,
-        reps: "12-15 reps",
-        equipment: "Bodyweight Only (Home)",
-        coachTip: "Hands shoulder-width apart, body in a straight line from crown to heels. Lower chest to floor with a 2-second negative, push up explosively while keeping core tight. If needed, start on knees and progress to full push-ups."
-      },
-      {
-        id: "mon-kpop-2",
-        name: "Wide Push-Ups [Outer Chest & Shoulder Frame Sculpt]",
-        targetGroup: "Chest",
-        sets: 3,
-        reps: "10-12 reps",
-        equipment: "Bodyweight Only (Home)",
-        coachTip: "Place hands wider than shoulder-width. This shifts tension to the outer chest and anterior deltoids, building a broad, clean shoulder frame without heavy weight."
-      },
-      {
-        id: "mon-kpop-3",
-        name: "Pike Push-Ups [Capped Shoulder Press Alternative]",
-        targetGroup: "Shoulders",
-        sets: 4,
-        reps: "8-10 reps",
-        equipment: "Bodyweight Only (Home)",
-        coachTip: "Start in a downward dog position with hips high. Bend elbows to lower your head gently toward the floor, then press back up. This mimics an overhead shoulder press using only bodyweight for capped, defined shoulders."
-      },
-      {
-        id: "mon-kpop-4",
-        name: "Chair/Couch Tricep Dips [Tricep Horseshoe Sculpt]",
-        targetGroup: "Triceps",
-        sets: 4,
-        reps: "12-15 reps",
-        equipment: "Sturdy Chair or Couch Edge (Home)",
-        coachTip: "Place hands on the edge of a sturdy chair behind you with legs extended. Lower your body by bending elbows to 90 degrees, then press back up. Carves out clean tricep definition."
-      },
-      {
-        id: "mon-kpop-5",
-        name: "Diamond Push-Ups [Inner Chest & Tricep Burnout]",
-        targetGroup: "Triceps",
-        sets: 3,
-        reps: "8-10 reps",
-        equipment: "Bodyweight Only (Home)",
-        coachTip: "Place hands together under your chest forming a diamond shape with thumbs and index fingers. This is the ultimate tricep and inner chest burnout to finish off your upper body push session."
-      },
-      {
-        id: "mon-kpop-walk",
-        name: "Silent Power Walk [45 Minutes Dual Cardio]",
-        targetGroup: "Cardio",
-        sets: 1,
-        reps: "45 mins total (30m brisk walk + 15m run/march)",
-        equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Finish your upper body session with 30 minutes of brisk outdoor walking plus 15 minutes of quiet, mindful power-stepping. Consistent daily cardio ensures clean fat loss while keeping your metabolism elevated!"
-      }
-    ]
+    questTitle: "[Daily Quest] Japanese-Style Fitness Routine",
+    description: "Run for 15 minutes then complete 3 sets each of push-ups, sit-ups, and squats — all until failure. Log your reps to track personal records. Do this every single day until you hit your goal weight.",
+    xpReward: 400,
+    exercises: DAILY_EXERCISES,
   },
   {
-    dayOfWeek: 2, // Tuesday
+    dayOfWeek: 2,
     dayName: "Tuesday",
-    splitName: "Home-Style Lower Body Tone & Sculpt - Start Eating Meal Prep!",
+    splitName: "Japanese Daily Training",
     isRestDay: false,
-    questTitle: "[Daily Quest] Home-Style Lower Body Sculpt & Start Eating Meal Prep",
-    description: "First day of eating your prepped Crispy Chicken & Steamed Rice meals! Build lean, toned legs and a lifted glute profile with silent bodyweight squats, lunges, wall sits, and glute bridges — completely apartment-friendly and zero floor impact.",
-    xpReward: 500,
-    exercises: [
-      {
-        id: "tue-kpop-1",
-        name: "Bodyweight Squats [Quad & Glute Tone]",
-        targetGroup: "Legs",
-        sets: 4,
-        reps: "15-20 reps",
-        equipment: "Bodyweight Only (Home)",
-        coachTip: "Stand with feet shoulder-width apart, toes pointing slightly out. Squat deep with weight evenly distributed in heels, chest proud. Drive up through glutes. Slow and controlled — zero noise or stomping."
-      },
-      {
-        id: "tue-kpop-2",
-        name: "Reverse Lunges (Alternating) [Quad & Glute Medius Isolation]",
-        targetGroup: "Legs",
-        sets: 3,
-        reps: "12 reps per leg",
-        equipment: "Bodyweight Only (Home)",
-        coachTip: "Step one foot back into a lunge, gently lowering your back knee toward the floor. Push through front heel to return. Reverse lunges are quieter and gentler on knee joints than forward lunges while sculpting lean legs."
-      },
-      {
-        id: "tue-kpop-3",
-        name: "Wall Sit Hold [Quad Endurance & Lean Muscle Burn]",
-        targetGroup: "Legs",
-        sets: 3,
-        reps: "45-60 seconds hold",
-        equipment: "Wall (Home)",
-        coachTip: "Lean flat against a wall and slide down until thighs are parallel to the floor (90-degree knee bend). Hold completely still with core engaged. Devastatingly effective for endurance and lean quad tone without adding bulk."
-      },
-      {
-        id: "tue-kpop-4",
-        name: "Glute Bridges [Glute Activation & Lift without Bulk]",
-        targetGroup: "Legs",
-        sets: 4,
-        reps: "15-20 reps",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie on back with knees bent and feet flat on floor. Drive hips up by squeezing glutes hard at the top. Hold 2 seconds at peak contraction. Builds a lifted glute profile without heavy barbell strain."
-      },
-      {
-        id: "tue-kpop-5",
-        name: "Clamshells (Lying Side Leg Opens) [Hip & Glute Stabilizer]",
-        targetGroup: "Legs",
-        sets: 3,
-        reps: "15 reps per side",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie on your side with knees bent at 45 degrees and feet stacked. Open top knee like a clamshell while keeping feet touching. Targets the gluteus medius for balanced leg symmetry and hip stability."
-      },
-      {
-        id: "tue-kpop-walk",
-        name: "Silent Power Walk [45 Minutes Dual Cardio]",
-        targetGroup: "Cardio",
-        sets: 1,
-        reps: "45 mins total (30m brisk walk + 15m run/march)",
-        equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Complete 45 minutes of daily dual cardio after your leg training. Walking after lower body work flushes lactic acid and accelerates muscle recovery!"
-      }
-    ]
+    questTitle: "[Daily Quest] Japanese-Style Fitness Routine",
+    description: "Run for 15 minutes then complete 3 sets each of push-ups, sit-ups, and squats — all until failure. Log your reps to track personal records. Do this every single day until you hit your goal weight.",
+    xpReward: 400,
+    exercises: DAILY_EXERCISES,
   },
   {
-    dayOfWeek: 3, // Wednesday
+    dayOfWeek: 3,
     dayName: "Wednesday",
-    splitName: "Home-Style Core & Waist Carve (Abs, Obliques, Deep Core)",
+    splitName: "Japanese Daily Training",
     isRestDay: false,
-    questTitle: "[Daily Quest] Home-Style Core & Waist Carve Session",
-    description: "High-intensity core and waist-carving session for your weekly routine. Build a tight, defined midsection with bicycle crunches, Russian twists, side planks, and leg raises — completely silent on your mat.",
-    xpReward: 600,
-    exercises: [
-      {
-        id: "wed-kpop-1",
-        name: "Bicycle Crunches [Upper & Lower Ab Carve]",
-        targetGroup: "Abs",
-        sets: 4,
-        reps: "20 reps (10 per side)",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie on back, hands behind head. Bring opposite elbow to opposite knee while extending the other leg straight. Move slowly with deliberate contraction — speed doesn't build abs, muscular tension does."
-      },
-      {
-        id: "wed-kpop-2",
-        name: "Russian Twists (Seated Torso Rotation) [Oblique & Waist Definition]",
-        targetGroup: "Abs",
-        sets: 3,
-        reps: "20 reps (10 per side)",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Sit with knees bent, lean back 45 degrees, keeping core braced. Twist torso side to side touching the floor beside each hip. Carves the obliques for a tight, defined waistline."
-      },
-      {
-        id: "wed-kpop-3",
-        name: "Side Plank Hold [Lateral Core Armor & Oblique Control]",
-        targetGroup: "Abs",
-        sets: 3,
-        reps: "30-45 seconds per side",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Support body on one forearm and outer foot, keeping body in a rigid straight line. Hold with hip elevated high. Builds lateral core stability and bulletproof obliques."
-      },
-      {
-        id: "wed-kpop-4",
-        name: "Lying Leg Raises [Lower Ab Flat Stomach Isolation]",
-        targetGroup: "Abs",
-        sets: 4,
-        reps: "15 reps",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie flat on back, hands under lower back for support. Raise straight legs to 90 degrees, then lower slowly without letting heels touch the floor. The ultimate lower ab isolation exercise."
-      },
-      {
-        id: "wed-kpop-5",
-        name: "Forearm Plank Hold [Deep Core Stability & Anti-Extension]",
-        targetGroup: "Abs",
-        sets: 3,
-        reps: "45-60 seconds hold",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Hold a forearm plank with body in a straight line from crown to heels. Squeeze abs and glutes tightly, breathing steadily. The foundation of deep transverse abdominis strength."
-      },
-      {
-        id: "wed-kpop-walk",
-        name: "Silent Power Walk [45 Minutes Dual Cardio]",
-        targetGroup: "Cardio",
-        sets: 1,
-        reps: "45 mins total (30m brisk walk + 15m run/march)",
-        equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Finish your core training with 45 minutes of steady walking to maintain high daily calorie expenditure while your abdominal muscles recover."
-      }
-    ]
+    questTitle: "[Daily Quest] Japanese-Style Fitness Routine",
+    description: "Run for 15 minutes then complete 3 sets each of push-ups, sit-ups, and squats — all until failure. Log your reps to track personal records. Do this every single day until you hit your goal weight.",
+    xpReward: 400,
+    exercises: DAILY_EXERCISES,
   },
   {
-    dayOfWeek: 4, // Thursday
+    dayOfWeek: 4,
     dayName: "Thursday",
-    splitName: "Home-Style Upper Body Pull & Posture Definition (Back, Shoulders, Arms)",
+    splitName: "Japanese Daily Training",
     isRestDay: false,
-    questTitle: "[Daily Quest] Home-Style Upper Body Pull & Posture Definition",
-    description: "Target upper back posture, shoulder blade stability, and arm definition using bodyweight holds like Superman holds, shoulder taps, and Y-T-W raises — completely silent and equipment-free.",
-    xpReward: 500,
-    exercises: [
-      {
-        id: "thu-kpop-1",
-        name: "Superman Holds [Lower Back Strengthener & Regal Posture]",
-        targetGroup: "Back",
-        sets: 4,
-        reps: "10 reps (hold 3 sec each)",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie face down with arms extended overhead. Simultaneously lift arms, chest, and legs off the floor. Hold 3 seconds squeezing lower back and glutes. Builds the strong erect posture essential for stage presence."
-      },
-      {
-        id: "thu-kpop-2",
-        name: "Plank Shoulder Taps [Anti-Rotation Core & Shoulder Stability]",
-        targetGroup: "Shoulders",
-        sets: 4,
-        reps: "20 reps (10 per side)",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Hold a high push-up plank position. Tap your left shoulder with your right hand, then alternate. Keep hips rock-solid and completely still to engage anti-rotation core stabilizers."
-      },
-      {
-        id: "thu-kpop-3",
-        name: "Close-Grip Push-Ups [Tricep Tone & Inner Chest Definition]",
-        targetGroup: "Triceps",
-        sets: 3,
-        reps: "10-12 reps",
-        equipment: "Bodyweight Only (Home)",
-        coachTip: "Place hands closer than shoulder-width with elbows tucked directly against your ribs during the descent. Excellent for building defined triceps and inner chest separation."
-      },
-      {
-        id: "thu-kpop-4",
-        name: "Prone Y-T-W Raises [Rear Delt & Upper Back Posture Sculpt]",
-        targetGroup: "Back",
-        sets: 3,
-        reps: "8 reps each position (Y, T, W)",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie face down. Lift arms into a Y position (overhead), T position (out to sides), and W position (elbows bent at sides). Hold each contraction for 2 seconds to sculpt rear delts and mid-back."
-      },
-      {
-        id: "thu-kpop-5",
-        name: "Standing Arm Circles & Isometric Bicep Flex [Arm Tone]",
-        targetGroup: "Biceps",
-        sets: 3,
-        reps: "30s forward circles + 30s backward + 15s bicep flex hold",
-        equipment: "Bodyweight Only (Home)",
-        coachTip: "Extend arms straight out to sides. Make small controlled circles forward for 30 seconds, then backward. Immediately finish with a 15-second maximum isometric bicep flex hold to tone arm muscles."
-      },
-      {
-        id: "thu-kpop-walk",
-        name: "Silent Power Walk [45 Minutes Dual Cardio]",
-        targetGroup: "Cardio",
-        sets: 1,
-        reps: "45 mins total (30m brisk walk + 15m run/march)",
-        equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Complete 45 minutes of daily dual cardio to stay on track toward your 160 lb target weight."
-      }
-    ]
+    questTitle: "[Daily Quest] Japanese-Style Fitness Routine",
+    description: "Run for 15 minutes then complete 3 sets each of push-ups, sit-ups, and squats — all until failure. Log your reps to track personal records. Do this every single day until you hit your goal weight.",
+    xpReward: 400,
+    exercises: DAILY_EXERCISES,
   },
   {
-    dayOfWeek: 5, // Friday
+    dayOfWeek: 5,
     dayName: "Friday",
-    splitName: "Home-Style Full Body Conditioning & Core Finisher",
+    splitName: "Japanese Daily Training",
     isRestDay: false,
-    questTitle: "[Daily Quest] Home-Style Full Body Conditioning & Core Finisher",
-    description: "High-energy full-body flow combining bodyweight squats, T-rotations, and slow controlled mountain climbers to burn calories, tone muscles, and elevate athletic stamina without jumping or noise.",
-    xpReward: 550,
-    exercises: [
-      {
-        id: "fri-kpop-1",
-        name: "Bodyweight Squat to Overhead Reach [Full Body Flow & Mobility]",
-        targetGroup: "Full Body",
-        sets: 4,
-        reps: "15 reps",
-        equipment: "Bodyweight Only (Home)",
-        coachTip: "Perform a deep bodyweight squat, then as you drive up through your heels, reach both arms straight overhead onto your toes. Fluid, athletic movement that opens the hips and chest."
-      },
-      {
-        id: "fri-kpop-2",
-        name: "Push-Up to T-Rotation [Chest, Shoulders & Oblique Control]",
-        targetGroup: "Full Body",
-        sets: 3,
-        reps: "10 reps (5 per side)",
-        equipment: "Bodyweight Only (Home)",
-        coachTip: "Perform a standard push-up, then as you reach the top, rotate your torso and extend one arm toward the ceiling into a side T-plank. Return to center and alternate sides."
-      },
-      {
-        id: "fri-kpop-3",
-        name: "Alternating Reverse Lunges with Knee Drive [Leg Tone & Balance]",
-        targetGroup: "Legs",
-        sets: 3,
-        reps: "12 reps per leg",
-        equipment: "Bodyweight Only (Home)",
-        coachTip: "Step back into a reverse lunge, then as you stand up, drive the back knee smoothly up toward your chest while balancing on the front leg. Builds core balance and athletic leg definition."
-      },
-      {
-        id: "fri-kpop-4",
-        name: "Silent Mountain Climbers [Slow Controlled Core Pace]",
-        targetGroup: "Abs",
-        sets: 4,
-        reps: "20 reps (10 per leg)",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "In a high plank position, bring one knee slowly toward your chest, hold 1 second, then extend back. Do not jump or bounce feet. Controlled pacing places 100% tension on deep core flexors."
-      },
-      {
-        id: "fri-kpop-5",
-        name: "Dead Bug Core Progression [Deep Transverse Abdomen Control]",
-        targetGroup: "Abs",
-        sets: 3,
-        reps: "12 reps (6 per side)",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie on back with arms reaching toward ceiling and knees bent at 90 degrees. Lower opposite arm and leg slowly toward floor while keeping lower back pressed firmly into the mat. Return and alternate."
-      },
-      {
-        id: "fri-kpop-walk",
-        name: "Silent Power Walk [45 Minutes Dual Cardio]",
-        targetGroup: "Cardio",
-        sets: 1,
-        reps: "45 mins total (30m brisk walk + 15m run/march)",
-        equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Complete 45 minutes of daily dual cardio right after your full-body conditioning session."
-      }
-    ]
+    questTitle: "[Daily Quest] Japanese-Style Fitness Routine",
+    description: "Run for 15 minutes then complete 3 sets each of push-ups, sit-ups, and squats — all until failure. Log your reps to track personal records. Do this every single day until you hit your goal weight.",
+    xpReward: 400,
+    exercises: DAILY_EXERCISES,
   },
   {
-    dayOfWeek: 6, // Saturday
+    dayOfWeek: 6,
     dayName: "Saturday",
-    splitName: "Home-Style Posture & Total Body Isometric Tension Circuit",
+    splitName: "Japanese Daily Training",
     isRestDay: false,
-    questTitle: "[Daily Quest] Home-Style Posture & Total Body Isometric Circuit",
-    description: "Master total body muscular control and endurance with this isometric hold circuit. By holding contractions (wall sits, push-up holds, hollow body holds), you build deep muscle fiber density and poise without heavy lifting.",
-    xpReward: 600,
-    exercises: [
-      {
-        id: "sat-kpop-1",
-        name: "Wall Sit with Shoulder Blade Squeeze [Quad Burn & Posture Alignment]",
-        targetGroup: "Legs",
-        sets: 4,
-        reps: "45-60 seconds hold",
-        equipment: "Wall (Home)",
-        coachTip: "Hold a 90-degree wall sit while actively squeezing your shoulder blades flat against the wall and tucking chin slightly. Aligns posture while building serious quad endurance."
-      },
-      {
-        id: "sat-kpop-2",
-        name: "Isometric Push-Up Bottom Hold [Chest & Tricep Endurance]",
-        targetGroup: "Chest",
-        sets: 3,
-        reps: "20-30 seconds hold at 90 degrees",
-        equipment: "Bodyweight Only (Home)",
-        coachTip: "Lower halfway down into a push-up until elbows are at 90 degrees and hold completely still. Squeeze chest, core, and glutes. Tremendous isometric strength builder."
-      },
-      {
-        id: "sat-kpop-3",
-        name: "Single-Leg Glute Bridge Hold [Unilateral Glute & Hamstring Tone]",
-        targetGroup: "Legs",
-        sets: 3,
-        reps: "20-30 seconds hold per side",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "In a glute bridge position, extend one leg straight out while driving hips high with the grounded heel. Hold isometric contraction at the top, then switch legs."
-      },
-      {
-        id: "sat-kpop-4",
-        name: "Hollow Body Hold [Core Armor & Gymnastic Compression]",
-        targetGroup: "Abs",
-        sets: 4,
-        reps: "30-45 seconds hold",
-        equipment: "Mat or Carpet (Home)",
-        coachTip: "Lie flat on back. Lift arms extended overhead, shoulder blades, and legs slightly off the floor, pressing your lower back firmly into the ground forming a banana/hollow shape. The ultimate core hold."
-      },
-      {
-        id: "sat-kpop-5",
-        name: "Isometric Bicep Wall Press [Arm Definition & Shoulder Stability]",
-        targetGroup: "Biceps",
-        sets: 3,
-        reps: "20 seconds hold per arm pressing upward against wall",
-        equipment: "Wall (Home)",
-        coachTip: "Stand facing or next to a wall, bend elbow 90 degrees with palm facing up against the wall or shelf edge. Press up as hard as possible for 20 seconds without moving. Isometric peak bicep contraction."
-      },
-      {
-        id: "sat-kpop-walk",
-        name: "Silent Power Walk [45 Minutes Dual Cardio]",
-        targetGroup: "Cardio",
-        sets: 1,
-        reps: "45 mins total (30m brisk walk + 15m run/march)",
-        equipment: "Outdoors / Silent Apartment Track",
-        coachTip: "Finish Saturday with your 30-minute brisk walk and 15-minute conditioning run. You have completed a full week of your training and meal-prep routine—ready for Sunday active recovery tomorrow!"
-      }
-    ]
-  }
+    questTitle: "[Daily Quest] Japanese-Style Fitness Routine",
+    description: "Run for 15 minutes then complete 3 sets each of push-ups, sit-ups, and squats — all until failure. Log your reps to track personal records. Do this every single day until you hit your goal weight.",
+    xpReward: 400,
+    exercises: DAILY_EXERCISES,
+  },
 ];
+
+
+
+
 
 
 

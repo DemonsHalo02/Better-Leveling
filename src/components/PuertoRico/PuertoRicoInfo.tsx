@@ -6,8 +6,8 @@ import { Compass, Sun, Shield, Heart, CheckCircle2, Navigation, Coffee } from "l
 const WHY_PR = [
   { icon: Sun, title: "Full-Stack Development", desc: "A flexible, in-demand skill set that works whether you land a job or go freelance — and it's the foundation everything else builds on." },
   { icon: Shield, title: "Content Creation", desc: "Documenting the coding + art journey builds a portfolio and an audience at the same time. Low pressure, mixed format — whatever's fun that week." },
-  { icon: Heart, title: "Digital Art (Hobby)", desc: "No monetization pressure. Just consistent practice to get better and have a creative outlet outside of code." },
-  { icon: Navigation, title: "Casual Korean", desc: "No exams, no certification track — just enough to travel comfortably and enjoy KDramas." }
+  { icon: Heart, title: "Filmmaking", desc: "Learning iPhone Filmmaking and Final Cut Pro X to create high-quality content and build a freelance creative skill set." },
+  { icon: Navigation, title: "Japanese", desc: "The main goal is to become proficient enough in Japanese and save up enough money to go to an IT Vocational school in Japan to get a work visa." }
 ];
 
 const CAGUAS_INFO = [
@@ -19,13 +19,13 @@ const CAGUAS_INFO = [
 ];
 
 const CHECKLIST = [
-  "Complete remaining HiSET subjects",
-  "Finish all 16 Udemy courses (coding, art, and 'important' tracks) by April 2, 2027",
+  "Complete remaining HiSET subjects (All subjects except Science)",
+  "Finish all 14 Udemy courses (coding, filmmaking, and Japanese) by April 2, 2027",
   "Build 3-5 portfolio-worthy full-stack projects",
   "Set up a GitHub, portfolio site, and (if going freelance) an Upwork/Fiverr profile",
   "Launch a content channel once there's real progress to show",
-  "Practice digital art consistently — no pressure, just enjoy it",
-  "Learn enough Korean for KDramas and a comfortable trip",
+  "Practice filmmaking and video editing consistently",
+  "Learn enough Japanese to enroll in an IT Vocational School in Japan",
   "Save $15,000 toward a MacBook Pro + iPad Pro + emergency fund",
   "Hit 160 lbs (Health & Fitness prime)"
 ];
@@ -47,8 +47,8 @@ export default function PuertoRicoInfo() {
             </div>
             <h2 className="text-4xl font-black text-white tracking-tighter drop-shadow-md">Future Plan</h2>
           </div>
-          <p className="text-[#f5a623] font-mono font-black tracking-[0.3em] text-sm uppercase drop-shadow-sm ml-1">Staying in the USA — Building a Life Here</p>
-          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">HiSET, a full-stack dev career (job or freelance), casual Korean, digital art as a hobby, and content creation — the culmination of 10 years of study, saving, and physical transformation, all built right here at home.</p>
+          <p className="text-[#f5a623] font-mono font-black tracking-[0.3em] text-sm uppercase drop-shadow-sm ml-1">10-Year Japan Relocation Plan</p>
+          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">Staying in the USA for now to build a full-stack dev and filmmaking career. The main goal is to become proficient enough in Japanese and save up enough money to go to an IT Vocational school in Japan to get a work visa after that.</p>
         </div>
       </div>
 
@@ -127,12 +127,12 @@ export default function PuertoRicoInfo() {
             <div className="font-black text-white text-sm">Next.js + React</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
-            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Korean</div>
-            <div className="font-black text-white text-sm">30min/day, No Pressure</div>
+            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Japanese</div>
+            <div className="font-black text-white text-sm">JLPT N5-N1 Goal</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
-            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Art</div>
-            <div className="font-black text-white text-sm">Hobby Only</div>
+            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Filmmaking</div>
+            <div className="font-black text-white text-sm">FCPX & iPhone</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
             <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Content</div>
