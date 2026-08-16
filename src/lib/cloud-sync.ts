@@ -1,6 +1,6 @@
 "use client";
 
-import { db } from "./firebase";
+import { db, auth } from "./firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { loadHunterState, saveHunterState, HunterState } from "./hunter-system";
 import { getPRData, savePRData, PRStorageData } from "./pr-storage";
@@ -24,6 +24,12 @@ export async function syncHunterToCloud(
   tier: "E-Rank Free" | "S-Rank VIP Guild"
 ): Promise<boolean> {
   if (!email || !db || typeof window === "undefined") return false;
+  // Check if Firebase Auth has an active session — Firestore rules require this
+  const firebaseUser = auth?.currentUser;
+  if (!firebaseUser) {
+    console.warn("[CloudSync] No active Firebase Auth session — skipping cloud sync.");
+    return false;
+  }
   try {
     const cleanEmail = email.trim().toLowerCase();
     const hunterState = loadHunterState();
