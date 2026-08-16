@@ -265,14 +265,14 @@ export default function MembershipPortal() {
     setIsCloudSyncing(true);
     console.log("Sync triggered. Firebase API Key present:", !!process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
     try {
-      const success = await syncHunterToCloud(currentUser.email, currentUser.displayName, currentUser.tier);
-      if (success) {
+      const result = await syncHunterToCloud(currentUser.email, currentUser.displayName, currentUser.tier);
+      if (result === true) {
         alert("⚡ Cloud Sync Successful! Your membership & stats are backed up to Firebase Firestore across devices.");
       } else {
-        alert("⚠️ Sync failed — Firebase may be unreachable or your Firestore security rules need updating. Your data is saved locally.");
+        alert(`⚠️ Sync failed. Error details: ${result}`);
       }
-    } catch {
-      alert("⚠️ Sync timed out. Check your internet connection and try again.");
+    } catch (err: any) {
+      alert(`⚠️ Sync timed out or crashed. Error: ${err.message || "Unknown error"}`);
     } finally {
       setIsCloudSyncing(false);
     }

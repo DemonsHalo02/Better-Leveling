@@ -22,7 +22,7 @@ export async function syncHunterToCloud(
   email: string,
   displayName: string,
   tier: "E-Rank Free" | "S-Rank VIP Guild"
-): Promise<boolean> {
+): Promise<boolean | string> {
   if (!email || !db || typeof window === "undefined") return false;
   try {
     const cleanEmail = email.trim().toLowerCase();
@@ -47,9 +47,9 @@ export async function syncHunterToCloud(
     await Promise.race([setDoc(docRef, payload, { merge: true }), timeout]);
     console.log(`[CloudSync] Successfully backed up Hunter profile to Firebase for ${cleanEmail}`);
     return true;
-  } catch (err) {
+  } catch (err: any) {
     console.warn("[CloudSync] Background sync offline or unconfigured (falling back to local storage):", err);
-    return false;
+    return err.message || "Unknown error";
   }
 }
 
