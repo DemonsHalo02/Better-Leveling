@@ -268,7 +268,7 @@ export default function MembershipPortal() {
       if (success) {
         alert("⚡ Cloud Sync Successful! Your membership & stats are backed up to Firebase Firestore across devices.");
       } else {
-        alert("⚠️ Sync failed — make sure you are fully signed in via the Membership Portal (Firebase Auth session required). Your data is saved locally.");
+        alert("⚠️ Sync failed — Firebase may be unreachable or your Firestore security rules need updating. Your data is saved locally.");
       }
     } catch {
       alert("⚠️ Sync timed out. Check your internet connection and try again.");
