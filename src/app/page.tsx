@@ -29,6 +29,7 @@ import PomodoroModal from "@/components/PuertoRico/PomodoroModal";
 import Confetti from "@/components/PuertoRico/Confetti";
 import { getPRData } from "@/lib/pr-storage";
 import { syncHunterToCloud } from "@/lib/cloud-sync";
+import { isSystemAdmin } from "@/lib/hunter-system";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<string>("inicio");
@@ -113,7 +114,14 @@ export default function Home() {
             <SystemSettings onNavigate={(tab) => setActiveTab(tab)} />
           )}
           {activeTab === "membership" && <MembershipPortal />}
-          {activeTab === "admin" && <AdminDashboard />}
+          {activeTab === "admin" && isSystemAdmin() && <AdminDashboard />}
+          {activeTab === "admin" && !isSystemAdmin() && (
+            <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-4">
+              <Shield className="w-16 h-16 text-red-500 animate-pulse" />
+              <h2 className="text-2xl font-black text-white uppercase tracking-widest">Access Denied</h2>
+              <p className="text-zinc-400 text-sm max-w-sm">This area is restricted to the Creator Admin. You must sign in with the authorized account to access this panel.</p>
+            </div>
+          )}
 
           {/* PR Tabs */}
           {activeTab === "inicio" && <Inicio />}
