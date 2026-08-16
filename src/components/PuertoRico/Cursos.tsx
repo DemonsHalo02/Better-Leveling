@@ -13,32 +13,45 @@ interface Course {
 const COURSES = {
   coding: [
     { id: "c01", title: "Tailwind CSS From Scratch | Learn By Building Projects", dates: "Sep 3–14" },
-    { id: "c02", title: "Git & GitHub - The Practical Guide", dates: "Sep 15–21" },
-    { id: "c03", title: "Next.js & React - The Complete Guide", dates: "Sep 22–Oct 20" },
-    { id: "c04", title: "iOS Development Masterclass 2027 - SwiftUI, SwiftData, AI", dates: "Oct 21–Nov 20" },
-    { id: "c05", title: "The Complete Full-Stack Web Development Bootcamp", dates: "Nov 21–Jan 10" },
-    { id: "c06", title: "Understanding TypeScript", dates: "Jan 11–24" },
-    { id: "c07", title: "The Complete Python Bootcamp From Zero to Hero in Python", dates: "Jan 25–Feb 15" },
-    { id: "c08", title: "Java Masterclass 2025: 130+ Hours of Expert Lessons", dates: "Feb 16–Apr 2" }
+    { id: "c02", title: "Git & GitHub - The Practical Guide", dates: "Oct 4–11" },
+    { id: "c03", title: "Next.js & React - The Complete Guide", dates: "Oct 4–24" },
+    { id: "c04", title: "iOS Development Masterclass 2027 - SwiftUI, SwiftData, AI", dates: "Jan 10–Feb 20" },
+    { id: "c05", title: "The Complete Full-Stack Web Development Bootcamp", dates: "Sep 3–Nov 1" },
+    { id: "c06", title: "Understanding TypeScript", dates: "Nov 1–14" },
+    { id: "c07", title: "The Complete SQL Bootcamp: Go from Zero to Hero", dates: "Nov 1–14" },
+    { id: "c08", title: "The Complete Python Bootcamp From Zero to Hero in Python", dates: "Dec 6–Jan 10" },
+    { id: "c09", title: "Java Masterclass 2025: 130+ Hours of Expert Lessons", dates: "Jan 10–Feb 15" }
+  ],
+  art: [
+    { id: "a01", title: "Clip Studio Paint Masterclass: From Beginner To Expert", dates: "Sep 3–Oct 4" },
+    { id: "a02", title: "Drawing Webtoons: From Planning to Publishing", dates: "Oct 18–Nov 15" },
+    { id: "a03", title: "Clip Studio Paint - Essential Training Course", dates: "Oct 18–Nov 15" },
+    { id: "a04", title: "Anatomy Art School: Drawing the Human Form", dates: "Nov 15–Dec 20" },
+    { id: "a05", title: "Perspective Art School: The Complete Drawing Course", dates: "Dec 20–Jan 24" },
+    { id: "a06", title: "Manga Art School: The Complete Anime & Manga Drawing Course", dates: "Dec 20–Jan 24" },
+    { id: "a07", title: "The Complete Environment Painting Super Course", dates: "Jan 24–Feb 21" },
+    { id: "a08", title: "Character Art School: Complete Coloring & Painting", dates: "Feb 7–Mar 15" },
+    { id: "a09", title: "Character Art School: Complete Character Drawing", dates: "Feb 7–Mar 15" }
   ],
   filmmaking: [
-    { id: "c09", title: "iPhone Filmmaker Masterclass", dates: "Sep 3–30" },
-    { id: "c10", title: "The Freelance Masterclass: For Creatives", dates: "Oct 1–Nov 15" },
-    { id: "c11", title: "Final Cut Pro X - Beginner To Advanced (FCP MASTERY 2026)", dates: "Nov 16–Jan 15" },
-    { id: "c12", title: "Local Marketing 2026: Google My Business, SEO, Social Media", dates: "Jan 16–Feb 28" }
+    { id: "f01", title: "iPhone Filmmaker Masterclass", dates: "Sep 17–Oct 15" },
+    { id: "f02", title: "The Freelance Masterclass: For Creatives", dates: "Feb 21–Apr 2" },
+    { id: "f03", title: "Final Cut Pro X - Beginner To Advanced (FCP MASTERY 2026)", dates: "Nov 15–Jan 15" },
+    { id: "f04", title: "Local Marketing 2026: Google My Business, SEO, Social Media", dates: "Feb 21–Apr 2" }
   ],
   important: [
-    { id: "c14", title: "HSE/GED/TASC/HiSET Prep: A Complete Mathematics Curriculum", dates: "Sep 3–Oct 15" },
-    { id: "c15", title: "Ultimate Japanese Bootcamp: Speak Like a Native + JLPT N5-N1", dates: "DAILY 30min" }
+    { id: "i01", title: "TOPIK II Reading Complete Prep: Target Level 4+", dates: "Jan 24–Apr 2" },
+    { id: "i02", title: "The Complete Korean Course for Beginners | 10 courses in 1!", dates: "Sep 3–Jan 24" },
+    { id: "i03", title: "HSE/GED/TASC/HiSET Prep: A Complete Mathematics Curriculum", dates: "Sep 3–Oct 15" }
   ]
 };
 
-const JAPANESE_MILESTONES = [
-  { id: "ja-basics", label: "Hiragana & Katakana (Sep–Dec 2026): Master the basic writing systems" },
-  { id: "ja-conversational", label: "JLPT N5 (Jan–Jun 2027): Basic vocabulary, particles, and simple sentences" },
-  { id: "ja-comfortable", label: "JLPT N4 — Basic conversational ability and reading everyday topics (by Dec 2027)" },
-  { id: "ja-immersion", label: "JLPT N3 — Understand everyday situations and read specific contents (by Dec 2028)" },
-  { id: "ja-travel", label: "JLPT N2 & N1 — IT Vocational School Ready and Business Fluent (by 2030)" },
+const KOREAN_MILESTONES = [
+  { id: "ko-lvl1", label: "TOPIK I Level 1 (Sep–Dec 2026): Basic survival Korean & Hangul" },
+  { id: "ko-lvl2", label: "TOPIK I Level 2 (Jan–Jun 2027): Everyday conversations and simple texts" },
+  { id: "ko-lvl3", label: "TOPIK II Level 3 — Intermediate fluency (by Dec 2027)" },
+  { id: "ko-lvl4", label: "TOPIK II Level 4 — Enjoying K-Dramas/K-Pop with minimal subtitles (by Dec 2028)" },
+  { id: "ko-lvl5", label: "TOPIK II Level 5 & 6 — Full fluency (by 2030)" },
 ];
 
 export default function Cursos() {
@@ -60,8 +73,6 @@ export default function Cursos() {
     const wasCompleted = data.courseProgress[id] === 100;
     const isCompleted = val === 100;
     
-    // trigger confetti logic can just be setting state if we wanted, but the global confetti runs on showConfetti
-    // I will dispatch an event if a course hits 100%
     if (isCompleted && !wasCompleted) {
       window.dispatchEvent(new Event('triggerConfetti'));
     }
@@ -157,45 +168,46 @@ export default function Cursos() {
         <div className="relative z-10">
           <h2 className="text-3xl sm:text-4xl font-black mb-3 tracking-tighter drop-shadow-md flex items-center gap-3">
             <Star className="w-8 h-8 fill-current text-[#f5a623] drop-shadow-[0_0_10px_rgba(245,166,35,0.8)]" />
-            Course Plan <span className="text-xl sm:text-2xl opacity-90">(14 Masterclasses)</span>
+            Course Plan <span className="text-xl sm:text-2xl opacity-90">(25 Masterclasses)</span>
           </h2>
           <p className="font-mono text-sm sm:text-base font-medium opacity-90 tracking-wide drop-shadow-sm mb-6">Sept 3 2026 → Apr 2 2027</p>
           
           <div className="flex flex-wrap gap-4 text-sm font-bold bg-black/30 p-4 rounded-2xl border border-white/20 shadow-inner backdrop-blur-sm">
             <div className="flex items-baseline gap-2">
               <span className="text-2xl text-white drop-shadow-md">{completedCount}</span> 
-              <span className="text-zinc-300">/ 14</span> 
+              <span className="text-zinc-300">/ 25</span> 
               <span className="opacity-80 text-xs ml-1 uppercase tracking-wider">Completed</span>
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
             <div className="flex items-center gap-2">
-              <span className="text-zinc-300 uppercase tracking-wider text-xs">Japanese:</span> 
+              <span className="text-zinc-300 uppercase tracking-wider text-xs">Korean:</span> 
               <span className="text-[#0a3d8f] bg-white px-2 py-0.5 rounded text-xs drop-shadow-sm">EVERY DAY</span>
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
             <div className="flex items-center gap-2">
-              <span className="text-zinc-300 uppercase tracking-wider text-xs">Filmmaking:</span> 
-              <span className="text-[#4ade80] bg-black/50 border border-[#4ade80]/50 px-2 py-0.5 rounded text-xs drop-shadow-sm">PARALLEL</span>
+              <span className="text-zinc-300 uppercase tracking-wider text-xs">Art/Film:</span> 
+              <span className="text-[#4ade80] bg-black/50 border border-[#4ade80]/50 px-2 py-0.5 rounded text-xs drop-shadow-sm">HOBBIES</span>
             </div>
           </div>
         </div>
       </div>
 
       <div className="space-y-4">
-        {renderSection("coding", "💻 SECTION 1 — CODING (8)", "from-[#0a3d8f]/30 to-transparent border-l-4 border-l-[#0a3d8f]", COURSES.coding)}
-        {renderSection("filmmaking", "🎥 SECTION 2 — FILMMAKING (4)", "from-[#f5a623]/30 to-transparent border-l-4 border-l-[#f5a623]", COURSES.filmmaking)}
-        {renderSection("important", "⭐ SECTION 3 — IMPORTANT (2)", "from-[#4ade80]/30 to-transparent border-l-4 border-l-[#4ade80]", COURSES.important)}
+        {renderSection("coding", "💻 SECTION 1 — CODING (9)", "from-[#0a3d8f]/30 to-transparent border-l-4 border-l-[#0a3d8f]", COURSES.coding)}
+        {renderSection("art", "🎨 SECTION 2 — ART (9)", "from-[#c084fc]/30 to-transparent border-l-4 border-l-[#c084fc]", COURSES.art)}
+        {renderSection("filmmaking", "🎥 SECTION 3 — FILMMAKING (4)", "from-[#f5a623]/30 to-transparent border-l-4 border-l-[#f5a623]", COURSES.filmmaking)}
+        {renderSection("important", "⭐ SECTION 4 — IMPORTANT (3)", "from-[#4ade80]/30 to-transparent border-l-4 border-l-[#4ade80]", COURSES.important)}
       </div>
 
-      {/* Japanese Tracker */}
+      {/* Korean Tracker */}
       <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl mt-8">
         <h3 className="text-2xl font-black text-white font-mono mb-2 flex items-center gap-3 tracking-tight">
-          <span className="text-3xl drop-shadow-md">🇯🇵</span> Japanese Plan (JLPT)
+          <span className="text-3xl drop-shadow-md">🇰🇷</span> Korean Plan (TOPIK)
         </h3>
-        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">Goal: IT Vocational School in Japan & Work Visa</p>
+        <p className="text-sm text-zinc-400 mb-8 font-medium tracking-wide">Goal: K-Pop & K-Dramas</p>
         
         <div className="space-y-4">
-          {JAPANESE_MILESTONES.map((ms) => {
+          {KOREAN_MILESTONES.map((ms) => {
             const isDone = data.deleProgress[ms.id] ? true : false;
             return (
               <label key={ms.id} className={`flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 cursor-pointer ${isDone ? 'bg-[#0a3d8f]/20 border-[#0a3d8f]/50 shadow-[0_0_15px_rgba(10,61,143,0.15)]' : 'bg-black/30 border-white/10 hover:border-white/30 hover:bg-black/40 hover:-translate-y-0.5'}`}>

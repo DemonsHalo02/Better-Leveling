@@ -448,7 +448,7 @@ export function isSystemAdmin(): boolean {
     if (savedUser) {
       const parsed = JSON.parse(savedUser);
       const email = (parsed.email || "").trim().toLowerCase();
-      if (email === "nickcrossonofficial@outlook.com" || email === "ncrossonofficial06@gmail.com") {
+      if (email === "ncrossonofficial06@gmail.com" || email === "ncrossonofficial06@gmail.com") {
         return true;
       }
     }

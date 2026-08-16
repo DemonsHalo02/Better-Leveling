@@ -17,7 +17,7 @@ import {
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { isSystemAdmin } from "./hunter-system";
 
-export const ADMIN_EMAIL = "nickcrossonofficial@outlook.com";
+export const ADMIN_EMAIL = "ncrossonofficial06@gmail.com";
 
 export type ArtworkType = "art" | "manhua";
 

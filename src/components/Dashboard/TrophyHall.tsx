@@ -69,7 +69,7 @@ export default function TrophyHall() {
 
   if (!hunterState) return null;
 
-  const isVip = userEmail === 'nickcrossonofficial@outlook.com' || true; // Permanently enabled for Nick as default S-Rank VIP
+  const isVip = userEmail === 'ncrossonofficial06@gmail.com' || true; // Permanently enabled for Nick as default S-Rank VIP
 
   const trophies: TrophyItem[] = [
     {
@@ -80,7 +80,7 @@ export default function TrophyHall() {
       icon: <Crown className="w-6 h-6 text-system-gold animate-pulse" />,
       rarity: 'Legendary',
       unlocked: isVip,
-      unlockCondition: 'Verified S-Rank VIP Account (nickcrossonofficial@outlook.com)'
+      unlockCondition: 'Verified S-Rank VIP Account (ncrossonofficial06@gmail.com)'
     },
     {
       id: 'puerto_rican_shredder',

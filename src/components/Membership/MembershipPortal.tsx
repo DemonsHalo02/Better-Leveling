@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { auth } from "@/lib/firebase";
 import {
   signInWithEmailAndPassword,
@@ -71,7 +72,7 @@ export default function MembershipPortal() {
         try {
           const parsed = JSON.parse(savedUser);
           const emailClean = (parsed.email || "").toLowerCase();
-          if (emailClean === "nickcrossonofficial@outlook.com" || emailClean === "ncrossonofficial06@gmail.com") {
+          if (emailClean === "ncrossonofficial06@gmail.com" || emailClean === "ncrossonofficial06@gmail.com") {
             parsed.tier = "S-Rank VIP Guild";
             localStorage.setItem("hunter_vip_tier", "S-Rank VIP Guild");
           }
@@ -91,7 +92,7 @@ export default function MembershipPortal() {
       const unsubscribe = auth.onAuthStateChanged(async (user: FirebaseUser | null) => {
         if (user && user.email) {
           const userEmailClean = user.email.toLowerCase();
-          const isNickAdmin = userEmailClean === "nickcrossonofficial@outlook.com" || userEmailClean === "ncrossonofficial06@gmail.com";
+          const isNickAdmin = userEmailClean === "ncrossonofficial06@gmail.com" || userEmailClean === "ncrossonofficial06@gmail.com";
           if (isNickAdmin) {
             localStorage.setItem("hunter_vip_tier", "S-Rank VIP Guild");
           }
@@ -135,7 +136,7 @@ export default function MembershipPortal() {
 
     try {
       const emailClean = email.trim().toLowerCase();
-      if (emailClean === "nickcrossonofficial@outlook.com" || emailClean === "ncrossonofficial06@gmail.com") {
+      if (emailClean === "ncrossonofficial06@gmail.com" || emailClean === "ncrossonofficial06@gmail.com") {
         if (password !== "Charminlikeasnake06!") {
           throw new Error("⚠️ Incorrect secret password for Creator Admin account!");
         }
@@ -154,7 +155,7 @@ export default function MembershipPortal() {
         const adminName = displayName.trim() || "Shadow Monarch Nick";
         const adminUser: LocalAuthUser = {
           uid: "admin-shadow-monarch-001",
-          email: emailClean || "nickcrossonofficial@outlook.com",
+          email: emailClean || "ncrossonofficial06@gmail.com",
           displayName: adminName,
           tier: "S-Rank VIP Guild",
         };
@@ -668,17 +669,38 @@ export default function MembershipPortal() {
                   </div>
                 ) : (
                   <>
-                    {/* Official PayPal Hosted Checkout Button */}
-                    <a
-                      href={getPaypalCheckoutUrl()}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full py-3.5 rounded-xl bg-[#0070ba] hover:bg-[#005ea6] text-white text-center text-xs font-black uppercase tracking-wider transition-all shadow-lg flex items-center justify-center gap-2 min-h-[44px]"
-                    >
-                      <CreditCard className="w-4 h-4" />
-                      <span>Pay via PayPal Business ({billingCycle === "monthly" ? "$9.99/mo" : "$89.99/yr"})</span>
-                      <ExternalLink className="w-3.5 h-3.5 opacity-80" />
-                    </a>
+                    {/* PayPal JS SDK Checkout */}
+                    <div className="w-full relative z-10">
+                      <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test", currency: "USD", intent: "capture" }}>
+                        <PayPalButtons 
+                          style={{ layout: "vertical", color: "gold", shape: "rect" }} 
+                          createOrder={(data, actions) => {
+                            return actions.order.create({
+                              intent: "CAPTURE",
+                              purchase_units: [
+                                {
+                                  description: billingCycle === "monthly" ? "VIP Guild Membership (1 Month)" : "VIP Guild Membership (1 Year)",
+                                  amount: {
+                                    currency_code: "USD",
+                                    value: billingCycle === "monthly" ? "9.99" : "89.99"
+                                  }
+                                }
+                              ]
+                            });
+                          }}
+                          onApprove={async (data, actions) => {
+                            if (actions.order) {
+                              await actions.order.capture();
+                              handleActivateVIP();
+                              alert("VIP Membership activated successfully via PayPal!");
+                            }
+                          }}
+                          onError={(err) => {
+                            console.error("PayPal Checkout Error:", err);
+                          }}
+                        />
+                      </PayPalScriptProvider>
+                    </div>
 
                     {/* Instant Activation Demo Button for testing */}
                     <button

@@ -446,7 +446,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
         </div>
 
         <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-          As a VIP Hunter or Creator, access our Cloud Storage Art Vault. High-resolution art and manhua chapters are uploaded directly by the creator (<span className="text-system-gold font-mono">nickcrossonofficial@outlook.com</span>). Like your favorite chapters and discuss in the guild comments!
+          As a VIP Hunter or Creator, access our Cloud Storage Art Vault. High-resolution art and manhua chapters are uploaded directly by the creator (<span className="text-system-gold font-mono">ncrossonofficial06@gmail.com</span>). Like your favorite chapters and discuss in the guild comments!
         </p>
       </div>
 

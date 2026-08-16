@@ -40,11 +40,11 @@ export default function WorkoutQuestView() {
       if (savedWeights) setExerciseWeights(JSON.parse(savedWeights));
       else setExerciseWeights({});
 
-      const savedSetReps = localStorage.getItem(`jp_set_reps_${selectedDay}`);
+      const savedSetReps = localStorage.getItem(`kp_set_reps_${selectedDay}`);
       if (savedSetReps) setSetReps(JSON.parse(savedSetReps));
       else setSetReps({});
 
-      const savedPRs = localStorage.getItem(`jp_personal_records`);
+      const savedPRs = localStorage.getItem(`kp_personal_records`);
       if (savedPRs) setPersonalRecords(JSON.parse(savedPRs));
       else setPersonalRecords({});
 
@@ -120,7 +120,7 @@ export default function WorkoutQuestView() {
     const updated = { ...setReps, [key]: value };
     setSetReps(updated);
     if (typeof window !== 'undefined') {
-      localStorage.setItem(`jp_set_reps_${selectedDay}`, JSON.stringify(updated));
+      localStorage.setItem(`kp_set_reps_${selectedDay}`, JSON.stringify(updated));
     }
     // Check if new PR
     const numVal = parseInt(value.replace(/\D/g, ''), 10);
@@ -130,7 +130,7 @@ export default function WorkoutQuestView() {
         const updatedPRs = { ...personalRecords, [exerciseId]: numVal };
         setPersonalRecords(updatedPRs);
         if (typeof window !== 'undefined') {
-          localStorage.setItem(`jp_personal_records`, JSON.stringify(updatedPRs));
+          localStorage.setItem(`kp_personal_records`, JSON.stringify(updatedPRs));
         }
         window.dispatchEvent(new Event('triggerConfetti'));
       }
@@ -178,7 +178,7 @@ export default function WorkoutQuestView() {
             }`}
           >
             <Home className="w-4 h-4" />
-            <span>Japanese Style (Daily Bodyweight)</span>
+            <span>K-Pop Style (Daily Bodyweight)</span>
           </button>
           <button
             onClick={() => handlePlanToggle('pf')}
@@ -202,11 +202,11 @@ export default function WorkoutQuestView() {
             <span>
               {planType === 'pf'
                 ? 'Planet Fitness Gym Blueprint | 7-Day Machine & Equipment Routine'
-                : 'Japanese-Style Daily Training | Run + Push-Ups + Sit-Ups + Squats'}
+                : 'K-Pop Idol Daily Training | Run + Push-Ups + Sit-Ups + Squats'}
             </span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            {planType === 'pf' ? 'Planet Fitness Gym Dojo' : '🇯🇵 Japanese-Style Daily Fitness'}
+            {planType === 'pf' ? 'Planet Fitness Gym Dojo' : '🇰🇷 K-Pop Idol Daily Fitness'}
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
             {planType === 'pf'
