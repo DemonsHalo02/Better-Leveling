@@ -263,6 +263,7 @@ export default function MembershipPortal() {
   const handleManualCloudSync = async () => {
     if (!currentUser) return;
     setIsCloudSyncing(true);
+    console.log("Sync triggered. Firebase API Key present:", !!process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
     try {
       const success = await syncHunterToCloud(currentUser.email, currentUser.displayName, currentUser.tier);
       if (success) {
