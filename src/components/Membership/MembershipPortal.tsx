@@ -263,12 +263,17 @@ export default function MembershipPortal() {
   const handleManualCloudSync = async () => {
     if (!currentUser) return;
     setIsCloudSyncing(true);
-    const success = await syncHunterToCloud(currentUser.email, currentUser.displayName, currentUser.tier);
-    setIsCloudSyncing(false);
-    if (success) {
-      alert("⚡ Cloud Sync Successful! Your membership & stats are backed up to Firebase Firestore across devices.");
-    } else {
-      alert("⚠️ Stored offline backup in local browser cache. Configure Firebase database in Cloudflare for live multi-device sync!");
+    try {
+      const success = await syncHunterToCloud(currentUser.email, currentUser.displayName, currentUser.tier);
+      if (success) {
+        alert("⚡ Cloud Sync Successful! Your membership & stats are backed up to Firebase Firestore across devices.");
+      } else {
+        alert("⚠️ Sync failed — Firebase may be unreachable or your Firestore security rules need updating. Your data is saved locally.");
+      }
+    } catch {
+      alert("⚠️ Sync timed out. Check your internet connection and try again.");
+    } finally {
+      setIsCloudSyncing(false);
     }
   };
 

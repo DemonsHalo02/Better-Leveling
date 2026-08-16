@@ -39,7 +39,12 @@ export async function syncHunterToCloud(
       lastSynced: Date.now(),
     };
 
-    await setDoc(docRef, payload, { merge: true });
+    // Race against an 8-second timeout so we never hang indefinitely
+    const timeout = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("Cloud sync timed out after 8s")), 8000)
+    );
+
+    await Promise.race([setDoc(docRef, payload, { merge: true }), timeout]);
     console.log(`[CloudSync] Successfully backed up Hunter profile to Firebase for ${cleanEmail}`);
     return true;
   } catch (err) {
@@ -57,7 +62,12 @@ export async function restoreHunterFromCloud(email: string): Promise<CloudHunter
   try {
     const cleanEmail = email.trim().toLowerCase();
     const docRef = doc(db, "hunters", cleanEmail);
-    const docSnap = await getDoc(docRef);
+
+    // Race against a 6-second timeout so restore never hangs
+    const timeout = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error("Cloud restore timed out after 6s")), 6000)
+    );
+    const docSnap = await Promise.race([getDoc(docRef), timeout]);
 
     if (docSnap.exists()) {
       const data = docSnap.data() as CloudHunterProfile;
