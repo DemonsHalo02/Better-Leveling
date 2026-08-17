@@ -492,7 +492,7 @@ export default function AdminDashboard() {
             type="text"
             value={broadcastMsg}
             onChange={(e) => setBroadcastMsg(e.target.value)}
-            placeholder="Enter global notification (e.g. ⚡ System Alert: Double XP PPL Workout Weekend Active)..."
+            placeholder="Enter global notification (e.g. ⚡ System Alert: Double XP Workout Weekend Active)..."
             className="flex-1 bg-system-dark border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-system-purple font-mono"
           />
           <button

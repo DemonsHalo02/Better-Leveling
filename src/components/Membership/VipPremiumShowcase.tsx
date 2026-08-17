@@ -285,7 +285,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
           {/* Slider 3: Cardio Frequency */}
           <div className="bg-system-dark/80 p-4 rounded-xl border border-white/10 space-y-3">
             <div className="flex justify-between text-xs font-bold">
-              <span className="text-zinc-300 uppercase">Weekly Cardio (Dojo/PF)</span>
+              <span className="text-zinc-300 uppercase">Weekly Cardio</span>
               <span className="text-system-purple font-black">{cardioDays} DAYS / WK</span>
             </div>
             <input

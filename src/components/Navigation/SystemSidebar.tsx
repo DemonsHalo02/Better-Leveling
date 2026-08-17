@@ -37,7 +37,7 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
     },
     {
       id: 'workouts',
-      label: '6-Day PPL (PF)',
+      label: 'Calisthenics Dojo',
       mobileLabel: 'Workout',
       icon: <Dumbbell className="w-5 h-5" />
     },
