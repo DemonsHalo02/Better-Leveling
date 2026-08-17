@@ -17,7 +17,7 @@ export default function WorkoutQuestView() {
   // Personal records: key = exerciseId, value = best single-set rep count ever
   const [personalRecords, setPersonalRecords] = useState<Record<string, number>>({});
 
-  // Planet Fitness Treadmill Cardio State (45 mins daily target: 30m walk + 15m run)
+  // Cardio State (45 mins daily target: 30m walk + 15m run)
   const [treadmillMinutes, setTreadmillMinutes] = useState<number>(0);
   const [customMinutesInput, setCustomMinutesInput] = useState<string>('');
   const TREADMILL_GOAL = 45;
@@ -171,7 +171,7 @@ export default function WorkoutQuestView() {
               Choose Your Daily Workout Blueprint
             </h3>
             <p className="text-xs text-zinc-400">
-              Switch instantly between your home quiet apartment routine and your Planet Fitness gym routine. Progress and sets are tracked per routine!
+              Switch instantly between your 4 calisthenics progression tiers. Progress and sets are tracked per routine!
             </p>
           </div>
         </div>

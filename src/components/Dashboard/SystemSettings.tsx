@@ -38,7 +38,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
     if (loaded.profile) {
       setName(loaded.profile.name || 'Nick Crosson');
       setTitle(loaded.title || 'Awakened Hunter');
-      setGymName(loaded.profile.gymName || 'Home Bodyweight Dojo vs Planet Fitness Gym (Dual Choice + 45m Cardio)');
+      setGymName(loaded.profile.gymName || 'Quiet Apartment Bodyweight Dojo');
       setDietName(loaded.profile.dietName || "S-Rank Shred Blueprint: High-Protein Cutting Plan (~2,080 kcal)");
 
       setStartWeight(loaded.profile.startWeight || 242);
@@ -71,7 +71,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
       dailyProteinGoal: Number(dailyProteinGoal) || 178,
       dailyCarbGoal: Number(dailyCarbGoal) || 190,
       dailyFatGoal: Number(dailyFatGoal) || 60,
-      gymName: gymName.trim() || 'Home Bodyweight Dojo vs Planet Fitness Gym (Dual Choice + 45m Cardio)',
+      gymName: gymName.trim() || 'Quiet Apartment Bodyweight Dojo',
       dietName: dietName.trim() || "S-Rank Shred Blueprint: High-Protein Cutting Plan (~2,080 kcal)",
     };
 

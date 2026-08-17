@@ -90,7 +90,7 @@ const DEFAULT_STATE: HunterState = {
     dailyProteinGoal: 178,
     dailyCarbGoal: 200,
     dailyFatGoal: 60,
-    gymName: "Puerto Rican Style Home Bodyweight vs Planet Fitness Gym (Dual Choice + 45m Cardio)",
+    gymName: "Quiet Apartment Bodyweight Dojo",
     dietName: "Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal)",
   },
   completedQuestsToday: {
@@ -185,7 +185,7 @@ export function loadHunterState(): HunterState {
       }
       if (!localStorage.getItem('puerto_rico_style_text_upgrade_v1')) {
         parsed.profile.dietName = "Puerto Rico: Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint (~2,080 kcal)";
-        parsed.profile.gymName = "Puerto Rican Style Home Bodyweight vs Planet Fitness Gym (Dual Choice + 45m Cardio)";
+        parsed.profile.gymName = "Quiet Apartment Bodyweight Dojo";
         localStorage.setItem('pf_selected_aisle_template', 'Puerto Rico');
         localStorage.setItem('pf_selected_country_plan', 'Puerto Rico');
         localStorage.setItem('nutrition_deck_country', 'Puerto Rico');

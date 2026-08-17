@@ -442,7 +442,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
               style={{ width: `${Math.min(100, (totalCarbs / carbGoal) * 100)}%` }}
             />
           </div>
-          <div className="text-[11px] text-zinc-400">Primary fuel for Home Quiet Apartment or Planet Fitness workouts.</div>
+          <div className="text-[11px] text-zinc-400">Primary fuel for your Quiet Apartment workouts.</div>
         </div>
 
         {/* Fat Card */}

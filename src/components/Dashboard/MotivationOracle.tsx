@@ -7,7 +7,7 @@ import confetti from 'canvas-confetti';
 
 const DIRECTIVE_QUOTES = [
   {
-    quote: "A hunter who fears the weights will never rise above E-Rank. Step into Planet Fitness and conquer the iron with the discipline of a true S-Rank.",
+    quote: "A hunter who fears the ground will never rise above E-Rank. Step onto the mat and conquer gravity with the discipline of a true S-Rank.",
     author: "Shadow Monarch Directive",
     stat: "STR FOCUS"
   },
