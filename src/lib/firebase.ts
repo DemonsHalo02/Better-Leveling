@@ -28,7 +28,7 @@ try {
     onAuthStateChanged: (cb: any) => { cb(null); return () => {}; },
     currentUser: null
   };
-  db = {};
+  db = null;
   storage = null;
 }
 

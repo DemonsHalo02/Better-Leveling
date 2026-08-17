@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE, PUERTO_RICAN_PLANET_FITNESS_ROUTINE, WorkoutDay, Exercise } from '@/lib/workout-data';
+import { PlanTier, getTodayWorkout, WorkoutDay, Exercise, CALISTHENICS_BEGINNER, CALISTHENICS_INTERMEDIATE, CALISTHENICS_ADVANCED, CALISTHENICS_EXPERT } from '@/lib/workout-data';
 import { awardXp, loadHunterState, saveHunterState } from '@/lib/hunter-system';
 import { Dumbbell, CheckCircle2, Circle, Trophy, Info, Sparkles, MapPin, Zap, Footprints, Flame, PlusCircle, RotateCcw, Home, Building2 } from 'lucide-react';
 import RestTimerBar from './RestTimerBar';
@@ -11,7 +11,7 @@ export default function WorkoutQuestView() {
   const [completedSets, setCompletedSets] = useState<Record<string, number>>({});
   const [exerciseWeights, setExerciseWeights] = useState<Record<string, string>>({});
   const [questCleared, setQuestCleared] = useState<boolean>(false);
-  const [planType, setPlanType] = useState<'home' | 'pf'>('home');
+  const [planType, setPlanType] = useState<PlanTier>('beginner');
   // Per-set rep logging for until-failure exercises: key = `${exerciseId}_set${n}`, value = reps string
   const [setReps, setSetReps] = useState<Record<string, string>>({});
   // Personal records: key = exerciseId, value = best single-set rep count ever
@@ -22,17 +22,25 @@ export default function WorkoutQuestView() {
   const [customMinutesInput, setCustomMinutesInput] = useState<string>('');
   const TREADMILL_GOAL = 45;
 
-  const activeRoutine = planType === 'pf' ? PUERTO_RICAN_PLANET_FITNESS_ROUTINE : PUERTO_RICAN_HOME_BODYWEIGHT_ROUTINE;
-  const currentDayWorkout = activeRoutine.find(d => d.dayOfWeek === selectedDay) || activeRoutine[0];
+  const currentDayWorkout = getTodayWorkout(planType);
+
+  const activeRoutineArray = (() => {
+    switch(planType) {
+      case 'intermediate': return CALISTHENICS_INTERMEDIATE;
+      case 'advanced': return CALISTHENICS_ADVANCED;
+      case 'expert': return CALISTHENICS_EXPERT;
+      case 'beginner': default: return CALISTHENICS_BEGINNER;
+    }
+  })();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedType = localStorage.getItem('active_workout_routine_type') as 'home' | 'pf' | null;
-      if (savedType === 'home' || savedType === 'pf') {
+      const savedType = localStorage.getItem('active_workout_routine_type') as PlanTier | null;
+      if (savedType && ['beginner', 'intermediate', 'advanced', 'expert'].includes(savedType)) {
         setPlanType(savedType);
       }
 
-      const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}_${savedType || 'home'}`);
+      const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}_${savedType || 'beginner'}`);
       if (savedSets) setCompletedSets(JSON.parse(savedSets));
       else setCompletedSets({});
 
@@ -54,7 +62,7 @@ export default function WorkoutQuestView() {
     }
   }, [selectedDay, planType]);
 
-  const handlePlanToggle = (newType: 'home' | 'pf') => {
+  const handlePlanToggle = (newType: PlanTier) => {
     setPlanType(newType);
     if (typeof window !== 'undefined') {
       localStorage.setItem('active_workout_routine_type', newType);
@@ -168,29 +176,24 @@ export default function WorkoutQuestView() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 bg-black/60 p-1.5 rounded-xl border border-white/10 w-full md:w-auto">
-          <button
-            onClick={() => handlePlanToggle('home')}
-            className={`flex-1 md:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all ${
-              planType === 'home'
-                ? 'bg-gradient-to-r from-system-blue to-system-cyan text-black shadow-glow-blue scale-102'
-                : 'text-zinc-400 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            <Home className="w-4 h-4" />
-            <span>K-Pop Style (Daily Bodyweight)</span>
-          </button>
-          <button
-            onClick={() => handlePlanToggle('pf')}
-            className={`flex-1 md:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all ${
-              planType === 'pf'
-                ? 'bg-gradient-to-r from-system-gold via-amber-400 to-yellow-500 text-black shadow-glow-gold scale-102'
-                : 'text-zinc-400 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            <Building2 className="w-4 h-4" />
-            <span>Planet Fitness Gym</span>
-          </button>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 bg-black/60 p-2 rounded-xl border border-white/10 w-full md:w-auto">
+          {['beginner', 'intermediate', 'advanced', 'expert'].map((tier) => {
+            const isSelected = planType === tier;
+            return (
+              <button
+                key={tier}
+                onClick={() => handlePlanToggle(tier as PlanTier)}
+                className={`flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all ${
+                  isSelected
+                    ? 'bg-gradient-to-r from-system-blue to-system-cyan text-black shadow-glow-blue scale-102'
+                    : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                <Dumbbell className="w-3.5 h-3.5" />
+                <span className="truncate">{tier}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
       
@@ -199,19 +202,13 @@ export default function WorkoutQuestView() {
         <div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
             <MapPin className="w-3.5 h-3.5 text-system-blue" />
-            <span>
-              {planType === 'pf'
-                ? 'Planet Fitness Gym Blueprint | 7-Day Machine & Equipment Routine'
-                : 'K-Pop Idol Daily Training | Run + Push-Ups + Sit-Ups + Squats'}
-            </span>
+            <span>Calisthenics Apartment Dojo | {planType.charAt(0).toUpperCase() + planType.slice(1)} Tier</span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            {planType === 'pf' ? 'Planet Fitness Gym Dojo' : '🇰🇷 K-Pop Idol Daily Fitness'}
+            {planType} Bodyweight Routine
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            {planType === 'pf'
-              ? 'Tailored specifically for Planet Fitness machines, dumbbells, cables, and Smith machine squats. Daily dual cardio: 30-minute incline treadmill walk + 15-minute jog. Monday includes your Auburn ME Walmart Grocery Run & Weekly Batch Meal Prep from your chosen 19-Country Global Blueprint!'
-              : '15-minute run followed by 3 sets each of push-ups, sit-ups, and squats — all until failure. Done EVERY DAY until you hit your goal weight. Log your reps per set and watch your personal records climb!'}
+            A specialized calisthenics routine designed to be performed quietly in your apartment using only bodyweight, a mat, and a chair. Includes your daily mandatory 15-minute run!
           </p>
         </div>
 
@@ -311,7 +308,7 @@ export default function WorkoutQuestView() {
 
       {/* Day Selector Tabs */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
-        {activeRoutine.map((day) => {
+        {activeRoutineArray.map((day: WorkoutDay) => {
           const isSelected = selectedDay === day.dayOfWeek;
           const isToday = new Date().getDay() === day.dayOfWeek;
           return (
