@@ -1655,23 +1655,23 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 0,
     fat: 1.5,
     servingSize: "4 oz",
-    coachNote: "Core protein for Healthy Buffalo Chicken Salad & Blackened Cajun Chicken.",
+    coachNote: "Core protein! Use for Healthy Buffalo Chicken Salad & blend/mince for the Hot Honey Chicken Crust Pizza.",
     cuisine: ["USA", "USA Bulking"]
   },
   {
     id: "g-usa-milk",
     upc: "078742356619-usa",
-    name: "Fairlife Non-Fat Ultra-Filtered Milk (TWO 52 oz bottles)",
+    name: "Great Value Fat-Free Skim Milk (1 Gallon)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Fairlife",
+    brand: "Great Value",
     category: "Essentials",
-    priceEst: "$8.96",
+    priceEst: "$2.98",
     calories: 80,
-    protein: 13,
-    carbs: 6,
+    protein: 8,
+    carbs: 12,
     fat: 0,
     servingSize: "1 cup",
-    coachNote: "High protein milk base for BasicsWithBails High Protein Iced Coffee & Tiramisu Oats.",
+    coachNote: "Milk base for BasicsWithBails High Protein Iced Coffee & Tiramisu Oats.",
     cuisine: ["USA", "USA Bulking"]
   },
   {
@@ -1725,15 +1725,15 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   {
     id: "g-usa-cottage",
     upc: "078742355521-usa",
-    name: "Good Culture Low-Fat Cottage Cheese (TWO 16 oz tubs)",
+    name: "Great Value Low-Fat Cottage Cheese (24 oz)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Good Culture",
+    brand: "Great Value",
     category: "Protein",
-    priceEst: "$6.96",
+    priceEst: "$2.98",
     calories: 80,
-    protein: 14,
-    carbs: 3,
-    fat: 2.5,
+    protein: 12,
+    carbs: 5,
+    fat: 1.5,
     servingSize: "1/2 cup",
     coachNote: "Blended for the Healthy Buffalo Chicken Salad dressing.",
     cuisine: ["USA", "USA Bulking"]
@@ -1755,35 +1755,99 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     cuisine: ["USA", "USA Bulking"]
   },
   {
-    id: "g-usa-rice",
+    id: "g-usa-parm",
     upc: "078742355523-usa",
-    name: "Great Value Long Grain White Rice (5 lbs)",
+    name: "Great Value Grated Parmesan Cheese (8 oz)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
-    category: "Carbs",
-    priceEst: "$3.48",
-    calories: 160,
-    protein: 3,
-    carbs: 35,
-    fat: 0,
-    servingSize: "1/4 cup dry",
-    coachNote: "Clean carb base for the Blackened Air Fryer Cajun Chicken dinner.",
+    category: "Protein",
+    priceEst: "$2.98",
+    calories: 20,
+    protein: 2,
+    carbs: 0,
+    fat: 1.5,
+    servingSize: "1 tbsp",
+    coachNote: "Essential for structure and crispy edges in the Chicken Crust Pizza.",
     cuisine: ["USA", "USA Bulking"]
   },
   {
-    id: "g-usa-broccoli",
+    id: "g-usa-eggs",
     upc: "078742355524-usa",
-    name: "Great Value Frozen Broccoli Florets (32 oz)",
+    name: "Great Value Large White Eggs (12 count)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Great Value",
-    category: "Produce",
-    priceEst: "$2.98",
-    calories: 25,
+    category: "Protein",
+    priceEst: "$1.88",
+    calories: 70,
+    protein: 6,
+    carbs: 0,
+    fat: 5,
+    servingSize: "1 egg",
+    coachNote: "Binder for the Chicken Crust Pizza.",
+    cuisine: ["USA", "USA Bulking"]
+  },
+  {
+    id: "g-usa-pizzasauce",
+    upc: "078742355525-usa",
+    name: "Great Value Pizza Sauce (14 oz)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Carbs",
+    priceEst: "$1.48",
+    calories: 35,
     protein: 1,
-    carbs: 4,
+    carbs: 6,
     fat: 0,
-    servingSize: "1 cup",
-    coachNote: "Fibrous greens to pair with the Cajun Chicken dinner.",
+    servingSize: "1/4 cup",
+    coachNote: "Sauce for the Hot Honey Chicken Crust Pizza.",
+    cuisine: ["USA", "USA Bulking"]
+  },
+  {
+    id: "g-usa-mozzarella",
+    upc: "078742355526-usa",
+    name: "Great Value Shredded Mozzarella Cheese (TWO 8 oz bags)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Protein",
+    priceEst: "$4.44",
+    calories: 80,
+    protein: 7,
+    carbs: 1,
+    fat: 6,
+    servingSize: "1/4 cup",
+    coachNote: "Topping for the Chicken Crust Pizza (half cup per pizza!).",
+    cuisine: ["USA", "USA Bulking"]
+  },
+  {
+    id: "g-usa-hothoney",
+    upc: "078742355527-usa",
+    name: "Great Value Hot Honey (12 oz)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Seasonings & Spices",
+    priceEst: "$4.48",
+    calories: 60,
+    protein: 0,
+    carbs: 17,
+    fat: 0,
+    servingSize: "1 tbsp",
+    coachNote: "Sweet & spicy drizzle for the Hot Honey Chicken Crust Pizza.",
+    cuisine: ["USA", "USA Bulking"]
+  },
+  {
+    id: "g-usa-parchment",
+    upc: "078742355528-usa",
+    name: "Great Value Parchment Paper (50 sq ft)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Essentials",
+    priceEst: "$1.98",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "N/A",
+    coachNote: "Essential for baking the Chicken Crust Pizza so it doesn't stick.",
     cuisine: ["USA", "USA Bulking"]
   },
 
@@ -2984,91 +3048,91 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
   // 19. USA 🇺🇸 (Cutting & Bulking)
   {
     id: "plan-usa",
-    title: "USA: BasicsWithBails High Protein Iced Coffee & Chicken Shred (~2,020 kcal)",
+    title: "USA: BasicsWithBails Hot Honey Chicken Crust Pizza Shred (~1,560 kcal)",
     country: "USA",
     flag: "🇺🇸",
-    badge: "🇺🇸 BasicsWithBails Phase 1 Cutting ($68.78/Wk)",
-    targetDailyCalories: 2020,
-    targetDailyProtein: 176,
-    estCostPerWeek: "$68.78 Weekly Consumables / Exact Match Walmart",
-    description: "Entirely sourced from BasicsWithBails.com! Features the signature High Protein Iced Coffee and Tiramisu Protein Overnight Oats. Lunch is the Healthy Buffalo Chicken Salad (blended cottage cheese base), and dinner is Blackened Air Fryer Cajun Chicken Breast over rice and broccoli.",
+    badge: "🇺🇸 BasicsWithBails Phase 1 Cutting ($69.60/Wk)",
+    targetDailyCalories: 1560,
+    targetDailyProtein: 192,
+    estCostPerWeek: "$69.60 Weekly Consumables / Exact Match Walmart",
+    description: "Entirely sourced from BasicsWithBails.com! Features High Protein Iced Coffee, Tiramisu Protein Overnight Oats, Healthy Buffalo Chicken Salad, and the viral Hot Honey Chicken Crust Pizza. (Note: Skim milk used to keep exact budget under $70).",
     meals: [
       {
         name: "Morning Fuel: BasicsWithBails High Protein Iced Coffee",
         time: "8:00 AM",
         ingredients: [
-          "1.5 cups Fairlife Non-Fat Milk, 1 tsp Instant Espresso, 1 scoop Equate Vanilla Whey, ice. (260 kcal, 34g p, 12g c, 1.5g f)"
+          "1.5 cups Great Value Skim Milk, 1 tsp Instant Espresso, 1 scoop Equate Vanilla Whey, ice. (260 kcal, 42g p, 21g c, 1.5g f)"
         ],
-        calories: 260, protein: 34, carbs: 12, fat: 1.5
+        calories: 260, protein: 42, carbs: 21, fat: 1.5
       },
       {
         name: "Post-Workout Breakfast: Tiramisu Protein Overnight Oats",
         time: "10:30 AM",
         ingredients: [
-          "1.5 cups Great Value Oats, 1/2 cup water, 1 scoop Vanilla Whey, 1 tsp Espresso. (590 kcal, 45g p, 84g c, 9g f)"
+          "1.5 cups Great Value Oats, 1/2 cup Skim Milk, 1 scoop Vanilla Whey, 1 tsp Espresso. (630 kcal, 49g p, 87g c, 9g f)"
         ],
-        calories: 590, protein: 45, carbs: 84, fat: 9
+        calories: 630, protein: 49, carbs: 87, fat: 9
       },
       {
         name: "Lunch: BasicsWithBails Healthy Buffalo Chicken Salad",
         time: "2:00 PM",
         ingredients: [
-          "5 oz shredded Fresh Chicken Breast mixed with 1/2 cup Good Culture Cottage Cheese (blended) and 2 tbsp Frank's RedHot Buffalo Sauce. Served over 2 cups cooked White Rice. (580 kcal, 49g p, 74g c, 4.5g f)"
+          "5.7 oz shredded Fresh Chicken Breast mixed with 1/2 cup Great Value Cottage Cheese (blended) and 2 tbsp Frank's RedHot Buffalo Sauce. (260 kcal, 49g p, 5g c, 3.5g f)"
         ],
-        calories: 580, protein: 49, carbs: 74, fat: 4.5
+        calories: 260, protein: 49, carbs: 5, fat: 3.5
       },
       {
-        name: "Dinner: Blackened Air Fryer Cajun Chicken Breast",
+        name: "Dinner: BasicsWithBails Hot Honey Chicken Crust Pizza",
         time: "7:30 PM",
         ingredients: [
-          "6 oz Fresh Chicken Breast coated in Cajun seasoning, air fried. Served with 2 cups cooked Great Value White Rice and 1 cup steamed Broccoli. (590 kcal, 52g p, 80g c, 3g f)"
+          "Crust: 5.7 oz minced Fresh Chicken Breast, 1 Egg, 1 tbsp Parmesan, Garlic Powder. Baked on parchment paper. Toppings: 1/4 cup Pizza Sauce, 1/2 cup Mozzarella, 1 tbsp Hot Honey drizzle. (410 kcal, 52g p, 10g c, 17g f)"
         ],
-        calories: 590, protein: 52, carbs: 80, fat: 3
+        calories: 410, protein: 52, carbs: 10, fat: 17
       }
     ]
   },
   {
     id: "plan-usa-bulking",
-    title: "USA Bulking: BasicsWithBails Lean Bulk (~2,590 kcal)",
+    title: "USA Bulking: BasicsWithBails Hot Honey Pizza Lean Bulk (~1,920 kcal)",
     country: "USA Bulking",
     flag: "🇺🇸🔥",
-    badge: "🔥 Phase 2: BasicsWithBails Lean Bulk ($68.78/Wk)",
-    targetDailyCalories: 2590,
-    targetDailyProtein: 195,
-    estCostPerWeek: "$68.78 Weekly Consumables / Exact Match Walmart",
-    description: "BasicsWithBails Phase 2 Lean Bulking! Double the rice and oats. Features Tiramisu Protein Overnight Oats, High Protein Iced Coffee, Healthy Buffalo Chicken Salad, and DOUBLE Rice Blackened Air Fryer Cajun Chicken.",
+    badge: "🔥 Phase 2: BasicsWithBails Lean Bulk ($69.60/Wk)",
+    targetDailyCalories: 1920,
+    targetDailyProtein: 202,
+    estCostPerWeek: "$69.60 Weekly Consumables / Exact Match Walmart",
+    description: "BasicsWithBails Phase 2 Lean Bulking! Double the oats and extra Hot Honey drizzle. Features Tiramisu Protein Overnight Oats, High Protein Iced Coffee, Healthy Buffalo Chicken Salad, and the viral Hot Honey Chicken Crust Pizza.",
     meals: [
       {
         name: "Morning Fuel: BasicsWithBails High Protein Iced Coffee",
         time: "8:00 AM",
         ingredients: [
-          "1.5 cups Fairlife Non-Fat Milk, 1 tsp Instant Espresso, 1 scoop Equate Vanilla Whey, ice. (260 kcal, 34g p, 12g c, 1.5g f)"
+          "1.5 cups Great Value Skim Milk, 1 tsp Instant Espresso, 1 scoop Equate Vanilla Whey, ice. (260 kcal, 42g p, 21g c, 1.5g f)"
         ],
-        calories: 260, protein: 34, carbs: 12, fat: 1.5
+        calories: 260, protein: 42, carbs: 21, fat: 1.5
       },
       {
         name: "Post-Workout Breakfast: DOUBLE Tiramisu Protein Overnight Oats",
         time: "10:30 AM",
         ingredients: [
-          "2 cups Great Value Oats, 1/2 cup water, 1 scoop Vanilla Whey, 1 tsp Espresso. (740 kcal, 50g p, 111g c, 12g f)"
+          "2.5 cups Great Value Oats, 1/2 cup Skim Milk, 1 scoop Vanilla Whey, 1 tsp Espresso. (930 kcal, 59g p, 141g c, 14g f)"
         ],
-        calories: 740, protein: 50, carbs: 111, fat: 12
+        calories: 930, protein: 59, carbs: 141, fat: 14
       },
       {
-        name: "Lunch: BasicsWithBails Healthy Buffalo Chicken Salad (Bulk)",
+        name: "Lunch: BasicsWithBails Healthy Buffalo Chicken Salad",
         time: "2:00 PM",
         ingredients: [
-          "5 oz shredded Fresh Chicken Breast mixed with 1/2 cup Good Culture Cottage Cheese (blended) and 2 tbsp Frank's RedHot Buffalo Sauce. Served over 3 cups cooked White Rice. (790 kcal, 54g p, 118g c, 4.5g f)"
+          "5.7 oz shredded Fresh Chicken Breast mixed with 1/2 cup Great Value Cottage Cheese (blended) and 2 tbsp Frank's RedHot Buffalo Sauce. (260 kcal, 49g p, 5g c, 3.5g f)"
         ],
-        calories: 790, protein: 54, carbs: 118, fat: 4.5
+        calories: 260, protein: 49, carbs: 5, fat: 3.5
       },
       {
-        name: "Dinner: DOUBLE Rice Blackened Air Fryer Cajun Chicken Breast",
+        name: "Dinner: EXTRA SWEET Hot Honey Chicken Crust Pizza",
         time: "7:30 PM",
         ingredients: [
-          "6 oz Fresh Chicken Breast coated in Cajun seasoning, air fried. Served with 3 cups cooked Great Value White Rice and 1 cup steamed Broccoli. (800 kcal, 57g p, 124g c, 3g f)"
+          "Crust: 5.7 oz minced Fresh Chicken Breast, 1 Egg, 1 tbsp Parmesan, Garlic Powder. Baked on parchment paper. Toppings: 1/4 cup Pizza Sauce, 1/2 cup Mozzarella, 2 tbsp Hot Honey drizzle. (470 kcal, 52g p, 27g c, 17g f)"
         ],
-        calories: 800, protein: 57, carbs: 124, fat: 3
+        calories: 470, protein: 52, carbs: 27, fat: 17
       }
     ]
   }
