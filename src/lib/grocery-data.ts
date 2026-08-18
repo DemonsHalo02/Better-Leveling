@@ -42,17 +42,17 @@ const ALL_CUISINES_BOTH = [
   "China", "China Bulking", "Korea", "Korea Bulking", "Japan", "Japan Bulking", "Italy", "Italy Bulking",
   "El Salvador", "El Salvador Bulking", "Venezuela", "Venezuela Bulking", "Argentina", "Argentina Bulking",
   "France", "France Bulking", "Germany", "Germany Bulking", "Russia", "Russia Bulking", "India", "India Bulking",
-  "Canada", "Canada Bulking", "USA", "USA Bulking"
+  "Canada", "Canada Bulking"
 ];
 
 const ALL_CUISINES_CUTTING = [
   "Puerto Rico", "Spain", "Mexico", "Dominican Republic", "Colombia", "Brazil", "China", "Korea", "Japan", "Italy", "El Salvador", "Venezuela", "Argentina",
-  "France", "Germany", "Russia", "India", "Canada", "USA"
+  "France", "Germany", "Russia", "India", "Canada"
 ];
 
 const ALL_CUISINES_BULKING = [
   "Puerto Rico Bulking", "Spain Bulking", "Mexico Bulking", "Dominican Republic Bulking", "Colombia Bulking", "Brazil Bulking", "China Bulking", "Korea Bulking", "Japan Bulking", "Italy Bulking", "El Salvador Bulking", "Venezuela Bulking", "Argentina Bulking",
-  "France Bulking", "Germany Bulking", "Russia Bulking", "India Bulking", "Canada Bulking", "USA Bulking"
+  "France Bulking", "Germany Bulking", "Russia Bulking", "India Bulking", "Canada Bulking"
 ];
 
 export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
@@ -1643,67 +1643,147 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
 
   // 19. 🇺🇸 USA
   {
-    id: "g-usa-staples",
+    id: "g-usa-chicken",
     upc: "078742353345-usa",
-    name: "Fresh Garlic Bulbs & All-American Herb Mix",
+    name: "Fresh Chicken Breast (Value Pack, 5 lbs)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Fresh Produce",
-    category: "Produce",
-    priceEst: "$2.50 (Garlic bulbs & fresh herb pack)",
-    calories: 15,
-    protein: 1,
-    carbs: 3,
-    fat: 0,
-    servingSize: "2 tbsp chopped (15g)",
-    coachNote: "Fresh garlic and herbs essential for authentic American Diner Scrambles and oven-roasted Montreal chicken bowls.",
+    category: "Protein",
+    priceEst: "$14.98",
+    calories: 120,
+    protein: 26,
+    carbs: 0,
+    fat: 1.5,
+    servingSize: "4 oz",
+    coachNote: "Core protein for Healthy Buffalo Chicken Salad & Blackened Cajun Chicken.",
     cuisine: ["USA", "USA Bulking"]
   },
   {
-    id: "g-usa-coffee",
-    upc: "078742356619",
-    name: "All-American Breakfast Blend Classic Ground Coffee (10 oz bag)",
+    id: "g-usa-milk",
+    upc: "078742356619-usa",
+    name: "Fairlife Non-Fat Ultra-Filtered Milk (TWO 52 oz bottles)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Folgers / Great Value Classic",
+    brand: "Fairlife",
     category: "Essentials",
-    priceEst: "$4.88 (10 oz bag)",
-    calories: 0,
-    protein: 0,
-    carbs: 0,
+    priceEst: "$8.96",
+    calories: 80,
+    protein: 13,
+    carbs: 6,
     fat: 0,
-    servingSize: "1 tbsp coffee",
-    coachNote: "Classic American diner-style coffee brewed strong and fresh for morning training vigor! (Periodic restock item).",
+    servingSize: "1 cup",
+    coachNote: "High protein milk base for BasicsWithBails High Protein Iced Coffee & Tiramisu Oats.",
     cuisine: ["USA", "USA Bulking"]
   },
   {
-    id: "g-usa-spices",
-    upc: "078742359019",
-    name: "McCormick All-American BBQ Rub & Garlic Herb Seasoning",
+    id: "g-usa-protein",
+    upc: "078742359019-usa",
+    name: "Equate Vanilla Whey Protein Supplement (30 servings)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "McCormick / Great Value",
-    category: "Seasonings & Spices",
-    priceEst: "$2.48 (Shaker bottle)",
-    calories: 0,
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    servingSize: "1 tsp (5g)",
-    coachNote: "Classic American savory barbecue rub with garlic, onion, and hickory notes for seared chicken (Periodic restock item).",
+    brand: "Equate",
+    category: "Essentials",
+    priceEst: "$18.98",
+    calories: 140,
+    protein: 30,
+    carbs: 3,
+    fat: 1.5,
+    servingSize: "1 scoop",
+    coachNote: "Used to fortify the Iced Coffee and Tiramisu Oats with extreme protein.",
     cuisine: ["USA", "USA Bulking"]
   },
   {
-    id: "g-usa-reward",
-    upc: "078742355519",
-    name: "American Diner Brioche Buns & Sliders (Weekly Reward Treat)",
+    id: "g-usa-oats",
+    upc: "078742355519-usa",
+    name: "Great Value Old Fashioned Oats (42 oz)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Ball Park / Marketside",
+    brand: "Great Value",
     category: "Carbs",
-    priceEst: "$3.48 (8-Count bun pack)",
+    priceEst: "$3.98",
+    calories: 150,
+    protein: 5,
+    carbs: 27,
+    fat: 2.5,
+    servingSize: "1/2 cup dry",
+    coachNote: "Carb base for Tiramisu Protein Overnight Oats.",
+    cuisine: ["USA", "USA Bulking"]
+  },
+  {
+    id: "g-usa-espresso",
+    upc: "078742355520-usa",
+    name: "Cafe Bustelo Instant Espresso (7 oz)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Cafe Bustelo",
+    category: "Essentials",
+    priceEst: "$4.98",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1 tsp",
+    coachNote: "Caffeine kick for the High Protein Iced Coffee and Tiramisu Oats.",
+    cuisine: ["USA", "USA Bulking"]
+  },
+  {
+    id: "g-usa-cottage",
+    upc: "078742355521-usa",
+    name: "Good Culture Low-Fat Cottage Cheese (TWO 16 oz tubs)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Good Culture",
+    category: "Protein",
+    priceEst: "$6.96",
+    calories: 80,
+    protein: 14,
+    carbs: 3,
+    fat: 2.5,
+    servingSize: "1/2 cup",
+    coachNote: "Blended for the Healthy Buffalo Chicken Salad dressing.",
+    cuisine: ["USA", "USA Bulking"]
+  },
+  {
+    id: "g-usa-buffalo",
+    upc: "078742355522-usa",
+    name: "Frank's RedHot Buffalo Wings Sauce (12 oz)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Frank's RedHot",
+    category: "Seasonings & Spices",
+    priceEst: "$3.48",
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    servingSize: "1 tbsp",
+    coachNote: "Zero calorie wing sauce for the Buffalo Chicken Salad.",
+    cuisine: ["USA", "USA Bulking"]
+  },
+  {
+    id: "g-usa-rice",
+    upc: "078742355523-usa",
+    name: "Great Value Long Grain White Rice (5 lbs)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Carbs",
+    priceEst: "$3.48",
     calories: 160,
-    protein: 4,
-    carbs: 28,
-    fat: 3.5,
-    servingSize: "1 bun (55g)",
-    coachNote: "Your once-a-week American reward treat! Soft brioche slider buns to build grilled chicken sandwiches.",
+    protein: 3,
+    carbs: 35,
+    fat: 0,
+    servingSize: "1/4 cup dry",
+    coachNote: "Clean carb base for the Blackened Air Fryer Cajun Chicken dinner.",
+    cuisine: ["USA", "USA Bulking"]
+  },
+  {
+    id: "g-usa-broccoli",
+    upc: "078742355524-usa",
+    name: "Great Value Frozen Broccoli Florets (32 oz)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Produce",
+    priceEst: "$2.98",
+    calories: 25,
+    protein: 1,
+    carbs: 4,
+    fat: 0,
+    servingSize: "1 cup",
+    coachNote: "Fibrous greens to pair with the Cajun Chicken dinner.",
     cuisine: ["USA", "USA Bulking"]
   },
 
@@ -2904,55 +2984,93 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
   // 19. USA 🇺🇸 (Cutting & Bulking)
   {
     id: "plan-usa",
-    title: "USA: Crispy All-American BBQ Garlic Chicken, Diner Rice & Black Coffee Shred (~2,080 kcal)",
+    title: "USA: BasicsWithBails High Protein Iced Coffee & Chicken Shred (~2,020 kcal)",
     country: "USA",
     flag: "🇺🇸",
-    badge: "🇺🇸 All-American Phase 1 Cutting ($51.52/Wk)",
-    targetDailyCalories: 2080,
-    targetDailyProtein: 178,
-    estCostPerWeek: "$51.52 Weekly Consumables / $24.60 Periodic Restock ($76.12 Combined Total)",
-    description: "All-American Crispy BBQ / Garlic Herb Chicken Bowl (Pan or oven seared chicken breast cubes seasoned with classic American barbecue rub, garlic, and hickory notes) paired with clean diner-style white rice or roasted potato bowl and steamed broccoli. Features classic American Dark Roast Coffee con Leche + Banana, All-American Diner Egg Scramble, and a weekly All-American Diner Burger / Fries reward treat!",
-    meals: createMeals(
-      "USA", "American Classic Dark Roast Coffee or Cold Brew", 95,
-      "All-American Diner Egg Scramble + Savory Rice",
-      "3 Large White Eggs + 1/2 cup Liquid Egg Whites scrambled with green onions, peppers, and garlic steak seasoning in 0-Cal spray. (330 kcal, 31g p, 15g f)",
-      530, 36, 44, 15,
-      "Crispy All-American BBQ Garlic Herb Chicken",
-      "~5.7 oz Fresh Chicken Breast cubes coated in BBQ rub, garlic powder, and onion notes, seared golden crispy. (210 kcal, 40g p, 2g f)",
-      "Diner-Style Savory White Rice Bowl",
-      "1 cup cooked White Rice seasoned with garlic and herb notes. (200 kcal, 5g p, 44g c)",
-      440, 47, 50, 2,
-      "1 cup", 120, 21,
-      "All-American Diner Smashburger & Garlic Chicken",
-      "1 Lean All-American Smashburger on toasted bun served alongside crispy BBQ chicken! (360 kcal, 28g p, 32g c, 10g f)",
-      360, 28, 32, 10, false
-    )
+    badge: "🇺🇸 BasicsWithBails Phase 1 Cutting ($68.78/Wk)",
+    targetDailyCalories: 2020,
+    targetDailyProtein: 176,
+    estCostPerWeek: "$68.78 Weekly Consumables / Exact Match Walmart",
+    description: "Entirely sourced from BasicsWithBails.com! Features the signature High Protein Iced Coffee and Tiramisu Protein Overnight Oats. Lunch is the Healthy Buffalo Chicken Salad (blended cottage cheese base), and dinner is Blackened Air Fryer Cajun Chicken Breast over rice and broccoli.",
+    meals: [
+      {
+        name: "Morning Fuel: BasicsWithBails High Protein Iced Coffee",
+        time: "8:00 AM",
+        ingredients: [
+          "1.5 cups Fairlife Non-Fat Milk, 1 tsp Instant Espresso, 1 scoop Equate Vanilla Whey, ice. (260 kcal, 34g p, 12g c, 1.5g f)"
+        ],
+        calories: 260, protein: 34, carbs: 12, fat: 1.5
+      },
+      {
+        name: "Post-Workout Breakfast: Tiramisu Protein Overnight Oats",
+        time: "10:30 AM",
+        ingredients: [
+          "1.5 cups Great Value Oats, 1/2 cup water, 1 scoop Vanilla Whey, 1 tsp Espresso. (590 kcal, 45g p, 84g c, 9g f)"
+        ],
+        calories: 590, protein: 45, carbs: 84, fat: 9
+      },
+      {
+        name: "Lunch: BasicsWithBails Healthy Buffalo Chicken Salad",
+        time: "2:00 PM",
+        ingredients: [
+          "5 oz shredded Fresh Chicken Breast mixed with 1/2 cup Good Culture Cottage Cheese (blended) and 2 tbsp Frank's RedHot Buffalo Sauce. Served over 2 cups cooked White Rice. (580 kcal, 49g p, 74g c, 4.5g f)"
+        ],
+        calories: 580, protein: 49, carbs: 74, fat: 4.5
+      },
+      {
+        name: "Dinner: Blackened Air Fryer Cajun Chicken Breast",
+        time: "7:30 PM",
+        ingredients: [
+          "6 oz Fresh Chicken Breast coated in Cajun seasoning, air fried. Served with 2 cups cooked Great Value White Rice and 1 cup steamed Broccoli. (590 kcal, 52g p, 80g c, 3g f)"
+        ],
+        calories: 590, protein: 52, carbs: 80, fat: 3
+      }
+    ]
   },
   {
     id: "plan-usa-bulking",
-    title: "USA Bulking: All-American BBQ Chicken & DOUBLE Diner Rice Lean Bulk (~2,680 kcal)",
+    title: "USA Bulking: BasicsWithBails Lean Bulk (~2,590 kcal)",
     country: "USA Bulking",
     flag: "🇺🇸🔥",
-    badge: "🔥 Phase 2: All-American Lean Bulk ($51.48/Wk)",
-    targetDailyCalories: 2680,
-    targetDailyProtein: 188,
-    estCostPerWeek: "$51.48 Weekly Consumables / $24.60 Periodic Restock ($76.08 Combined Total)",
-    description: "All-American Phase 2 Lean Bulking! Features BBQ Garlic Chicken with DOUBLE Diner Rice, 5-Egg Diner Scramble + Rolled Oats, American Dark Roast, and Smashburger reward treat!",
-    meals: createMeals(
-      "USA Bulking", "American Classic Dark Roast Coffee or Cold Brew", 95,
-      "5-Egg Diner Scramble + Rolled Oats + Classic Dark Roast",
-      "5 Large White Eggs scrambled with peppers, onions, and garlic seasoning in 0-cal spray. (350 kcal, 30g p, 25g f)",
-      500, 35, 54, 25,
-      "Crispy All-American BBQ Garlic Herb Chicken",
-      "~5.7 oz Fresh Chicken Breast seared golden with BBQ rub and garlic steak seasoning. (210 kcal, 40g p, 2g f)",
-      "DOUBLE Diner-Style Savory White Rice Bowl",
-      "2 cups cooked Savory Herb White Rice (clean American bulking carbohydrates). (400 kcal, 10g p, 88g c)",
-      640, 52, 94, 2,
-      "1 cup", 120, 21,
-      "All-American Diner Smashburger & Garlic Chicken",
-      "Diner Smashburger served alongside chicken and broccoli! (360 kcal, 28g p, 32g c, 10g f)",
-      360, 28, 32, 10, true
-    )
+    badge: "🔥 Phase 2: BasicsWithBails Lean Bulk ($68.78/Wk)",
+    targetDailyCalories: 2590,
+    targetDailyProtein: 195,
+    estCostPerWeek: "$68.78 Weekly Consumables / Exact Match Walmart",
+    description: "BasicsWithBails Phase 2 Lean Bulking! Double the rice and oats. Features Tiramisu Protein Overnight Oats, High Protein Iced Coffee, Healthy Buffalo Chicken Salad, and DOUBLE Rice Blackened Air Fryer Cajun Chicken.",
+    meals: [
+      {
+        name: "Morning Fuel: BasicsWithBails High Protein Iced Coffee",
+        time: "8:00 AM",
+        ingredients: [
+          "1.5 cups Fairlife Non-Fat Milk, 1 tsp Instant Espresso, 1 scoop Equate Vanilla Whey, ice. (260 kcal, 34g p, 12g c, 1.5g f)"
+        ],
+        calories: 260, protein: 34, carbs: 12, fat: 1.5
+      },
+      {
+        name: "Post-Workout Breakfast: DOUBLE Tiramisu Protein Overnight Oats",
+        time: "10:30 AM",
+        ingredients: [
+          "2 cups Great Value Oats, 1/2 cup water, 1 scoop Vanilla Whey, 1 tsp Espresso. (740 kcal, 50g p, 111g c, 12g f)"
+        ],
+        calories: 740, protein: 50, carbs: 111, fat: 12
+      },
+      {
+        name: "Lunch: BasicsWithBails Healthy Buffalo Chicken Salad (Bulk)",
+        time: "2:00 PM",
+        ingredients: [
+          "5 oz shredded Fresh Chicken Breast mixed with 1/2 cup Good Culture Cottage Cheese (blended) and 2 tbsp Frank's RedHot Buffalo Sauce. Served over 3 cups cooked White Rice. (790 kcal, 54g p, 118g c, 4.5g f)"
+        ],
+        calories: 790, protein: 54, carbs: 118, fat: 4.5
+      },
+      {
+        name: "Dinner: DOUBLE Rice Blackened Air Fryer Cajun Chicken Breast",
+        time: "7:30 PM",
+        ingredients: [
+          "6 oz Fresh Chicken Breast coated in Cajun seasoning, air fried. Served with 3 cups cooked Great Value White Rice and 1 cup steamed Broccoli. (800 kcal, 57g p, 124g c, 3g f)"
+        ],
+        calories: 800, protein: 57, carbs: 124, fat: 3
+      }
+    ]
   }
 ];
 
