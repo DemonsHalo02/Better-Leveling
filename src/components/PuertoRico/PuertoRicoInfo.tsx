@@ -20,7 +20,7 @@ const CAGUAS_INFO = [
 
 const CHECKLIST = [
   "Complete remaining HiSET subjects (All subjects except Science)",
-  "Finish all 12 courses (Coding, Filmmaking, Spanish) by April 2, 2027",
+  "Finish all 11 courses (Coding, Filmmaking, Spanish) by April 2, 2027",
   "Build 3-5 portfolio-worthy full-stack projects",
   "Set up a GitHub, portfolio site, and (if going freelance) an Upwork/Fiverr profile",
   "Launch a content channel once there's real progress to show",

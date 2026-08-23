@@ -170,7 +170,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
               <TrendingDown className="w-4 h-4" /> 1. Pacing & Cardio Assessment
             </div>
             <p className="text-xs text-zinc-300 leading-relaxed">
-              At <strong>{currentWeight} LBS</strong>, you have <strong>{lbsRemaining} LBS</strong> left to shred. Your current pace preserves maximum muscle. <strong>AI Recommendation:</strong> Add 15 mins of incline treadmill walking (3.0 mph, 10% incline) or brisk outdoor walking after your calisthenics on Tuesday and Thursday!
+              At <strong>{currentWeight} LBS</strong>, you have <strong>{lbsRemaining} LBS</strong> left to shred. Your current pace preserves maximum muscle. <strong>AI Recommendation:</strong> Add 15 mins of incline treadmill walking (3.0 mph, 10% incline) or brisk outdoor walking after your Planet Fitness workouts!
             </p>
           </div>
 

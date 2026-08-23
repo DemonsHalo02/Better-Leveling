@@ -348,32 +348,8 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
               <p className="text-[11px] text-zinc-500">Default location applied when adding custom grocery items.</p>
             </div>
 
-            <div className="flex flex-col justify-between space-y-3 bg-system-dark/80 p-4 rounded-xl border border-white/5">
-              <div>
-                <div className="text-xs font-bold uppercase text-white">Custom Grocery Staples Management</div>
-                <p className="text-[11px] text-zinc-400 mt-0.5">
-                  You can add unlimited custom items directly on the <strong>ME Grocery Guide</strong> tab, or reset your personal additions back to the clean default weekly staples.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2 pt-1">
-                <button
-                  type="button"
-                  onClick={() => onNavigate?.('grocery')}
-                  className="px-4 py-2 rounded-lg bg-system-cyan/20 hover:bg-system-cyan text-system-cyan hover:text-black font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5"
-                >
-                  <span>Go to Grocery Guide</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={handleResetGroceryStaples}
-                  className="px-4 py-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5"
-                >
-                  <RotateCcw className="w-3.5 h-3.5" />
-                  <span>Reset Custom Items</span>
-                </button>
-              </div>
-            </div>
+
+
           </div>
         </div>
 

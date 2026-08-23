@@ -12,22 +12,21 @@ interface Course {
 
 const COURSES = {
   coding: [
-    { id: "c01", title: "Tailwind CSS From Scratch | Learn By Building Projects", dates: "Sep 3–14" },
-    { id: "c02", title: "Git & GitHub - The Practical Guide", dates: "Oct 4–11" },
-    { id: "c03", title: "Next.js & React - The Complete Guide", dates: "Oct 4–24" },
-    { id: "c05", title: "The Complete Full-Stack Web Development Bootcamp", dates: "Sep 3–Nov 1" },
-    { id: "c06", title: "Understanding TypeScript", dates: "Nov 1–14" },
-    { id: "c07", title: "The Complete SQL Bootcamp: Go from Zero to Hero", dates: "Nov 1–14" }
+    { id: "c01", title: "Tailwind CSS From Scratch | Learn By Building Projects", dates: "" },
+    { id: "c02", title: "Git & GitHub - The Practical Guide", dates: "" },
+    { id: "c03", title: "Next.js & React - The Complete Guide", dates: "" },
+    { id: "c04", title: "The Complete Full-Stack Web Development Bootcamp", dates: "" },
+    { id: "c05", title: "Understanding TypeScript", dates: "" },
+    { id: "c06", title: "The Complete SQL Bootcamp: Go from Zero to Hero", dates: "" }
   ],
   filmmaking: [
-    { id: "f01", title: "iPhone Filmmaker Masterclass", dates: "Sep 17–Oct 15" },
-    { id: "f02", title: "The Freelance Masterclass: For Creatives", dates: "Feb 21–Apr 2" },
-    { id: "f03", title: "Final Cut Pro X - Beginner To Advanced (FCP MASTERY 2026)", dates: "Nov 15–Jan 15" },
-    { id: "f04", title: "Local Marketing 2026: Google My Business, SEO, Social Media", dates: "Feb 21–Apr 2" }
+    { id: "f01", title: "Introduction to DaVinci Resolve - [Full Course] for Beginners (2026)", dates: "" },
+    { id: "f02", title: "GarageBand 101: The Ultimate GarageBand Guide for beginners", dates: "" },
+    { id: "f03", title: "Everything You Need to Know to Get Started with Affinity by Canva", dates: "" }
   ],
   important: [
-    { id: "i04", title: "Complete Spanish Course: Master Spanish Beginner to Advanced", dates: "Jan 24–Apr 2" },
-    { id: "i03", title: "HSE/GED/TASC/HiSET Prep: A Complete Mathematics Curriculum", dates: "Sep 3–Oct 15" }
+    { id: "i01", title: "Complete Spanish Course: Master Spanish Beginner to Advanced", dates: "" },
+    { id: "i02", title: "HSE/GED/TASC/HiSET Prep: A Complete Mathematics Curriculum", dates: "" }
   ]
 };
 
@@ -153,14 +152,14 @@ export default function Cursos() {
         <div className="relative z-10">
           <h2 className="text-3xl sm:text-4xl font-black mb-3 tracking-tighter drop-shadow-md flex items-center gap-3">
             <Star className="w-8 h-8 fill-current text-[#f5a623] drop-shadow-[0_0_10px_rgba(245,166,35,0.8)]" />
-            Course Plan <span className="text-xl sm:text-2xl opacity-90">(12 Masterclasses)</span>
+            Course Plan <span className="text-xl sm:text-2xl opacity-90">(11 Masterclasses)</span>
           </h2>
-          <p className="font-mono text-sm sm:text-base font-medium opacity-90 tracking-wide drop-shadow-sm mb-6">Sept 3 2026 → Apr 2 2027</p>
+          <p className="font-mono text-sm sm:text-base font-medium opacity-90 tracking-wide drop-shadow-sm mb-6"></p>
           
           <div className="flex flex-wrap gap-4 text-sm font-bold bg-black/30 p-4 rounded-2xl border border-white/20 shadow-inner backdrop-blur-sm">
             <div className="flex items-baseline gap-2">
               <span className="text-2xl text-white drop-shadow-md">{completedCount}</span> 
-              <span className="text-zinc-300">/ 12</span> 
+              <span className="text-zinc-300">/ 11</span> 
               <span className="opacity-80 text-xs ml-1 uppercase tracking-wider">Completed</span>
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
@@ -170,7 +169,7 @@ export default function Cursos() {
             </div>
             <div className="hidden sm:block w-px bg-white/20" />
             <div className="flex items-center gap-2">
-              <span className="text-zinc-300 uppercase tracking-wider text-xs">Film:</span> 
+              <span className="text-zinc-300 uppercase tracking-wider text-xs">Content:</span> 
               <span className="text-[#4ade80] bg-black/50 border border-[#4ade80]/50 px-2 py-0.5 rounded text-xs drop-shadow-sm">HOBBY</span>
             </div>
           </div>
@@ -179,7 +178,7 @@ export default function Cursos() {
 
       <div className="space-y-4">
         {renderSection("coding", "💻 SECTION 1 — CODING (6)", "from-[#0a3d8f]/30 to-transparent border-l-4 border-l-[#0a3d8f]", COURSES.coding)}
-        {renderSection("filmmaking", "🎥 SECTION 2 — FILMMAKING (4)", "from-[#f5a623]/30 to-transparent border-l-4 border-l-[#f5a623]", COURSES.filmmaking)}
+        {renderSection("filmmaking", "🎥 SECTION 2 — CONTENT CREATION (3)", "from-[#f5a623]/30 to-transparent border-l-4 border-l-[#f5a623]", COURSES.filmmaking)}
         {renderSection("important", "⭐ SECTION 3 — IMPORTANT (2)", "from-[#4ade80]/30 to-transparent border-l-4 border-l-[#4ade80]", COURSES.important)}
       </div>
 

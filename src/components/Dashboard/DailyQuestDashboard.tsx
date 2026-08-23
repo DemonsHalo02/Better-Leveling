@@ -597,7 +597,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 <span className="text-[10px] font-mono bg-system-blue/20 text-system-cyan px-2 py-0.5 rounded">Golden Standard Pace</span>
               </h4>
               <p className="text-xs text-zinc-300 leading-relaxed">
-                You are on track to reach <span className="text-white font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Why is this ~1 lb/week pace so vital? When you lose weight gradually while hitting <span className="text-system-cyan font-bold">{state.profile.dailyProteinGoal || 206}g of protein</span> and lifting your bodyweight on this calisthenics program, your 20-year-old skin naturally retracts over the newly built muscle underneath. You will build a rock-hard physique without sagging skin!
+                You are on track to reach <span className="text-white font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Why is this ~1 lb/week pace so vital? When you lose weight gradually while hitting <span className="text-system-cyan font-bold">{state.profile.dailyProteinGoal || 206}g of protein</span> and lifting at Planet Fitness on this program, your 20-year-old skin naturally retracts over the newly built muscle underneath. You will build a rock-hard physique without sagging skin!
               </p>
             </div>
           </div>

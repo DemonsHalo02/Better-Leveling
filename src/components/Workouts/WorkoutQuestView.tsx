@@ -1,20 +1,17 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { PlanTier, getTodayWorkout, WorkoutDay, Exercise, CALISTHENICS_BEGINNER, CALISTHENICS_INTERMEDIATE, CALISTHENICS_ADVANCED, CALISTHENICS_EXPERT } from '@/lib/workout-data';
+import { getTodayWorkout, WorkoutDay, Exercise, PLANET_FITNESS_PLAN } from '@/lib/workout-data';
 import { awardXp, loadHunterState, saveHunterState } from '@/lib/hunter-system';
-import { Dumbbell, CheckCircle2, Circle, Trophy, Info, Sparkles, MapPin, Zap, Footprints, Flame, PlusCircle, RotateCcw, Home, Building2 } from 'lucide-react';
+import { Dumbbell, CheckCircle2, Circle, Trophy, Info, Sparkles, MapPin, Zap, Footprints, Flame, PlusCircle, RotateCcw, Scale, TrendingUp } from 'lucide-react';
 import RestTimerBar from './RestTimerBar';
 
 export default function WorkoutQuestView() {
-  const [selectedDay, setSelectedDay] = useState<number>(new Date().getDay()); // default today
+  const [selectedDay, setSelectedDay] = useState<number>(new Date().getDay());
   const [completedSets, setCompletedSets] = useState<Record<string, number>>({});
   const [exerciseWeights, setExerciseWeights] = useState<Record<string, string>>({});
   const [questCleared, setQuestCleared] = useState<boolean>(false);
-  const [planType, setPlanType] = useState<PlanTier>('beginner');
-  // Per-set rep logging for until-failure exercises: key = `${exerciseId}_set${n}`, value = reps string
   const [setReps, setSetReps] = useState<Record<string, string>>({});
-  // Personal records: key = exerciseId, value = best single-set rep count ever
   const [personalRecords, setPersonalRecords] = useState<Record<string, number>>({});
 
   // Cardio State (45 mins daily target: 30m walk + 15m run)
@@ -22,25 +19,16 @@ export default function WorkoutQuestView() {
   const [customMinutesInput, setCustomMinutesInput] = useState<string>('');
   const TREADMILL_GOAL = 45;
 
-  const currentDayWorkout = getTodayWorkout(planType);
+  // Body weight tracking
+  const [bodyWeight, setBodyWeight] = useState<string>('');
+  const [bodyWeightHistory, setBodyWeightHistory] = useState<{ date: string; weight: number }[]>([]);
+  const [showWeightModal, setShowWeightModal] = useState(false);
 
-  const activeRoutineArray = (() => {
-    switch(planType) {
-      case 'intermediate': return CALISTHENICS_INTERMEDIATE;
-      case 'advanced': return CALISTHENICS_ADVANCED;
-      case 'expert': return CALISTHENICS_EXPERT;
-      case 'beginner': default: return CALISTHENICS_BEGINNER;
-    }
-  })();
+  const currentDayWorkout = PLANET_FITNESS_PLAN[selectedDay];
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedType = localStorage.getItem('active_workout_routine_type') as PlanTier | null;
-      if (savedType && ['beginner', 'intermediate', 'advanced', 'expert'].includes(savedType)) {
-        setPlanType(savedType);
-      }
-
-      const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}_${savedType || 'beginner'}`);
+      const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}_planet_fitness`);
       if (savedSets) setCompletedSets(JSON.parse(savedSets));
       else setCompletedSets({});
 
@@ -48,29 +36,22 @@ export default function WorkoutQuestView() {
       if (savedWeights) setExerciseWeights(JSON.parse(savedWeights));
       else setExerciseWeights({});
 
-      const savedSetReps = localStorage.getItem(`kp_set_reps_${selectedDay}`);
+      const savedSetReps = localStorage.getItem(`pf_set_reps_${selectedDay}`);
       if (savedSetReps) setSetReps(JSON.parse(savedSetReps));
       else setSetReps({});
 
-      const savedPRs = localStorage.getItem(`kp_personal_records`);
+      const savedPRs = localStorage.getItem(`pf_personal_records`);
       if (savedPRs) setPersonalRecords(JSON.parse(savedPRs));
       else setPersonalRecords({});
 
       const todayKey = new Date().toISOString().split('T')[0];
       const savedMinutes = localStorage.getItem(`pf_treadmill_minutes_${todayKey}`);
       if (savedMinutes) setTreadmillMinutes(parseInt(savedMinutes, 10));
-    }
-  }, [selectedDay, planType]);
 
-  const handlePlanToggle = (newType: PlanTier) => {
-    setPlanType(newType);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('active_workout_routine_type', newType);
-      const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}_${newType}`);
-      if (savedSets) setCompletedSets(JSON.parse(savedSets));
-      else setCompletedSets({});
+      const savedBWHistory = localStorage.getItem('pf_body_weight_history');
+      if (savedBWHistory) setBodyWeightHistory(JSON.parse(savedBWHistory));
     }
-  };
+  }, [selectedDay]);
 
   const handleAddMinutes = (amount: number) => {
     const nextMinutes = Math.max(0, treadmillMinutes + amount);
@@ -102,7 +83,7 @@ export default function WorkoutQuestView() {
     const updated = { ...completedSets, [exerciseId]: next };
     setCompletedSets(updated);
     if (typeof window !== 'undefined') {
-      localStorage.setItem(`pf_completed_sets_${selectedDay}_${planType}`, JSON.stringify(updated));
+      localStorage.setItem(`pf_completed_sets_${selectedDay}_planet_fitness`, JSON.stringify(updated));
     }
 
     const allCleared = currentDayWorkout.exercises.every(ex => (updated[ex.id] || 0) >= ex.sets);
@@ -128,9 +109,8 @@ export default function WorkoutQuestView() {
     const updated = { ...setReps, [key]: value };
     setSetReps(updated);
     if (typeof window !== 'undefined') {
-      localStorage.setItem(`kp_set_reps_${selectedDay}`, JSON.stringify(updated));
+      localStorage.setItem(`pf_set_reps_${selectedDay}`, JSON.stringify(updated));
     }
-    // Check if new PR
     const numVal = parseInt(value.replace(/\D/g, ''), 10);
     if (!isNaN(numVal) && numVal > 0) {
       const currentPR = personalRecords[exerciseId] || 0;
@@ -138,11 +118,26 @@ export default function WorkoutQuestView() {
         const updatedPRs = { ...personalRecords, [exerciseId]: numVal };
         setPersonalRecords(updatedPRs);
         if (typeof window !== 'undefined') {
-          localStorage.setItem(`kp_personal_records`, JSON.stringify(updatedPRs));
+          localStorage.setItem(`pf_personal_records`, JSON.stringify(updatedPRs));
         }
         window.dispatchEvent(new Event('triggerConfetti'));
       }
     }
+  };
+
+  const handleLogBodyWeight = (e: React.FormEvent) => {
+    e.preventDefault();
+    const weight = parseFloat(bodyWeight);
+    if (isNaN(weight) || weight <= 0) return;
+    const todayKey = new Date().toISOString().split('T')[0];
+    const newEntry = { date: todayKey, weight };
+    const updated = [...bodyWeightHistory.filter(e => e.date !== todayKey), newEntry].sort((a, b) => a.date.localeCompare(b.date));
+    setBodyWeightHistory(updated);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('pf_body_weight_history', JSON.stringify(updated));
+    }
+    setBodyWeight('');
+    setShowWeightModal(false);
   };
 
   const calculateDayProgress = () => {
@@ -154,69 +149,47 @@ export default function WorkoutQuestView() {
 
   const progressPct = calculateDayProgress();
   const stepProgressPct = Math.min(100, Math.floor((treadmillMinutes / TREADMILL_GOAL) * 100));
+  const latestWeight = bodyWeightHistory.length > 0 ? bodyWeightHistory[bodyWeightHistory.length - 1] : null;
 
   return (
     <div className="space-y-6 pb-12">
-      {/* Prominent Dual-Choice Plan Toggle Banner */}
-      <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-dark p-5 rounded-2xl border-2 border-system-blue/40 shadow-glow-blue flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="p-3 rounded-xl bg-system-blue/10 border border-system-blue/30 text-system-cyan">
-            <Sparkles className="w-6 h-6 animate-pulse" />
-          </div>
-          <div>
-            <div className="text-[10px] font-mono uppercase tracking-wider text-system-gold font-bold">
-              ⚡ ACTIVE TRAINING ENVIRONMENT & PROTOCOL SELECTOR
-            </div>
-            <h3 className="text-base font-black text-white tracking-wide">
-              Choose Your Daily Workout Blueprint
-            </h3>
-            <p className="text-xs text-zinc-400">
-              Switch instantly between your 4 calisthenics progression tiers. Progress and sets are tracked per routine!
-            </p>
-          </div>
-        </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 bg-black/60 p-2 rounded-xl border border-white/10 w-full md:w-auto">
-          {['beginner', 'intermediate', 'advanced', 'expert'].map((tier) => {
-            const isSelected = planType === tier;
-            return (
-              <button
-                key={tier}
-                onClick={() => handlePlanToggle(tier as PlanTier)}
-                className={`flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all ${
-                  isSelected
-                    ? 'bg-gradient-to-r from-system-blue to-system-cyan text-black shadow-glow-blue scale-102'
-                    : 'text-zinc-400 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                <Dumbbell className="w-3.5 h-3.5" />
-                <span className="truncate">{tier}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-      
       {/* Header & Location Badge */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-system-panel p-6 rounded-2xl border border-system-blue/30 shadow-lg">
         <div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
             <MapPin className="w-3.5 h-3.5 text-system-blue" />
-            <span>Calisthenics Apartment Dojo | {planType.charAt(0).toUpperCase() + planType.slice(1)} Tier</span>
+            <span>Planet Fitness | 830 Lisbon St, Lewiston, ME 04240</span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            {planType} Bodyweight Routine
+            Planet Fitness PPL+ Split
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            A specialized calisthenics routine designed to be performed quietly in your apartment using only bodyweight, a mat, and a chair. Includes your daily mandatory 15-minute run!
+            Push/Pull/Legs/Upper/Abs/Lower split at Lewiston Planet Fitness. Focused on track-speed legs, shredded 6-pack abs, and lean defined muscle.
           </p>
         </div>
 
-        <div className="flex items-center gap-3 bg-system-dark/80 px-4 py-2.5 rounded-xl border border-system-blue/20">
-          <Trophy className="w-6 h-6 text-system-gold" />
-          <div>
-            <div className="text-[10px] text-zinc-400 uppercase font-bold">Quest Reward</div>
-            <div className="text-sm font-black text-system-gold font-mono">+ {currentDayWorkout.xpReward} XP & STR Boost</div>
+        <div className="flex items-center gap-3">
+          {/* Body Weight Quick Badge */}
+          <button
+            onClick={() => setShowWeightModal(true)}
+            className="bg-system-dark/80 px-4 py-2.5 rounded-xl border border-system-blue/20 hover:border-system-cyan/50 transition-all flex items-center gap-3 group"
+          >
+            <Scale className="w-5 h-5 text-system-gold group-hover:scale-110 transition-transform" />
+            <div>
+              <div className="text-[10px] text-zinc-400 uppercase font-bold">Body Weight</div>
+              <div className="text-sm font-black text-white font-mono">
+                {latestWeight ? `${latestWeight.weight} lbs` : 'Log Weight'}
+              </div>
+            </div>
+          </button>
+
+          <div className="bg-system-dark/80 px-4 py-2.5 rounded-xl border border-system-blue/20 flex items-center gap-3">
+            <Trophy className="w-6 h-6 text-system-gold" />
+            <div>
+              <div className="text-[10px] text-zinc-400 uppercase font-bold">Quest Reward</div>
+              <div className="text-sm font-black text-system-gold font-mono">+ {currentDayWorkout.xpReward} XP & STR Boost</div>
+            </div>
           </div>
         </div>
       </div>
@@ -243,7 +216,7 @@ export default function WorkoutQuestView() {
               <span className="text-system-cyan font-mono">{stepProgressPct}%</span>
             </div>
             <div className="w-full h-2.5 bg-black/60 rounded-full overflow-hidden border border-white/10">
-              <div 
+              <div
                 className="h-full bg-gradient-to-r from-system-blue via-system-cyan to-green-400 rounded-full transition-all duration-300 shadow-glow-blue"
                 style={{ width: `${stepProgressPct}%` }}
               />
@@ -295,7 +268,13 @@ export default function WorkoutQuestView() {
             <button
               type="button"
               onClick={() => {
-                if (confirm("Reset today's treadmill minutes to 0?")) setTreadmillMinutes(0);
+                if (confirm("Reset today's treadmill minutes to 0?")) {
+                  setTreadmillMinutes(0);
+                  if (typeof window !== 'undefined') {
+                    const todayKey = new Date().toISOString().split('T')[0];
+                    localStorage.setItem(`pf_treadmill_minutes_${todayKey}`, '0');
+                  }
+                }
               }}
               title="Reset minutes"
               className="p-2 rounded-xl bg-system-dark border border-white/10 text-zinc-400 hover:text-white transition-all"
@@ -308,7 +287,7 @@ export default function WorkoutQuestView() {
 
       {/* Day Selector Tabs */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
-        {activeRoutineArray.map((day: WorkoutDay) => {
+        {PLANET_FITNESS_PLAN.map((day: WorkoutDay) => {
           const isSelected = selectedDay === day.dayOfWeek;
           const isToday = new Date().getDay() === day.dayOfWeek;
           return (
@@ -331,7 +310,7 @@ export default function WorkoutQuestView() {
                 {isToday && <span className="w-1.5 h-1.5 rounded-full bg-system-cyan animate-ping" title="Today" />}
               </span>
               <span className={`text-[10px] font-mono ${isSelected ? 'text-system-dark/80' : 'text-zinc-500'}`}>
-                {day.isRestDay ? 'Rest & Prep' : day.splitName.split('(')[0].trim()}
+                {day.isRestDay ? 'Rest & Recover' : day.splitName.split('(')[0].trim()}
               </span>
             </button>
           );
@@ -364,7 +343,7 @@ export default function WorkoutQuestView() {
                 <span className="text-system-cyan font-mono">{progressPct}%</span>
               </div>
               <div className="w-full h-2 bg-black/60 rounded-full overflow-hidden border border-white/10">
-                <div 
+                <div
                   className="h-full bg-gradient-to-r from-system-blue to-system-cyan rounded-full transition-all duration-300 shadow-glow-blue"
                   style={{ width: `${progressPct}%` }}
                 />
@@ -394,7 +373,7 @@ export default function WorkoutQuestView() {
               }`}
             >
               <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
-                
+
                 {/* Exercise Name & Equipment */}
                 <div className="flex items-start gap-3 flex-1">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black font-mono text-base flex-shrink-0 mt-0.5 ${
@@ -425,7 +404,7 @@ export default function WorkoutQuestView() {
 
                 {/* Sets & Weight Input Action */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between sm:justify-end gap-3 sm:gap-4 w-full lg:w-auto border-t lg:border-t-0 pt-3.5 lg:pt-0 border-white/10">
-                  
+
                   {/* Weight / Reps Input — normal exercises */}
                   {!currentDayWorkout.isRestDay && !exercise.untilFailure && (
                     <div className="flex items-center justify-between sm:justify-start gap-2 bg-system-dark px-3.5 py-2 rounded-xl border border-white/10 shadow-inner">
@@ -502,7 +481,56 @@ export default function WorkoutQuestView() {
         })}
       </div>
 
+      {/* Body Weight History (last 7 entries) */}
+      {bodyWeightHistory.length > 0 && (
+        <div className="bg-system-panel p-6 rounded-2xl border border-system-blue/20 shadow-lg">
+          <h3 className="text-lg font-black text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+            <TrendingUp className="w-5 h-5 text-system-gold" /> Body Weight Log
+          </h3>
+          <div className="grid grid-cols-3 sm:grid-cols-7 gap-3">
+            {bodyWeightHistory.slice(-7).map((entry) => (
+              <div key={entry.date} className="bg-black/30 border border-white/5 rounded-lg p-3 text-center">
+                <div className="text-[10px] text-zinc-500 font-mono uppercase">{entry.date.slice(5)}</div>
+                <div className="text-lg font-black text-white">{entry.weight}</div>
+                <div className="text-[10px] text-zinc-400 font-bold">lbs</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Body Weight Modal */}
+      {showWeightModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-[#11182c] border border-white/20 rounded-3xl p-6 w-full max-w-sm shadow-2xl">
+            <h3 className="text-xl font-black text-white mb-4 flex items-center gap-2">
+              <Scale className="w-6 h-6 text-system-gold" /> Log Body Weight
+            </h3>
+            <form onSubmit={handleLogBodyWeight} className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Weight (lbs)</label>
+                <input
+                  required
+                  type="number"
+                  step="0.1"
+                  min="50"
+                  max="500"
+                  value={bodyWeight}
+                  onChange={(e) => setBodyWeight(e.target.value)}
+                  className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white text-xl font-mono font-black outline-none focus:border-system-cyan text-center"
+                  placeholder="e.g. 180.5"
+                  autoFocus
+                />
+              </div>
+              <div className="flex gap-3">
+                <button type="button" onClick={() => setShowWeightModal(false)} className="flex-1 px-4 py-3 rounded-xl border border-white/10 text-white font-bold hover:bg-white/5 transition-colors">Cancel</button>
+                <button type="submit" className="flex-1 px-4 py-3 rounded-xl bg-system-blue hover:bg-system-cyan text-black font-black shadow-lg transition-colors">Log Weight</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
-

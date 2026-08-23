@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-import { AUBURN_LEWISTON_GROCERY_ITEMS, GroceryItem, MEAL_PREP_PLANS, NATIONAL_CUISINES_LIST } from '@/lib/grocery-data';
+import { AUBURN_LEWISTON_GROCERY_ITEMS, GroceryItem } from '@/lib/grocery-data';
 import { awardXp, loadHunterState, saveHunterState } from '@/lib/hunter-system';
-import { ScanLine, Search, CheckCircle, AlertCircle, Camera, X, PlusCircle, Utensils, Sparkles, ShoppingBag, CheckCircle2 } from 'lucide-react';
+import { ScanLine, Search, AlertCircle, Camera, X, PlusCircle, CheckCircle } from 'lucide-react';
 
 interface BarcodeScannerProps {
   onFoodLogged?: () => void;
@@ -17,28 +17,14 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [customServings, setCustomServings] = useState<number>(1);
-  const [isInGroceryList, setIsInGroceryList] = useState<boolean>(false);
-  const [checkedInGrocery, setCheckedInGrocery] = useState<boolean>(false);
-  const [selectedTemplate, setSelectedTemplate] = useState<string>('Puerto Rico');
   const scannerRef = useRef<Html5QrcodeScanner | null>(null);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedTpl = localStorage.getItem('pf_selected_aisle_template');
-      if (savedTpl && (MEAL_PREP_PLANS.some(p => p.country === savedTpl) || savedTpl === 'All')) {
-        setSelectedTemplate(savedTpl);
-      } else {
-        setSelectedTemplate('Puerto Rico');
-      }
-    }
-  }, []);
 
   useEffect(() => {
     if (scannerActive) {
       const scanner = new Html5QrcodeScanner(
         "reader",
         { fps: 10, qrbox: { width: 250, height: 150 }, aspectRatio: 1.0 },
-        /* verbose= */ false
+        false
       );
       scannerRef.current = scanner;
 
@@ -48,9 +34,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
           scanner.clear();
           setScannerActive(false);
         },
-        (error) => {
-          // ignore scan errors per frame
-        }
+        (error) => {}
       );
 
       return () => {
@@ -59,66 +43,11 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
     }
   }, [scannerActive]);
 
-  useEffect(() => {
-    if (scannedResult && typeof window !== 'undefined') {
-      const savedCustom = localStorage.getItem('pf_custom_grocery_items');
-      const customList: GroceryItem[] = savedCustom ? JSON.parse(savedCustom) : [];
-      const allLocal = [...AUBURN_LEWISTON_GROCERY_ITEMS, ...customList];
-      const match = allLocal.some(item => item.id === scannedResult.id || item.upc === scannedResult.upc);
-      setIsInGroceryList(match);
-
-      const savedChecked = localStorage.getItem('pf_grocery_checked');
-      if (savedChecked) {
-        try {
-          const checkedMap = JSON.parse(savedChecked);
-          setCheckedInGrocery(!!checkedMap[scannedResult.id]);
-        } catch {
-          setCheckedInGrocery(false);
-        }
-      } else {
-        setCheckedInGrocery(false);
-      }
-    }
-  }, [scannedResult]);
-
-  const handleToggleGroceryCheck = () => {
-    if (!scannedResult || typeof window === 'undefined') return;
-    const savedChecked = localStorage.getItem('pf_grocery_checked');
-    const checkedMap = savedChecked ? JSON.parse(savedChecked) : {};
-    const nextState = !checkedInGrocery;
-    checkedMap[scannedResult.id] = nextState;
-    localStorage.setItem('pf_grocery_checked', JSON.stringify(checkedMap));
-    setCheckedInGrocery(nextState);
-    alert(nextState ? `✅ Checked off "${scannedResult.name}" from your ME Grocery Guide list!` : `Removed checkmark for "${scannedResult.name}".`);
-  };
-
-  const handleSaveToGroceryList = () => {
-    if (!scannedResult || typeof window === 'undefined') return;
-    const savedCustom = localStorage.getItem('pf_custom_grocery_items');
-    const customList: GroceryItem[] = savedCustom ? JSON.parse(savedCustom) : [];
-    
-    if (!customList.some(i => i.id === scannedResult.id || i.upc === scannedResult.upc)) {
-      const newItem: GroceryItem = {
-        ...scannedResult,
-        store: "Walmart Supercenter (Auburn, ME)",
-        priceEst: "$3.98 (Est. Walmart Price)",
-        coachNote: "Added from live Barcode Scanner for weekly Boricua cutting prep."
-      };
-      const updated = [newItem, ...customList];
-      localStorage.setItem('pf_custom_grocery_items', JSON.stringify(updated));
-      setIsInGroceryList(true);
-      alert(`🛒 Added "${scannedResult.name}" to your Auburn Walmart Grocery Guide!`);
-    } else {
-      alert(`This item is already in your Grocery Guide!`);
-    }
-  };
-
   const handleBarcodeScanned = async (upc: string) => {
     setLoading(true);
     setErrorMsg(null);
     setScannedResult(null);
 
-    // 1. Check local Auburn/Lewiston database first
     let customList: GroceryItem[] = [];
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('pf_custom_grocery_items');
@@ -132,7 +61,6 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
       return;
     }
 
-    // 2. Query OpenFoodFacts API
     try {
       const res = await fetch(`https://world.openfoodfacts.org/api/v0/product/${upc}.json`);
       const data = await res.json();
@@ -142,34 +70,36 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
         const item: GroceryItem = {
           id: `off-${upc}`,
           upc: upc,
-          name: p.product_name || "Scanned Grocery Item",
+          name: p.product_name || "Scanned Food Item",
           store: "All Stores",
-          brand: p.brands || "Generic / Walmart / Hannaford",
+          brand: p.brands || "Unknown",
           category: (nut.proteins_100g || 0) > 15 ? 'Protein' : 'Essentials',
-          priceEst: "Est. Store Brand Price",
-          calories: Math.round(nut['energy-kcal_serving'] || nut['energy-kcal_100g'] || nut['energy-kcal'] || 150),
-          protein: Math.round(nut.proteins_serving || nut.proteins_100g || nut.proteins || 5),
-          carbs: Math.round(nut.carbohydrates_serving || nut.carbohydrates_100g || nut.carbohydrates || 15),
-          fat: Math.round(nut.fat_serving || nut.fat_100g || nut.fat || 3),
-          servingSize: p.serving_size || "1 Serving (100g)",
-          coachNote: "Scanned directly via OpenFoodFacts database. Verify serving size matches your meal portion!"
+          priceEst: "Unknown",
+          calories: nut.energy_kcal_100g || nut['energy-kcal_100g'] || nut.energy_100g || 0,
+          protein: nut.proteins_100g || 0,
+          carbs: nut.carbohydrates_100g || 0,
+          fat: nut.fat_100g || 0,
+          servingSize: p.serving_size || "100g",
+          coachNote: "OpenFoodFacts Database"
         };
         setScannedResult(item);
       } else {
-        setErrorMsg(`UPC "${upc}" not found in database. Try searching by text below or select from our Auburn/Lewiston ME grocery guide!`);
+        setErrorMsg(`UPC "${upc}" not found. Try searching by text.`);
       }
     } catch (e) {
-      setErrorMsg("Network error looking up barcode. Please try manual text search below.");
+      setErrorMsg("Network error looking up barcode.");
     } finally {
       setLoading(false);
     }
   };
 
-  const handleManualSearch = (e: React.FormEvent) => {
+  const handleTextSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
+    
     setLoading(true);
     setErrorMsg(null);
+    setScannedResult(null);
 
     const q = searchQuery.toLowerCase().trim();
     let customList: GroceryItem[] = [];
@@ -179,321 +109,160 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
     }
     const allLocal = [...AUBURN_LEWISTON_GROCERY_ITEMS, ...customList];
     
-    // First try matching inside selected template items
-    const templateMatch = allLocal.find(item => {
-      const matchesQuery = item.name.toLowerCase().includes(q) || item.brand.toLowerCase().includes(q) || item.category.toLowerCase().includes(q);
-      if (!matchesQuery) return false;
-      if (selectedTemplate === 'All') return true;
-      return item.cuisine && item.cuisine.includes(selectedTemplate);
-    });
-
-    const match = templateMatch || allLocal.find(
-      item => item.name.toLowerCase().includes(q) || item.brand.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)
+    const localMatch = allLocal.find(item => 
+      item.name.toLowerCase().includes(q) || item.brand.toLowerCase().includes(q) || item.upc === q
     );
 
-    if (match) {
-      setScannedResult(match);
+    if (localMatch) {
+      setScannedResult(localMatch);
       setLoading(false);
     } else {
-      setErrorMsg(`No direct local match for "${searchQuery}". Showing closest high-protein recommendation!`);
-      setScannedResult(allLocal[0]); // fallback to chicken
+      setErrorMsg(`No matches found for "${searchQuery}". Please add manually in Macro Tracker.`);
       setLoading(false);
     }
   };
 
-  const handleSelectTemplate = (tpl: string) => {
-    setSelectedTemplate(tpl);
-    if (typeof window !== 'undefined') {
-      if (tpl === 'All') {
-        localStorage.removeItem('pf_selected_aisle_template');
-      } else {
-        localStorage.setItem('pf_selected_aisle_template', tpl);
-      }
-    }
-  };
+  const logMeal = () => {
+    if (!scannedResult || typeof window === 'undefined') return;
+    
+    const today = new Date().toISOString().split('T')[0];
+    const savedLogs = localStorage.getItem(`pf_meals_${today}`);
+    const logs = savedLogs ? JSON.parse(savedLogs) : [];
+    
+    logs.push({
+      id: Date.now().toString(),
+      name: `${scannedResult.name} (${customServings}x)`,
+      calories: Math.round(scannedResult.calories * customServings),
+      protein: Math.round(scannedResult.protein * customServings),
+      carbs: Math.round(scannedResult.carbs * customServings),
+      fat: Math.round(scannedResult.fat * customServings),
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    });
+    
+    localStorage.setItem(`pf_meals_${today}`, JSON.stringify(logs));
+    window.dispatchEvent(new Event('storage'));
 
-  const handleLogFood = () => {
-    if (!scannedResult) return;
-    const cals = Math.round(scannedResult.calories * customServings);
-    const prot = Math.round(scannedResult.protein * customServings);
-
-    // Save to local meal log
-    if (typeof window !== 'undefined') {
-      const today = new Date().toISOString().split('T')[0];
-      const savedLogs = localStorage.getItem(`pf_meals_${today}`);
-      const logs = savedLogs ? JSON.parse(savedLogs) : [];
-      logs.push({
-        id: Date.now().toString(),
-        name: `${scannedResult.name} (${customServings}x)`,
-        calories: cals,
-        protein: prot,
-        carbs: Math.round(scannedResult.carbs * customServings),
-        fat: Math.round(scannedResult.fat * customServings),
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      });
-      localStorage.setItem(`pf_meals_${today}`, JSON.stringify(logs));
-    }
-
-    // Award XP & mark daily nutrition quest progress
-    awardXp(50, 'int');
-    const state = loadHunterState();
-    if (!state.completedQuestsToday.calories) {
-      state.completedQuestsToday.calories = true;
-    }
-    saveHunterState(state);
-
-    if (onFoodLogged) onFoodLogged();
+    awardXp(50, 'int', loadHunterState());
+    
     setScannedResult(null);
+    setSearchQuery('');
     setCustomServings(1);
-    alert(`⚡ Successfully logged +${cals} kcal & +${prot}g protein to your Daily Quest!`);
+    
+    if (onFoodLogged) onFoodLogged();
   };
 
   return (
-    <div className="space-y-8 pb-12">
-      
-      {/* Header */}
-      <div className="bg-system-panel p-6 rounded-2xl border border-system-blue/30 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+    <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 shadow-xl w-full mx-auto">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 border-b border-white/10 pb-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
-            <Sparkles className="w-3.5 h-3.5 text-system-blue" />
-            <span>OpenFoodFacts & Local Walmart / Shaw's / Hannaford UPC Engine</span>
-          </div>
-          <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            Hunter Barcode Scanner
+          <h2 className="text-2xl font-black text-white flex items-center gap-2">
+            <ScanLine className="w-6 h-6 text-[#ce1126]" /> 
+            Barcode Scanner
           </h2>
-          <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            Scan ingredient barcodes with your web camera or use quick text search to instantly log calories and macros toward your 2,080 kcal / 178g protein daily goals.
-          </p>
+          <p className="text-xs text-zinc-400 font-mono mt-1">Auburn / Lewiston Local DB + Global Search</p>
         </div>
-
         <button
-          onClick={() => {
-            setScannerActive(!scannerActive);
-            setScannedResult(null);
-            setErrorMsg(null);
-          }}
-          className={`w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-black uppercase text-xs sm:text-sm tracking-widest transition-all min-h-[44px] ${
-            scannerActive
-              ? 'bg-red-500 text-white shadow-lg'
-              : 'bg-gradient-to-r from-system-blue to-system-cyan text-black hover:bg-white shadow-glow-blue'
-          }`}
+          onClick={() => setScannerActive(!scannerActive)}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold transition-all ${scannerActive ? 'bg-red-500/20 text-red-500 border border-red-500/30' : 'bg-[#0a3d8f] text-white shadow-[0_0_15px_rgba(10,61,143,0.3)] hover:scale-105'}`}
         >
-          <Camera className="w-4 h-4 sm:w-5 sm:h-5" />
-          <span>{scannerActive ? 'Close Camera' : 'Activate Camera Scanner'}</span>
+          {scannerActive ? <X className="w-5 h-5" /> : <Camera className="w-5 h-5" />}
+          {scannerActive ? 'Stop Scanner' : 'Scan Barcode'}
         </button>
       </div>
 
-      {/* Live Camera Scanner Box */}
       {scannerActive && (
-        <div className="bg-system-card p-6 rounded-2xl border border-system-blue shadow-glow-blue flex flex-col items-center justify-center space-y-4 animate-in fade-in duration-200">
-          <div className="text-center space-y-1">
-            <h3 className="text-base font-black text-white uppercase tracking-wider">Point Camera at Ingredient Barcode</h3>
-            <p className="text-xs text-zinc-400">Position the UPC code inside the scanner box. It will automatically detect and fetch macros.</p>
-          </div>
-          <div id="reader" className="w-full max-w-md bg-black/60 rounded-xl overflow-hidden border border-system-blue/40 p-2" />
-          <button
-            onClick={() => setScannerActive(false)}
-            className="text-xs text-zinc-400 hover:text-white uppercase font-bold py-2 px-4 min-h-[44px]"
-          >
-            Cancel Scanning
-          </button>
+        <div className="mb-6 rounded-2xl overflow-hidden border border-white/10 bg-black max-w-sm mx-auto shadow-2xl relative">
+          <div id="reader" className="w-full"></div>
+          <div className="absolute inset-0 border-4 border-[#0a3d8f]/50 rounded-2xl pointer-events-none" />
         </div>
       )}
 
-      {/* Manual Search Bar & Quick Lookups */}
-      <div className="bg-system-panel p-6 rounded-2xl border border-white/10 space-y-4">
-        <h3 className="text-sm font-black text-white uppercase tracking-wider flex items-center gap-2">
-          <Search className="w-4 h-4 text-system-blue" />
-          <span>Manual Text Search / Quick UPC Backup</span>
-        </h3>
-        
-        <form onSubmit={handleManualSearch} className="flex flex-col sm:flex-row gap-3">
-          <div className="relative flex-1">
-            <input
-              type="text"
-              placeholder="Search e.g. 'Chicken', 'Greek Yogurt', 'Eggs', 'Oats', or paste UPC code..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-3.5 font-mono text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:border-system-blue shadow-inner"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-system-card border border-system-blue/50 text-system-cyan font-bold uppercase text-xs sm:text-sm tracking-wider hover:bg-system-blue hover:text-black transition-all min-h-[44px]"
-          >
-            Search Food
+      <form onSubmit={handleTextSearch} className="mb-6">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search Walmart, Hannaford, Shaws..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-black/40 border border-white/10 text-white placeholder-zinc-500 rounded-xl px-5 py-4 pl-12 outline-none focus:border-[#f5a623] focus:ring-1 focus:ring-[#f5a623] transition-all shadow-inner"
+          />
+          <Search className="w-5 h-5 text-zinc-400 absolute left-4 top-1/2 -translate-y-1/2" />
+          <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#f5a623] hover:bg-[#d48b1c] text-white p-2 rounded-lg transition-colors">
+            <Search className="w-4 h-4" />
           </button>
-        </form>
-
-        {/* Meal Plan Template Filter & Instant Staples */}
-        <div className="pt-3 border-t border-white/10 space-y-3">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <div className="flex items-center gap-2 text-xs font-bold text-zinc-300 uppercase">
-              <Utensils className="w-3.5 h-3.5 text-system-gold" />
-              <span>Active Meal Plan Template Filter:</span>
-            </div>
-            <div className="flex flex-wrap items-center gap-2">
-              <select
-                value={selectedTemplate}
-                onChange={(e) => handleSelectTemplate(e.target.value)}
-                className="bg-black/80 border border-system-gold/40 text-system-gold rounded-xl px-3 py-1.5 text-xs font-mono font-bold focus:outline-none focus:border-system-gold shadow-glow-gold"
-              >
-                <option value="All">🌐 All Cuisines / Templates</option>
-                {MEAL_PREP_PLANS.map((plan) => (
-                  <option key={plan.id} value={plan.country}>
-                    {plan.flag} {plan.country} ({plan.estCostPerWeek.split(' ')[0]})
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className="text-[11px] text-zinc-400 uppercase font-bold">
-            ⚡ Quick-Scan & Log Staples for Selected Template ({selectedTemplate}):
-          </div>
-          <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto pr-1">
-            {AUBURN_LEWISTON_GROCERY_ITEMS
-              .filter(item => selectedTemplate === 'All' || (item.cuisine && item.cuisine.includes(selectedTemplate)))
-              .map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => {
-                    setScannedResult(item);
-                    setErrorMsg(null);
-                  }}
-                  className="px-3 py-1.5 rounded-lg bg-system-dark border border-white/10 hover:border-system-cyan text-xs text-zinc-300 hover:text-white transition-all flex items-center gap-2"
-                >
-                  <span className="w-2 h-2 rounded-full bg-system-cyan" />
-                  <span className="font-bold">{item.name.replace('Great Value ', 'GV ').replace('Freshness Guaranteed ', 'FG ')}</span>
-                  <span className="text-[10px] text-system-gold font-mono">({item.priceEst.split(' ')[0]})</span>
-                </button>
-              ))}
-          </div>
         </div>
-      </div>
+      </form>
 
-      {/* Error display */}
+      {loading && (
+        <div className="flex flex-col items-center justify-center py-10 space-y-4">
+          <div className="w-8 h-8 border-4 border-[#0a3d8f] border-t-transparent rounded-full animate-spin" />
+          <p className="text-zinc-400 text-sm font-mono animate-pulse">Searching databases...</p>
+        </div>
+      )}
+
       {errorMsg && (
-        <div className="bg-red-500/10 border border-red-500/40 p-4 rounded-xl flex items-center gap-3 text-red-400 text-xs">
-          <AlertCircle className="w-5 h-5 flex-shrink-0" />
-          <span>{errorMsg}</span>
+        <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 flex items-start gap-3 mb-6">
+          <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+          <p className="text-sm text-red-200">{errorMsg}</p>
         </div>
       )}
 
-      {/* Scanned / Found Food Result Card */}
-      {scannedResult && (
-        <div className="bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 rounded-2xl border border-system-cyan shadow-glow-blue space-y-6 animate-in zoom-in-95 duration-200">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/10 pb-4">
+      {scannedResult && !loading && (
+        <div className="bg-gradient-to-br from-black/80 to-[#11182c] border border-white/20 rounded-2xl p-5 shadow-2xl animate-in slide-in-from-bottom-4 duration-300 relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-4">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-widest bg-white/10 px-2 py-1 rounded text-zinc-300 border border-white/5">{scannedResult.store}</span>
+          </div>
+
+          <div className="flex gap-4 mb-4 items-start pr-20">
+            <div className="w-12 h-12 rounded-xl bg-[#0a3d8f]/20 border border-[#0a3d8f]/40 flex items-center justify-center shrink-0 shadow-inner">
+              <CheckCircle className="w-6 h-6 text-[#0a3d8f] drop-shadow-sm" />
+            </div>
             <div>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded bg-system-blue text-system-dark">
-                  {scannedResult.brand}
-                </span>
-                <span className="text-[10px] font-mono text-zinc-400">{scannedResult.store}</span>
-              </div>
-              <h3 className="text-xl font-black text-white uppercase mt-1">
-                {scannedResult.name}
-              </h3>
-              <div className="text-xs text-system-gold font-mono mt-0.5">Serving: {scannedResult.servingSize}</div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 bg-system-dark px-3 py-1.5 rounded-xl border border-white/10">
-                <span className="text-xs text-zinc-400 uppercase font-bold">Servings:</span>
-                <select
-                  value={customServings}
-                  onChange={(e) => setCustomServings(parseFloat(e.target.value))}
-                  className="bg-transparent text-white font-mono font-bold text-sm focus:outline-none"
-                >
-                  <option value={0.5} className="bg-system-dark">0.5x</option>
-                  <option value={1} className="bg-system-dark">1.0x</option>
-                  <option value={1.5} className="bg-system-dark">1.5x</option>
-                  <option value={2} className="bg-system-dark">2.0x</option>
-                  <option value={3} className="bg-system-dark">3.0x</option>
-                </select>
-              </div>
+              <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest mb-1">{scannedResult.brand}</p>
+              <h3 className="text-lg font-black text-white leading-tight">{scannedResult.name}</h3>
+              <p className="text-xs text-zinc-500 mt-1 font-mono">UPC: {scannedResult.upc}</p>
             </div>
           </div>
 
-          {/* Macro Breakdown Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-system-dark p-4 rounded-xl border border-system-blue/30 text-center">
-              <div className="text-[11px] text-zinc-400 font-bold uppercase">Calories</div>
-              <div className="text-2xl font-black text-white font-mono mt-1 text-glow">
-                {Math.round(scannedResult.calories * customServings)}
-              </div>
-              <div className="text-[10px] text-system-cyan font-mono">kcal</div>
+          <div className="grid grid-cols-4 gap-2 mb-6">
+            <div className="bg-black/40 border border-white/5 rounded-lg p-2 text-center">
+              <div className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider mb-1">Cals</div>
+              <div className="text-[#f5a623] font-mono font-black text-sm">{scannedResult.calories}</div>
             </div>
-
-            <div className="bg-system-dark p-4 rounded-xl border border-system-cyan/30 text-center">
-              <div className="text-[11px] text-zinc-400 font-bold uppercase">Protein</div>
-              <div className="text-2xl font-black text-system-cyan font-mono mt-1">
-                {Math.round(scannedResult.protein * customServings)}g
-              </div>
-              <div className="text-[10px] text-zinc-400 font-mono">Muscle Armor</div>
+            <div className="bg-black/40 border border-white/5 rounded-lg p-2 text-center">
+              <div className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider mb-1">Prot</div>
+              <div className="text-[#4ade80] font-mono font-black text-sm">{scannedResult.protein}g</div>
             </div>
-
-            <div className="bg-system-dark p-4 rounded-xl border border-white/10 text-center">
-              <div className="text-[11px] text-zinc-400 font-bold uppercase">Carbs</div>
-              <div className="text-2xl font-black text-white font-mono mt-1">
-                {Math.round(scannedResult.carbs * customServings)}g
-              </div>
-              <div className="text-[10px] text-zinc-400 font-mono">Lifting Fuel</div>
+            <div className="bg-black/40 border border-white/5 rounded-lg p-2 text-center">
+              <div className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider mb-1">Carbs</div>
+              <div className="text-[#0a3d8f] font-mono font-black text-sm">{scannedResult.carbs}g</div>
             </div>
-
-            <div className="bg-system-dark p-4 rounded-xl border border-white/10 text-center">
-              <div className="text-[11px] text-zinc-400 font-bold uppercase">Fat</div>
-              <div className="text-2xl font-black text-white font-mono mt-1">
-                {Math.round(scannedResult.fat * customServings)}g
-              </div>
-              <div className="text-[10px] text-zinc-400 font-mono">Hormone Health</div>
+            <div className="bg-black/40 border border-white/5 rounded-lg p-2 text-center">
+              <div className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider mb-1">Fat</div>
+              <div className="text-[#ce1126] font-mono font-black text-sm">{scannedResult.fat}g</div>
             </div>
           </div>
 
-          {/* Coach Note & Log Action */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-2 border-t border-white/5">
-            <p className="text-xs text-zinc-300 leading-relaxed max-w-xl">
-              <strong className="text-system-gold">Coach's Advice:</strong> {scannedResult.coachNote}
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
-              {isInGroceryList ? (
-                <button
-                  type="button"
-                  onClick={handleToggleGroceryCheck}
-                  className={`w-full sm:w-auto px-5 py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs transition-all flex items-center justify-center gap-2 border ${
-                    checkedInGrocery
-                      ? 'bg-green-500/20 text-green-400 border-green-500/50 hover:bg-green-500/30'
-                      : 'bg-system-dark text-zinc-300 border-white/20 hover:border-system-cyan hover:text-white'
-                  }`}
-                >
-                  <CheckCircle2 className={`w-4 h-4 ${checkedInGrocery ? 'text-green-400' : 'text-zinc-400'}`} />
-                  <span>{checkedInGrocery ? 'Checked Off in Guide' : 'Check Off from Guide'}</span>
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={handleSaveToGroceryList}
-                  className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-system-dark hover:bg-system-blue/20 text-system-cyan font-bold uppercase tracking-wider text-xs border border-system-blue/40 transition-all flex items-center justify-center gap-2 shadow-sm"
-                >
-                  <ShoppingBag className="w-4 h-4" />
-                  <span>+ Save to Walmart List</span>
-                </button>
-              )}
-
-              <button
-                type="button"
-                onClick={handleLogFood}
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-system-dark font-black uppercase tracking-widest text-xs shadow-glow-blue hover:from-white hover:to-white transition-all transform hover:scale-105 flex items-center justify-center gap-2"
-              >
-                <PlusCircle className="w-4 h-4" />
-                <span>Log to Daily Quest (+{Math.round(scannedResult.calories * customServings)} kcal)</span>
-              </button>
+          <div className="flex flex-col sm:flex-row gap-3 items-end">
+            <div className="w-full sm:w-auto">
+              <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-1 pl-1">Servings</label>
+              <div className="flex items-center gap-2 bg-black/40 border border-white/10 rounded-xl p-1 w-fit">
+                <button type="button" onClick={() => setCustomServings(Math.max(0.5, customServings - 0.5))} className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-white font-bold flex items-center justify-center">-</button>
+                <div className="w-12 text-center font-mono font-bold text-white text-sm">{customServings}</div>
+                <button type="button" onClick={() => setCustomServings(customServings + 0.5)} className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-white font-bold flex items-center justify-center">+</button>
+              </div>
             </div>
+            
+            <button
+              onClick={logMeal}
+              className="flex-1 w-full bg-gradient-to-r from-[#ce1126] to-[#f5a623] hover:from-[#a00d1d] hover:to-[#d48b1c] text-white px-5 py-3 rounded-xl font-bold tracking-wide transition-all shadow-[0_0_15px_rgba(206,17,38,0.3)] flex items-center justify-center gap-2"
+            >
+              <PlusCircle className="w-5 h-5" />
+              Log {Math.round(scannedResult.calories * customServings)} kcal
+            </button>
           </div>
         </div>
       )}
-
     </div>
   );
 }

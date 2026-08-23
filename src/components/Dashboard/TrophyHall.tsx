@@ -180,7 +180,7 @@ export default function TrophyHall() {
             Hunter Trophy Hall
           </h2>
           <p className="text-xs sm:text-sm text-zinc-300 max-w-2xl leading-relaxed">
-            Unlock legendary titles by crushing your calisthenics workouts and Puerto Rican Pollo al Horno nutrition targets. Equip any unlocked title to display it across your top Hunter Status Bar!
+            Unlock legendary titles by crushing your Planet Fitness workouts and nutrition targets. Equip any unlocked title to display it across your top Hunter Status Bar!
           </p>
         </div>
 

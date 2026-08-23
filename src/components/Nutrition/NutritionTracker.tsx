@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { loadHunterState, saveHunterState, awardXp, triggerLevelUpCelebration, drinkWaterAmount, getHydrationOzConsumed, HYDRATION_GOAL_OZ, resetDailyHydration } from '@/lib/hunter-system';
-import { Utensils, Plus, Trash2, CheckCircle2, Flame, Award, ArrowRight, ShieldCheck, Sparkles, Printer, Droplets, PlusCircle, RotateCcw } from 'lucide-react';
+import { Flame, Droplets, PlusCircle, Trash2, ShieldCheck } from 'lucide-react';
 import { TabType } from '../Navigation/SystemSidebar';
-import { MEAL_PREP_PLANS, NATIONAL_CUISINES_LIST, getPlanHtmlFilename } from '@/lib/grocery-data';
 
 interface LoggedMeal {
   id: string;
@@ -17,14 +16,12 @@ interface LoggedMeal {
 }
 
 interface NutritionTrackerProps {
-  onNavigate: (tab: TabType) => void;
+  onNavigate?: (tab: TabType) => void;
 }
 
 export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) {
   const [hunterState, setHunterState] = useState(() => (typeof window !== 'undefined' ? loadHunterState() : null));
   const [meals, setMeals] = useState<LoggedMeal[]>([]);
-  const [selectedDeckCountry, setSelectedDeckCountry] = useState<string>('🇵🇷 Puerto Rico');
-  const [selectedDeckRegion, setSelectedDeckRegion] = useState<string>('All Regions');
   const [showManualModal, setShowManualModal] = useState(false);
   const [manualName, setManualName] = useState('');
   const [manualCals, setManualCals] = useState('');
@@ -46,26 +43,24 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    const loadMeals = () => {
       const saved = localStorage.getItem(`pf_meals_${today}`);
       if (saved) setMeals(JSON.parse(saved));
       else setMeals([]);
-
-      const savedCountry = localStorage.getItem('pf_selected_aisle_template');
-      if (savedCountry && MEAL_PREP_PLANS.some(p => p.country === savedCountry)) {
-        setSelectedDeckCountry(savedCountry);
-        const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === savedCountry || c.bulkingKey === savedCountry);
-        if (matchCuisine?.region) setSelectedDeckRegion(matchCuisine.region);
-      } else {
-        setSelectedDeckCountry('🇵🇷 Puerto Rico');
-      }
-    }
+    };
+    loadMeals();
+    
+    // Listen for storage changes in case BarcodeScanner updates it
+    window.addEventListener('storage', loadMeals);
+    return () => window.removeEventListener('storage', loadMeals);
   }, [today]);
 
   const saveMealsToStorage = (updated: LoggedMeal[]) => {
     setMeals(updated);
     if (typeof window !== 'undefined') {
       localStorage.setItem(`pf_meals_${today}`, JSON.stringify(updated));
+      // Dispatch storage event manually for same-window updates
+      window.dispatchEvent(new Event('storage'));
     }
   };
 
@@ -86,7 +81,6 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
     const updated = [...meals, newMeal];
     saveMealsToStorage(updated);
 
-    // Award XP
     const state = loadHunterState();
     if (!state.completedQuestsToday.calories) state.completedQuestsToday.calories = true;
     saveHunterState(state);
@@ -100,7 +94,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
     setManualFat('');
   };
 
-  const handleRemoveMeal = (id: string) => {
+  const removeMeal = (id: string) => {
     const updated = meals.filter(m => m.id !== id);
     saveMealsToStorage(updated);
   };
@@ -110,400 +104,96 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
   const totalCarbs = meals.reduce((acc, m) => acc + m.carbs, 0);
   const totalFat = meals.reduce((acc, m) => acc + m.fat, 0);
 
-  const activePlan = MEAL_PREP_PLANS.find(p => p.country === selectedDeckCountry) || MEAL_PREP_PLANS[0];
+  const calGoal = 2500;
+  const protGoal = 180;
+  const carbGoal = 300;
+  const fatGoal = 65;
 
-  const calGoal = activePlan.targetDailyCalories || 2080;
-  const protGoal = activePlan.targetDailyProtein || 178;
-  const isBulking = selectedDeckCountry.includes('Bulking');
-  const carbGoal = isBulking ? 370 : 200;
-  const fatGoal = isBulking ? 65 : 60;
-
-  const handleSelectDeckCountry = (country: string) => {
-    setSelectedDeckCountry(country);
-    const matchCuisine = NATIONAL_CUISINES_LIST.find(c => c.cuttingKey === country || c.bulkingKey === country);
-    if (matchCuisine?.region) setSelectedDeckRegion(matchCuisine.region);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('pf_selected_aisle_template', country);
-    }
-  };
-
-  const handleQuickLog = (item: { name: string; calories: number; protein: number; carbs: number; fat: number; time: string; }) => {
-    const newMeal: LoggedMeal = {
-      id: Date.now().toString() + Math.random().toString(36).substring(2, 5),
-      name: item.name,
-      calories: item.calories,
-      protein: item.protein,
-      carbs: item.carbs,
-      fat: item.fat,
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    };
-    const updated = [...meals, newMeal];
-    saveMealsToStorage(updated);
-
-    const state = loadHunterState();
-    if (!state.completedQuestsToday.calories) state.completedQuestsToday.calories = true;
-    if (!state.completedQuestsToday.protein) state.completedQuestsToday.protein = true;
-    saveHunterState(state);
-    awardXp(75, 'int', state);
-    triggerLevelUpCelebration();
-  };
-
-  const handleLogAllMealsForPlan = () => {
-    const newMeals: LoggedMeal[] = activePlan.meals.map((item, idx) => ({
-      id: Date.now().toString() + '-' + idx + Math.random().toString(36).substring(2, 5),
-      name: item.name,
-      calories: item.calories,
-      protein: item.protein,
-      carbs: item.carbs,
-      fat: item.fat,
-      time: item.time || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    }));
-    const updated = [...meals, ...newMeals];
-    saveMealsToStorage(updated);
-
-    const state = loadHunterState();
-    if (!state.completedQuestsToday.calories) state.completedQuestsToday.calories = true;
-    if (!state.completedQuestsToday.protein) state.completedQuestsToday.protein = true;
-    saveHunterState(state);
-    awardXp(300, 'int', state);
-    triggerLevelUpCelebration();
-  };
-
-  const calPct = Math.min(100, Math.floor((totalCals / calGoal) * 100));
-  const protPct = Math.min(100, Math.floor((totalProt / protGoal) * 100));
+  const waterConsumed = getHydrationOzConsumed(hunterState?.mp ?? 0);
+  const waterProgress = Math.min((waterConsumed / HYDRATION_GOAL_OZ) * 100, 100);
 
   return (
     <div className="space-y-8 pb-12">
-      
-      {/* Header */}
-      <div className="bg-system-panel p-6 rounded-2xl border border-system-blue/30 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="bg-[#11182c]/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
-            <Flame className="w-3.5 h-3.5 text-system-blue" />
-            <span>Daily Nutrition Directive | Target Weight: 160 lbs</span>
+          <div className="flex items-center gap-2 text-xs font-mono uppercase text-[#0a3d8f] mb-1">
+            <Flame className="w-3.5 h-3.5" />
+            <span>Daily Macros | Auburn DB (Walmart, Hannaford, Shaws)</span>
           </div>
-          <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            Calorie & Macro Quest
+          <h2 className="text-2xl font-black tracking-wider text-white uppercase">
+            Macro Tracker
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            Hit your 178g protein target to stay anabolic and preserve muscle mass while cutting at a safe ~1 lb/week pace.
+            Hit your {protGoal}g protein target to stay anabolic.
           </p>
         </div>
-
-        <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-          <button
-            onClick={() => onNavigate('scanner')}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-black font-black uppercase text-xs sm:text-sm tracking-wider shadow-glow-blue hover:bg-white transition-all min-h-[44px]"
-          >
-            <span>Scan Barcode</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-          <button
-            onClick={() => setShowManualModal(true)}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-system-card border border-system-cyan/40 text-system-cyan font-bold uppercase text-xs sm:text-sm tracking-wider hover:bg-system-blue/20 transition-all min-h-[44px]"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Manual Entry</span>
-          </button>
-        </div>
+        <button
+          onClick={() => setShowManualModal(true)}
+          className="flex items-center gap-2 bg-[#ce1126] hover:bg-[#a00d1d] text-white px-5 py-2.5 rounded-xl font-bold tracking-wide transition-all shadow-lg active:scale-95"
+        >
+          <PlusCircle className="w-5 h-5" />
+          Quick Add
+        </button>
       </div>
 
-      {/* Mana Hydration Quick-Log Card */}
-      {hunterState && (
-        <div className="bg-system-panel p-6 rounded-2xl border border-blue-500/30 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-mono uppercase text-blue-400 mb-1">
-              <Droplets className="w-3.5 h-3.5 text-blue-400" />
-              <span>Mana Hydration Tracker</span>
-            </div>
-            <h3 className="text-xl font-black tracking-wider text-white uppercase">
-              1 Gallon ({HYDRATION_GOAL_OZ} oz) Daily Goal
-            </h3>
-            <p className="text-xs text-zinc-400 mt-1">
-              Status: <span className="text-blue-300 font-mono font-bold">{getHydrationOzConsumed(hunterState.mp)} / {HYDRATION_GOAL_OZ} oz</span> ({hunterState.mp}% hydrated today).
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-2.5 w-full md:w-auto">
-            <button
-              onClick={() => handleDrinkWater(16.9)}
-              className="flex-1 sm:flex-initial py-2.5 px-4 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-md cursor-pointer min-h-[44px]"
-              title="Drink standard 16.9 oz water bottle"
-            >
-              <PlusCircle className="w-4 h-4 flex-shrink-0" />
-              <span>+16.9 oz Bottle</span>
-            </button>
-            <button
-              onClick={() => handleDrinkWater(24)}
-              className="flex-1 sm:flex-initial py-2.5 px-4 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-md cursor-pointer min-h-[44px]"
-              title="Drink 24 oz shaker / bottle"
-            >
-              <PlusCircle className="w-4 h-4 flex-shrink-0" />
-              <span>+24 oz Shaker</span>
-            </button>
-            <button
-              onClick={handleResetWater}
-              className="py-2.5 px-3 rounded-xl bg-system-card hover:bg-red-500/20 border border-white/10 hover:border-red-500/40 text-zinc-400 hover:text-red-300 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 cursor-pointer min-h-[44px]"
-              title="Reset today's water tracking to 0 oz"
-            >
-              <RotateCcw className="w-4 h-4" />
-              <span>Reset</span>
-            </button>
-          </div>
-        </div>
-      )}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <MacroCard title="Calories" current={totalCals} goal={calGoal} unit="kcal" color="bg-[#f5a623]" border="border-[#f5a623]" />
+        <MacroCard title="Protein" current={totalProt} goal={protGoal} unit="g" color="bg-[#4ade80]" border="border-[#4ade80]" />
+        <MacroCard title="Carbs" current={totalCarbs} goal={carbGoal} unit="g" color="bg-[#0a3d8f]" border="border-[#0a3d8f]" />
+        <MacroCard title="Fats" current={totalFat} goal={fatGoal} unit="g" color="bg-[#ce1126]" border="border-[#ce1126]" />
+      </div>
 
-      {/* 1-Click Template-Synced Meal Prep Quick-Log Deck */}
-      <div className="bg-system-panel p-6 rounded-2xl border border-system-blue/40 shadow-glow-blue space-y-4">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-white/10 pb-3">
-          <div>
-            <h3 className="text-base font-black text-white uppercase tracking-wider flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-system-gold animate-pulse" /> ⚡ 1-Click Meal Prep Quick-Log Deck ({activePlan.flag} {activePlan.country})
-            </h3>
-            <p className="text-xs text-zinc-400">Instantly log your prepped {activePlan.country} blueprint meals with 1 click to fill your HP & Mana bars!</p>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <button
-              onClick={handleLogAllMealsForPlan}
-              className="flex items-center gap-1.5 bg-gradient-to-r from-system-gold to-yellow-500 hover:bg-white text-black px-3 py-1.5 rounded-lg text-xs font-black font-mono shadow-glow-gold transition-all cursor-pointer"
-              title="Instantly add all 4 meals from this template into your daily tracker"
-            >
-              <PlusCircle className="w-3.5 h-3.5 text-black" />
-              <span>⚡ + Log All 4 Meals ({activePlan.country}) (+300 INT XP)</span>
-            </button>
-            <a
-              href={getPlanHtmlFilename(activePlan.country) + '#print'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 bg-system-dark hover:bg-system-gold text-system-gold hover:text-black px-3 py-1 rounded-lg text-xs font-black font-mono border border-system-gold/40 hover:shadow-glow-gold transition-all cursor-pointer no-underline"
-              title="Print or Save as PDF the selected Meal Prep Blueprint"
-            >
-              <Printer className="w-3.5 h-3.5" />
-              <span>🖨️ Print {activePlan.flag} {activePlan.country.includes('Bulking') ? 'Phase 2 Bulking' : 'Phase 1 Cutting'} PDF</span>
-            </a>
-            <span className="text-[10px] bg-system-blue/20 text-system-cyan border border-system-blue/40 px-2.5 py-1 rounded font-mono font-bold whitespace-nowrap">
-              +75 INT XP Per Meal
-            </span>
-          </div>
+      <div className="bg-[#11182c]/80 backdrop-blur-md rounded-2xl border border-white/10 p-6 shadow-xl overflow-hidden relative">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="font-black text-white text-lg tracking-wider flex items-center gap-2">
+            <Droplets className="w-5 h-5 text-[#0a3d8f]" /> Hydration ({waterConsumed} / {HYDRATION_GOAL_OZ} oz)
+          </h3>
+          <button onClick={handleResetWater} className="text-xs font-mono text-zinc-500 hover:text-white uppercase">Reset</button>
         </div>
-
-        {/* Region Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-2">
-          <div className="text-[11px] font-mono font-bold text-zinc-400 uppercase tracking-wider">
-            🌍 Filter Blueprints By Region (All 38 Blueprints Across 19 Cuisines)
-          </div>
-          <div className="flex flex-wrap items-center gap-1.5">
-            {['All Regions', 'Americas & Caribbean', 'South America', 'Europe', 'Asia'].map((region) => (
-              <button
-                key={region}
-                onClick={() => setSelectedDeckRegion(region)}
-                className={`px-2.5 py-1 rounded-lg text-[11px] font-bold uppercase transition-all cursor-pointer ${
-                  selectedDeckRegion === region
-                    ? 'bg-system-blue text-system-dark font-black shadow-glow-blue'
-                    : 'bg-black/50 text-zinc-400 hover:text-white border border-white/10'
-                }`}
-              >
-                {region === 'All Regions' ? '🌐 All 19' :
-                 region === 'Americas & Caribbean' ? '🌎 Americas (6)' :
-                 region === 'South America' ? '🗺️ S. America (4)' :
-                 region === 'Europe' ? '🏰 Europe (5)' : '🐉 Asia (4)'}
-              </button>
-            ))}
-          </div>
+        
+        <div className="h-4 bg-black/50 rounded-full overflow-hidden mb-6 border border-white/5">
+          <div className="h-full bg-gradient-to-r from-[#0a3d8f] to-[#4ade80] transition-all duration-700 ease-out" style={{ width: `${waterProgress}%` }} />
         </div>
-
-        {/* Cuisine Template Selector Pills (Grouped or Filtered by Region) */}
-        <div className="space-y-2 max-h-60 overflow-y-auto p-2 bg-black/20 rounded-xl border border-white/5">
-          {(selectedDeckRegion === 'All Regions'
-            ? ['Americas & Caribbean', 'South America', 'Europe', 'Asia']
-            : [selectedDeckRegion]
-          ).map((regionGroup) => {
-            const regionPlans = MEAL_PREP_PLANS.filter((plan) => {
-              const matchCuisine = NATIONAL_CUISINES_LIST.find(c => plan.country.includes(c.name));
-              return matchCuisine?.region === regionGroup;
-            });
-            return (
-              <div key={regionGroup} className="space-y-1 bg-black/30 p-2 rounded-lg border border-white/5">
-                <div className="text-[10px] font-mono font-black uppercase text-system-gold tracking-wider">
-                  {regionGroup === 'Americas & Caribbean' ? '🌎 Americas & Caribbean' :
-                   regionGroup === 'South America' ? '🗺️ South America' :
-                   regionGroup === 'Europe' ? '🏰 Europe' : '🐉 Asia'}
-                </div>
-                <div className="flex flex-wrap items-center gap-1.5">
-                  {regionPlans.map((plan) => {
-                    const isSelected = selectedDeckCountry === plan.country;
-                    return (
-                      <button
-                        key={plan.id}
-                        onClick={() => handleSelectDeckCountry(plan.country)}
-                        className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                          isSelected
-                            ? 'bg-system-cyan text-black shadow-glow-blue scale-105 font-black'
-                            : 'bg-system-dark hover:bg-system-card text-zinc-300 hover:text-white border border-white/10'
-                        }`}
-                      >
-                        <span>{plan.flag}</span>
-                        <span>{plan.country} ({plan.estCostPerWeek.split(' ')[0]})</span>
-                        {plan.badge && <span className="text-[9px] bg-system-gold text-black px-1 py-0.2 rounded font-black ml-0.5">{plan.badge}</span>}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-2">
-          {activePlan.meals.map((item, idx) => (
-            <button
-              key={idx}
-              onClick={() => handleQuickLog(item)}
-              className="bg-system-dark hover:bg-system-card p-4 rounded-xl border border-white/10 hover:border-system-cyan transition-all text-left flex items-start justify-between gap-3 group shadow-md hover:shadow-glow-blue/30"
-            >
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">{activePlan.flag}</span>
-                  <span className="text-xs font-mono text-system-gold">{item.time}</span>
-                </div>
-                <h4 className="text-xs font-bold text-white group-hover:text-system-cyan transition-colors line-clamp-1">
-                  {item.name}
-                </h4>
-                <div className="text-[11px] font-mono text-zinc-400 flex items-center gap-2">
-                  <span className="text-white font-bold">{item.calories} kcal</span>
-                  <span>|</span>
-                  <span className="text-system-cyan font-bold">{item.protein}g P</span>
-                </div>
-              </div>
-              <div className="w-8 h-8 rounded-lg bg-system-blue/10 group-hover:bg-system-blue text-system-cyan group-hover:text-black flex items-center justify-center transition-all flex-shrink-0 mt-1">
-                <Plus className="w-4 h-4" />
-              </div>
+        
+        <div className="flex gap-3">
+          {[8, 16, 24].map((amt) => (
+            <button key={amt} onClick={() => handleDrinkWater(amt)} className="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-3 flex flex-col items-center gap-1 transition-all hover:border-[#0a3d8f]/50 hover:shadow-[0_0_15px_rgba(10,61,143,0.3)]">
+              <Droplets className="w-5 h-5 text-[#0a3d8f]" />
+              <span className="text-xs font-bold text-white">+{amt} oz</span>
             </button>
           ))}
         </div>
       </div>
 
-      {/* Macro Rings Grid - 2x2 on mobile, 4x1 on desktop */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      <div className="bg-[#11182c]/80 backdrop-blur-md rounded-2xl border border-white/10 p-6 shadow-xl">
+        <h3 className="font-black text-white text-lg tracking-wider mb-4 border-b border-white/10 pb-4">Today&apos;s Log</h3>
         
-        {/* Calories Card (Mana Bar) */}
-        <div className="bg-system-panel p-5 rounded-2xl border border-system-blue/30 space-y-3">
-          <div className="flex justify-between items-center text-xs font-bold uppercase text-zinc-400">
-            <span>⚡ Mana Fuel (Cals)</span>
-            <span className="text-system-cyan font-mono">{calPct}%</span>
-          </div>
-          <div className="text-2xl font-black text-white font-mono text-glow">
-            {totalCals} <span className="text-xs font-normal text-zinc-400">/ {calGoal} kcal</span>
-          </div>
-          <div className="w-full h-2.5 bg-black/60 rounded-full overflow-hidden border border-white/10">
-            <div 
-              className={`h-full rounded-full transition-all duration-500 ${
-                totalCals > calGoal ? 'bg-red-500' : 'bg-gradient-to-r from-system-blue to-system-cyan shadow-glow-blue'
-              }`}
-              style={{ width: `${calPct}%` }}
-            />
-          </div>
-          <div className="text-[11px] text-zinc-400">
-            {totalCals > calGoal ? '⚠️ Exceeded cutting goal!' : `${calGoal - totalCals} kcal remaining for today.`}
-          </div>
-        </div>
-
-        {/* Protein Card (HP Armor Bar) */}
-        <div className="bg-system-panel p-5 rounded-2xl border border-green-500/40 space-y-3 shadow-glow-blue/20">
-          <div className="flex justify-between items-center text-xs font-bold uppercase text-zinc-400">
-            <span className="text-green-400">💖 HP Armor (Prot)</span>
-            <span className="text-green-400 font-mono">{protPct}%</span>
-          </div>
-          <div className="text-2xl font-black text-green-400 font-mono">
-            {totalProt}g <span className="text-xs font-normal text-zinc-400">/ {protGoal}g</span>
-          </div>
-          <div className="w-full h-2.5 bg-black/60 rounded-full overflow-hidden border border-white/10">
-            <div 
-              className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full transition-all duration-500 shadow-glow-blue"
-              style={{ width: `${protPct}%` }}
-            />
-          </div>
-          <div className="text-[11px] text-zinc-400">
-            {totalProt >= protGoal ? '✅ Muscle armor maximized!' : `${protGoal - totalProt}g left to hit anabolic goal.`}
-          </div>
-        </div>
-
-        {/* Carbs Card */}
-        <div className="bg-system-panel p-5 rounded-2xl border border-white/10 space-y-3">
-          <div className="flex justify-between items-center text-xs font-bold uppercase text-zinc-400">
-            <span>Carbs</span>
-            <span className="text-zinc-400 font-mono">{totalCarbs}g</span>
-          </div>
-          <div className="text-2xl font-black text-white font-mono">
-            {totalCarbs}g <span className="text-xs font-normal text-zinc-400">/ {carbGoal}g</span>
-          </div>
-          <div className="w-full h-2.5 bg-black/60 rounded-full overflow-hidden border border-white/10">
-            <div 
-              className="h-full bg-zinc-400 rounded-full transition-all duration-500"
-              style={{ width: `${Math.min(100, (totalCarbs / carbGoal) * 100)}%` }}
-            />
-          </div>
-          <div className="text-[11px] text-zinc-400">Primary fuel for your Quiet Apartment workouts.</div>
-        </div>
-
-        {/* Fat Card */}
-        <div className="bg-system-panel p-5 rounded-2xl border border-white/10 space-y-3">
-          <div className="flex justify-between items-center text-xs font-bold uppercase text-zinc-400">
-            <span>Fat</span>
-            <span className="text-zinc-400 font-mono">{totalFat}g</span>
-          </div>
-          <div className="text-2xl font-black text-white font-mono">
-            {totalFat}g <span className="text-xs font-normal text-zinc-400">/ {fatGoal}g</span>
-          </div>
-          <div className="w-full h-2.5 bg-black/60 rounded-full overflow-hidden border border-white/10">
-            <div 
-              className="h-full bg-zinc-400 rounded-full transition-all duration-500"
-              style={{ width: `${Math.min(100, (totalFat / fatGoal) * 100)}%` }}
-            />
-          </div>
-          <div className="text-[11px] text-zinc-400">Essential for hormone production & joint lubrication.</div>
-        </div>
-
-      </div>
-
-      {/* Today's Meal Log */}
-      <div className="bg-system-panel p-6 rounded-2xl border border-white/10 space-y-4">
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
-          <h3 className="text-base font-black text-white uppercase tracking-widest flex items-center gap-2">
-            <Utensils className="w-5 h-5 text-system-blue" /> Today's Logged Meals
-          </h3>
-          <span className="text-xs font-mono text-zinc-400">{meals.length} Items Logged Today</span>
-        </div>
-
         {meals.length === 0 ? (
-          <div className="text-center py-12 space-y-3 bg-system-dark/50 rounded-xl border border-dashed border-white/10">
-            <Utensils className="w-8 h-8 text-zinc-600 mx-auto" />
-            <div className="text-sm font-bold text-zinc-400">No meals logged yet today.</div>
-            <p className="text-xs text-zinc-500 max-w-sm mx-auto">Use the Barcode Scanner or Manual Entry to log your high-protein meals from Walmart, Shaw's, or Hannaford!</p>
+          <div className="text-center py-10 bg-black/20 rounded-xl border border-white/5">
+            <ShieldCheck className="w-12 h-12 text-zinc-600 mx-auto mb-3 opacity-50" />
+            <p className="text-zinc-500 font-medium">No macros tracked yet today.</p>
+            <p className="text-zinc-600 text-sm mt-1">Use the Barcode Scanner or Quick Add.</p>
           </div>
         ) : (
           <div className="space-y-3">
             {meals.map((meal) => (
-              <div key={meal.id} className="bg-system-dark p-4 rounded-xl border border-white/5 flex items-center justify-between gap-4">
+              <div key={meal.id} className="bg-black/30 border border-white/5 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:border-white/10 transition-colors">
                 <div>
-                  <div className="flex items-center gap-2">
-                    <h4 className="text-sm font-bold text-white">{meal.name}</h4>
-                    <span className="text-[10px] font-mono text-zinc-500">{meal.time}</span>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="font-bold text-white text-sm">{meal.name}</span>
+                    <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded text-zinc-400 font-mono">{meal.time}</span>
                   </div>
-                  <div className="flex items-center gap-3 text-xs font-mono text-zinc-400 mt-1">
-                    <span className="text-system-cyan font-bold">{meal.calories} kcal</span>
-                    <span>|</span>
-                    <span className="text-system-cyan font-bold">{meal.protein}g Protein</span>
-                    <span>|</span>
-                    <span>{meal.carbs}g Carbs</span>
-                    <span>|</span>
-                    <span>{meal.fat}g Fat</span>
+                  <div className="flex gap-3 text-xs font-mono font-medium">
+                    <span className="text-[#f5a623]">{meal.calories} kcal</span>
+                    <span className="text-[#4ade80]">{meal.protein}g P</span>
+                    <span className="text-[#0a3d8f]">{meal.carbs}g C</span>
+                    <span className="text-[#ce1126]">{meal.fat}g F</span>
                   </div>
                 </div>
-
                 <button
-                  onClick={() => handleRemoveMeal(meal.id)}
-                  className="p-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 transition-all"
-                  title="Remove Meal"
+                  onClick={() => removeMeal(meal.id)}
+                  className="text-zinc-500 hover:text-[#ce1126] p-2 rounded-lg hover:bg-[#ce1126]/10 transition-colors shrink-0"
+                  aria-label="Remove meal"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -513,100 +203,60 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
         )}
       </div>
 
-      {/* Manual Entry Modal */}
       {showManualModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="bg-system-panel border border-system-blue rounded-2xl p-6 max-w-md w-full space-y-4 shadow-glow-blue animate-in fade-in zoom-in duration-200">
-            <div className="flex items-center justify-between">
-              <h3 className="text-lg font-black text-white uppercase">Manual Meal Entry</h3>
-              <button onClick={() => setShowManualModal(false)} className="text-zinc-400 hover:text-white text-sm font-bold">✕</button>
-            </div>
-            
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-[#11182c] border border-white/20 rounded-3xl p-6 w-full max-w-md shadow-2xl relative">
+            <h3 className="text-xl font-black text-white mb-6">Quick Add Macros</h3>
             <form onSubmit={handleManualAdd} className="space-y-4">
               <div>
-                <label className="text-xs font-bold text-zinc-400 uppercase">Meal / Food Name</label>
-                <input
-                  type="text"
-                  placeholder="e.g. Grilled Chicken Breast & Jasmine Rice"
-                  value={manualName}
-                  onChange={(e) => setManualName(e.target.value)}
-                  className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-2.5 mt-1 text-sm text-white focus:outline-none focus:border-system-blue"
-                  required
-                />
+                <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Food Name</label>
+                <input required type="text" value={manualName} onChange={(e) => setManualName(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-[#ce1126] focus:ring-1 focus:ring-[#ce1126] transition-all" placeholder="e.g., Hannaford Greek Yogurt" />
               </div>
-
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-bold text-zinc-400 uppercase">Calories (kcal)</label>
-                  <input
-                    type="number"
-                    inputMode="decimal"
-                    placeholder="e.g. 550"
-                    value={manualCals}
-                    onChange={(e) => setManualCals(e.target.value)}
-                    className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-3 mt-1 text-sm font-mono font-bold text-white focus:outline-none focus:border-system-blue shadow-inner"
-                    required
-                  />
+                  <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Calories</label>
+                  <input required type="number" min="0" value={manualCals} onChange={(e) => setManualCals(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-[#f5a623] font-mono outline-none focus:border-[#f5a623]" placeholder="0" />
                 </div>
                 <div>
-                  <label className="text-xs font-bold text-system-cyan uppercase">Protein (g)</label>
-                  <input
-                    type="number"
-                    inputMode="decimal"
-                    placeholder="e.g. 50"
-                    value={manualProt}
-                    onChange={(e) => setManualProt(e.target.value)}
-                    className="w-full bg-system-dark border border-system-cyan/40 rounded-xl px-4 py-3 mt-1 text-sm font-mono font-bold text-system-cyan focus:outline-none focus:border-system-cyan shadow-inner"
-                    required
-                  />
+                  <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Protein (g)</label>
+                  <input required type="number" min="0" value={manualProt} onChange={(e) => setManualProt(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-[#4ade80] font-mono outline-none focus:border-[#4ade80]" placeholder="0" />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Carbs (g)</label>
+                  <input required type="number" min="0" value={manualCarbs} onChange={(e) => setManualCarbs(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-[#0a3d8f] font-mono outline-none focus:border-[#0a3d8f]" placeholder="0" />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Fat (g)</label>
+                  <input required type="number" min="0" value={manualFat} onChange={(e) => setManualFat(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-[#ce1126] font-mono outline-none focus:border-[#ce1126]" placeholder="0" />
                 </div>
               </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="text-xs font-bold text-zinc-400 uppercase">Carbs (g)</label>
-                  <input
-                    type="number"
-                    inputMode="decimal"
-                    placeholder="e.g. 60"
-                    value={manualCarbs}
-                    onChange={(e) => setManualCarbs(e.target.value)}
-                    className="w-full bg-system-dark border border-white/10 rounded-xl px-4 py-3 mt-1 text-sm font-mono text-white focus:outline-none shadow-inner"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-bold text-zinc-400 uppercase">Fat (g)</label>
-                  <input
-                    type="number"
-                    inputMode="decimal"
-                    placeholder="e.g. 10"
-                    value={manualFat}
-                    onChange={(e) => setManualFat(e.target.value)}
-                    className="w-full bg-system-dark border border-white/10 rounded-xl px-4 py-3 mt-1 text-sm font-mono text-white focus:outline-none shadow-inner"
-                  />
-                </div>
-              </div>
-
-              <div className="flex gap-3 pt-3">
-                <button
-                  type="button"
-                  onClick={() => setShowManualModal(false)}
-                  className="flex-1 py-3.5 rounded-xl bg-system-card text-zinc-400 hover:text-white font-bold text-xs sm:text-sm uppercase min-h-[44px] transition-colors"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="flex-1 py-3.5 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-black hover:bg-white font-black text-xs sm:text-sm uppercase shadow-glow-blue transition-all min-h-[44px]"
-                >
-                  Add Meal (+50 XP)
-                </button>
+              <div className="flex gap-3 pt-4">
+                <button type="button" onClick={() => setShowManualModal(false)} className="flex-1 px-4 py-3 rounded-xl border border-white/10 text-white font-bold hover:bg-white/5 transition-colors">Cancel</button>
+                <button type="submit" className="flex-1 px-4 py-3 rounded-xl bg-[#ce1126] hover:bg-[#a00d1d] text-white font-bold shadow-lg transition-colors">Add Macros</button>
               </div>
             </form>
           </div>
         </div>
       )}
+    </div>
+  );
+}
 
+function MacroCard({ title, current, goal, unit, color, border }: { title: string, current: number, goal: number, unit: string, color: string, border: string }) {
+  const percent = Math.min((current / goal) * 100, 100);
+  return (
+    <div className={`bg-black/30 border-t-4 ${border} rounded-xl p-4 shadow-inner relative overflow-hidden group`}>
+      <div className={`absolute top-0 right-0 w-16 h-16 ${color}/10 rounded-full blur-2xl -mr-8 -mt-8 group-hover:opacity-100 opacity-50 transition-opacity`} />
+      <div className="relative z-10">
+        <div className="text-[10px] sm:text-xs font-mono font-bold text-zinc-400 uppercase tracking-wider mb-1">{title}</div>
+        <div className="flex items-baseline gap-1 mb-2">
+          <span className="text-xl sm:text-2xl font-black text-white">{current}</span>
+          <span className="text-xs text-zinc-500 font-medium">/ {goal}{unit}</span>
+        </div>
+        <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+          <div className={`h-full ${color} transition-all duration-1000 ease-out`} style={{ width: `${percent}%` }} />
+        </div>
+      </div>
     </div>
   );
 }
