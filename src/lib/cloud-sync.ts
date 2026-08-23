@@ -23,7 +23,10 @@ export async function syncHunterToCloud(
   displayName: string,
   tier: "E-Rank Free" | "S-Rank VIP Guild"
 ): Promise<boolean | string> {
-  if (!email || !db || typeof window === "undefined") return false;
+  if (!email || !db || typeof (db as any).type === "undefined" || typeof window === "undefined") {
+    console.warn("[CloudSync] Aborted: Firestore DB not fully initialized.");
+    return false;
+  }
   try {
     const cleanEmail = email.trim().toLowerCase();
     const hunterState = loadHunterState();
@@ -58,7 +61,10 @@ export async function syncHunterToCloud(
  * Called automatically upon Sign In or device switch.
  */
 export async function restoreHunterFromCloud(email: string): Promise<CloudHunterProfile | null> {
-  if (!email || !db || typeof window === "undefined") return null;
+  if (!email || !db || typeof (db as any).type === "undefined" || typeof window === "undefined") {
+    console.warn("[CloudSync] Aborted: Firestore DB not fully initialized.");
+    return null;
+  }
   try {
     const cleanEmail = email.trim().toLowerCase();
     const docRef = doc(db, "hunters", cleanEmail);
