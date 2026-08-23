@@ -5,9 +5,9 @@ import { Compass, Sun, Shield, Heart, CheckCircle2, Navigation, Coffee } from "l
 
 const WHY_PR = [
   { icon: Sun, title: "Full-Stack Development", desc: "A flexible, in-demand skill set that works whether you land a job or go freelance — and it's the foundation everything else builds on." },
-  { icon: Shield, title: "Content Creation", desc: "Documenting the coding + filmmaking journey builds a portfolio and an audience at the same time. Low pressure, mixed format — whatever's fun that week." },
-  { icon: Heart, title: "Filmmaking", desc: "Learning iPhone Filmmaking and Final Cut Pro X to create high-quality content and build a freelance creative skill set as a personal hobby." },
-  { icon: Navigation, title: "Spanish Language", desc: "Learning Spanish to reach conversational fluency and enjoy Spanish media." }
+  { icon: Shield, title: "Content Creation", desc: "Documenting the coding + art journey builds a portfolio and an audience at the same time. Low pressure, mixed format — whatever's fun that week." },
+  { icon: Heart, title: "Filmmaking & Art", desc: "Learning iPhone Filmmaking, Final Cut Pro X, and Digital Art to create high-quality content and build a freelance creative skill set as personal hobbies." },
+  { icon: Navigation, title: "Korean Language", desc: "Learning Korean to comfortably enjoy K-Dramas and K-Pop without relying on subtitles." }
 ];
 
 const CAGUAS_INFO = [
@@ -20,12 +20,12 @@ const CAGUAS_INFO = [
 
 const CHECKLIST = [
   "Complete remaining HiSET subjects (All subjects except Science)",
-  "Finish all 11 courses (Coding, Filmmaking, Spanish) by April 2, 2027",
+  "Finish all 25 courses (Coding, Art, Filmmaking, Korean) by April 2, 2027",
   "Build 3-5 portfolio-worthy full-stack projects",
   "Set up a GitHub, portfolio site, and (if going freelance) an Upwork/Fiverr profile",
   "Launch a content channel once there's real progress to show",
-  "Practice filmmaking consistently",
-  "Learn enough Spanish to reach conversational fluency",
+  "Practice digital art and filmmaking consistently",
+  "Learn enough Korean to understand K-Dramas and K-Pop",
   "Save $15,000 toward a MacBook Pro + iPad Pro + emergency fund",
   "Hit 160 lbs (Health & Fitness prime)"
 ];
@@ -48,7 +48,7 @@ export default function PuertoRicoInfo() {
             <h2 className="text-4xl font-black text-white tracking-tighter drop-shadow-md">Future Plan</h2>
           </div>
           <p className="text-[#f5a623] font-mono font-black tracking-[0.3em] text-sm uppercase drop-shadow-sm ml-1">10-Year Master Plan</p>
-          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">Staying in the USA to build a full-stack dev and freelance career. Learning Spanish to reach conversational fluency, and practicing filmmaking as a creative hobby.</p>
+          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">Staying in the USA to build a full-stack dev and freelance career. Learning Korean to enjoy K-Dramas and K-Pop, and practicing digital art and filmmaking as creative hobbies.</p>
         </div>
       </div>
 
@@ -94,7 +94,7 @@ export default function PuertoRicoInfo() {
           <div className="mt-8 pt-6 border-t border-[#0a3d8f]/20 relative z-10">
             <h4 className="font-mono text-[10px] text-zinc-400 uppercase mb-2 font-bold tracking-widest">Tech Upgrade Budget</h4>
             <div className="text-3xl font-black text-white drop-shadow-sm">$2.5K - $4K<span className="text-sm text-zinc-500 font-medium ml-1"> total</span></div>
-            <p className="text-xs text-zinc-400 mt-2 font-medium leading-relaxed">MacBook Pro + iPad Pro for dev work and content editing.</p>
+            <p className="text-xs text-zinc-400 mt-2 font-medium leading-relaxed">MacBook Pro + iPad Pro for dev work, art, and content editing.</p>
           </div>
         </div>
 
@@ -127,12 +127,12 @@ export default function PuertoRicoInfo() {
             <div className="font-black text-white text-sm">Next.js + React</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
-            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Spanish</div>
-            <div className="font-black text-white text-sm">Fluency</div>
+            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Korean</div>
+            <div className="font-black text-white text-sm">TOPIK Goal</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
-            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Hobby</div>
-            <div className="font-black text-white text-sm">Filmmaking</div>
+            <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Hobbies</div>
+            <div className="font-black text-white text-sm">Art & Filmmaking</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
             <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Content</div>
