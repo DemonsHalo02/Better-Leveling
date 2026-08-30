@@ -7,6 +7,7 @@ import DailyQuestDashboard from "@/components/Dashboard/DailyQuestDashboard";
 import WorkoutQuestView from "@/components/Workouts/WorkoutQuestView";
 import BarcodeScanner from "@/components/Scanner/BarcodeScanner";
 import NutritionTracker from "@/components/Nutrition/NutritionTracker";
+import GroceryGuide from "@/components/Nutrition/GroceryGuide";
 import WeightAndPrTracker from "@/components/Tracking/WeightAndPrTracker";
 import MembershipPortal from "@/components/Membership/MembershipPortal";
 import TrophyHall from "@/components/Dashboard/TrophyHall";
@@ -105,6 +106,7 @@ export default function Home() {
               </div>
             </div>
           )}
+          {activeTab === "grocery" && <GroceryGuide />}
           {activeTab === "weight" && <WeightAndPrTracker />}
           {activeTab === "trophies" && <TrophyHall />}
           {activeTab === "gallery" && <ArtGallery />}

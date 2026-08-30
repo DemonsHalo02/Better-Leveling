@@ -191,7 +191,7 @@ export default function WeightAndPrTracker() {
           <Shield className="w-5 h-5 text-system-blue flex-shrink-0 mt-0.5" />
           <div className="text-xs text-zinc-300 leading-relaxed space-y-1">
             <div className="font-bold text-white uppercase tracking-wider">Why This Pace Safeguards Your Skin:</div>
-            <p>At age 20, your skin possesses high levels of natural collagen and elastin. By targeting roughly <span className="text-system-cyan font-bold">0.92 lbs per week</span> (rather than crash dieting 3-4 lbs/week), your skin elasticity adapts in lockstep with fat reduction. Meanwhile, your Planet Fitness volume replaces lost adipose tissue with firm, dense muscle.</p>
+            <p>At age 20, your skin possesses high levels of natural collagen and elastin. By targeting roughly <span className="text-system-cyan font-bold">0.92 lbs per week</span> (rather than crash dieting 3-4 lbs/week), your skin elasticity adapts in lockstep with fat reduction. Meanwhile, your Calisthenics volume replaces lost adipose tissue with firm, dense muscle.</p>
           </div>
         </div>
       </div>

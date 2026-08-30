@@ -4,7 +4,7 @@ import React from 'react';
 import { ShieldAlert, Dumbbell, ScanLine, TrendingDown, ShoppingBag, Crown, Trophy, Settings, Palette } from 'lucide-react';
 import { isSystemAdmin } from '@/lib/hunter-system';
 
-export type TabType = 'quests' | 'workouts' | 'scanner' | 'weight' | 'membership' | 'trophies' | 'settings' | 'gallery' | 'admin';
+export type TabType = 'quests' | 'workouts' | 'scanner' | 'grocery' | 'weight' | 'membership' | 'trophies' | 'settings' | 'gallery' | 'admin';
 
 interface SystemSidebarProps {
   activeTab: TabType;
@@ -37,7 +37,7 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
     },
     {
       id: 'workouts',
-      label: 'Planet Fitness (Lewiston)',
+      label: 'Calisthenics Workout',
       mobileLabel: 'Workout',
       icon: <Dumbbell className="w-5 h-5" />
     },
@@ -47,6 +47,12 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
       mobileLabel: 'Macros',
       icon: <ScanLine className="w-5 h-5" />,
       badge: 'Cam'
+    },
+    {
+      id: 'grocery',
+      label: 'Grocery Guide',
+      mobileLabel: 'Grocery',
+      icon: <ShoppingBag className="w-5 h-5" />
     },
     {
       id: 'weight',
