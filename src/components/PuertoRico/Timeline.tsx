@@ -41,11 +41,11 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
       "Feb 21: The Freelance Masterclass and Local Marketing 2026 begin."
   ]},
   { id: "apr-2027", year: 2027, monthStr: "April 2027", badge: "Phase 2 🎓", color: "#0a3d8f", title: "All Courses Complete", desc: [
-      "Apr 2: ✅ ALL 25 COURSES COMPLETE!",
-      "Apr 2027: Remaining HiSET subjects scheduled. Start building portfolio projects."
+      "Apr 2: ✅ ALL COURSES COMPLETE!",
+      "Apr 2027: Start building portfolio projects."
   ]},
-  { id: "jun-2027", year: 2027, monthStr: "June 2027", badge: "Phase 2 🎓", color: "#0a3d8f", title: "HiSET Complete", desc: [
-      "Jun 2027: 🎓 HiSET diploma earned — Math, Reading, Writing, and Social Studies all done!"
+  { id: "jun-2027", year: 2027, monthStr: "June 2027", badge: "Phase 2 🎓", color: "#0a3d8f", title: "Portfolio Progress", desc: [
+      "Jun 2027: 💻 Major progress on Roblox Game Dev portfolio and first video content drafts."
   ]},
   { id: "aug-2027", year: 2027, monthStr: "August 2027", badge: "Phase 3 💼", color: "#f5a623", title: "Job or Freelance Launch", desc: [
       "Aug 2027: 🎉 Portfolio ready! Applying to game dev jobs and pitching freelance clients simultaneously.",

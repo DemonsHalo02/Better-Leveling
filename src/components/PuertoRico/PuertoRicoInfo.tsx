@@ -19,13 +19,12 @@ const CAGUAS_INFO = [
 ];
 
 const CHECKLIST = [
-  "Complete remaining HiSET subjects (All subjects except Science)",
-  "Finish all 25 courses (Coding, Art, Filmmaking, Japanese) by April 2, 2027",
+  "Finish all courses (Game Dev, Art, Content Creation, Japanese) by April 2, 2027",
   "Build 3-5 portfolio-worthy game dev projects",
   "Set up a GitHub, portfolio site, and (if going freelance) an Upwork/Fiverr profile",
   "Launch a content channel once there's real progress to show",
   "Practice Roblox development and filmmaking consistently",
-  "Learn enough Japanese to understand K-Dramas and K-Pop",
+  "Learn enough Japanese to understand Anime and J-Pop",
   "Save $15,000 toward a MacBook Pro + iPad Pro + emergency fund",
   "Hit 160 lbs (Health & Fitness prime)"
 ];

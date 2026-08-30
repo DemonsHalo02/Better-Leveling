@@ -4,7 +4,7 @@ import React from "react";
 import { Smartphone, Laptop, CheckCircle2, MonitorOff, Focus, Wifi, Sparkles, Tablet } from "lucide-react";
 
 const APPS = [
-  { name: "Duolingo", platform: "iOS & Windows", desc: "Casual, low-pressure Korean practice — a few minutes a day, no exam prep." },
+  { name: "Duolingo", platform: "iOS & Windows", desc: "Casual, low-pressure Japanese practice — a few minutes a day, no exam prep." },
   { name: "Anki", platform: "iOS & Windows", desc: "Spaced repetition for Japanese vocab using All In One Kanji & Kaishi 1.5k decks." },
   { name: "VS Code", platform: "Windows & macOS", desc: "Primary code editor. Extensions: Prettier, ESLint, Tailwind." },
   { name: "Udemy", platform: "iOS & Windows/macOS", desc: "Download courses offline for distraction-free study." },
