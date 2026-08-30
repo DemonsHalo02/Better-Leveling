@@ -192,7 +192,7 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     fat: 5,
     servingSize: "1 cup (240ml)",
     coachNote: "Creamy milk base whisked with morning national coffees across all 19 cuisines.",
-    cuisine: ALL_CUISINES_BOTH.filter(c => c !== "Puerto Rico" && c !== "Puerto Rico Bulking")
+    cuisine: ALL_CUISINES_BOTH.filter(c => !c.includes('Japan')).filter(c => c !== "Puerto Rico" && c !== "Puerto Rico Bulking")
   },
   // --- Country-Specific Staples, Teas/Coffees, Seasonings & Reward Treats ---
   // 1. 🇵🇷 Puerto Rico
@@ -900,6 +900,22 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
   },
 
   // 9. 🇯🇵 Japan (MOST IMPORTANT)
+    {
+    id: "g-egg-whites",
+    upc: "078742136055",
+    name: "Great Value 100% Liquid Egg Whites (32 oz carton)",
+    store: "Walmart Supercenter (Auburn, ME)",
+    brand: "Great Value",
+    category: "Protein",
+    priceEst: "$3.48 (32 oz carton)",
+    calories: 25,
+    protein: 5,
+    carbs: 0,
+    fat: 0,
+    servingSize: "3 tbsp (46g)",
+    coachNote: "Pure protein booster for scrambles. Helps you hit that 178g daily protein goal cleanly.",
+    cuisine: ALL_CUISINES_BOTH
+  },
   {
     id: "g-japan-staples",
     upc: "078742353337-jap",
@@ -913,17 +929,17 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     carbs: 4,
     fat: 0,
     servingSize: "1/4 cup minced (50g)",
-    coachNote: "Fresh ginger, garlic, and green onions essential for authentic Japanese Teriyaki Chicken bowls and morning egg scrambles.",
+    coachNote: "Fresh ginger, garlic, and green onions essential for authentic Teriyaki Seared Chicken bowls and morning egg scrambles.",
     cuisine: ["Japan", "Japan Bulking"]
   },
   {
         id: "g-japan-coffee",
     upc: "078742356610",
-    name: "Starbucks Medium Roast K-Cup Coffee Pods (Pike Place Roast, 10 ct)",
+    name: "Starbucks Pumpkin Spice K-Cup Coffee Pods (22 ct)",
     store: "Walmart Supercenter (Auburn, ME)",
     brand: "Starbucks",
     category: "Essentials",
-    priceEst: "$8.98 (10 pods)",
+    priceEst: "$15.98 (22 pods)",
     calories: 0,
     protein: 0,
     carbs: 0,
@@ -933,21 +949,22 @@ export const AUBURN_LEWISTON_GROCERY_ITEMS: GroceryItem[] = [
     cuisine: ["Japan", "Japan Bulking"]
   },
   {
-    id: "g-japan-tea",
-    upc: "078742356609",
-    name: "Jade Leaf Organic Ceremonial Matcha Green Tea Powder (1.06 oz pouch)",
+    id: "g-japan-creamer",
+    upc: "050000325433",
+    name: "Coffee mate Sugar-Free Pumpkin Spice Liquid Coffee Creamer (32 fl oz)",
     store: "Walmart Supercenter (Auburn, ME)",
-    brand: "Jade Leaf Organic",
+    brand: "Coffee mate",
     category: "Essentials",
-    priceEst: "$9.98 (1.06 oz pouch)",
-    calories: 0,
+    priceEst: "$4.18 (32 fl oz bottle)",
+    calories: 15,
     protein: 0,
-    carbs: 0,
-    fat: 0,
-    servingSize: "1 tsp powder (2g)",
-    coachNote: "Mix this ceremonial matcha with your Starbucks K-Cup to create an authentic Tokyo-style 'Dirty Matcha Latte'. Provides incredible dual-caffeine and L-theanine focus.",
+    carbs: 1,
+    fat: 1,
+    servingSize: "1 tbsp (15mL)",
+    coachNote: "Sugar-free Pumpkin Spice creamer to pair perfectly with your Starbucks K-Cups for that fall vibe without the macros hitting your waistline.",
     cuisine: ["Japan", "Japan Bulking"]
   },
+  
   {
     id: "g-japan-spices",
     upc: "078742359009",
@@ -1983,7 +2000,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "⭐ #1 Main Phase 1 Cutting Blueprint ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "The #1 Main Puerto Rican Crispy Pollo al Horno, Arroz con Kielbasa & Café Bustelo Shred Blueprint! Tailored for steady fat loss (~0.75-1.0 lb/wk) to reach your 160 lb target while preserving skin elasticity. Features sweet Café Bustelo con Leche with fat-free milk, a homemade recaito-style egg scramble, Pollo al Horno for lunch, Arroz con Kielbasa (Turkey Kielbasa) for dinner, and a weekly Goya Tostones reward treat!",
     meals: (() => {
       const meals = createMeals(
@@ -2026,7 +2043,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Post-160 Lb Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "The #1 Puerto Rican Lean Bulking Blueprint for post-160 lb muscle gain! Features sweet Café Bustelo con Leche with a small spoon of sugar, Pollo al Horno with DOUBLE Arroz con Gandules for lunch, Arroz con Kielbasa (Beef Kielbasa) for dinner, and Goya Tostones reward treat!",
     meals: (() => {
       const meals = createMeals(
@@ -2071,7 +2088,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇪🇸 Authentic Spanish Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic Spanish Crispy Pollo al Ajillo (Garlic, Parsley & Olive Oil seared chicken) paired with golden Arroz Amarillo con Pimientos (Saffron rice with sweet peas and roasted red peppers). Features morning Revuelto de Ajos Tiernos y Perejil (scrambled eggs with green onions and garlic notes), Spanish Café con Leche, Casein yogurt power bowls, and a weekly Tortilla Española reward treat!",
     meals: createMeals(
       "Spain", "Spanish Café con Leche Cortado", 95,
@@ -2079,7 +2096,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
       "3 Large White Eggs + 1/2 cup Liquid Egg Whites scrambled with green onions, a pinch of garlic powder, and parsley in olive oil spray until creamy and fluffy. (330 kcal, 31g p, 15g f)",
       530, 36, 44, 15,
       "Crispy Spanish Pollo al Ajillo",
-      "~5.7 oz Fresh Chicken Breast cubes dipped in Liquid Egg Whites, coated with 1 tsp Corn Starch, garlic powder, parsley & oregano, seared golden with Pompeian Olive Oil spray. (210 kcal, 40g p, 2g f)",
+      "~5.7 oz Fresh Chicken Breast cubes dipped in Liquid Egg Whites, coated with 1 tsp , garlic powder, parsley & oregano, seared golden with Pompeian Olive Oil spray. (210 kcal, 40g p, 2g f)",
       "Arroz Amarillo con Pimientos (Golden Saffron Rice with Peas & Peppers)",
       "1 cup cooked Arroz Amarillo (White rice simmered with saffron/bijol, sweet peas, and roasted red peppers). (200 kcal, 5g p, 44g c)",
       440, 47, 50, 2,
@@ -2097,7 +2114,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Spanish Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Spanish Phase 2 Lean Bulking! Features Crispy Pollo al Ajillo with DOUBLE Arroz Amarillo con Pimientos, 5-Egg Revuelto + Rolled Oats, Spanish Café con Leche, and Tortilla Española reward treat!",
     meals: createMeals(
       "Spain Bulking", "Spanish Café con Leche Cortado", 95,
@@ -2125,7 +2142,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇲🇽 Authentic Mexican Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic Mexican Crispy Pollo Asado al Limón y Ajo (Garlic-Lime Chicken) paired with Arroz Mexicano (Tomato-Garlic Rice) and Sautéed Fajita Veggies. Features morning Chorizo-Spiced Scallion Egg Scramble, Café de Olla (cinnamon-infused coffee), Casein yogurt bowls, and Crispy Corn Tortilla Tacos de Pollo Asado reward treat!",
     meals: createMeals(
       "Mexico", "Café de Olla (Cinnamon Spiced Coffee)", 95,
@@ -2133,7 +2150,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
       "3 Large White Eggs + 1/2 cup Liquid Egg Whites scrambled with green onions and a pinch of taco/chorizo seasoning in 0-Cal spray. (330 kcal, 31g p, 15g f)",
       530, 36, 44, 15,
       "Crispy Mexican Pollo Asado al Limón y Ajo",
-      "~5.7 oz Fresh Chicken Breast cubes coated with lime juice, garlic powder, cumin, and corn starch, seared golden. (210 kcal, 40g p, 2g f)",
+      "~5.7 oz Fresh Chicken Breast cubes coated with lime juice, garlic powder, cumin, and , seared golden. (210 kcal, 40g p, 2g f)",
       "Arroz Mexicano (Tomato & Garlic Mexican Rice)",
       "1 cup cooked Arroz Mexicano (simmered with tomato, garlic, and onions). (200 kcal, 5g p, 44g c)",
       440, 47, 50, 2,
@@ -2151,7 +2168,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Mexican Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Mexican Phase 2 Lean Bulking! Features Crispy Pollo Asado with DOUBLE Arroz Mexicano, 5-Egg Chorizo-Spiced Scramble + Rolled Oats, Café de Olla, and Crispy Tacos de Pollo reward treat!",
     meals: createMeals(
       "Mexico Bulking", "Café de Olla (Cinnamon Spiced Coffee)", 95,
@@ -2179,7 +2196,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇩🇴 Authentic Dominican Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic Dominican Pollo Guisado (Garlic-Oregano Braised Chicken) paired with savory Moro de Guandules (Rice & Pigeon Peas with Dominican sofrito notes) and Steamed Cabbage/Broccoli. Features Mangú-Inspired Scallion Scramble, Dominican Dark Roast Cortadito, Casein bowls, and Plátanos Maduros / Tostones reward treat!",
     meals: createMeals(
       "Dominican Republic", "Dominican Dark Roast Cortadito", 95,
@@ -2205,7 +2222,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Dominican Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Dominican Phase 2 Lean Bulking! Features Pollo Guisado with DOUBLE Moro de Guandules, 5-Egg Mangú-Inspired Scramble + Rolled Oats, Dominican Cortadito, and Tostones reward treat!",
     meals: createMeals(
       "Dominican Republic Bulking", "Dominican Dark Roast Cortadito", 95,
@@ -2233,7 +2250,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇨🇴 Authentic Colombian Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic Colombian Pechuga a la Plancha (Seared Chicken topped with Hogao garlic-scallion-tomato sauce) paired with Arroz Blanco y Frijoles Rojos (White Rice & Red Beans) and Steamed Broccoli. Features Huevos Pericos (scrambled eggs with tomatoes and scallions), Café Pinto / Cortado, Casein bowls, and Crispy Arepa de Maíz reward treat!",
     meals: createMeals(
       "Colombia", "Colombian Café Pinto / Cortado", 95,
@@ -2259,7 +2276,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Colombian Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Colombian Phase 2 Lean Bulking! Features Pechuga a la Plancha con Hogao with DOUBLE Arroz y Frijoles Rojos, 5-Egg Huevos Pericos + Rolled Oats, Café Pinto, and Arepas de Maíz reward treat!",
     meals: createMeals(
       "Colombia Bulking", "Colombian Café Pinto / Cortado", 95,
@@ -2287,7 +2304,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇧🇷 Authentic Brazilian Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic Brazilian Frango Grelhado (Churrasco Garlic-Marinated seared chicken) paired with Arroz e Feijão Preto (White Rice & Black Beans seasoned with garlic and bay leaf notes). Features morning Garlic & Scallion Scramble, Brazilian Café com Leite, Casein bowls, and Pão de Queijo (Cheese Bread Bites) reward treat!",
     meals: createMeals(
       "Brazil", "Brazilian Café com Leite", 95,
@@ -2313,7 +2330,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Brazilian Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Brazilian Phase 2 Lean Bulking! Features Frango Grelhado with DOUBLE Arroz e Feijão Preto, 5-Egg Scramble + Rolled Oats, Café com Leite, and Pão de Queijo reward treat!",
     meals: createMeals(
       "Brazil Bulking", "Brazilian Café com Leite", 95,
@@ -2341,7 +2358,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇨🇳 Authentic Chinese Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic Chinese Crispy Five-Spice Garlic Soy Chicken paired with Egg Fried Rice & Veggies (Chao Fan with peas, carrots, and scallions) and Garlic Soy Steamed Broccoli. Features morning Scallion Scramble, Oolong/Green Tea, Casein bowls, and Seared Chicken Lo Mein reward treat!",
     meals: createMeals(
       "China", "Hot Oolong or Green Tea con Leche", 95,
@@ -2349,7 +2366,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
       "3 Large White Eggs + 1/2 cup Liquid Egg Whites scrambled with generous chopped scallions and a drop of soy sauce in 0-Cal spray. (330 kcal, 31g p, 15g f)",
       530, 36, 44, 15,
       "Crispy Five-Spice Garlic Soy Chicken",
-      "~5.7 oz Fresh Chicken Breast cubes coated with Corn Starch, Chinese Five Spice, garlic powder & a splash of soy sauce, wok/pan seared super crispy. (210 kcal, 40g p, 2g f)",
+      "~5.7 oz Fresh Chicken Breast cubes coated with , Chinese Five Spice, garlic powder & a splash of soy sauce, wok/pan seared super crispy. (210 kcal, 40g p, 2g f)",
       "Chao Fan (Egg Fried Rice with Peas & Carrots)",
       "1 cup cooked Chao Fan (White rice stir-fried with peas, carrots, scallions, and egg spray). (200 kcal, 5g p, 44g c)",
       440, 47, 50, 2,
@@ -2367,7 +2384,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Chinese Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Chinese Phase 2 Lean Bulking! Features Five-Spice Chicken with DOUBLE Egg Fried Rice (Chao Fan), 5-Egg Scallion Scramble + Rolled Oats, Oolong Tea, and Lo Mein reward treat!",
     meals: createMeals(
       "China Bulking", "Hot Oolong or Green Tea con Leche", 95,
@@ -2395,7 +2412,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇰🇷 Authentic Korean Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 1985,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Tailored specifically for your 160 lb shredded target! Features authentic Korean Crispy Gochujang Honey-Garlic Chicken paired with Steamed White Rice, ready-to-eat Nasoya Spicy Korean Kimchi Cup & Sesame Broccoli, and a Gyeran-mari inspired Scallion Scramble. Packed with 178g clean protein to preserve lean muscle while shedding fat, plus Starbucks Black Iced Coffee brewed fresh in your FlexBrew machine and Samyang Spicy Buldak Ramen for your weekly reward!",
     meals: createMeals(
       "Korea", "Starbucks Black Iced Coffee (Brewed in FlexBrew)", 0,
@@ -2403,7 +2420,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
       "3 Large White Eggs + 1/2 cup Liquid Egg Whites folded with chopped scallions, garlic notes, and a drop of sesame oil in 0-Cal spray. (330 kcal, 31g p, 15g f)",
       530, 36, 44, 15,
       "Crispy Gochujang Garlic Chicken",
-      "~5.7 oz Fresh Chicken Breast cubes seared super crispy with corn starch and tossed with 1 tsp Gochujang pepper glaze, garlic powder, and ginger. (210 kcal, 40g p, 2g f)",
+      "~5.7 oz Fresh Chicken Breast cubes seared super crispy with  and tossed with 1 tsp Gochujang pepper glaze, garlic powder, and ginger. (210 kcal, 40g p, 2g f)",
       "Steamed White Rice & Nasoya Spicy Kimchi / Sesame Broccoli",
       "1 cup cooked White Rice paired with steamed broccoli and a generous forkful of ready-to-eat Nasoya Spicy Korean Kimchi right from the cup for gut health and high satiety during your cut. (200 kcal, 5g p, 44g c)",
       440, 47, 50, 2,
@@ -2421,7 +2438,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Korean Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2585,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Korean Phase 2 Lean Bulking! Features Gochujang Chicken with DOUBLE Steamed Rice & ready-to-eat Nasoya Spicy Kimchi Cup, 5-Egg Gyeran-mari Scramble + Rolled Oats, Starbucks Black Iced Coffee (FlexBrew), and Samyang Spicy Buldak Ramen reward treat!",
     meals: createMeals(
       "Korea Bulking", "Starbucks Black Iced Coffee (Brewed in FlexBrew)", 0,
@@ -2443,46 +2460,46 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
   // 9. Japan 🇯🇵 (Restored & Refined Cutting & Bulking)
   {
     id: "plan-japan",
-    title: "Japan: Pan/Oven Teriyaki Chicken, Steamed Rice & Dirty Matcha Latte Shred Blueprint (~2,080 kcal)",
+    title: "Japan: Pan/Oven Teriyaki Seared Chicken, Steamed Rice & Pumpkin Spice Coffee Shred Blueprint (~2,080 kcal)",
     country: "Japan",
     flag: "🇯🇵",
-    badge: "🇯🇵 Authentic Japanese Phase 1 Cutting ($59.50/Wk)",
+    badge: "🇯🇵 Authentic Japanese Phase 1 Cutting ($62.70/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
-    description: "Authentic Japanese Teriyaki Chicken paired with Steamed White Rice and Garlic/Ginger Aromatics. Features morning Scallion Scramble, Dirty Matcha Latte (Starbucks K-Cup + Matcha), Casein bowls, and Nissin Raoh Soy Sauce Ramen with Teriyaki Chicken reward treat!",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
+    description: "Authentic Teriyaki Seared Chicken paired with Steamed White Rice and Garlic/Ginger Aromatics. Features morning Scallion Scramble, Pumpkin Spice Coffee (Starbucks K-Cup + SF Pumpkin Spice Creamer), Casein bowls, and Nissin Raoh Soy Sauce Ramen with Teriyaki Seared Chicken reward treat!",
     meals: createMeals(
-      "Japan", "Dirty Matcha Latte (Starbucks K-Cup + Matcha)", 15,
+      "Japan", "Pumpkin Spice Coffee (Starbucks K-Cup + SF Pumpkin Spice Creamer)", 15,
       "Japanese Scallion Egg Scramble + Steamed Rice",
       "3 Large White Eggs + 1/2 cup Liquid Egg Whites folded with scallions and a dash of soy sauce in 0-Cal spray. (330 kcal, 31g p, 15g f)",
       530, 36, 44, 15,
-      "Japanese Teriyaki Chicken",
+      "Teriyaki Seared Chicken",
       "~5.7 oz Fresh Chicken Breast cubes seared and glazed with 1 tsp Kikkoman Teriyaki sauce and ginger. (210 kcal, 40g p, 2g f)",
       "Steamed White Rice",
       "1 cup cooked White Rice paired with authentic Japanese aromatics. (200 kcal, 5g p, 44g c)",
       440, 47, 50, 2,
       "1 cup", 120, 21,
       "Nissin Raoh Umami Soy Sauce Ramen with Seared Chicken",
-      "1 Pack Nissin Raoh Umami Soy Sauce Ramen served piping hot with 4 oz Teriyaki Chicken and scallions! (360 kcal, 28g p, 32g c, 10g f)",
+      "1 Pack Nissin Raoh Umami Soy Sauce Ramen served piping hot with 4 oz Teriyaki Seared Chicken and scallions! (360 kcal, 28g p, 32g c, 10g f)",
       360, 28, 32, 10, false
     )
   },
   {
     id: "plan-japan-bulking",
-    title: "Japan Bulking: Teriyaki Chicken & DOUBLE Steamed Rice Lean Bulk (~2,680 kcal)",
+    title: "Japan Bulking: Teriyaki Seared Chicken & DOUBLE Steamed Rice Lean Bulk (~2,680 kcal)",
     country: "Japan Bulking",
     flag: "🇯🇵🔥",
-    badge: "🔥 Phase 2: Japanese Lean Bulk ($59.50/Wk)",
+    badge: "🔥 Phase 2: Japanese Lean Bulk ($62.70/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
-    description: "Japanese Phase 2 Lean Bulking! Features Teriyaki Chicken with DOUBLE Steamed Rice, 5-Egg Scallion Scramble + Rolled Oats, Starbucks Vanilla Coffee, and Nissin Raoh Ramen reward treat!",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
+    description: "Japanese Phase 2 Lean Bulking! Features Teriyaki Seared Chicken with DOUBLE Steamed Rice, 5-Egg Scallion Scramble + Rolled Oats, Starbucks Vanilla Coffee, and Nissin Raoh Ramen reward treat!",
     meals: createMeals(
-      "Japan Bulking", "Dirty Matcha Latte (Starbucks K-Cup + Matcha)", 15,
-      "5-Egg Scallion Scramble + Rolled Oats + Dirty Matcha Latte",
+      "Japan Bulking", "Pumpkin Spice Coffee (Starbucks K-Cup + SF Pumpkin Spice Creamer)", 15,
+      "5-Egg Scallion Scramble + Rolled Oats + Pumpkin Spice Coffee",
       "5 Large White Eggs folded with scallions and soy notes. (350 kcal, 30g p, 25g f)",
       500, 35, 54, 25,
-      "Japanese Teriyaki Chicken",
+      "Teriyaki Seared Chicken",
       "~5.7 oz Fresh Chicken Breast seared golden with Teriyaki glaze. (210 kcal, 40g p, 2g f)",
       "DOUBLE Steamed White Rice",
       "2 cups cooked White Rice and savory teriyaki sauce (clean Japanese bulking glycogen). (400 kcal, 10g p, 88g c)",
@@ -2503,7 +2520,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇮🇹 Authentic Italian Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic Italian Pollo alle Erbe (Crispy Italian Herb & Garlic Baked Chicken) paired with Penne Rigate / Arroz all'Aglio (Herb & Garlic Pasta/Rice) and Marinara Steamed Broccoli. Features morning Italian Herb Scallion Scramble, Italian Espresso Cortato, Casein bowls, and Crispy Garlic Bread with Pollo alla Marinara reward treat!",
     meals: createMeals(
       "Italy", "Italian Espresso Cortato con Leche", 95,
@@ -2511,7 +2528,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
       "3 Large White Eggs + 1/2 cup Liquid Egg Whites scrambled with scallions, oregano, and Italian herbs in 0-Cal spray. (330 kcal, 31g p, 15g f)",
       530, 36, 44, 15,
       "Crispy Italian Pollo alle Erbe",
-      "~5.7 oz Fresh Chicken Breast cubes dipped in Liquid Egg Whites, coated with corn starch, garlic powder, oregano & basil, baked crispy at 400°F. (210 kcal, 40g p, 2g f)",
+      "~5.7 oz Fresh Chicken Breast cubes dipped in Liquid Egg Whites, coated with , garlic powder, oregano & basil, baked crispy at 400°F. (210 kcal, 40g p, 2g f)",
       "Penne Rigate / Arroz all'Aglio (Italian Herb Pasta or Rice)",
       "1 cup cooked Penne pasta or White Rice tossed with garlic, herbs, and a spoonful of traditional marinara. (200 kcal, 5g p, 44g c)",
       440, 47, 50, 2,
@@ -2529,7 +2546,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Italian Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Italian Phase 2 Lean Bulking! Features Pollo alle Erbe with DOUBLE Penne/Arroz all'Aglio, 5-Egg Italian Herb Scramble + Rolled Oats, Espresso Cortato, and Garlic Bread reward treat!",
     meals: createMeals(
       "Italy Bulking", "Italian Espresso Cortato con Leche", 95,
@@ -2557,7 +2574,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇸🇻 Authentic Salvadoran Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic Salvadoran Pollo Encebollado (Sared Chicken with sautéed onions, tomatoes, and Worcestershire/garlic notes) paired with Casamiento (White Rice & Black/Red Beans pan-fried with garlic and onion). Features morning Salvadoran Scallion & Tomato Scramble, Salvadoran Dark Roast Coffee, Casein bowls, and Crispy Pupusas de Queso y Frijol reward treat!",
     meals: createMeals(
       "El Salvador", "Salvadoran Dark Roast Coffee con Leche", 95,
@@ -2583,7 +2600,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Salvadoran Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Salvadoran Phase 2 Lean Bulking! Features Pollo Encebollado with DOUBLE Casamiento, 5-Egg Salvadoran Scramble + Rolled Oats, Dark Roast Coffee, and Crispy Pupusas reward treat!",
     meals: createMeals(
       "El Salvador Bulking", "Salvadoran Dark Roast Coffee con Leche", 95,
@@ -2611,7 +2628,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇻🇪 Authentic Venezuelan Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic Venezuelan Pollo Mechado / Pechuga Guisada (Shredded/Sared Chicken with sweet pepper, onion, and garlic sofrito) paired with Arroz Blanco y Caraotas Negras (White Rice & Black Beans seasoned with cumin and garlic). Features morning Perico Venezolano (scrambled eggs with onions and sweet peppers), Venezuelan Café Guayoyo con Leche, Casein bowls, and Arepas Venezolanas Rellenas reward treat!",
     meals: createMeals(
       "Venezuela", "Venezuelan Café Guayoyo con Leche", 95,
@@ -2637,7 +2654,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Venezuelan Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Venezuelan Phase 2 Lean Bulking! Features Pollo Mechado with DOUBLE Arroz y Caraotas Negras, 5-Egg Perico Venezolano + Rolled Oats, Café Guayoyo, and Arepas Rellenas reward treat!",
     meals: createMeals(
       "Venezuela Bulking", "Venezuelan Café Guayoyo con Leche", 95,
@@ -2665,7 +2682,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇦🇷 Authentic Argentine Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic Argentine Pollo al Chimichurri (Crispy Pan-Sared Chicken smothered in garlic, parsley, oregano, red pepper flakes, and olive oil/vinegar herbs) paired with Arroz con Ajo y Laurel (Garlic & Bay Leaf White Rice) and Steamed Broccoli. Features morning Scallion & Herb Scramble, Argentine Yerba Mate / Café Cortado, Casein bowls, and Crispy Milanesa de Pollo al Horno reward treat!",
     meals: createMeals(
       "Argentina", "Argentine Yerba Mate or Cortado con Leche", 95,
@@ -2691,7 +2708,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Argentine Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Argentine Phase 2 Lean Bulking! Features Pollo al Chimichurri with DOUBLE Arroz con Ajo y Laurel, 5-Egg Herb Scramble + Rolled Oats, Yerba Mate / Cortado, and Milanesa de Pollo reward treat!",
     meals: createMeals(
       "Argentina Bulking", "Argentine Yerba Mate or Cortado con Leche", 95,
@@ -2719,7 +2736,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇫🇷 Authentic French Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic French Poulet Rôti aux Herbes de Provence (Crispy Pan/Oven Seared Chicken smothered in thyme, rosemary, oregano, garlic, and subtle Dijon notes) paired with delicate white rice and steamed herbed broccoli florets. Features morning French Café au Lait con Leche + Banana before workout, post-workout Oeufs Brouillés aux Fines Herbes (Herb Scrambled Eggs), Casein Greek Yogurt bowls, and a weekly French Croissant / Bakery reward treat!",
     meals: createMeals(
       "France", "French Café au Lait or Espresso", 95,
@@ -2745,7 +2762,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: French Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "French Phase 2 Lean Bulking! Features Poulet Rôti with DOUBLE Riz Blanc aux Fines Herbes, 5-Egg Oeufs Brouillés + Rolled Oats, Café au Lait, and French Bakery Croissant reward treat!",
     meals: createMeals(
       "France Bulking", "French Café au Lait or Espresso", 95,
@@ -2773,7 +2790,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇩🇪 Authentic German Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic German Brat-Chicken (Pan/Oven seared chicken breast seasoned with caraway, savory Bratwurst spices, and garlic) served with clean white rice or potato bowl and tangy fermented sauerkraut / broccoli. Features strong German Filterkaffee con Leche + Banana before workout, Bauernfrühstück Egg Scramble, and a weekly German Pretzel / Bratwurst reward treat!",
     meals: createMeals(
       "Germany", "German Strong Filterkaffee or Espresso", 95,
@@ -2799,7 +2816,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: German Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "German Phase 2 Lean Bulking! Features Brat-Chicken with DOUBLE Savory Rice & Sauerkraut, 5-Egg Bauernfrühstück + Rolled Oats, German Filterkaffee, and Soft Pretzel reward treat!",
     meals: createMeals(
       "Germany Bulking", "German Strong Filterkaffee or Espresso", 95,
@@ -2827,7 +2844,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇷🇺 Authentic Russian Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic Russian Garlic Dill Chicken (Chicken breast cubes marinated in garlic, sweet paprika, and fresh fragrant dill) paired with clean white/buckwheat rice and steamed green vegetables. Features morning Russian Spiced Black Tea / Chai con Leche + Banana, Smetana-style Herb Egg Scramble, and a weekly Pirozhki / Blini reward treat!",
     meals: createMeals(
       "Russia", "Russian Spiced Black Tea or Strong Chai", 95,
@@ -2853,7 +2870,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Russian Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Russian Phase 2 Lean Bulking! Features Garlic Dill Chicken with DOUBLE Herb White Rice, 5-Egg Smetana-Style Scramble + Rolled Oats, Russian Black Tea, and Pirozhki reward treat!",
     meals: createMeals(
       "Russia Bulking", "Russian Spiced Black Tea or Strong Chai", 95,
@@ -2881,7 +2898,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇮🇳 Authentic Indian Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic Indian Tandoori / Garam Masala Chicken (Chicken breast cubes coated with aromatic Garam Masala, golden turmeric, cumin, and garlic powder, seared in pan/oven) paired with fragrant Basmati White Rice, seasoned yellow lentils (Dal), and steamed broccoli. Features morning Masala Chai con Leche + Banana, Spiced Masala Egg Bhurji Scramble, and a weekly Garlic Naan reward treat!",
     meals: createMeals(
       "India", "Indian Masala Chai or Spiced Tea", 95,
@@ -2907,7 +2924,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Indian Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Indian Phase 2 Lean Bulking! Features Tandoori Masala Chicken with DOUBLE Fragrant Basmati Rice & Dal, 5-Egg Masala Bhurji + Rolled Oats, Masala Chai, and Garlic Naan reward treat!",
     meals: createMeals(
       "India Bulking", "Indian Masala Chai or Spiced Tea", 95,
@@ -2935,7 +2952,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇨🇦 Authentic Canadian Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 2080,
     targetDailyProtein: 178,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Authentic Canadian Montreal Spiced Maple-Glazed Chicken (Chicken breast cubes seared with bold Montreal black pepper/garlic seasoning and a light caramelized maple touch) paired with clean herb rice and roasted broccoli. Features Canadian Maple Dark Roast Coffee con Leche + Banana, Farmhouse Scallion Scramble, and a weekly Maple Pancake / Poutine-inspired reward treat!",
     meals: createMeals(
       "Canada", "Canadian Maple Dark Roast Coffee or Tea", 95,
@@ -2961,7 +2978,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: Canadian Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 2680,
     targetDailyProtein: 188,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Canadian Phase 2 Lean Bulking! Features Montreal Maple Chicken with DOUBLE Savory Herb Rice, 5-Egg Farmhouse Scramble + Rolled Oats, Maple Dark Roast, and Maple Pancake reward treat!",
     meals: createMeals(
       "Canada Bulking", "Canadian Maple Dark Roast Coffee or Tea", 95,
@@ -2989,7 +3006,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🇺🇸 BasicsWithBails Phase 1 Cutting ($59.50/Wk)",
     targetDailyCalories: 1560,
     targetDailyProtein: 192,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "Entirely sourced from BasicsWithBails.com! Features High Protein Iced Coffee, Tiramisu Protein Overnight Oats, Healthy Buffalo Chicken Salad, and the viral Hot Honey Chicken Crust Pizza. (Note: Skim milk used to keep exact budget under $70).",
     meals: [
       {
@@ -3034,7 +3051,7 @@ export const MEAL_PREP_PLANS: MealPrepPlan[] = [
     badge: "🔥 Phase 2: BasicsWithBails Lean Bulk ($59.50/Wk)",
     targetDailyCalories: 1920,
     targetDailyProtein: 202,
-    estCostPerWeek: "$45.50 Weekly Consumables / $14.10 Periodic Restock ($59.50 Combined Total)",
+    estCostPerWeek: "$45.50 Weekly Consumables / $17.20 Periodic Restock ($62.70 Combined Total)",
     description: "BasicsWithBails Phase 2 Lean Bulking! Double the oats and extra Hot Honey drizzle. Features Tiramisu Protein Overnight Oats, High Protein Iced Coffee, Healthy Buffalo Chicken Salad, and the viral Hot Honey Chicken Crust Pizza.",
     meals: [
       {
@@ -3102,7 +3119,7 @@ export const WALMART_QUICK_SELECT_ITEMS: WalmartPresetItem[] = [
   { name: "Great Value Garlic Powder (3.4 oz bottle)", category: "Seasonings & Spices", price: "$1.18", note: "Essential zero-calorie savory garlic seasoning for chicken and broccoli across all cuisines." },
   { name: "Great Value 0-Calorie Canola Oil Cooking Spray", category: "Seasonings & Spices", price: "$2.24", note: "Fat-free searing for national chicken recipes and morning egg scrambling." },
   { name: "Great Value Zero Calorie Sweetener Packets (100 ct)", category: "Seasonings & Spices", price: "$2.18", note: "Sweetens morning coffee/tea and afternoon Greek yogurt with zero sugar calories." },
-  { name: "Argo 100% Pure Corn Starch (16 oz box)", category: "Seasonings & Spices", price: "$1.78", note: "Lightly coat chicken cubes for super crispy national chicken recipes." },
+  { name: "Argo 100% Pure  (16 oz box)", category: "Seasonings & Spices", price: "$1.78", note: "Lightly coat chicken cubes for super crispy national chicken recipes." },
   // Groceries & Protein Staples
   { name: "Fresh Chicken Breasts (~5.0 lb Family Tray / 80 oz raw)", category: "Protein", price: "$10.98", note: "Primary lean protein staple (~5.0 lb tray at $2.19/lb) across all 19 cuisines." },
   { name: "Great Value Large Grade A White Eggs (36 Count Tray / Two 18 ct Cartons)", category: "Protein", price: "$5.48", note: "36 eggs guaranteed (3-5 eggs/day for national scrambles plus extras!)." },
