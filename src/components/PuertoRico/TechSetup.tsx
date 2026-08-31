@@ -8,7 +8,7 @@ const APPS = [
   { name: "Anki", platform: "iOS & Windows", desc: "Spaced repetition for Japanese vocab using All In One Kanji & Kaishi 1.5k decks." },
   { name: "VS Code", platform: "Windows & macOS", desc: "Primary code editor. Extensions: Prettier, ESLint, Tailwind." },
   { name: "Udemy", platform: "iOS & Windows/macOS", desc: "Download courses offline for distraction-free study." },
-  { name: "CapCut", platform: "iOS & Windows/macOS", desc: "Video editing for content creation." },
+  { name: "Final Cut Pro X / Motion 5", platform: "macOS", desc: "Advanced video editing and motion graphics for content creation." },
   { name: "Procreate", platform: "iPad Pro", desc: "The go-to digital art app once the iPad Pro arrives — perfect for the art hobby." },
   { name: "Better Leveling", platform: "Web", desc: "This app. Install as PWA to home screen." },
 ];

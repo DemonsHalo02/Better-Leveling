@@ -4,10 +4,10 @@ import React from "react";
 import { Compass, Sun, Shield, Heart, CheckCircle2, Navigation, Coffee } from "lucide-react";
 
 const WHY_PR = [
-  { icon: Sun, title: "Game Development", desc: "A flexible, in-demand skill set that works whether you land a job or go freelance — and it's the foundation everything else builds on." },
+  { icon: Sun, title: "Full-Stack Web Development", desc: "A flexible, in-demand skill set that works whether you land a job or go freelance — and it's the foundation everything else builds on." },
   { icon: Shield, title: "Content Creation", desc: "Documenting the coding + art journey builds a portfolio and an audience at the same time. Low pressure, mixed format — whatever's fun that week." },
-  { icon: Heart, title: "Filmmaking & Game Dev", desc: "Learning iPhone Filmmaking, Final Cut Pro X, and Digital Art to create high-quality content and build a freelance creative skill set as personal hobbies." },
-  { icon: Navigation, title: "Japanese Language", desc: "Learning Japanese to translate Roblox games, understand J-Pop, and watch Anime without subtitles." }
+  { icon: Heart, title: "Art & Filmmaking", desc: "Learning iPhone Filmmaking, Final Cut Pro X, Digital Art, and ProCreate to create high-quality content and build a freelance creative skill set as personal hobbies." },
+  { icon: Navigation, title: "Japanese Language", desc: "Learning Japanese to translate web apps, understand J-Pop, and watch Anime without subtitles." }
 ];
 
 const CAGUAS_INFO = [
@@ -19,11 +19,11 @@ const CAGUAS_INFO = [
 ];
 
 const CHECKLIST = [
-  "Finish all courses (Game Dev, Art, Content Creation, Japanese) by April 2, 2027",
-  "Build 3-5 portfolio-worthy game dev projects",
+  "Finish all courses (Full-Stack Dev, Art, Content Creation, Japanese) by April 2, 2027",
+  "Build 3-5 portfolio-worthy full-stack web projects",
   "Set up a GitHub, portfolio site, and (if going freelance) an Upwork/Fiverr profile",
   "Launch a content channel once there's real progress to show",
-  "Practice Roblox development and filmmaking consistently",
+  "Practice full-stack web development and filmmaking consistently",
   "Learn enough Japanese to understand Anime and J-Pop",
   "Save $15,000 toward a MacBook Pro + iPad Pro + emergency fund",
   "Hit 160 lbs (Health & Fitness prime)"
@@ -47,7 +47,7 @@ export default function PuertoRicoInfo() {
             <h2 className="text-4xl font-black text-white tracking-tighter drop-shadow-md">Future Plan</h2>
           </div>
           <p className="text-[#f5a623] font-mono font-black tracking-[0.3em] text-sm uppercase drop-shadow-sm ml-1">10-Year Master Plan</p>
-          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">Staying in the USA to build a game dev dev and freelance career. Learning Japanese to understand J-Pop and Anime, and practicing Roblox development and filmmaking as creative hobbies.</p>
+          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">Staying in the USA to build a full-stack web dev and freelance career. Learning Japanese to understand J-Pop and Anime, and practicing full-stack web development, art, and filmmaking as creative hobbies.</p>
         </div>
       </div>
 
@@ -131,7 +131,7 @@ export default function PuertoRicoInfo() {
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
             <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Hobbies</div>
-            <div className="font-black text-white text-sm">Game Dev & Content Creation</div>
+            <div className="font-black text-white text-sm">Web Dev & Content Creation</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
             <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Content</div>
