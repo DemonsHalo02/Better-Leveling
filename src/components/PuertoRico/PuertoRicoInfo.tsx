@@ -7,7 +7,7 @@ const WHY_PR = [
   { icon: Sun, title: "Digital Art Mastery", desc: "A creative, fulfilling skill set — from manga and character design to professional illustration. The foundation for commissions, content, and personal expression." },
   { icon: Shield, title: "Consistent Practice", desc: "Building a portfolio requires consistent, daily drawing habits and focused study. Low pressure, high consistency." },
   { icon: Heart, title: "Character Design & Illustration", desc: "Learning Anatomy, Perspective, Clip Studio Paint, and ProCreate to create manga-quality character art and build an illustration portfolio." },
-  { icon: Navigation, title: "Japanese Language", desc: "Learning Japanese to translate web apps, understand J-Pop, and watch Anime without subtitles." }
+  { icon: Navigation, title: "Korean & Japanese Language", desc: "Learning Korean to understand K-Pop and K-Dramas, and maintaining Japanese to translate web apps and watch Anime." }
 ];
 
 const CAGUAS_INFO = [
@@ -47,7 +47,7 @@ export default function PuertoRicoInfo() {
             <h2 className="text-4xl font-black text-white tracking-tighter drop-shadow-md">Future Plan</h2>
           </div>
           <p className="text-[#f5a623] font-mono font-black tracking-[0.3em] text-sm uppercase drop-shadow-sm ml-1">10-Year Master Plan</p>
-          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">Staying in the USA to build a digital art and illustration career. Learning Japanese to understand J-Pop and Anime, and practicing character art, manga illustration, and content creation as creative hobbies.</p>
+          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">Staying in the USA to build a digital art and illustration career. Learning Korean and Japanese to understand Asian media (K-Pop, K-Dramas, Anime), and practicing character art, manga illustration, and content creation as creative hobbies.</p>
         </div>
       </div>
 

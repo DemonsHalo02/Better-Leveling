@@ -48,8 +48,8 @@ export default function Inicio() {
     ? 100 
     : Math.max(0, Math.min(100, ((startWeight - currentWeight) / (startWeight - targetWeight)) * 100));
   
-  const japaneseLevels = ["Hiragana & Katakana", "JLPT N5", "JLPT N4", "JLPT N3", "JLPT N2", "JLPT N1"];
-  const currentJapaneseLevel = japaneseLevels.filter(l => data.deleProgress[l]).length;
+  const koreanLevels = ["Hangul", "TOPIK L1", "TOPIK L2", "TOPIK L3", "TOPIK L4", "TOPIK L5", "TOPIK L6"];
+  const currentKoreanLevel = koreanLevels.filter(l => data.deleProgress[l]).length;
 
   return (
     <div className="space-y-6">
@@ -61,7 +61,7 @@ export default function Inicio() {
             Welcome, Nicholas! 🚀
           </h1>
           <p className="text-zinc-200 font-medium text-sm sm:text-lg mb-8 tracking-wide drop-shadow-sm">
-            10-Year Master Plan: Digital Art + Japanese 🎯
+            10-Year Master Plan: Digital Art + Korean 🎯
           </p>
           
           <div className="flex flex-wrap gap-3 sm:gap-4 font-mono text-xs font-bold">
@@ -106,8 +106,8 @@ export default function Inicio() {
         
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-8">
           <div className="space-y-8">
-            <ProgressBar title="📚 Courses (Done by Apr 2, 2027)" current={completedCourses} max={9} color="from-[#ce1126] to-[#f5a623]" />
-            <ProgressBar title="🇰🇷 Japanese (JLPT)" current={currentJapaneseLevel} max={6} color="from-[#0a3d8f] to-[#00f0ff]" labelOverride={currentJapaneseLevel === 0 ? "Just Starting" : ["JLPT N5", "JLPT N4", "JLPT N3", "JLPT N2", "JLPT N1", "JLPT N1+"][currentJapaneseLevel - 1]} />
+            <ProgressBar title="📚 Courses (Done by Apr 2, 2027)" current={completedCourses} max={10} color="from-[#ce1126] to-[#f5a623]" />
+            <ProgressBar title="🇰🇷 Korean (TOPIK)" current={currentKoreanLevel} max={6} color="from-[#0a3d8f] to-[#00f0ff]" labelOverride={currentKoreanLevel === 0 ? "Just Starting" : ["TOPIK L1", "TOPIK L2", "TOPIK L3", "TOPIK L4", "TOPIK L5", "TOPIK L6"][currentKoreanLevel - 1]} />
             <ProgressBar title="💰 Savings ($15k Goal)" current={totalSaved} max={15000} color="from-[#4ade80] to-[#00ff88]" labelOverride={`$${totalSaved.toLocaleString()}`} />
           </div>
           <div className="space-y-8">
@@ -122,10 +122,10 @@ export default function Inicio() {
       <div>
         <h2 className="text-xl font-black text-white mb-6 ml-2 tracking-tight">Phase Roadmap</h2>
         <div className="flex overflow-x-auto pb-6 gap-4 no-scrollbar snap-x px-2">
-          <PhaseCard title="Phase 1 🚀" desc="Digital Art Courses + Japanese + DaVinci Resolve + Affinity" date="Sept 2026–Apr 2027" color="border-t-[#ce1126] hover:shadow-[#ce1126]/20" />
+          <PhaseCard title="Phase 1 🚀" desc="Digital Art Courses + Korean + DaVinci Resolve + Affinity" date="Sept 2026–Apr 2027" color="border-t-[#ce1126] hover:shadow-[#ce1126]/20" />
           <PhaseCard title="Phase 2 🎓" desc="Courses Complete, Build Art Portfolio" date="Apr–Aug 2027" color="border-t-[#0a3d8f] hover:shadow-[#0a3d8f]/20" />
           <PhaseCard title="Phase 3 💼" desc="First Art Commissions + Launch Content" date="Aug–Dec 2027" color="border-t-[#f5a623] hover:shadow-[#f5a623]/20" />
-          <PhaseCard title="Phase 4 🎥" desc="Grow Art Commissions + Japanese Fluency" date="2028–2029" color="border-t-[#4ade80] hover:shadow-[#4ade80]/20" />
+          <PhaseCard title="Phase 4 🎥" desc="Grow Art Commissions + Korean Fluency" date="2028–2029" color="border-t-[#4ade80] hover:shadow-[#4ade80]/20" />
           <PhaseCard title="Phase 5 💰" desc="Career Stable, Save for MacBook Pro + iPad Pro" date="2029–2030" color="border-t-[#ce1126] hover:shadow-[#ce1126]/20" />
           <PhaseCard title="Phase 6 🌟" desc="Established Art Career + Creative Life" date="2030–2036" color="border-t-[#0a3d8f] hover:shadow-[#0a3d8f]/20" />
         </div>

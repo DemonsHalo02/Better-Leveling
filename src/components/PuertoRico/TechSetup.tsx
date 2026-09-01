@@ -4,8 +4,8 @@ import React from "react";
 import { Smartphone, Laptop, CheckCircle2, MonitorOff, Focus, Wifi, Sparkles, Tablet } from "lucide-react";
 
 const APPS = [
-  { name: "Duolingo", platform: "iOS & Windows", desc: "Casual, low-pressure Japanese practice — a few minutes a day, no exam prep." },
-  { name: "Anki", platform: "iOS & Windows", desc: "Spaced repetition for Japanese vocab using All In One Kanji & Kaishi 1.5k decks." },
+  { name: "Duolingo", platform: "iOS & Windows", desc: "Casual, low-pressure Korean/Japanese practice — a few minutes a day, no exam prep." },
+  { name: "Anki", platform: "iOS & Windows", desc: "Spaced repetition for vocab using All In One Kanji, Kaishi 1.5k, and TOPIK decks." },
   
   { name: "Udemy", platform: "iOS & Windows/macOS", desc: "Download courses offline for distraction-free study." },
   
@@ -28,7 +28,7 @@ const VIVOBOOK_SETUP = [
   "Create a dedicated 'Study' Windows account with no games or entertainment apps installed.",
   "Use Windows Focus Assist to block Reddit/YouTube during 90-min Pomodoro blocks.",
   "Organize Desktop: Clean desktop every Friday.",
-  "Folder Structure: /Art, /Japanese, /Content, /Japanese_Docs.",
+  "Folder Structure: /Art, /Korean, /Japanese, /Content, /Language_Docs.",
   "Keep Clip Studio Paint, DaVinci Resolve, and Anki pinned to the taskbar."
 ];
 

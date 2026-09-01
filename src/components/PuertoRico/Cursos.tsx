@@ -20,7 +20,8 @@ const COURSES = [
     category: "Languages (Udemy)",
     icon: Languages,
     items: [
-      { id: "lang01", title: "Ultimate Japanese Bootcamp: Speak Like a Native + JLPT N5-N1", dates: "Sep 2–Apr 2" }
+      { id: "lang01", title: "The Complete Korean Course for Beginners | 10 courses in 1!", dates: "Sep 2–Apr 2" },
+      { id: "lang02", title: "TOPIK II Reading Complete Prep: Target Level 4+", dates: "Sep 2–Apr 2" }
     ]
   },
   {
@@ -33,12 +34,10 @@ const COURSES = [
   }
 ];
 
-const JAPANESE_MILESTONES = [
-  { id: "jp-lvl1", label: "JLPT N5 — Basic Japanese Foundation" },
-  { id: "jp-lvl2", label: "JLPT N4 — Everyday conversations" },
-  { id: "jp-lvl3", label: "JLPT N3 — Conversational fluency" },
-  { id: "jp-lvl4", label: "JLPT N2 — Enjoying Anime/J-Pop & translating apps (by Dec 2028)" },
-  { id: "jp-lvl5", label: "JLPT N1 — Native-level fluency (by Dec 2029)" }
+const KOREAN_MILESTONES = [
+  { id: "kr-lvl1", label: "TOPIK 1 (Level 1-2) — Basic Korean Foundation" },
+  { id: "kr-lvl2", label: "TOPIK 2 (Level 3-4) — Conversational fluency" },
+  { id: "kr-lvl3", label: "TOPIK 2 (Level 5-6) — Advanced fluency & media comprehension (by Dec 2029)" }
 ];
 
 export default function Cursos() {
@@ -53,7 +52,7 @@ export default function Cursos() {
         </div>
         <div className="relative z-10">
           <h2 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wider">Courses & Master Plan</h2>
-          <p className="text-sm text-system-cyan/80 font-mono mt-1">Digital Art + Japanese + DaVinci Resolve + Affinity (Sept 2 – April 2)</p>
+          <p className="text-sm text-system-cyan/80 font-mono mt-1">Digital Art + Korean + DaVinci Resolve + Affinity (Sept 2 – April 2)</p>
         </div>
       </div>
 
@@ -102,17 +101,21 @@ export default function Cursos() {
             <Circle className="w-4 h-4 text-zinc-600 shrink-0" />
             <span className="text-sm text-zinc-300 font-medium">All In One Kanji — Full Kanji Recognition</span>
           </div>
+          <div className="flex items-center gap-3">
+            <Circle className="w-4 h-4 text-zinc-600 shrink-0" />
+            <span className="text-sm text-zinc-300 font-medium">TOPIK 1 & TOPIK 2 Vocabulary</span>
+          </div>
         </div>
       </div>
 
-      {/* Japanese Milestones Tracker */}
+      {/* Korean Milestones Tracker */}
       <div className="bg-system-panel rounded-2xl border border-system-blue/30 overflow-hidden shadow-lg mt-4 p-6">
         <h3 className="text-sm font-black text-white uppercase tracking-wider mb-4 flex items-center gap-2">
           <Languages className="w-4 h-4 text-system-gold" />
-          Japanese JLPT Milestones
+          Korean TOPIK Milestones
         </h3>
         <div className="space-y-3">
-          {JAPANESE_MILESTONES.map((milestone) => (
+          {KOREAN_MILESTONES.map((milestone) => (
             <div key={milestone.id} className="flex items-center gap-3">
               <Circle className="w-4 h-4 text-zinc-600 shrink-0" />
               <span className="text-sm text-zinc-300 font-medium">{milestone.label}</span>

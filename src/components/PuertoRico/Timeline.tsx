@@ -16,8 +16,8 @@ interface TimelineEvent {
 
 const TIMELINE_EVENTS: TimelineEvent[] = [
   { id: "sep-2026", year: 2026, monthStr: "September 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "DAY 1 — Art Journey Begins!", desc: [
-      "Sep 2: DAY 1! Clip Studio Paint Masterclass, Anatomy Art School, DaVinci Resolve, Affinity, and Japanese Bootcamp all begin.",
-      "Sep 2: Kaishi 1.5k and All In One Kanji Anki decks start daily."
+      "Sep 2: DAY 1! Clip Studio Paint Masterclass, Anatomy Art School, DaVinci Resolve, Affinity, and Korean Courses all begin.",
+      "Sep 2: Kaishi 1.5k, All In One Kanji, and TOPIK 1 Anki decks start daily."
   ]},
   { id: "oct-2026", year: 2026, monthStr: "October 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Perspective & Manga", desc: [
       "Oct: Perspective Art School and Manga Art School courses in full swing.",
@@ -29,7 +29,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   ]},
   { id: "dec-2026", year: 2026, monthStr: "December 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Art Foundations Solid", desc: [
       "Dec: Core anatomy, perspective, and character foundations all building momentum.",
-      "Dec: Japanese Anki streaks going strong — first 500+ kanji learned."
+      "Dec: Korean & Japanese Anki streaks going strong — first 500+ kanji learned."
   ]},
   { id: "jan-2027", year: 2027, monthStr: "January 2027", badge: "Phase 1 🚀", color: "#ce1126", title: "Halfway There", desc: [
       "Jan 2027: Halfway through the course lineup! Art portfolio pieces starting to take shape.",
@@ -41,7 +41,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   ]},
   { id: "jun-2027", year: 2027, monthStr: "June 2027", badge: "Phase 2 🎓", color: "#0a3d8f", title: "Portfolio & Content", desc: [
       "Jun 2027: 💻 Major progress on digital art portfolio and first content drafts.",
-      "Jun 2027: JLPT N5 level reached — basic Japanese conversations."
+      "Jun 2027: TOPIK Level 1-2 reached — basic Korean conversations."
   ]},
   { id: "aug-2027", year: 2027, monthStr: "August 2027", badge: "Phase 3 💼", color: "#f5a623", title: "First Art Commissions", desc: [
       "Aug 2027: 🎉 Art portfolio polished! Taking first commissions and content channel launches.",
@@ -51,15 +51,15 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
       "Dec 2027: 💼 First paid art commissions completed — momentum building!"
   ]},
   { id: "jun-2028", year: 2028, monthStr: "June 2028", badge: "Phase 4 🎥", color: "#4ade80", title: "Growing Commissions", desc: [
-      "Jan 2028: Art commissions flowing! Content creation and Japanese continue as steady habits.",
-      "Jun 2028: 🗣️ JLPT N3 — conversational Japanese fluency reached."
+      "Jan 2028: Art commissions flowing! Content creation and Korean/Japanese continue as steady habits.",
+      "Jun 2028: 🗣️ TOPIK Level 3-4 — conversational Korean fluency reached."
   ]},
   { id: "dec-2028", year: 2028, monthStr: "December 2028", badge: "Phase 4 🎥", color: "#4ade80", title: "Body Goal & Momentum", desc: [
       "Dec 2028: 💪 160 LBS ACHIEVED!",
       "Dec 2028: Content channel, art portfolio, and illustration skills all leveling up steadily."
   ]},
   { id: "dec-2029", year: 2029, monthStr: "December 2029", badge: "Phase 5 💰", color: "#ce1126", title: "Career Established", desc: [
-      "Dec 2029: 🗣️ JLPT N2 passed! Understanding Anime/J-Pop without subtitles.",
+      "Dec 2029: 🗣️ TOPIK Level 5-6 passed! Understanding K-Dramas/K-Pop without subtitles.",
       "Dec 2029: Art commission business is thriving."
   ]},
   { id: "mar-2030", year: 2030, monthStr: "March 2030", badge: "Phase 5 💰", color: "#ce1126", title: "Savings Goal", desc: [
@@ -67,7 +67,7 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   ]},
   { id: "dec-2030", year: 2030, monthStr: "December 2030", badge: "Phase 6 🌟", color: "#0a3d8f", title: "Full Creative Life", desc: [
       "Dec 2030: Art career fully established and stable. MacBook Pro + iPad Pro acquired.",
-      "Dec 2030: Content channel, art portfolio, and Japanese all at peak performance."
+      "Dec 2030: Content channel, art portfolio, and Korean/Japanese all at peak performance."
   ]},
   { id: "year-2036", year: 2036, monthStr: "2036", badge: "Phase 6 🌟", color: "#0a3d8f", title: "10 YEARS 🏆", desc: [
       "2036: 🌟 10 YEARS. GOAL ACHIEVED. Thriving art career, creative hobbies, and a fantastic life in the USA!"
