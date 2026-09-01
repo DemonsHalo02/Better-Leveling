@@ -6,9 +6,12 @@ import { Smartphone, Laptop, CheckCircle2, MonitorOff, Focus, Wifi, Sparkles, Ta
 const APPS = [
   { name: "Duolingo", platform: "iOS & Windows", desc: "Casual, low-pressure Japanese practice — a few minutes a day, no exam prep." },
   { name: "Anki", platform: "iOS & Windows", desc: "Spaced repetition for Japanese vocab using All In One Kanji & Kaishi 1.5k decks." },
-  { name: "VS Code", platform: "Windows & macOS", desc: "Primary code editor. Extensions: Prettier, ESLint, Tailwind." },
+  
   { name: "Udemy", platform: "iOS & Windows/macOS", desc: "Download courses offline for distraction-free study." },
-  { name: "Final Cut Pro X / Motion 5", platform: "macOS", desc: "Advanced video editing and motion graphics for content creation." },
+  
+  { name: "Clip Studio Paint", platform: "Windows & macOS", desc: "Professional digital illustration app for manga, character art, and painting." },
+  { name: "Affinity by Canva", platform: "Windows & macOS", desc: "Professional design suite for illustrations, photo editing, and page layout." },
+  { name: "DaVinci Resolve", platform: "Windows & macOS", desc: "Free professional video editing and color grading for content creation." },
   { name: "Procreate", platform: "iPad Pro", desc: "The go-to digital art app once the iPad Pro arrives — perfect for the art hobby." },
   { name: "Better Leveling", platform: "Web", desc: "This app. Install as PWA to home screen." },
 ];
@@ -25,15 +28,15 @@ const VIVOBOOK_SETUP = [
   "Create a dedicated 'Study' Windows account with no games or entertainment apps installed.",
   "Use Windows Focus Assist to block Reddit/YouTube during 90-min Pomodoro blocks.",
   "Organize Desktop: Clean desktop every Friday.",
-  "Folder Structure: /Development, /Japanese, /GameDev, /Content, /Japanese_Docs.",
-  "Keep Windows Terminal and VS Code pinned to the taskbar."
+  "Folder Structure: /Art, /Japanese, /Content, /Japanese_Docs.",
+  "Keep Clip Studio Paint, DaVinci Resolve, and Anki pinned to the taskbar."
 ];
 
 const MACBOOK_SETUP = [
-  "Set up a dedicated dev environment: VS Code, Node/npm, Git, Docker (if needed) via Homebrew.",
+  "Set up a dedicated creative environment: Clip Studio Paint, Affinity, DaVinci Resolve via Homebrew/direct download.",
   "Use macOS Focus modes to silence notifications during deep-work blocks.",
-  "Mirror the same folder structure as the Vivobook: ~/Development, ~/Japanese, ~/GameDev, ~/Content, ~/Japanese_Docs.",
-  "Set up Xcode Simulator or a browser dev-tools workflow for responsive testing.",
+  "Mirror the same folder structure as the Vivobook: ~/Art, ~/Japanese, ~/Content, ~/Japanese_Docs.",
+  "Set up Clip Studio Paint with custom brushes and Affinity for design work.",
   "Migrate Anki, Duolingo, and Udemy progress over before retiring the Vivobook."
 ];
 

@@ -61,15 +61,15 @@ export default function Inicio() {
             Welcome, Nicholas! 🚀
           </h1>
           <p className="text-zinc-200 font-medium text-sm sm:text-lg mb-8 tracking-wide drop-shadow-sm">
-            10-Year Master Plan: Full-Stack Web Dev + Art + Content Creation + Japanese 🎯
+            10-Year Master Plan: Digital Art + Japanese 🎯
           </p>
           
           <div className="flex flex-wrap gap-3 sm:gap-4 font-mono text-xs font-bold">
             <span className="bg-white/10 px-4 py-2 rounded-xl border border-white/20 backdrop-blur-md text-white flex items-center gap-2 shadow-lg">
-              <span className="text-lg">🚀</span> Sept 3, 2026
+              <span className="text-lg">🚀</span> Sept 2, 2026
             </span>
             <span className="bg-white/10 px-4 py-2 rounded-xl border border-white/20 backdrop-blur-md text-[#4ade80] flex items-center gap-2 shadow-lg">
-              <span className="text-lg">💻</span> Job/Freelance: 2027
+              <span className="text-lg">🎨</span> Art Commissions: 2027
             </span>
             <span className="bg-white/10 px-4 py-2 rounded-xl border border-[#f5a623]/40 backdrop-blur-md text-[#f5a623] flex items-center gap-2 shadow-lg">
               <span className="text-lg">🎥</span> Content Launch: 2027
@@ -106,7 +106,7 @@ export default function Inicio() {
         
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-8">
           <div className="space-y-8">
-            <ProgressBar title="📚 Udemy Courses (Done by Apr 2, 2027)" current={completedCourses} max={25} color="from-[#ce1126] to-[#f5a623]" />
+            <ProgressBar title="📚 Courses (Done by Apr 2, 2027)" current={completedCourses} max={9} color="from-[#ce1126] to-[#f5a623]" />
             <ProgressBar title="🇰🇷 Japanese (JLPT)" current={currentJapaneseLevel} max={6} color="from-[#0a3d8f] to-[#00f0ff]" labelOverride={currentJapaneseLevel === 0 ? "Just Starting" : ["JLPT N5", "JLPT N4", "JLPT N3", "JLPT N2", "JLPT N1", "JLPT N1+"][currentJapaneseLevel - 1]} />
             <ProgressBar title="💰 Savings ($15k Goal)" current={totalSaved} max={15000} color="from-[#4ade80] to-[#00ff88]" labelOverride={`$${totalSaved.toLocaleString()}`} />
           </div>
@@ -122,12 +122,12 @@ export default function Inicio() {
       <div>
         <h2 className="text-xl font-black text-white mb-6 ml-2 tracking-tight">Phase Roadmap</h2>
         <div className="flex overflow-x-auto pb-6 gap-4 no-scrollbar snap-x px-2">
-          <PhaseCard title="Phase 1 🚀" desc="Full-Stack Dev Courses + Art + Content Creation + Japanese" date="Sept 2026–Apr 2027" color="border-t-[#ce1126] hover:shadow-[#ce1126]/20" />
-          <PhaseCard title="Phase 2 🎓" desc="Courses Complete, Build Portfolio" date="Apr–Aug 2027" color="border-t-[#0a3d8f] hover:shadow-[#0a3d8f]/20" />
-          <PhaseCard title="Phase 3 💼" desc="Land Job or First Freelance Client + Launch Content" date="Aug–Dec 2027" color="border-t-[#f5a623] hover:shadow-[#f5a623]/20" />
-          <PhaseCard title="Phase 4 🎥" desc="Grow Content + Freelance Business + Full-Stack Dev & Content Creation" date="2028–2029" color="border-t-[#4ade80] hover:shadow-[#4ade80]/20" />
+          <PhaseCard title="Phase 1 🚀" desc="Digital Art Courses + Japanese + DaVinci Resolve + Affinity" date="Sept 2026–Apr 2027" color="border-t-[#ce1126] hover:shadow-[#ce1126]/20" />
+          <PhaseCard title="Phase 2 🎓" desc="Courses Complete, Build Art Portfolio" date="Apr–Aug 2027" color="border-t-[#0a3d8f] hover:shadow-[#0a3d8f]/20" />
+          <PhaseCard title="Phase 3 💼" desc="First Art Commissions + Launch Content" date="Aug–Dec 2027" color="border-t-[#f5a623] hover:shadow-[#f5a623]/20" />
+          <PhaseCard title="Phase 4 🎥" desc="Grow Art Commissions + Japanese Fluency" date="2028–2029" color="border-t-[#4ade80] hover:shadow-[#4ade80]/20" />
           <PhaseCard title="Phase 5 💰" desc="Career Stable, Save for MacBook Pro + iPad Pro" date="2029–2030" color="border-t-[#ce1126] hover:shadow-[#ce1126]/20" />
-          <PhaseCard title="Phase 6 🌟" desc="Established Dev Career + Creative Life" date="2030–2036" color="border-t-[#0a3d8f] hover:shadow-[#0a3d8f]/20" />
+          <PhaseCard title="Phase 6 🌟" desc="Established Art Career + Creative Life" date="2030–2036" color="border-t-[#0a3d8f] hover:shadow-[#0a3d8f]/20" />
         </div>
       </div>
     </div>
