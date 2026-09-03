@@ -15,65 +15,44 @@ interface TimelineEvent {
 }
 
 const TIMELINE_EVENTS: TimelineEvent[] = [
-  { id: "sep-2026", year: 2026, monthStr: "September 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "DAY 1 — Art Journey Begins!", desc: [
-      "Sep 2: DAY 1! Clip Studio Paint Masterclass, Anatomy Art School, DaVinci Resolve, Affinity, and Korean Courses all begin.",
-      "Sep 2: Kaishi 1.5k, All In One Kanji, and TOPIK 1 Anki decks start daily."
+  { id: "sep-2026", year: 2026, monthStr: "September 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "DAY 1 — Web Engineering Journey", desc: [
+      "Sep 3: DAY 1! Full-Stack Bootcamp, Java Masterclass, React, Node, SQL, and AWS all begin.",
+      "Sep 3: Japanese Bootcamp begins. Kaishi 1.5k and All In One Kanji Anki decks start daily.",
+      "Sep 3: HiSET Math prep begins."
   ]},
-  { id: "oct-2026", year: 2026, monthStr: "October 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Perspective & Manga", desc: [
-      "Oct: Perspective Art School and Manga Art School courses in full swing.",
-      "Oct: Building daily art study habits — anatomy sketches and perspective drills."
+  { id: "oct-2026", year: 2026, monthStr: "October 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Building Foundations", desc: [
+      "Oct: Deep into Java object-oriented programming, React basics, and SQL.",
+      "Oct: Japanese Anki habits solidified."
   ]},
-  { id: "nov-2026", year: 2026, monthStr: "November 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Character Design Deep Dive", desc: [
-      "Nov: Character Art School: Complete Character Drawing and Coloring & Painting begin.",
-      "Nov: First complete character illustrations finished."
-  ]},
-  { id: "dec-2026", year: 2026, monthStr: "December 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Art Foundations Solid", desc: [
-      "Dec: Core anatomy, perspective, and character foundations all building momentum.",
-      "Dec: Korean & Japanese Anki streaks going strong — first 500+ kanji learned."
-  ]},
-  { id: "jan-2027", year: 2027, monthStr: "January 2027", badge: "Phase 1 🚀", color: "#ce1126", title: "Halfway There", desc: [
-      "Jan 2027: Halfway through the course lineup! Art portfolio pieces starting to take shape.",
-      "Jan 2027: DaVinci Resolve and Affinity skills leveling up for content creation."
+  { id: "dec-2026", year: 2026, monthStr: "December 2026", badge: "Phase 1 🚀", color: "#ce1126", title: "Spring Boot & Cloud", desc: [
+      "Dec: Starting Spring Boot & Spring Framework. Getting comfortable with AWS Cloud Practitioner material.",
+      "Dec: First 500+ Japanese Kanji learned."
   ]},
   { id: "apr-2027", year: 2027, monthStr: "April 2027", badge: "Phase 2 🎓", color: "#0a3d8f", title: "All Courses Complete!", desc: [
-      "Apr 2: ✅ ALL COURSES COMPLETE! Digital art portfolio ready to show.",
-      "Apr 2027: Start building illustration commission profiles on ArtStation, Fiverr, DeviantArt."
+      "Apr 2: ✅ ALL COURSES COMPLETE! Web Dev skills acquired.",
+      "Apr 2027: Start building advanced portfolio projects (Full-Stack React + Spring Boot)."
   ]},
-  { id: "jun-2027", year: 2027, monthStr: "June 2027", badge: "Phase 2 🎓", color: "#0a3d8f", title: "Portfolio & Content", desc: [
-      "Jun 2027: 💻 Major progress on digital art portfolio and first content drafts.",
-      "Jun 2027: TOPIK Level 1-2 reached — basic Korean conversations."
+  { id: "aug-2027", year: 2027, monthStr: "August 2027", badge: "Phase 3 💼", color: "#f5a623", title: "Job Hunt Begins", desc: [
+      "Aug 2027: 🎉 Portfolio polished! Applying to Web Dev jobs and freelance gigs.",
+      "Aug 2027: HiSET Math passed! High School equivalency secured."
   ]},
-  { id: "aug-2027", year: 2027, monthStr: "August 2027", badge: "Phase 3 💼", color: "#f5a623", title: "First Art Commissions", desc: [
-      "Aug 2027: 🎉 Art portfolio polished! Taking first commissions and content channel launches.",
-      "Aug 2027: Content creation channel launches — art process + life updates."
+  { id: "dec-2027", year: 2027, monthStr: "December 2027", badge: "Phase 3 💼", color: "#f5a623", title: "First Dev Job", desc: [
+      "Dec 2027: 💼 First Web Dev job secured. Gaining professional experience."
   ]},
-  { id: "dec-2027", year: 2027, monthStr: "December 2027", badge: "Phase 3 💼", color: "#f5a623", title: "First Win", desc: [
-      "Dec 2027: 💼 First paid art commissions completed — momentum building!"
+  { id: "dec-2029", year: 2029, monthStr: "December 2029", badge: "Phase 4 🎥", color: "#4ade80", title: "JLPT N3 & Mid-Level Engineer", desc: [
+      "Dec 2029: Passed JLPT N3! Conversational Japanese is smooth.",
+      "Dec 2029: 2 years of professional Web Dev experience."
   ]},
-  { id: "jun-2028", year: 2028, monthStr: "June 2028", badge: "Phase 4 🎥", color: "#4ade80", title: "Growing Commissions", desc: [
-      "Jan 2028: Art commissions flowing! Content creation and Korean/Japanese continue as steady habits.",
-      "Jun 2028: 🗣️ TOPIK Level 3-4 — conversational Korean fluency reached."
+  { id: "dec-2031", year: 2031, monthStr: "December 2031", badge: "Phase 4 🎥", color: "#4ade80", title: "JLPT N2 (Vocational Requirement)", desc: [
+      "Dec 2031: 🗣️ JLPT N2 passed! Officially eligible for Japanese IT Vocational Schools."
   ]},
-  { id: "dec-2028", year: 2028, monthStr: "December 2028", badge: "Phase 4 🎥", color: "#4ade80", title: "Body Goal & Momentum", desc: [
-      "Dec 2028: 💪 160 LBS ACHIEVED!",
-      "Dec 2028: Content channel, art portfolio, and illustration skills all leveling up steadily."
+  { id: "dec-2034", year: 2034, monthStr: "Phase 5 💰", badge: "Phase 5 💰", color: "#ce1126", title: "Savings Secured", desc: [
+      "Dec 2034: Saved over $20,000 for the Japan student visa proof of funds."
   ]},
-  { id: "dec-2029", year: 2029, monthStr: "December 2029", badge: "Phase 5 💰", color: "#ce1126", title: "Career Established", desc: [
-      "Dec 2029: 🗣️ TOPIK Level 5-6 passed! Understanding K-Dramas/K-Pop without subtitles.",
-      "Dec 2029: Art commission business is thriving."
-  ]},
-  { id: "mar-2030", year: 2030, monthStr: "March 2030", badge: "Phase 5 💰", color: "#ce1126", title: "Savings Goal", desc: [
-      "Mar 2030: $15K saved! Fully prepared for the MacBook Pro + iPad Pro upgrade and robust emergency fund."
-  ]},
-  { id: "dec-2030", year: 2030, monthStr: "December 2030", badge: "Phase 6 🌟", color: "#0a3d8f", title: "Full Creative Life", desc: [
-      "Dec 2030: Art career fully established and stable. MacBook Pro + iPad Pro acquired.",
-      "Dec 2030: Content channel, art portfolio, and Korean/Japanese all at peak performance."
-  ]},
-  { id: "year-2036", year: 2036, monthStr: "2036", badge: "Phase 6 🌟", color: "#0a3d8f", title: "10 YEARS 🏆", desc: [
-      "2036: 🌟 10 YEARS. GOAL ACHIEVED. Thriving art career, creative hobbies, and a fantastic life in the USA!"
+  { id: "year-2036", year: 2036, monthStr: "2036", badge: "Phase 6 🌟", color: "#0a3d8f", title: "Relocate to Japan! 🇯🇵", desc: [
+      "2036: 🌟 10 YEARS. GOAL ACHIEVED. Move to Japan, enroll in an IT Vocational School (Senmon Gakko), and transition into a Japanese Web Engineer career!"
   ]}
 ];
-
 
 const YEARS = [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036];
 

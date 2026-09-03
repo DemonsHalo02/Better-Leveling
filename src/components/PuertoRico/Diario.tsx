@@ -9,18 +9,18 @@ const HORARIO = [
   { time: "6:15 AM", task: "Make Iced Coffee", dur: "10min" },
   { time: "6:30 AM", task: "Morning hygiene + mobility", dur: "15min" },
   { time: "7:00 AM", task: "Japanese — Anki flashcards (Kaishi & Kanji)", dur: "30min", habitId: "h1" },
-  { time: "7:30 AM", task: "Digital Art Course 1", dur: "60min", habitId: "h2" },
+  { time: "7:30 AM", task: "Web Dev Course 1", dur: "60min", habitId: "h2" },
   { time: "8:30 AM", task: "Pre-workout banana", dur: "5min" },
   { time: "8:35 AM", task: "Workout (Mon-Sat)", dur: "75–90min", habitId: "h3" },
   { time: "10:05 AM", task: "Cool down + stretch", dur: "15min" },
   { time: "10:20 AM", task: "Shower + recovery", dur: "20min" },
   { time: "10:40 AM", task: "Post-workout meal", dur: "25min" },
-  { time: "12:00 PM", task: "Digital Art Course 2", dur: "90min", habitId: "h4" },
+  { time: "12:00 PM", task: "Web Dev Course 2", dur: "90min", habitId: "h4" },
   { time: "1:30 PM", task: "Lunch", dur: "30min" },
-  { time: "2:00 PM", task: "Digital Art Course 3", dur: "60min", habitId: "h5" },
+  { time: "2:00 PM", task: "Web Dev Course 3", dur: "60min", habitId: "h5" },
   { time: "3:00 PM", task: "Free Time / Rest", dur: "30min" },
   { time: "3:30 PM", task: "Snack — Greek yogurt", dur: "10min" },
-  { time: "5:00 PM", task: "ProCreate Practice / Sketching", dur: "90min", habitId: "h6" },
+  { time: "5:00 PM", task: "Java / Spring Boot Practice", dur: "90min", habitId: "h6" },
   { time: "7:00 PM", task: "Dinner", dur: "30min" },
   { time: "8:00 PM", task: "Free Time / Anime", dur: "30min" },
   { time: "8:30 PM", task: "Journal + plan tomorrow", dur: "20min", habitId: "h7" },
@@ -223,7 +223,7 @@ export default function Diario() {
                 
                 <StudyBlock title="🇪🇸 Japanese" dur="50m" color="bg-[#ce1126]/10 text-[#ce1126] border-[#ce1126]/30 hover:bg-[#ce1126]/20 hover:border-[#ce1126]/50" />
                 <StudyBlock title="💻 Udemy" dur="150m" color="bg-[#0a3d8f]/10 text-[#0a3d8f] border-[#0a3d8f]/30 hover:bg-[#0a3d8f]/20 hover:border-[#0a3d8f]/50" />
-                <StudyBlock title="🎨 Art" dur="45m" color="bg-[#f5a623]/10 text-[#f5a623] border-[#f5a623]/30 hover:bg-[#f5a623]/20 hover:border-[#f5a623]/50" />
+                <StudyBlock title="💻 Coding" dur="45m" color="bg-[#f5a623]/10 text-[#f5a623] border-[#f5a623]/30 hover:bg-[#f5a623]/20 hover:border-[#f5a623]/50" />
                 <StudyBlock title="🧠 Anki" dur="20m" color="bg-[#4ade80]/10 text-[#4ade80] border-[#4ade80]/30 hover:bg-[#4ade80]/20 hover:border-[#4ade80]/50" />
               </div>
             ))}

@@ -23,7 +23,7 @@ export default function Ahorros() {
   const progress = Math.min(100, (totalSaved / goal) * 100);
 
   const surplus = data.savingsIncome - data.savingsExpenses;
-  const monthsRemaining = 24; // Approx runway to build a MacBook Pro + iPad Pro + emergency fund
+  const monthsRemaining = 24; // Approx runway to build a Japan Relocation Fund (Language School / Vocational School Visa requires $15k-$20k proof of funds)
   const projectedTotal = totalSaved + (surplus * monthsRemaining);
 
   const handleUpdateMonthly = (income: number, expenses: number) => {
@@ -153,7 +153,7 @@ export default function Ahorros() {
             {projectedTotal < goal && (
               <div className="mt-4 bg-[#ce1126]/10 border border-[#ce1126]/30 p-3 rounded-xl">
                 <p className="text-[11px] font-medium text-[#ce1126] leading-relaxed">
-                  <span className="font-bold">Warning:</span> Current surplus trajectory falls short of the $15k goal within 24 months. Consider increasing income (art commissions, content monetization) to cover the MacBook Pro + iPad Pro + emergency fund!
+                  <span className="font-bold">Warning:</span> Current surplus trajectory falls short of the $15k goal within 24 months. Consider increasing income (freelance web devs, content monetization) to cover the Japan Relocation Fund (Language School / Vocational School Visa requires $15k-$20k proof of funds)!
                 </p>
               </div>
             )}
@@ -188,7 +188,7 @@ export default function Ahorros() {
                 type="text"
                 value={newDesc}
                 onChange={(e) => setNewDesc(e.target.value)}
-                placeholder="Ex. Paycheck, art commission..."
+                placeholder="Ex. Paycheck, freelance web dev..."
                 className="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-sm text-white focus:border-[#0a3d8f] focus:ring-1 focus:ring-[#0a3d8f]/50 outline-none transition-all shadow-inner placeholder:text-zinc-600"
               />
             </div>

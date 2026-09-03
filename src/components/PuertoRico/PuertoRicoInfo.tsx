@@ -4,10 +4,10 @@ import React from "react";
 import { Compass, Sun, Shield, Heart, CheckCircle2, Navigation, Coffee } from "lucide-react";
 
 const WHY_PR = [
-  { icon: Sun, title: "Digital Art Mastery", desc: "A creative, fulfilling skill set — from manga and character design to professional illustration. The foundation for commissions, content, and personal expression." },
+  { icon: Sun, title: "Web Engineering", desc: "A highly in-demand skill set globally and especially in Japan. Java and Spring Boot are massively popular in the Japanese IT enterprise sector." },
   { icon: Shield, title: "Consistent Practice", desc: "Building a portfolio requires consistent, daily drawing habits and focused study. Low pressure, high consistency." },
-  { icon: Heart, title: "Character Design & Illustration", desc: "Learning Anatomy, Perspective, Clip Studio Paint, and ProCreate to create manga-quality character art and build an illustration portfolio." },
-  { icon: Navigation, title: "Korean & Japanese Language", desc: "Learning Korean to understand K-Pop and K-Dramas, and maintaining Japanese to translate web apps and watch Anime." }
+  { icon: Heart, title: "IT Vocational School in Japan (Senmon Gakko)", desc: "An IT Vocational School provides a direct pathway to a working visa in Japan. It requires JLPT N2 and a High School Diploma (HiSET) to enter." },
+  { icon: Navigation, title: "Japanese Language Mastery (JLPT)", desc: "Achieving JLPT N2 is the minimum requirement for entering a Japanese Vocational School. N1 opens doors to top-tier companies." }
 ];
 
 const CAGUAS_INFO = [
@@ -15,15 +15,15 @@ const CAGUAS_INFO = [
   "Full-time job: steadier income and benefits, but less flexible schedule.",
   "Either path benefits from the same portfolio — build projects that show off real skills.",
   "Apply to both simultaneously once the portfolio is ready; take whichever comes first.",
-  "Content creation builds an audience which makes art commissions easier to find and grow."
+  "Building projects and proving your skills is the best way to land that first Web Dev job before Japan."
 ];
 
 const CHECKLIST = [
-  "Finish all Digital Art courses by April 2, 2027",
-  "Build a portfolio-worthy collection of digital art and character designs",
-  "Set up a portfolio site and art commission profiles (Fiverr, DeviantArt, ArtStation)",
+  "Finish all Web Engineering courses by April 2, 2027",
+  "Build a portfolio-worthy collection of full-stack web applications",
+  "Set up a strong GitHub profile and a Web Dev portfolio site",
   "Launch a content channel once there's real progress to show",
-  "Practice digital art and content creation consistently",
+  "Practice coding and building web applications consistently",
   "Learn enough Japanese to understand Anime and J-Pop",
   "Save $15,000 toward a MacBook Pro + iPad Pro + emergency fund",
   "Hit 160 lbs (Health & Fitness prime)"
@@ -47,7 +47,7 @@ export default function PuertoRicoInfo() {
             <h2 className="text-4xl font-black text-white tracking-tighter drop-shadow-md">Future Plan</h2>
           </div>
           <p className="text-[#f5a623] font-mono font-black tracking-[0.3em] text-sm uppercase drop-shadow-sm ml-1">10-Year Master Plan</p>
-          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">Staying in the USA to build a digital art and illustration career. Learning Korean and Japanese to understand Asian media (K-Pop, K-Dramas, Anime), and practicing character art, manga illustration, and content creation as creative hobbies.</p>
+          <p className="text-zinc-300 mt-5 max-w-lg text-base leading-relaxed font-medium">Mastering Web Engineering and the Japanese Language to eventually relocate to Japan for an IT Vocational School, leading to a long-term career as a Web Engineer in Japan.</p>
         </div>
       </div>
 
@@ -77,7 +77,7 @@ export default function PuertoRicoInfo() {
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#0a3d8f]/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           
           <h3 className="text-2xl font-black text-[#0a3d8f] mb-2 flex items-center gap-3 tracking-tight relative z-10">
-            <Compass className="w-6 h-6" /> Art Commissions & Career <span className="text-sm text-zinc-400 font-medium">(Open to Both)</span>
+            <Compass className="w-6 h-6" /> Japan IT Career <span className="text-sm text-zinc-400 font-medium">(Open to Both)</span>
           </h3>
           <p className="text-zinc-400 text-sm mb-6 font-bold relative z-10">Whichever Pays Better or Comes First Wins</p>
           
@@ -93,7 +93,7 @@ export default function PuertoRicoInfo() {
           <div className="mt-8 pt-6 border-t border-[#0a3d8f]/20 relative z-10">
             <h4 className="font-mono text-[10px] text-zinc-400 uppercase mb-2 font-bold tracking-widest">Tech Upgrade Budget</h4>
             <div className="text-3xl font-black text-white drop-shadow-sm">$2.5K - $4K<span className="text-sm text-zinc-500 font-medium ml-1"> total</span></div>
-            <p className="text-xs text-zinc-400 mt-2 font-medium leading-relaxed">MacBook Pro + iPad Pro for dev work, art, and content editing.</p>
+            <p className="text-xs text-zinc-400 mt-2 font-medium leading-relaxed">MacBook Pro for full-stack dev work, coding, and containerization.</p>
           </div>
         </div>
 
@@ -123,7 +123,7 @@ export default function PuertoRicoInfo() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
             <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Stack</div>
-            <div className="font-black text-white text-sm">Clip Studio + ProCreate</div>
+            <div className="font-black text-white text-sm">Java + Spring Boot + React</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
             <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Japanese</div>
@@ -131,7 +131,7 @@ export default function PuertoRicoInfo() {
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
             <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Hobbies</div>
-            <div className="font-black text-white text-sm">Digital Art & Japanese</div>
+            <div className="font-black text-white text-sm">Web Dev & Japanese</div>
           </div>
           <div className="bg-white/5 backdrop-blur-sm p-4 rounded-2xl text-center border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1 shadow-inner">
             <div className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase tracking-widest">Content</div>

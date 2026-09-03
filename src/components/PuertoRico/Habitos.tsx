@@ -2,16 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import { getPRData, PRStorageData } from "@/lib/pr-storage";
-import { Target, Droplets, Brain, BookOpen, Dumbbell, Palette, Book, Flame } from "lucide-react";
+import { Target, Droplets, Brain, BookOpen, Dumbbell, Code, Book, Flame } from "lucide-react";
 
 const HABITS = [
   { id: "h0", title: "16oz Water Upon Waking", icon: Droplets, color: "#00f0ff" },
   { id: "h1", title: "Anki Flashcards (Kaishi & Kanji)", icon: Brain, color: "#4ade80" },
-  { id: "h2", title: "Digital Art Course 1", icon: Palette, color: "#0a3d8f" },
+  { id: "h2", title: "Web Dev Course 1", icon: Code, color: "#0a3d8f" },
   { id: "h3", title: "Workout (160lbs)", icon: Dumbbell, color: "#ff3366" },
-  { id: "h4", title: "Digital Art Course 2", icon: Palette, color: "#ce1126" },
-  { id: "h5", title: "Digital Art Course 3", icon: Palette, color: "#ce1126" },
-  { id: "h6", title: "ProCreate Practice", icon: Palette, color: "#f5a623" },
+  { id: "h4", title: "Web Dev Course 2", icon: Code, color: "#ce1126" },
+  { id: "h5", title: "Web Dev Course 3", icon: Code, color: "#ce1126" },
+  { id: "h6", title: "Java / Spring Boot Practice", icon: Code, color: "#f5a623" },
   { id: "h7", title: "Journal / Planning", icon: Book, color: "#ffffff" }
 ];
 

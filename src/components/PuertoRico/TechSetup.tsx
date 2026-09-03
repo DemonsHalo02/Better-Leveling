@@ -4,15 +4,14 @@ import React from "react";
 import { Smartphone, Laptop, CheckCircle2, MonitorOff, Focus, Wifi, Sparkles, Tablet } from "lucide-react";
 
 const APPS = [
-  { name: "Duolingo", platform: "iOS & Windows", desc: "Casual, low-pressure Korean/Japanese practice — a few minutes a day, no exam prep." },
-  { name: "Anki", platform: "iOS & Windows", desc: "Spaced repetition for vocab using All In One Kanji, Kaishi 1.5k, and TOPIK decks." },
+  { name: "Duolingo", platform: "iOS & Windows", desc: "Casual, low-pressure Japanese practice — a few minutes a day, no exam prep." },
+  { name: "Anki", platform: "iOS & Windows", desc: "Spaced repetition for vocab using All In One Kanji and Kaishi 1.5k decks." },
   
   { name: "Udemy", platform: "iOS & Windows/macOS", desc: "Download courses offline for distraction-free study." },
   
-  { name: "Clip Studio Paint", platform: "Windows & macOS", desc: "Professional digital illustration app for manga, character art, and painting." },
-  { name: "Affinity by Canva", platform: "Windows & macOS", desc: "Professional design suite for illustrations, photo editing, and page layout." },
-  { name: "DaVinci Resolve", platform: "Windows & macOS", desc: "Free professional video editing and color grading for content creation." },
-  { name: "Procreate", platform: "iPad Pro", desc: "The go-to digital art app once the iPad Pro arrives — perfect for the art hobby." },
+  { name: "VS Code", platform: "Windows & macOS", desc: "Primary code editor for React, Node, Tailwind." },
+  { name: "IntelliJ IDEA / Eclipse", platform: "Windows & macOS", desc: "Robust Java IDEs for Spring Boot development." },
+  { name: "Docker", platform: "Windows & macOS", desc: "Containerization tool for modern full-stack development and databases." },
   { name: "Better Leveling", platform: "Web", desc: "This app. Install as PWA to home screen." },
 ];
 
@@ -28,24 +27,24 @@ const VIVOBOOK_SETUP = [
   "Create a dedicated 'Study' Windows account with no games or entertainment apps installed.",
   "Use Windows Focus Assist to block Reddit/YouTube during 90-min Pomodoro blocks.",
   "Organize Desktop: Clean desktop every Friday.",
-  "Folder Structure: /Art, /Korean, /Japanese, /Content, /Language_Docs.",
-  "Keep Clip Studio Paint, DaVinci Resolve, and Anki pinned to the taskbar."
+  "Folder Structure: /WebDev, /Japanese, /Java_Projects, /React_Projects.",
+  "Keep VS Code, IntelliJ, and Anki pinned to the taskbar."
 ];
 
 const MACBOOK_SETUP = [
-  "Set up a dedicated creative environment: Clip Studio Paint, Affinity, DaVinci Resolve via Homebrew/direct download.",
+  "Set up a dedicated dev environment: VS Code, Node/npm, Java JDK, Docker, Git via Homebrew..",
   "Use macOS Focus modes to silence notifications during deep-work blocks.",
-  "Mirror the same folder structure as the Vivobook: ~/Art, ~/Japanese, ~/Content, ~/Japanese_Docs.",
-  "Set up Clip Studio Paint with custom brushes and Affinity for design work.",
+  "Mirror the same folder structure as the Vivobook: ~/WebDev, ~/Japanese, ~/Java_Projects, ~/React_Projects.",
+  "Set up VS Code with Prettier, ESLint, and Java extensions for clean coding..",
   "Migrate Anki, Duolingo, and Udemy progress over before retiring the Vivobook."
 ];
 
 const IPAD_SETUP = [
-  "Install Procreate as the primary digital art app for hobby practice.",
-  "Use Apple Pencil + Split View to sketch while referencing tutorials or Udemy lessons.",
-  "Set up Files app folders synced with the MacBook (iCloud Drive) for art and content assets.",
-  "Use it as a lightweight content-creation device: quick edits, thumbnails, and planning on the go.",
-  "Keep it distraction-free: no social apps, just Procreate, Udemy, Notes, and Better Leveling (PWA)."
+  "Install Udemy and use for offline course viewing during travel or downtime.",
+  "Use browser for reading Spring Boot/Java documentation or AWS Whitepapers.",
+  "Set up Files app folders synced with the MacBook (iCloud Drive) for studying.",
+  "Use as a lightweight distraction-free device for Anki reviews and reading.",
+  "Keep it distraction-free: no social apps, just Udemy, Notes, and Better Leveling (PWA)."
 ];
 
 export default function TechSetup() {

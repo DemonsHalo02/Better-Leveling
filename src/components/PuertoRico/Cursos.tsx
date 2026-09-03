@@ -1,43 +1,44 @@
 "use client";
 
 import React from 'react';
-import { BookOpen, Circle, Clock, Palette, Languages, Video } from "lucide-react";
+import { BookOpen, Circle, Clock, Code, Languages, Calculator } from "lucide-react";
 
 const COURSES = [
   {
-    category: "Art (Udemy)",
-    icon: Palette,
+    category: "Web Engineering (Udemy)",
+    icon: Code,
     items: [
-      { id: "art01", title: "Clip Studio Paint Masterclass: From Beginner to Expert", dates: "Sep 2–Apr 2" },
-      { id: "art02", title: "Anatomy Art School: Drawing the Human Form", dates: "Sep 2–Apr 2" },
-      { id: "art03", title: "Perspective Art School: The Complete Drawing Course", dates: "Sep 2–Apr 2" },
-      { id: "art04", title: "Manga Art School: The Complete Anime & Manga Drawing Course", dates: "Sep 2–Apr 2" },
-      { id: "art05", title: "Character Art School: Complete Coloring & Painting", dates: "Sep 2–Apr 2" },
-      { id: "art06", title: "Character Art School: Complete Character Drawing", dates: "Sep 2–Apr 2" }
+      { id: "web01", title: "The Complete Full-Stack Web Development Bootcamp", dates: "Sep 3–Apr 2" },
+      { id: "web02", title: "Java Masterclass 2025: 130+ Hours of Expert Lessons", dates: "Sep 3–Apr 2" },
+      { id: "web03", title: "[NEW] Spring Boot 4, Spring Framework 7: Beginner to Guru", dates: "Sep 3–Apr 2" },
+      { id: "web04", title: "React - The Complete Guide (incl. Next.js, Redux)", dates: "Sep 3–Apr 2" },
+      { id: "web05", title: "The Complete Node.js Developer Course (3rd Edition)", dates: "Sep 3–Apr 2" },
+      { id: "web06", title: "The Complete SQL Bootcamp: Go from Zero to Hero", dates: "Sep 3–Apr 2" },
+      { id: "web07", title: "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02 2026", dates: "Sep 3–Apr 2" }
     ]
   },
   {
     category: "Languages (Udemy)",
     icon: Languages,
     items: [
-      { id: "lang01", title: "The Complete Korean Course for Beginners | 10 courses in 1!", dates: "Sep 2–Apr 2" },
-      { id: "lang02", title: "TOPIK II Reading Complete Prep: Target Level 4+", dates: "Sep 2–Apr 2" }
+      { id: "lang01", title: "Ultimate Japanese Bootcamp: Speak Like a Native + JLPT N5-N1", dates: "Sep 3–Apr 2" }
     ]
   },
   {
-    category: "Free Courses (YouTube)",
-    icon: Video,
+    category: "Other (Udemy)",
+    icon: Calculator,
     items: [
-      { id: "yt01", title: "Introduction to DaVinci Resolve - [Full Course] for Beginners (2026)", dates: "Sep 2–Apr 2" },
-      { id: "yt02", title: "Everything You Need to Know to Get Started with Affinity by Canva", dates: "Sep 2–Apr 2" }
+      { id: "other01", title: "HSE/GED/TASC/HiSET Prep: A Complete Mathematics Curriculum", dates: "Sep 3–Apr 2" }
     ]
   }
 ];
 
-const KOREAN_MILESTONES = [
-  { id: "kr-lvl1", label: "TOPIK 1 (Level 1-2) — Basic Korean Foundation" },
-  { id: "kr-lvl2", label: "TOPIK 2 (Level 3-4) — Conversational fluency" },
-  { id: "kr-lvl3", label: "TOPIK 2 (Level 5-6) — Advanced fluency & media comprehension (by Dec 2029)" }
+const JAPANESE_MILESTONES = [
+  { id: "jp-lvl1", label: "JLPT N5 — Basic Japanese Foundation" },
+  { id: "jp-lvl2", label: "JLPT N4 — Everyday conversations" },
+  { id: "jp-lvl3", label: "JLPT N3 — Conversational fluency" },
+  { id: "jp-lvl4", label: "JLPT N2 — IT Vocational School Admission Requirement" },
+  { id: "jp-lvl5", label: "JLPT N1 — Native-level fluency" }
 ];
 
 export default function Cursos() {
@@ -52,7 +53,7 @@ export default function Cursos() {
         </div>
         <div className="relative z-10">
           <h2 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wider">Courses & Master Plan</h2>
-          <p className="text-sm text-system-cyan/80 font-mono mt-1">Digital Art + Korean + DaVinci Resolve + Affinity (Sept 2 – April 2)</p>
+          <p className="text-sm text-system-cyan/80 font-mono mt-1">Web Engineering + Japanese + HiSET Math (Sept 3 – April 2)</p>
         </div>
       </div>
 
@@ -101,21 +102,17 @@ export default function Cursos() {
             <Circle className="w-4 h-4 text-zinc-600 shrink-0" />
             <span className="text-sm text-zinc-300 font-medium">All In One Kanji — Full Kanji Recognition</span>
           </div>
-          <div className="flex items-center gap-3">
-            <Circle className="w-4 h-4 text-zinc-600 shrink-0" />
-            <span className="text-sm text-zinc-300 font-medium">TOPIK 1 & TOPIK 2 Vocabulary</span>
-          </div>
         </div>
       </div>
 
-      {/* Korean Milestones Tracker */}
+      {/* Japanese Milestones Tracker */}
       <div className="bg-system-panel rounded-2xl border border-system-blue/30 overflow-hidden shadow-lg mt-4 p-6">
         <h3 className="text-sm font-black text-white uppercase tracking-wider mb-4 flex items-center gap-2">
           <Languages className="w-4 h-4 text-system-gold" />
-          Korean TOPIK Milestones
+          Japanese JLPT Milestones
         </h3>
         <div className="space-y-3">
-          {KOREAN_MILESTONES.map((milestone) => (
+          {JAPANESE_MILESTONES.map((milestone) => (
             <div key={milestone.id} className="flex items-center gap-3">
               <Circle className="w-4 h-4 text-zinc-600 shrink-0" />
               <span className="text-sm text-zinc-300 font-medium">{milestone.label}</span>
