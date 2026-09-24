@@ -192,35 +192,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
       {/* General Feature & VIP Teaser: Daily Motivation Oracle */}
       <MotivationOracle onNavigate={(tab) => onNavigate(tab as TabType)} />
 
-      {/* 🎨 New Feature Banner: Warrior of Light Art & Manhua Vault */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-system-panel via-[#130a24] to-system-dark p-6 border border-system-purple/50 shadow-glow-purple">
-        <div className="absolute -right-12 -top-12 w-64 h-64 bg-system-purple/15 rounded-full blur-3xl pointer-events-none animate-pulse" />
-        
-        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-system-purple/20 border border-system-purple text-system-purple text-xs font-mono uppercase tracking-widest font-bold shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-system-purple animate-ping" />
-              Cloud Storage Gallery Active
-            </div>
-            <h3 className="text-xl md:text-2xl font-black tracking-wider text-white uppercase flex items-center gap-2">
-              <Palette className="w-6 h-6 text-system-purple" />
-              <span>Warrior of Light Art & Manhua Vault</span>
-            </h3>
-            <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed">
-              Explore exclusive original artwork and manhua chapters uploaded directly to Cloud Storage. Paying Level 100 VIP Guild members can view, like, dislike, and leave guild comments on new releases!
-            </p>
-          </div>
 
-          <button
-            onClick={() => onNavigate('gallery')}
-            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-system-purple to-system-blue text-white font-black uppercase text-xs tracking-widest shadow-glow-purple hover:scale-105 transition-all flex-shrink-0 cursor-pointer"
-          >
-            <BookOpen className="w-4 h-4" />
-            <span>Open Art Vault</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
 
       {/* Grid: Stat Sheet & Today's Workout Quest */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

@@ -11,7 +11,6 @@ import WeightAndPrTracker from "@/components/Tracking/WeightAndPrTracker";
 import MembershipPortal from "@/components/Membership/MembershipPortal";
 import TrophyHall from "@/components/Dashboard/TrophyHall";
 import SystemSettings from "@/components/Dashboard/SystemSettings";
-import ArtGallery from "@/components/Gallery/ArtGallery";
 import AdminDashboard from "@/components/Admin/AdminDashboard";
 import CourseTracker from "@/components/Courses/CourseTracker";
 import { Shield } from "lucide-react";
@@ -80,7 +79,7 @@ export default function Home() {
           {activeTab === "courses" && <CourseTracker />}
           {activeTab === "weight" && <WeightAndPrTracker />}
           {activeTab === "trophies" && <TrophyHall />}
-          {activeTab === "gallery" && <ArtGallery />}
+
           {activeTab === "settings" && (
             <SystemSettings onNavigate={(tab) => setActiveTab(tab)} />
           )}

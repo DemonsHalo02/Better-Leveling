@@ -4,7 +4,7 @@ import React from 'react';
 import { ShieldAlert, Dumbbell, ScanLine, TrendingDown, Crown, Trophy, Settings, Palette, BookOpen } from 'lucide-react';
 import { isSystemAdmin } from '@/lib/hunter-system';
 
-export type TabType = 'quests' | 'workouts' | 'scanner' | 'courses' | 'weight' | 'account' | 'trophies' | 'settings' | 'gallery' | 'admin';
+export type TabType = 'quests' | 'workouts' | 'scanner' | 'courses' | 'weight' | 'account' | 'trophies' | 'settings' | 'admin';
 
 interface SystemSidebarProps {
   activeTab: TabType;
@@ -67,13 +67,6 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
       mobileLabel: 'Trophies',
       icon: <Trophy className="w-5 h-5 text-system-gold animate-pulse" />,
       badge: 'XP'
-    },
-    {
-      id: 'gallery',
-      label: 'Art Vault',
-      mobileLabel: 'Art',
-      icon: <Palette className="w-5 h-5 text-system-purple" />,
-      badge: 'VIP'
     },
     {
       id: 'settings',
