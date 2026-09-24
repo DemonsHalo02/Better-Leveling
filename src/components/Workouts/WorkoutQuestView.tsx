@@ -32,15 +32,25 @@ export default function WorkoutQuestView() {
   });
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}_daily`);
-      if (savedSets) setCompletedSets(JSON.parse(savedSets));
-      else setCompletedSets({});
+    const loadData = () => {
+      if (typeof window !== 'undefined') {
+        const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}_daily`);
+        if (savedSets) setCompletedSets(JSON.parse(savedSets));
+        else setCompletedSets({});
 
-      const todayKey = new Date().toISOString().split('T')[0];
-      const savedMinutes = localStorage.getItem(`pf_treadmill_minutes_${todayKey}`);
-      if (savedMinutes) setTreadmillMinutes(parseInt(savedMinutes, 10));
-    }
+        const todayKey = new Date().toISOString().split('T')[0];
+        const savedMinutes = localStorage.getItem(`pf_treadmill_minutes_${todayKey}`);
+        if (savedMinutes) setTreadmillMinutes(parseInt(savedMinutes, 10));
+      }
+    };
+    
+    loadData();
+    window.addEventListener('hunterStateChanged', loadData);
+    window.addEventListener('storage', loadData);
+    return () => {
+      window.removeEventListener('hunterStateChanged', loadData);
+      window.removeEventListener('storage', loadData);
+    };
   }, [selectedDay]);
 
   const handleAddMinutes = (amount: number) => {
@@ -49,6 +59,7 @@ export default function WorkoutQuestView() {
     if (typeof window !== 'undefined') {
       const todayKey = new Date().toISOString().split('T')[0];
       localStorage.setItem(`pf_treadmill_minutes_${todayKey}`, nextMinutes.toString());
+      window.dispatchEvent(new CustomEvent('hunterStateChanged'));
     }
     awardXp(amount >= 30 ? 75 : 35, 'agi');
     if (nextMinutes >= TREADMILL_GOAL) {

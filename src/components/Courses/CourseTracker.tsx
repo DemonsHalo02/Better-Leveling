@@ -24,10 +24,20 @@ export default function CourseTracker() {
   ]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('pf_course_progress_v2');
-      if (saved) setCourses(JSON.parse(saved));
-    }
+    const loadData = () => {
+      if (typeof window !== 'undefined') {
+        const saved = localStorage.getItem('pf_course_progress_v2');
+        if (saved) setCourses(JSON.parse(saved));
+      }
+    };
+    
+    loadData();
+    window.addEventListener('hunterStateChanged', loadData);
+    window.addEventListener('storage', loadData);
+    return () => {
+      window.removeEventListener('hunterStateChanged', loadData);
+      window.removeEventListener('storage', loadData);
+    };
   }, []);
 
   const updateProgress = (id: string, newProgress: number) => {
@@ -40,6 +50,7 @@ export default function CourseTracker() {
     setCourses(updated);
     if (typeof window !== 'undefined') {
       localStorage.setItem('pf_course_progress_v2', JSON.stringify(updated));
+
       window.dispatchEvent(new CustomEvent('hunterStateChanged'));
     }
   };
