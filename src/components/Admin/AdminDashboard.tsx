@@ -48,8 +48,8 @@ const DEFAULT_MEMBERS: GuildMember[] = [
     id: "user-admin-001",
     name: "Nick Crosson",
     email: "ncrossonofficial06@gmail.com",
-    level: 100,
-    rank: "Warrior of Light",
+    level: 1,
+    rank: "Awakened Adventurer",
     tier: "Level 100 VIP Guild",
     status: "Active",
     joinedDate: "2026-01-01",
@@ -58,8 +58,8 @@ const DEFAULT_MEMBERS: GuildMember[] = [
     id: "user-sung-002",
     name: "Jin-Woo Sung",
     email: "monarch_shadow@system.kr",
-    level: 99,
-    rank: "National Level Adventurer",
+    level: 1,
+    rank: "Awakened Adventurer",
     tier: "Level 100 VIP Guild",
     status: "Active",
     joinedDate: "2026-02-14",
@@ -68,8 +68,8 @@ const DEFAULT_MEMBERS: GuildMember[] = [
     id: "user-cha-003",
     name: "Cha Hae-In",
     email: "blade_dancer@guild.kr",
-    level: 85,
-    rank: "Level 100 Adventurer",
+    level: 1,
+    rank: "Awakened Adventurer",
     tier: "Level 100 VIP Guild",
     status: "Active",
     joinedDate: "2026-03-10",
@@ -78,8 +78,8 @@ const DEFAULT_MEMBERS: GuildMember[] = [
     id: "user-baek-004",
     name: "Baek Yoon-Ho",
     email: "white_tiger@guild.kr",
-    level: 82,
-    rank: "Level 100 Adventurer",
+    level: 1,
+    rank: "Awakened Adventurer",
     tier: "Classless",
     status: "Active",
     joinedDate: "2026-04-05",
@@ -88,8 +88,8 @@ const DEFAULT_MEMBERS: GuildMember[] = [
     id: "user-alex-005",
     name: "Alex Rivera",
     email: "alex_Adventurer24@gmail.com",
-    level: 28,
-    rank: "B-Rank Adventurer",
+    level: 1,
+    rank: "Awakened Adventurer",
     tier: "Classless",
     status: "Active",
     joinedDate: "2026-06-20",
@@ -98,8 +98,8 @@ const DEFAULT_MEMBERS: GuildMember[] = [
     id: "user-marcus-006",
     name: "Marcus Vance",
     email: "m_vance_lifts@yahoo.com",
-    level: 14,
-    rank: "C-Rank Adventurer",
+    level: 1,
+    rank: "Awakened Adventurer",
     tier: "Classless",
     status: "Suspended",
     joinedDate: "2026-07-02",
@@ -283,6 +283,22 @@ export default function AdminDashboard() {
       saveRoster(resetMembers);
       resetHunterState();
       window.dispatchEvent(new CustomEvent('hunterStateChanged'));
+      
+      // Force immediate push to cloud bypassing the debounce
+      if (typeof window !== "undefined") {
+        const userStr = localStorage.getItem("hunter_current_user");
+        if (userStr) {
+          try {
+            const user = JSON.parse(userStr);
+            if (user && user.email) {
+              import('@/lib/cloud-sync').then(({ syncHunterToCloud }) => {
+                syncHunterToCloud(user.email, user.displayName, user.tier);
+              });
+            }
+          } catch (e) {}
+        }
+      }
+      
       showToast("All Adventurer accounts globally reset to Level 1 Novice status!");
     }
   };
