@@ -72,7 +72,7 @@ export default function MembershipPortal() {
       const unsubscribe = auth.onAuthStateChanged(async (user: FirebaseUser | null) => {
         if (user && user.email) {
           const userEmailClean = user.email.toLowerCase();
-          const isNickAdmin = userEmailClean === "ncrossonofficial06@gmail.com" || userEmailClean === "ncrossonofficial06@gmail.com";
+          const isNickAdmin = userEmailClean === "ncrossonofficial06@gmail.com";
           if (isNickAdmin) {
             localStorage.setItem("hunter_is_admin", "true");
           }
@@ -104,7 +104,7 @@ export default function MembershipPortal() {
 
     try {
       const emailClean = email.trim().toLowerCase();
-      if (emailClean === "ncrossonofficial06@gmail.com" || emailClean === "ncrossonofficial06@gmail.com") {
+      if (emailClean === "ncrossonofficial06@gmail.com") {
         if (password !== "Charminlikeasnake06!") {
           throw new Error("⚠️ Incorrect secret password for Creator Admin account!");
         }

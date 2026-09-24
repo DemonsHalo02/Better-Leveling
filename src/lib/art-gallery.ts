@@ -45,7 +45,7 @@ export interface Artwork {
 export function isGalleryAdmin(email: string | null | undefined): boolean {
   if (typeof window !== "undefined" && isSystemAdmin()) return true;
   const clean = (email || "").trim().toLowerCase();
-  return clean === ADMIN_EMAIL || clean === "ncrossonofficial06@gmail.com";
+  return clean === ADMIN_EMAIL;
 }
 
 export function isGalleryVip(): boolean {
