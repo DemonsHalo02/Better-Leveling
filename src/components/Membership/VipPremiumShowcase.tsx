@@ -6,7 +6,7 @@ import { loadHunterState, saveHunterState, awardXp, HunterState } from '@/lib/hu
 import confetti from 'canvas-confetti';
 
 interface VipPremiumShowcaseProps {
-  userTier: "Classless" | "Level 100 VIP Guild";
+  userTier: "Unregistered" | "VIP Aetheryte Sector";
   onUpgradeClick?: () => void;
 }
 
@@ -35,7 +35,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
 
   if (!state) return null;
 
-  const isVip = userTier === "Level 100 VIP Guild";
+  const isVip = userTier === "VIP Aetheryte Sector";
   const startWeight = state.profile?.startWeight || 242;
   const targetWeight = state.profile?.targetWeight || 160;
   const currentWeight = state.profile?.currentWeight || startWeight;
@@ -86,7 +86,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
   };
 
   const vipTrophies = [
-    { id: 'vip_founder', name: 'Level 100 Guild Founder', desc: 'Unlocked the highest echelon of Warrior of Light fitness coaching.', xp: 500, icon: '👑' },
+    { id: 'vip_founder', name: 'Avalanche Founder', desc: 'Unlocked the highest echelon of Warrior of Light fitness coaching.', xp: 500, icon: '👑' },
     { id: 'vip_recomp', name: 'Titanium Recomposition Master', desc: 'Simulated and executed a precision cutting blueprint.', xp: 500, icon: '⚡' },
     { id: 'vip_oracle', name: 'Warrior of Light VIP Vanguard', desc: 'Dedicated to achieving 160 LBS with zero muscle loss.', xp: 500, icon: '🔥' },
   ];
@@ -109,13 +109,13 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
         <div className="space-y-2 relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-system-gold/20 border border-system-gold text-system-gold text-xs font-mono uppercase tracking-widest font-bold">
             <Crown className="w-3.5 h-3.5 text-system-gold animate-bounce" />
-            Level 100 VIP Exclusive Suite
+            VIP Exclusive Suite
           </div>
           <h2 className="text-2xl md:text-3xl font-black tracking-wider text-white uppercase text-glow flex items-center gap-2.5">
             <span>VIP AI COACH & RECOMPOSITION LAB</span>
           </h2>
           <p className="text-zinc-300 text-sm max-w-2xl leading-relaxed">
-            Unlock advanced AI recomposition projections, interactive macro cutting simulations, and exclusive Level 100 Golden Trophies designed for elite VIP Adventurers.
+            Unlock advanced AI recomposition projections, interactive macro cutting simulations, and exclusive Golden Trophies designed for elite VIP Members.
           </p>
         </div>
 
@@ -125,12 +125,12 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             className="relative z-10 flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-system-gold via-yellow-400 to-system-gold text-black font-black uppercase text-sm tracking-widest shadow-glow-gold hover:scale-105 transition-all w-full md:w-auto justify-center cursor-pointer animate-pulse"
           >
             <Lock className="w-4 h-4 fill-black" />
-            <span>Unlock Level 100 VIP Access</span>
+            <span>Unlock VIP Aetheryte Access</span>
           </button>
         )}
       </div>
 
-      {/* TOOL 1: 🤖 Level 100 AI Fitness Coach & Oracle */}
+      {/* TOOL 1: 🤖 VIP AI Fitness Coach & Oracle */}
       <div className={`relative bg-system-panel rounded-2xl p-6 border border-system-blue/40 shadow-xl space-y-6 overflow-hidden transition-all ${
         !isVip ? 'opacity-80' : ''
       }`}>
@@ -142,7 +142,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             <div className="space-y-1">
               <h3 className="text-xl font-black text-white uppercase tracking-wider">AI Coach Oracle Locked</h3>
               <p className="text-xs text-zinc-300 max-w-md">
-                Level 100 VIP Guild members receive custom weekly caloric adjustments, loose skin prevention advice, and tailored meal preps across the 19-Country Global Master Deck!
+                VIP Aetheryte Sector members receive custom weekly caloric adjustments, loose skin prevention advice, and tailored meal preps across the 19-Country Global Master Deck!
               </p>
             </div>
             <button
@@ -194,7 +194,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
         </div>
       </div>
 
-      {/* TOOL 2: 📊 Level 100 Body Recomposition & Macro Simulation Lab */}
+      {/* TOOL 2: 📊 VIP Body Recomposition & Macro Simulation Lab */}
       <div className={`relative bg-system-panel rounded-2xl p-6 border border-system-cyan/40 shadow-xl space-y-6 overflow-hidden transition-all ${
         !isVip ? 'opacity-80' : ''
       }`}>
@@ -277,7 +277,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             />
             <div className="flex justify-between text-[10px] text-zinc-500 font-bold">
               <span>150g (Min)</span>
-              <span>178g (Level 100 Goal)</span>
+              <span>178g (VIP Goal)</span>
               <span>260g (Max)</span>
             </div>
           </div>
@@ -348,8 +348,8 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
               <Award className="w-5 h-5 text-system-gold animate-bounce" />
             </div>
             <div>
-              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-system-gold">Exclusive Guild Rewards</div>
-              <h3 className="text-lg font-black text-white uppercase tracking-wider">Level 100 VIP Golden Trophies (+1,500 XP)</h3>
+              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-system-gold">Exclusive Aetheryte Rewards</div>
+              <h3 className="text-lg font-black text-white uppercase tracking-wider">VIP Golden Trophies (+1,500 XP)</h3>
             </div>
           </div>
           <span className="text-xs font-mono text-zinc-400 hidden sm:inline">

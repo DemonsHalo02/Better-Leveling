@@ -86,7 +86,7 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
       ? [
           {
             id: 'admin' as TabType,
-            label: 'Monarch Admin',
+            label: 'System Overseer',
             mobileLabel: 'Admin',
             icon: <ShieldAlert className="w-5 h-5 text-red-500 animate-pulse" />,
             badge: 'GOD'

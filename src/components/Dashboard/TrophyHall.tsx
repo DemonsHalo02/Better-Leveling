@@ -28,7 +28,7 @@ export default function TrophyHall() {
     if (typeof window !== 'undefined') {
       const state = loadHunterState();
       setHunterState(state);
-      setEquippedTitle(state.title || 'Awakened Adventurer');
+      setEquippedTitle(state.title || 'Novice Mercenary');
 
       // Check user profile email
       const savedProfile = localStorage.getItem('pf_user_profile');
@@ -74,9 +74,9 @@ export default function TrophyHall() {
   const trophies: TrophyItem[] = [
     {
       id: 's_rank_vip',
-      title: 'National Level Monarch',
-      name: '👑 Level 100 VIP Adventurer',
-      description: 'Permanent VIP Guild Account status with unlimited access to all Warrior of Light training directives.',
+      title: 'Hero of Etheirys',
+      name: '👑 VIP Aetheryte Sector Member',
+      description: 'Permanent VIP Aetheryte Sector status with unlimited access to all Warrior of Light training directives.',
       icon: <Crown className="w-6 h-6 text-system-gold animate-pulse" />,
       rarity: 'Legendary',
       unlocked: isVip,
@@ -93,9 +93,9 @@ export default function TrophyHall() {
       unlockCondition: "Log any Puerto Rican meal prep item in the Nutrition Tracker"
     },
     {
-      id: 'iron_monarch',
+      id: 'iron_warrior',
       title: 'Lewiston 200+ lb Beast',
-      name: '⚔️ Iron Monarch',
+      name: '⚔️ Iron Guardian',
       description: 'Conquer gravity by recording an expert level mastery progression in your Apartment Dojo.',
       icon: <Trophy className="w-6 h-6 text-red-400" />,
       rarity: 'Legendary',
@@ -110,7 +110,7 @@ export default function TrophyHall() {
       icon: <Dumbbell className="w-6 h-6 text-system-blue" />,
       rarity: 'Rare',
       unlocked: HunterState.completedQuestsToday.workout || HunterState.level >= 3,
-      unlockCondition: 'Complete a Pull workout quest or reach Adventurer Level 3'
+      unlockCondition: 'Complete a Pull workout quest or reach Level 3'
     },
     {
       id: 'consistent_vanguard',
@@ -123,10 +123,10 @@ export default function TrophyHall() {
       unlockCondition: 'Achieve a 3+ day discipline streak'
     },
     {
-      id: 'dungeon_striker',
-      title: 'Awakened Raid Captain',
-      name: '🦍 Dungeon Striker',
-      description: 'Awaken your latent abilities and rise above the Novice vanguard into elite guild leadership.',
+      id: 'duty_striker',
+      title: 'SOLDIER Operative',
+      name: '🦍 Duty Striker',
+      description: 'Awaken your latent abilities and rise above the ranks into elite SOLDIER operatives.',
       icon: <Shield className="w-6 h-6 text-purple-400" />,
       rarity: 'Common',
       unlocked: true,
@@ -159,7 +159,7 @@ export default function TrophyHall() {
 
   const handleCopyShareCard = () => {
     if (!HunterState) return;
-    const text = `👑 [Better Leveling: Rebirth - Level 100 Adventurer GUILD CARD]\n⚔️ Adventurer: ${HunterState.profile.name}\n🛡️ Title: ${equippedTitle || 'Awakened Adventurer'}\n⚡ Level: ${HunterState.level} | STR: ${HunterState.stats.str}\n🔥 Streak: ${HunterState.streakDays} Days\n🥩 Nutrition Blueprint: 2,080 kcal / 178g Protein (Puerto Rican Style)\n📍 Sector: Apartment Bodyweight Dojo`;
+    const text = `👑 [Better Leveling: Rebirth - WARRIOR OF LIGHT DUTY CARD]\n⚔️ Mercenary: ${HunterState.profile.name}\n🛡️ Title: ${equippedTitle || 'Novice Mercenary'}\n⚡ Level: ${HunterState.level} | STR: ${HunterState.stats.str}\n🔥 Streak: ${HunterState.streakDays} Days\n🥩 Nutrition Blueprint: 2,080 kcal / 178g Protein (Puerto Rican Style)\n📍 Sector: Home Training Grounds`;
     navigator.clipboard.writeText(text);
     setShareCopied(true);
     setTimeout(() => setShareCopied(false), 3000);
@@ -174,13 +174,13 @@ export default function TrophyHall() {
         <div className="space-y-2 relative z-10">
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-gold">
             <Trophy className="w-4 h-4 text-system-gold animate-bounce" />
-            <span>Level 100 VIP Guild Hall | Auburn & Lewiston Sector</span>
+            <span>VIP Aetheryte Hall | Auburn & Lewiston Sector</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-black tracking-wider text-white uppercase font-display">
-            Adventurer Trophy Hall
+            Trophy Hall
           </h2>
           <p className="text-xs sm:text-sm text-zinc-300 max-w-2xl leading-relaxed">
-            Unlock legendary titles by crushing your Calisthenics workouts and nutrition targets. Equip any unlocked title to display it across your top Adventurer Status Bar!
+            Unlock legendary titles by crushing your Calisthenics workouts and nutrition targets. Equip any unlocked title to display it across your top Status Bar!
           </p>
         </div>
 
@@ -192,7 +192,7 @@ export default function TrophyHall() {
             <div>
               <div className="text-[10px] font-mono text-zinc-400 uppercase">Currently Equipped Title:</div>
               <div className="text-sm font-black text-system-gold uppercase font-mono tracking-wide">
-                {equippedTitle || 'Awakened Adventurer'}
+                {equippedTitle || 'Novice Mercenary'}
               </div>
             </div>
           </div>
@@ -202,7 +202,7 @@ export default function TrophyHall() {
             className="w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-system-dark font-black uppercase text-xs tracking-wider shadow-glow-blue hover:from-white hover:to-white transition-all flex items-center justify-center gap-2"
           >
             <Share2 className="w-4 h-4" />
-            <span>Generate Guild Card</span>
+            <span>Generate Duty Card</span>
           </button>
         </div>
       </div>
@@ -220,13 +220,13 @@ export default function TrophyHall() {
 
             <div className="text-center space-y-2">
               <div className="inline-block px-3 py-1 rounded-full bg-system-gold/20 border border-system-gold text-system-gold font-mono text-xs font-bold uppercase tracking-widest">
-                Level 100 VIP Adventurer Guild Card
+                VIP Aetheryte Sector Member Guild Card
               </div>
               <h3 className="text-2xl font-black text-white uppercase font-display tracking-wide">
                 {HunterState.profile.name}
               </h3>
               <div className="text-sm font-bold text-system-cyan uppercase tracking-wider font-mono">
-                {equippedTitle || 'Awakened Adventurer'} | Level {HunterState.level}
+                {equippedTitle || 'Novice Mercenary'} | Level {HunterState.level}
               </div>
             </div>
 
@@ -250,7 +250,7 @@ export default function TrophyHall() {
             </div>
 
             <p className="text-[11px] text-zinc-400 text-center italic">
-              "Arise. Transform from 242 lbs to 160 lbs with your Puerto Rican-inspired plan and relentless iron."
+              "Rise. Transform from 242 lbs to 160 lbs with your Puerto Rican-inspired plan and relentless iron."
             </p>
 
             <button
@@ -262,7 +262,7 @@ export default function TrophyHall() {
               }`}
             >
               <Copy className="w-4 h-4" />
-              <span>{shareCopied ? 'Guild Card Copied!' : 'Copy Shareable Stats'}</span>
+              <span>{shareCopied ? 'Duty Card Copied!' : 'Copy Shareable Stats'}</span>
             </button>
           </div>
         </div>

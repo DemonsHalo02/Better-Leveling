@@ -36,7 +36,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
   const currentWeight = state.profile?.currentWeight || startWeight;
   const lbsLost = Math.max(0, Number((startWeight - currentWeight).toFixed(1)));
   const totalLossNeeded = Math.max(1, startWeight - targetWeight);
-  const raidProgress = Math.min(100, Math.max(0, Math.round((lbsLost / totalLossNeeded) * 100)));
+  const TrialProgress = Math.min(100, Math.max(0, Math.round((lbsLost / totalLossNeeded) * 100)));
 
   const handleStatUpgrade = (stat: 'str' | 'agi' | 'vit' | 'int' | 'per') => {
     allocateStatPoint(stat);
@@ -57,7 +57,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
     e.preventDefault();
     const val = parseFloat(newWeightInput);
     if (!isNaN(val) && val > 50 && val < 500) {
-      // Update Adventurer state weight
+      // Update Mercenary state weight
       updateWeight(val);
       // Also sync to pf_weight_history so the WeightAndPrTracker stays consistent
       if (typeof window !== 'undefined') {
@@ -112,10 +112,10 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               Daily System Directives Active
             </div>
             <h2 className="text-2xl md:text-3xl font-black tracking-wider text-white uppercase text-glow">
-              Arise, <span className="text-system-blue">{state.profile.name}</span>.
+              Link Established, <span className="text-system-blue">{state.profile.name}</span>.
             </h2>
             <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
-              Your mission is clear: transform from {startWeight} lbs down to a shredded, muscular <span className="text-system-cyan font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Complete your daily quests to level up your real-life stats and build a strong, elite physique at {state.profile.gymName || 'your Home Apartment Dojo'}!
+              Your mission is clear: transform from {startWeight} lbs down to a shredded, muscular <span className="text-system-cyan font-bold">{targetWeight} lbs by {new Date(targetDateStr).toLocaleDateString()}</span>. Complete your daily quests to level up your real-life stats and build a strong, elite physique at {state.profile.gymName || 'your Home Training Grounds'}!
             </p>
           </div>
 
@@ -138,7 +138,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
         </div>
       </div>
 
-      {/* ⚔️ Boss Raid Cutting Countdown Deck */}
+      {/* ⚔️ Primal Hunt Cutting Countdown Deck */}
       <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-card p-6 rounded-2xl border-2 border-system-gold/60 shadow-glow-gold relative overflow-hidden">
         <div className="absolute top-0 right-0 w-80 h-full bg-gradient-to-l from-system-gold/10 to-transparent pointer-events-none" />
         
@@ -146,7 +146,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
           <div className="space-y-2 flex-1">
             <div className="flex items-center gap-2">
               <span className="bg-system-gold text-system-dark font-black text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded shadow-sm">
-                👑 Level 100 Boss Raid Directive
+                👑 Level 100 Primal Hunt Directive
               </span>
               <span className="text-xs font-mono text-system-cyan">Target: {targetWeight} LBS by {new Date(targetDateStr).toLocaleDateString()}</span>
             </div>
@@ -155,7 +155,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               <span className="text-sm font-mono font-bold text-system-gold">({daysRemaining} Days Left)</span>
             </h3>
             <p className="text-xs text-zinc-300 max-w-2xl leading-relaxed">
-              Every clean meal prep and every PR at {state.profile.gymName || 'your Home Apartment Dojo'} chops HP off this boss raid. Stay consistent on your chosen {state.profile.dietName || '19-Country Global Level 100 Meal Blueprint'} to keep your cut sharp, strong, and ready for the next level!
+              Every clean meal prep and every PR at {state.profile.gymName || 'your Home Training Grounds'} chops HP off this primal hunt. Stay consistent on your chosen {state.profile.dietName || '19-Country Global Level 100 Meal Blueprint'} to keep your cut sharp, strong, and ready for the next level!
             </p>
 
             {/* Boss HP Bar */}
@@ -168,16 +168,16 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               <div className="w-full h-4 bg-system-dark rounded-full overflow-hidden border border-system-gold/40 p-0.5 shadow-inner">
                 <div 
                   className="h-full bg-gradient-to-r from-system-blue via-system-cyan to-system-gold rounded-full transition-all duration-1000 shadow-glow-gold"
-                  style={{ width: `${raidProgress}%` }}
+                  style={{ width: `${TrialProgress}%` }}
                 />
               </div>
             </div>
           </div>
 
           <div className="bg-system-dark/80 p-4 rounded-xl border border-system-gold/40 text-center min-w-[160px] flex flex-col justify-center">
-            <div className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Raid Completion</div>
+            <div className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Trial Completion</div>
             <div className="text-3xl font-black text-system-gold font-mono my-1 text-glow-gold">
-              {raidProgress}%
+              {TrialProgress}%
             </div>
             <button
               onClick={() => setShowWeightModal(true)}
@@ -197,12 +197,12 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
       {/* Grid: Stat Sheet & Today's Workout Quest */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        {/* Left 1 Col: Adventurer Stat Sheet */}
+        {/* Left 1 Col: Mercenary Stat Sheet */}
         <div className="bg-system-panel rounded-2xl p-6 border border-system-blue/30 space-y-6 shadow-lg">
           <div className="flex items-center justify-between border-b border-system-blue/20 pb-4">
             <div className="flex items-center gap-2">
               <Shield className="w-5 h-5 text-system-blue" />
-              <h3 className="text-base font-black tracking-widest uppercase text-white">Adventurer Stat Sheet</h3>
+              <h3 className="text-base font-black tracking-widest uppercase text-white">Mercenary Stat Sheet</h3>
             </div>
             {state.stats.availablePoints > 0 && (
               <span className="text-xs bg-system-purple/20 border border-system-purple text-system-cyan px-2.5 py-1 rounded-full font-bold animate-pulse shadow-glow-purple">
@@ -477,7 +477,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                   <span className="bg-system-gold/20 text-system-gold font-black text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded border border-system-gold/30">
                     🎯 Personal Directives
                   </span>
-                  <span className="text-xs font-mono text-zinc-400">Custom Adventurer Goals</span>
+                  <span className="text-xs font-mono text-zinc-400">Custom Mercenary Goals</span>
                 </div>
                 <h3 className="text-lg md:text-xl font-black text-white uppercase tracking-wider mt-1 flex items-center gap-2">
                   <span>My Custom Daily Quests</span>

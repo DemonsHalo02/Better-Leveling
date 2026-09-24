@@ -2,7 +2,7 @@
 
 import confetti from 'canvas-confetti';
 
-export type AdventurerRank = 'Novice' | 'D-Rank' | 'C-Rank' | 'B-Rank' | 'A-Rank' | 'Level 100' | 'Warrior of Light';
+export type AdventurerRank = 'Freelancer' | 'Scion' | 'SOLDIER 3rd Class' | 'SOLDIER 1st Class' | 'Hero of Etheirys' | 'Warrior of Light';
 
 export interface AdventurerStats {
   str: number; // Strength - lifting & workouts
@@ -64,8 +64,8 @@ const DEFAULT_STATE: HunterState = {
   level: 1,
   xp: 0,
   xpToNextLevel: 500,
-  rank: 'Novice',
-  title: 'Awakened Adventurer',
+  rank: 'Freelancer',
+  title: 'Novice Mercenary',
   hp: 100,
   mp: 0,
   streakDays: 1,
@@ -114,12 +114,12 @@ export const HYDRATION_INCREMENT_MP = (HYDRATION_INCREMENT_OZ / HYDRATION_GOAL_O
 const HYDRATION_ONE_TIME_RESET_KEY = 'pf_hydration_force_reset_20260717_reset_now';
 
 export function getRankFromLevel(level: number): { rank: AdventurerRank; title: string } {
-  if (level >= 100) return { rank: 'Warrior of Light', title: 'Monarch of Shadows' };
-  if (level >= 70) return { rank: 'Level 100', title: 'National Level Adventurer' };
-  if (level >= 45) return { rank: 'A-Rank', title: 'Elite Raid Captain' };
-  if (level >= 25) return { rank: 'B-Rank', title: 'Dungeon Striker' };
-  if (level >= 10) return { rank: 'C-Rank', title: 'Guild Vanguard' };
-  return { rank: 'Novice', title: 'Awakened Adventurer' };
+  if (level >= 100) return { rank: 'Warrior of Light', title: 'Savior of the Star' };
+  if (level >= 70) return { rank: 'Hero of Etheirys', title: 'Legendary Materia Master' };
+  if (level >= 45) return { rank: 'SOLDIER 1st Class', title: 'Shinra Elite' };
+  if (level >= 25) return { rank: 'SOLDIER 3rd Class', title: 'Avalanche Operative' };
+  if (level >= 10) return { rank: 'Scion', title: 'Scion of the Seventh Dawn' };
+  return { rank: 'Freelancer', title: 'Novice Mercenary' };
 }
 
 export function calculateXpForNextLevel(level: number): number {

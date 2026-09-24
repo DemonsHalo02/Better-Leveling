@@ -37,7 +37,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
     setState(loaded);
     if (loaded.profile) {
       setName(loaded.profile.name || 'Nick Crosson');
-      setTitle(loaded.title || 'Awakened Adventurer');
+      setTitle(loaded.title || 'Novice Mercenary');
       setGymName(loaded.profile.gymName || 'Quiet Apartment Bodyweight Dojo');
       setDietName(loaded.profile.dietName || "Level 100 Shred Blueprint: High-Protein Cutting Plan (~2,080 kcal)");
 
@@ -112,7 +112,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
       {showSavedToast && (
         <div className="fixed top-20 right-4 z-50 bg-gradient-to-r from-system-gold to-yellow-500 text-black px-6 py-3.5 rounded-xl font-black uppercase text-sm tracking-wider shadow-glow-gold flex items-center gap-3 animate-in fade-in slide-in-from-top duration-300">
           <CheckCircle2 className="w-5 h-5 fill-black text-system-gold" />
-          <span>System Directives & Adventurer Goals Saved Successfully!</span>
+          <span>System Directives & Mercenary Goals Saved Successfully!</span>
         </div>
       )}
 
@@ -125,10 +125,10 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
             System Control Panel & Customization
           </div>
           <h2 className="text-2xl md:text-3xl font-black tracking-wider text-white uppercase text-glow flex items-center gap-2.5">
-            <span>Adventurer PROFILE & GOALS</span>
+            <span>MERCENARY PROFILE & GOALS</span>
           </h2>
           <p className="text-zinc-300 text-sm max-w-2xl leading-relaxed">
-            Customize your Adventurer identity, workout sector, macro targets, and body recomposition countdown. Your system directives will adapt instantly across all dashboards, tracking tools, and quests!
+            Customize your mercenary identity, workout sector, macro targets, and body recomposition countdown. Your system directives will adapt instantly across all dashboards, tracking tools, and quests!
           </p>
         </div>
         <button
@@ -142,21 +142,21 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
 
       <form onSubmit={handleSaveAll} className="space-y-6">
         
-        {/* Section 1: Adventurer Identity & Training Sector */}
+        {/* Section 1: Mercenary Identity & Training Sector */}
         <div className="bg-system-panel rounded-2xl p-6 border border-system-blue/30 space-y-6 shadow-lg">
           <div className="flex items-center gap-2.5 border-b border-system-blue/20 pb-4">
             <div className="w-9 h-9 rounded-xl bg-system-blue/10 border border-system-blue flex items-center justify-center">
               <User className="w-5 h-5 text-system-blue" />
             </div>
             <div>
-              <h3 className="text-base font-black tracking-widest uppercase text-white">1. Adventurer Identity & Training Sector</h3>
+              <h3 className="text-base font-black tracking-widest uppercase text-white">1. Mercenary Identity & Training Sector</h3>
               <p className="text-xs text-zinc-400 font-mono">Personalize your name, system title, and gym sector</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono">
             <div className="space-y-1.5">
-              <label className="text-xs font-bold uppercase text-zinc-300">Adventurer Name</label>
+              <label className="text-xs font-bold uppercase text-zinc-300">Mercenary Name</label>
               <input
                 type="text"
                 value={name}
@@ -173,10 +173,10 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="e.g., Level 100 Raid Captain"
+                placeholder="e.g., SOLDIER 1st Class"
                 className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-2.5 text-system-gold font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
               />
-              <p className="text-[11px] text-zinc-500">Appears in your top Adventurer status bar.</p>
+              <p className="text-[11px] text-zinc-500">Appears in your top status bar.</p>
             </div>
 
             <div className="space-y-1.5">
@@ -205,7 +205,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
           </div>
         </div>
 
-        {/* Section 2: Boss Raid Recomposition & Weight Goals */}
+        {/* Section 2: Primal Hunt Recomposition & Weight Goals */}
         <div className="bg-system-panel rounded-2xl p-6 border border-system-gold/40 space-y-6 shadow-lg relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-full bg-gradient-to-l from-system-gold/5 to-transparent pointer-events-none" />
           
@@ -214,7 +214,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
               <Trophy className="w-5 h-5 text-system-gold" />
             </div>
             <div>
-              <h3 className="text-base font-black tracking-widest uppercase text-white">2. Boss Raid Transformation Goals</h3>
+              <h3 className="text-base font-black tracking-widest uppercase text-white">2. Primal Hunt Transformation Goals</h3>
               <p className="text-xs text-zinc-400 font-mono">Set your start weight, current weight, target weight, and target date</p>
             </div>
           </div>
@@ -264,7 +264,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
             </div>
           </div>
           <p className="text-xs text-zinc-400 font-mono bg-system-dark/80 p-3 rounded-xl border border-white/5">
-            💡 <strong className="text-system-gold">System Note:</strong> Your Boss Raid progress bar and countdown on the Daily Quests tab will dynamically calculate total pounds lost and days remaining based on these numbers!
+            💡 <strong className="text-system-gold">System Note:</strong> Your Primal Hunt progress bar and countdown on the Daily Quests tab will dynamically calculate total pounds lost and days remaining based on these numbers!
           </p>
         </div>
 
@@ -356,7 +356,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
         {/* Section 5: Save Action Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-system-dark/90 p-6 rounded-2xl border border-system-gold/40 shadow-xl">
           <div className="text-xs text-zinc-400 font-mono">
-            <span className="text-system-gold font-bold">⚡ Adventurer System Note:</span> Changes take effect instantly and are stored safely in your browser profile.
+            <span className="text-system-gold font-bold">⚡ System Note:</span> Changes take effect instantly and are stored safely in your browser profile.
           </div>
           <button
             type="submit"

@@ -7,7 +7,7 @@ import confetti from 'canvas-confetti';
 
 const DIRECTIVE_QUOTES = [
   {
-    quote: "A Adventurer who fears the ground will never rise above Novice. Step onto the mat and conquer gravity with the discipline of a true Level 100.",
+    quote: "A mercenary who fears the ground will never rise above Novice. Step onto the mat and conquer gravity with the discipline of a true warrior.",
     author: "Warrior of Light Directive",
     stat: "STR FOCUS"
   },
@@ -18,11 +18,11 @@ const DIRECTIVE_QUOTES = [
   },
   {
     quote: "When fatigue sets in during the 4th set, remember: the system only rewards those who push beyond their perceived limits.",
-    author: "Awakened Adventurer Guidance",
+    author: "Warrior of Light Guidance",
     stat: "AGI FOCUS"
   },
   {
-    quote: "Meal prep is the armor of the modern Adventurer. A clean kitchen builds an unbreakable physique.",
+    quote: "Meal prep is the armor of the modern warrior. A clean kitchen builds an unbreakable physique.",
     author: "Warrior of Light System",
     stat: "INT FOCUS"
   },
@@ -63,7 +63,7 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
         setXpClaimed(true);
       }
       const tier = localStorage.getItem('hunter_vip_tier');
-      if (tier === "Level 100 VIP Guild") setIsVip(true);
+      if (tier === "VIP Aetheryte Sector") setIsVip(true);
     }
   }, []);
 
@@ -117,7 +117,7 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-mono font-black uppercase tracking-widest text-system-cyan bg-system-blue/20 px-2 py-0.5 rounded border border-system-blue/30">
-                  ⚡ General Adventurer Feature
+                  ⚡ General Feature
                 </span>
                 <span className="text-xs font-mono text-zinc-400">Daily Wisdom Codex</span>
               </div>
@@ -193,7 +193,7 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
           <p className="text-xs text-zinc-300 leading-relaxed">
             {isVip 
               ? "Your Level 100 VIP privileges are active! Access your custom weekly cutting schedule, skin retention advice, and macro simulation lab."
-              : "Upgrade to the Level 100 VIP Guild to unlock the AI Recomposing Simulator, custom meal blueprints, and exclusive +1,500 XP golden trophies!"
+              : "Upgrade to the VIP Aetheryte Sector to unlock the AI Recomposing Simulator, custom meal blueprints, and exclusive +1,500 XP golden trophies!"
             }
           </p>
         </div>

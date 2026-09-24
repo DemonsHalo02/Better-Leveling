@@ -273,7 +273,7 @@ export default function WorkoutQuestView() {
           {!currentDayWorkout.isRestDay && (
             <div className="w-full md:w-64 bg-system-panel p-3.5 rounded-xl border border-system-blue/20 space-y-2">
               <div className="flex justify-between text-xs font-bold">
-                <span className="text-zinc-400">Dungeon Completion</span>
+                <span className="text-zinc-400">Duty Completion</span>
                 <span className="text-system-cyan font-mono">{progressPct}%</span>
               </div>
               <div className="w-full h-2 bg-black/60 rounded-full overflow-hidden border border-white/10">

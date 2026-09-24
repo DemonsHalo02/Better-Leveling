@@ -32,25 +32,25 @@ import {
 } from "@/lib/hunter-system";
 import { syncHunterToCloud } from "@/lib/cloud-sync";
 
-export interface GuildMember {
+export interface AvalancheMember {
   id: string;
   name: string;
   email: string;
   level: number;
   rank: string;
-  tier: "Classless" | "Level 100 VIP Guild";
+  tier: "Unregistered" | "VIP Aetheryte Sector";
   status: "Active" | "Suspended";
   joinedDate: string;
 }
 
-const DEFAULT_MEMBERS: GuildMember[] = [
+const DEFAULT_MEMBERS: AvalancheMember[] = [
   {
     id: "user-admin-001",
     name: "Nick Crosson",
     email: "ncrossonofficial06@gmail.com",
     level: 1,
-    rank: "Awakened Adventurer",
-    tier: "Level 100 VIP Guild",
+    rank: "Freelancer",
+    tier: "VIP Aetheryte Sector",
     status: "Active",
     joinedDate: "2026-01-01",
   },
@@ -59,38 +59,38 @@ const DEFAULT_MEMBERS: GuildMember[] = [
     name: "Jin-Woo Sung",
     email: "monarch_shadow@system.kr",
     level: 1,
-    rank: "Awakened Adventurer",
-    tier: "Level 100 VIP Guild",
+    rank: "Freelancer",
+    tier: "VIP Aetheryte Sector",
     status: "Active",
     joinedDate: "2026-02-14",
   },
   {
     id: "user-cha-003",
     name: "Cha Hae-In",
-    email: "blade_dancer@guild.kr",
+    email: "blade_dancer@Avalanche.kr",
     level: 1,
-    rank: "Awakened Adventurer",
-    tier: "Level 100 VIP Guild",
+    rank: "Freelancer",
+    tier: "VIP Aetheryte Sector",
     status: "Active",
     joinedDate: "2026-03-10",
   },
   {
     id: "user-baek-004",
     name: "Baek Yoon-Ho",
-    email: "white_tiger@guild.kr",
+    email: "white_tiger@Avalanche.kr",
     level: 1,
-    rank: "Awakened Adventurer",
-    tier: "Classless",
+    rank: "Freelancer",
+    tier: "Unregistered",
     status: "Active",
     joinedDate: "2026-04-05",
   },
   {
     id: "user-alex-005",
     name: "Alex Rivera",
-    email: "alex_Adventurer24@gmail.com",
+    email: "alex_mercenary24@gmail.com",
     level: 1,
-    rank: "Awakened Adventurer",
-    tier: "Classless",
+    rank: "Freelancer",
+    tier: "Unregistered",
     status: "Active",
     joinedDate: "2026-06-20",
   },
@@ -99,8 +99,8 @@ const DEFAULT_MEMBERS: GuildMember[] = [
     name: "Marcus Vance",
     email: "m_vance_lifts@yahoo.com",
     level: 1,
-    rank: "Awakened Adventurer",
-    tier: "Classless",
+    rank: "Freelancer",
+    tier: "Unregistered",
     status: "Suspended",
     joinedDate: "2026-07-02",
   },
@@ -108,25 +108,25 @@ const DEFAULT_MEMBERS: GuildMember[] = [
 
 export default function AdminDashboard() {
   const [isAdmin, setIsAdmin] = useState<boolean>(true);
-  const [members, setMembers] = useState<GuildMember[]>([]);
+  const [members, setMembers] = useState<AvalancheMember[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [tierFilter, setTierFilter] = useState<string>("all");
   const [broadcastMsg, setBroadcastMsg] = useState<string>("");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // New Adventurer Modal / Quick Add
+  // New Mercenary Modal / Quick Add
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
   const [newName, setNewName] = useState<string>("");
   const [newEmail, setNewEmail] = useState<string>("");
   const [newLevel, setNewLevel] = useState<number>(1);
-  const [newTier, setNewTier] = useState<"Classless" | "Level 100 VIP Guild">("Classless");
+  const [newTier, setNewTier] = useState<"Unregistered" | "VIP Aetheryte Sector">("Unregistered");
 
   useEffect(() => {
     const authorized = isSystemAdmin();
     setIsAdmin(authorized);
 
     if (typeof window !== "undefined") {
-      const savedMembers = localStorage.getItem("pf_admin_guild_roster");
+      const savedMembers = localStorage.getItem("pf_admin_Avalanche_roster");
       if (savedMembers) {
         try {
           setMembers(JSON.parse(savedMembers));
@@ -146,8 +146,8 @@ export default function AdminDashboard() {
                 name: parsed.displayName || parsed.email.split("@")[0],
                 email: parsed.email,
                 level: 10,
-                rank: "Awakened Adventurer",
-                tier: (parsed.tier === "Level 100 VIP Guild" ? "Level 100 VIP Guild" : "Classless") as "Classless" | "Level 100 VIP Guild",
+                rank: "Freelancer",
+                tier: (parsed.tier === "VIP Aetheryte Sector" ? "VIP Aetheryte Sector" : "Unregistered") as "Unregistered" | "VIP Aetheryte Sector",
                 status: "Active" as const,
                 joinedDate: new Date().toISOString().split("T")[0],
               });
@@ -155,15 +155,15 @@ export default function AdminDashboard() {
           }
         } catch {}
         setMembers(initialList);
-        localStorage.setItem("pf_admin_guild_roster", JSON.stringify(initialList));
+        localStorage.setItem("pf_admin_Avalanche_roster", JSON.stringify(initialList));
       }
     }
   }, []);
 
-  const saveRoster = (updated: GuildMember[]) => {
+  const saveRoster = (updated: AvalancheMember[]) => {
     setMembers(updated);
     if (typeof window !== "undefined") {
-      localStorage.setItem("pf_admin_guild_roster", JSON.stringify(updated));
+      localStorage.setItem("pf_admin_Avalanche_roster", JSON.stringify(updated));
     }
   };
 
@@ -179,7 +179,7 @@ export default function AdminDashboard() {
           <Lock className="w-10 h-10 text-red-500 animate-pulse" />
         </div>
         <h2 className="text-2xl md:text-3xl font-black text-white uppercase tracking-wider mb-2">
-          Access Denied - Monarch Level Clearance Required
+          Access Denied - Overseer Level Clearance Required
         </h2>
         <p className="text-zinc-400 text-sm max-w-md leading-relaxed">
           This command suite is restricted exclusively to the Creator Admin (<span className="text-system-gold font-mono">ncrossonofficial06@gmail.com</span>). Unauthorized access logs have been recorded.
@@ -194,15 +194,15 @@ export default function AdminDashboard() {
       member.email.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesTier =
       tierFilter === "all" ||
-      (tierFilter === "vip" && member.tier === "Level 100 VIP Guild") ||
-      (tierFilter === "free" && member.tier === "Classless");
+      (tierFilter === "vip" && member.tier === "VIP Aetheryte Sector") ||
+      (tierFilter === "free" && member.tier === "Unregistered");
     return matchesSearch && matchesTier;
   });
 
   const handleToggleVip = (id: string) => {
     const updated = members.map((m) => {
       if (m.id === id) {
-        const nextTier: "Classless" | "Level 100 VIP Guild" = m.tier === "Level 100 VIP Guild" ? "Classless" : "Level 100 VIP Guild";
+        const nextTier: "Unregistered" | "VIP Aetheryte Sector" = m.tier === "VIP Aetheryte Sector" ? "Unregistered" : "VIP Aetheryte Sector";
         // If modifying logged in user or admin, sync local VIP tier
         if (m.email.toLowerCase() === "ncrossonofficial06@gmail.com" || (typeof window !== "undefined" && localStorage.getItem("hunter_current_user")?.includes(m.email))) {
           if (typeof window !== "undefined") {
@@ -215,7 +215,7 @@ export default function AdminDashboard() {
       return m;
     });
     saveRoster(updated);
-    showToast("User VIP Guild status updated successfully!");
+    showToast("User VIP Avalanche status updated successfully!");
   };
 
   const handleAdjustLevel = (id: string, delta: number) => {
@@ -224,13 +224,13 @@ export default function AdminDashboard() {
         const nextLevel = Math.min(100, Math.max(1, m.level + delta));
         let nextRank = m.rank;
         if (nextLevel >= 100) nextRank = "Warrior of Light";
-        else if (nextLevel >= 70) nextRank = "National Level Adventurer";
-        else if (nextLevel >= 45) nextRank = "Level 100 Adventurer";
-        else if (nextLevel >= 25) nextRank = "A-Rank Adventurer";
-        else if (nextLevel >= 10) nextRank = "B-Rank Adventurer";
-        else nextRank = "C-Rank Adventurer";
+        else if (nextLevel >= 70) nextRank = "Hero of Etheirys";
+        else if (nextLevel >= 45) nextRank = "SOLDIER 1st Class";
+        else if (nextLevel >= 25) nextRank = "SOLDIER 1st Class";
+        else if (nextLevel >= 10) nextRank = "SOLDIER 3rd Class";
+        else nextRank = "Scion";
 
-        // If adjusting current Adventurer state
+        // If adjusting current Mercenary state
         if (typeof window !== "undefined" && localStorage.getItem("hunter_current_user")?.includes(m.email)) {
           const state = loadHunterState();
           state.level = nextLevel;
@@ -242,7 +242,7 @@ export default function AdminDashboard() {
       return m;
     });
     saveRoster(updated);
-    showToast(`Adventurer level adjusted (+${delta} levels)!`);
+    showToast(`Mercenary level adjusted (+${delta} levels)!`);
   };
 
   const handleToggleStatus = (id: string) => {
@@ -254,11 +254,11 @@ export default function AdminDashboard() {
       return m;
     });
     saveRoster(updated);
-    showToast("Adventurer account status toggled!");
+    showToast("Mercenary account status toggled!");
   };
 
   const handleDeleteMember = (id: string, name: string) => {
-    if (confirm(`Are you sure you want to expel ${name} from the guild database?`)) {
+    if (confirm(`Are you sure you want to expel ${name} from the Avalanche database?`)) {
       const updated = members.filter((m) => m.id !== id);
       saveRoster(updated);
       showToast(`Member ${name} removed from roster.`);
@@ -266,7 +266,7 @@ export default function AdminDashboard() {
   };
 
   const handleResetActiveAccount = () => {
-    if (confirm("⚡ MONARCH RE-AWAKENING: Reset your active local Adventurer account to Level 1 Novice with base stats?")) {
+    if (confirm("⚡ AETHERIAL RESET: Reset your active local Mercenary account to Level 1 Novice with base stats?")) {
       resetHunterState();
       window.dispatchEvent(new CustomEvent('hunterStateChanged'));
       showToast("Your local account and progression have been reset to Level 1 Novice!");
@@ -274,11 +274,11 @@ export default function AdminDashboard() {
   };
 
   const handleResetSystemAccounts = () => {
-    if (confirm("⚠️ SYSTEM-WIDE DIRECTIVE: Reset ALL registered Adventurer accounts across the guild database back to Level 1 Novice status?")) {
+    if (confirm("⚠️ LIFESTREAM DIRECTIVE: Reset ALL registered Mercenary accounts across the Avalanche database back to Level 1 Novice status?")) {
       const resetMembers = members.map((m) => ({
         ...m,
         level: 1,
-        rank: "Awakened Adventurer",
+        rank: "Freelancer",
       }));
       saveRoster(resetMembers);
       resetHunterState();
@@ -299,15 +299,15 @@ export default function AdminDashboard() {
         }
       }
       
-      showToast("All Adventurer accounts globally reset to Level 1 Novice status!");
+      showToast("All Mercenary accounts globally reset to Level 1 Novice status!");
     }
   };
 
   const handleResetMemberAccount = (id: string, name: string, email: string) => {
-    if (confirm(`Reset ${name}'s account back to Level 1 Novice Adventurer?`)) {
+    if (confirm(`Reset ${name}'s account back to Level 1 Novice Mercenary?`)) {
       const updated = members.map((m) => {
         if (m.id === id) {
-          return { ...m, level: 1, rank: "Awakened Adventurer", status: "Active" as const };
+          return { ...m, level: 1, rank: "Freelancer", status: "Active" as const };
         }
         return m;
       });
@@ -324,13 +324,13 @@ export default function AdminDashboard() {
     e.preventDefault();
     if (!newName.trim() || !newEmail.trim()) return;
 
-    let rank = "Awakened Adventurer";
+    let rank = "Freelancer";
     if (newLevel >= 100) rank = "Warrior of Light";
-    else if (newLevel >= 70) rank = "National Level Adventurer";
-    else if (newLevel >= 45) rank = "Level 100 Adventurer";
-    else if (newLevel >= 25) rank = "A-Rank Adventurer";
+    else if (newLevel >= 70) rank = "Hero of Etheirys";
+    else if (newLevel >= 45) rank = "SOLDIER 1st Class";
+    else if (newLevel >= 25) rank = "SOLDIER 1st Class";
 
-    const newMember: GuildMember = {
+    const newMember: AvalancheMember = {
       id: `user-${Date.now()}`,
       name: newName.trim(),
       email: newEmail.trim().toLowerCase(),
@@ -347,7 +347,7 @@ export default function AdminDashboard() {
     setNewName("");
     setNewEmail("");
     setNewLevel(1);
-    showToast(`New Adventurer ${newMember.name} registered into Guild Roster!`);
+    showToast(`New Mercenary ${newMember.name} registered into Avalanche Roster!`);
   };
 
   const handleBroadcastSubmit = (e: React.FormEvent) => {
@@ -362,23 +362,23 @@ export default function AdminDashboard() {
 
     if (typeof window !== "undefined") {
       localStorage.setItem("pf_system_announcement", JSON.stringify(announcement));
-      window.dispatchEvent(new CustomEvent("AdventurerSystemBroadcast", { detail: announcement }));
+      window.dispatchEvent(new CustomEvent("MercenariesystemBroadcast", { detail: announcement }));
     }
 
     setBroadcastMsg("");
-    showToast("⚡ System Broadcast transmitted to all Adventurer terminals!");
+    showToast("⚡ System Broadcast transmitted to all Mercenary terminals!");
   };
 
   const handleClearBroadcast = () => {
     if (typeof window !== "undefined") {
       localStorage.removeItem("pf_system_announcement");
-      window.dispatchEvent(new CustomEvent("AdventurerSystemBroadcast", { detail: null }));
+      window.dispatchEvent(new CustomEvent("MercenariesystemBroadcast", { detail: null }));
     }
     showToast("Active System Broadcast terminated.");
   };
 
   const handleResetAllQuestsToday = () => {
-    if (confirm("Reset today's daily quest checkmarks for your local Adventurer profile?")) {
+    if (confirm("Reset today's daily quest checkmarks for your local Mercenary profile?")) {
       const state = loadHunterState();
       state.mp = 0;
       state.completedQuestsToday = {
@@ -397,7 +397,7 @@ export default function AdminDashboard() {
 
   // KPIs
   const totalMembers = members.length;
-  const vipCount = members.filter((m) => m.tier === "Level 100 VIP Guild").length;
+  const vipCount = members.filter((m) => m.tier === "VIP Aetheryte Sector").length;
   const activeCount = members.filter((m) => m.status === "Active").length;
 
   return (
@@ -418,20 +418,20 @@ export default function AdminDashboard() {
         <div className="space-y-2 relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/20 border border-red-500 text-red-400 text-xs font-mono uppercase tracking-widest font-bold">
             <ShieldAlert className="w-3.5 h-3.5 text-red-400 animate-bounce" />
-            Monarch Level Command Center
+            Overseer Command Center
           </div>
           <h2 className="text-2xl md:text-3xl font-black tracking-wider text-white uppercase text-glow flex items-center gap-2.5">
-            <span>GUILD ADMINISTRATION & USER MANAGEMENT</span>
+            <span>Avalanche ADMINISTRATION & USER MANAGEMENT</span>
           </h2>
           <p className="text-zinc-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
-            Manage Adventurer accounts, assign Level 100 VIP Guild permissions, adjust level hierarchies, and transmit real-time system broadcasts.
+            Manage Mercenary accounts, assign VIP Aetheryte Sector permissions, adjust level hierarchies, and transmit real-time system broadcasts.
           </p>
         </div>
 
         <div className="relative z-10 flex flex-col items-end gap-2 text-right">
           <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-green-500/10 border border-green-500/40 text-green-400 font-mono text-xs font-bold shadow-sm">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-ping" />
-            Monarch Server Node #1 Active
+            Aetheryte Server Node #1 Active
           </span>
           <span className="text-[11px] font-mono text-zinc-400">
             Auth: <strong className="text-system-gold">ncrossonofficial06@gmail.com</strong>
@@ -443,9 +443,9 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono">
         <div className="bg-system-panel p-5 rounded-2xl border border-white/10 shadow-lg flex items-center justify-between">
           <div>
-            <div className="text-[10px] uppercase font-bold text-zinc-400">Total Adventurers</div>
+            <div className="text-[10px] uppercase font-bold text-zinc-400">Total Mercenaries</div>
             <div className="text-2xl font-black text-white mt-1">{totalMembers}</div>
-            <div className="text-[11px] text-system-cyan">Registered in Guild</div>
+            <div className="text-[11px] text-system-cyan">Registered in Avalanche</div>
           </div>
           <div className="w-12 h-12 rounded-xl bg-system-blue/10 border border-system-blue/30 flex items-center justify-center text-system-cyan">
             <Users className="w-6 h-6" />
@@ -454,7 +454,7 @@ export default function AdminDashboard() {
 
         <div className="bg-system-panel p-5 rounded-2xl border border-system-gold/40 shadow-lg flex items-center justify-between">
           <div>
-            <div className="text-[10px] uppercase font-bold text-zinc-400">VIP Guild Members</div>
+            <div className="text-[10px] uppercase font-bold text-zinc-400">VIP Avalanche Members</div>
             <div className="text-2xl font-black text-system-gold mt-1">{vipCount}</div>
             <div className="text-[11px] text-yellow-300">Level 100 Access Unlocked</div>
           </div>
@@ -467,7 +467,7 @@ export default function AdminDashboard() {
           <div>
             <div className="text-[10px] uppercase font-bold text-zinc-400">Active Status</div>
             <div className="text-2xl font-black text-green-400 mt-1">{activeCount}</div>
-            <div className="text-[11px] text-green-300">Operational Adventurers</div>
+            <div className="text-[11px] text-green-300">Operational Mercenaries</div>
           </div>
           <div className="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400">
             <UserCheck className="w-6 h-6" />
@@ -495,7 +495,7 @@ export default function AdminDashboard() {
             </div>
             <div>
               <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-system-purple">Global Transmission Suite</div>
-              <h3 className="text-lg font-black text-white uppercase tracking-wider">Monarch System Broadcast</h3>
+              <h3 className="text-lg font-black text-white uppercase tracking-wider">System Broadcast</h3>
             </div>
           </div>
           <button
@@ -532,7 +532,7 @@ export default function AdminDashboard() {
               <RotateCcw className="w-5 h-5 text-red-400" />
             </div>
             <div>
-              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-400">Monarch System Override</div>
+              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-400">System Override</div>
               <h3 className="text-lg font-black text-white uppercase tracking-wider">Account Re-Awakening & Reset Engine</h3>
             </div>
           </div>
@@ -549,7 +549,7 @@ export default function AdminDashboard() {
                 <span>Reset Active Account</span>
               </div>
               <p className="text-[11px] text-zinc-400 mt-1">
-                Wipes current local Adventurer levels and stats back to Level 1 Novice while preserving your name and profile settings.
+                Wipes current local Mercenary levels and stats back to Level 1 Novice while preserving your name and profile settings.
               </p>
             </div>
             <button
@@ -584,10 +584,10 @@ export default function AdminDashboard() {
             <div>
               <div className="text-xs font-bold text-red-400 uppercase flex items-center gap-1.5">
                 <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
-                <span>Reset All Guild Accounts</span>
+                <span>Reset All Avalanche Accounts</span>
               </div>
               <p className="text-[11px] text-zinc-400 mt-1">
-                Global wipe: resets ALL registered Adventurer accounts across the entire database back to Level 1 Awakened status.
+                Global wipe: resets ALL registered Mercenary accounts across the entire database back to Level 1 Awakened status.
               </p>
             </div>
             <button
@@ -601,7 +601,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Guild Roster & User Management Section */}
+      {/* Avalanche Roster & User Management Section */}
       <div className="bg-system-panel rounded-2xl p-6 border border-white/10 shadow-xl space-y-6">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/10 pb-4">
           <div className="flex items-center gap-3">
@@ -609,8 +609,8 @@ export default function AdminDashboard() {
               <Users className="w-5 h-5 text-red-400" />
             </div>
             <div>
-              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-400">Adventurer Hierarchy Database</div>
-              <h3 className="text-lg font-black text-white uppercase tracking-wider">Registered Guild Members ({filteredMembers.length})</h3>
+              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-400">Mercenary Hierarchy Database</div>
+              <h3 className="text-lg font-black text-white uppercase tracking-wider">Registered Avalanche Members ({filteredMembers.length})</h3>
             </div>
           </div>
 
@@ -622,7 +622,7 @@ export default function AdminDashboard() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search Adventurers..."
+                placeholder="Search Mercenaries..."
                 className="w-full bg-system-dark border border-white/10 rounded-xl pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-system-blue font-mono"
               />
             </div>
@@ -633,8 +633,8 @@ export default function AdminDashboard() {
               className="bg-system-dark border border-white/10 rounded-xl px-3 py-2 text-xs text-zinc-300 font-mono focus:outline-none focus:border-system-blue cursor-pointer"
             >
               <option value="all">All Tiers</option>
-              <option value="vip">VIP Guild Only</option>
-              <option value="free">Classless Only</option>
+              <option value="vip">VIP Avalanche Only</option>
+              <option value="free">Unregistered Only</option>
             </select>
 
             <button
@@ -642,7 +642,7 @@ export default function AdminDashboard() {
               className="px-4 py-2 rounded-xl bg-system-gold text-black font-black uppercase text-xs tracking-wider shadow-glow-gold hover:scale-105 transition-all flex items-center gap-1.5 cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5 fill-black" />
-              <span>+ Add Adventurer</span>
+              <span>+ Add Mercenary</span>
             </button>
           </div>
         </div>
@@ -652,16 +652,16 @@ export default function AdminDashboard() {
           <table className="w-full text-left font-mono text-xs border-collapse">
             <thead>
               <tr className="border-b border-white/10 text-zinc-400 uppercase text-[10px] tracking-wider">
-                <th className="py-3 px-4">Adventurer & Email</th>
+                <th className="py-3 px-4">Mercenary & Email</th>
                 <th className="py-3 px-4">Level & Rank</th>
-                <th className="py-3 px-4">Guild Tier</th>
+                <th className="py-3 px-4">Avalanche Tier</th>
                 <th className="py-3 px-4">Status</th>
-                <th className="py-3 px-4 text-right">Monarch Actions</th>
+                <th className="py-3 px-4 text-right">SYSTEM OVERSEER</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
               {filteredMembers.map((member) => {
-                const isVip = member.tier === "Level 100 VIP Guild";
+                const isVip = member.tier === "VIP Aetheryte Sector";
                 const isSelf = member.email.toLowerCase() === "ncrossonofficial06@gmail.com" || member.email.toLowerCase() === "ncrossonofficial06@gmail.com";
 
                 return (
@@ -718,7 +718,7 @@ export default function AdminDashboard() {
                               ? "bg-system-dark text-zinc-400 border-white/10 hover:border-yellow-500/40 hover:text-yellow-400"
                               : "bg-system-gold/20 text-system-gold border-system-gold/40 hover:bg-system-gold hover:text-black"
                           }`}
-                          title={isVip ? "Downgrade to Classless" : "Promote to Level 100 VIP Guild"}
+                          title={isVip ? "Downgrade to Unregistered" : "Promote to VIP Aetheryte Sector"}
                         >
                           {isVip ? "Revoke VIP" : "Grant VIP"}
                         </button>
@@ -727,7 +727,7 @@ export default function AdminDashboard() {
                         <button
                           onClick={() => handleAdjustLevel(member.id, 10)}
                           className="px-2 py-1.5 rounded-lg bg-system-blue/20 hover:bg-system-blue text-system-cyan hover:text-black border border-system-blue/40 text-[10px] font-bold transition-all cursor-pointer"
-                          title="Boost +10 Adventurer Levels"
+                          title="Boost +10 Mercenary Levels"
                         >
                           +10 LV
                         </button>
@@ -781,7 +781,7 @@ export default function AdminDashboard() {
           </div>
           <div>
             <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-system-blue">System Utilities & Testing</div>
-            <h3 className="text-lg font-black text-white uppercase tracking-wider">Monarch Maintenance Actions</h3>
+            <h3 className="text-lg font-black text-white uppercase tracking-wider">Maintenance Actions</h3>
           </div>
         </div>
 
@@ -789,7 +789,7 @@ export default function AdminDashboard() {
           <div className="p-4 rounded-xl bg-system-dark/80 border border-white/10 flex items-center justify-between gap-4">
             <div>
               <div className="font-bold text-white uppercase">Reset Today's Quests</div>
-              <div className="text-[11px] text-zinc-400 mt-0.5">Clear daily checkmarks for local Adventurer state</div>
+              <div className="text-[11px] text-zinc-400 mt-0.5">Clear daily checkmarks for local Mercenary state</div>
             </div>
             <button
               onClick={handleResetAllQuestsToday}
@@ -842,7 +842,7 @@ export default function AdminDashboard() {
           <div className="bg-system-panel border-2 border-system-gold rounded-2xl p-6 max-w-md w-full shadow-glow-gold space-y-4">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <h3 className="text-lg font-black text-white uppercase tracking-wider flex items-center gap-2">
-                <Crown className="w-5 h-5 text-system-gold" /> Add New Guild Adventurer
+                <Crown className="w-5 h-5 text-system-gold" /> Add New Avalanche Mercenary
               </h3>
               <button
                 onClick={() => setShowAddModal(false)}
@@ -854,7 +854,7 @@ export default function AdminDashboard() {
 
             <form onSubmit={handleAddMemberSubmit} className="space-y-4 font-mono text-xs">
               <div>
-                <label className="block text-zinc-400 uppercase font-bold mb-1">Adventurer Name</label>
+                <label className="block text-zinc-400 uppercase font-bold mb-1">Mercenary Name</label>
                 <input
                   type="text"
                   required
@@ -866,13 +866,13 @@ export default function AdminDashboard() {
               </div>
 
               <div>
-                <label className="block text-zinc-400 uppercase font-bold mb-1">Adventurer Email</label>
+                <label className="block text-zinc-400 uppercase font-bold mb-1">Mercenary Email</label>
                 <input
                   type="email"
                   required
                   value={newEmail}
                   onChange={(e) => setNewEmail(e.target.value)}
-                  placeholder="e.g. goliath@guild.com"
+                  placeholder="e.g. goliath@Avalanche.com"
                   className="w-full bg-system-dark border border-white/20 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-system-gold"
                 />
               </div>
@@ -891,14 +891,14 @@ export default function AdminDashboard() {
                 </div>
 
                 <div>
-                  <label className="block text-zinc-400 uppercase font-bold mb-1">Guild Tier</label>
+                  <label className="block text-zinc-400 uppercase font-bold mb-1">Avalanche Tier</label>
                   <select
                     value={newTier}
-                    onChange={(e) => setNewTier(e.target.value as "Classless" | "Level 100 VIP Guild")}
+                    onChange={(e) => setNewTier(e.target.value as "Unregistered" | "VIP Aetheryte Sector")}
                     className="w-full bg-system-dark border border-white/20 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-system-gold cursor-pointer"
                   >
-                    <option value="Classless">Classless</option>
-                    <option value="Level 100 VIP Guild">Level 100 VIP Guild</option>
+                    <option value="Unregistered">Unregistered</option>
+                    <option value="VIP Aetheryte Sector">VIP Aetheryte Sector</option>
                   </select>
                 </div>
               </div>
@@ -915,7 +915,7 @@ export default function AdminDashboard() {
                   type="submit"
                   className="px-5 py-2 rounded-xl bg-system-gold text-black font-black uppercase tracking-wider shadow-glow-gold hover:scale-105 transition-all cursor-pointer"
                 >
-                  Register Adventurer
+                  Register Mercenary
                 </button>
               </div>
             </form>

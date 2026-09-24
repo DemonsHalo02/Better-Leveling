@@ -33,7 +33,7 @@ interface LocalAuthUser {
   uid: string;
   email: string;
   displayName: string;
-  tier: "Level 100 VIP Guild";
+  tier: "VIP Aetheryte Sector";
 }
 
 export default function MembershipPortal() {
@@ -49,13 +49,13 @@ export default function MembershipPortal() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Load local Adventurer user
+      // Load local Mercenary user
       const savedUser = localStorage.getItem("hunter_current_user");
       if (savedUser) {
         try {
           const parsed = JSON.parse(savedUser);
-          parsed.tier = "Level 100 VIP Guild";
-          localStorage.setItem("hunter_vip_tier", "Level 100 VIP Guild");
+          parsed.tier = "VIP Aetheryte Sector";
+          localStorage.setItem("hunter_vip_tier", "VIP Aetheryte Sector");
           setCurrentUser(parsed);
         } catch {}
       }
@@ -68,7 +68,7 @@ export default function MembershipPortal() {
           if (isNickAdmin) {
             localStorage.setItem("hunter_is_admin", "true");
           }
-          const activeTier = "Level 100 VIP Guild";
+          const activeTier = "VIP Aetheryte Sector";
 
           const updatedUser: LocalAuthUser = {
             uid: user.uid,
@@ -114,25 +114,25 @@ export default function MembershipPortal() {
           uid: "admin-shadow-monarch-001",
           email: emailClean || "ncrossonofficial06@gmail.com",
           displayName: adminName,
-          tier: "Level 100 VIP Guild",
+          tier: "VIP Aetheryte Sector",
         };
 
         setCurrentUser(adminUser);
         if (typeof window !== "undefined") {
           localStorage.setItem("hunter_current_user", JSON.stringify(adminUser));
-          localStorage.setItem("hunter_vip_tier", "Level 100 VIP Guild");
+          localStorage.setItem("hunter_vip_tier", "VIP Aetheryte Sector");
           localStorage.setItem("hunter_is_admin", "true");
           window.dispatchEvent(new CustomEvent("hunterStateChanged"));
         }
 
-        // Update Adventurer state with Admin Perks
+        // Update Mercenary state with Admin Perks
         const HunterState = loadHunterState();
         HunterState.profile.name = adminName;
         HunterState.title = "Warrior of Light (Creator Admin)";
         saveHunterState(HunterState);
 
         // Immediately sync admin profile to cloud
-        syncHunterToCloud(emailClean, adminName, "Level 100 VIP Guild");
+        syncHunterToCloud(emailClean, adminName, "VIP Aetheryte Sector");
 
         // Trigger celebration
         confetti({
@@ -142,14 +142,14 @@ export default function MembershipPortal() {
           colors: ["#ffd700", "#00f0ff", "#7000ff", "#ff0055"],
         });
 
-        alert(`👑 ARISE, CREATOR ADMIN NICK! VIP Account unlocked. Welcome back!`);
+        alert(`👑 LIFESTREAM LINK ESTABLISHED, OVERSEER NICK! VIP Account unlocked. Welcome back!`);
         setLoading(false);
         return;
       }
 
       if (isSignUp) {
         if (!displayName.trim()) {
-          throw new Error("Please enter your Adventurer Name.");
+          throw new Error("Please enter your Mercenary Name.");
         }
         // Try Firebase sign up
         try {
@@ -164,24 +164,24 @@ export default function MembershipPortal() {
           uid: `offline-${Date.now()}`,
           email,
           displayName,
-          tier: "Level 100 VIP Guild",
+          tier: "VIP Aetheryte Sector",
         };
         setCurrentUser(newUser);
         if (typeof window !== "undefined") {
           localStorage.setItem("hunter_current_user", JSON.stringify(newUser));
-          localStorage.setItem("hunter_vip_tier", "Level 100 VIP Guild");
+          localStorage.setItem("hunter_vip_tier", "VIP Aetheryte Sector");
         }
 
-        // Update Adventurer State profile name
+        // Update Mercenary State profile name
         const HunterState = loadHunterState();
         HunterState.profile.name = displayName;
         saveHunterState(HunterState);
         awardXp(250, "int");
 
         // Sync new user to cloud
-        syncHunterToCloud(email, displayName, "Level 100 VIP Guild");
+        syncHunterToCloud(email, displayName, "VIP Aetheryte Sector");
 
-        alert(`⚡ Awakening Complete! Welcome to the Guild, Adventurer ${displayName}! You now have VIP access. (+250 XP)`);
+        alert(`⚡ Awakening Complete! Welcome to the Guild, Mercenary ${displayName}! You now have VIP access. (+250 XP)`);
       } else {
         // Sign in
         try {
@@ -193,20 +193,20 @@ export default function MembershipPortal() {
         const existing: LocalAuthUser = {
           uid: `offline-${Date.now()}`,
           email,
-          displayName: email.split("@")[0] || "Adventurer",
-          tier: "Level 100 VIP Guild",
+          displayName: email.split("@")[0] || "Mercenary",
+          tier: "VIP Aetheryte Sector",
         };
         setCurrentUser(existing);
         if (typeof window !== "undefined") {
           localStorage.setItem("hunter_current_user", JSON.stringify(existing));
-          localStorage.setItem("hunter_vip_tier", "Level 100 VIP Guild");
+          localStorage.setItem("hunter_vip_tier", "VIP Aetheryte Sector");
         }
-        alert(`⚡ Arise! Signed back in as ${existing.displayName}.`);
+        alert(`⚡ Materia Synchronized! Logged in as ${existing.displayName}.`);
 
         // Restore after sign-in
         const cloudData = await restoreHunterFromCloud(email);
         if (!cloudData) {
-          syncHunterToCloud(email, existing.displayName, "Level 100 VIP Guild");
+          syncHunterToCloud(email, existing.displayName, "VIP Aetheryte Sector");
         }
       }
     } catch (err: any) {
@@ -271,7 +271,7 @@ export default function MembershipPortal() {
 
       {/* Level 100 VIP Premium Suite & Showcase */}
       <VipPremiumShowcase
-        userTier={currentUser ? "Level 100 VIP Guild" : "Classless"}
+        userTier={currentUser ? "VIP Aetheryte Sector" : "Unregistered"}
         onUpgradeClick={() => {}}
       />
 
@@ -279,13 +279,13 @@ export default function MembershipPortal() {
         <div className="bg-system-panel p-6 rounded-2xl border border-system-blue/30 shadow-xl space-y-6">
           
           {currentUser ? (
-            /* Signed In Adventurer Account Card */
+            /* Signed In Mercenary Account Card */
             <div className="space-y-6 text-center py-4">
               <div className="relative inline-block mx-auto">
                 <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-system-blue to-system-purple border-2 border-system-cyan flex items-center justify-center shadow-glow-blue">
                   <UserCheck className="w-10 h-10 text-white" />
                 </div>
-                <div className="absolute -top-2 -right-2 bg-system-gold text-black p-1.5 rounded-full border border-black shadow-glow-gold" title="VIP Guild Member">
+                <div className="absolute -top-2 -right-2 bg-system-gold text-black p-1.5 rounded-full border border-black shadow-glow-gold" title="VIP Aetheryte Sector Member">
                   <Crown className="w-4 h-4 fill-black" />
                 </div>
               </div>
@@ -295,7 +295,7 @@ export default function MembershipPortal() {
                   {currentUser.tier}
                 </div>
                 <h3 className="text-2xl font-black text-white uppercase tracking-wide mt-2">
-                  Adventurer {currentUser.displayName}
+                  Mercenary {currentUser.displayName}
                 </h3>
                 <p className="text-xs font-mono text-zinc-400">{currentUser.email}</p>
               </div>
@@ -343,7 +343,7 @@ export default function MembershipPortal() {
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <h3 className="text-base font-black text-white uppercase tracking-wider flex items-center gap-2">
                   <Shield className="w-5 h-5 text-system-blue" />
-                  <span>{isSignUp ? "Register New Adventurer" : "Sign In to System"}</span>
+                  <span>{isSignUp ? "Register New Mercenary" : "Sign In to System"}</span>
                 </h3>
                 <button
                   onClick={() => {
@@ -352,7 +352,7 @@ export default function MembershipPortal() {
                   }}
                   className="text-xs font-mono font-bold text-system-cyan hover:underline"
                 >
-                  {isSignUp ? "Existing Adventurer? Log In" : "New? Register Now"}
+                  {isSignUp ? "Existing Mercenary? Log In" : "New? Register Now"}
                 </button>
               </div>
 
@@ -366,7 +366,7 @@ export default function MembershipPortal() {
               <form onSubmit={handleAuthSubmit} className="space-y-4">
                 {isSignUp && (
                   <div>
-                    <label className="text-xs font-bold text-zinc-400 uppercase font-mono">Adventurer Name / Title</label>
+                    <label className="text-xs font-bold text-zinc-400 uppercase font-mono">Mercenary Name / Title</label>
                     <input
                       type="text"
                       placeholder="e.g. SOLDIER Nick"
@@ -382,7 +382,7 @@ export default function MembershipPortal() {
                   <label className="text-xs font-bold text-zinc-400 uppercase font-mono">Email Address</label>
                   <input
                     type="email"
-                    placeholder="Adventurer@sololeveling.com"
+                    placeholder="Mercenary@sololeveling.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-3 mt-1 text-sm font-mono text-white focus:outline-none focus:border-system-blue shadow-inner"
