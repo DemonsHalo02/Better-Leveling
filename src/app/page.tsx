@@ -15,7 +15,7 @@ import AdminDashboard from "@/components/Admin/AdminDashboard";
 import CourseTracker from "@/components/Courses/CourseTracker";
 import { Shield } from "lucide-react";
 
-import { syncHunterToCloud, restoreHunterFromCloud, subscribeToCloudProfile } from "@/lib/cloud-sync";
+import { syncHunterToCloud, restoreHunterFromCloud, subscribeToCloudProfile, markLocalChange } from "@/lib/cloud-sync";
 import { isSystemAdmin } from "@/lib/hunter-system";
 
 export default function Home() {
@@ -26,14 +26,12 @@ export default function Home() {
     let syncTimeout: NodeJS.Timeout;
     let unsubscribeSnapshot: (() => void) | null = null;
 
-    // On app boot: restore from cloud and set up real-time listener
+    // On app boot: set up real-time listener for cross-device sync
     try {
       const userStr = localStorage.getItem("hunter_current_user");
       if (userStr) {
         const user = JSON.parse(userStr);
         if (user && user.email) {
-          // One-shot restore to catch up
-          restoreHunterFromCloud(user.email);
           // Real-time listener for live cross-device sync
           unsubscribeSnapshot = subscribeToCloudProfile(user.email);
         }
@@ -42,6 +40,8 @@ export default function Home() {
 
     // Debounced push: whenever local state changes, push to cloud after 2s
     const triggerCloudSync = () => {
+      // Mark that a local change just happened so the listener doesn't overwrite it
+      markLocalChange();
       clearTimeout(syncTimeout);
       syncTimeout = setTimeout(() => {
         try {

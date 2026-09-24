@@ -13,6 +13,16 @@ export interface CloudHunterProfile {
   appData?: Record<string, string>;
 }
 
+// Timestamp of last LOCAL change. The real-time listener will skip
+// cloud data that arrived within 5 seconds of a local change, giving
+// the debounced push time to propagate first.
+let lastLocalChangeTs = 0;
+
+/** Call this to mark that a local change just happened. */
+export function markLocalChange() {
+  lastLocalChangeTs = Date.now();
+}
+
 /**
  * Pushes the current local state to Firestore.
  * Returns true on success, or an error message string on failure.
@@ -66,6 +76,8 @@ export async function syncHunterToCloud(
 
 /**
  * One-shot pull of cloud data into localStorage.
+ * Only used on first app boot; does NOT dispatch hunterStateChanged
+ * to avoid triggering a push loop.
  */
 export async function restoreHunterFromCloud(
   email: string
@@ -85,7 +97,6 @@ export async function restoreHunterFromCloud(
     if (docSnap.exists()) {
       const data = docSnap.data() as CloudHunterProfile;
       console.log(`[CloudSync] ✅ Found cloud profile for ${cleanEmail}`);
-
       applyCloudDataLocally(data);
       return data;
     } else {
@@ -101,6 +112,9 @@ export async function restoreHunterFromCloud(
  * Real-time Firestore listener. Whenever the cloud document changes
  * (e.g. from another device pushing), this automatically pulls
  * the new data into localStorage and re-renders all components.
+ *
+ * IMPORTANT: Skips updates that arrive within 5 seconds of a local
+ * change to prevent the listener from reverting local resets.
  */
 export function subscribeToCloudProfile(email: string): Unsubscribe {
   if (!email || !db || typeof window === "undefined") return () => {};
@@ -112,6 +126,13 @@ export function subscribeToCloudProfile(email: string): Unsubscribe {
     docRef,
     (docSnap) => {
       if (docSnap.exists()) {
+        // Skip if a local change was made within the last 5 seconds
+        const timeSinceLocal = Date.now() - lastLocalChangeTs;
+        if (timeSinceLocal < 5000) {
+          console.log(`[CloudSync] ⏭️ Skipping cloud update (local change ${timeSinceLocal}ms ago)`);
+          return;
+        }
+
         const data = docSnap.data() as CloudHunterProfile;
         console.log("[CloudSync] 🔄 Real-time update received from cloud");
         applyCloudDataLocally(data);
@@ -125,7 +146,11 @@ export function subscribeToCloudProfile(email: string): Unsubscribe {
 
 /**
  * Applies a CloudHunterProfile's data into localStorage and
- * dispatches events so React components re-render.
+ * dispatches a STORAGE event so React components re-render.
+ *
+ * Does NOT dispatch 'hunterStateChanged' — that event is reserved
+ * for LOCAL changes only, and triggers the cloud push. Using it here
+ * would create an infinite push/pull loop.
  */
 function applyCloudDataLocally(data: CloudHunterProfile) {
   // Restore VIP tier
@@ -135,8 +160,9 @@ function applyCloudDataLocally(data: CloudHunterProfile) {
 
   // Restore hunter leveling state
   if (data.hunterState && data.hunterState.level) {
-    saveHunterState(data.hunterState);
-    loadHunterState();
+    // Write directly to localStorage instead of saveHunterState()
+    // to avoid dispatching hunterStateChanged (which would trigger a push)
+    localStorage.setItem("better_leveling_v2_state", JSON.stringify(data.hunterState));
   }
 
   // Restore all app data keys
@@ -148,7 +174,7 @@ function applyCloudDataLocally(data: CloudHunterProfile) {
     });
   }
 
-  // Notify all React components to re-read localStorage
+  // Notify React components to re-read localStorage (NOT hunterStateChanged)
   window.dispatchEvent(new Event("storage"));
-  window.dispatchEvent(new CustomEvent("hunterStateChanged"));
+  window.dispatchEvent(new CustomEvent("hunterStateRestored"));
 }

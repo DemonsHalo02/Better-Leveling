@@ -28,8 +28,20 @@ export default function HunterStatusBar({ onNavigate }: HunterStatusBarProps) {
       }
     };
 
+    const handleCloudRestore = () => {
+      setState(loadHunterState());
+      const savedTier = localStorage.getItem("hunter_vip_tier");
+      if (savedTier) setVipTier(savedTier);
+    };
+
     window.addEventListener('hunterStateChanged', handleStateChange);
-    return () => window.removeEventListener('hunterStateChanged', handleStateChange);
+    window.addEventListener('hunterStateRestored', handleCloudRestore);
+    window.addEventListener('storage', handleCloudRestore);
+    return () => {
+      window.removeEventListener('hunterStateChanged', handleStateChange);
+      window.removeEventListener('hunterStateRestored', handleCloudRestore);
+      window.removeEventListener('storage', handleCloudRestore);
+    };
   }, []);
 
   if (!state) return null;
