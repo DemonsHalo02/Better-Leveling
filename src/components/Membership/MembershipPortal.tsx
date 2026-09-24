@@ -129,9 +129,6 @@ export default function MembershipPortal() {
         const HunterState = loadHunterState();
         HunterState.profile.name = adminName;
         HunterState.title = "Warrior of Light (Creator Admin)";
-        HunterState.level = Math.max(HunterState.level, 100);
-        HunterState.rank = "Warrior of Light";
-        HunterState.stats.availablePoints += 25;
         saveHunterState(HunterState);
 
         // Immediately sync admin profile to cloud
