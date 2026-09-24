@@ -145,6 +145,9 @@ export default function MembershipPortal() {
         HunterState.stats.availablePoints += 25;
         saveHunterState(HunterState);
 
+        // Immediately sync admin profile to cloud
+        syncHunterToCloud(emailClean, adminName, "Level 100 VIP Guild");
+
         // Trigger celebration
         confetti({
           particleCount: 250,
@@ -189,6 +192,9 @@ export default function MembershipPortal() {
         saveHunterState(HunterState);
         awardXp(250, "int");
 
+        // Sync new user to cloud
+        syncHunterToCloud(email, displayName, "Level 100 VIP Guild");
+
         alert(`⚡ Awakening Complete! Welcome to the Guild, Adventurer ${displayName}! You now have VIP access. (+250 XP)`);
       } else {
         // Sign in
@@ -210,6 +216,9 @@ export default function MembershipPortal() {
           localStorage.setItem("hunter_vip_tier", "Level 100 VIP Guild");
         }
         alert(`⚡ Arise! Signed back in as ${existing.displayName}.`);
+
+        // Sync after sign-in
+        syncHunterToCloud(email, existing.displayName, "Level 100 VIP Guild");
       }
     } catch (err: any) {
       setErrorMsg(err.message || "Authentication error occurred.");

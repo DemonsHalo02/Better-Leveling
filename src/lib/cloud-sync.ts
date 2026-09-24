@@ -7,30 +7,31 @@ import { loadHunterState, saveHunterState, HunterState } from "./hunter-system";
 export interface CloudHunterProfile {
   email: string;
   displayName: string;
-  tier: "Classless" | "Free Company Elite";
+  tier: string;
   hunterState: HunterState;
   lastSynced: number;
-  appData?: Record<string, string>; // Store all local storage JSON strings here
+  appData?: Record<string, string>;
 }
 
 export async function syncHunterToCloud(
   email: string,
   displayName: string,
-  tier: "Classless" | "Free Company Elite"
+  tier: string
 ): Promise<boolean | string> {
-  if (!email || !db || typeof (db as any).type === "undefined" || typeof window === "undefined") {
-    console.warn("[CloudSync] Aborted: Firestore DB not fully initialized.");
+  if (!email || !db || typeof window === "undefined") {
+    console.warn("[CloudSync] Aborted: missing email or DB.");
     return false;
   }
+
   try {
     const cleanEmail = email.trim().toLowerCase();
     const hunterState = loadHunterState();
     
-    // Gather all `pf_` prefixed items from local storage to sync everything
+    // Gather all app-specific keys from localStorage
     const appData: Record<string, string> = {};
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key && key.startsWith('pf_')) {
+      if (key && (key.startsWith('pf_') || key.startsWith('hunter_'))) {
         appData[key] = localStorage.getItem(key) || '';
       }
     }
@@ -50,16 +51,16 @@ export async function syncHunterToCloud(
     );
 
     await Promise.race([setDoc(docRef, payload, { merge: true }), timeout]);
-    console.log(`[CloudSync] Successfully backed up profile to Firebase for ${cleanEmail}`);
+    console.log(`[CloudSync] Backed up profile for ${cleanEmail}`);
     return true;
   } catch (err: any) {
-    console.warn("[CloudSync] Background sync offline or unconfigured:", err);
+    console.warn("[CloudSync] Sync failed:", err);
     return err.message || "Unknown error";
   }
 }
 
 export async function restoreHunterFromCloud(email: string): Promise<CloudHunterProfile | null> {
-  if (!email || !db || typeof (db as any).type === "undefined" || typeof window === "undefined") {
+  if (!email || !db || typeof window === "undefined") {
     return null;
   }
   try {
@@ -75,22 +76,24 @@ export async function restoreHunterFromCloud(email: string): Promise<CloudHunter
       const data = docSnap.data() as CloudHunterProfile;
       console.log(`[CloudSync] Found cloud profile for ${cleanEmail}:`, data);
 
+      // Restore VIP tier
       if (data.tier) {
         localStorage.setItem("hunter_vip_tier", data.tier);
       }
 
+      // Restore hunter leveling state
       if (data.hunterState && data.hunterState.level) {
         saveHunterState(data.hunterState);
         loadHunterState();
       }
 
+      // Restore all app data keys
       if (data.appData) {
         Object.keys(data.appData).forEach(key => {
           if (data.appData![key]) {
             localStorage.setItem(key, data.appData![key]);
           }
         });
-        // Dispatch an event so all components know to re-render with the newly synced local storage
         window.dispatchEvent(new Event('storage'));
         window.dispatchEvent(new CustomEvent('hunterStateChanged'));
       }

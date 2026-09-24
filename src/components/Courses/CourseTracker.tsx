@@ -40,6 +40,7 @@ export default function CourseTracker() {
     setCourses(updated);
     if (typeof window !== 'undefined') {
       localStorage.setItem('pf_course_progress_v2', JSON.stringify(updated));
+      window.dispatchEvent(new CustomEvent('hunterStateChanged'));
     }
   };
 
