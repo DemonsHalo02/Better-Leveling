@@ -15,17 +15,33 @@ import AdminDashboard from "@/components/Admin/AdminDashboard";
 import CourseTracker from "@/components/Courses/CourseTracker";
 import { Shield } from "lucide-react";
 
-import { syncHunterToCloud } from "@/lib/cloud-sync";
+import { syncHunterToCloud, restoreHunterFromCloud, subscribeToCloudProfile, markLocalChange } from "@/lib/cloud-sync";
 import { isSystemAdmin } from "@/lib/hunter-system";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<string>("quests");
 
-  // Cloud sync: auto-push local changes to cloud after any state change
+  // Cloud sync: push local changes up, and subscribe to real-time updates from cloud
   useEffect(() => {
     let syncTimeout: NodeJS.Timeout;
+    let unsubscribeSnapshot: (() => void) | null = null;
+
+    // On app boot: pull latest from cloud, and set up real-time listener
+    try {
+      const userStr = localStorage.getItem("hunter_current_user");
+      if (userStr) {
+        const user = JSON.parse(userStr);
+        if (user && user.email) {
+          restoreHunterFromCloud(user.email);
+          unsubscribeSnapshot = subscribeToCloudProfile(user.email);
+        }
+      }
+    } catch (e) {}
 
     const triggerCloudSync = () => {
+      // Mark local change to suppress real-time listener from overwriting this change
+      markLocalChange();
+      
       clearTimeout(syncTimeout);
       syncTimeout = setTimeout(() => {
         try {
@@ -45,6 +61,7 @@ export default function Home() {
     return () => {
       window.removeEventListener("hunterStateChanged", triggerCloudSync);
       clearTimeout(syncTimeout);
+      if (unsubscribeSnapshot) unsubscribeSnapshot();
     };
   }, []);
 
