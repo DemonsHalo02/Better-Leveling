@@ -2,9 +2,24 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-import { AUBURN_LEWISTON_GROCERY_ITEMS, GroceryItem } from '@/lib/grocery-data';
 import { awardXp, loadHunterState, saveHunterState } from '@/lib/hunter-system';
 import { ScanLine, Search, AlertCircle, Camera, X, PlusCircle, CheckCircle } from 'lucide-react';
+
+export interface GroceryItem {
+  id: string;
+  name: string;
+  brand: string;
+  category: string;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  price?: number;
+  store: string;
+  isStaple: boolean;
+  upc?: string;
+  image_url?: string;
+}
 
 interface BarcodeScannerProps {
   onFoodLogged?: () => void;
@@ -53,7 +68,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
       const saved = localStorage.getItem('pf_custom_grocery_items');
       if (saved) try { customList = JSON.parse(saved); } catch {}
     }
-    const allLocal = [...AUBURN_LEWISTON_GROCERY_ITEMS, ...customList];
+    const allLocal = customList;
     const localMatch = allLocal.find(item => item.upc === upc || item.id === upc);
     if (localMatch) {
       setScannedResult(localMatch);
@@ -107,7 +122,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
       const saved = localStorage.getItem('pf_custom_grocery_items');
       if (saved) try { customList = JSON.parse(saved); } catch {}
     }
-    const allLocal = [...AUBURN_LEWISTON_GROCERY_ITEMS, ...customList];
+    const allLocal = customList;
     
     const localMatch = allLocal.find(item => 
       item.name.toLowerCase().includes(q) || item.brand.toLowerCase().includes(q) || item.upc === q

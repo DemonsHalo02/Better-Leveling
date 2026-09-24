@@ -6,7 +6,7 @@ import { loadHunterState, saveHunterState, awardXp, HunterState } from '@/lib/hu
 import confetti from 'canvas-confetti';
 
 interface VipPremiumShowcaseProps {
-  userTier: "E-Rank Free" | "S-Rank VIP Guild";
+  userTier: "Classless" | "Level 100 VIP Guild";
   onUpgradeClick?: () => void;
 }
 
@@ -35,7 +35,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
 
   if (!state) return null;
 
-  const isVip = userTier === "S-Rank VIP Guild";
+  const isVip = userTier === "Level 100 VIP Guild";
   const startWeight = state.profile?.startWeight || 242;
   const targetWeight = state.profile?.targetWeight || 160;
   const currentWeight = state.profile?.currentWeight || startWeight;
@@ -86,9 +86,9 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
   };
 
   const vipTrophies = [
-    { id: 'vip_founder', name: 'S-Rank Guild Founder', desc: 'Unlocked the highest echelon of Shadow Monarch fitness coaching.', xp: 500, icon: '👑' },
+    { id: 'vip_founder', name: 'Level 100 Guild Founder', desc: 'Unlocked the highest echelon of Warrior of Light fitness coaching.', xp: 500, icon: '👑' },
     { id: 'vip_recomp', name: 'Titanium Recomposition Master', desc: 'Simulated and executed a precision cutting blueprint.', xp: 500, icon: '⚡' },
-    { id: 'vip_oracle', name: 'Shadow Monarch VIP Vanguard', desc: 'Dedicated to achieving 160 LBS with zero muscle loss.', xp: 500, icon: '🔥' },
+    { id: 'vip_oracle', name: 'Warrior of Light VIP Vanguard', desc: 'Dedicated to achieving 160 LBS with zero muscle loss.', xp: 500, icon: '🔥' },
   ];
 
   return (
@@ -109,13 +109,13 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
         <div className="space-y-2 relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-system-gold/20 border border-system-gold text-system-gold text-xs font-mono uppercase tracking-widest font-bold">
             <Crown className="w-3.5 h-3.5 text-system-gold animate-bounce" />
-            S-Rank VIP Exclusive Suite
+            Level 100 VIP Exclusive Suite
           </div>
           <h2 className="text-2xl md:text-3xl font-black tracking-wider text-white uppercase text-glow flex items-center gap-2.5">
             <span>VIP AI COACH & RECOMPOSITION LAB</span>
           </h2>
           <p className="text-zinc-300 text-sm max-w-2xl leading-relaxed">
-            Unlock advanced AI recomposition projections, interactive macro cutting simulations, and exclusive S-Rank Golden Trophies designed for elite VIP Hunters.
+            Unlock advanced AI recomposition projections, interactive macro cutting simulations, and exclusive Level 100 Golden Trophies designed for elite VIP Adventurers.
           </p>
         </div>
 
@@ -125,12 +125,12 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             className="relative z-10 flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-system-gold via-yellow-400 to-system-gold text-black font-black uppercase text-sm tracking-widest shadow-glow-gold hover:scale-105 transition-all w-full md:w-auto justify-center cursor-pointer animate-pulse"
           >
             <Lock className="w-4 h-4 fill-black" />
-            <span>Unlock S-Rank VIP Access</span>
+            <span>Unlock Level 100 VIP Access</span>
           </button>
         )}
       </div>
 
-      {/* TOOL 1: 🤖 S-Rank AI Fitness Coach & Oracle */}
+      {/* TOOL 1: 🤖 Level 100 AI Fitness Coach & Oracle */}
       <div className={`relative bg-system-panel rounded-2xl p-6 border border-system-blue/40 shadow-xl space-y-6 overflow-hidden transition-all ${
         !isVip ? 'opacity-80' : ''
       }`}>
@@ -142,7 +142,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             <div className="space-y-1">
               <h3 className="text-xl font-black text-white uppercase tracking-wider">AI Coach Oracle Locked</h3>
               <p className="text-xs text-zinc-300 max-w-md">
-                S-Rank VIP Guild members receive custom weekly caloric adjustments, loose skin prevention advice, and tailored meal preps across the 19-Country Global Master Deck!
+                Level 100 VIP Guild members receive custom weekly caloric adjustments, loose skin prevention advice, and tailored meal preps across the 19-Country Global Master Deck!
               </p>
             </div>
             <button
@@ -194,7 +194,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
         </div>
       </div>
 
-      {/* TOOL 2: 📊 S-Rank Body Recomposition & Macro Simulation Lab */}
+      {/* TOOL 2: 📊 Level 100 Body Recomposition & Macro Simulation Lab */}
       <div className={`relative bg-system-panel rounded-2xl p-6 border border-system-cyan/40 shadow-xl space-y-6 overflow-hidden transition-all ${
         !isVip ? 'opacity-80' : ''
       }`}>
@@ -277,7 +277,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             />
             <div className="flex justify-between text-[10px] text-zinc-500 font-bold">
               <span>150g (Min)</span>
-              <span>178g (S-Rank Goal)</span>
+              <span>178g (Level 100 Goal)</span>
               <span>260g (Max)</span>
             </div>
           </div>
@@ -349,7 +349,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             </div>
             <div>
               <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-system-gold">Exclusive Guild Rewards</div>
-              <h3 className="text-lg font-black text-white uppercase tracking-wider">S-Rank VIP Golden Trophies (+1,500 XP)</h3>
+              <h3 className="text-lg font-black text-white uppercase tracking-wider">Level 100 VIP Golden Trophies (+1,500 XP)</h3>
             </div>
           </div>
           <span className="text-xs font-mono text-zinc-400 hidden sm:inline">
@@ -404,7 +404,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
         </div>
       </div>
 
-      {/* TOOL 4: 🎨 Shadow Monarch Art & Manhua Vault (Cloud Gallery) */}
+      {/* TOOL 4: 🎨 Warrior of Light Art & Manhua Vault (Cloud Gallery) */}
       <div className={`relative bg-system-panel rounded-2xl p-6 border border-system-purple/50 shadow-xl space-y-4 overflow-hidden transition-all ${
         !isVip ? 'opacity-80' : ''
       }`}>
@@ -416,7 +416,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             <div className="space-y-1">
               <h3 className="text-xl font-black text-white uppercase tracking-wider">Art & Manhua Vault Locked</h3>
               <p className="text-xs text-zinc-300 max-w-md">
-                S-Rank VIP Guild members get exclusive access to view high-res artwork, read manhua chapters, and leave likes, dislikes, and comments!
+                Level 100 VIP Guild members get exclusive access to view high-res artwork, read manhua chapters, and leave likes, dislikes, and comments!
               </p>
             </div>
             <button
@@ -435,7 +435,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             </div>
             <div>
               <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-system-purple">Cloud Storage Powered Gallery</div>
-              <h3 className="text-lg font-black text-white uppercase tracking-wider">Shadow Monarch Art & Manhua Vault</h3>
+              <h3 className="text-lg font-black text-white uppercase tracking-wider">Warrior of Light Art & Manhua Vault</h3>
             </div>
           </div>
           {isVip && (
@@ -446,7 +446,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
         </div>
 
         <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-          As a VIP Hunter or Creator, access our Cloud Storage Art Vault. High-resolution art and manhua chapters are uploaded directly by the creator (<span className="text-system-gold font-mono">ncrossonofficial06@gmail.com</span>). Like your favorite chapters and discuss in the guild comments!
+          As a VIP Adventurer or Creator, access our Cloud Storage Art Vault. High-resolution art and manhua chapters are uploaded directly by the creator (<span className="text-system-gold font-mono">ncrossonofficial06@gmail.com</span>). Like your favorite chapters and discuss in the guild comments!
         </p>
       </div>
 

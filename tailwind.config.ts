@@ -17,23 +17,23 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         system: {
-          blue: "#00f0ff",
-          cyan: "#00d4e0",
-          dark: "#050811",
-          panel: "#0a0f1d",
-          card: "#11182c",
-          purple: "#7000ff",
-          gold: "#ffd700",
-          red: "#ff3366",
+          blue: "#0bc2b6", // FF7 Mako Teal / Cyan
+          cyan: "#3affc6", // Lifestream Green
+          dark: "#0b0c10", // Deep UI slate
+          panel: "#161925", // Shinra UI background
+          card: "#1e2233", // Lighter UI background
+          purple: "#d942ff", // Aether/Materia Purple
+          gold: "#e6c76e", // FFXIV Classic UI Gold
+          red: "#ff3b3b", // Meteor Red
           green: "#00ff88",
         },
       },
       boxShadow: {
-        'glow-blue': '0 0 20px rgba(0, 240, 255, 0.35)',
-        'glow-purple': '0 0 20px rgba(112, 0, 255, 0.35)',
-        'glow-gold': '0 0 20px rgba(255, 215, 0, 0.35)',
-        'glow-green': '0 0 20px rgba(0, 255, 136, 0.35)',
-        'hud': 'inset 0 0 15px rgba(0, 240, 255, 0.15), 0 0 20px rgba(0, 240, 255, 0.2)',
+        'glow-blue': '0 0 20px rgba(11, 194, 182, 0.35)',
+        'glow-purple': '0 0 20px rgba(217, 66, 255, 0.35)',
+        'glow-gold': '0 0 20px rgba(230, 199, 110, 0.35)',
+        'glow-green': '0 0 20px rgba(58, 255, 198, 0.35)',
+        'hud': 'inset 0 0 15px rgba(11, 194, 182, 0.15), 0 0 20px rgba(11, 194, 182, 0.2)',
       },
       animation: {
         'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',

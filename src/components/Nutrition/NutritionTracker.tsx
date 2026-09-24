@@ -20,7 +20,7 @@ interface NutritionTrackerProps {
 }
 
 export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) {
-  const [hunterState, setHunterState] = useState(() => (typeof window !== 'undefined' ? loadHunterState() : null));
+  const [HunterState, setHunterState] = useState(() => (typeof window !== 'undefined' ? loadHunterState() : null));
   const [meals, setMeals] = useState<LoggedMeal[]>([]);
   const [showManualModal, setShowManualModal] = useState(false);
   const [manualName, setManualName] = useState('');
@@ -109,7 +109,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
   const carbGoal = 300;
   const fatGoal = 65;
 
-  const waterConsumed = getHydrationOzConsumed(hunterState?.mp ?? 0);
+  const waterConsumed = getHydrationOzConsumed(HunterState?.mp ?? 0);
   const waterProgress = Math.min((waterConsumed / HYDRATION_GOAL_OZ) * 100, 100);
 
   return (

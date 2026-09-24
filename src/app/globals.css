@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #050811;
+  --background: #0b0c10;
   --foreground: #f4f4f5;
 }
 
@@ -26,66 +26,66 @@ body {
   scrollbar-width: none;  /* Firefox */
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar — Mako Reactor themed */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #050811;
+  background: #0b0c10;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #11182c;
+  background: #1e2233;
   border-radius: 3px;
-  border: 1px solid rgba(0, 240, 255, 0.25);
+  border: 1px solid rgba(11, 194, 182, 0.25);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00f0ff;
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  background: #0bc2b6;
+  box-shadow: 0 0 10px rgba(11, 194, 182, 0.5);
 }
 
-/* System Neon Glows & Holographic Panels */
+/* Mako / Lifestream Glows & Panels */
 @layer utilities {
   .text-glow {
-    text-shadow: 0 0 12px rgba(0, 240, 255, 0.8), 0 0 25px rgba(0, 240, 255, 0.4);
+    text-shadow: 0 0 12px rgba(11, 194, 182, 0.8), 0 0 25px rgba(11, 194, 182, 0.4);
   }
   
   .text-glow-purple {
-    text-shadow: 0 0 12px rgba(112, 0, 255, 0.8), 0 0 25px rgba(112, 0, 255, 0.4);
+    text-shadow: 0 0 12px rgba(217, 66, 255, 0.8), 0 0 25px rgba(217, 66, 255, 0.4);
   }
 
   .text-glow-gold {
-    text-shadow: 0 0 12px rgba(255, 215, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.4);
+    text-shadow: 0 0 12px rgba(230, 199, 110, 0.8), 0 0 25px rgba(230, 199, 110, 0.4);
   }
 
   .bg-system-panel {
-    background: rgba(10, 15, 29, 0.85);
+    background: rgba(22, 25, 37, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 240, 255, 0.25);
+    border: 1px solid rgba(11, 194, 182, 0.25);
     box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
   }
 
   .bg-system-card {
-    background: rgba(17, 24, 44, 0.85);
+    background: rgba(30, 34, 51, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 240, 255, 0.18);
+    border: 1px solid rgba(11, 194, 182, 0.18);
     box-shadow: 0 4px 15px -2px rgba(0, 0, 0, 0.4);
   }
 
   .border-glow {
-    border-color: #00f0ff;
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+    border-color: #0bc2b6;
+    box-shadow: 0 0 15px rgba(11, 194, 182, 0.4);
   }
 
   .bg-grid-pattern {
     background-size: 40px 40px;
     background-image: 
-      linear-gradient(to right, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+      linear-gradient(to right, rgba(11, 194, 182, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(11, 194, 182, 0.05) 1px, transparent 1px);
   }
 }

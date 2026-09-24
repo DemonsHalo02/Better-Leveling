@@ -52,12 +52,12 @@ export function isGalleryVip(): boolean {
   if (typeof window === "undefined") return false;
   if (isSystemAdmin()) return true;
   const tier = localStorage.getItem("hunter_vip_tier");
-  if (tier === "S-Rank VIP Guild") return true;
+  if (tier === "Level 100 VIP Guild") return true;
   try {
     const savedUser = localStorage.getItem("hunter_current_user");
     if (savedUser) {
       const parsed = JSON.parse(savedUser);
-      return isGalleryAdmin(parsed.email) || parsed.tier === "S-Rank VIP Guild";
+      return isGalleryAdmin(parsed.email) || parsed.tier === "Level 100 VIP Guild";
     }
   } catch {
     // ignore
@@ -81,17 +81,17 @@ export function getCurrentUserEmail(): string {
 }
 
 export function getCurrentUserDisplayName(): string {
-  if (typeof window === "undefined") return "Hunter";
+  if (typeof window === "undefined") return "Adventurer";
   try {
     const savedUser = localStorage.getItem("hunter_current_user");
     if (savedUser) {
       const parsed = JSON.parse(savedUser);
-      return parsed.displayName || parsed.email?.split("@")[0] || "Hunter";
+      return parsed.displayName || parsed.email?.split("@")[0] || "Adventurer";
     }
   } catch {
     // ignore
   }
-  return "Hunter";
+  return "Adventurer";
 }
 
 function fileToBase64(file: File): Promise<string> {
@@ -106,7 +106,7 @@ function fileToBase64(file: File): Promise<string> {
 function getLocalArtworks(): Artwork[] {
   if (typeof window === "undefined") return [];
   try {
-    const raw = localStorage.getItem("hunter_artworks_vault");
+    const raw = localStorage.getItem("Adventurer_artworks_vault");
     if (raw) {
       const parsed = JSON.parse(raw);
       if (Array.isArray(parsed)) return parsed;
@@ -118,7 +118,7 @@ function getLocalArtworks(): Artwork[] {
 function saveLocalArtworks(items: Artwork[]): void {
   if (typeof window === "undefined") return;
   try {
-    localStorage.setItem("hunter_artworks_vault", JSON.stringify(items));
+    localStorage.setItem("Adventurer_artworks_vault", JSON.stringify(items));
     window.dispatchEvent(new CustomEvent("storage"));
     window.dispatchEvent(new CustomEvent("hunterStateChanged"));
   } catch (err) {
@@ -247,7 +247,7 @@ export async function deleteArtwork(artwork: Artwork, requesterEmail: string): P
   // Remove locally
   const local = getLocalArtworks().filter((item) => item.id !== artwork.id);
   saveLocalArtworks(local);
-  localStorage.removeItem(`hunter_artworks_comments_${artwork.id}`);
+  localStorage.removeItem(`Adventurer_artworks_comments_${artwork.id}`);
 
   // Attempt cloud delete
   if (db) {
@@ -326,7 +326,7 @@ export async function toggleArtworkReaction(
 
 export async function fetchComments(artworkId: string): Promise<ArtComment[]> {
   if (typeof window === "undefined") return [];
-  const localKey = `hunter_artworks_comments_${artworkId}`;
+  const localKey = `Adventurer_artworks_comments_${artworkId}`;
   let localComments: ArtComment[] = [];
   try {
     const raw = localStorage.getItem(localKey);
@@ -342,7 +342,7 @@ export async function fetchComments(artworkId: string): Promise<ArtComment[]> {
       return {
         id: d.id,
         authorEmail: data.authorEmail || "",
-        authorName: data.authorName || "Hunter",
+        authorName: data.authorName || "Adventurer",
         text: data.text || "",
         createdAt: data.createdAt?.toMillis?.() ?? data.createdAt ?? Date.now(),
       };
@@ -369,12 +369,12 @@ export async function addComment(
   text: string
 ): Promise<boolean> {
   if (!text.trim() || !authorEmail || typeof window === "undefined") return false;
-  const localKey = `hunter_artworks_comments_${artworkId}`;
+  const localKey = `Adventurer_artworks_comments_${artworkId}`;
 
   const comment: ArtComment = {
     id: `cmt_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
     authorEmail: authorEmail.trim().toLowerCase(),
-    authorName: authorName.trim() || "Hunter",
+    authorName: authorName.trim() || "Adventurer",
     text: text.trim(),
     createdAt: Date.now(),
   };

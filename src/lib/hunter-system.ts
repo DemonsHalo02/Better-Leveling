@@ -2,9 +2,9 @@
 
 import confetti from 'canvas-confetti';
 
-export type HunterRank = 'E-Rank' | 'D-Rank' | 'C-Rank' | 'B-Rank' | 'A-Rank' | 'S-Rank' | 'Shadow Monarch';
+export type AdventurerRank = 'Novice' | 'D-Rank' | 'C-Rank' | 'B-Rank' | 'A-Rank' | 'Level 100' | 'Warrior of Light';
 
-export interface HunterStats {
+export interface AdventurerStats {
   str: number; // Strength - lifting & workouts
   agi: number; // Agility - cardio & reps
   vit: number; // Vitality - hydration & sleep
@@ -40,13 +40,13 @@ export interface HunterState {
   level: number;
   xp: number;
   xpToNextLevel: number;
-  rank: HunterRank;
+  rank: AdventurerRank;
   title: string;
   hp: number; // Max 100
   mp: number; // Max 100
   streakDays: number;
   lastActiveDate: string;
-  stats: HunterStats;
+  stats: AdventurerStats;
   profile: UserProfile;
   completedQuestsToday: {
     workout: boolean;
@@ -64,8 +64,8 @@ const DEFAULT_STATE: HunterState = {
   level: 1,
   xp: 0,
   xpToNextLevel: 500,
-  rank: 'E-Rank',
-  title: 'Awakened Hunter',
+  rank: 'Novice',
+  title: 'Awakened Adventurer',
   hp: 100,
   mp: 0,
   streakDays: 1,
@@ -113,13 +113,13 @@ export const HYDRATION_INCREMENT_MP = (HYDRATION_INCREMENT_OZ / HYDRATION_GOAL_O
 
 const HYDRATION_ONE_TIME_RESET_KEY = 'pf_hydration_force_reset_20260717_reset_now';
 
-export function getRankFromLevel(level: number): { rank: HunterRank; title: string } {
-  if (level >= 100) return { rank: 'Shadow Monarch', title: 'Monarch of Shadows' };
-  if (level >= 70) return { rank: 'S-Rank', title: 'National Level Hunter' };
+export function getRankFromLevel(level: number): { rank: AdventurerRank; title: string } {
+  if (level >= 100) return { rank: 'Warrior of Light', title: 'Monarch of Shadows' };
+  if (level >= 70) return { rank: 'Level 100', title: 'National Level Adventurer' };
   if (level >= 45) return { rank: 'A-Rank', title: 'Elite Raid Captain' };
   if (level >= 25) return { rank: 'B-Rank', title: 'Dungeon Striker' };
   if (level >= 10) return { rank: 'C-Rank', title: 'Guild Vanguard' };
-  return { rank: 'E-Rank', title: 'Awakened Hunter' };
+  return { rank: 'Novice', title: 'Awakened Adventurer' };
 }
 
 export function calculateXpForNextLevel(level: number): number {
@@ -217,7 +217,7 @@ export function loadHunterState(): HunterState {
     
     return parsed;
   } catch (e) {
-    console.error("Error loading hunter state:", e);
+    console.error("Error loading Adventurer state:", e);
     return DEFAULT_STATE;
   }
 }
@@ -229,7 +229,7 @@ export function saveHunterState(state: HunterState): void {
     // Dispatch custom event so UI components can re-render reactively
     window.dispatchEvent(new CustomEvent('hunterStateChanged', { detail: state }));
   } catch (e) {
-    console.error("Error saving hunter state:", e);
+    console.error("Error saving Adventurer state:", e);
   }
 }
 
@@ -255,12 +255,12 @@ export function resetHunterState(): HunterState {
     window.dispatchEvent(new CustomEvent('storage'));
     return fresh;
   } catch (e) {
-    console.error("Error resetting hunter state:", e);
+    console.error("Error resetting Adventurer state:", e);
     return DEFAULT_STATE;
   }
 }
 
-export function awardXp(amount: number, statType?: keyof Omit<HunterStats, 'availablePoints'>, existingState?: HunterState): HunterState {
+export function awardXp(amount: number, statType?: keyof Omit<AdventurerStats, 'availablePoints'>, existingState?: HunterState): HunterState {
   const state = existingState || loadHunterState();
   state.xp += amount;
   
@@ -321,7 +321,7 @@ export function triggerLevelUpCelebration() {
   }
 }
 
-export function allocateStatPoint(stat: keyof Omit<HunterStats, 'availablePoints'>): HunterState {
+export function allocateStatPoint(stat: keyof Omit<AdventurerStats, 'availablePoints'>): HunterState {
   const state = loadHunterState();
   if (state.stats.availablePoints > 0) {
     state.stats[stat] += 1;
@@ -422,7 +422,7 @@ export function drinkWaterAmount(oz: number): HunterState {
   return loadHunterState();
 }
 
-export function toggleQuestCompletion(questType: keyof HunterState['completedQuestsToday'], xpReward: number = 150, statType: keyof Omit<HunterStats, 'availablePoints'> = 'str'): HunterState {
+export function toggleQuestCompletion(questType: keyof HunterState['completedQuestsToday'], xpReward: number = 150, statType: keyof Omit<AdventurerStats, 'availablePoints'> = 'str'): HunterState {
   const state = loadHunterState();
   if (!state.completedQuestsToday) {
     state.completedQuestsToday = { workout: false, calories: false, protein: false, hydration: false, weighIn: false, cardio: false, matchaTea: false };

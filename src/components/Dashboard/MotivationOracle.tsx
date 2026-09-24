@@ -7,28 +7,28 @@ import confetti from 'canvas-confetti';
 
 const DIRECTIVE_QUOTES = [
   {
-    quote: "A hunter who fears the ground will never rise above E-Rank. Step onto the mat and conquer gravity with the discipline of a true S-Rank.",
-    author: "Shadow Monarch Directive",
+    quote: "A Adventurer who fears the ground will never rise above Novice. Step onto the mat and conquer gravity with the discipline of a true Level 100.",
+    author: "Warrior of Light Directive",
     stat: "STR FOCUS"
   },
   {
     quote: "Your target weight of 160 LBS is not a dream—it is an inevitability forged through daily discipline, smart meal prep, and macro precision.",
-    author: "S-Rank Shred Blueprint Codex",
+    author: "Level 100 Shred Blueprint Codex",
     stat: "VIT FOCUS"
   },
   {
     quote: "When fatigue sets in during the 4th set, remember: the system only rewards those who push beyond their perceived limits.",
-    author: "Awakened Hunter Guidance",
+    author: "Awakened Adventurer Guidance",
     stat: "AGI FOCUS"
   },
   {
-    quote: "Meal prep is the armor of the modern hunter. A clean kitchen builds an unbreakable physique.",
-    author: "Shadow Monarch System",
+    quote: "Meal prep is the armor of the modern Adventurer. A clean kitchen builds an unbreakable physique.",
+    author: "Warrior of Light System",
     stat: "INT FOCUS"
   },
   {
     quote: "Consistency is your strongest skill. Do not break the daily streak; let your discipline terrify the weakness within you.",
-    author: "S-Rank Vanguard",
+    author: "Level 100 Vanguard",
     stat: "PER FOCUS"
   },
   {
@@ -37,8 +37,8 @@ const DIRECTIVE_QUOTES = [
     stat: "VIT FOCUS"
   },
   {
-    quote: "You did not awaken just to remain average. Lift heavy, track your macros, and claim your S-Rank destiny.",
-    author: "Shadow Monarch System",
+    quote: "You did not awaken just to remain average. Lift heavy, track your macros, and claim your Level 100 destiny.",
+    author: "Warrior of Light System",
     stat: "ALL STATS"
   }
 ];
@@ -63,7 +63,7 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
         setXpClaimed(true);
       }
       const tier = localStorage.getItem('hunter_vip_tier');
-      if (tier === "S-Rank VIP Guild") setIsVip(true);
+      if (tier === "Level 100 VIP Guild") setIsVip(true);
     }
   }, []);
 
@@ -95,7 +95,7 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
 
   const handleCopy = () => {
     const current = DIRECTIVE_QUOTES[currentIndex];
-    navigator.clipboard.writeText(`"${current.quote}" - ${current.author} [Better Leveling v2]`);
+    navigator.clipboard.writeText(`"${current.quote}" - ${current.author} [Better Leveling: Rebirth]`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -117,12 +117,12 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-mono font-black uppercase tracking-widest text-system-cyan bg-system-blue/20 px-2 py-0.5 rounded border border-system-blue/30">
-                  ⚡ General Hunter Feature
+                  ⚡ General Adventurer Feature
                 </span>
                 <span className="text-xs font-mono text-zinc-400">Daily Wisdom Codex</span>
               </div>
               <h3 className="text-lg font-black text-white uppercase tracking-wider mt-0.5">
-                Shadow Monarch Daily Directive Oracle
+                Warrior of Light Daily Directive Oracle
               </h3>
             </div>
           </div>
@@ -185,15 +185,15 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
         <div className="space-y-3 relative z-10">
           <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-system-gold/20 border border-system-gold text-system-gold text-[10px] font-mono uppercase tracking-widest font-bold">
             <Crown className="w-3 h-3 fill-system-gold animate-bounce" />
-            S-Rank VIP Exclusive Suite
+            Level 100 VIP Exclusive Suite
           </div>
           <h3 className="text-xl font-black text-white uppercase tracking-wider text-glow-gold">
             AI Coach & Recomposition Lab
           </h3>
           <p className="text-xs text-zinc-300 leading-relaxed">
             {isVip 
-              ? "Your S-Rank VIP privileges are active! Access your custom weekly cutting schedule, skin retention advice, and macro simulation lab."
-              : "Upgrade to the S-Rank VIP Guild to unlock the AI Recomposing Simulator, custom meal blueprints, and exclusive +1,500 XP golden trophies!"
+              ? "Your Level 100 VIP privileges are active! Access your custom weekly cutting schedule, skin retention advice, and macro simulation lab."
+              : "Upgrade to the Level 100 VIP Guild to unlock the AI Recomposing Simulator, custom meal blueprints, and exclusive +1,500 XP golden trophies!"
             }
           </p>
         </div>
@@ -203,7 +203,7 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
           className="relative z-10 w-full py-3 px-4 rounded-xl bg-gradient-to-r from-system-gold via-yellow-400 to-system-gold text-black font-black uppercase text-xs tracking-widest shadow-glow-gold hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer animate-pulse"
         >
           <Crown className="w-4 h-4 fill-black" />
-          <span>{isVip ? "Open S-Rank VIP Lab" : "Explore S-Rank Perks & Upgrade"}</span>
+          <span>{isVip ? "Open Level 100 VIP Lab" : "Explore Level 100 Perks & Upgrade"}</span>
         </button>
       </div>
 

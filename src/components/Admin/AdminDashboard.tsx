@@ -37,7 +37,7 @@ export interface GuildMember {
   email: string;
   level: number;
   rank: string;
-  tier: "E-Rank Free" | "S-Rank VIP Guild";
+  tier: "Classless" | "Level 100 VIP Guild";
   status: "Active" | "Suspended";
   joinedDate: string;
 }
@@ -48,8 +48,8 @@ const DEFAULT_MEMBERS: GuildMember[] = [
     name: "Nick Crosson",
     email: "ncrossonofficial06@gmail.com",
     level: 100,
-    rank: "Shadow Monarch",
-    tier: "S-Rank VIP Guild",
+    rank: "Warrior of Light",
+    tier: "Level 100 VIP Guild",
     status: "Active",
     joinedDate: "2026-01-01",
   },
@@ -58,8 +58,8 @@ const DEFAULT_MEMBERS: GuildMember[] = [
     name: "Jin-Woo Sung",
     email: "monarch_shadow@system.kr",
     level: 99,
-    rank: "National Level Hunter",
-    tier: "S-Rank VIP Guild",
+    rank: "National Level Adventurer",
+    tier: "Level 100 VIP Guild",
     status: "Active",
     joinedDate: "2026-02-14",
   },
@@ -68,8 +68,8 @@ const DEFAULT_MEMBERS: GuildMember[] = [
     name: "Cha Hae-In",
     email: "blade_dancer@guild.kr",
     level: 85,
-    rank: "S-Rank Hunter",
-    tier: "S-Rank VIP Guild",
+    rank: "Level 100 Adventurer",
+    tier: "Level 100 VIP Guild",
     status: "Active",
     joinedDate: "2026-03-10",
   },
@@ -78,18 +78,18 @@ const DEFAULT_MEMBERS: GuildMember[] = [
     name: "Baek Yoon-Ho",
     email: "white_tiger@guild.kr",
     level: 82,
-    rank: "S-Rank Hunter",
-    tier: "E-Rank Free",
+    rank: "Level 100 Adventurer",
+    tier: "Classless",
     status: "Active",
     joinedDate: "2026-04-05",
   },
   {
     id: "user-alex-005",
     name: "Alex Rivera",
-    email: "alex_hunter24@gmail.com",
+    email: "alex_Adventurer24@gmail.com",
     level: 28,
-    rank: "B-Rank Hunter",
-    tier: "E-Rank Free",
+    rank: "B-Rank Adventurer",
+    tier: "Classless",
     status: "Active",
     joinedDate: "2026-06-20",
   },
@@ -98,8 +98,8 @@ const DEFAULT_MEMBERS: GuildMember[] = [
     name: "Marcus Vance",
     email: "m_vance_lifts@yahoo.com",
     level: 14,
-    rank: "C-Rank Hunter",
-    tier: "E-Rank Free",
+    rank: "C-Rank Adventurer",
+    tier: "Classless",
     status: "Suspended",
     joinedDate: "2026-07-02",
   },
@@ -113,12 +113,12 @@ export default function AdminDashboard() {
   const [broadcastMsg, setBroadcastMsg] = useState<string>("");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // New Hunter Modal / Quick Add
+  // New Adventurer Modal / Quick Add
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
   const [newName, setNewName] = useState<string>("");
   const [newEmail, setNewEmail] = useState<string>("");
   const [newLevel, setNewLevel] = useState<number>(1);
-  const [newTier, setNewTier] = useState<"E-Rank Free" | "S-Rank VIP Guild">("E-Rank Free");
+  const [newTier, setNewTier] = useState<"Classless" | "Level 100 VIP Guild">("Classless");
 
   useEffect(() => {
     const authorized = isSystemAdmin();
@@ -145,8 +145,8 @@ export default function AdminDashboard() {
                 name: parsed.displayName || parsed.email.split("@")[0],
                 email: parsed.email,
                 level: 10,
-                rank: "Awakened Hunter",
-                tier: (parsed.tier === "S-Rank VIP Guild" ? "S-Rank VIP Guild" : "E-Rank Free") as "E-Rank Free" | "S-Rank VIP Guild",
+                rank: "Awakened Adventurer",
+                tier: (parsed.tier === "Level 100 VIP Guild" ? "Level 100 VIP Guild" : "Classless") as "Classless" | "Level 100 VIP Guild",
                 status: "Active" as const,
                 joinedDate: new Date().toISOString().split("T")[0],
               });
@@ -193,15 +193,15 @@ export default function AdminDashboard() {
       member.email.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesTier =
       tierFilter === "all" ||
-      (tierFilter === "vip" && member.tier === "S-Rank VIP Guild") ||
-      (tierFilter === "free" && member.tier === "E-Rank Free");
+      (tierFilter === "vip" && member.tier === "Level 100 VIP Guild") ||
+      (tierFilter === "free" && member.tier === "Classless");
     return matchesSearch && matchesTier;
   });
 
   const handleToggleVip = (id: string) => {
     const updated = members.map((m) => {
       if (m.id === id) {
-        const nextTier: "E-Rank Free" | "S-Rank VIP Guild" = m.tier === "S-Rank VIP Guild" ? "E-Rank Free" : "S-Rank VIP Guild";
+        const nextTier: "Classless" | "Level 100 VIP Guild" = m.tier === "Level 100 VIP Guild" ? "Classless" : "Level 100 VIP Guild";
         // If modifying logged in user or admin, sync local VIP tier
         if (m.email.toLowerCase() === "ncrossonofficial06@gmail.com" || (typeof window !== "undefined" && localStorage.getItem("hunter_current_user")?.includes(m.email))) {
           if (typeof window !== "undefined") {
@@ -222,14 +222,14 @@ export default function AdminDashboard() {
       if (m.id === id) {
         const nextLevel = Math.min(100, Math.max(1, m.level + delta));
         let nextRank = m.rank;
-        if (nextLevel >= 100) nextRank = "Shadow Monarch";
-        else if (nextLevel >= 70) nextRank = "National Level Hunter";
-        else if (nextLevel >= 45) nextRank = "S-Rank Hunter";
-        else if (nextLevel >= 25) nextRank = "A-Rank Hunter";
-        else if (nextLevel >= 10) nextRank = "B-Rank Hunter";
-        else nextRank = "C-Rank Hunter";
+        if (nextLevel >= 100) nextRank = "Warrior of Light";
+        else if (nextLevel >= 70) nextRank = "National Level Adventurer";
+        else if (nextLevel >= 45) nextRank = "Level 100 Adventurer";
+        else if (nextLevel >= 25) nextRank = "A-Rank Adventurer";
+        else if (nextLevel >= 10) nextRank = "B-Rank Adventurer";
+        else nextRank = "C-Rank Adventurer";
 
-        // If adjusting current hunter state
+        // If adjusting current Adventurer state
         if (typeof window !== "undefined" && localStorage.getItem("hunter_current_user")?.includes(m.email)) {
           const state = loadHunterState();
           state.level = nextLevel;
@@ -241,7 +241,7 @@ export default function AdminDashboard() {
       return m;
     });
     saveRoster(updated);
-    showToast(`Hunter level adjusted (+${delta} levels)!`);
+    showToast(`Adventurer level adjusted (+${delta} levels)!`);
   };
 
   const handleToggleStatus = (id: string) => {
@@ -253,7 +253,7 @@ export default function AdminDashboard() {
       return m;
     });
     saveRoster(updated);
-    showToast("Hunter account status toggled!");
+    showToast("Adventurer account status toggled!");
   };
 
   const handleDeleteMember = (id: string, name: string) => {
@@ -265,30 +265,30 @@ export default function AdminDashboard() {
   };
 
   const handleResetActiveAccount = () => {
-    if (confirm("⚡ MONARCH RE-AWAKENING: Reset your active local hunter account to Level 1 E-Rank with base stats?")) {
+    if (confirm("⚡ MONARCH RE-AWAKENING: Reset your active local Adventurer account to Level 1 Novice with base stats?")) {
       resetHunterState();
-      showToast("Your local account and progression have been reset to Level 1 E-Rank!");
+      showToast("Your local account and progression have been reset to Level 1 Novice!");
     }
   };
 
   const handleResetSystemAccounts = () => {
-    if (confirm("⚠️ SYSTEM-WIDE DIRECTIVE: Reset ALL registered hunter accounts across the guild database back to Level 1 E-Rank status?")) {
+    if (confirm("⚠️ SYSTEM-WIDE DIRECTIVE: Reset ALL registered Adventurer accounts across the guild database back to Level 1 Novice status?")) {
       const resetMembers = members.map((m) => ({
         ...m,
         level: 1,
-        rank: "Awakened Hunter",
+        rank: "Awakened Adventurer",
       }));
       saveRoster(resetMembers);
       resetHunterState();
-      showToast("All hunter accounts globally reset to Level 1 E-Rank status!");
+      showToast("All Adventurer accounts globally reset to Level 1 Novice status!");
     }
   };
 
   const handleResetMemberAccount = (id: string, name: string, email: string) => {
-    if (confirm(`Reset ${name}'s account back to Level 1 E-Rank Hunter?`)) {
+    if (confirm(`Reset ${name}'s account back to Level 1 Novice Adventurer?`)) {
       const updated = members.map((m) => {
         if (m.id === id) {
-          return { ...m, level: 1, rank: "Awakened Hunter", status: "Active" as const };
+          return { ...m, level: 1, rank: "Awakened Adventurer", status: "Active" as const };
         }
         return m;
       });
@@ -297,7 +297,7 @@ export default function AdminDashboard() {
       if (typeof window !== "undefined" && (localStorage.getItem("hunter_current_user")?.includes(email) || email.toLowerCase() === "ncrossonofficial06@gmail.com")) {
         resetHunterState();
       }
-      showToast(`${name}'s account has been reset to Level 1 E-Rank!`);
+      showToast(`${name}'s account has been reset to Level 1 Novice!`);
     }
   };
 
@@ -305,11 +305,11 @@ export default function AdminDashboard() {
     e.preventDefault();
     if (!newName.trim() || !newEmail.trim()) return;
 
-    let rank = "Awakened Hunter";
-    if (newLevel >= 100) rank = "Shadow Monarch";
-    else if (newLevel >= 70) rank = "National Level Hunter";
-    else if (newLevel >= 45) rank = "S-Rank Hunter";
-    else if (newLevel >= 25) rank = "A-Rank Hunter";
+    let rank = "Awakened Adventurer";
+    if (newLevel >= 100) rank = "Warrior of Light";
+    else if (newLevel >= 70) rank = "National Level Adventurer";
+    else if (newLevel >= 45) rank = "Level 100 Adventurer";
+    else if (newLevel >= 25) rank = "A-Rank Adventurer";
 
     const newMember: GuildMember = {
       id: `user-${Date.now()}`,
@@ -328,7 +328,7 @@ export default function AdminDashboard() {
     setNewName("");
     setNewEmail("");
     setNewLevel(1);
-    showToast(`New Hunter ${newMember.name} registered into Guild Roster!`);
+    showToast(`New Adventurer ${newMember.name} registered into Guild Roster!`);
   };
 
   const handleBroadcastSubmit = (e: React.FormEvent) => {
@@ -343,23 +343,23 @@ export default function AdminDashboard() {
 
     if (typeof window !== "undefined") {
       localStorage.setItem("pf_system_announcement", JSON.stringify(announcement));
-      window.dispatchEvent(new CustomEvent("hunterSystemBroadcast", { detail: announcement }));
+      window.dispatchEvent(new CustomEvent("AdventurerSystemBroadcast", { detail: announcement }));
     }
 
     setBroadcastMsg("");
-    showToast("⚡ System Broadcast transmitted to all Hunter terminals!");
+    showToast("⚡ System Broadcast transmitted to all Adventurer terminals!");
   };
 
   const handleClearBroadcast = () => {
     if (typeof window !== "undefined") {
       localStorage.removeItem("pf_system_announcement");
-      window.dispatchEvent(new CustomEvent("hunterSystemBroadcast", { detail: null }));
+      window.dispatchEvent(new CustomEvent("AdventurerSystemBroadcast", { detail: null }));
     }
     showToast("Active System Broadcast terminated.");
   };
 
   const handleResetAllQuestsToday = () => {
-    if (confirm("Reset today's daily quest checkmarks for your local hunter profile?")) {
+    if (confirm("Reset today's daily quest checkmarks for your local Adventurer profile?")) {
       const state = loadHunterState();
       state.mp = 0;
       state.completedQuestsToday = {
@@ -378,7 +378,7 @@ export default function AdminDashboard() {
 
   // KPIs
   const totalMembers = members.length;
-  const vipCount = members.filter((m) => m.tier === "S-Rank VIP Guild").length;
+  const vipCount = members.filter((m) => m.tier === "Level 100 VIP Guild").length;
   const activeCount = members.filter((m) => m.status === "Active").length;
 
   return (
@@ -405,7 +405,7 @@ export default function AdminDashboard() {
             <span>GUILD ADMINISTRATION & USER MANAGEMENT</span>
           </h2>
           <p className="text-zinc-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
-            Manage Hunter accounts, assign S-Rank VIP Guild permissions, adjust level hierarchies, and transmit real-time system broadcasts.
+            Manage Adventurer accounts, assign Level 100 VIP Guild permissions, adjust level hierarchies, and transmit real-time system broadcasts.
           </p>
         </div>
 
@@ -424,7 +424,7 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono">
         <div className="bg-system-panel p-5 rounded-2xl border border-white/10 shadow-lg flex items-center justify-between">
           <div>
-            <div className="text-[10px] uppercase font-bold text-zinc-400">Total Hunters</div>
+            <div className="text-[10px] uppercase font-bold text-zinc-400">Total Adventurers</div>
             <div className="text-2xl font-black text-white mt-1">{totalMembers}</div>
             <div className="text-[11px] text-system-cyan">Registered in Guild</div>
           </div>
@@ -437,7 +437,7 @@ export default function AdminDashboard() {
           <div>
             <div className="text-[10px] uppercase font-bold text-zinc-400">VIP Guild Members</div>
             <div className="text-2xl font-black text-system-gold mt-1">{vipCount}</div>
-            <div className="text-[11px] text-yellow-300">S-Rank Access Unlocked</div>
+            <div className="text-[11px] text-yellow-300">Level 100 Access Unlocked</div>
           </div>
           <div className="w-12 h-12 rounded-xl bg-system-gold/10 border border-system-gold/30 flex items-center justify-center text-system-gold">
             <Crown className="w-6 h-6 animate-pulse" />
@@ -448,7 +448,7 @@ export default function AdminDashboard() {
           <div>
             <div className="text-[10px] uppercase font-bold text-zinc-400">Active Status</div>
             <div className="text-2xl font-black text-green-400 mt-1">{activeCount}</div>
-            <div className="text-[11px] text-green-300">Operational Hunters</div>
+            <div className="text-[11px] text-green-300">Operational Adventurers</div>
           </div>
           <div className="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400">
             <UserCheck className="w-6 h-6" />
@@ -530,7 +530,7 @@ export default function AdminDashboard() {
                 <span>Reset Active Account</span>
               </div>
               <p className="text-[11px] text-zinc-400 mt-1">
-                Wipes current local hunter levels and stats back to Level 1 E-Rank while preserving your name and profile settings.
+                Wipes current local Adventurer levels and stats back to Level 1 Novice while preserving your name and profile settings.
               </p>
             </div>
             <button
@@ -568,7 +568,7 @@ export default function AdminDashboard() {
                 <span>Reset All Guild Accounts</span>
               </div>
               <p className="text-[11px] text-zinc-400 mt-1">
-                Global wipe: resets ALL registered hunter accounts across the entire database back to Level 1 Awakened status.
+                Global wipe: resets ALL registered Adventurer accounts across the entire database back to Level 1 Awakened status.
               </p>
             </div>
             <button
@@ -590,7 +590,7 @@ export default function AdminDashboard() {
               <Users className="w-5 h-5 text-red-400" />
             </div>
             <div>
-              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-400">Hunter Hierarchy Database</div>
+              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-400">Adventurer Hierarchy Database</div>
               <h3 className="text-lg font-black text-white uppercase tracking-wider">Registered Guild Members ({filteredMembers.length})</h3>
             </div>
           </div>
@@ -603,7 +603,7 @@ export default function AdminDashboard() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search hunters..."
+                placeholder="Search Adventurers..."
                 className="w-full bg-system-dark border border-white/10 rounded-xl pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-system-blue font-mono"
               />
             </div>
@@ -615,7 +615,7 @@ export default function AdminDashboard() {
             >
               <option value="all">All Tiers</option>
               <option value="vip">VIP Guild Only</option>
-              <option value="free">E-Rank Free Only</option>
+              <option value="free">Classless Only</option>
             </select>
 
             <button
@@ -623,7 +623,7 @@ export default function AdminDashboard() {
               className="px-4 py-2 rounded-xl bg-system-gold text-black font-black uppercase text-xs tracking-wider shadow-glow-gold hover:scale-105 transition-all flex items-center gap-1.5 cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5 fill-black" />
-              <span>+ Add Hunter</span>
+              <span>+ Add Adventurer</span>
             </button>
           </div>
         </div>
@@ -633,7 +633,7 @@ export default function AdminDashboard() {
           <table className="w-full text-left font-mono text-xs border-collapse">
             <thead>
               <tr className="border-b border-white/10 text-zinc-400 uppercase text-[10px] tracking-wider">
-                <th className="py-3 px-4">Hunter & Email</th>
+                <th className="py-3 px-4">Adventurer & Email</th>
                 <th className="py-3 px-4">Level & Rank</th>
                 <th className="py-3 px-4">Guild Tier</th>
                 <th className="py-3 px-4">Status</th>
@@ -642,7 +642,7 @@ export default function AdminDashboard() {
             </thead>
             <tbody className="divide-y divide-white/5">
               {filteredMembers.map((member) => {
-                const isVip = member.tier === "S-Rank VIP Guild";
+                const isVip = member.tier === "Level 100 VIP Guild";
                 const isSelf = member.email.toLowerCase() === "ncrossonofficial06@gmail.com" || member.email.toLowerCase() === "ncrossonofficial06@gmail.com";
 
                 return (
@@ -699,7 +699,7 @@ export default function AdminDashboard() {
                               ? "bg-system-dark text-zinc-400 border-white/10 hover:border-yellow-500/40 hover:text-yellow-400"
                               : "bg-system-gold/20 text-system-gold border-system-gold/40 hover:bg-system-gold hover:text-black"
                           }`}
-                          title={isVip ? "Downgrade to E-Rank Free" : "Promote to S-Rank VIP Guild"}
+                          title={isVip ? "Downgrade to Classless" : "Promote to Level 100 VIP Guild"}
                         >
                           {isVip ? "Revoke VIP" : "Grant VIP"}
                         </button>
@@ -708,7 +708,7 @@ export default function AdminDashboard() {
                         <button
                           onClick={() => handleAdjustLevel(member.id, 10)}
                           className="px-2 py-1.5 rounded-lg bg-system-blue/20 hover:bg-system-blue text-system-cyan hover:text-black border border-system-blue/40 text-[10px] font-bold transition-all cursor-pointer"
-                          title="Boost +10 Hunter Levels"
+                          title="Boost +10 Adventurer Levels"
                         >
                           +10 LV
                         </button>
@@ -717,7 +717,7 @@ export default function AdminDashboard() {
                         <button
                           onClick={() => handleResetMemberAccount(member.id, member.name, member.email)}
                           className="px-2 py-1.5 rounded-lg bg-red-500/15 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/30 text-[10px] font-bold transition-all cursor-pointer flex items-center gap-1"
-                          title="Reset account to Level 1 E-Rank"
+                          title="Reset account to Level 1 Novice"
                         >
                           <RotateCcw className="w-3 h-3" />
                           <span>Reset</span>
@@ -770,7 +770,7 @@ export default function AdminDashboard() {
           <div className="p-4 rounded-xl bg-system-dark/80 border border-white/10 flex items-center justify-between gap-4">
             <div>
               <div className="font-bold text-white uppercase">Reset Today's Quests</div>
-              <div className="text-[11px] text-zinc-400 mt-0.5">Clear daily checkmarks for local hunter state</div>
+              <div className="text-[11px] text-zinc-400 mt-0.5">Clear daily checkmarks for local Adventurer state</div>
             </div>
             <button
               onClick={handleResetAllQuestsToday}
@@ -802,7 +802,7 @@ export default function AdminDashboard() {
           <div className="bg-system-panel border-2 border-system-gold rounded-2xl p-6 max-w-md w-full shadow-glow-gold space-y-4">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <h3 className="text-lg font-black text-white uppercase tracking-wider flex items-center gap-2">
-                <Crown className="w-5 h-5 text-system-gold" /> Add New Guild Hunter
+                <Crown className="w-5 h-5 text-system-gold" /> Add New Guild Adventurer
               </h3>
               <button
                 onClick={() => setShowAddModal(false)}
@@ -814,7 +814,7 @@ export default function AdminDashboard() {
 
             <form onSubmit={handleAddMemberSubmit} className="space-y-4 font-mono text-xs">
               <div>
-                <label className="block text-zinc-400 uppercase font-bold mb-1">Hunter Name</label>
+                <label className="block text-zinc-400 uppercase font-bold mb-1">Adventurer Name</label>
                 <input
                   type="text"
                   required
@@ -826,7 +826,7 @@ export default function AdminDashboard() {
               </div>
 
               <div>
-                <label className="block text-zinc-400 uppercase font-bold mb-1">Hunter Email</label>
+                <label className="block text-zinc-400 uppercase font-bold mb-1">Adventurer Email</label>
                 <input
                   type="email"
                   required
@@ -854,11 +854,11 @@ export default function AdminDashboard() {
                   <label className="block text-zinc-400 uppercase font-bold mb-1">Guild Tier</label>
                   <select
                     value={newTier}
-                    onChange={(e) => setNewTier(e.target.value as "E-Rank Free" | "S-Rank VIP Guild")}
+                    onChange={(e) => setNewTier(e.target.value as "Classless" | "Level 100 VIP Guild")}
                     className="w-full bg-system-dark border border-white/20 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-system-gold cursor-pointer"
                   >
-                    <option value="E-Rank Free">E-Rank Free</option>
-                    <option value="S-Rank VIP Guild">S-Rank VIP Guild</option>
+                    <option value="Classless">Classless</option>
+                    <option value="Level 100 VIP Guild">Level 100 VIP Guild</option>
                   </select>
                 </div>
               </div>
@@ -875,7 +875,7 @@ export default function AdminDashboard() {
                   type="submit"
                   className="px-5 py-2 rounded-xl bg-system-gold text-black font-black uppercase tracking-wider shadow-glow-gold hover:scale-105 transition-all cursor-pointer"
                 >
-                  Register Hunter
+                  Register Adventurer
                 </button>
               </div>
             </form>

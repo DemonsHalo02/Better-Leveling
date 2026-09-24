@@ -57,7 +57,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
     e.preventDefault();
     const val = parseFloat(newWeightInput);
     if (!isNaN(val) && val > 50 && val < 500) {
-      // Update hunter state weight
+      // Update Adventurer state weight
       updateWeight(val);
       // Also sync to pf_weight_history so the WeightAndPrTracker stays consistent
       if (typeof window !== 'undefined') {
@@ -146,7 +146,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
           <div className="space-y-2 flex-1">
             <div className="flex items-center gap-2">
               <span className="bg-system-gold text-system-dark font-black text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded shadow-sm">
-                👑 S-Rank Boss Raid Directive
+                👑 Level 100 Boss Raid Directive
               </span>
               <span className="text-xs font-mono text-system-cyan">Target: {targetWeight} LBS by {new Date(targetDateStr).toLocaleDateString()}</span>
             </div>
@@ -155,7 +155,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               <span className="text-sm font-mono font-bold text-system-gold">({daysRemaining} Days Left)</span>
             </h3>
             <p className="text-xs text-zinc-300 max-w-2xl leading-relaxed">
-              Every clean meal prep and every PR at {state.profile.gymName || 'your Home Apartment Dojo'} chops HP off this boss raid. Stay consistent on your chosen {state.profile.dietName || '19-Country Global S-Rank Meal Blueprint'} to keep your cut sharp, strong, and ready for the next level!
+              Every clean meal prep and every PR at {state.profile.gymName || 'your Home Apartment Dojo'} chops HP off this boss raid. Stay consistent on your chosen {state.profile.dietName || '19-Country Global Level 100 Meal Blueprint'} to keep your cut sharp, strong, and ready for the next level!
             </p>
 
             {/* Boss HP Bar */}
@@ -192,7 +192,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
       {/* General Feature & VIP Teaser: Daily Motivation Oracle */}
       <MotivationOracle onNavigate={(tab) => onNavigate(tab as TabType)} />
 
-      {/* 🎨 New Feature Banner: Shadow Monarch Art & Manhua Vault */}
+      {/* 🎨 New Feature Banner: Warrior of Light Art & Manhua Vault */}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-system-panel via-[#130a24] to-system-dark p-6 border border-system-purple/50 shadow-glow-purple">
         <div className="absolute -right-12 -top-12 w-64 h-64 bg-system-purple/15 rounded-full blur-3xl pointer-events-none animate-pulse" />
         
@@ -204,10 +204,10 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
             </div>
             <h3 className="text-xl md:text-2xl font-black tracking-wider text-white uppercase flex items-center gap-2">
               <Palette className="w-6 h-6 text-system-purple" />
-              <span>Shadow Monarch Art & Manhua Vault</span>
+              <span>Warrior of Light Art & Manhua Vault</span>
             </h3>
             <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed">
-              Explore exclusive original artwork and manhua chapters uploaded directly to Cloud Storage. Paying S-Rank VIP Guild members can view, like, dislike, and leave guild comments on new releases!
+              Explore exclusive original artwork and manhua chapters uploaded directly to Cloud Storage. Paying Level 100 VIP Guild members can view, like, dislike, and leave guild comments on new releases!
             </p>
           </div>
 
@@ -225,12 +225,12 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
       {/* Grid: Stat Sheet & Today's Workout Quest */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        {/* Left 1 Col: Hunter Stat Sheet */}
+        {/* Left 1 Col: Adventurer Stat Sheet */}
         <div className="bg-system-panel rounded-2xl p-6 border border-system-blue/30 space-y-6 shadow-lg">
           <div className="flex items-center justify-between border-b border-system-blue/20 pb-4">
             <div className="flex items-center gap-2">
               <Shield className="w-5 h-5 text-system-blue" />
-              <h3 className="text-base font-black tracking-widest uppercase text-white">Hunter Stat Sheet</h3>
+              <h3 className="text-base font-black tracking-widest uppercase text-white">Adventurer Stat Sheet</h3>
             </div>
             {state.stats.availablePoints > 0 && (
               <span className="text-xs bg-system-purple/20 border border-system-purple text-system-cyan px-2.5 py-1 rounded-full font-bold animate-pulse shadow-glow-purple">
@@ -505,7 +505,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                   <span className="bg-system-gold/20 text-system-gold font-black text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded border border-system-gold/30">
                     🎯 Personal Directives
                   </span>
-                  <span className="text-xs font-mono text-zinc-400">Custom Hunter Goals</span>
+                  <span className="text-xs font-mono text-zinc-400">Custom Adventurer Goals</span>
                 </div>
                 <h3 className="text-lg md:text-xl font-black text-white uppercase tracking-wider mt-1 flex items-center gap-2">
                   <span>My Custom Daily Quests</span>

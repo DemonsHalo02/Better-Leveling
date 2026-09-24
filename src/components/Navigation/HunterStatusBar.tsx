@@ -10,7 +10,7 @@ interface HunterStatusBarProps {
 
 export default function HunterStatusBar({ onNavigate }: HunterStatusBarProps) {
   const [state, setState] = useState<HunterState | null>(null);
-  const [vipTier, setVipTier] = useState<string>("E-Rank Free");
+  const [vipTier, setVipTier] = useState<string>("Classless");
 
   useEffect(() => {
     setState(loadHunterState());
@@ -38,8 +38,8 @@ export default function HunterStatusBar({ onNavigate }: HunterStatusBarProps) {
 
   const getRankColor = (rank: string) => {
     switch (rank) {
-      case 'Shadow Monarch':
-      case 'S-Rank': return 'text-system-gold border-system-gold bg-system-gold/10 shadow-glow-gold';
+      case 'Warrior of Light':
+      case 'Level 100': return 'text-system-gold border-system-gold bg-system-gold/10 shadow-glow-gold';
       case 'A-Rank': return 'text-system-purple border-system-purple bg-system-purple/10 shadow-glow-purple';
       case 'B-Rank': return 'text-system-blue border-system-blue bg-system-blue/10 shadow-glow-blue';
       default: return 'text-system-cyan border-system-cyan/50 bg-system-cyan/10 shadow-[0_0_10px_rgba(0,240,255,0.2)]';
@@ -59,7 +59,7 @@ export default function HunterStatusBar({ onNavigate }: HunterStatusBarProps) {
             <div>
               <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-system-blue font-mono font-bold flex items-center gap-1.5 leading-none mb-1">
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-system-blue animate-ping" />
-                <span className="text-system-gold font-black">{state.title || "AWAKENED HUNTER"}</span>
+                <span className="text-system-gold font-black">{state.title || "AWAKENED Adventurer"}</span>
                 <span className="text-zinc-500">|</span>
                 <span>SYSTEM ACTIVE</span>
               </div>
@@ -81,11 +81,11 @@ export default function HunterStatusBar({ onNavigate }: HunterStatusBarProps) {
             <button
               onClick={() => onNavigate?.('membership')}
               className={`px-2.5 sm:px-3 py-1 rounded-lg border text-[10px] sm:text-xs font-black tracking-widest uppercase font-mono flex items-center gap-1.5 transition-all hover:scale-105 cursor-pointer ${
-                vipTier === "S-Rank VIP Guild" ? "bg-system-gold text-black border-system-gold shadow-glow-gold" : getRankColor(state.rank)
+                vipTier === "Level 100 VIP Guild" ? "bg-system-gold text-black border-system-gold shadow-glow-gold" : getRankColor(state.rank)
               }`}
-              title="Click to manage Hunter Guild Account & VIP Membership"
+              title="Click to manage Adventurer Guild Account & VIP Membership"
             >
-              {vipTier === "S-Rank VIP Guild" ? (
+              {vipTier === "Level 100 VIP Guild" ? (
                 <>
                   <Crown className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-black flex-shrink-0 animate-bounce" />
                   <span>VIP GUILD</span>

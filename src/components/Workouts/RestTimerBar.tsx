@@ -80,7 +80,7 @@ export default function RestTimerBar() {
           <div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-mono font-black uppercase tracking-widest text-system-cyan bg-system-blue/20 px-2 py-0.5 rounded border border-system-blue/30">
-                ⏱️ General Hunter Feature
+                ⏱️ General Adventurer Feature
               </span>
               <span className="text-xs font-mono text-zinc-400">Set Recovery Engine</span>
             </div>

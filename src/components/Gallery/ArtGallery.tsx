@@ -141,11 +141,11 @@ export default function ArtGallery() {
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-system-gold/10 border border-system-gold text-system-gold text-xs font-mono uppercase tracking-widest font-bold">
               <Crown className="w-3.5 h-3.5" />
-              S-Rank VIP Guild Exclusive
+              Level 100 VIP Guild Exclusive
             </div>
-            <h2 className="text-2xl font-black tracking-wider text-white uppercase">Shadow Monarch Art Vault</h2>
+            <h2 className="text-2xl font-black tracking-wider text-white uppercase">Warrior of Light Art Vault</h2>
             <p className="text-zinc-300 text-sm max-w-lg leading-relaxed">
-              Premium guild members get exclusive access to original art and manhua chapters. Like, dislike, and comment on each piece. Upgrade to S-Rank VIP Guild to unlock the vault.
+              Premium guild members get exclusive access to original art and manhua chapters. Like, dislike, and comment on each piece. Upgrade to Level 100 VIP Guild to unlock the vault.
             </p>
           </div>
         </div>
@@ -166,7 +166,7 @@ export default function ArtGallery() {
             </div>
             <h2 className="text-2xl md:text-3xl font-black tracking-wider text-white uppercase flex items-center gap-2">
               <Palette className="w-7 h-7 text-system-purple" />
-              Shadow Monarch Gallery
+              Warrior of Light Gallery
             </h2>
             <p className="text-zinc-300 text-sm max-w-2xl">
               Browse exclusive original art and manhua chapters. React and comment on each piece.

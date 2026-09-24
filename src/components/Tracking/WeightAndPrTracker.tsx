@@ -26,13 +26,13 @@ export default function WeightAndPrTracker() {
   const [prExercise, setPrExercise] = useState('');
   const [prWeight, setPrWeight] = useState('');
   const [prReps, setPrReps] = useState('');
-  const [hunterStr, setHunterStr] = useState<number>(10);
+  const [AdventurerStr, setAdventurerStr] = useState<number>(10);
   const [dailySteps, setDailySteps] = useState<number>(0);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const updateStr = () => {
-        setHunterStr(loadHunterState().stats.str);
+        setAdventurerStr(loadHunterState().stats.str);
       };
       updateStr();
       window.addEventListener('hunterStateChanged', updateStr);
@@ -240,7 +240,7 @@ export default function WeightAndPrTracker() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
           <div>
             <h3 className="text-base font-black text-white uppercase tracking-widest flex items-center gap-2">
-              <Trophy className="w-5 h-5 text-system-gold" /> Hunter Strength PR Vault
+              <Trophy className="w-5 h-5 text-system-gold" /> Adventurer Strength PR Vault
             </h3>
             <p className="text-xs text-zinc-400">Log your highest rep counts per set during Calisthenics Workouts to level up your STR stat!</p>
           </div>
@@ -257,7 +257,7 @@ export default function WeightAndPrTracker() {
         <div className="bg-system-card p-4 rounded-xl border border-system-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-xl bg-system-gold/20 border border-system-gold/50 flex items-center justify-center font-black text-xl text-system-gold shadow-glow-gold">
-              {hunterStr}
+              {AdventurerStr}
             </div>
             <div>
               <div className="text-xs font-bold text-system-gold uppercase tracking-wider flex items-center gap-1.5">
@@ -269,7 +269,7 @@ export default function WeightAndPrTracker() {
           </div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase bg-black/40 px-3.5 py-2 rounded-lg border border-white/10 text-system-cyan whitespace-nowrap">
             <Trophy className="w-4 h-4 text-system-gold" />
-            <span>Next Rank: {hunterStr + (5 - (hunterStr % 5 || 5))} STR</span>
+            <span>Next Rank: {AdventurerStr + (5 - (AdventurerStr % 5 || 5))} STR</span>
           </div>
         </div>
 
