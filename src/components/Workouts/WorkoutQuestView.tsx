@@ -74,6 +74,7 @@ export default function WorkoutQuestView() {
     setCompletedSets(updated);
     if (typeof window !== 'undefined') {
       localStorage.setItem(`pf_completed_sets_${selectedDay}_daily`, JSON.stringify(updated));
+      window.dispatchEvent(new CustomEvent('hunterStateChanged'));
     }
 
     const allCleared = currentDayWorkout.exercises.every(ex => (updated[ex.id] || 0) >= ex.sets);

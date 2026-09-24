@@ -15,7 +15,7 @@ import AdminDashboard from "@/components/Admin/AdminDashboard";
 import CourseTracker from "@/components/Courses/CourseTracker";
 import { Shield } from "lucide-react";
 
-import { syncHunterToCloud } from "@/lib/cloud-sync";
+import { syncHunterToCloud, restoreHunterFromCloud } from "@/lib/cloud-sync";
 import { isSystemAdmin } from "@/lib/hunter-system";
 
 export default function Home() {
@@ -24,6 +24,17 @@ export default function Home() {
   // Reactive sync
   useEffect(() => {
     let syncTimeout: NodeJS.Timeout;
+    
+    // Auto-restore on app load so device switches stay in sync
+    try {
+      const userStr = localStorage.getItem("hunter_current_user");
+      if (userStr) {
+        const user = JSON.parse(userStr);
+        if (user && user.email) {
+          restoreHunterFromCloud(user.email);
+        }
+      }
+    } catch (e) {}
 
     const triggerCloudSync = () => {
       clearTimeout(syncTimeout);
