@@ -79,14 +79,6 @@ export default function MembershipPortal() {
           setCurrentUser(updatedUser);
           localStorage.setItem("hunter_current_user", JSON.stringify(updatedUser));
           localStorage.setItem("hunter_vip_tier", activeTier);
-          
-          // Auto restore from cloud to sync down from other devices (DO NOT PUSH AND OVERWRITE HERE)
-          restoreHunterFromCloud(user.email).then(cloudData => {
-            if (!cloudData) {
-              // If completely new user, then push
-              syncHunterToCloud(user.email!, updatedUser.displayName, activeTier);
-            }
-          });
         }
       });
 
