@@ -1,76 +1,47 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { PlanTier, getTodayWorkout, WorkoutDay, Exercise, CALISTHENICS_BEGINNER, CALISTHENICS_INTERMEDIATE, CALISTHENICS_ADVANCED, CALISTHENICS_EXPERT } from '@/lib/workout-data';
+import { getTodayWorkout, WorkoutDay, Exercise } from '@/lib/workout-data';
 import { awardXp, loadHunterState, saveHunterState } from '@/lib/hunter-system';
-import { Dumbbell, CheckCircle2, Circle, Trophy, Info, Sparkles, MapPin, Zap, Footprints, Flame, PlusCircle, RotateCcw, Home, Building2 } from 'lucide-react';
+import { Dumbbell, CheckCircle2, Circle, Trophy, Info, Sparkles, MapPin, Zap, Footprints, Flame, PlusCircle, RotateCcw, Home, Building2, MinusCircle } from 'lucide-react';
 import RestTimerBar from './RestTimerBar';
 
 export default function WorkoutQuestView() {
   const [selectedDay, setSelectedDay] = useState<number>(new Date().getDay()); // default today
   const [completedSets, setCompletedSets] = useState<Record<string, number>>({});
-  const [exerciseWeights, setExerciseWeights] = useState<Record<string, string>>({});
   const [questCleared, setQuestCleared] = useState<boolean>(false);
-  const [planType, setPlanType] = useState<PlanTier>('beginner');
-  // Per-set rep logging for until-failure exercises: key = `${exerciseId}_set${n}`, value = reps string
-  const [setReps, setSetReps] = useState<Record<string, string>>({});
-  // Personal records: key = exerciseId, value = best single-set rep count ever
-  const [personalRecords, setPersonalRecords] = useState<Record<string, number>>({});
 
   // Cardio State (45 mins daily target: 30m walk + 15m run)
   const [treadmillMinutes, setTreadmillMinutes] = useState<number>(0);
   const [customMinutesInput, setCustomMinutesInput] = useState<string>('');
   const TREADMILL_GOAL = 45;
 
-  const currentDayWorkout = getTodayWorkout(planType);
-
-  const activeRoutineArray = (() => {
-    switch(planType) {
-      case 'intermediate': return CALISTHENICS_INTERMEDIATE;
-      case 'advanced': return CALISTHENICS_ADVANCED;
-      case 'expert': return CALISTHENICS_EXPERT;
-      case 'beginner': default: return CALISTHENICS_BEGINNER;
-    }
-  })();
+  const currentDayWorkout = getTodayWorkout();
+  
+  // Create activeRoutineArray from daily workouts directly so we don't need to import all of them
+  const activeRoutineArray = [0, 1, 2, 3, 4, 5, 6].map(day => {
+    const d = new Date();
+    d.setDate(d.getDate() - d.getDay() + day);
+    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return {
+      dayOfWeek: day,
+      dayName: dayNames[day],
+      splitName: "Daily Bodyweight",
+      isRestDay: false
+    } as WorkoutDay;
+  });
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedType = localStorage.getItem('active_workout_routine_type') as PlanTier | null;
-      if (savedType && ['beginner', 'intermediate', 'advanced', 'expert'].includes(savedType)) {
-        setPlanType(savedType);
-      }
-
-      const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}_${savedType || 'beginner'}`);
+      const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}_daily`);
       if (savedSets) setCompletedSets(JSON.parse(savedSets));
       else setCompletedSets({});
-
-      const savedWeights = localStorage.getItem(`pf_weights`);
-      if (savedWeights) setExerciseWeights(JSON.parse(savedWeights));
-      else setExerciseWeights({});
-
-      const savedSetReps = localStorage.getItem(`kp_set_reps_${selectedDay}`);
-      if (savedSetReps) setSetReps(JSON.parse(savedSetReps));
-      else setSetReps({});
-
-      const savedPRs = localStorage.getItem(`kp_personal_records`);
-      if (savedPRs) setPersonalRecords(JSON.parse(savedPRs));
-      else setPersonalRecords({});
 
       const todayKey = new Date().toISOString().split('T')[0];
       const savedMinutes = localStorage.getItem(`pf_treadmill_minutes_${todayKey}`);
       if (savedMinutes) setTreadmillMinutes(parseInt(savedMinutes, 10));
     }
-  }, [selectedDay, planType]);
-
-  const handlePlanToggle = (newType: PlanTier) => {
-    setPlanType(newType);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('active_workout_routine_type', newType);
-      const savedSets = localStorage.getItem(`pf_completed_sets_${selectedDay}_${newType}`);
-      if (savedSets) setCompletedSets(JSON.parse(savedSets));
-      else setCompletedSets({});
-    }
-  };
+  }, [selectedDay]);
 
   const handleAddMinutes = (amount: number) => {
     const nextMinutes = Math.max(0, treadmillMinutes + amount);
@@ -96,13 +67,13 @@ export default function WorkoutQuestView() {
     }
   };
 
-  const handleSetToggle = (exerciseId: string, maxSets: number) => {
+  const handleSetToggle = (exerciseId: string, delta: number) => {
     const current = completedSets[exerciseId] || 0;
-    const next = current < maxSets ? current + 1 : 0;
+    const next = Math.max(0, current + delta);
     const updated = { ...completedSets, [exerciseId]: next };
     setCompletedSets(updated);
     if (typeof window !== 'undefined') {
-      localStorage.setItem(`pf_completed_sets_${selectedDay}_${planType}`, JSON.stringify(updated));
+      localStorage.setItem(`pf_completed_sets_${selectedDay}_daily`, JSON.stringify(updated));
     }
 
     const allCleared = currentDayWorkout.exercises.every(ex => (updated[ex.id] || 0) >= ex.sets);
@@ -115,40 +86,10 @@ export default function WorkoutQuestView() {
     }
   };
 
-  const handleWeightChange = (exerciseId: string, value: string) => {
-    const updated = { ...exerciseWeights, [exerciseId]: value };
-    setExerciseWeights(updated);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(`pf_weights`, JSON.stringify(updated));
-    }
-  };
-
-  const handleSetRepChange = (exerciseId: string, setIndex: number, value: string) => {
-    const key = `${exerciseId}_set${setIndex}`;
-    const updated = { ...setReps, [key]: value };
-    setSetReps(updated);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(`kp_set_reps_${selectedDay}`, JSON.stringify(updated));
-    }
-    // Check if new PR
-    const numVal = parseInt(value.replace(/\D/g, ''), 10);
-    if (!isNaN(numVal) && numVal > 0) {
-      const currentPR = personalRecords[exerciseId] || 0;
-      if (numVal > currentPR) {
-        const updatedPRs = { ...personalRecords, [exerciseId]: numVal };
-        setPersonalRecords(updatedPRs);
-        if (typeof window !== 'undefined') {
-          localStorage.setItem(`kp_personal_records`, JSON.stringify(updatedPRs));
-        }
-        window.dispatchEvent(new Event('triggerConfetti'));
-      }
-    }
-  };
-
   const calculateDayProgress = () => {
     const totalSets = currentDayWorkout.exercises.reduce((acc, ex) => acc + ex.sets, 0);
     if (totalSets === 0) return 100;
-    const doneSets = currentDayWorkout.exercises.reduce((acc, ex) => acc + (completedSets[ex.id] || 0), 0);
+    const doneSets = currentDayWorkout.exercises.reduce((acc, ex) => acc + Math.min(ex.sets, (completedSets[ex.id] || 0)), 0);
     return Math.min(100, Math.floor((doneSets / totalSets) * 100));
   };
 
@@ -157,58 +98,18 @@ export default function WorkoutQuestView() {
 
   return (
     <div className="space-y-6 pb-12">
-      {/* Prominent Dual-Choice Plan Toggle Banner */}
-      <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-dark p-5 rounded-2xl border-2 border-system-blue/40 shadow-glow-blue flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="p-3 rounded-xl bg-system-blue/10 border border-system-blue/30 text-system-cyan">
-            <Sparkles className="w-6 h-6 animate-pulse" />
-          </div>
-          <div>
-            <div className="text-[10px] font-mono uppercase tracking-wider text-system-gold font-bold">
-              ⚡ ACTIVE TRAINING ENVIRONMENT & PROTOCOL SELECTOR
-            </div>
-            <h3 className="text-base font-black text-white tracking-wide">
-              Choose Your Daily Workout Blueprint
-            </h3>
-            <p className="text-xs text-zinc-400">
-              Switch instantly between your 4 calisthenics progression tiers. Progress and sets are tracked per routine!
-            </p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 bg-black/60 p-2 rounded-xl border border-white/10 w-full md:w-auto">
-          {['beginner', 'intermediate', 'advanced', 'expert'].map((tier) => {
-            const isSelected = planType === tier;
-            return (
-              <button
-                key={tier}
-                onClick={() => handlePlanToggle(tier as PlanTier)}
-                className={`flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg text-xs font-black uppercase tracking-wider transition-all ${
-                  isSelected
-                    ? 'bg-gradient-to-r from-system-blue to-system-cyan text-black shadow-glow-blue scale-102'
-                    : 'text-zinc-400 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                <Dumbbell className="w-3.5 h-3.5" />
-                <span className="truncate">{tier}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-      
       {/* Header & Location Badge */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-system-panel p-6 rounded-2xl border border-system-blue/30 shadow-lg">
         <div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
             <MapPin className="w-3.5 h-3.5 text-system-blue" />
-            <span>Calisthenics Apartment Dojo | {planType.charAt(0).toUpperCase() + planType.slice(1)} Tier</span>
+            <span>Calisthenics Apartment Dojo | Core Tier</span>
           </div>
           <h2 className="text-2xl font-black tracking-wider text-white uppercase text-glow">
-            {planType} Bodyweight Routine
+            Daily Bodyweight Routine
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xl">
-            A specialized calisthenics routine designed to be performed quietly in your apartment using only bodyweight, a mat, and a chair. Includes your daily mandatory 15-minute run!
+            A specialized calisthenics routine designed to be performed quietly in your apartment using only bodyweight. Add extra sets as you get stronger! Includes your daily mandatory 15-minute run!
           </p>
         </div>
 
@@ -331,7 +232,7 @@ export default function WorkoutQuestView() {
                 {isToday && <span className="w-1.5 h-1.5 rounded-full bg-system-cyan animate-ping" title="Today" />}
               </span>
               <span className={`text-[10px] font-mono ${isSelected ? 'text-system-dark/80' : 'text-zinc-500'}`}>
-                {day.isRestDay ? 'Rest & Prep' : day.splitName.split('(')[0].trim()}
+                {day.isRestDay ? 'Rest & Prep' : day.splitName}
               </span>
             </button>
           );
@@ -382,7 +283,6 @@ export default function WorkoutQuestView() {
         {currentDayWorkout.exercises.map((exercise, idx) => {
           const doneSets = completedSets[exercise.id] || 0;
           const isComplete = doneSets >= exercise.sets;
-          const weightVal = exerciseWeights[exercise.id] || '';
 
           return (
             <div
@@ -411,9 +311,6 @@ export default function WorkoutQuestView() {
                       <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-white/5 text-zinc-300 border border-white/10">
                         {exercise.targetGroup}
                       </span>
-                      <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-system-blue/10 text-system-cyan border border-system-blue/30">
-                        {exercise.equipment}
-                      </span>
                     </div>
 
                     <p className="text-xs text-zinc-400 leading-relaxed flex items-start gap-1 pt-1">
@@ -423,57 +320,26 @@ export default function WorkoutQuestView() {
                   </div>
                 </div>
 
-                {/* Sets & Weight Input Action */}
+                {/* Sets Action */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between sm:justify-end gap-3 sm:gap-4 w-full lg:w-auto border-t lg:border-t-0 pt-3.5 lg:pt-0 border-white/10">
                   
-                  {/* Weight / Reps Input — normal exercises */}
-                  {!currentDayWorkout.isRestDay && !exercise.untilFailure && (
-                    <div className="flex items-center justify-between sm:justify-start gap-2 bg-system-dark px-3.5 py-2 rounded-xl border border-white/10 shadow-inner">
-                      <span className="text-xs text-zinc-400 font-bold uppercase font-mono">Weight / Reps:</span>
-                      <input
-                        type="text"
-                        placeholder="e.g. 185 lbs x 8"
-                        value={weightVal}
-                        onChange={(e) => handleWeightChange(exercise.id, e.target.value)}
-                        className="w-36 bg-transparent text-xs sm:text-sm font-mono font-bold text-white focus:outline-none placeholder:text-zinc-600 text-right"
-                      />
-                    </div>
-                  )}
-
-                  {/* Until-Failure: per-set rep inputs + PR badge */}
-                  {exercise.untilFailure && (
-                    <div className="flex flex-col gap-2">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        {Array.from({ length: exercise.sets }).map((_, si) => {
-                          const key = `${exercise.id}_set${si + 1}`;
-                          return (
-                            <div key={key} className="flex items-center gap-1.5 bg-system-dark border border-white/10 px-3 py-1.5 rounded-xl shadow-inner">
-                              <span className="text-[10px] text-zinc-500 font-mono font-bold uppercase">Set {si + 1}:</span>
-                              <input
-                                type="number"
-                                min="0"
-                                placeholder="reps"
-                                value={setReps[key] || ''}
-                                onChange={(e) => handleSetRepChange(exercise.id, si + 1, e.target.value)}
-                                className="w-14 bg-transparent text-sm font-black text-white focus:outline-none placeholder:text-zinc-600 text-center"
-                              />
-                            </div>
-                          );
-                        })}
-                      </div>
-                      {personalRecords[exercise.id] ? (
-                        <div className="flex items-center gap-1.5 text-[10px] font-mono font-bold text-system-gold uppercase tracking-wider">
-                          <Trophy className="w-3.5 h-3.5" />
-                          <span>PR: {personalRecords[exercise.id]} reps</span>
-                        </div>
-                      ) : null}
-                    </div>
-                  )}
+                  <div className="flex items-center gap-2 bg-system-dark px-3.5 py-2 rounded-xl border border-white/10 shadow-inner">
+                    <span className="text-xs text-zinc-400 font-bold uppercase font-mono">Target:</span>
+                    <span className="text-xs font-mono font-bold text-white">{exercise.reps}</span>
+                  </div>
 
                   {/* Set Checkboxes */}
                   <div className="flex items-center gap-2 w-full sm:w-auto">
                     <button
-                      onClick={() => handleSetToggle(exercise.id, exercise.sets)}
+                      onClick={() => handleSetToggle(exercise.id, -1)}
+                      disabled={doneSets === 0}
+                      className="p-2 rounded-xl bg-system-dark border border-white/10 hover:border-red-500/50 text-zinc-500 hover:text-red-400 disabled:opacity-50 transition-all"
+                    >
+                      <MinusCircle className="w-5 h-5" />
+                    </button>
+                    
+                    <button
+                      onClick={() => handleSetToggle(exercise.id, 1)}
                       className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-3 sm:py-2.5 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider transition-all min-h-[44px] ${
                         isComplete
                           ? 'bg-green-500/20 text-green-400 border border-green-500 hover:bg-green-500/30 font-black shadow-[0_0_15px_rgba(0,255,136,0.3)]'
@@ -483,17 +349,16 @@ export default function WorkoutQuestView() {
                       {isComplete ? (
                         <>
                           <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-                          <span>Cleared ({exercise.sets}/{exercise.sets})</span>
+                          <span>Cleared ({doneSets}/{exercise.sets})</span>
                         </>
                       ) : (
                         <>
-                          <Circle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                          <PlusCircle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                           <span>Log Set ({doneSets}/{exercise.sets})</span>
                         </>
                       )}
                     </button>
                   </div>
-
                 </div>
 
               </div>
@@ -505,4 +370,3 @@ export default function WorkoutQuestView() {
     </div>
   );
 }
-

@@ -1,10 +1,10 @@
 "use client";
 
 import React from 'react';
-import { ShieldAlert, Dumbbell, ScanLine, TrendingDown, ShoppingBag, Crown, Trophy, Settings, Palette } from 'lucide-react';
+import { ShieldAlert, Dumbbell, ScanLine, TrendingDown, Crown, Trophy, Settings, Palette, BookOpen } from 'lucide-react';
 import { isSystemAdmin } from '@/lib/hunter-system';
 
-export type TabType = 'quests' | 'workouts' | 'scanner' | 'grocery' | 'weight' | 'membership' | 'trophies' | 'settings' | 'gallery' | 'admin';
+export type TabType = 'quests' | 'workouts' | 'scanner' | 'courses' | 'weight' | 'account' | 'trophies' | 'settings' | 'gallery' | 'admin';
 
 interface SystemSidebarProps {
   activeTab: TabType;
@@ -37,7 +37,7 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
     },
     {
       id: 'workouts',
-      label: 'Calisthenics Workout',
+      label: 'Daily Workout',
       mobileLabel: 'Workout',
       icon: <Dumbbell className="w-5 h-5" />
     },
@@ -49,10 +49,11 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
       badge: 'Cam'
     },
     {
-      id: 'grocery',
-      label: 'Grocery Guide',
-      mobileLabel: 'Grocery',
-      icon: <ShoppingBag className="w-5 h-5" />
+      id: 'courses',
+      label: 'My Courses',
+      mobileLabel: 'Courses',
+      icon: <BookOpen className="w-5 h-5" />,
+      badge: 'Study'
     },
     {
       id: 'weight',
@@ -82,9 +83,9 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
       badge: 'NEW'
     },
     {
-      id: 'membership',
-      label: 'VIP Guild Account',
-      mobileLabel: 'VIP Guild',
+      id: 'account',
+      label: 'Account',
+      mobileLabel: 'Account',
       icon: <Crown className="w-5 h-5 text-system-gold" />,
       badge: 'PRO'
     },
@@ -127,7 +128,7 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
                     className={`text-[9px] px-1.5 py-0.5 rounded font-mono uppercase ${
                       isActive
                         ? 'bg-black text-system-blue font-black shadow-sm'
-                        : item.id === 'membership'
+                        : item.id === 'account'
                         ? 'bg-system-gold/20 text-system-gold border border-system-gold/50 font-black'
                         : item.id === 'admin'
                         ? 'bg-red-500/20 text-red-400 border border-red-500/50 font-black'
@@ -158,7 +159,7 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
                 onClick={() => setActiveTab(item.id)}
                 className={`relative flex flex-col items-center justify-center py-1.5 px-2.5 rounded-xl transition-all duration-200 select-none flex-shrink-0 min-w-[58px] ${
                   isActive
-                    ? item.id === 'membership'
+                    ? item.id === 'account'
                       ? 'text-system-gold bg-system-gold/15 font-black shadow-[0_0_12px_rgba(255,215,0,0.3)]'
                       : item.id === 'admin'
                       ? 'text-red-400 bg-red-500/15 font-black shadow-[0_0_12px_rgba(239,68,68,0.3)]'
@@ -168,14 +169,14 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
               >
                 {/* Active top neon indicator */}
                 {isActive && (
-                  <span className={`absolute top-0 left-1/4 right-1/4 h-0.5 rounded-full animate-pulse ${item.id === 'membership' ? 'bg-system-gold shadow-glow-gold' : item.id === 'admin' ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]' : 'bg-system-cyan shadow-glow-blue'}`} />
+                  <span className={`absolute top-0 left-1/4 right-1/4 h-0.5 rounded-full animate-pulse ${item.id === 'account' ? 'bg-system-gold shadow-glow-gold' : item.id === 'admin' ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]' : 'bg-system-cyan shadow-glow-blue'}`} />
                 )}
                 
                 <div className={`relative transition-transform duration-200 mb-1 ${isActive ? 'scale-110 drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]' : ''}`}>
                   {item.icon}
                   {item.badge && (
                     <span className={`absolute -top-1 -right-3 text-[7px] font-mono px-1 rounded-full border border-black font-bold leading-tight ${
-                      item.id === 'membership' ? 'bg-system-gold text-black font-black' : item.id === 'admin' ? 'bg-red-500 text-white font-black' : 'bg-system-purple text-white'
+                      item.id === 'account' ? 'bg-system-gold text-black font-black' : item.id === 'admin' ? 'bg-red-500 text-white font-black' : 'bg-system-purple text-white'
                     }`}>
                       {item.badge}
                     </span>
