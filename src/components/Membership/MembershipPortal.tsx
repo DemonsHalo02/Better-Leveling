@@ -88,8 +88,13 @@ export default function MembershipPortal() {
           localStorage.setItem("hunter_current_user", JSON.stringify(updatedUser));
           localStorage.setItem("hunter_vip_tier", activeTier);
           
-          // Auto sync back to ensure both devices are in sync
-          syncHunterToCloud(user.email, updatedUser.displayName, activeTier);
+          // Auto restore from cloud to sync down from other devices (DO NOT PUSH AND OVERWRITE HERE)
+          restoreHunterFromCloud(user.email).then(cloudData => {
+            if (!cloudData) {
+              // If completely new user, then push
+              syncHunterToCloud(user.email!, updatedUser.displayName, activeTier);
+            }
+          });
         }
       });
 
@@ -217,8 +222,11 @@ export default function MembershipPortal() {
         }
         alert(`⚡ Arise! Signed back in as ${existing.displayName}.`);
 
-        // Sync after sign-in
-        syncHunterToCloud(email, existing.displayName, "Level 100 VIP Guild");
+        // Restore after sign-in
+        const cloudData = await restoreHunterFromCloud(email);
+        if (!cloudData) {
+          syncHunterToCloud(email, existing.displayName, "Level 100 VIP Guild");
+        }
       }
     } catch (err: any) {
       setErrorMsg(err.message || "Authentication error occurred.");

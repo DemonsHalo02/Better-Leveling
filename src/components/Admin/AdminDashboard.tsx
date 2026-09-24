@@ -30,6 +30,7 @@ import {
   isSystemAdmin,
   HunterState,
 } from "@/lib/hunter-system";
+import { syncHunterToCloud } from "@/lib/cloud-sync";
 
 export interface GuildMember {
   id: string;
@@ -267,6 +268,7 @@ export default function AdminDashboard() {
   const handleResetActiveAccount = () => {
     if (confirm("⚡ MONARCH RE-AWAKENING: Reset your active local Adventurer account to Level 1 Novice with base stats?")) {
       resetHunterState();
+      window.dispatchEvent(new CustomEvent('hunterStateChanged'));
       showToast("Your local account and progression have been reset to Level 1 Novice!");
     }
   };
@@ -280,6 +282,7 @@ export default function AdminDashboard() {
       }));
       saveRoster(resetMembers);
       resetHunterState();
+      window.dispatchEvent(new CustomEvent('hunterStateChanged'));
       showToast("All Adventurer accounts globally reset to Level 1 Novice status!");
     }
   };
@@ -786,7 +789,28 @@ export default function AdminDashboard() {
               <div className="text-[11px] text-zinc-400 mt-0.5">Backup admin user database locally & cloud</div>
             </div>
             <button
-              onClick={() => showToast("Guild database synchronized to local memory & cloud state!")}
+              onClick={async () => {
+                try {
+                  const userStr = localStorage.getItem("hunter_current_user");
+                  if (userStr) {
+                    const user = JSON.parse(userStr);
+                    if (user && user.email) {
+                      const result = await syncHunterToCloud(user.email, user.displayName, user.tier);
+                      if (result === true) {
+                        showToast("✅ Cloud sync successful! Data pushed to Firebase.");
+                      } else {
+                        showToast(`❌ Cloud sync failed: ${result}`);
+                      }
+                    } else {
+                      showToast("❌ No user email found. Sign in first.");
+                    }
+                  } else {
+                    showToast("❌ No user found. Sign in first.");
+                  }
+                } catch (e: any) {
+                  showToast(`❌ Sync error: ${e.message}`);
+                }
+              }}
               className="px-4 py-2 rounded-xl bg-system-cyan/20 hover:bg-system-cyan text-system-cyan hover:text-black border border-system-cyan/40 font-bold uppercase tracking-wider transition-all cursor-pointer flex-shrink-0 flex items-center gap-1.5"
             >
               <RefreshCw className="w-3.5 h-3.5" />

@@ -15,27 +15,32 @@ import AdminDashboard from "@/components/Admin/AdminDashboard";
 import CourseTracker from "@/components/Courses/CourseTracker";
 import { Shield } from "lucide-react";
 
-import { syncHunterToCloud, restoreHunterFromCloud } from "@/lib/cloud-sync";
+import { syncHunterToCloud, restoreHunterFromCloud, subscribeToCloudProfile } from "@/lib/cloud-sync";
 import { isSystemAdmin } from "@/lib/hunter-system";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<string>("quests");
 
-  // Reactive sync
+  // Cloud sync: push local changes up, and subscribe to real-time updates from cloud
   useEffect(() => {
     let syncTimeout: NodeJS.Timeout;
-    
-    // Auto-restore on app load so device switches stay in sync
+    let unsubscribeSnapshot: (() => void) | null = null;
+
+    // On app boot: restore from cloud and set up real-time listener
     try {
       const userStr = localStorage.getItem("hunter_current_user");
       if (userStr) {
         const user = JSON.parse(userStr);
         if (user && user.email) {
+          // One-shot restore to catch up
           restoreHunterFromCloud(user.email);
+          // Real-time listener for live cross-device sync
+          unsubscribeSnapshot = subscribeToCloudProfile(user.email);
         }
       }
     } catch (e) {}
 
+    // Debounced push: whenever local state changes, push to cloud after 2s
     const triggerCloudSync = () => {
       clearTimeout(syncTimeout);
       syncTimeout = setTimeout(() => {
@@ -47,20 +52,16 @@ export default function Home() {
               syncHunterToCloud(user.email, user.displayName, user.tier);
             }
           }
-        } catch (e) {
-          // Ignore parse errors or offline sync issues
-        }
+        } catch (e) {}
       }, 2000);
     };
 
-    const handleUpdate = () => {
-      triggerCloudSync();
-    };
-
-    window.addEventListener("hunterStateChanged", handleUpdate);
+    window.addEventListener("hunterStateChanged", triggerCloudSync);
 
     return () => {
-      window.removeEventListener("hunterStateChanged", handleUpdate);
+      window.removeEventListener("hunterStateChanged", triggerCloudSync);
+      clearTimeout(syncTimeout);
+      if (unsubscribeSnapshot) unsubscribeSnapshot();
     };
   }, []);
 
