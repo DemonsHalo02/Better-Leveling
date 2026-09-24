@@ -57,14 +57,6 @@ export default function MembershipPortal() {
           parsed.tier = "Level 100 VIP Guild";
           localStorage.setItem("hunter_vip_tier", "Level 100 VIP Guild");
           setCurrentUser(parsed);
-          if (parsed.email) {
-            restoreHunterFromCloud(parsed.email).then((cloudData) => {
-              if (cloudData && cloudData.tier) {
-                parsed.tier = "Level 100 VIP Guild";
-                setCurrentUser({ ...parsed });
-              }
-            });
-          }
         } catch {}
       }
 
