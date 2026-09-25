@@ -66,7 +66,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0b0c10] text-zinc-100 flex flex-col font-sans selection:bg-system-blue selection:text-black">
+    <div className="min-h-screen bg-background bg-grid-pattern text-zinc-100 flex flex-col font-sans selection:bg-system-blue selection:text-black">
       {/* Top Status Bar */}
       <HunterStatusBar onNavigate={(tab) => setActiveTab(tab as TabType)} />
 

@@ -61,7 +61,7 @@ export default function CourseTracker() {
   return (
     <div className="space-y-6 pb-12">
       {/* Top HUD Panel */}
-      <div className="bg-system-panel p-6 rounded-2xl border border-system-blue/30 shadow-hud relative overflow-hidden">
+      <div className="bg-system-panel p-6 rounded-none border border-system-blue/30 shadow-hud relative overflow-hidden">
         {/* Background Accent */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-system-blue/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
         
@@ -80,7 +80,7 @@ export default function CourseTracker() {
 
         {/* Daily Directives Timeline */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10">
-          <div className="bg-system-dark/80 p-4 rounded-xl border border-system-cyan/30 flex flex-col justify-between">
+          <div className="bg-system-dark/80 p-4 rounded-sm border border-system-cyan/30 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-system-cyan font-mono text-xs font-bold">18:00 - 18:45</span>
@@ -94,7 +94,7 @@ export default function CourseTracker() {
             </div>
           </div>
 
-          <div className="bg-system-dark/80 p-4 rounded-xl border border-system-purple/30 flex flex-col justify-between">
+          <div className="bg-system-dark/80 p-4 rounded-sm border border-system-purple/30 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-system-purple font-mono text-xs font-bold">18:45 - 19:30</span>
@@ -108,7 +108,7 @@ export default function CourseTracker() {
             </div>
           </div>
 
-          <div className="bg-system-dark/80 p-4 rounded-xl border border-system-gold/30 flex flex-col justify-between">
+          <div className="bg-system-dark/80 p-4 rounded-sm border border-system-gold/30 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-system-gold font-mono text-xs font-bold">19:30 Onward</span>
@@ -160,7 +160,7 @@ function CourseCard({ course, onUpdate }: { course: Course, onUpdate: (id: strin
   const isActive = course.status === 'active';
 
   return (
-    <div className={`bg-system-card border rounded-xl p-4 transition-all group relative overflow-hidden ${
+    <div className={`bg-system-card border rounded-sm p-4 transition-all group relative overflow-hidden ${
       isActive ? 'border-system-cyan shadow-glow-blue' : 
       isCompleted ? 'border-system-gold/50 opacity-70' : 'border-white/10 hover:border-white/20'
     }`}>

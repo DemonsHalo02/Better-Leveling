@@ -69,12 +69,12 @@ export default function RestTimerBar() {
   const progressPercentage = totalTime > 0 ? ((totalTime - timeLeft) / totalTime) * 100 : 0;
 
   return (
-    <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-card p-5 rounded-2xl border border-system-blue/40 shadow-glow-blue space-y-4 animate-in fade-in duration-300 relative overflow-hidden">
+    <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-card p-5 rounded-none border border-system-blue/40 shadow-glow-blue space-y-4 animate-in fade-in duration-300 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-64 h-full bg-system-blue/5 rounded-full blur-2xl pointer-events-none" />
 
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 relative z-10">
         <div className="flex items-center gap-2.5">
-          <div className="w-10 h-10 rounded-xl bg-system-blue/10 border border-system-blue flex items-center justify-center flex-shrink-0 animate-pulse-glow">
+          <div className="w-10 h-10 rounded-sm bg-system-blue/10 border border-system-blue flex items-center justify-center flex-shrink-0 animate-pulse-glow">
             <Timer className="w-5 h-5 text-system-blue" />
           </div>
           <div>
@@ -102,7 +102,7 @@ export default function RestTimerBar() {
             <button
               key={preset.time}
               onClick={() => startTimer(preset.time)}
-              className={`px-3 py-1.5 rounded-lg font-mono font-bold text-xs uppercase transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-sm font-mono font-bold text-xs uppercase transition-all cursor-pointer ${
                 totalTime === preset.time && (isRunning || timeLeft < totalTime)
                   ? 'bg-system-blue text-system-dark shadow-glow-blue scale-105'
                   : 'bg-system-dark/80 text-zinc-300 hover:text-white border border-white/10 hover:border-system-cyan/50'
@@ -115,7 +115,7 @@ export default function RestTimerBar() {
       </div>
 
       {/* Timer Display & Bar */}
-      <div className="bg-system-dark/90 p-4 rounded-xl border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+      <div className="bg-system-dark/90 p-4 rounded-sm border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
         <div className="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-start">
           <div className="text-4xl sm:text-5xl font-black font-mono tracking-wider text-white text-glow flex items-center gap-2">
             <span>{formatTime(timeLeft)}</span>
@@ -126,7 +126,7 @@ export default function RestTimerBar() {
             <button
               onClick={togglePause}
               disabled={timeLeft === 0 && !isRunning}
-              className={`p-3 rounded-xl border transition-all flex items-center justify-center cursor-pointer ${
+              className={`p-3 rounded-sm border transition-all flex items-center justify-center cursor-pointer ${
                 isRunning
                   ? 'bg-yellow-500/20 border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/30'
                   : 'bg-system-blue/20 border-system-blue/50 text-system-cyan hover:bg-system-blue/30'
@@ -137,7 +137,7 @@ export default function RestTimerBar() {
             </button>
             <button
               onClick={resetTimer}
-              className="p-3 rounded-xl bg-system-card/80 hover:bg-white/10 border border-white/10 text-zinc-400 hover:text-white transition-all cursor-pointer"
+              className="p-3 rounded-sm bg-system-card/80 hover:bg-white/10 border border-white/10 text-zinc-400 hover:text-white transition-all cursor-pointer"
               title="Reset timer"
             >
               <RotateCcw className="w-5 h-5" />
@@ -170,7 +170,7 @@ export default function RestTimerBar() {
               {!xpClaimed ? (
                 <button
                   onClick={handleClaimRestXp}
-                  className="px-3 py-1 rounded-lg bg-green-500 text-black font-black text-xs uppercase tracking-wider hover:scale-105 transition-all shadow-md flex items-center gap-1 cursor-pointer animate-bounce"
+                  className="px-3 py-1 rounded-sm bg-green-500 text-black font-black text-xs uppercase tracking-wider hover:scale-105 transition-all shadow-md flex items-center gap-1 cursor-pointer animate-bounce"
                 >
                   <Sparkles className="w-3.5 h-3.5 fill-black" />
                   <span>Claim +25 Rest XP</span>

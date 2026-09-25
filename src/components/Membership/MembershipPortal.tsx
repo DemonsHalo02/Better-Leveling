@@ -250,7 +250,7 @@ export default function MembershipPortal() {
     <div className="space-y-8 pb-12 animate-in fade-in duration-300">
       
       {/* Top Banner */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-system-card via-system-panel to-system-dark p-6 border border-system-gold/50 shadow-glow-gold">
+      <div className="relative overflow-hidden rounded-none bg-gradient-to-r from-system-card via-system-panel to-system-dark p-6 border border-system-gold/50 shadow-glow-gold">
         <div className="absolute -right-10 -top-10 w-64 h-64 bg-system-gold/10 rounded-full blur-3xl pointer-events-none animate-pulse" />
         
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -276,13 +276,13 @@ export default function MembershipPortal() {
       />
 
       <div className="max-w-xl mx-auto space-y-6">
-        <div className="bg-system-panel p-6 rounded-2xl border border-system-blue/30 shadow-xl space-y-6">
+        <div className="bg-system-panel p-6 rounded-none border border-system-blue/30 shadow-xl space-y-6">
           
           {currentUser ? (
             /* Signed In Mercenary Account Card */
             <div className="space-y-6 text-center py-4">
               <div className="relative inline-block mx-auto">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-system-blue to-system-purple border-2 border-system-cyan flex items-center justify-center shadow-glow-blue">
+                <div className="w-20 h-20 rounded-none bg-gradient-to-tr from-system-blue to-system-purple border-2 border-system-cyan flex items-center justify-center shadow-glow-blue">
                   <UserCheck className="w-10 h-10 text-white" />
                 </div>
                 <div className="absolute -top-2 -right-2 bg-system-gold text-black p-1.5 rounded-full border border-black shadow-glow-gold" title="VIP Aetheryte Sector Member">
@@ -300,7 +300,7 @@ export default function MembershipPortal() {
                 <p className="text-xs font-mono text-zinc-400">{currentUser.email}</p>
               </div>
 
-              <div className="bg-system-dark/80 p-4 rounded-xl border border-white/10 text-left space-y-2 text-xs">
+              <div className="bg-system-dark/80 p-4 rounded-sm border border-white/10 text-left space-y-2 text-xs">
                 <div className="flex justify-between font-mono">
                   <span className="text-zinc-400">Account ID:</span>
                   <span className="text-system-cyan font-bold truncate max-w-[150px]">{currentUser.uid}</span>
@@ -322,7 +322,7 @@ export default function MembershipPortal() {
                 <button
                   onClick={handleManualCloudSync}
                   disabled={isCloudSyncing}
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan hover:from-system-cyan hover:to-system-blue text-black font-black text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-glow-blue min-h-[44px]"
+                  className="w-full py-3 rounded-sm bg-gradient-to-r from-system-blue to-system-cyan hover:from-system-cyan hover:to-system-blue text-black font-black text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-glow-blue min-h-[44px]"
                 >
                   <Zap className={`w-4 h-4 fill-black ${isCloudSyncing ? "animate-spin" : ""}`} />
                   <span>{isCloudSyncing ? "Syncing to Cloud..." : "⚡ Force Cloud Save (Backup Now)"}</span>
@@ -330,7 +330,7 @@ export default function MembershipPortal() {
 
                 <button
                   onClick={handleSignOut}
-                  className="w-full py-3 rounded-xl bg-system-card hover:bg-red-500/20 border border-red-500/40 text-red-400 hover:text-red-300 font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 min-h-[44px]"
+                  className="w-full py-3 rounded-sm bg-system-card hover:bg-red-500/20 border border-red-500/40 text-red-400 hover:text-red-300 font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 min-h-[44px]"
                 >
                   <LogOut className="w-4 h-4" />
                   <span>Sign Out of System</span>
@@ -357,7 +357,7 @@ export default function MembershipPortal() {
               </div>
 
               {errorMsg && (
-                <div className="bg-red-500/15 border border-red-500/40 p-3.5 rounded-xl flex items-center gap-2 text-red-400 text-xs">
+                <div className="bg-red-500/15 border border-red-500/40 p-3.5 rounded-sm flex items-center gap-2 text-red-400 text-xs">
                   <AlertCircle className="w-4 h-4 flex-shrink-0" />
                   <span>{errorMsg}</span>
                 </div>
@@ -372,7 +372,7 @@ export default function MembershipPortal() {
                       placeholder="e.g. SOLDIER Nick"
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
-                      className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-3 mt-1 text-sm font-bold text-white focus:outline-none focus:border-system-blue shadow-inner"
+                      className="w-full bg-system-dark border border-system-blue/40 rounded-sm px-4 py-3 mt-1 text-sm font-bold text-white focus:outline-none focus:border-system-blue shadow-inner"
                       required={isSignUp}
                     />
                   </div>
@@ -385,7 +385,7 @@ export default function MembershipPortal() {
                     placeholder="Mercenary@sololeveling.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-3 mt-1 text-sm font-mono text-white focus:outline-none focus:border-system-blue shadow-inner"
+                    className="w-full bg-system-dark border border-system-blue/40 rounded-sm px-4 py-3 mt-1 text-sm font-mono text-white focus:outline-none focus:border-system-blue shadow-inner"
                     required
                   />
                 </div>
@@ -397,7 +397,7 @@ export default function MembershipPortal() {
                     placeholder="••••••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-3 mt-1 text-sm text-white focus:outline-none focus:border-system-blue shadow-inner"
+                    className="w-full bg-system-dark border border-system-blue/40 rounded-sm px-4 py-3 mt-1 text-sm text-white focus:outline-none focus:border-system-blue shadow-inner"
                     required
                   />
                 </div>
@@ -405,14 +405,14 @@ export default function MembershipPortal() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-black font-black uppercase text-sm tracking-widest shadow-glow-blue hover:bg-white transition-all min-h-[44px] flex items-center justify-center gap-2"
+                  className="w-full py-3.5 rounded-sm bg-gradient-to-r from-system-blue to-system-cyan text-black font-black uppercase text-sm tracking-widest shadow-glow-blue hover:bg-white transition-all min-h-[44px] flex items-center justify-center gap-2"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>{loading ? "Awakening..." : isSignUp ? "Awaken System & Unlock VIP" : "Enter System"}</span>
                 </button>
               </form>
 
-              <div className="bg-system-dark/80 p-3 rounded-xl border border-white/5 text-[11px] text-zinc-400 leading-relaxed text-center font-mono">
+              <div className="bg-system-dark/80 p-3 rounded-sm border border-white/5 text-[11px] text-zinc-400 leading-relaxed text-center font-mono">
                 🔒 Offline-First Engine: Even without active internet, your credentials and workout progress are encrypted and stored safely in browser localStorage.
               </div>
             </div>

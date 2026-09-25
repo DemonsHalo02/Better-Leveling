@@ -106,12 +106,12 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 animate-in fade-in duration-300">
       
       {/* Left 8 Cols: General Feature - Motivation & Directive Oracle */}
-      <div className="lg:col-span-8 bg-gradient-to-r from-system-panel via-system-card to-system-dark p-6 rounded-2xl border border-system-blue/40 shadow-xl relative overflow-hidden flex flex-col justify-between gap-6">
+      <div className="lg:col-span-8 bg-gradient-to-r from-system-panel via-system-card to-system-dark p-6 rounded-none border border-system-blue/40 shadow-xl relative overflow-hidden flex flex-col justify-between gap-6">
         <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-system-blue/10 rounded-full blur-2xl pointer-events-none" />
 
         <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-system-blue/10 border border-system-blue flex items-center justify-center shadow-glow-blue">
+            <div className="w-10 h-10 rounded-sm bg-system-blue/10 border border-system-blue flex items-center justify-center shadow-glow-blue">
               <Zap className="w-5 h-5 text-system-blue animate-pulse" />
             </div>
             <div>
@@ -127,7 +127,7 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
             </div>
           </div>
 
-          <span className="bg-system-dark/80 text-system-cyan text-xs font-mono font-bold px-3 py-1 rounded-lg border border-system-blue/30">
+          <span className="bg-system-dark/80 text-system-cyan text-xs font-mono font-bold px-3 py-1 rounded-sm border border-system-blue/30">
             {current.stat}
           </span>
         </div>
@@ -148,7 +148,7 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
           <div className="flex items-center gap-2">
             <button
               onClick={handleGenerateNext}
-              className="px-5 py-2.5 rounded-xl bg-system-blue text-system-dark font-black text-xs uppercase tracking-wider hover:bg-white transition-all shadow-glow-blue flex items-center gap-2 cursor-pointer"
+              className="px-5 py-2.5 rounded-sm bg-system-blue text-system-dark font-black text-xs uppercase tracking-wider hover:bg-white transition-all shadow-glow-blue flex items-center gap-2 cursor-pointer"
             >
               <Sparkles className="w-4 h-4 fill-current" />
               <span>Generate Directive</span>
@@ -156,7 +156,7 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
 
             <button
               onClick={handleCopy}
-              className="p-2.5 rounded-xl bg-system-dark/80 hover:bg-white/10 border border-white/10 text-zinc-300 hover:text-white transition-all flex items-center gap-1.5 text-xs font-mono cursor-pointer"
+              className="p-2.5 rounded-sm bg-system-dark/80 hover:bg-white/10 border border-white/10 text-zinc-300 hover:text-white transition-all flex items-center gap-1.5 text-xs font-mono cursor-pointer"
               title="Copy quote to clipboard"
             >
               {copied ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
@@ -166,11 +166,11 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
 
           <div className="flex items-center gap-2">
             {!xpClaimed ? (
-              <span className="text-xs font-mono font-bold text-system-cyan bg-system-cyan/10 px-3 py-1 rounded-lg border border-system-cyan/30 animate-pulse">
+              <span className="text-xs font-mono font-bold text-system-cyan bg-system-cyan/10 px-3 py-1 rounded-sm border border-system-cyan/30 animate-pulse">
                 Click Generate for +15 Daily XP!
               </span>
             ) : (
-              <span className="text-xs font-mono font-bold text-system-gold bg-system-gold/10 px-3 py-1 rounded-lg border border-system-gold/30">
+              <span className="text-xs font-mono font-bold text-system-gold bg-system-gold/10 px-3 py-1 rounded-sm border border-system-gold/30">
                 +15 Daily Oracle XP Claimed!
               </span>
             )}
@@ -179,7 +179,7 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
       </div>
 
       {/* Right 4 Cols: VIP Premium Feature Teaser & Quick Link */}
-      <div className="lg:col-span-4 bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 rounded-2xl border-2 border-system-gold/50 shadow-glow-gold flex flex-col justify-between gap-4 relative overflow-hidden">
+      <div className="lg:col-span-4 bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 rounded-none border-2 border-system-gold/50 shadow-glow-gold flex flex-col justify-between gap-4 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-system-gold/10 rounded-full blur-2xl pointer-events-none animate-pulse" />
 
         <div className="space-y-3 relative z-10">
@@ -200,7 +200,7 @@ export default function MotivationOracle({ onNavigate }: MotivationOracleProps) 
 
         <button
           onClick={() => onNavigate?.('membership')}
-          className="relative z-10 w-full py-3 px-4 rounded-xl bg-gradient-to-r from-system-gold via-yellow-400 to-system-gold text-black font-black uppercase text-xs tracking-widest shadow-glow-gold hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer animate-pulse"
+          className="relative z-10 w-full py-3 px-4 rounded-sm bg-gradient-to-r from-system-gold via-yellow-400 to-system-gold text-black font-black uppercase text-xs tracking-widest shadow-glow-gold hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer animate-pulse"
         >
           <Crown className="w-4 h-4 fill-black" />
           <span>{isVip ? "Open Level 100 VIP Lab" : "Explore Level 100 Perks & Upgrade"}</span>

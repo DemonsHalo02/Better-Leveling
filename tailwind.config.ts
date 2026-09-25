@@ -17,27 +17,28 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         system: {
-          blue: "#0bc2b6", // FF7 Mako Teal / Cyan
-          cyan: "#3affc6", // Lifestream Green
-          dark: "#0b0c10", // Deep UI slate
-          panel: "#161925", // Shinra UI background
-          card: "#1e2233", // Lighter UI background
-          purple: "#d942ff", // Aether/Materia Purple
-          gold: "#e6c76e", // FFXIV Classic UI Gold
-          red: "#ff3b3b", // Meteor Red
-          green: "#00ff88",
+          blue: "#00f0ff", // FF7 Mako Cyan
+          cyan: "#00ffb3", // Lifestream Teal
+          dark: "#02060d", // Very deep slate (almost black)
+          panel: "#061324", // Shinra translucent menu blue
+          card: "#0d213b", // Lighter menu highlight
+          purple: "#b700ff", // Materia Purple
+          gold: "#f5d36c", // FF Menu Yellow/Gold
+          red: "#ff2a2a", // Limit Break Red
+          green: "#00ff66", // HP Green
         },
       },
       boxShadow: {
-        'glow-blue': '0 0 20px rgba(11, 194, 182, 0.35)',
-        'glow-purple': '0 0 20px rgba(217, 66, 255, 0.35)',
-        'glow-gold': '0 0 20px rgba(230, 199, 110, 0.35)',
-        'glow-green': '0 0 20px rgba(58, 255, 198, 0.35)',
-        'hud': 'inset 0 0 15px rgba(11, 194, 182, 0.15), 0 0 20px rgba(11, 194, 182, 0.2)',
+        'glow-blue': '0 0 15px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.1)',
+        'glow-purple': '0 0 15px rgba(183, 0, 255, 0.4), inset 0 0 10px rgba(183, 0, 255, 0.1)',
+        'glow-gold': '0 0 15px rgba(245, 211, 108, 0.4), inset 0 0 10px rgba(245, 211, 108, 0.1)',
+        'glow-green': '0 0 15px rgba(0, 255, 102, 0.4), inset 0 0 10px rgba(0, 255, 102, 0.1)',
+        'hud': 'inset 0 0 25px rgba(0, 240, 255, 0.1), 0 0 20px rgba(0, 240, 255, 0.15)',
       },
       animation: {
         'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'float': 'float 4s ease-in-out infinite',
+        'scanline': 'scanline 8s linear infinite',
       },
       keyframes: {
         pulseGlow: {
@@ -48,6 +49,10 @@ const config: Config = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-6px)' },
         },
+        scanline: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(100%)' },
+        }
       },
     },
   },

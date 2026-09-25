@@ -167,7 +167,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
   };
 
   return (
-    <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-3xl p-6 shadow-xl w-full mx-auto">
+    <div className="bg-[#11182c]/80 backdrop-blur-md border border-white/10 rounded-none p-6 shadow-xl w-full mx-auto">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 border-b border-white/10 pb-4">
         <div>
           <h2 className="text-2xl font-black text-white flex items-center gap-2">
@@ -178,7 +178,7 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
         </div>
         <button
           onClick={() => setScannerActive(!scannerActive)}
-          className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold transition-all ${scannerActive ? 'bg-red-500/20 text-red-500 border border-red-500/30' : 'bg-[#0a3d8f] text-white shadow-[0_0_15px_rgba(10,61,143,0.3)] hover:scale-105'}`}
+          className={`flex items-center gap-2 px-4 py-2 rounded-sm font-bold transition-all ${scannerActive ? 'bg-red-500/20 text-red-500 border border-red-500/30' : 'bg-[#0a3d8f] text-white shadow-[0_0_15px_rgba(10,61,143,0.3)] hover:scale-105'}`}
         >
           {scannerActive ? <X className="w-5 h-5" /> : <Camera className="w-5 h-5" />}
           {scannerActive ? 'Stop Scanner' : 'Scan Barcode'}
@@ -186,9 +186,9 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
       </div>
 
       {scannerActive && (
-        <div className="mb-6 rounded-2xl overflow-hidden border border-white/10 bg-black max-w-sm mx-auto shadow-2xl relative">
+        <div className="mb-6 rounded-none overflow-hidden border border-white/10 bg-black max-w-sm mx-auto shadow-2xl relative">
           <div id="reader" className="w-full"></div>
-          <div className="absolute inset-0 border-4 border-[#0a3d8f]/50 rounded-2xl pointer-events-none" />
+          <div className="absolute inset-0 border-4 border-[#0a3d8f]/50 rounded-none pointer-events-none" />
         </div>
       )}
 
@@ -199,10 +199,10 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
             placeholder="Search Walmart, Hannaford, Shaws..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-black/40 border border-white/10 text-white placeholder-zinc-500 rounded-xl px-5 py-4 pl-12 outline-none focus:border-[#f5a623] focus:ring-1 focus:ring-[#f5a623] transition-all shadow-inner"
+            className="w-full bg-black/40 border border-white/10 text-white placeholder-zinc-500 rounded-sm px-5 py-4 pl-12 outline-none focus:border-[#f5a623] focus:ring-1 focus:ring-[#f5a623] transition-all shadow-inner"
           />
           <Search className="w-5 h-5 text-zinc-400 absolute left-4 top-1/2 -translate-y-1/2" />
-          <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#f5a623] hover:bg-[#d48b1c] text-white p-2 rounded-lg transition-colors">
+          <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#f5a623] hover:bg-[#d48b1c] text-white p-2 rounded-sm transition-colors">
             <Search className="w-4 h-4" />
           </button>
         </div>
@@ -216,20 +216,20 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
       )}
 
       {errorMsg && (
-        <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 flex items-start gap-3 mb-6">
+        <div className="bg-red-500/10 border border-red-500/30 rounded-sm p-4 flex items-start gap-3 mb-6">
           <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
           <p className="text-sm text-red-200">{errorMsg}</p>
         </div>
       )}
 
       {scannedResult && !loading && (
-        <div className="bg-gradient-to-br from-black/80 to-[#11182c] border border-white/20 rounded-2xl p-5 shadow-2xl animate-in slide-in-from-bottom-4 duration-300 relative overflow-hidden">
+        <div className="bg-gradient-to-br from-black/80 to-[#11182c] border border-white/20 rounded-none p-5 shadow-2xl animate-in slide-in-from-bottom-4 duration-300 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-4">
             <span className="text-[10px] font-mono font-bold uppercase tracking-widest bg-white/10 px-2 py-1 rounded text-zinc-300 border border-white/5">{scannedResult.store}</span>
           </div>
 
           <div className="flex gap-4 mb-4 items-start pr-20">
-            <div className="w-12 h-12 rounded-xl bg-[#0a3d8f]/20 border border-[#0a3d8f]/40 flex items-center justify-center shrink-0 shadow-inner">
+            <div className="w-12 h-12 rounded-sm bg-[#0a3d8f]/20 border border-[#0a3d8f]/40 flex items-center justify-center shrink-0 shadow-inner">
               <CheckCircle className="w-6 h-6 text-[#0a3d8f] drop-shadow-sm" />
             </div>
             <div>
@@ -240,19 +240,19 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
           </div>
 
           <div className="grid grid-cols-4 gap-2 mb-6">
-            <div className="bg-black/40 border border-white/5 rounded-lg p-2 text-center">
+            <div className="bg-black/40 border border-white/5 rounded-sm p-2 text-center">
               <div className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider mb-1">Cals</div>
               <div className="text-[#f5a623] font-mono font-black text-sm">{scannedResult.calories}</div>
             </div>
-            <div className="bg-black/40 border border-white/5 rounded-lg p-2 text-center">
+            <div className="bg-black/40 border border-white/5 rounded-sm p-2 text-center">
               <div className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider mb-1">Prot</div>
               <div className="text-[#4ade80] font-mono font-black text-sm">{scannedResult.protein}g</div>
             </div>
-            <div className="bg-black/40 border border-white/5 rounded-lg p-2 text-center">
+            <div className="bg-black/40 border border-white/5 rounded-sm p-2 text-center">
               <div className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider mb-1">Carbs</div>
               <div className="text-[#0a3d8f] font-mono font-black text-sm">{scannedResult.carbs}g</div>
             </div>
-            <div className="bg-black/40 border border-white/5 rounded-lg p-2 text-center">
+            <div className="bg-black/40 border border-white/5 rounded-sm p-2 text-center">
               <div className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider mb-1">Fat</div>
               <div className="text-[#ce1126] font-mono font-black text-sm">{scannedResult.fat}g</div>
             </div>
@@ -261,16 +261,16 @@ export default function BarcodeScanner({ onFoodLogged }: BarcodeScannerProps) {
           <div className="flex flex-col sm:flex-row gap-3 items-end">
             <div className="w-full sm:w-auto">
               <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-1 pl-1">Servings</label>
-              <div className="flex items-center gap-2 bg-black/40 border border-white/10 rounded-xl p-1 w-fit">
-                <button type="button" onClick={() => setCustomServings(Math.max(0.5, customServings - 0.5))} className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-white font-bold flex items-center justify-center">-</button>
+              <div className="flex items-center gap-2 bg-black/40 border border-white/10 rounded-sm p-1 w-fit">
+                <button type="button" onClick={() => setCustomServings(Math.max(0.5, customServings - 0.5))} className="w-8 h-8 rounded-sm bg-white/5 hover:bg-white/10 text-white font-bold flex items-center justify-center">-</button>
                 <div className="w-12 text-center font-mono font-bold text-white text-sm">{customServings}</div>
-                <button type="button" onClick={() => setCustomServings(customServings + 0.5)} className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-white font-bold flex items-center justify-center">+</button>
+                <button type="button" onClick={() => setCustomServings(customServings + 0.5)} className="w-8 h-8 rounded-sm bg-white/5 hover:bg-white/10 text-white font-bold flex items-center justify-center">+</button>
               </div>
             </div>
             
             <button
               onClick={logMeal}
-              className="flex-1 w-full bg-gradient-to-r from-[#ce1126] to-[#f5a623] hover:from-[#a00d1d] hover:to-[#d48b1c] text-white px-5 py-3 rounded-xl font-bold tracking-wide transition-all shadow-[0_0_15px_rgba(206,17,38,0.3)] flex items-center justify-center gap-2"
+              className="flex-1 w-full bg-gradient-to-r from-[#ce1126] to-[#f5a623] hover:from-[#a00d1d] hover:to-[#d48b1c] text-white px-5 py-3 rounded-sm font-bold tracking-wide transition-all shadow-[0_0_15px_rgba(206,17,38,0.3)] flex items-center justify-center gap-2"
             >
               <PlusCircle className="w-5 h-5" />
               Log {Math.round(scannedResult.calories * customServings)} kcal

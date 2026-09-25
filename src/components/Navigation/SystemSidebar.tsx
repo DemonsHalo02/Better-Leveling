@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { ShieldAlert, Dumbbell, ScanLine, TrendingDown, Crown, Trophy, Settings, Palette, BookOpen } from 'lucide-react';
+import { ShieldAlert, Dumbbell, ScanLine, TrendingDown, Crown, Trophy, Settings, BookOpen } from 'lucide-react';
 import { isSystemAdmin } from '@/lib/hunter-system';
 
 export type TabType = 'quests' | 'workouts' | 'scanner' | 'courses' | 'weight' | 'account' | 'trophies' | 'settings' | 'admin';
@@ -32,54 +32,54 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
       id: 'quests',
       label: 'Daily Quests',
       mobileLabel: 'Quests',
-      icon: <ShieldAlert className="w-5 h-5" />,
+      icon: <ShieldAlert className="w-4 h-4 sm:w-5 sm:h-5" />,
       badge: 'Live'
     },
     {
       id: 'workouts',
       label: 'Daily Workout',
       mobileLabel: 'Workout',
-      icon: <Dumbbell className="w-5 h-5" />
+      icon: <Dumbbell className="w-4 h-4 sm:w-5 sm:h-5" />
     },
     {
       id: 'scanner',
       label: 'Macro Tracker',
       mobileLabel: 'Macros',
-      icon: <ScanLine className="w-5 h-5" />,
+      icon: <ScanLine className="w-4 h-4 sm:w-5 sm:h-5" />,
       badge: 'Cam'
     },
     {
       id: 'courses',
       label: 'My Courses',
       mobileLabel: 'Courses',
-      icon: <BookOpen className="w-5 h-5" />,
+      icon: <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />,
       badge: 'Study'
     },
     {
       id: 'weight',
       label: 'Weight & PRs',
       mobileLabel: 'Stats',
-      icon: <TrendingDown className="w-5 h-5" />
+      icon: <TrendingDown className="w-4 h-4 sm:w-5 sm:h-5" />
     },
     {
       id: 'trophies',
       label: 'Trophy Hall',
       mobileLabel: 'Trophies',
-      icon: <Trophy className="w-5 h-5 text-system-gold animate-pulse" />,
+      icon: <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-system-gold animate-pulse" />,
       badge: 'XP'
     },
     {
       id: 'settings',
       label: 'System Settings',
       mobileLabel: 'Settings',
-      icon: <Settings className="w-5 h-5 text-system-blue" />,
+      icon: <Settings className="w-4 h-4 sm:w-5 sm:h-5 text-system-blue" />,
       badge: 'NEW'
     },
     {
       id: 'account',
       label: 'Account',
       mobileLabel: 'Account',
-      icon: <Crown className="w-5 h-5 text-system-gold" />,
+      icon: <Crown className="w-4 h-4 sm:w-5 sm:h-5 text-system-gold" />,
       badge: 'PRO'
     },
     ...(isAdmin
@@ -88,7 +88,7 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
             id: 'admin' as TabType,
             label: 'System Overseer',
             mobileLabel: 'Admin',
-            icon: <ShieldAlert className="w-5 h-5 text-red-500 animate-pulse" />,
+            icon: <ShieldAlert className="w-4 h-4 sm:w-5 sm:h-5 text-red-500 animate-pulse" />,
             badge: 'GOD'
           }
         ]
@@ -97,39 +97,40 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
 
   return (
     <>
-      {/* Desktop / Tablet Navigation (Top Bar) */}
-      <nav className="hidden md:block w-full bg-[#050811]/80 backdrop-blur-xl border-b border-system-blue/20 sticky top-[68px] z-40 px-4 py-2.5 shadow-lg">
-        <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 overflow-x-auto no-scrollbar">
+      {/* Desktop / Tablet Navigation (Top Bar FF7 Style) */}
+      <nav className="hidden md:block w-full bg-[#02060d]/80 backdrop-blur-md border-b border-system-blue/20 sticky top-[76px] z-40 shadow-xl tech-border overflow-hidden">
+        <div className="max-w-7xl mx-auto flex items-center justify-start overflow-x-auto no-scrollbar pt-2 pl-4">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`group relative flex items-center gap-2.5 px-4.5 py-2.5 rounded-xl font-mono font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 whitespace-nowrap ${
+                className={`group relative flex items-center gap-2 px-6 py-3 font-mono font-bold text-xs sm:text-sm tracking-widest uppercase transition-all duration-200 whitespace-nowrap ${
                   isActive
-                    ? 'bg-gradient-to-r from-system-blue to-system-cyan text-black shadow-glow-blue font-black scale-105'
-                    : 'text-zinc-400 hover:text-white hover:bg-system-card border border-transparent hover:border-system-blue/30'
+                    ? 'text-system-cyan bg-system-panel border-t-2 border-l-2 border-r border-system-blue shadow-glow-blue z-10'
+                    : 'text-zinc-500 hover:text-white border-b border-transparent hover:border-system-blue/50'
                 }`}
+                style={isActive ? { clipPath: 'polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px)' } : {}}
               >
-                <span className={`transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}>
+                <span className={`transition-transform duration-300 ${isActive ? 'scale-110 drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]' : 'group-hover:scale-110'}`}>
                   {item.icon}
                 </span>
-                <span>{item.label}</span>
+                <span className={isActive ? 'text-white' : ''}>{item.label}</span>
                 {item.badge && (
                   <span
-                    className={`text-[9px] px-1.5 py-0.5 rounded font-mono uppercase ${
+                    className={`text-[9px] px-1.5 py-0.5 rounded-sm font-mono uppercase font-black tracking-tighter ${
                       isActive
-                        ? 'bg-black text-system-blue font-black shadow-sm'
-                        : item.id === 'account'
-                        ? 'bg-system-gold/20 text-system-gold border border-system-gold/50 font-black'
-                        : item.id === 'admin'
-                        ? 'bg-red-500/20 text-red-400 border border-red-500/50 font-black'
-                        : 'bg-system-blue/20 text-system-cyan border border-system-blue/30'
+                        ? 'bg-system-cyan text-black'
+                        : 'bg-zinc-800 text-zinc-400'
                     }`}
                   >
                     {item.badge}
                   </span>
+                )}
+                {/* Active scanline indicator */}
+                {isActive && (
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-system-cyan shadow-glow-blue animate-pulse" />
                 )}
               </button>
             );
@@ -137,47 +138,42 @@ export default function SystemSidebar({ activeTab, setActiveTab }: SystemSidebar
         </div>
       </nav>
 
-      {/* Mobile Fixed Bottom Navigation Bar */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#050811]/95 backdrop-blur-2xl border-t border-system-blue/30 py-1.5 shadow-[0_-10px_30px_rgba(0,0,0,0.9)]">
+      {/* Mobile Fixed Bottom Navigation Bar (Tactical UI) */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#02060d]/95 backdrop-blur-2xl border-t-2 border-system-blue/50 py-1.5 shadow-[0_-10px_30px_rgba(0,240,255,0.15)] tech-border">
         {/* Subtle scroll indicator fades on edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#050811] to-transparent pointer-events-none z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-[#050811] via-[#050811]/80 to-transparent pointer-events-none z-10" />
+        <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#02060d] to-transparent pointer-events-none z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-[#02060d] via-[#02060d]/80 to-transparent pointer-events-none z-10" />
         
-        <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-1.5 max-w-2xl mx-auto px-3.5 scroll-smooth">
+        <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-1 max-w-2xl mx-auto px-2 scroll-smooth pb-1">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`relative flex flex-col items-center justify-center py-1.5 px-2.5 rounded-xl transition-all duration-200 select-none flex-shrink-0 min-w-[58px] ${
+                className={`relative flex flex-col items-center justify-center py-2 px-3 rounded-none transition-all duration-200 select-none flex-shrink-0 min-w-[64px] ${
                   isActive
-                    ? item.id === 'account'
-                      ? 'text-system-gold bg-system-gold/15 font-black shadow-[0_0_12px_rgba(255,215,0,0.3)]'
-                      : item.id === 'admin'
-                      ? 'text-red-400 bg-red-500/15 font-black shadow-[0_0_12px_rgba(239,68,68,0.3)]'
-                      : 'text-system-cyan bg-system-blue/15 font-black shadow-[0_0_12px_rgba(0,240,255,0.25)]'
-                    : 'text-zinc-500 hover:text-zinc-300 active:bg-white/5 font-medium'
+                    ? 'text-system-cyan bg-system-panel border border-system-blue shadow-[0_0_15px_rgba(0,240,255,0.2)]'
+                    : 'text-zinc-500 hover:text-white bg-transparent'
                 }`}
+                style={isActive ? { clipPath: 'polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px)' } : {}}
               >
-                {/* Active top neon indicator */}
-                {isActive && (
-                  <span className={`absolute top-0 left-1/4 right-1/4 h-0.5 rounded-full animate-pulse ${item.id === 'account' ? 'bg-system-gold shadow-glow-gold' : item.id === 'admin' ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]' : 'bg-system-cyan shadow-glow-blue'}`} />
-                )}
-                
-                <div className={`relative transition-transform duration-200 mb-1 ${isActive ? 'scale-110 drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]' : ''}`}>
+                <div className={`relative transition-transform duration-200 mb-1 ${isActive ? 'scale-110 drop-shadow-[0_0_10px_rgba(0,240,255,1)] text-system-cyan' : ''}`}>
                   {item.icon}
                   {item.badge && (
-                    <span className={`absolute -top-1 -right-3 text-[7px] font-mono px-1 rounded-full border border-black font-bold leading-tight ${
-                      item.id === 'account' ? 'bg-system-gold text-black font-black' : item.id === 'admin' ? 'bg-red-500 text-white font-black' : 'bg-system-purple text-white'
+                    <span className={`absolute -top-1 -right-4 text-[8px] font-mono px-1 rounded-sm border border-black font-black leading-tight ${
+                      isActive ? 'bg-system-cyan text-black' : 'bg-zinc-700 text-zinc-300'
                     }`}>
                       {item.badge}
                     </span>
                   )}
                 </div>
-                <span className={`text-[9px] font-mono tracking-tight leading-none truncate w-full text-center ${isActive ? 'font-black text-white' : ''}`}>
+                <span className={`text-[9px] font-mono tracking-widest leading-none truncate w-full text-center uppercase ${isActive ? 'font-black text-white' : ''}`}>
                   {item.mobileLabel}
                 </span>
+                {isActive && (
+                  <div className="absolute -bottom-px left-2 right-2 h-0.5 bg-system-cyan shadow-glow-blue" />
+                )}
               </button>
             );
           })}

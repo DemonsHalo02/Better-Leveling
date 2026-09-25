@@ -114,7 +114,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
 
   return (
     <div className="space-y-8 pb-12">
-      <div className="bg-[#11182c]/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="bg-[#11182c]/80 backdrop-blur-md p-6 rounded-none border border-white/10 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-[#0a3d8f] mb-1">
             <Flame className="w-3.5 h-3.5" />
@@ -129,7 +129,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
         </div>
         <button
           onClick={() => setShowManualModal(true)}
-          className="flex items-center gap-2 bg-[#ce1126] hover:bg-[#a00d1d] text-white px-5 py-2.5 rounded-xl font-bold tracking-wide transition-all shadow-lg active:scale-95"
+          className="flex items-center gap-2 bg-[#ce1126] hover:bg-[#a00d1d] text-white px-5 py-2.5 rounded-sm font-bold tracking-wide transition-all shadow-lg active:scale-95"
         >
           <PlusCircle className="w-5 h-5" />
           Quick Add
@@ -143,7 +143,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
         <MacroCard title="Fats" current={totalFat} goal={fatGoal} unit="g" color="bg-[#ce1126]" border="border-[#ce1126]" />
       </div>
 
-      <div className="bg-[#11182c]/80 backdrop-blur-md rounded-2xl border border-white/10 p-6 shadow-xl overflow-hidden relative">
+      <div className="bg-[#11182c]/80 backdrop-blur-md rounded-none border border-white/10 p-6 shadow-xl overflow-hidden relative">
         <div className="flex items-center justify-between mb-6">
           <h3 className="font-black text-white text-lg tracking-wider flex items-center gap-2">
             <Droplets className="w-5 h-5 text-[#0a3d8f]" /> Hydration ({waterConsumed} / {HYDRATION_GOAL_OZ} oz)
@@ -157,7 +157,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
         
         <div className="flex gap-3">
           {[8, 16, 24].map((amt) => (
-            <button key={amt} onClick={() => handleDrinkWater(amt)} className="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-3 flex flex-col items-center gap-1 transition-all hover:border-[#0a3d8f]/50 hover:shadow-[0_0_15px_rgba(10,61,143,0.3)]">
+            <button key={amt} onClick={() => handleDrinkWater(amt)} className="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 rounded-sm py-3 flex flex-col items-center gap-1 transition-all hover:border-[#0a3d8f]/50 hover:shadow-[0_0_15px_rgba(10,61,143,0.3)]">
               <Droplets className="w-5 h-5 text-[#0a3d8f]" />
               <span className="text-xs font-bold text-white">+{amt} oz</span>
             </button>
@@ -165,11 +165,11 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
         </div>
       </div>
 
-      <div className="bg-[#11182c]/80 backdrop-blur-md rounded-2xl border border-white/10 p-6 shadow-xl">
+      <div className="bg-[#11182c]/80 backdrop-blur-md rounded-none border border-white/10 p-6 shadow-xl">
         <h3 className="font-black text-white text-lg tracking-wider mb-4 border-b border-white/10 pb-4">Today&apos;s Log</h3>
         
         {meals.length === 0 ? (
-          <div className="text-center py-10 bg-black/20 rounded-xl border border-white/5">
+          <div className="text-center py-10 bg-black/20 rounded-sm border border-white/5">
             <ShieldCheck className="w-12 h-12 text-zinc-600 mx-auto mb-3 opacity-50" />
             <p className="text-zinc-500 font-medium">No macros tracked yet today.</p>
             <p className="text-zinc-600 text-sm mt-1">Use the Barcode Scanner or Quick Add.</p>
@@ -177,7 +177,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
         ) : (
           <div className="space-y-3">
             {meals.map((meal) => (
-              <div key={meal.id} className="bg-black/30 border border-white/5 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:border-white/10 transition-colors">
+              <div key={meal.id} className="bg-black/30 border border-white/5 rounded-sm p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:border-white/10 transition-colors">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-bold text-white text-sm">{meal.name}</span>
@@ -192,7 +192,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
                 </div>
                 <button
                   onClick={() => removeMeal(meal.id)}
-                  className="text-zinc-500 hover:text-[#ce1126] p-2 rounded-lg hover:bg-[#ce1126]/10 transition-colors shrink-0"
+                  className="text-zinc-500 hover:text-[#ce1126] p-2 rounded-sm hover:bg-[#ce1126]/10 transition-colors shrink-0"
                   aria-label="Remove meal"
                 >
                   <Trash2 className="w-4 h-4" />
@@ -205,34 +205,34 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
 
       {showManualModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-[#11182c] border border-white/20 rounded-3xl p-6 w-full max-w-md shadow-2xl relative">
+          <div className="bg-[#11182c] border border-white/20 rounded-none p-6 w-full max-w-md shadow-2xl relative">
             <h3 className="text-xl font-black text-white mb-6">Quick Add Macros</h3>
             <form onSubmit={handleManualAdd} className="space-y-4">
               <div>
                 <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Food Name</label>
-                <input required type="text" value={manualName} onChange={(e) => setManualName(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-[#ce1126] focus:ring-1 focus:ring-[#ce1126] transition-all" placeholder="e.g., Hannaford Greek Yogurt" />
+                <input required type="text" value={manualName} onChange={(e) => setManualName(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-sm px-4 py-3 text-white outline-none focus:border-[#ce1126] focus:ring-1 focus:ring-[#ce1126] transition-all" placeholder="e.g., Hannaford Greek Yogurt" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Calories</label>
-                  <input required type="number" min="0" value={manualCals} onChange={(e) => setManualCals(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-[#f5a623] font-mono outline-none focus:border-[#f5a623]" placeholder="0" />
+                  <input required type="number" min="0" value={manualCals} onChange={(e) => setManualCals(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-sm px-4 py-3 text-[#f5a623] font-mono outline-none focus:border-[#f5a623]" placeholder="0" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Protein (g)</label>
-                  <input required type="number" min="0" value={manualProt} onChange={(e) => setManualProt(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-[#4ade80] font-mono outline-none focus:border-[#4ade80]" placeholder="0" />
+                  <input required type="number" min="0" value={manualProt} onChange={(e) => setManualProt(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-sm px-4 py-3 text-[#4ade80] font-mono outline-none focus:border-[#4ade80]" placeholder="0" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Carbs (g)</label>
-                  <input required type="number" min="0" value={manualCarbs} onChange={(e) => setManualCarbs(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-[#0a3d8f] font-mono outline-none focus:border-[#0a3d8f]" placeholder="0" />
+                  <input required type="number" min="0" value={manualCarbs} onChange={(e) => setManualCarbs(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-sm px-4 py-3 text-[#0a3d8f] font-mono outline-none focus:border-[#0a3d8f]" placeholder="0" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Fat (g)</label>
-                  <input required type="number" min="0" value={manualFat} onChange={(e) => setManualFat(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-[#ce1126] font-mono outline-none focus:border-[#ce1126]" placeholder="0" />
+                  <input required type="number" min="0" value={manualFat} onChange={(e) => setManualFat(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-sm px-4 py-3 text-[#ce1126] font-mono outline-none focus:border-[#ce1126]" placeholder="0" />
                 </div>
               </div>
               <div className="flex gap-3 pt-4">
-                <button type="button" onClick={() => setShowManualModal(false)} className="flex-1 px-4 py-3 rounded-xl border border-white/10 text-white font-bold hover:bg-white/5 transition-colors">Cancel</button>
-                <button type="submit" className="flex-1 px-4 py-3 rounded-xl bg-[#ce1126] hover:bg-[#a00d1d] text-white font-bold shadow-lg transition-colors">Add Macros</button>
+                <button type="button" onClick={() => setShowManualModal(false)} className="flex-1 px-4 py-3 rounded-sm border border-white/10 text-white font-bold hover:bg-white/5 transition-colors">Cancel</button>
+                <button type="submit" className="flex-1 px-4 py-3 rounded-sm bg-[#ce1126] hover:bg-[#a00d1d] text-white font-bold shadow-lg transition-colors">Add Macros</button>
               </div>
             </form>
           </div>
@@ -245,7 +245,7 @@ export default function NutritionTracker({ onNavigate }: NutritionTrackerProps) 
 function MacroCard({ title, current, goal, unit, color, border }: { title: string, current: number, goal: number, unit: string, color: string, border: string }) {
   const percent = Math.min((current / goal) * 100, 100);
   return (
-    <div className={`bg-black/30 border-t-4 ${border} rounded-xl p-4 shadow-inner relative overflow-hidden group`}>
+    <div className={`bg-black/30 border-t-4 ${border} rounded-sm p-4 shadow-inner relative overflow-hidden group`}>
       <div className={`absolute top-0 right-0 w-16 h-16 ${color}/10 rounded-full blur-2xl -mr-8 -mt-8 group-hover:opacity-100 opacity-50 transition-opacity`} />
       <div className="relative z-10">
         <div className="text-[10px] sm:text-xs font-mono font-bold text-zinc-400 uppercase tracking-wider mb-1">{title}</div>

@@ -175,7 +175,7 @@ export default function AdminDashboard() {
   if (!isAdmin) {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center animate-in fade-in duration-300">
-        <div className="w-20 h-20 rounded-3xl bg-red-500/10 border-2 border-red-500/40 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(239,68,68,0.3)]">
+        <div className="w-20 h-20 rounded-none bg-red-500/10 border-2 border-red-500/40 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(239,68,68,0.3)]">
           <Lock className="w-10 h-10 text-red-500 animate-pulse" />
         </div>
         <h2 className="text-2xl md:text-3xl font-black text-white uppercase tracking-wider mb-2">
@@ -405,14 +405,14 @@ export default function AdminDashboard() {
       
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed top-20 right-4 z-50 bg-gradient-to-r from-red-600 via-system-purple to-system-blue text-white px-6 py-3.5 rounded-xl font-black uppercase text-sm tracking-wider shadow-[0_0_25px_rgba(239,68,68,0.5)] flex items-center gap-3 animate-in fade-in slide-in-from-top duration-300">
+        <div className="fixed top-20 right-4 z-50 bg-gradient-to-r from-red-600 via-system-purple to-system-blue text-white px-6 py-3.5 rounded-sm font-black uppercase text-sm tracking-wider shadow-[0_0_25px_rgba(239,68,68,0.5)] flex items-center gap-3 animate-in fade-in slide-in-from-top duration-300">
           <CheckCircle2 className="w-5 h-5 text-system-gold" />
           <span>{toastMessage}</span>
         </div>
       )}
 
       {/* Admin Header Banner */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-red-900/40 via-[#1a0a24] to-system-panel p-6 border-2 border-red-500/60 shadow-[0_0_30px_rgba(239,68,68,0.25)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div className="relative overflow-hidden rounded-none bg-gradient-to-r from-red-900/40 via-[#1a0a24] to-system-panel p-6 border-2 border-red-500/60 shadow-[0_0_30px_rgba(239,68,68,0.25)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="absolute -right-12 -top-12 w-64 h-64 bg-red-500/10 rounded-full blur-3xl pointer-events-none animate-pulse" />
 
         <div className="space-y-2 relative z-10">
@@ -429,7 +429,7 @@ export default function AdminDashboard() {
         </div>
 
         <div className="relative z-10 flex flex-col items-end gap-2 text-right">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-green-500/10 border border-green-500/40 text-green-400 font-mono text-xs font-bold shadow-sm">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-green-500/10 border border-green-500/40 text-green-400 font-mono text-xs font-bold shadow-sm">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-ping" />
             Aetheryte Server Node #1 Active
           </span>
@@ -441,56 +441,56 @@ export default function AdminDashboard() {
 
       {/* KPI Overview Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono">
-        <div className="bg-system-panel p-5 rounded-2xl border border-white/10 shadow-lg flex items-center justify-between">
+        <div className="bg-system-panel p-5 rounded-none border border-white/10 shadow-lg flex items-center justify-between">
           <div>
             <div className="text-[10px] uppercase font-bold text-zinc-400">Total Mercenaries</div>
             <div className="text-2xl font-black text-white mt-1">{totalMembers}</div>
             <div className="text-[11px] text-system-cyan">Registered in Avalanche</div>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-system-blue/10 border border-system-blue/30 flex items-center justify-center text-system-cyan">
+          <div className="w-12 h-12 rounded-sm bg-system-blue/10 border border-system-blue/30 flex items-center justify-center text-system-cyan">
             <Users className="w-6 h-6" />
           </div>
         </div>
 
-        <div className="bg-system-panel p-5 rounded-2xl border border-system-gold/40 shadow-lg flex items-center justify-between">
+        <div className="bg-system-panel p-5 rounded-none border border-system-gold/40 shadow-lg flex items-center justify-between">
           <div>
             <div className="text-[10px] uppercase font-bold text-zinc-400">VIP Avalanche Members</div>
             <div className="text-2xl font-black text-system-gold mt-1">{vipCount}</div>
             <div className="text-[11px] text-yellow-300">Level 100 Access Unlocked</div>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-system-gold/10 border border-system-gold/30 flex items-center justify-center text-system-gold">
+          <div className="w-12 h-12 rounded-sm bg-system-gold/10 border border-system-gold/30 flex items-center justify-center text-system-gold">
             <Crown className="w-6 h-6 animate-pulse" />
           </div>
         </div>
 
-        <div className="bg-system-panel p-5 rounded-2xl border border-green-500/30 shadow-lg flex items-center justify-between">
+        <div className="bg-system-panel p-5 rounded-none border border-green-500/30 shadow-lg flex items-center justify-between">
           <div>
             <div className="text-[10px] uppercase font-bold text-zinc-400">Active Status</div>
             <div className="text-2xl font-black text-green-400 mt-1">{activeCount}</div>
             <div className="text-[11px] text-green-300">Operational Mercenaries</div>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400">
+          <div className="w-12 h-12 rounded-sm bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400">
             <UserCheck className="w-6 h-6" />
           </div>
         </div>
 
-        <div className="bg-system-panel p-5 rounded-2xl border border-system-purple/40 shadow-lg flex items-center justify-between">
+        <div className="bg-system-panel p-5 rounded-none border border-system-purple/40 shadow-lg flex items-center justify-between">
           <div>
             <div className="text-[10px] uppercase font-bold text-zinc-400">Cloud Storage Health</div>
             <div className="text-2xl font-black text-system-purple mt-1">100%</div>
             <div className="text-[11px] text-purple-300">Art Vault & Firebase Sync</div>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-system-purple/10 border border-system-purple/30 flex items-center justify-center text-system-purple">
+          <div className="w-12 h-12 rounded-sm bg-system-purple/10 border border-system-purple/30 flex items-center justify-center text-system-purple">
             <Database className="w-6 h-6" />
           </div>
         </div>
       </div>
 
       {/* System Broadcast Command Box */}
-      <div className="bg-system-panel rounded-2xl p-6 border border-system-purple/50 shadow-xl space-y-4">
+      <div className="bg-system-panel rounded-none p-6 border border-system-purple/50 shadow-xl space-y-4">
         <div className="flex items-center justify-between border-b border-white/10 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-system-purple/10 border border-system-purple flex items-center justify-center">
+            <div className="w-10 h-10 rounded-sm bg-system-purple/10 border border-system-purple flex items-center justify-center">
               <Radio className="w-5 h-5 text-system-purple animate-pulse" />
             </div>
             <div>
@@ -512,11 +512,11 @@ export default function AdminDashboard() {
             value={broadcastMsg}
             onChange={(e) => setBroadcastMsg(e.target.value)}
             placeholder="Enter global notification (e.g. ⚡ System Alert: Double XP Workout Weekend Active)..."
-            className="flex-1 bg-system-dark border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-system-purple font-mono"
+            className="flex-1 bg-system-dark border border-white/20 rounded-sm px-4 py-3 text-sm text-white focus:outline-none focus:border-system-purple font-mono"
           />
           <button
             type="submit"
-            className="px-6 py-3 rounded-xl bg-gradient-to-r from-system-purple to-system-blue text-white font-black uppercase text-xs tracking-widest shadow-glow-purple hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer flex-shrink-0"
+            className="px-6 py-3 rounded-sm bg-gradient-to-r from-system-purple to-system-blue text-white font-black uppercase text-xs tracking-widest shadow-glow-purple hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer flex-shrink-0"
           >
             <Send className="w-4 h-4" />
             <span>Transmit Alert</span>
@@ -525,10 +525,10 @@ export default function AdminDashboard() {
       </div>
 
       {/* Account Re-Awakening & Reset Suite */}
-      <div className="bg-gradient-to-r from-red-950/30 via-system-panel to-system-panel rounded-2xl p-6 border-2 border-red-500/40 shadow-[0_0_25px_rgba(239,68,68,0.15)] space-y-4">
+      <div className="bg-gradient-to-r from-red-950/30 via-system-panel to-system-panel rounded-none p-6 border-2 border-red-500/40 shadow-[0_0_25px_rgba(239,68,68,0.15)] space-y-4">
         <div className="flex items-center justify-between border-b border-white/10 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-sm bg-red-500/10 border border-red-500 flex items-center justify-center">
               <RotateCcw className="w-5 h-5 text-red-400" />
             </div>
             <div>
@@ -542,7 +542,7 @@ export default function AdminDashboard() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-          <div className="bg-system-dark/80 p-4 rounded-xl border border-white/10 flex flex-col justify-between gap-3">
+          <div className="bg-system-dark/80 p-4 rounded-sm border border-white/10 flex flex-col justify-between gap-3">
             <div>
               <div className="text-xs font-bold text-white uppercase flex items-center gap-1.5">
                 <RefreshCw className="w-3.5 h-3.5 text-system-cyan" />
@@ -554,14 +554,14 @@ export default function AdminDashboard() {
             </div>
             <button
               onClick={handleResetActiveAccount}
-              className="w-full py-2.5 rounded-lg bg-system-blue/20 hover:bg-system-blue text-system-cyan hover:text-black border border-system-blue/40 font-black uppercase text-xs tracking-wider transition-all cursor-pointer shadow-glow-blue flex items-center justify-center gap-2"
+              className="w-full py-2.5 rounded-sm bg-system-blue/20 hover:bg-system-blue text-system-cyan hover:text-black border border-system-blue/40 font-black uppercase text-xs tracking-wider transition-all cursor-pointer shadow-glow-blue flex items-center justify-center gap-2"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset My Account</span>
             </button>
           </div>
 
-          <div className="bg-system-dark/80 p-4 rounded-xl border border-white/10 flex flex-col justify-between gap-3">
+          <div className="bg-system-dark/80 p-4 rounded-sm border border-white/10 flex flex-col justify-between gap-3">
             <div>
               <div className="text-xs font-bold text-white uppercase flex items-center gap-1.5">
                 <Sliders className="w-3.5 h-3.5 text-system-gold" />
@@ -573,14 +573,14 @@ export default function AdminDashboard() {
             </div>
             <button
               onClick={handleResetAllQuestsToday}
-              className="w-full py-2.5 rounded-lg bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-black border border-system-gold/40 font-black uppercase text-xs tracking-wider transition-all cursor-pointer shadow-glow-gold flex items-center justify-center gap-2"
+              className="w-full py-2.5 rounded-sm bg-system-gold/20 hover:bg-system-gold text-system-gold hover:text-black border border-system-gold/40 font-black uppercase text-xs tracking-wider transition-all cursor-pointer shadow-glow-gold flex items-center justify-center gap-2"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               <span>Reset Daily Quests</span>
             </button>
           </div>
 
-          <div className="bg-system-dark/80 p-4 rounded-xl border border-red-500/30 flex flex-col justify-between gap-3">
+          <div className="bg-system-dark/80 p-4 rounded-sm border border-red-500/30 flex flex-col justify-between gap-3">
             <div>
               <div className="text-xs font-bold text-red-400 uppercase flex items-center gap-1.5">
                 <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
@@ -592,7 +592,7 @@ export default function AdminDashboard() {
             </div>
             <button
               onClick={handleResetSystemAccounts}
-              className="w-full py-2.5 rounded-lg bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/40 font-black uppercase text-xs tracking-wider transition-all cursor-pointer shadow-[0_0_15px_rgba(239,68,68,0.3)] flex items-center justify-center gap-2"
+              className="w-full py-2.5 rounded-sm bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/40 font-black uppercase text-xs tracking-wider transition-all cursor-pointer shadow-[0_0_15px_rgba(239,68,68,0.3)] flex items-center justify-center gap-2"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Global Account Reset</span>
@@ -602,10 +602,10 @@ export default function AdminDashboard() {
       </div>
 
       {/* Avalanche Roster & User Management Section */}
-      <div className="bg-system-panel rounded-2xl p-6 border border-white/10 shadow-xl space-y-6">
+      <div className="bg-system-panel rounded-none p-6 border border-white/10 shadow-xl space-y-6">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/10 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/40 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-sm bg-red-500/10 border border-red-500/40 flex items-center justify-center">
               <Users className="w-5 h-5 text-red-400" />
             </div>
             <div>
@@ -623,14 +623,14 @@ export default function AdminDashboard() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search Mercenaries..."
-                className="w-full bg-system-dark border border-white/10 rounded-xl pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-system-blue font-mono"
+                className="w-full bg-system-dark border border-white/10 rounded-sm pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-system-blue font-mono"
               />
             </div>
 
             <select
               value={tierFilter}
               onChange={(e) => setTierFilter(e.target.value)}
-              className="bg-system-dark border border-white/10 rounded-xl px-3 py-2 text-xs text-zinc-300 font-mono focus:outline-none focus:border-system-blue cursor-pointer"
+              className="bg-system-dark border border-white/10 rounded-sm px-3 py-2 text-xs text-zinc-300 font-mono focus:outline-none focus:border-system-blue cursor-pointer"
             >
               <option value="all">All Tiers</option>
               <option value="vip">VIP Avalanche Only</option>
@@ -639,7 +639,7 @@ export default function AdminDashboard() {
 
             <button
               onClick={() => setShowAddModal(true)}
-              className="px-4 py-2 rounded-xl bg-system-gold text-black font-black uppercase text-xs tracking-wider shadow-glow-gold hover:scale-105 transition-all flex items-center gap-1.5 cursor-pointer"
+              className="px-4 py-2 rounded-sm bg-system-gold text-black font-black uppercase text-xs tracking-wider shadow-glow-gold hover:scale-105 transition-all flex items-center gap-1.5 cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5 fill-black" />
               <span>+ Add Mercenary</span>
@@ -713,7 +713,7 @@ export default function AdminDashboard() {
                         {/* Toggle VIP */}
                         <button
                           onClick={() => handleToggleVip(member.id)}
-                          className={`px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase transition-all border cursor-pointer ${
+                          className={`px-2.5 py-1.5 rounded-sm text-[10px] font-bold uppercase transition-all border cursor-pointer ${
                             isVip
                               ? "bg-system-dark text-zinc-400 border-white/10 hover:border-yellow-500/40 hover:text-yellow-400"
                               : "bg-system-gold/20 text-system-gold border-system-gold/40 hover:bg-system-gold hover:text-black"
@@ -726,7 +726,7 @@ export default function AdminDashboard() {
                         {/* Adjust Level +10 */}
                         <button
                           onClick={() => handleAdjustLevel(member.id, 10)}
-                          className="px-2 py-1.5 rounded-lg bg-system-blue/20 hover:bg-system-blue text-system-cyan hover:text-black border border-system-blue/40 text-[10px] font-bold transition-all cursor-pointer"
+                          className="px-2 py-1.5 rounded-sm bg-system-blue/20 hover:bg-system-blue text-system-cyan hover:text-black border border-system-blue/40 text-[10px] font-bold transition-all cursor-pointer"
                           title="Boost +10 Mercenary Levels"
                         >
                           +10 LV
@@ -735,7 +735,7 @@ export default function AdminDashboard() {
                         {/* Reset Individual Account */}
                         <button
                           onClick={() => handleResetMemberAccount(member.id, member.name, member.email)}
-                          className="px-2 py-1.5 rounded-lg bg-red-500/15 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/30 text-[10px] font-bold transition-all cursor-pointer flex items-center gap-1"
+                          className="px-2 py-1.5 rounded-sm bg-red-500/15 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/30 text-[10px] font-bold transition-all cursor-pointer flex items-center gap-1"
                           title="Reset account to Level 1 Novice"
                         >
                           <RotateCcw className="w-3 h-3" />
@@ -746,7 +746,7 @@ export default function AdminDashboard() {
                         {!isSelf && (
                           <button
                             onClick={() => handleToggleStatus(member.id)}
-                            className="p-1.5 rounded-lg bg-system-dark hover:bg-white/10 border border-white/10 text-zinc-400 hover:text-white transition-all cursor-pointer"
+                            className="p-1.5 rounded-sm bg-system-dark hover:bg-white/10 border border-white/10 text-zinc-400 hover:text-white transition-all cursor-pointer"
                             title="Toggle account suspension"
                           >
                             <AlertTriangle className="w-3.5 h-3.5" />
@@ -757,7 +757,7 @@ export default function AdminDashboard() {
                         {!isSelf && (
                           <button
                             onClick={() => handleDeleteMember(member.id, member.name)}
-                            className="p-1.5 rounded-lg bg-system-dark hover:bg-red-500/20 border border-white/10 hover:border-red-500/40 text-zinc-400 hover:text-red-400 transition-all cursor-pointer"
+                            className="p-1.5 rounded-sm bg-system-dark hover:bg-red-500/20 border border-white/10 hover:border-red-500/40 text-zinc-400 hover:text-red-400 transition-all cursor-pointer"
                             title="Delete user from database"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -774,9 +774,9 @@ export default function AdminDashboard() {
       </div>
 
       {/* Quick System Maintenance Utilities */}
-      <div className="bg-system-panel rounded-2xl p-6 border border-white/10 shadow-xl space-y-4">
+      <div className="bg-system-panel rounded-none p-6 border border-white/10 shadow-xl space-y-4">
         <div className="flex items-center gap-3 border-b border-white/10 pb-4">
-          <div className="w-10 h-10 rounded-xl bg-system-blue/10 border border-system-blue flex items-center justify-center">
+          <div className="w-10 h-10 rounded-sm bg-system-blue/10 border border-system-blue flex items-center justify-center">
             <Sliders className="w-5 h-5 text-system-blue" />
           </div>
           <div>
@@ -786,20 +786,20 @@ export default function AdminDashboard() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
-          <div className="p-4 rounded-xl bg-system-dark/80 border border-white/10 flex items-center justify-between gap-4">
+          <div className="p-4 rounded-sm bg-system-dark/80 border border-white/10 flex items-center justify-between gap-4">
             <div>
               <div className="font-bold text-white uppercase">Reset Today's Quests</div>
               <div className="text-[11px] text-zinc-400 mt-0.5">Clear daily checkmarks for local Mercenary state</div>
             </div>
             <button
               onClick={handleResetAllQuestsToday}
-              className="px-4 py-2 rounded-xl bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/40 font-bold uppercase tracking-wider transition-all cursor-pointer flex-shrink-0"
+              className="px-4 py-2 rounded-sm bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/40 font-bold uppercase tracking-wider transition-all cursor-pointer flex-shrink-0"
             >
               Reset Quests
             </button>
           </div>
 
-          <div className="p-4 rounded-xl bg-system-dark/80 border border-white/10 flex items-center justify-between gap-4">
+          <div className="p-4 rounded-sm bg-system-dark/80 border border-white/10 flex items-center justify-between gap-4">
             <div>
               <div className="font-bold text-white uppercase">Sync Local Roster to Storage</div>
               <div className="text-[11px] text-zinc-400 mt-0.5">Backup admin user database locally & cloud</div>
@@ -827,7 +827,7 @@ export default function AdminDashboard() {
                   showToast(`❌ Sync error: ${e.message}`);
                 }
               }}
-              className="px-4 py-2 rounded-xl bg-system-cyan/20 hover:bg-system-cyan text-system-cyan hover:text-black border border-system-cyan/40 font-bold uppercase tracking-wider transition-all cursor-pointer flex-shrink-0 flex items-center gap-1.5"
+              className="px-4 py-2 rounded-sm bg-system-cyan/20 hover:bg-system-cyan text-system-cyan hover:text-black border border-system-cyan/40 font-bold uppercase tracking-wider transition-all cursor-pointer flex-shrink-0 flex items-center gap-1.5"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               <span>Force Sync</span>
@@ -839,7 +839,7 @@ export default function AdminDashboard() {
       {/* Add Member Modal */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="bg-system-panel border-2 border-system-gold rounded-2xl p-6 max-w-md w-full shadow-glow-gold space-y-4">
+          <div className="bg-system-panel border-2 border-system-gold rounded-none p-6 max-w-md w-full shadow-glow-gold space-y-4">
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <h3 className="text-lg font-black text-white uppercase tracking-wider flex items-center gap-2">
                 <Crown className="w-5 h-5 text-system-gold" /> Add New Avalanche Mercenary
@@ -861,7 +861,7 @@ export default function AdminDashboard() {
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
                   placeholder="e.g. Thomas Andre"
-                  className="w-full bg-system-dark border border-white/20 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-system-gold"
+                  className="w-full bg-system-dark border border-white/20 rounded-sm px-3 py-2 text-white focus:outline-none focus:border-system-gold"
                 />
               </div>
 
@@ -873,7 +873,7 @@ export default function AdminDashboard() {
                   value={newEmail}
                   onChange={(e) => setNewEmail(e.target.value)}
                   placeholder="e.g. goliath@Avalanche.com"
-                  className="w-full bg-system-dark border border-white/20 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-system-gold"
+                  className="w-full bg-system-dark border border-white/20 rounded-sm px-3 py-2 text-white focus:outline-none focus:border-system-gold"
                 />
               </div>
 
@@ -886,7 +886,7 @@ export default function AdminDashboard() {
                     max="100"
                     value={newLevel}
                     onChange={(e) => setNewLevel(parseInt(e.target.value) || 1)}
-                    className="w-full bg-system-dark border border-white/20 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-system-gold"
+                    className="w-full bg-system-dark border border-white/20 rounded-sm px-3 py-2 text-white focus:outline-none focus:border-system-gold"
                   />
                 </div>
 
@@ -895,7 +895,7 @@ export default function AdminDashboard() {
                   <select
                     value={newTier}
                     onChange={(e) => setNewTier(e.target.value as "Unregistered" | "VIP Aetheryte Sector")}
-                    className="w-full bg-system-dark border border-white/20 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-system-gold cursor-pointer"
+                    className="w-full bg-system-dark border border-white/20 rounded-sm px-3 py-2 text-white focus:outline-none focus:border-system-gold cursor-pointer"
                   >
                     <option value="Unregistered">Unregistered</option>
                     <option value="VIP Aetheryte Sector">VIP Aetheryte Sector</option>
@@ -907,13 +907,13 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 rounded-xl bg-system-dark text-zinc-400 hover:text-white font-bold uppercase transition-all cursor-pointer"
+                  className="px-4 py-2 rounded-sm bg-system-dark text-zinc-400 hover:text-white font-bold uppercase transition-all cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-system-gold text-black font-black uppercase tracking-wider shadow-glow-gold hover:scale-105 transition-all cursor-pointer"
+                  className="px-5 py-2 rounded-sm bg-system-gold text-black font-black uppercase tracking-wider shadow-glow-gold hover:scale-105 transition-all cursor-pointer"
                 >
                   Register Mercenary
                 </button>

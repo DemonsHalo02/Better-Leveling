@@ -110,14 +110,14 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
       
       {/* Toast Notification */}
       {showSavedToast && (
-        <div className="fixed top-20 right-4 z-50 bg-gradient-to-r from-system-gold to-yellow-500 text-black px-6 py-3.5 rounded-xl font-black uppercase text-sm tracking-wider shadow-glow-gold flex items-center gap-3 animate-in fade-in slide-in-from-top duration-300">
+        <div className="fixed top-20 right-4 z-50 bg-gradient-to-r from-system-gold to-yellow-500 text-black px-6 py-3.5 rounded-sm font-black uppercase text-sm tracking-wider shadow-glow-gold flex items-center gap-3 animate-in fade-in slide-in-from-top duration-300">
           <CheckCircle2 className="w-5 h-5 fill-black text-system-gold" />
           <span>System Directives & Mercenary Goals Saved Successfully!</span>
         </div>
       )}
 
       {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-system-card via-system-panel to-system-dark p-6 border border-system-blue/40 shadow-glow-blue flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div className="relative overflow-hidden rounded-none bg-gradient-to-r from-system-card via-system-panel to-system-dark p-6 border border-system-blue/40 shadow-glow-blue flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-system-blue/10 rounded-full blur-3xl pointer-events-none animate-pulse" />
         <div className="space-y-2 relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-system-blue/10 border border-system-blue text-system-cyan text-xs font-mono uppercase tracking-widest font-bold">
@@ -133,7 +133,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
         </div>
         <button
           onClick={handleSaveAll}
-          className="relative z-10 flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-system-gold via-yellow-400 to-system-gold text-black font-black uppercase text-sm tracking-widest shadow-glow-gold hover:scale-105 transition-all w-full md:w-auto justify-center cursor-pointer"
+          className="relative z-10 flex items-center gap-2 px-6 py-3.5 rounded-sm bg-gradient-to-r from-system-gold via-yellow-400 to-system-gold text-black font-black uppercase text-sm tracking-widest shadow-glow-gold hover:scale-105 transition-all w-full md:w-auto justify-center cursor-pointer"
         >
           <Save className="w-4 h-4 fill-black" />
           <span>Save All Settings</span>
@@ -143,9 +143,9 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
       <form onSubmit={handleSaveAll} className="space-y-6">
         
         {/* Section 1: Mercenary Identity & Training Sector */}
-        <div className="bg-system-panel rounded-2xl p-6 border border-system-blue/30 space-y-6 shadow-lg">
+        <div className="bg-system-panel rounded-none p-6 border border-system-blue/30 space-y-6 shadow-lg">
           <div className="flex items-center gap-2.5 border-b border-system-blue/20 pb-4">
-            <div className="w-9 h-9 rounded-xl bg-system-blue/10 border border-system-blue flex items-center justify-center">
+            <div className="w-9 h-9 rounded-sm bg-system-blue/10 border border-system-blue flex items-center justify-center">
               <User className="w-5 h-5 text-system-blue" />
             </div>
             <div>
@@ -162,7 +162,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g., Nick Crosson"
-                className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
+                className="w-full bg-system-dark border border-system-blue/40 rounded-sm px-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
               />
               <p className="text-[11px] text-zinc-500">Displayed on awakening banner and quest alerts.</p>
             </div>
@@ -174,7 +174,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g., SOLDIER 1st Class"
-                className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-2.5 text-system-gold font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
+                className="w-full bg-system-dark border border-system-blue/40 rounded-sm px-4 py-2.5 text-system-gold font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
               />
               <p className="text-[11px] text-zinc-500">Appears in your top status bar.</p>
             </div>
@@ -186,7 +186,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 value={gymName}
                 onChange={(e) => setGymName(e.target.value)}
                 placeholder="e.g., Quiet Apartment Bodyweight Dojo"
-                className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-2.5 text-system-cyan font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
+                className="w-full bg-system-dark border border-system-blue/40 rounded-sm px-4 py-2.5 text-system-cyan font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
               />
               <p className="text-[11px] text-zinc-500">Used in 6-day bodyweight workout quest descriptions.</p>
             </div>
@@ -198,7 +198,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 value={dietName}
                 onChange={(e) => setDietName(e.target.value)}
                 placeholder="e.g., Level 100 High-Protein Shred Blueprint"
-                className="w-full bg-system-dark border border-system-blue/40 rounded-xl px-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
+                className="w-full bg-system-dark border border-system-blue/40 rounded-sm px-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
               />
               <p className="text-[11px] text-zinc-500">Customizes nutrition coaching and meal prep advice.</p>
             </div>
@@ -206,11 +206,11 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
         </div>
 
         {/* Section 2: Primal Hunt Recomposition & Weight Goals */}
-        <div className="bg-system-panel rounded-2xl p-6 border border-system-gold/40 space-y-6 shadow-lg relative overflow-hidden">
+        <div className="bg-system-panel rounded-none p-6 border border-system-gold/40 space-y-6 shadow-lg relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-full bg-gradient-to-l from-system-gold/5 to-transparent pointer-events-none" />
           
           <div className="flex items-center gap-2.5 border-b border-system-gold/20 pb-4">
-            <div className="w-9 h-9 rounded-xl bg-system-gold/10 border border-system-gold flex items-center justify-center">
+            <div className="w-9 h-9 rounded-sm bg-system-gold/10 border border-system-gold flex items-center justify-center">
               <Trophy className="w-5 h-5 text-system-gold" />
             </div>
             <div>
@@ -227,7 +227,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 step="0.1"
                 value={startWeight}
                 onChange={(e) => setStartWeight(parseFloat(e.target.value) || 0)}
-                className="w-full bg-system-dark border border-system-gold/40 rounded-xl px-4 py-2.5 text-white font-black text-base focus:outline-none focus:border-system-gold transition-all"
+                className="w-full bg-system-dark border border-system-gold/40 rounded-sm px-4 py-2.5 text-white font-black text-base focus:outline-none focus:border-system-gold transition-all"
               />
             </div>
 
@@ -238,7 +238,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 step="0.1"
                 value={currentWeight}
                 onChange={(e) => setCurrentWeight(parseFloat(e.target.value) || 0)}
-                className="w-full bg-system-dark border border-system-gold/40 rounded-xl px-4 py-2.5 text-system-gold font-black text-base focus:outline-none focus:border-system-gold transition-all"
+                className="w-full bg-system-dark border border-system-gold/40 rounded-sm px-4 py-2.5 text-system-gold font-black text-base focus:outline-none focus:border-system-gold transition-all"
               />
             </div>
 
@@ -249,7 +249,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 step="0.1"
                 value={targetWeight}
                 onChange={(e) => setTargetWeight(parseFloat(e.target.value) || 0)}
-                className="w-full bg-system-dark border border-system-gold/40 rounded-xl px-4 py-2.5 text-system-cyan font-black text-base focus:outline-none focus:border-system-gold transition-all"
+                className="w-full bg-system-dark border border-system-gold/40 rounded-sm px-4 py-2.5 text-system-cyan font-black text-base focus:outline-none focus:border-system-gold transition-all"
               />
             </div>
 
@@ -259,19 +259,19 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 type="date"
                 value={targetDate}
                 onChange={(e) => setTargetDate(e.target.value)}
-                className="w-full bg-system-dark border border-system-gold/40 rounded-xl px-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-system-gold transition-all"
+                className="w-full bg-system-dark border border-system-gold/40 rounded-sm px-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-system-gold transition-all"
               />
             </div>
           </div>
-          <p className="text-xs text-zinc-400 font-mono bg-system-dark/80 p-3 rounded-xl border border-white/5">
+          <p className="text-xs text-zinc-400 font-mono bg-system-dark/80 p-3 rounded-sm border border-white/5">
             💡 <strong className="text-system-gold">System Note:</strong> Your Primal Hunt progress bar and countdown on the Daily Quests tab will dynamically calculate total pounds lost and days remaining based on these numbers!
           </p>
         </div>
 
         {/* Section 3: Daily Nutrition & Macro Targets */}
-        <div className="bg-system-panel rounded-2xl p-6 border border-system-purple/30 space-y-6 shadow-lg">
+        <div className="bg-system-panel rounded-none p-6 border border-system-purple/30 space-y-6 shadow-lg">
           <div className="flex items-center gap-2.5 border-b border-system-purple/20 pb-4">
-            <div className="w-9 h-9 rounded-xl bg-system-purple/10 border border-system-purple flex items-center justify-center">
+            <div className="w-9 h-9 rounded-sm bg-system-purple/10 border border-system-purple flex items-center justify-center">
               <Utensils className="w-5 h-5 text-system-purple" />
             </div>
             <div>
@@ -287,7 +287,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 type="number"
                 value={dailyCalorieGoal}
                 onChange={(e) => setDailyCalorieGoal(parseInt(e.target.value) || 0)}
-                className="w-full bg-system-dark border border-system-purple/40 rounded-xl px-4 py-2.5 text-white font-black text-base focus:outline-none focus:border-system-purple transition-all"
+                className="w-full bg-system-dark border border-system-purple/40 rounded-sm px-4 py-2.5 text-white font-black text-base focus:outline-none focus:border-system-purple transition-all"
               />
             </div>
 
@@ -297,7 +297,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 type="number"
                 value={dailyProteinGoal}
                 onChange={(e) => setDailyProteinGoal(parseInt(e.target.value) || 0)}
-                className="w-full bg-system-dark border border-system-purple/40 rounded-xl px-4 py-2.5 text-system-gold font-black text-base focus:outline-none focus:border-system-purple transition-all"
+                className="w-full bg-system-dark border border-system-purple/40 rounded-sm px-4 py-2.5 text-system-gold font-black text-base focus:outline-none focus:border-system-purple transition-all"
               />
             </div>
 
@@ -307,7 +307,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 type="number"
                 value={dailyCarbGoal}
                 onChange={(e) => setDailyCarbGoal(parseInt(e.target.value) || 0)}
-                className="w-full bg-system-dark border border-system-purple/40 rounded-xl px-4 py-2.5 text-system-cyan font-black text-base focus:outline-none focus:border-system-purple transition-all"
+                className="w-full bg-system-dark border border-system-purple/40 rounded-sm px-4 py-2.5 text-system-cyan font-black text-base focus:outline-none focus:border-system-purple transition-all"
               />
             </div>
 
@@ -317,16 +317,16 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 type="number"
                 value={dailyFatGoal}
                 onChange={(e) => setDailyFatGoal(parseInt(e.target.value) || 0)}
-                className="w-full bg-system-dark border border-system-purple/40 rounded-xl px-4 py-2.5 text-white font-black text-base focus:outline-none focus:border-system-purple transition-all"
+                className="w-full bg-system-dark border border-system-purple/40 rounded-sm px-4 py-2.5 text-white font-black text-base focus:outline-none focus:border-system-purple transition-all"
               />
             </div>
           </div>
         </div>
 
         {/* Section 4: Grocery Guide & Store Customization */}
-        <div className="bg-system-panel rounded-2xl p-6 border border-system-cyan/30 space-y-6 shadow-lg">
+        <div className="bg-system-panel rounded-none p-6 border border-system-cyan/30 space-y-6 shadow-lg">
           <div className="flex items-center gap-2.5 border-b border-system-cyan/20 pb-4">
-            <div className="w-9 h-9 rounded-xl bg-system-cyan/10 border border-system-cyan flex items-center justify-center">
+            <div className="w-9 h-9 rounded-sm bg-system-cyan/10 border border-system-cyan flex items-center justify-center">
               <ShoppingBag className="w-5 h-5 text-system-cyan" />
             </div>
             <div>
@@ -343,7 +343,7 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
                 value={primaryStore}
                 onChange={(e) => setPrimaryStore(e.target.value)}
                 placeholder="e.g., Walmart Supercenter (Auburn, ME)"
-                className="w-full bg-system-dark border border-system-cyan/40 rounded-xl px-4 py-2.5 text-system-cyan font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
+                className="w-full bg-system-dark border border-system-cyan/40 rounded-sm px-4 py-2.5 text-system-cyan font-bold text-sm focus:outline-none focus:border-system-cyan transition-all"
               />
               <p className="text-[11px] text-zinc-500">Default location applied when adding custom grocery items.</p>
             </div>
@@ -354,13 +354,13 @@ export default function SystemSettings({ onNavigate }: SystemSettingsProps) {
         </div>
 
         {/* Section 5: Save Action Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-system-dark/90 p-6 rounded-2xl border border-system-gold/40 shadow-xl">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-system-dark/90 p-6 rounded-none border border-system-gold/40 shadow-xl">
           <div className="text-xs text-zinc-400 font-mono">
             <span className="text-system-gold font-bold">⚡ System Note:</span> Changes take effect instantly and are stored safely in your browser profile.
           </div>
           <button
             type="submit"
-            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-system-gold via-yellow-400 to-system-gold text-black font-black uppercase tracking-widest text-base shadow-glow-gold hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-4 rounded-sm bg-gradient-to-r from-system-gold via-yellow-400 to-system-gold text-black font-black uppercase tracking-widest text-base shadow-glow-gold hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <Save className="w-5 h-5 fill-black" />
             <span>SAVE ALL SETTINGS & GOALS</span>

@@ -169,7 +169,7 @@ export default function TrophyHall() {
     <div className="space-y-8 pb-12 animate-in fade-in duration-300">
       
       {/* Header Deck */}
-      <div className="bg-system-panel p-6 sm:p-8 rounded-2xl border border-system-gold/40 shadow-glow-gold/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
+      <div className="bg-system-panel p-6 sm:p-8 rounded-none border border-system-gold/40 shadow-glow-gold/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-system-gold/5 rounded-full -mr-20 -mt-20 pointer-events-none blur-2xl" />
         <div className="space-y-2 relative z-10">
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-gold">
@@ -185,8 +185,8 @@ export default function TrophyHall() {
         </div>
 
         <div className="flex flex-col sm:flex-row md:flex-col items-stretch sm:items-center md:items-end gap-3 relative z-10 min-w-[260px]">
-          <div className="bg-system-dark/90 border border-system-gold/50 p-4 rounded-xl flex items-center gap-4 shadow-lg w-full">
-            <div className="w-12 h-12 rounded-xl bg-system-gold/20 border border-system-gold flex items-center justify-center text-system-gold shadow-glow-gold flex-shrink-0">
+          <div className="bg-system-dark/90 border border-system-gold/50 p-4 rounded-sm flex items-center gap-4 shadow-lg w-full">
+            <div className="w-12 h-12 rounded-sm bg-system-gold/20 border border-system-gold flex items-center justify-center text-system-gold shadow-glow-gold flex-shrink-0">
               <Award className="w-6 h-6" />
             </div>
             <div>
@@ -199,7 +199,7 @@ export default function TrophyHall() {
 
           <button
             onClick={() => setShowShareCard(true)}
-            className="w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-system-dark font-black uppercase text-xs tracking-wider shadow-glow-blue hover:from-white hover:to-white transition-all flex items-center justify-center gap-2"
+            className="w-full px-4 py-2.5 rounded-sm bg-gradient-to-r from-system-blue to-system-cyan text-system-dark font-black uppercase text-xs tracking-wider shadow-glow-blue hover:from-white hover:to-white transition-all flex items-center justify-center gap-2"
           >
             <Share2 className="w-4 h-4" />
             <span>Generate Duty Card</span>
@@ -210,10 +210,10 @@ export default function TrophyHall() {
       {/* Share Card Modal */}
       {showShareCard && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 sm:p-8 rounded-3xl border-2 border-system-gold shadow-glow-gold max-w-md w-full relative space-y-6">
+          <div className="bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 sm:p-8 rounded-none border-2 border-system-gold shadow-glow-gold max-w-md w-full relative space-y-6">
             <button
               onClick={() => setShowShareCard(false)}
-              className="absolute top-5 right-5 text-zinc-400 hover:text-white p-1 rounded-lg bg-system-dark border border-white/10"
+              className="absolute top-5 right-5 text-zinc-400 hover:text-white p-1 rounded-sm bg-system-dark border border-white/10"
             >
               <X className="w-5 h-5" />
             </button>
@@ -230,7 +230,7 @@ export default function TrophyHall() {
               </div>
             </div>
 
-            <div className="bg-system-dark p-4 rounded-2xl border border-white/10 space-y-3 font-mono text-xs">
+            <div className="bg-system-dark p-4 rounded-none border border-white/10 space-y-3 font-mono text-xs">
               <div className="flex items-center justify-between border-b border-white/5 pb-2">
                 <span className="text-zinc-400">Strength Stat:</span>
                 <span className="text-system-cyan font-bold text-sm">{HunterState.stats.str} STR</span>
@@ -255,7 +255,7 @@ export default function TrophyHall() {
 
             <button
               onClick={handleCopyShareCard}
-              className={`w-full py-3.5 rounded-xl font-black uppercase text-xs tracking-widest transition-all flex items-center justify-center gap-2 ${
+              className={`w-full py-3.5 rounded-sm font-black uppercase text-xs tracking-widest transition-all flex items-center justify-center gap-2 ${
                 shareCopied
                   ? 'bg-green-500 text-white shadow-lg'
                   : 'bg-gradient-to-r from-system-gold to-yellow-400 text-system-dark hover:from-white hover:to-white shadow-glow-gold'
@@ -276,7 +276,7 @@ export default function TrophyHall() {
           return (
             <div
               key={trophy.id}
-              className={`bg-system-panel p-6 rounded-2xl border transition-all relative overflow-hidden flex flex-col justify-between group ${
+              className={`bg-system-panel p-6 rounded-none border transition-all relative overflow-hidden flex flex-col justify-between group ${
                 trophy.unlocked
                   ? isEquipped
                     ? 'border-system-gold shadow-glow-gold bg-gradient-to-b from-system-panel to-system-gold/10'
@@ -286,7 +286,7 @@ export default function TrophyHall() {
             >
               <div>
                 <div className="flex items-start justify-between gap-3 mb-4">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${
+                  <div className={`w-12 h-12 rounded-sm flex items-center justify-center border ${
                     trophy.unlocked ? 'bg-system-dark border-white/20' : 'bg-black border-white/5 text-zinc-600'
                   }`}>
                     {trophy.unlocked ? trophy.icon : <Lock className="w-5 h-5 text-zinc-600" />}
@@ -317,7 +317,7 @@ export default function TrophyHall() {
                 <button
                   onClick={() => handleEquip(trophy)}
                   disabled={!trophy.unlocked || isEquipped}
-                  className={`px-4 py-2 rounded-xl font-black uppercase text-xs tracking-wider transition-all min-h-[38px] flex items-center gap-1.5 ${
+                  className={`px-4 py-2 rounded-sm font-black uppercase text-xs tracking-wider transition-all min-h-[38px] flex items-center gap-1.5 ${
                     isEquipped
                       ? 'bg-system-gold text-black shadow-glow-gold cursor-default font-mono'
                       : trophy.unlocked

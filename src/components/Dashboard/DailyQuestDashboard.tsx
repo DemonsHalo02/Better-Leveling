@@ -102,7 +102,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
     <div className="space-y-8 pb-12">
       
       {/* Top Banner: Awakening Notification */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-system-card via-system-panel to-system-dark p-6 border border-system-blue/40 shadow-glow-blue">
+      <div className="relative overflow-hidden rounded-none bg-gradient-to-r from-system-card via-system-panel to-system-dark p-6 border border-system-blue/40 shadow-glow-blue">
         <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-system-blue/10 rounded-full blur-3xl pointer-events-none animate-pulse" />
         
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -122,14 +122,14 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
           <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
             <button
               onClick={() => onNavigate('workouts')}
-              className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-system-blue text-system-dark font-black uppercase text-sm tracking-widest shadow-glow-blue hover:bg-white transition-all transform hover:scale-105"
+              className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm bg-system-blue text-system-dark font-black uppercase text-sm tracking-widest shadow-glow-blue hover:bg-white transition-all transform hover:scale-105"
             >
               <Dumbbell className="w-4 h-4" />
               Start Workout Quest
             </button>
             <button
               onClick={() => onNavigate('scanner')}
-              className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-system-panel border border-system-cyan/40 text-system-cyan font-bold uppercase text-sm tracking-widest hover:bg-system-blue/20 transition-all"
+              className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm bg-system-panel border border-system-cyan/40 text-system-cyan font-bold uppercase text-sm tracking-widest hover:bg-system-blue/20 transition-all"
             >
               <Utensils className="w-4 h-4" />
               Scan Meal Barcode
@@ -139,7 +139,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
       </div>
 
       {/* ⚔️ Primal Hunt Cutting Countdown Deck */}
-      <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-card p-6 rounded-2xl border-2 border-system-gold/60 shadow-glow-gold relative overflow-hidden">
+      <div className="bg-gradient-to-r from-system-dark via-system-panel to-system-card p-6 rounded-none border-2 border-system-gold/60 shadow-glow-gold relative overflow-hidden">
         <div className="absolute top-0 right-0 w-80 h-full bg-gradient-to-l from-system-gold/10 to-transparent pointer-events-none" />
         
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -174,14 +174,14 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
             </div>
           </div>
 
-          <div className="bg-system-dark/80 p-4 rounded-xl border border-system-gold/40 text-center min-w-[160px] flex flex-col justify-center">
+          <div className="bg-system-dark/80 p-4 rounded-sm border border-system-gold/40 text-center min-w-[160px] flex flex-col justify-center">
             <div className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Trial Completion</div>
             <div className="text-3xl font-black text-system-gold font-mono my-1 text-glow-gold">
               {TrialProgress}%
             </div>
             <button
               onClick={() => setShowWeightModal(true)}
-              className="mt-2 w-full py-1.5 px-3 rounded-lg bg-system-gold text-system-dark font-black text-xs uppercase tracking-wider hover:bg-white transition-all shadow-sm"
+              className="mt-2 w-full py-1.5 px-3 rounded-sm bg-system-gold text-system-dark font-black text-xs uppercase tracking-wider hover:bg-white transition-all shadow-sm"
             >
               Log Weigh-In
             </button>
@@ -198,7 +198,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* Left 1 Col: Mercenary Stat Sheet */}
-        <div className="bg-system-panel rounded-2xl p-6 border border-system-blue/30 space-y-6 shadow-lg">
+        <div className="bg-system-panel rounded-none p-6 border border-system-blue/30 space-y-6 shadow-lg">
           <div className="flex items-center justify-between border-b border-system-blue/20 pb-4">
             <div className="flex items-center gap-2">
               <Shield className="w-5 h-5 text-system-blue" />
@@ -213,7 +213,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
 
           <div className="space-y-4 font-mono text-sm">
             {/* STR */}
-            <div className="flex items-center justify-between bg-system-card p-3 rounded-xl border border-white/5">
+            <div className="flex items-center justify-between bg-system-card p-3 rounded-sm border border-white/5">
               <div>
                 <div className="text-zinc-400 text-xs font-bold uppercase">STR (Strength)</div>
                 <div className="text-xs text-zinc-500">Lifting volume & PRs</div>
@@ -223,7 +223,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 {state.stats.availablePoints > 0 && (
                   <button
                     onClick={() => handleStatUpgrade('str')}
-                    className="w-7 h-7 rounded-lg bg-system-blue/20 hover:bg-system-blue text-system-blue hover:text-system-dark flex items-center justify-center font-bold border border-system-blue transition-all"
+                    className="w-7 h-7 rounded-sm bg-system-blue/20 hover:bg-system-blue text-system-blue hover:text-system-dark flex items-center justify-center font-bold border border-system-blue transition-all"
                     title="Allocate +1 STR"
                   >
                     +
@@ -233,7 +233,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
             </div>
 
             {/* AGI */}
-            <div className="flex items-center justify-between bg-system-card p-3 rounded-xl border border-white/5">
+            <div className="flex items-center justify-between bg-system-card p-3 rounded-sm border border-white/5">
               <div>
                 <div className="text-zinc-400 text-xs font-bold uppercase">AGI (Agility)</div>
                 <div className="text-xs text-zinc-500">Cardio, reps & stamina</div>
@@ -243,7 +243,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 {state.stats.availablePoints > 0 && (
                   <button
                     onClick={() => handleStatUpgrade('agi')}
-                    className="w-7 h-7 rounded-lg bg-system-blue/20 hover:bg-system-blue text-system-blue hover:text-system-dark flex items-center justify-center font-bold border border-system-blue transition-all"
+                    className="w-7 h-7 rounded-sm bg-system-blue/20 hover:bg-system-blue text-system-blue hover:text-system-dark flex items-center justify-center font-bold border border-system-blue transition-all"
                   >
                     +
                   </button>
@@ -252,7 +252,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
             </div>
 
             {/* VIT */}
-            <div className="flex items-center justify-between bg-system-card p-3 rounded-xl border border-white/5">
+            <div className="flex items-center justify-between bg-system-card p-3 rounded-sm border border-white/5">
               <div>
                 <div className="text-zinc-400 text-xs font-bold uppercase">VIT (Vitality)</div>
                 <div className="text-xs text-zinc-500">Water, recovery & sleep</div>
@@ -262,7 +262,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 {state.stats.availablePoints > 0 && (
                   <button
                     onClick={() => handleStatUpgrade('vit')}
-                    className="w-7 h-7 rounded-lg bg-system-blue/20 hover:bg-system-blue text-system-blue hover:text-system-dark flex items-center justify-center font-bold border border-system-blue transition-all"
+                    className="w-7 h-7 rounded-sm bg-system-blue/20 hover:bg-system-blue text-system-blue hover:text-system-dark flex items-center justify-center font-bold border border-system-blue transition-all"
                   >
                     +
                   </button>
@@ -271,7 +271,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
             </div>
 
             {/* INT */}
-            <div className="flex items-center justify-between bg-system-card p-3 rounded-xl border border-white/5">
+            <div className="flex items-center justify-between bg-system-card p-3 rounded-sm border border-white/5">
               <div>
                 <div className="text-zinc-400 text-xs font-bold uppercase">INT (Intelligence)</div>
                 <div className="text-xs text-zinc-500">Nutrition & barcode scanning</div>
@@ -281,7 +281,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 {state.stats.availablePoints > 0 && (
                   <button
                     onClick={() => handleStatUpgrade('int')}
-                    className="w-7 h-7 rounded-lg bg-system-blue/20 hover:bg-system-blue text-system-blue hover:text-system-dark flex items-center justify-center font-bold border border-system-blue transition-all"
+                    className="w-7 h-7 rounded-sm bg-system-blue/20 hover:bg-system-blue text-system-blue hover:text-system-dark flex items-center justify-center font-bold border border-system-blue transition-all"
                   >
                     +
                   </button>
@@ -290,7 +290,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
             </div>
 
             {/* PER */}
-            <div className="flex items-center justify-between bg-system-card p-3 rounded-xl border border-white/5">
+            <div className="flex items-center justify-between bg-system-card p-3 rounded-sm border border-white/5">
               <div>
                 <div className="text-zinc-400 text-xs font-bold uppercase">PER (Perception)</div>
                 <div className="text-xs text-zinc-500">Daily weigh-ins & streak</div>
@@ -300,7 +300,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 {state.stats.availablePoints > 0 && (
                   <button
                     onClick={() => handleStatUpgrade('per')}
-                    className="w-7 h-7 rounded-lg bg-system-blue/20 hover:bg-system-blue text-system-blue hover:text-system-dark flex items-center justify-center font-bold border border-system-blue transition-all"
+                    className="w-7 h-7 rounded-sm bg-system-blue/20 hover:bg-system-blue text-system-blue hover:text-system-dark flex items-center justify-center font-bold border border-system-blue transition-all"
                   >
                     +
                   </button>
@@ -309,7 +309,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
             </div>
           </div>
 
-          <div className="bg-system-dark/80 p-3.5 rounded-xl border border-system-blue/20 text-xs text-zinc-400 space-y-1">
+          <div className="bg-system-dark/80 p-3.5 rounded-sm border border-system-blue/20 text-xs text-zinc-400 space-y-1">
             <div className="text-system-gold font-bold uppercase tracking-wider">Coach's Stat Advice:</div>
             <p>Every level up grants <span className="text-white font-bold">+3 Stat Points</span>. For your body recomposition goal, invest heavily in <span className="text-system-cyan">STR</span> to build arm and shoulder armor, and <span className="text-system-cyan">INT</span> to master your macros!</p>
           </div>
@@ -319,7 +319,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
         <div className="lg:col-span-2 space-y-6">
           
           {/* Today's Workout Quest Box */}
-          <div className={`rounded-2xl p-6 border transition-all duration-300 shadow-xl ${
+          <div className={`rounded-none p-6 border transition-all duration-300 shadow-xl ${
             todayWorkout.isRestDay
               ? 'bg-gradient-to-br from-system-panel to-system-card border-system-gold/50 shadow-glow-gold'
               : 'bg-gradient-to-br from-system-panel via-system-card to-system-dark border-system-blue shadow-glow-blue'
@@ -340,7 +340,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               </div>
               <button
                 onClick={() => onNavigate('workouts')}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold uppercase text-xs tracking-wider transition-all ${
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-sm font-bold uppercase text-xs tracking-wider transition-all ${
                   todayWorkout.isRestDay
                     ? 'bg-system-gold text-system-dark hover:bg-white font-black'
                     : 'bg-system-blue text-system-dark hover:bg-white font-black shadow-glow-blue'
@@ -357,9 +357,9 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {todayWorkout.exercises.map((ex, idx) => (
-                <div key={ex.id} className="bg-system-dark/90 p-3.5 rounded-xl border border-white/10 flex items-center justify-between gap-3">
+                <div key={ex.id} className="bg-system-dark/90 p-3.5 rounded-sm border border-white/10 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-system-panel border border-system-blue/40 flex items-center justify-center font-mono font-bold text-system-cyan text-sm">
+                    <div className="w-8 h-8 rounded-sm bg-system-panel border border-system-blue/40 flex items-center justify-center font-mono font-bold text-system-cyan text-sm">
                       {idx + 1}
                     </div>
                     <div>
@@ -379,7 +379,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             
             {/* Calorie & Protein Quest */}
-            <div className="bg-system-panel p-5 rounded-2xl border border-system-blue/20 flex flex-col justify-between">
+            <div className="bg-system-panel p-5 rounded-none border border-system-blue/20 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-bold uppercase tracking-wider text-system-cyan flex items-center gap-1.5">
@@ -392,7 +392,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               </div>
               <button
                 onClick={() => onNavigate('scanner')}
-                className="mt-4 w-full py-2 rounded-xl bg-system-card hover:bg-system-blue/20 border border-system-blue/40 text-system-cyan text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5"
+                className="mt-4 w-full py-2 rounded-sm bg-system-card hover:bg-system-blue/20 border border-system-blue/40 text-system-cyan text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5"
               >
                 <span>Scan / Log Meals</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -400,7 +400,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
             </div>
 
             {/* Hydration Quest */}
-            <div className="bg-system-panel p-5 rounded-2xl border border-blue-500/20 flex flex-col justify-between">
+            <div className="bg-system-panel p-5 rounded-none border border-blue-500/20 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-bold uppercase tracking-wider text-blue-400 flex items-center gap-1.5">
@@ -414,7 +414,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               <div className="mt-4 flex flex-wrap gap-2">
                 <button
                   onClick={() => handleDrinkWater(16.9)}
-                  className="flex-1 sm:flex-initial py-2 px-3 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer min-h-[36px]"
+                  className="flex-1 sm:flex-initial py-2 px-3 rounded-sm bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer min-h-[36px]"
                   title="Drink standard 16.9 oz water bottle"
                 >
                   <PlusCircle className="w-3.5 h-3.5 flex-shrink-0" />
@@ -422,7 +422,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 </button>
                 <button
                   onClick={() => handleDrinkWater(24)}
-                  className="flex-1 sm:flex-initial py-2 px-3 rounded-xl bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer min-h-[36px]"
+                  className="flex-1 sm:flex-initial py-2 px-3 rounded-sm bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border border-blue-500/40 text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 shadow-md cursor-pointer min-h-[36px]"
                   title="Drink 24 oz shaker / bottle"
                 >
                   <PlusCircle className="w-3.5 h-3.5 flex-shrink-0" />
@@ -430,7 +430,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 </button>
                 <button
                   onClick={handleResetWater}
-                  className="px-3 py-2 rounded-xl bg-system-card hover:bg-red-500/20 border border-white/10 hover:border-red-500/40 text-zinc-400 hover:text-red-300 text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 cursor-pointer min-h-[36px]"
+                  className="px-3 py-2 rounded-sm bg-system-card hover:bg-red-500/20 border border-white/10 hover:border-red-500/40 text-zinc-400 hover:text-red-300 text-[11px] font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1 cursor-pointer min-h-[36px]"
                   title="Reset today's water tracking to 0 oz"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
@@ -440,7 +440,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
             </div>
 
             {/* Weigh-In Quest */}
-            <div className="bg-system-panel p-5 rounded-2xl border border-system-purple/30 flex flex-col justify-between">
+            <div className="bg-system-panel p-5 rounded-none border border-system-purple/30 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-bold uppercase tracking-wider text-system-purple flex items-center gap-1.5">
@@ -452,14 +452,14 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 <p className="text-xs text-zinc-400 mt-1">Target: <span className="text-system-cyan font-bold">{targetWeight} lbs</span> (~0.92 lbs/wk pace).</p>
               </div>
               {state.completedQuestsToday.weighIn ? (
-                <div className="mt-4 w-full py-2 rounded-xl bg-green-500/20 border border-green-500/40 text-green-400 text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1.5">
+                <div className="mt-4 w-full py-2 rounded-sm bg-green-500/20 border border-green-500/40 text-green-400 text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4" />
                   <span>Logged Today (+100 XP)</span>
                 </div>
               ) : (
                 <button
                   onClick={() => setShowWeightModal(true)}
-                  className="mt-4 w-full py-2 rounded-xl bg-system-purple/20 hover:bg-system-purple text-system-cyan hover:text-white border border-system-purple/50 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-glow-purple"
+                  className="mt-4 w-full py-2 rounded-sm bg-system-purple/20 hover:bg-system-purple text-system-cyan hover:text-white border border-system-purple/50 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-glow-purple"
                 >
                   <Scale className="w-3.5 h-3.5" />
                   <span>Log Body Weight</span>
@@ -470,7 +470,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
           </div>
 
           {/* Custom Quests & Personal Goals Section */}
-          <div className="bg-gradient-to-br from-system-panel to-system-dark p-6 rounded-2xl border border-system-gold/40 shadow-xl space-y-4">
+          <div className="bg-gradient-to-br from-system-panel to-system-dark p-6 rounded-none border border-system-gold/40 shadow-xl space-y-4">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
               <div>
                 <div className="flex items-center gap-2">
@@ -486,7 +486,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
               <button
                 type="button"
                 onClick={() => onNavigate('settings')}
-                className="px-3.5 py-1.5 rounded-xl bg-system-card hover:bg-system-blue/20 border border-system-blue/40 text-system-cyan text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
+                className="px-3.5 py-1.5 rounded-sm bg-system-card hover:bg-system-blue/20 border border-system-blue/40 text-system-cyan text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
               >
                 <Settings className="w-3.5 h-3.5 animate-spin-slow" />
                 <span>Manage Profile & Goals</span>
@@ -499,11 +499,11 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 value={customQuestTitle}
                 onChange={(e) => setCustomQuestTitle(e.target.value)}
                 placeholder="Add a new custom goal or daily task (e.g., Read 15 mins, 10k steps, Stretching)..."
-                className="flex-1 bg-system-dark border border-system-gold/40 rounded-xl px-4 py-2.5 text-white font-bold text-xs sm:text-sm focus:outline-none focus:border-system-gold transition-all"
+                className="flex-1 bg-system-dark border border-system-gold/40 rounded-sm px-4 py-2.5 text-white font-bold text-xs sm:text-sm focus:outline-none focus:border-system-gold transition-all"
               />
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-xl bg-system-gold text-system-dark hover:bg-white font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-glow-gold flex-shrink-0 cursor-pointer"
+                className="px-5 py-2.5 rounded-sm bg-system-gold text-system-dark hover:bg-white font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-glow-gold flex-shrink-0 cursor-pointer"
               >
                 <PlusCircle className="w-4 h-4" />
                 <span>Add Goal (+100 XP)</span>
@@ -511,7 +511,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
             </form>
 
             {(!state.customQuests || state.customQuests.length === 0) ? (
-              <div className="text-center py-6 bg-system-dark/50 rounded-xl border border-dashed border-white/10">
+              <div className="text-center py-6 bg-system-dark/50 rounded-sm border border-dashed border-white/10">
                 <p className="text-xs text-zinc-400 font-mono">No custom quests added yet! Create your own personal goals above to gain bonus XP every day!</p>
               </div>
             ) : (
@@ -520,7 +520,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                   <div
                     key={q.id}
                     onClick={() => handleToggleCustomQuest(q.id)}
-                    className={`p-3.5 rounded-xl border flex items-center justify-between gap-3 cursor-pointer transition-all transform hover:scale-[1.01] ${
+                    className={`p-3.5 rounded-sm border flex items-center justify-between gap-3 cursor-pointer transition-all transform hover:scale-[1.01] ${
                       q.completed
                         ? 'bg-green-500/10 border-green-500/40 text-green-300 shadow-[0_0_15px_rgba(34,197,94,0.15)]'
                         : 'bg-system-card/90 border-white/10 hover:border-system-gold/50 text-white'
@@ -559,8 +559,8 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
           </div>
 
           {/* Coach's Loose Skin Prevention & Bodybuilding Box */}
-          <div className="rounded-2xl bg-gradient-to-r from-system-card via-system-panel to-system-dark p-6 border border-system-cyan/30 flex flex-col md:flex-row items-start md:items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-system-blue/10 border border-system-blue flex items-center justify-center flex-shrink-0">
+          <div className="rounded-none bg-gradient-to-r from-system-card via-system-panel to-system-dark p-6 border border-system-cyan/30 flex flex-col md:flex-row items-start md:items-center gap-4">
+            <div className="w-12 h-12 rounded-none bg-system-blue/10 border border-system-blue flex items-center justify-center flex-shrink-0">
               <Award className="w-6 h-6 text-system-blue" />
             </div>
             <div className="space-y-1">
@@ -581,7 +581,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
       {/* Weight Modal */}
       {showWeightModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="bg-system-panel border border-system-blue rounded-2xl p-6 max-w-sm w-full space-y-4 shadow-glow-blue animate-in fade-in zoom-in duration-200">
+          <div className="bg-system-panel border border-system-blue rounded-none p-6 max-w-sm w-full space-y-4 shadow-glow-blue animate-in fade-in zoom-in duration-200">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-black text-white uppercase flex items-center gap-2">
                 <Scale className="w-5 h-5 text-system-blue" /> Daily Weigh-In Quest
@@ -598,7 +598,7 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                   placeholder="e.g. 241.5"
                   value={newWeightInput}
                   onChange={(e) => setNewWeightInput(e.target.value)}
-                  className="w-full bg-system-dark border border-system-blue/50 rounded-xl px-4 py-3.5 font-mono text-xl font-bold text-white focus:outline-none focus:border-system-blue shadow-inner"
+                  className="w-full bg-system-dark border border-system-blue/50 rounded-sm px-4 py-3.5 font-mono text-xl font-bold text-white focus:outline-none focus:border-system-blue shadow-inner"
                   autoFocus
                   required
                 />
@@ -608,13 +608,13 @@ export default function DailyQuestDashboard({ onNavigate }: DailyQuestDashboardP
                 <button
                   type="button"
                   onClick={() => setShowWeightModal(false)}
-                  className="flex-1 py-3 rounded-xl bg-system-card text-zinc-400 hover:text-white font-bold text-xs sm:text-sm uppercase min-h-[44px] transition-colors"
+                  className="flex-1 py-3 rounded-sm bg-system-card text-zinc-400 hover:text-white font-bold text-xs sm:text-sm uppercase min-h-[44px] transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-3 rounded-xl bg-gradient-to-r from-system-blue to-system-cyan text-black hover:bg-white font-black text-xs sm:text-sm uppercase shadow-glow-blue transition-all min-h-[44px]"
+                  className="flex-1 py-3 rounded-sm bg-gradient-to-r from-system-blue to-system-cyan text-black hover:bg-white font-black text-xs sm:text-sm uppercase shadow-glow-blue transition-all min-h-[44px]"
                 >
                   Submit (+100 XP)
                 </button>

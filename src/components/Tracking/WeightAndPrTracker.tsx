@@ -119,7 +119,7 @@ export default function WeightAndPrTracker() {
     <div className="space-y-8 pb-12">
       
       {/* Header */}
-      <div className="bg-system-panel p-6 rounded-2xl border border-system-blue/30 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="bg-system-panel p-6 rounded-none border border-system-blue/30 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
             <Target className="w-3.5 h-3.5 text-system-blue" />
@@ -133,7 +133,7 @@ export default function WeightAndPrTracker() {
           </p>
         </div>
 
-        <div className="flex items-center gap-3 bg-system-dark px-4 py-2.5 rounded-xl border border-system-gold/30">
+        <div className="flex items-center gap-3 bg-system-dark px-4 py-2.5 rounded-sm border border-system-gold/30">
           <Trophy className="w-6 h-6 text-system-gold" />
           <div>
             <div className="text-[10px] text-zinc-400 uppercase font-bold">Total Cut Goal</div>
@@ -143,7 +143,7 @@ export default function WeightAndPrTracker() {
       </div>
 
       {/* Graph Section */}
-      <div className="bg-system-panel p-6 rounded-2xl border border-system-blue/20 space-y-6 shadow-xl">
+      <div className="bg-system-panel p-6 rounded-none border border-system-blue/20 space-y-6 shadow-xl">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <h3 className="text-base font-black text-white uppercase tracking-wider flex items-center gap-2">
@@ -187,7 +187,7 @@ export default function WeightAndPrTracker() {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-system-dark/80 p-4 rounded-xl border border-white/5 flex items-start gap-3">
+        <div className="bg-system-dark/80 p-4 rounded-sm border border-white/5 flex items-start gap-3">
           <Shield className="w-5 h-5 text-system-blue flex-shrink-0 mt-0.5" />
           <div className="text-xs text-zinc-300 leading-relaxed space-y-1">
             <div className="font-bold text-white uppercase tracking-wider">Why This Pace Safeguards Your Skin:</div>
@@ -197,7 +197,7 @@ export default function WeightAndPrTracker() {
       </div>
 
       {/* Daily & Weekly Walking & Step Log */}
-      <div className="bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 rounded-2xl border border-system-cyan/40 shadow-xl space-y-4">
+      <div className="bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 rounded-none border border-system-cyan/40 shadow-xl space-y-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
@@ -212,21 +212,21 @@ export default function WeightAndPrTracker() {
           <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={() => handleAddSteps(1000)}
-              className="px-3.5 py-2 rounded-xl bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
+              className="px-3.5 py-2 rounded-sm bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
             >
               <Footprints className="w-3.5 h-3.5 text-system-cyan" />
               <span>+1,000 (~10m)</span>
             </button>
             <button
               onClick={() => handleAddSteps(2500)}
-              className="px-3.5 py-2 rounded-xl bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
+              className="px-3.5 py-2 rounded-sm bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
             >
               <Footprints className="w-3.5 h-3.5 text-system-gold" />
               <span>+2,500 (~25m)</span>
             </button>
             <button
               onClick={() => handleAddSteps(5000)}
-              className="px-3.5 py-2 rounded-xl bg-system-dark border border-system-blue/50 hover:border-system-cyan text-xs font-bold text-system-cyan hover:bg-system-blue hover:text-black transition-all flex items-center gap-1.5"
+              className="px-3.5 py-2 rounded-sm bg-system-dark border border-system-blue/50 hover:border-system-cyan text-xs font-bold text-system-cyan hover:bg-system-blue hover:text-black transition-all flex items-center gap-1.5"
             >
               <Flame className="w-3.5 h-3.5" />
               <span>+5,000 (~45m Treadmill Walk/Run)</span>
@@ -236,7 +236,7 @@ export default function WeightAndPrTracker() {
       </div>
 
       {/* Strength PR Vault */}
-      <div className="bg-system-panel p-6 rounded-2xl border border-white/10 space-y-6">
+      <div className="bg-system-panel p-6 rounded-none border border-white/10 space-y-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
           <div>
             <h3 className="text-base font-black text-white uppercase tracking-widest flex items-center gap-2">
@@ -246,7 +246,7 @@ export default function WeightAndPrTracker() {
           </div>
           <button
             onClick={() => setShowPrModal(true)}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-system-gold text-system-dark font-black uppercase text-xs sm:text-sm tracking-wider hover:bg-white transition-all shadow-glow-gold min-h-[44px]"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-sm bg-system-gold text-system-dark font-black uppercase text-xs sm:text-sm tracking-wider hover:bg-white transition-all shadow-glow-gold min-h-[44px]"
           >
             <Plus className="w-4 h-4" />
             <span>Add New PR</span>
@@ -254,9 +254,9 @@ export default function WeightAndPrTracker() {
         </div>
 
         {/* STR Stat Level Up Progress Box */}
-        <div className="bg-system-card p-4 rounded-xl border border-system-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+        <div className="bg-system-card p-4 rounded-sm border border-system-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-system-gold/20 border border-system-gold/50 flex items-center justify-center font-black text-xl text-system-gold shadow-glow-gold">
+            <div className="w-12 h-12 rounded-sm bg-system-gold/20 border border-system-gold/50 flex items-center justify-center font-black text-xl text-system-gold shadow-glow-gold">
               {MercenaryStr}
             </div>
             <div>
@@ -267,7 +267,7 @@ export default function WeightAndPrTracker() {
               <p className="text-xs text-zinc-400">Every personal record logged during your Calisthenics Workout increases your STR stat by +1 and awards 150 XP!</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-xs font-mono uppercase bg-black/40 px-3.5 py-2 rounded-lg border border-white/10 text-system-cyan whitespace-nowrap">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase bg-black/40 px-3.5 py-2 rounded-sm border border-white/10 text-system-cyan whitespace-nowrap">
             <Trophy className="w-4 h-4 text-system-gold" />
             <span>Next Rank: {MercenaryStr + (5 - (MercenaryStr % 5 || 5))} STR</span>
           </div>
@@ -275,7 +275,7 @@ export default function WeightAndPrTracker() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {prs.map((pr) => (
-            <div key={pr.id} className="bg-system-dark p-5 rounded-xl border border-system-blue/30 relative overflow-hidden group hover:border-system-blue transition-all flex flex-col justify-between">
+            <div key={pr.id} className="bg-system-dark p-5 rounded-sm border border-system-blue/30 relative overflow-hidden group hover:border-system-blue transition-all flex flex-col justify-between">
               <div>
                 <div className="absolute top-0 right-0 w-20 h-20 bg-system-blue/5 rounded-full -mr-10 -mt-10 pointer-events-none group-hover:scale-150 transition-transform" />
                 <div className="text-[10px] text-zinc-500 font-mono uppercase mb-1">{pr.date}</div>
@@ -311,7 +311,7 @@ export default function WeightAndPrTracker() {
       {/* PR Modal */}
       {showPrModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="bg-system-panel border border-system-gold rounded-2xl p-6 max-w-sm w-full space-y-4 shadow-glow-gold animate-in fade-in zoom-in duration-200">
+          <div className="bg-system-panel border border-system-gold rounded-none p-6 max-w-sm w-full space-y-4 shadow-glow-gold animate-in fade-in zoom-in duration-200">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-black text-white uppercase flex items-center gap-2">
                 <Trophy className="w-5 h-5 text-system-gold" /> Record Strength PR
@@ -327,7 +327,7 @@ export default function WeightAndPrTracker() {
                   placeholder="e.g. Smith Machine Bench Press"
                   value={prExercise}
                   onChange={(e) => setPrExercise(e.target.value)}
-                  className="w-full bg-system-dark border border-system-gold/40 rounded-xl px-4 py-3 mt-1 text-sm text-white focus:outline-none focus:border-system-gold shadow-inner"
+                  className="w-full bg-system-dark border border-system-gold/40 rounded-sm px-4 py-3 mt-1 text-sm text-white focus:outline-none focus:border-system-gold shadow-inner"
                   required
                 />
               </div>
@@ -341,7 +341,7 @@ export default function WeightAndPrTracker() {
                     placeholder="e.g. 205"
                     value={prWeight}
                     onChange={(e) => setPrWeight(e.target.value)}
-                    className="w-full bg-system-dark border border-system-gold/40 rounded-xl px-4 py-3 mt-1 text-sm font-mono font-bold text-white focus:outline-none shadow-inner"
+                    className="w-full bg-system-dark border border-system-gold/40 rounded-sm px-4 py-3 mt-1 text-sm font-mono font-bold text-white focus:outline-none shadow-inner"
                     required
                   />
                 </div>
@@ -353,7 +353,7 @@ export default function WeightAndPrTracker() {
                     placeholder="e.g. 6"
                     value={prReps}
                     onChange={(e) => setPrReps(e.target.value)}
-                    className="w-full bg-system-dark border border-white/10 rounded-xl px-4 py-3 mt-1 text-sm font-mono font-bold text-white focus:outline-none shadow-inner"
+                    className="w-full bg-system-dark border border-white/10 rounded-sm px-4 py-3 mt-1 text-sm font-mono font-bold text-white focus:outline-none shadow-inner"
                     required
                   />
                 </div>
@@ -363,13 +363,13 @@ export default function WeightAndPrTracker() {
                 <button
                   type="button"
                   onClick={() => setShowPrModal(false)}
-                  className="flex-1 py-3.5 rounded-xl bg-system-card text-zinc-400 hover:text-white font-bold text-xs sm:text-sm uppercase min-h-[44px] transition-colors"
+                  className="flex-1 py-3.5 rounded-sm bg-system-card text-zinc-400 hover:text-white font-bold text-xs sm:text-sm uppercase min-h-[44px] transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-3.5 rounded-xl bg-system-gold text-system-dark hover:bg-white font-black text-xs sm:text-sm uppercase shadow-glow-gold transition-all min-h-[44px]"
+                  className="flex-1 py-3.5 rounded-sm bg-system-gold text-system-dark hover:bg-white font-black text-xs sm:text-sm uppercase shadow-glow-gold transition-all min-h-[44px]"
                 >
                   Save PR (+150 XP)
                 </button>

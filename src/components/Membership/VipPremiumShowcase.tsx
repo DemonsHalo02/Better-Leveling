@@ -96,14 +96,14 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
       
       {/* Toast Notification */}
       {showClaimToast && (
-        <div className="fixed top-20 right-4 z-50 bg-gradient-to-r from-system-gold to-yellow-500 text-black px-6 py-3.5 rounded-xl font-black uppercase text-sm tracking-wider shadow-glow-gold flex items-center gap-3 animate-in fade-in slide-in-from-top duration-300">
+        <div className="fixed top-20 right-4 z-50 bg-gradient-to-r from-system-gold to-yellow-500 text-black px-6 py-3.5 rounded-sm font-black uppercase text-sm tracking-wider shadow-glow-gold flex items-center gap-3 animate-in fade-in slide-in-from-top duration-300">
           <CheckCircle2 className="w-5 h-5 fill-black text-system-gold" />
           <span>{showClaimToast}</span>
         </div>
       )}
 
       {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-system-gold/20 via-system-panel to-system-dark p-6 border-2 border-system-gold/60 shadow-glow-gold flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div className="relative overflow-hidden rounded-none bg-gradient-to-r from-system-gold/20 via-system-panel to-system-dark p-6 border-2 border-system-gold/60 shadow-glow-gold flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-system-gold/10 rounded-full blur-3xl pointer-events-none animate-pulse" />
         
         <div className="space-y-2 relative z-10">
@@ -122,7 +122,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
         {!isVip && (
           <button
             onClick={onUpgradeClick}
-            className="relative z-10 flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-system-gold via-yellow-400 to-system-gold text-black font-black uppercase text-sm tracking-widest shadow-glow-gold hover:scale-105 transition-all w-full md:w-auto justify-center cursor-pointer animate-pulse"
+            className="relative z-10 flex items-center gap-2 px-6 py-3.5 rounded-sm bg-gradient-to-r from-system-gold via-yellow-400 to-system-gold text-black font-black uppercase text-sm tracking-widest shadow-glow-gold hover:scale-105 transition-all w-full md:w-auto justify-center cursor-pointer animate-pulse"
           >
             <Lock className="w-4 h-4 fill-black" />
             <span>Unlock VIP Aetheryte Access</span>
@@ -131,12 +131,12 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
       </div>
 
       {/* TOOL 1: 🤖 VIP AI Fitness Coach & Oracle */}
-      <div className={`relative bg-system-panel rounded-2xl p-6 border border-system-blue/40 shadow-xl space-y-6 overflow-hidden transition-all ${
+      <div className={`relative bg-system-panel rounded-none p-6 border border-system-blue/40 shadow-xl space-y-6 overflow-hidden transition-all ${
         !isVip ? 'opacity-80' : ''
       }`}>
         {!isVip && (
           <div className="absolute inset-0 z-20 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center space-y-4">
-            <div className="w-14 h-14 rounded-2xl bg-system-gold/20 border-2 border-system-gold flex items-center justify-center shadow-glow-gold">
+            <div className="w-14 h-14 rounded-none bg-system-gold/20 border-2 border-system-gold flex items-center justify-center shadow-glow-gold">
               <Lock className="w-7 h-7 text-system-gold animate-pulse" />
             </div>
             <div className="space-y-1">
@@ -147,7 +147,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             </div>
             <button
               onClick={onUpgradeClick}
-              className="px-6 py-3 rounded-xl bg-system-gold text-black font-black uppercase text-xs tracking-widest shadow-glow-gold hover:scale-105 transition-all cursor-pointer"
+              className="px-6 py-3 rounded-sm bg-system-gold text-black font-black uppercase text-xs tracking-widest shadow-glow-gold hover:scale-105 transition-all cursor-pointer"
             >
               Unlock Now ($9.99/mo)
             </button>
@@ -155,7 +155,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
         )}
 
         <div className="flex items-center gap-3 border-b border-white/10 pb-4">
-          <div className="w-10 h-10 rounded-xl bg-system-blue/10 border border-system-blue flex items-center justify-center">
+          <div className="w-10 h-10 rounded-sm bg-system-blue/10 border border-system-blue flex items-center justify-center">
             <Sparkles className="w-5 h-5 text-system-blue animate-spin-slow" />
           </div>
           <div>
@@ -165,7 +165,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono">
-          <div className="bg-system-dark/80 p-4 rounded-xl border border-system-blue/30 space-y-2">
+          <div className="bg-system-dark/80 p-4 rounded-sm border border-system-blue/30 space-y-2">
             <div className="flex items-center gap-2 text-xs font-bold text-system-cyan uppercase">
               <TrendingDown className="w-4 h-4" /> 1. Pacing & Cardio Assessment
             </div>
@@ -174,7 +174,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             </p>
           </div>
 
-          <div className="bg-system-dark/80 p-4 rounded-xl border border-system-gold/40 space-y-2">
+          <div className="bg-system-dark/80 p-4 rounded-sm border border-system-gold/40 space-y-2">
             <div className="flex items-center gap-2 text-xs font-bold text-system-gold uppercase">
               <Utensils className="w-4 h-4" /> 2. 19-Country Global Meal Blueprints
             </div>
@@ -183,7 +183,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             </p>
           </div>
 
-          <div className="bg-system-dark/80 p-4 rounded-xl border border-system-purple/40 space-y-2">
+          <div className="bg-system-dark/80 p-4 rounded-sm border border-system-purple/40 space-y-2">
             <div className="flex items-center gap-2 text-xs font-bold text-system-purple uppercase">
               <Shield className="w-4 h-4" /> 3. Skin Retraction Protocol
             </div>
@@ -195,12 +195,12 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
       </div>
 
       {/* TOOL 2: 📊 VIP Body Recomposition & Macro Simulation Lab */}
-      <div className={`relative bg-system-panel rounded-2xl p-6 border border-system-cyan/40 shadow-xl space-y-6 overflow-hidden transition-all ${
+      <div className={`relative bg-system-panel rounded-none p-6 border border-system-cyan/40 shadow-xl space-y-6 overflow-hidden transition-all ${
         !isVip ? 'opacity-80' : ''
       }`}>
         {!isVip && (
           <div className="absolute inset-0 z-20 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center space-y-4">
-            <div className="w-14 h-14 rounded-2xl bg-system-cyan/20 border-2 border-system-cyan flex items-center justify-center shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+            <div className="w-14 h-14 rounded-none bg-system-cyan/20 border-2 border-system-cyan flex items-center justify-center shadow-[0_0_20px_rgba(0,240,255,0.4)]">
               <Sliders className="w-7 h-7 text-system-cyan animate-pulse" />
             </div>
             <div className="space-y-1">
@@ -211,7 +211,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
             </div>
             <button
               onClick={onUpgradeClick}
-              className="px-6 py-3 rounded-xl bg-system-cyan text-black font-black uppercase text-xs tracking-widest shadow-[0_0_15px_rgba(0,240,255,0.6)] hover:scale-105 transition-all cursor-pointer"
+              className="px-6 py-3 rounded-sm bg-system-cyan text-black font-black uppercase text-xs tracking-widest shadow-[0_0_15px_rgba(0,240,255,0.6)] hover:scale-105 transition-all cursor-pointer"
             >
               Unlock Simulation Lab
             </button>
@@ -220,7 +220,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
 
         <div className="flex items-center justify-between border-b border-white/10 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-system-cyan/10 border border-system-cyan flex items-center justify-center">
+            <div className="w-10 h-10 rounded-sm bg-system-cyan/10 border border-system-cyan flex items-center justify-center">
               <Sliders className="w-5 h-5 text-system-cyan" />
             </div>
             <div>
@@ -237,7 +237,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono">
           
           {/* Slider 1: Loss Rate */}
-          <div className="bg-system-dark/80 p-4 rounded-xl border border-white/10 space-y-3">
+          <div className="bg-system-dark/80 p-4 rounded-sm border border-white/10 space-y-3">
             <div className="flex justify-between text-xs font-bold">
               <span className="text-zinc-300 uppercase">Target Loss Pace</span>
               <span className="text-system-cyan font-black">{weeklyLossRate} LBS / WK</span>
@@ -260,7 +260,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
           </div>
 
           {/* Slider 2: Daily Protein */}
-          <div className="bg-system-dark/80 p-4 rounded-xl border border-white/10 space-y-3">
+          <div className="bg-system-dark/80 p-4 rounded-sm border border-white/10 space-y-3">
             <div className="flex justify-between text-xs font-bold">
               <span className="text-zinc-300 uppercase">Daily Protein Target</span>
               <span className="text-system-gold font-black">{simulatedProtein}g / DAY</span>
@@ -283,7 +283,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
           </div>
 
           {/* Slider 3: Cardio Frequency */}
-          <div className="bg-system-dark/80 p-4 rounded-xl border border-white/10 space-y-3">
+          <div className="bg-system-dark/80 p-4 rounded-sm border border-white/10 space-y-3">
             <div className="flex justify-between text-xs font-bold">
               <span className="text-zinc-300 uppercase">Weekly Cardio</span>
               <span className="text-system-purple font-black">{cardioDays} DAYS / WK</span>
@@ -307,7 +307,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
         </div>
 
         {/* Live Simulated Outputs Box */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-gradient-to-r from-system-dark via-system-panel to-system-card p-5 rounded-2xl border-2 border-system-cyan/50 shadow-lg">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-gradient-to-r from-system-dark via-system-panel to-system-card p-5 rounded-none border-2 border-system-cyan/50 shadow-lg">
           <div className="text-center sm:text-left space-y-1 border-b sm:border-b-0 sm:border-r border-white/10 pb-3 sm:pb-0 sm:pr-4">
             <div className="text-[10px] font-mono font-bold uppercase text-zinc-400 flex items-center justify-center sm:justify-start gap-1">
               <Calendar className="w-3.5 h-3.5 text-system-cyan" /> Projected Completion
@@ -341,10 +341,10 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
       </div>
 
       {/* TOOL 3: 🏆 VIP Guild Exclusive Golden Trophies (+1,500 XP) */}
-      <div className="bg-system-panel rounded-2xl p-6 border border-system-gold/50 shadow-xl space-y-4">
+      <div className="bg-system-panel rounded-none p-6 border border-system-gold/50 shadow-xl space-y-4">
         <div className="flex items-center justify-between border-b border-white/10 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-system-gold/10 border border-system-gold flex items-center justify-center">
+            <div className="w-10 h-10 rounded-sm bg-system-gold/10 border border-system-gold flex items-center justify-center">
               <Award className="w-5 h-5 text-system-gold animate-bounce" />
             </div>
             <div>
@@ -364,7 +364,7 @@ export default function VipPremiumShowcase({ userTier, onUpgradeClick }: VipPrem
               <div
                 key={trophy.id}
                 onClick={() => handleClaimVipTrophy(trophy.id, trophy.name, trophy.xp)}
-                className={`p-4 rounded-xl border flex flex-col justify-between gap-3 transition-all transform hover:scale-[1.02] cursor-pointer ${
+                className={`p-4 rounded-sm border flex flex-col justify-between gap-3 transition-all transform hover:scale-[1.02] cursor-pointer ${
                   isClaimed
                     ? 'bg-green-500/10 border-green-500/40 text-green-300 shadow-[0_0_15px_rgba(34,197,94,0.15)]'
                     : isVip

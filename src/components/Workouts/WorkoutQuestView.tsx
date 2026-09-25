@@ -111,7 +111,7 @@ export default function WorkoutQuestView() {
   return (
     <div className="space-y-6 pb-12">
       {/* Header & Location Badge */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-system-panel p-6 rounded-2xl border border-system-blue/30 shadow-lg">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-system-panel p-6 rounded-none border border-system-blue/30 shadow-lg">
         <div>
           <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-cyan mb-1">
             <MapPin className="w-3.5 h-3.5 text-system-blue" />
@@ -125,7 +125,7 @@ export default function WorkoutQuestView() {
           </p>
         </div>
 
-        <div className="flex items-center gap-3 bg-system-dark/80 px-4 py-2.5 rounded-xl border border-system-blue/20">
+        <div className="flex items-center gap-3 bg-system-dark/80 px-4 py-2.5 rounded-sm border border-system-blue/20">
           <Trophy className="w-6 h-6 text-system-gold" />
           <div>
             <div className="text-[10px] text-zinc-400 uppercase font-bold">Quest Reward</div>
@@ -135,7 +135,7 @@ export default function WorkoutQuestView() {
       </div>
 
       {/* POST-WORKOUT 45-MINUTE DUAL CARDIO LOG */}
-      <div className="bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 rounded-2xl border border-system-cyan/50 shadow-glow-blue space-y-4">
+      <div className="bg-gradient-to-br from-system-panel via-system-card to-system-dark p-6 rounded-none border border-system-cyan/50 shadow-glow-blue space-y-4">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono uppercase text-system-gold mb-1">
@@ -150,7 +150,7 @@ export default function WorkoutQuestView() {
             </p>
           </div>
 
-          <div className="w-full md:w-64 bg-system-dark/80 p-3.5 rounded-xl border border-system-blue/30 space-y-2">
+          <div className="w-full md:w-64 bg-system-dark/80 p-3.5 rounded-sm border border-system-blue/30 space-y-2">
             <div className="flex justify-between text-xs font-bold">
               <span className="text-zinc-400">Cardio Goal (45m)</span>
               <span className="text-system-cyan font-mono">{stepProgressPct}%</span>
@@ -170,21 +170,21 @@ export default function WorkoutQuestView() {
             <span className="text-xs font-bold text-zinc-400 uppercase mr-1">Quick Add:</span>
             <button
               onClick={() => handleAddMinutes(15)}
-              className="px-3.5 py-2 rounded-xl bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
+              className="px-3.5 py-2 rounded-sm bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
             >
               <Footprints className="w-3.5 h-3.5 text-system-cyan" />
               <span>+15 Mins (Run Protocol)</span>
             </button>
             <button
               onClick={() => handleAddMinutes(30)}
-              className="px-3.5 py-2 rounded-xl bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
+              className="px-3.5 py-2 rounded-sm bg-system-dark border border-white/10 hover:border-system-cyan text-xs font-bold text-white hover:bg-system-blue/20 transition-all flex items-center gap-1.5"
             >
               <Footprints className="w-3.5 h-3.5 text-system-gold" />
               <span>+30 Mins (Walk Protocol)</span>
             </button>
             <button
               onClick={() => handleAddMinutes(45)}
-              className="px-3.5 py-2 rounded-xl bg-system-dark border border-system-blue/50 hover:border-system-cyan text-xs font-bold text-system-cyan hover:bg-system-blue hover:text-black transition-all flex items-center gap-1.5"
+              className="px-3.5 py-2 rounded-sm bg-system-dark border border-system-blue/50 hover:border-system-cyan text-xs font-bold text-system-cyan hover:bg-system-blue hover:text-black transition-all flex items-center gap-1.5"
             >
               <Flame className="w-3.5 h-3.5" />
               <span>+45 Mins (Full Walk+Run Goal!)</span>
@@ -197,11 +197,11 @@ export default function WorkoutQuestView() {
               placeholder="Custom mins..."
               value={customMinutesInput}
               onChange={(e) => setCustomMinutesInput(e.target.value)}
-              className="w-28 bg-system-dark border border-system-blue/40 rounded-xl px-3 py-2 text-xs font-mono text-white placeholder:text-zinc-500 focus:outline-none focus:border-system-cyan"
+              className="w-28 bg-system-dark border border-system-blue/40 rounded-sm px-3 py-2 text-xs font-mono text-white placeholder:text-zinc-500 focus:outline-none focus:border-system-cyan"
             />
             <button
               type="submit"
-              className="px-3 py-2 rounded-xl bg-system-blue text-black font-black text-xs uppercase tracking-wider hover:bg-white transition-all"
+              className="px-3 py-2 rounded-sm bg-system-blue text-black font-black text-xs uppercase tracking-wider hover:bg-white transition-all"
             >
               Log
             </button>
@@ -211,7 +211,7 @@ export default function WorkoutQuestView() {
                 if (confirm("Reset today's treadmill minutes to 0?")) setTreadmillMinutes(0);
               }}
               title="Reset minutes"
-              className="p-2 rounded-xl bg-system-dark border border-white/10 text-zinc-400 hover:text-white transition-all"
+              className="p-2 rounded-sm bg-system-dark border border-white/10 text-zinc-400 hover:text-white transition-all"
             >
               <RotateCcw className="w-3.5 h-3.5" />
             </button>
@@ -231,7 +231,7 @@ export default function WorkoutQuestView() {
                 setSelectedDay(day.dayOfWeek);
                 setQuestCleared(false);
               }}
-              className={`flex-shrink-0 px-4 py-3 rounded-xl border font-bold text-xs uppercase tracking-wider transition-all flex flex-col items-center gap-1 ${
+              className={`flex-shrink-0 px-4 py-3 rounded-sm border font-bold text-xs uppercase tracking-wider transition-all flex flex-col items-center gap-1 ${
                 isSelected
                   ? 'bg-system-blue text-system-dark border-system-blue font-black shadow-glow-blue scale-105'
                   : isToday
@@ -252,7 +252,7 @@ export default function WorkoutQuestView() {
       </div>
 
       {/* Selected Day Banner & Progress */}
-      <div className="bg-system-card p-6 rounded-2xl border border-system-blue/20 space-y-4">
+      <div className="bg-system-card p-6 rounded-none border border-system-blue/20 space-y-4">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
@@ -271,7 +271,7 @@ export default function WorkoutQuestView() {
           </div>
 
           {!currentDayWorkout.isRestDay && (
-            <div className="w-full md:w-64 bg-system-panel p-3.5 rounded-xl border border-system-blue/20 space-y-2">
+            <div className="w-full md:w-64 bg-system-panel p-3.5 rounded-sm border border-system-blue/20 space-y-2">
               <div className="flex justify-between text-xs font-bold">
                 <span className="text-zinc-400">Duty Completion</span>
                 <span className="text-system-cyan font-mono">{progressPct}%</span>
@@ -299,7 +299,7 @@ export default function WorkoutQuestView() {
           return (
             <div
               key={exercise.id}
-              className={`rounded-2xl p-5 border transition-all duration-300 ${
+              className={`rounded-none p-5 border transition-all duration-300 ${
                 isComplete
                   ? 'bg-system-panel/50 border-green-500/40 shadow-sm opacity-85'
                   : 'bg-system-panel border-system-blue/30 shadow-md hover:border-system-blue/60'
@@ -309,7 +309,7 @@ export default function WorkoutQuestView() {
                 
                 {/* Exercise Name & Equipment */}
                 <div className="flex items-start gap-3 flex-1">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black font-mono text-base flex-shrink-0 mt-0.5 ${
+                  <div className={`w-10 h-10 rounded-sm flex items-center justify-center font-black font-mono text-base flex-shrink-0 mt-0.5 ${
                     isComplete ? 'bg-green-500/20 text-green-400 border border-green-500/40' : 'bg-system-card text-system-cyan border border-system-blue/40 shadow-glow-blue'
                   }`}>
                     {idx + 1}
@@ -335,7 +335,7 @@ export default function WorkoutQuestView() {
                 {/* Sets Action */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between sm:justify-end gap-3 sm:gap-4 w-full lg:w-auto border-t lg:border-t-0 pt-3.5 lg:pt-0 border-white/10">
                   
-                  <div className="flex items-center gap-2 bg-system-dark px-3.5 py-2 rounded-xl border border-white/10 shadow-inner">
+                  <div className="flex items-center gap-2 bg-system-dark px-3.5 py-2 rounded-sm border border-white/10 shadow-inner">
                     <span className="text-xs text-zinc-400 font-bold uppercase font-mono">Target:</span>
                     <span className="text-xs font-mono font-bold text-white">{exercise.reps}</span>
                   </div>
@@ -345,14 +345,14 @@ export default function WorkoutQuestView() {
                     <button
                       onClick={() => handleSetToggle(exercise.id, -1)}
                       disabled={doneSets === 0}
-                      className="p-2 rounded-xl bg-system-dark border border-white/10 hover:border-red-500/50 text-zinc-500 hover:text-red-400 disabled:opacity-50 transition-all"
+                      className="p-2 rounded-sm bg-system-dark border border-white/10 hover:border-red-500/50 text-zinc-500 hover:text-red-400 disabled:opacity-50 transition-all"
                     >
                       <MinusCircle className="w-5 h-5" />
                     </button>
                     
                     <button
                       onClick={() => handleSetToggle(exercise.id, 1)}
-                      className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-3 sm:py-2.5 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider transition-all min-h-[44px] ${
+                      className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-3 sm:py-2.5 rounded-sm font-bold text-xs sm:text-sm uppercase tracking-wider transition-all min-h-[44px] ${
                         isComplete
                           ? 'bg-green-500/20 text-green-400 border border-green-500 hover:bg-green-500/30 font-black shadow-[0_0_15px_rgba(0,255,136,0.3)]'
                           : 'bg-gradient-to-r from-system-blue/20 to-system-cyan/20 text-system-cyan border border-system-blue hover:bg-system-blue hover:text-black shadow-glow-blue font-black'
