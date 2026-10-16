@@ -9,25 +9,90 @@ import { AuthModal } from './components/auth/AuthModal';
 import { useAuthStore } from './store/useAuthStore';
 import { useSyncStore } from './store/useSyncStore';
 import { useWorkoutStore } from './store/useWorkoutStore';
+import { getSupabase } from './lib/supabase';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<ActiveTab>('nutrition');
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
-  const { checkSession, isAuthenticated } = useAuthStore();
+  const { checkSession, isAuthenticated, user } = useAuthStore();
   const { syncNow, isAutoSyncEnabled } = useSyncStore();
   const { activeSession } = useWorkoutStore();
 
+  // 1. Initial session verification & initial cloud sync
   useEffect(() => {
-    // Initial session verification & initial sync
     const init = async () => {
       await checkSession();
-      if (isAuthenticated && isAutoSyncEnabled) {
+      if (useAuthStore.getState().isAuthenticated && useSyncStore.getState().isAutoSyncEnabled) {
         await syncNow();
       }
     };
     init();
-  }, [checkSession, isAuthenticated, isAutoSyncEnabled, syncNow]);
+  }, [checkSession, syncNow]);
+
+  // 2. Auto-sync on window focus & mobile tab visibility change
+  useEffect(() => {
+    const handleResume = () => {
+      if (
+        document.visibilityState === 'visible' &&
+        useAuthStore.getState().isAuthenticated &&
+        useSyncStore.getState().isAutoSyncEnabled
+      ) {
+        syncNow();
+      }
+    };
+
+    window.addEventListener('focus', handleResume);
+    document.addEventListener('visibilitychange', handleResume);
+    return () => {
+      window.removeEventListener('focus', handleResume);
+      document.removeEventListener('visibilitychange', handleResume);
+    };
+  }, [syncNow]);
+
+  // 3. Periodic background auto-sync every 60 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (
+        document.visibilityState === 'visible' &&
+        useAuthStore.getState().isAuthenticated &&
+        useSyncStore.getState().isAutoSyncEnabled
+      ) {
+        syncNow();
+      }
+    }, 60000);
+
+    return () => clearInterval(timer);
+  }, [syncNow]);
+
+  // 4. Supabase Realtime multi-device synchronization
+  useEffect(() => {
+    const supabase = getSupabase();
+    if (!supabase || !isAuthenticated || user.id === 'local-athlete') {
+      return;
+    }
+
+    const channel = supabase
+      .channel(`cloud-sync-${user.id}`)
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          filter: `user_id=eq.${user.id}`,
+        },
+        () => {
+          if (useSyncStore.getState().isAutoSyncEnabled) {
+            syncNow();
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [isAuthenticated, user.id, syncNow]);
 
   const handleOpenSettings = () => {
     setActiveTab('settings');

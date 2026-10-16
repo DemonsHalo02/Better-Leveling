@@ -35,7 +35,7 @@ interface SettingsViewProps {
 
 export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) => {
   const { user, updateProfile, signOut, isAuthenticated } = useAuthStore();
-  const { status, lastSyncedAt, syncNow } = useSyncStore();
+  const { status, lastSyncedAt, syncNow, isAutoSyncEnabled, setAutoSync } = useSyncStore();
   const { currentTier, setTier } = useWorkoutStore();
   const { getLatestWeight, getExpenditureReport } = useWeightStore();
   const { getAllDailyIntakeMap } = useNutritionStore();
@@ -212,13 +212,59 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
             </div>
           </div>
 
-          <button
-            onClick={() => syncNow()}
-            className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-800 hover:bg-dark-750 text-dark-200 text-xs font-mono border border-dark-700 transition"
-          >
-            <RefreshCw size={13} className={status === 'syncing' ? 'animate-spin text-amber-400' : ''} />
-            <span>Sync Now</span>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => syncNow()}
+              disabled={status === 'syncing'}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-dark-800 hover:bg-dark-750 text-dark-200 text-xs font-mono border border-dark-700 transition"
+              title="Manually force database synchronization"
+            >
+              <RefreshCw size={13} className={status === 'syncing' ? 'animate-spin text-amber-400' : ''} />
+              <span>{status === 'syncing' ? 'Syncing...' : 'Sync Now'}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Auto-Sync Toggle Control Card */}
+        <div className="p-3.5 rounded-xl bg-dark-900 border border-dark-800 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div
+              className={`w-9 h-9 rounded-xl flex items-center justify-center transition ${
+                isAutoSyncEnabled
+                  ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shadow-sm shadow-emerald-500/10'
+                  : 'bg-dark-800 text-dark-400 border border-dark-750'
+              }`}
+            >
+              <Cloud size={18} />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-dark-100">Automatic Background Sync</span>
+                <span
+                  className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${
+                    isAutoSyncEnabled
+                      ? 'bg-emerald-950/60 text-emerald-400 border border-emerald-800/40'
+                      : 'bg-dark-800 text-dark-400 border border-dark-750'
+                  }`}
+                >
+                  {isAutoSyncEnabled ? '● Active' : '○ Disabled'}
+                </span>
+              </div>
+              <p className="text-[11px] text-dark-400 mt-0.5">
+                Automatically saves every food log, weigh-in, and workout. Pulls changes on app resume and real-time across devices.
+              </p>
+            </div>
+          </div>
+
+          <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
+            <input
+              type="checkbox"
+              checked={isAutoSyncEnabled}
+              onChange={(e) => setAutoSync(e.target.checked)}
+              className="sr-only peer"
+            />
+            <div className="w-11 h-6 bg-dark-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+          </label>
         </div>
 
         <div className="space-y-3">

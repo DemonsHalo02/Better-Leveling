@@ -12,6 +12,7 @@ import { CALISTHENICS_SCHEDULE } from '../data/calisthenicsPlans';
 import { soundManager } from '../lib/sound';
 import confetti from 'canvas-confetti';
 import { getTodayDateString } from './useNutritionStore';
+import { triggerAutoSync } from './useSyncStore';
 
 export function getCurrentDayOfWeek(): DayOfWeek {
   const dayIndex = new Date().getDay(); // 0 is Sunday, 1 is Monday...
@@ -179,6 +180,8 @@ export const useWorkoutStore = create<WorkoutState>()(
           const restTime = exerciseDef?.restSeconds || 60;
           get().startRestTimer(restTime, exerciseDef?.name || 'Rest Interval');
         }
+
+        triggerAutoSync(3000);
       },
 
       addSetToExercise: (exerciseIndex) => {
@@ -250,6 +253,7 @@ export const useWorkoutStore = create<WorkoutState>()(
           },
         });
 
+        triggerAutoSync(300);
         return completedSession;
       },
 

@@ -5,6 +5,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { UserProfile, GoalType, CalisthenicsIntensity, MacroGoals } from '../types';
 import { getSupabase } from '../lib/supabase';
+import { useSyncStore } from './useSyncStore';
 
 interface AuthState {
   user: UserProfile;
@@ -111,6 +112,8 @@ export const useAuthStore = create<AuthState>()(
               isSupabaseConfigured: true,
               isLoading: false,
             });
+            // Automatically pull down cloud data on login
+            useSyncStore.getState().syncNow().catch((e) => console.error('Initial login sync:', e));
             return { success: true };
           }
           set({ isLoading: false });
@@ -188,6 +191,8 @@ export const useAuthStore = create<AuthState>()(
               isSupabaseConfigured: true,
               isLoading: false,
             });
+            // Automatically pull down/sync cloud data on account creation
+            useSyncStore.getState().syncNow().catch((e) => console.error('Initial signup sync:', e));
             return { success: true };
           }
 
@@ -247,6 +252,7 @@ export const useAuthStore = create<AuthState>()(
             console.error('Failed to sync profile update to Supabase:', err);
           }
         }
+        useSyncStore.getState().triggerAutoSync();
       },
 
       updateMacroGoals: async (macroGoals: MacroGoals) => {

@@ -3,6 +3,9 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { FoodItem, LoggedMealItem, MealType } from '../types';
 import { VERIFIED_FOODS } from '../data/verifiedFoods';
+import { getSupabase } from '../lib/supabase';
+import { useAuthStore } from './useAuthStore';
+import { triggerAutoSync } from './useSyncStore';
 
 export function getTodayDateString(): string {
   const now = new Date();
@@ -99,6 +102,7 @@ export const useNutritionStore = create<NutritionState>()(
           recentFoods: updatedRecents,
         });
 
+        triggerAutoSync();
         return newItem;
       },
 
@@ -128,6 +132,7 @@ export const useNutritionStore = create<NutritionState>()(
           },
         });
 
+        triggerAutoSync();
         return newItem;
       },
 
@@ -148,6 +153,8 @@ export const useNutritionStore = create<NutritionState>()(
             [date]: updatedList,
           },
         });
+
+        triggerAutoSync();
       },
 
       removeMealItem: (id, targetDate) => {
@@ -160,6 +167,22 @@ export const useNutritionStore = create<NutritionState>()(
             [date]: currentList.filter((item) => item.id !== id),
           },
         });
+
+        // Delete from Supabase if authenticated
+        const supabase = getSupabase();
+        const auth = useAuthStore.getState();
+        if (supabase && auth.isAuthenticated && auth.user.id !== 'local-athlete') {
+          supabase
+            .from('food_logs')
+            .delete()
+            .eq('id', id)
+            .eq('user_id', auth.user.id)
+            .then(({ error }) => {
+              if (error) console.error('Failed to delete food log from Supabase:', error);
+            });
+        }
+
+        triggerAutoSync();
       },
 
       saveCustomFood: (food) => {
@@ -167,12 +190,29 @@ export const useNutritionStore = create<NutritionState>()(
         set({
           customFoods: [food, ...existing],
         });
+        triggerAutoSync();
       },
 
       deleteCustomFood: (id) => {
         set({
           customFoods: get().customFoods.filter((f) => f.id !== id),
         });
+
+        // Delete from Supabase if authenticated
+        const supabase = getSupabase();
+        const auth = useAuthStore.getState();
+        if (supabase && auth.isAuthenticated && auth.user.id !== 'local-athlete') {
+          supabase
+            .from('custom_foods')
+            .delete()
+            .eq('id', id)
+            .eq('user_id', auth.user.id)
+            .then(({ error }) => {
+              if (error) console.error('Failed to delete custom food from Supabase:', error);
+            });
+        }
+
+        triggerAutoSync();
       },
 
       getDailyTotals: (targetDate) => {
@@ -205,10 +245,7 @@ export const useNutritionStore = create<NutritionState>()(
 
       replaceLogsForSync: (logsByDate) => {
         set({
-          dailyLogs: {
-            ...get().dailyLogs,
-            ...logsByDate,
-          },
+          dailyLogs: logsByDate,
         });
       },
 

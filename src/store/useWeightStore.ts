@@ -4,6 +4,9 @@ import { persist } from 'zustand/middleware';
 import { WeightEntry, WeightAnalyticsPoint, ExpenditureReport } from '../types';
 import { calculateWeightTrend, calculateSmartExpenditure } from '../lib/algorithms';
 import { getTodayDateString } from './useNutritionStore';
+import { getSupabase } from '../lib/supabase';
+import { useAuthStore } from './useAuthStore';
+import { triggerAutoSync } from './useSyncStore';
 
 interface WeightState {
   entries: WeightEntry[];
@@ -78,6 +81,7 @@ export const useWeightStore = create<WeightState>()(
         updatedEntries.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
         set({ entries: updatedEntries });
+        triggerAutoSync();
         return newEntry;
       },
 
@@ -85,6 +89,22 @@ export const useWeightStore = create<WeightState>()(
         set({
           entries: get().entries.filter((e) => e.id !== id),
         });
+
+        // Delete from Supabase if authenticated
+        const supabase = getSupabase();
+        const auth = useAuthStore.getState();
+        if (supabase && auth.isAuthenticated && auth.user.id !== 'local-athlete') {
+          supabase
+            .from('weight_logs')
+            .delete()
+            .eq('id', id)
+            .eq('user_id', auth.user.id)
+            .then(({ error }) => {
+              if (error) console.error('Failed to delete weight log from Supabase:', error);
+            });
+        }
+
+        triggerAutoSync();
       },
 
       getWeightTrend: () => {

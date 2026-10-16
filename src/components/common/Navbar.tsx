@@ -90,10 +90,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth, onOpenSettings }) =>
             }`}
             title={
               status === 'synced'
-                ? `Database synchronized (${lastSyncedAt})`
+                ? `Auto-sync active (${lastSyncedAt || 'Synced'}). Click to force sync.`
                 : status === 'syncing'
                 ? 'Syncing to Supabase...'
-                : 'Offline / Click to Sync'
+                : status === 'error'
+                ? 'Sync error. Click to retry.'
+                : isAuthenticated
+                ? 'Ready to sync / Click to sync'
+                : 'Guest mode (Sign in to auto-sync)'
             }
           >
             {status === 'synced' ? (
@@ -103,7 +107,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth, onOpenSettings }) =>
             ) : (
               <CloudOff size={13} className="text-dark-400" />
             )}
-            <span className="capitalize hidden md:inline">{status}</span>
+            <span className="capitalize hidden md:inline">
+              {status === 'synced' ? 'Auto-Sync' : status}
+            </span>
           </button>
 
           {/* User Profile / Auth Button */}

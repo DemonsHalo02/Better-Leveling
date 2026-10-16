@@ -2,6 +2,7 @@
 // Coordinates dual-layer sync: Local Zustand Store <-> Supabase PostgreSQL
 
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import { SyncState, LoggedMealItem, WeightEntry, LoggedWorkoutSession, FoodItem } from '../types';
 import { getSupabase } from '../lib/supabase';
 import { useAuthStore } from './useAuthStore';
@@ -12,37 +13,71 @@ import { useWorkoutStore } from './useWorkoutStore';
 interface SyncStoreState extends SyncState {
   isAutoSyncEnabled: boolean;
   syncNow: () => Promise<{ success: boolean; message: string }>;
+  triggerAutoSync: (delayMs?: number) => void;
   setAutoSync: (enabled: boolean) => void;
 }
 
-export const useSyncStore = create<SyncStoreState>((set, get) => ({
-  status: 'offline',
-  lastSyncedAt: null,
-  pendingMutations: 0,
-  errorMessage: undefined,
-  isAutoSyncEnabled: true,
+let autoSyncTimer: ReturnType<typeof setTimeout> | null = null;
+let isSyncInProgress = false;
+let queuedSyncScheduled = false;
 
-  setAutoSync: (enabled: boolean) => set({ isAutoSyncEnabled: enabled }),
+export const triggerAutoSync = (delayMs = 1200) => {
+  const store = useSyncStore.getState();
+  const auth = useAuthStore.getState();
 
-  syncNow: async () => {
-    const supabase = getSupabase();
-    const authUser = useAuthStore.getState().user;
-    const isAuthenticated = useAuthStore.getState().isAuthenticated;
+  if (!store.isAutoSyncEnabled || !auth.isAuthenticated || auth.user.id === 'local-athlete') {
+    return;
+  }
 
-    if (!supabase || !isAuthenticated || authUser.id === 'local-athlete') {
-      set({
-        status: 'offline',
-        errorMessage: 'Not signed in to Supabase. Running in local offline mode.',
-      });
-      return {
-        success: false,
-        message: 'Running in offline mode. Sign in to sync across devices.',
-      };
-    }
+  useSyncStore.setState((s) => ({ pendingMutations: s.pendingMutations + 1 }));
 
-    set({ status: 'syncing', errorMessage: undefined });
+  if (autoSyncTimer) {
+    clearTimeout(autoSyncTimer);
+  }
 
-    try {
+  autoSyncTimer = setTimeout(async () => {
+    autoSyncTimer = null;
+    await useSyncStore.getState().syncNow();
+  }, delayMs);
+};
+
+export const useSyncStore = create<SyncStoreState>()(
+  persist(
+    (set, get) => ({
+      status: 'offline',
+      lastSyncedAt: null,
+      pendingMutations: 0,
+      errorMessage: undefined,
+      isAutoSyncEnabled: true,
+
+      setAutoSync: (enabled: boolean) => set({ isAutoSyncEnabled: enabled }),
+      triggerAutoSync: (delayMs?: number) => triggerAutoSync(delayMs),
+
+      syncNow: async () => {
+        const supabase = getSupabase();
+        const authUser = useAuthStore.getState().user;
+        const isAuthenticated = useAuthStore.getState().isAuthenticated;
+
+        if (!supabase || !isAuthenticated || authUser.id === 'local-athlete') {
+          set({
+            status: 'offline',
+            errorMessage: 'Not signed in to Supabase. Running in local offline mode.',
+          });
+          return {
+            success: false,
+            message: 'Running in offline mode. Sign in to sync across devices.',
+          };
+        }
+
+        if (isSyncInProgress) {
+          queuedSyncScheduled = true;
+          return { success: true, message: 'Sync queued' };
+        }
+
+        isSyncInProgress = true;
+        set({ status: 'syncing', errorMessage: undefined });
+
+        try {
       const userId = authUser.id;
 
       // -----------------------------------------------------------
@@ -265,6 +300,23 @@ export const useSyncStore = create<SyncStoreState>((set, get) => ({
         errorMessage: message,
       });
       return { success: false, message };
+    } finally {
+      isSyncInProgress = false;
+      if (queuedSyncScheduled) {
+        queuedSyncScheduled = false;
+        setTimeout(() => {
+          useSyncStore.getState().syncNow();
+        }, 500);
+      }
     }
   },
-}));
+}),
+{
+  name: 'better_leveling_sync',
+  partialize: (state) => ({
+    isAutoSyncEnabled: state.isAutoSyncEnabled,
+    lastSyncedAt: state.lastSyncedAt,
+  }),
+}
+)
+);
