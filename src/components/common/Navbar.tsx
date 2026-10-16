@@ -78,7 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth, onOpenSettings }) =>
         <div className="flex items-center gap-2">
           {/* Cloud Sync Status Pill */}
           <button
-            onClick={() => syncNow()}
+            onClick={isAuthenticated ? () => syncNow() : onOpenAuth}
             className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono border transition ${
               status === 'synced'
                 ? 'bg-emerald-950/30 text-emerald-400 border-emerald-800/40 hover:bg-emerald-950/50'
@@ -86,6 +86,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth, onOpenSettings }) =>
                 ? 'bg-amber-950/30 text-amber-300 border-amber-800/40 animate-pulse'
                 : status === 'error'
                 ? 'bg-rose-950/30 text-rose-400 border-rose-800/40'
+                : !isAuthenticated
+                ? 'bg-amber-950/20 text-amber-300 border-amber-800/40 hover:bg-amber-950/40'
                 : 'bg-dark-850 text-dark-400 border-dark-750 hover:bg-dark-800'
             }`}
             title={
@@ -97,18 +99,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth, onOpenSettings }) =>
                 ? 'Sync error. Click to retry.'
                 : isAuthenticated
                 ? 'Ready to sync / Click to sync'
-                : 'Guest mode (Sign in to auto-sync)'
+                : 'Guest mode (local storage only). Tap to Sign In and enable auto-sync!'
             }
           >
             {status === 'synced' ? (
               <Cloud size={13} className="text-emerald-400" />
             ) : status === 'syncing' ? (
               <RefreshCw size={13} className="animate-spin text-amber-400" />
+            ) : !isAuthenticated ? (
+              <User size={13} className="text-amber-400" />
             ) : (
               <CloudOff size={13} className="text-dark-400" />
             )}
             <span className="capitalize hidden md:inline">
-              {status === 'synced' ? 'Auto-Sync' : status}
+              {status === 'synced'
+                ? 'Auto-Sync'
+                : !isAuthenticated
+                ? 'Guest Mode (Sign In)'
+                : status}
             </span>
           </button>
 

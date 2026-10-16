@@ -267,6 +267,44 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
           </label>
         </div>
 
+        {/* Guest Mode vs Signed In Status Banner */}
+        {!isAuthenticated ? (
+          <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/25 text-xs text-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-2.5">
+              <Sparkles size={16} className="text-amber-400 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="font-semibold text-amber-300">You are in Guest Mode (Offline)</p>
+                <p className="text-[11px] text-amber-200/80 mt-0.5">
+                  Your data is safely stored on this device. Sign in or register an athlete account to enable cloud auto-sync across all your phones and computers!
+                </p>
+              </div>
+            </div>
+            {onOpenAuthModal && (
+              <button
+                type="button"
+                onClick={onOpenAuthModal}
+                className="px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-dark-950 font-bold text-xs whitespace-nowrap self-start sm:self-auto transition shadow-sm"
+              >
+                Sign In / Register
+              </button>
+            )}
+          </div>
+        ) : (
+          <div className="p-3 rounded-xl bg-emerald-950/30 border border-emerald-800/40 text-xs text-emerald-300 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5">
+              <Check size={16} className="text-emerald-400 flex-shrink-0" />
+              <div>
+                <span className="font-semibold text-emerald-200">Cloud Sync Connected: </span>
+                <span className="text-dark-300">Signed in as </span>
+                <span className="font-mono text-emerald-300">{user.email}</span>
+              </div>
+            </div>
+            <span className="text-[11px] font-mono text-emerald-400/80 whitespace-nowrap">
+              {lastSyncedAt ? `Synced at ${lastSyncedAt}` : 'Ready to sync'}
+            </span>
+          </div>
+        )}
+
         <div className="space-y-3">
           <div>
             <label className="block text-xs font-medium text-dark-300 mb-1">

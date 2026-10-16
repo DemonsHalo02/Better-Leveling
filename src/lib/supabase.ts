@@ -17,6 +17,9 @@ export function sanitizeSupabaseUrl(url: string): string {
   return clean;
 }
 
+export const DEFAULT_SUPABASE_URL = 'https://suftlqgflpjnaptzrxuw.supabase.co';
+export const DEFAULT_SUPABASE_ANON_KEY = 'sb_publishable_Wstg9GRxEAmexXEp-WvkVg_J_KiOvkP';
+
 export function getSavedCredentials(): { url: string; anonKey: string } {
   const meta = import.meta as unknown as { env?: Record<string, string> };
   const envUrl = meta.env?.VITE_SUPABASE_URL || '';
@@ -25,10 +28,11 @@ export function getSavedCredentials(): { url: string; anonKey: string } {
   const localUrl = typeof window !== 'undefined' ? localStorage.getItem(STORAGE_KEY_URL) || '' : '';
   const localKey = typeof window !== 'undefined' ? localStorage.getItem(STORAGE_KEY_ANON) || '' : '';
 
-  const rawUrl = localUrl || envUrl;
+  const rawUrl = localUrl || envUrl || DEFAULT_SUPABASE_URL;
+  const rawKey = localKey || envKey || DEFAULT_SUPABASE_ANON_KEY;
   return {
     url: rawUrl ? sanitizeSupabaseUrl(rawUrl) : '',
-    anonKey: (localKey || envKey).trim(),
+    anonKey: rawKey.trim(),
   };
 }
 
