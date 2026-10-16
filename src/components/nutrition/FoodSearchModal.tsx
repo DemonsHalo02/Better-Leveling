@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { FoodItem, MealType } from '../../types';
 import { VERIFIED_FOODS } from '../../data/verifiedFoods';
 import { searchOpenFoodFacts } from '../../lib/openFoodFacts';
 import { useNutritionStore } from '../../store/useNutritionStore';
-import { X, Search, Plus, Globe, Sparkles, Loader2 } from 'lucide-react';
+import { X, Search, Plus, Globe, Sparkles, Loader2, ShoppingCart } from 'lucide-react';
 
 interface FoodSearchModalProps {
   isOpen: boolean;
@@ -21,29 +21,72 @@ export const FoodSearchModal: React.FC<FoodSearchModalProps> = ({
   const { customFoods, recentFoods } = useNutritionStore();
   const [mealType, setMealType] = useState<MealType>(defaultMealType);
   const [query, setQuery] = useState('');
+  const [filterCategory, setFilterCategory] = useState<'all' | 'walmart' | 'protein' | 'marketside'>('all');
   const [selectedFood, setSelectedFood] = useState<FoodItem | null>(null);
   const [servings, setServings] = useState(1);
   const [onlineResults, setOnlineResults] = useState<FoodItem[]>([]);
   const [isSearchingOnline, setIsSearchingOnline] = useState(false);
 
+  // Auto-debounced live search against OpenFoodFacts 3M+ products (including all Walmart products)
+  useEffect(() => {
+    const q = query.trim();
+    if (q.length < 2) {
+      setOnlineResults([]);
+      setIsSearchingOnline(false);
+      return;
+    }
+
+    setIsSearchingOnline(true);
+    const timer = setTimeout(async () => {
+      try {
+        const results = await searchOpenFoodFacts(q);
+        setOnlineResults(results);
+      } catch {
+        setOnlineResults([]);
+      } finally {
+        setIsSearchingOnline(false);
+      }
+    }, 450);
+
+    return () => clearTimeout(timer);
+  }, [query]);
+
   // Local filter: verified foods + custom foods + recents
   const localFiltered = useMemo(() => {
     const q = query.toLowerCase().trim();
-    if (!q) {
-      // If empty query, show recents followed by verified foods
-      return [...recentFoods, ...VERIFIED_FOODS.slice(0, 10)];
+    let pool = [...customFoods, ...VERIFIED_FOODS];
+
+    if (filterCategory === 'walmart') {
+      pool = pool.filter(
+        (item) =>
+          item.brand?.toLowerCase().includes('walmart') ||
+          item.brand?.toLowerCase().includes('great value') ||
+          item.brand?.toLowerCase().includes('marketside') ||
+          item.brand?.toLowerCase().includes('equate') ||
+          item.name.toLowerCase().includes('great value')
+      );
+    } else if (filterCategory === 'protein') {
+      pool = pool.filter((item) => item.protein >= 12);
+    } else if (filterCategory === 'marketside') {
+      pool = pool.filter((item) => item.brand?.toLowerCase().includes('marketside'));
     }
 
-    const allLocal = [...customFoods, ...VERIFIED_FOODS];
+    if (!q) {
+      if (filterCategory === 'walmart' || filterCategory === 'marketside') {
+        return pool;
+      }
+      return [...recentFoods, ...pool.slice(0, 15)];
+    }
+
     const map = new Map<string, FoodItem>();
-    allLocal.forEach((item) => map.set(item.id, item));
+    pool.forEach((item) => map.set(item.id, item));
 
     return Array.from(map.values()).filter(
       (item) =>
         item.name.toLowerCase().includes(q) ||
         (item.brand && item.brand.toLowerCase().includes(q))
     );
-  }, [query, customFoods, recentFoods]);
+  }, [query, filterCategory, customFoods, recentFoods]);
 
   const handleOnlineSearch = async () => {
     if (!query.trim() || query.length < 2) return;
@@ -139,6 +182,67 @@ export const FoodSearchModal: React.FC<FoodSearchModalProps> = ({
               <Globe size={14} className="text-cyan-400" />
             )}
             <span className="hidden sm:inline">Web Search</span>
+          </button>
+        </div>
+
+        {/* Quick Filter Chips */}
+        <div className="mt-2.5 flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
+          <button
+            type="button"
+            onClick={() => {
+              setFilterCategory('all');
+              setQuery('');
+            }}
+            className={`px-2.5 py-1 rounded-full text-[11px] font-medium whitespace-nowrap border transition ${
+              filterCategory === 'all' && !query
+                ? 'bg-dark-750 text-dark-50 border-dark-600'
+                : 'bg-dark-850 text-dark-400 border-dark-750 hover:text-dark-200'
+            }`}
+          >
+            All Foods
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setFilterCategory('walmart');
+              setQuery('Great Value');
+            }}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium whitespace-nowrap border transition ${
+              filterCategory === 'walmart' || query.toLowerCase().includes('great value')
+                ? 'bg-blue-950/50 text-blue-300 border-blue-700/50 shadow-sm'
+                : 'bg-dark-850 text-dark-300 border-dark-750 hover:text-blue-300'
+            }`}
+          >
+            <ShoppingCart size={11} className="text-blue-400" />
+            <span>Walmart / Great Value</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setFilterCategory('protein');
+              setQuery('');
+            }}
+            className={`px-2.5 py-1 rounded-full text-[11px] font-medium whitespace-nowrap border transition ${
+              filterCategory === 'protein'
+                ? 'bg-amber-950/50 text-amber-300 border-amber-700/50 shadow-sm'
+                : 'bg-dark-850 text-dark-400 border-dark-750 hover:text-dark-200'
+            }`}
+          >
+            🍗 High Protein
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setFilterCategory('marketside');
+              setQuery('Marketside');
+            }}
+            className={`px-2.5 py-1 rounded-full text-[11px] font-medium whitespace-nowrap border transition ${
+              filterCategory === 'marketside' || query.toLowerCase().includes('marketside')
+                ? 'bg-emerald-950/50 text-emerald-300 border-emerald-700/50 shadow-sm'
+                : 'bg-dark-850 text-dark-400 border-dark-750 hover:text-dark-200'
+            }`}
+          >
+            🥗 Marketside Fresh
           </button>
         </div>
 
@@ -238,24 +342,40 @@ export const FoodSearchModal: React.FC<FoodSearchModalProps> = ({
                     <Globe size={12} />
                     <span>Global Database Results</span>
                   </div>
-                  {onlineResults.map((food) => (
-                    <button
-                      key={food.id}
-                      onClick={() => handleSelectFood(food)}
-                      className="w-full text-left p-2.5 rounded-lg bg-dark-850 hover:bg-dark-800 border border-dark-750 transition flex items-center justify-between gap-2 mb-1"
-                    >
-                      <div className="truncate">
-                        <div className="font-semibold text-xs text-dark-50 truncate">{food.name}</div>
-                        <div className="text-[10px] text-dark-400 truncate">
-                          {food.brand ? `${food.brand} • ` : ''}{food.servingUnit}
+                  {onlineResults.map((food) => {
+                    const isWalmart =
+                      food.brand?.toLowerCase().includes('walmart') ||
+                      food.brand?.toLowerCase().includes('great value') ||
+                      food.brand?.toLowerCase().includes('marketside') ||
+                      food.brand?.toLowerCase().includes('equate') ||
+                      food.name.toLowerCase().includes('great value');
+
+                    return (
+                      <button
+                        key={food.id}
+                        onClick={() => handleSelectFood(food)}
+                        className="w-full text-left p-2.5 rounded-lg bg-dark-850 hover:bg-dark-800 border border-dark-750 transition flex items-center justify-between gap-2 mb-1"
+                      >
+                        <div className="truncate">
+                          <div className="flex items-center gap-1.5 truncate">
+                            <span className="font-semibold text-xs text-dark-50 truncate">{food.name}</span>
+                            {isWalmart && (
+                              <span className="px-1.5 py-0.2 rounded text-[9px] font-bold bg-blue-950/70 text-blue-300 border border-blue-700/40 flex-shrink-0">
+                                Walmart
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-[10px] text-dark-400 truncate">
+                            {food.brand ? `${food.brand} • ` : ''}{food.servingUnit}
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex items-center gap-2.5 font-mono text-xs flex-shrink-0">
-                        <span className="text-amber-400 font-bold">{food.calories} cal</span>
-                        <span className="text-cyan-400 text-[11px]">{food.protein}P</span>
-                      </div>
-                    </button>
-                  ))}
+                        <div className="flex items-center gap-2.5 font-mono text-xs flex-shrink-0">
+                          <span className="text-amber-400 font-bold">{food.calories} cal</span>
+                          <span className="text-cyan-400 text-[11px]">{food.protein}P</span>
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               )}
 
@@ -269,33 +389,58 @@ export const FoodSearchModal: React.FC<FoodSearchModalProps> = ({
                 )}
                 {localFiltered.length === 0 && onlineResults.length === 0 ? (
                   <div className="text-center py-8 text-dark-400 text-xs">
-                    No local foods found. Click <strong>Web Search</strong> to query 3M+ items online.
+                    No local foods found. Click <strong>Web Search</strong> or type to query 3M+ items online.
                   </div>
                 ) : (
-                  localFiltered.map((food) => (
-                    <button
-                      key={food.id}
-                      onClick={() => handleSelectFood(food)}
-                      className="w-full text-left p-2.5 rounded-lg bg-dark-850 hover:bg-dark-800 border border-dark-750 transition flex items-center justify-between gap-2 mb-1"
-                    >
-                      <div className="truncate">
-                        <div className="font-semibold text-xs text-dark-50 truncate">{food.name}</div>
-                        <div className="text-[10px] text-dark-400 truncate">
-                          {food.brand ? `${food.brand} • ` : ''}{food.servingUnit}
+                  localFiltered.map((food) => {
+                    const isWalmart =
+                      food.brand?.toLowerCase().includes('walmart') ||
+                      food.brand?.toLowerCase().includes('great value') ||
+                      food.brand?.toLowerCase().includes('marketside') ||
+                      food.brand?.toLowerCase().includes('equate') ||
+                      food.name.toLowerCase().includes('great value');
+
+                    return (
+                      <button
+                        key={food.id}
+                        onClick={() => handleSelectFood(food)}
+                        className="w-full text-left p-2.5 rounded-lg bg-dark-850 hover:bg-dark-800 border border-dark-750 transition flex items-center justify-between gap-2 mb-1"
+                      >
+                        <div className="truncate">
+                          <div className="flex items-center gap-1.5 truncate">
+                            <span className="font-semibold text-xs text-dark-50 truncate">{food.name}</span>
+                            {isWalmart && (
+                              <span className="px-1.5 py-0.2 rounded text-[9px] font-bold bg-blue-950/70 text-blue-300 border border-blue-700/40 flex-shrink-0">
+                                Walmart
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-[10px] text-dark-400 truncate">
+                            {food.brand ? `${food.brand} • ` : ''}{food.servingUnit}
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex items-center gap-2.5 font-mono text-xs flex-shrink-0">
-                        <span className="text-amber-400 font-bold">{food.calories} cal</span>
-                        <span className="text-cyan-400 text-[11px]">{food.protein}P</span>
-                        <span className="text-emerald-400 text-[11px]">{food.carbs}C</span>
-                        <span className="text-purple-400 text-[11px]">{food.fat}F</span>
-                      </div>
-                    </button>
-                  ))
+                        <div className="flex items-center gap-2.5 font-mono text-xs flex-shrink-0">
+                          <span className="text-amber-400 font-bold">{food.calories} cal</span>
+                          <span className="text-cyan-400 text-[11px]">{food.protein}P</span>
+                          <span className="text-emerald-400 text-[11px]">{food.carbs}C</span>
+                          <span className="text-purple-400 text-[11px]">{food.fat}F</span>
+                        </div>
+                      </button>
+                    );
+                  })
                 )}
               </div>
             </>
           )}
+        </div>
+
+        {/* Footer Hint */}
+        <div className="pt-2 px-1 text-[11px] text-dark-400 flex items-center justify-between border-t border-dark-800">
+          <div className="flex items-center gap-1.5">
+            <Sparkles size={12} className="text-amber-400 flex-shrink-0" />
+            <span>Search any Walmart food or scan barcodes directly with your camera</span>
+          </div>
+          <span className="text-[10px] text-dark-500 font-mono hidden sm:inline">3M+ items</span>
         </div>
       </div>
     </div>
