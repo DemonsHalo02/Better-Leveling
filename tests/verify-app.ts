@@ -31,20 +31,19 @@ function runTestSuite() {
   // -------------------------------------------------------------
   console.log('--- 1. Testing Exponential Moving Average Weight Smoothing ---');
   const sampleWeights = [
-    { id: '1', date: '2026-10-01', weightKg: 80.0, createdAt: '' },
-    { id: '2', date: '2026-10-02', weightKg: 81.2, createdAt: '' }, // sudden +1.2kg water jump
-    { id: '3', date: '2026-10-03', weightKg: 79.8, createdAt: '' },
-    { id: '4', date: '2026-10-04', weightKg: 79.5, createdAt: '' },
+    { id: '1', date: '2026-10-01', weightLbs: 175.0, createdAt: '' },
+    { id: '2', date: '2026-10-02', weightLbs: 177.2, createdAt: '' }, // sudden +2.2 lbs water jump
+    { id: '3', date: '2026-10-03', weightLbs: 174.6, createdAt: '' },
+    { id: '4', date: '2026-10-04', weightLbs: 174.1, createdAt: '' },
   ];
 
   const trend = calculateWeightTrend(sampleWeights, 0.12);
   assert(trend.length === 4, 'Weight trend outputs all 4 data points');
-  assert(trend[0].trendWeight === 80.0, 'First trend weight equals initial raw weight');
-  // At index 1: 0.12 * 81.2 + 0.88 * 80.0 = 9.744 + 70.4 = 80.144
+  assert(trend[0].trendWeight === 175.0, 'First trend weight equals initial raw weight');
   assert(
-    trend[1].trendWeight < 81.2 && trend[1].trendWeight > 80.0,
-    'EMA filters out acute +1.2kg water spike (trend was smoothed)',
-    `Expected ~80.14, got ${trend[1].trendWeight}`
+    trend[1].trendWeight < 177.2 && trend[1].trendWeight > 175.0,
+    'EMA filters out acute +2.2 lbs water spike (trend was smoothed)',
+    `Expected ~175.3, got ${trend[1].trendWeight}`
   );
 
   // -------------------------------------------------------------
@@ -59,18 +58,18 @@ function runTestSuite() {
   };
   const tdeeReport = calculateSmartExpenditure(trend, dailyCalories, 7);
   assert(tdeeReport.estimatedTDEE >= 1200 && tdeeReport.estimatedTDEE <= 4500, 'TDEE within human biological bounds');
-  assert(typeof tdeeReport.weeklyWeightRateKg === 'number', 'Weekly weight rate is numeric');
+  assert(typeof tdeeReport.weeklyWeightRateLbs === 'number', 'Weekly weight rate is numeric');
 
   // -------------------------------------------------------------
   // TEST 3: Adaptive Macro Calculator
   // -------------------------------------------------------------
   console.log('\n--- 3. Testing Adaptive Macro Calculator ---');
-  const fatLossMacros = calculateMacroTargets(75, 2400, 'fat_loss', 0.5);
+  const fatLossMacros = calculateMacroTargets(165, 2400, 'fat_loss', 1.0);
   assert(fatLossMacros.calories < 2400, 'Fat loss sets caloric deficit below TDEE');
-  assert(fatLossMacros.protein === 150, 'Protein calculated at 2.0g per kg of bodyweight (75kg * 2 = 150g)');
+  assert(fatLossMacros.protein === 157, 'Protein calculated at ~0.95g per lb of bodyweight (165 lbs * 0.95 = 157g)');
   assert(fatLossMacros.protein * 4 + fatLossMacros.carbs * 4 + fatLossMacros.fat * 9 <= fatLossMacros.calories + 10, 'Macro sum matches target calories');
 
-  const muscleGainMacros = calculateMacroTargets(75, 2400, 'muscle_gain', 0.25);
+  const muscleGainMacros = calculateMacroTargets(165, 2400, 'muscle_gain', 0.5);
   assert(muscleGainMacros.calories > 2400, 'Muscle gain sets caloric surplus above TDEE');
 
   // -------------------------------------------------------------

@@ -1,7 +1,7 @@
-// Algorithmic engines inspired by MacroFactor:
+// Algorithmic engines inspired by MacroFactor (USA Standard Units: lbs, calories, grams):
 // 1. Exponential Moving Average (EMA) Weight Smoothing
-// 2. Dynamic Metabolic Expenditure (TDEE) Calculation
-// 3. Adaptive Caloric & Macro Target Calculation
+// 2. Dynamic Metabolic Expenditure (TDEE) Calculation (3,500 kcal per lb body tissue)
+// 3. Adaptive Caloric & Macro Target Calculation (0.9-1.0g protein per lb of bodyweight)
 
 import { WeightEntry, WeightAnalyticsPoint, ExpenditureReport, GoalType, MacroGoals } from '../types';
 
@@ -22,21 +22,21 @@ export function calculateWeightTrend(
   );
 
   const results: WeightAnalyticsPoint[] = [];
-  let currentTrend = sorted[0].weightKg;
+  let currentTrend = sorted[0].weightLbs;
 
   for (let i = 0; i < sorted.length; i++) {
     const entry = sorted[i];
     // First point initializes the trend
     if (i === 0) {
-      currentTrend = entry.weightKg;
+      currentTrend = entry.weightLbs;
     } else {
-      currentTrend = alpha * entry.weightKg + (1 - alpha) * currentTrend;
+      currentTrend = alpha * entry.weightLbs + (1 - alpha) * currentTrend;
     }
 
     results.push({
       date: entry.date,
-      rawWeight: Number(entry.weightKg.toFixed(2)),
-      trendWeight: Number(currentTrend.toFixed(2)),
+      rawWeight: Number(entry.weightLbs.toFixed(1)),
+      trendWeight: Number(currentTrend.toFixed(1)),
     });
   }
 
@@ -45,8 +45,8 @@ export function calculateWeightTrend(
 
 /**
  * Calculates true Total Daily Energy Expenditure (TDEE).
- * 1 kg of human tissue delta ~ 7,700 kcal.
- * TDEE = Daily Intake - (Daily Weight Trend Delta in kg * 7700)
+ * 1 lb of human tissue delta ~ 3,500 kcal.
+ * TDEE = Daily Intake - (Daily Weight Trend Delta in lbs * 3500)
  */
 export function calculateSmartExpenditure(
   weightPoints: WeightAnalyticsPoint[],
@@ -57,7 +57,7 @@ export function calculateSmartExpenditure(
   const defaultReport: ExpenditureReport = {
     estimatedTDEE: 2200,
     rollingAverageIntake: 2000,
-    weeklyWeightRateKg: 0,
+    weeklyWeightRateLbs: 0,
     confidenceScore: 'low',
   };
 
@@ -76,9 +76,9 @@ export function calculateSmartExpenditure(
   const lastDate = new Date(lastPoint.date).getTime();
   const daysDiff = Math.max(1, (lastDate - firstDate) / (1000 * 60 * 60 * 24));
 
-  // Trend weight change in kg
-  const trendDeltaKg = lastPoint.trendWeight - firstPoint.trendWeight;
-  const weeklyRateKg = (trendDeltaKg / daysDiff) * 7;
+  // Trend weight change in lbs
+  const trendDeltaLbs = lastPoint.trendWeight - firstPoint.trendWeight;
+  const weeklyRateLbs = (trendDeltaLbs / daysDiff) * 7;
 
   // Average caloric intake across the logged days in the window
   let totalIntake = 0;
@@ -94,8 +94,8 @@ export function calculateSmartExpenditure(
 
   const averageIntake = loggedDaysCount > 0 ? totalIntake / loggedDaysCount : 2000;
 
-  // Daily energy delta: deltaKg / days * 7700 kcal/kg
-  const dailySurplusOrDeficitKcal = (trendDeltaKg / daysDiff) * 7700;
+  // Daily energy delta: deltaLbs / days * 3500 kcal/lb
+  const dailySurplusOrDeficitKcal = (trendDeltaLbs / daysDiff) * 3500;
 
   // TDEE = Intake - Surplus (or Intake + Deficit)
   let calculatedTDEE = Math.round(averageIntake - dailySurplusOrDeficitKcal);
@@ -113,44 +113,44 @@ export function calculateSmartExpenditure(
   return {
     estimatedTDEE: calculatedTDEE,
     rollingAverageIntake: Math.round(averageIntake),
-    weeklyWeightRateKg: Number(weeklyRateKg.toFixed(2)),
+    weeklyWeightRateLbs: Number(weeklyRateLbs.toFixed(1)),
     confidenceScore,
   };
 }
 
 /**
- * Calculates adaptive macro targets based on goal, weight, and TDEE.
+ * Calculates adaptive macro targets based on goal, weight in lbs, and TDEE.
  */
 export function calculateMacroTargets(
-  weightKg: number,
+  weightLbs: number,
   tdee: number,
   goal: GoalType,
-  targetWeeklyRateKg: number = 0.4
+  targetWeeklyRateLbs: number = 1.0 // Standard US fat loss rate: ~1 lb/week
 ): MacroGoals {
   let targetCalories = tdee;
 
   if (goal === 'fat_loss') {
-    // 7700 kcal per kg / 7 days = 1100 kcal deficit per 1kg/week loss
-    const dailyDeficit = (targetWeeklyRateKg * 7700) / 7;
+    // 3,500 kcal per lb / 7 days = 500 kcal deficit per 1 lb/week loss
+    const dailyDeficit = (targetWeeklyRateLbs * 3500) / 7;
     targetCalories = Math.max(1300, Math.round(tdee - dailyDeficit));
   } else if (goal === 'muscle_gain') {
-    // Conservative lean surplus (approx +200-300 kcal/day to minimize fat gain)
-    const dailySurplus = (targetWeeklyRateKg * 7700) / 7;
+    // Conservative lean surplus (approx +250 kcal/day for lean tissue)
+    const dailySurplus = (targetWeeklyRateLbs * 3500) / 7;
     targetCalories = Math.round(tdee + Math.min(400, dailySurplus));
   } else {
     // Maintenance
     targetCalories = tdee;
   }
 
-  // Protein: High protein optimal for calisthenics & recovery (2.0g per kg)
-  const proteinGrams = Math.round(weightKg * 2.0);
+  // Protein: High protein optimal for calisthenics & muscle preservation (0.9 - 1.0g per lb of bodyweight)
+  const proteinGrams = Math.round(weightLbs * 0.95);
   const proteinCalories = proteinGrams * 4;
 
   // Fat: 25% of total caloric intake
   const fatCalories = targetCalories * 0.25;
   const fatGrams = Math.round(fatCalories / 9);
 
-  // Carbs: Remainder of calories
+  // Carbs: Remainder of calories (fuel for workouts)
   const remainingCalories = Math.max(0, targetCalories - (proteinCalories + fatGrams * 9));
   const carbGrams = Math.round(remainingCalories / 4);
 

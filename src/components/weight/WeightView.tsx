@@ -9,7 +9,6 @@ import {
   Plus,
   Trash2,
   Calendar,
-  CheckCircle,
   Activity,
 } from 'lucide-react';
 
@@ -43,18 +42,18 @@ export const WeightView: React.FC = () => {
   // SVG Chart Calculations
   const chartHeight = 160;
   const chartWidth = 500;
-  const padding = { top: 20, right: 20, bottom: 30, left: 40 };
+  const padding = { top: 20, right: 20, bottom: 30, left: 45 };
 
   const usableWidth = chartWidth - padding.left - padding.right;
   const usableHeight = chartHeight - padding.top - padding.bottom;
 
-  let minWeight = 60;
-  let maxWeight = 90;
+  let minWeight = 130;
+  let maxWeight = 200;
 
   if (trendPoints.length > 0) {
     const allWeights = trendPoints.flatMap((p) => [p.rawWeight, p.trendWeight]);
-    minWeight = Math.floor(Math.min(...allWeights) - 1);
-    maxWeight = Math.ceil(Math.max(...allWeights) + 1);
+    minWeight = Math.floor(Math.min(...allWeights) - 2);
+    maxWeight = Math.ceil(Math.max(...allWeights) + 2);
   }
 
   const weightRange = Math.max(1, maxWeight - minWeight);
@@ -85,13 +84,13 @@ export const WeightView: React.FC = () => {
         <div className="bg-dark-850 border border-dark-750 rounded-2xl p-4">
           <div className="flex items-center gap-1.5 text-xs text-dark-400">
             <Scale size={14} className="text-cyan-400" />
-            <span>Today's Weight</span>
+            <span>Today's Scale Weight</span>
           </div>
           <div className="flex items-baseline gap-1 mt-2">
             <span className="text-2xl font-mono font-bold text-dark-50">
               {latest ? latest.raw : '--'}
             </span>
-            <span className="text-xs font-mono text-dark-400">kg</span>
+            <span className="text-xs font-mono text-dark-400">lbs</span>
           </div>
           <span className="text-[10px] text-dark-500 font-mono mt-1 block">
             {latest?.date || 'No weigh-in yet'}
@@ -107,26 +106,26 @@ export const WeightView: React.FC = () => {
             <span className="text-2xl font-mono font-bold text-amber-400">
               {latest ? latest.trend : '--'}
             </span>
-            <span className="text-xs font-mono text-dark-400">kg</span>
+            <span className="text-xs font-mono text-dark-400">lbs</span>
           </div>
           <span className="text-[10px] text-dark-400 mt-1 block">
-            Filters daily water & sodium
+            Filters daily water & sodium swings
           </span>
         </div>
 
         <div className="col-span-2 sm:col-span-1 bg-dark-850 border border-dark-750 rounded-2xl p-4">
           <div className="flex items-center gap-1.5 text-xs text-dark-400">
             <Activity size={14} className="text-emerald-400" />
-            <span>Weekly Change</span>
+            <span>Weekly Rate</span>
           </div>
           <div className="flex items-baseline gap-1 mt-2">
             <span className={`text-2xl font-mono font-bold ${
-              expenditure.weeklyWeightRateKg < 0 ? 'text-emerald-400' : 'text-amber-400'
+              expenditure.weeklyWeightRateLbs < 0 ? 'text-emerald-400' : 'text-amber-400'
             }`}>
-              {expenditure.weeklyWeightRateKg > 0 ? '+' : ''}
-              {expenditure.weeklyWeightRateKg}
+              {expenditure.weeklyWeightRateLbs > 0 ? '+' : ''}
+              {expenditure.weeklyWeightRateLbs}
             </span>
-            <span className="text-xs font-mono text-dark-400">kg/wk</span>
+            <span className="text-xs font-mono text-dark-400">lbs/wk</span>
           </div>
           <span className="text-[10px] text-dark-400 mt-1 block capitalize">
             Goal: {user.goal.replace('_', ' ')}
@@ -144,7 +143,7 @@ export const WeightView: React.FC = () => {
             <div>
               <h3 className="font-bold text-sm text-dark-50">Smart Energy Expenditure (TDEE)</h3>
               <p className="text-xs text-dark-400">
-                Calculated from caloric intake vs. true physiological weight change
+                Calculated dynamically from calories consumed vs. true physiological weight change
               </p>
             </div>
           </div>
@@ -185,7 +184,7 @@ export const WeightView: React.FC = () => {
           </div>
 
           <div className="col-span-2 sm:col-span-1 p-3 rounded-xl bg-dark-900 border border-dark-800">
-            <span className="text-[11px] text-dark-400 block">Daily Budget</span>
+            <span className="text-[11px] text-dark-400 block">Daily Target</span>
             <div className="flex items-baseline justify-center gap-1 mt-1">
               <span className="text-2xl font-mono font-bold text-emerald-400">
                 {user.macroGoals.calories}
@@ -200,9 +199,9 @@ export const WeightView: React.FC = () => {
       <div className="bg-dark-850 border border-dark-750 rounded-2xl p-4 sm:p-5 shadow-sm">
         <div className="flex items-center justify-between pb-3 border-b border-dark-800">
           <div>
-            <h3 className="font-bold text-sm text-dark-50">Weight Trend Line</h3>
+            <h3 className="font-bold text-sm text-dark-50">Weight Trend Line (lbs)</h3>
             <p className="text-xs text-dark-400">
-              Yellow = Smoothed Trend • Grey = Daily Scale Readings
+              Amber = Smoothed Trend • Grey Dotted = Daily Scale Readings
             </p>
           </div>
 
@@ -229,11 +228,11 @@ export const WeightView: React.FC = () => {
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-mono text-dark-400 mb-1">Weight (kg)</label>
+                <label className="block text-[11px] font-mono text-dark-400 mb-1">Weight (lbs)</label>
                 <input
                   type="number"
                   step="0.1"
-                  placeholder="e.g. 74.5"
+                  placeholder="e.g. 165.4"
                   required
                   value={inputWeight}
                   onChange={(e) => setInputWeight(e.target.value)}
@@ -355,7 +354,7 @@ export const WeightView: React.FC = () => {
       {/* History Table */}
       <div className="bg-dark-850 border border-dark-750 rounded-2xl p-4 shadow-sm">
         <h4 className="font-bold text-xs uppercase font-mono tracking-wider text-dark-400 mb-3">
-          Weigh-in History
+          Weigh-in History (lbs)
         </h4>
         <div className="divide-y divide-dark-800">
           {entries.map((entry) => (
@@ -370,7 +369,7 @@ export const WeightView: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <span className="font-mono font-bold text-dark-50">{entry.weightKg} kg</span>
+                <span className="font-mono font-bold text-dark-50">{entry.weightLbs} lbs</span>
                 <button
                   onClick={() => deleteWeightEntry(entry.id)}
                   className="p-1 rounded text-dark-600 hover:text-rose-400 transition"

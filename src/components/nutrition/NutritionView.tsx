@@ -164,7 +164,7 @@ export const NutritionView: React.FC = () => {
                           {item.name}
                         </div>
                         <div className="text-[10px] text-dark-400 font-mono flex items-center gap-2 mt-0.5">
-                          <span>{item.servings} serving ({item.servingSizeGrams}g)</span>
+                          <span>{item.servings} serving ({item.servingSizeOz ? `${item.servingSizeOz} oz / ` : ''}{item.servingSizeGrams}g)</span>
                           {item.brand && <span>• {item.brand}</span>}
                         </div>
                       </div>

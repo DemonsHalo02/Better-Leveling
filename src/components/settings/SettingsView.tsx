@@ -20,13 +20,13 @@ import {
   Target,
   Sparkles,
   Download,
-  Upload,
   LogOut,
   Check,
   AlertCircle,
   Loader2,
   RefreshCw,
   Copy,
+  Info,
 } from 'lucide-react';
 
 interface SettingsViewProps {
@@ -34,7 +34,7 @@ interface SettingsViewProps {
 }
 
 export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) => {
-  const { user, updateProfile, updateMacroGoals, signOut, isAuthenticated } = useAuthStore();
+  const { user, updateProfile, signOut, isAuthenticated } = useAuthStore();
   const { status, lastSyncedAt, syncNow } = useSyncStore();
   const { currentTier, setTier } = useWorkoutStore();
   const { getLatestWeight, getExpenditureReport } = useWeightStore();
@@ -51,9 +51,10 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
   } | null>(null);
 
   const [displayName, setDisplayName] = useState(user.displayName);
-  const [heightCm, setHeightCm] = useState(user.heightCm);
-  const [startingWeightKg, setStartingWeightKg] = useState(user.startingWeightKg);
-  const [targetWeightKg, setTargetWeightKg] = useState(user.targetWeightKg);
+  const [heightFeet, setHeightFeet] = useState(user.heightFeet || 5);
+  const [heightInches, setHeightInches] = useState(user.heightInches || 10);
+  const [startingWeightLbs, setStartingWeightLbs] = useState(user.startingWeightLbs || 165);
+  const [targetWeightLbs, setTargetWeightLbs] = useState(user.targetWeightLbs || 155);
   const [goal, setGoal] = useState<GoalType>(user.goal);
 
   // Macro fields
@@ -69,9 +70,10 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
     e.preventDefault();
     await updateProfile({
       displayName,
-      heightCm: Number(heightCm),
-      startingWeightKg: Number(startingWeightKg),
-      targetWeightKg: Number(targetWeightKg),
+      heightFeet: Number(heightFeet),
+      heightInches: Number(heightInches),
+      startingWeightLbs: Number(startingWeightLbs),
+      targetWeightLbs: Number(targetWeightLbs),
       goal,
       calisthenicsTier: currentTier,
       macroGoals: {
@@ -87,7 +89,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
 
   const handleAutoCalculateMacros = () => {
     const latest = getLatestWeight();
-    const currentWeight = latest ? latest.trend : user.startingWeightKg;
+    const currentWeight = latest ? latest.trend : startingWeightLbs;
     const dailyMap = getAllDailyIntakeMap();
     const expenditure = getExpenditureReport(dailyMap);
 
@@ -95,7 +97,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
       currentWeight,
       expenditure.estimatedTDEE,
       goal,
-      0.4
+      1.0 // 1 lb/week
     );
 
     setCalories(calculated.calories);
@@ -205,7 +207,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
             <div>
               <h3 className="font-bold text-sm text-dark-50">Supabase Cloud Database</h3>
               <p className="text-xs text-dark-400">
-                100% Free PostgreSQL & Auth for syncing data across all your devices
+                PostgreSQL & Auth for syncing data across all your devices
               </p>
             </div>
           </div>
@@ -226,7 +228,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
             </label>
             <input
               type="text"
-              placeholder="https://xyzcompany.supabase.co"
+              placeholder="https://suftlqgflpjnaptzrxuw.supabase.co"
               value={supabaseUrl}
               onChange={(e) => setSupabaseUrl(e.target.value)}
               className="w-full bg-dark-900 border border-dark-750 rounded-lg px-3 py-2 text-xs font-mono text-dark-50 placeholder:text-dark-600 focus:outline-none focus:border-emerald-400"
@@ -235,15 +237,26 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
 
           <div>
             <label className="block text-xs font-medium text-dark-300 mb-1">
-              Supabase Anon / Public Key
+              Supabase Anon / Publishable Key
             </label>
             <input
               type="password"
-              placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6..."
+              placeholder="sb_publishable_..."
               value={supabaseAnonKey}
               onChange={(e) => setSupabaseAnonKey(e.target.value)}
               className="w-full bg-dark-900 border border-dark-750 rounded-lg px-3 py-2 text-xs font-mono text-dark-50 placeholder:text-dark-600 focus:outline-none focus:border-emerald-400"
             />
+          </div>
+
+          {/* Instant Login Tip */}
+          <div className="p-2.5 rounded-xl bg-dark-900 border border-dark-800 text-[11px] text-dark-300 flex items-start gap-2">
+            <Info size={14} className="text-amber-400 flex-shrink-0 mt-0.5" />
+            <div>
+              <span className="font-semibold text-dark-200">Tip for seamless login across devices: </span>
+              <span>
+                In your Supabase Dashboard, go to <strong>Authentication</strong> $\rightarrow$ <strong>Providers</strong> $\rightarrow$ <strong>Email</strong> and toggle <strong>"Confirm email"</strong> to <strong>OFF</strong>. This allows instant 1-click registration and login without waiting for email verification links!
+              </span>
+            </div>
           </div>
 
           {connectionStatus?.tested && (
@@ -305,7 +318,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
         </div>
       </div>
 
-      {/* Athlete Profile & Goals Form */}
+      {/* Athlete Profile & Goals Form (US Measurements) */}
       <form
         onSubmit={handleSaveProfile}
         className="bg-dark-850 border border-dark-750 rounded-2xl p-4 sm:p-5 shadow-sm space-y-4"
@@ -317,7 +330,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
             </div>
             <div>
               <h3 className="font-bold text-sm text-dark-50">Athlete Profile & Goals</h3>
-              <p className="text-xs text-dark-400">Calisthenics tier, body stats, and targets</p>
+              <p className="text-xs text-dark-400">USA Measurements: Feet, Inches, and Pounds (lbs)</p>
             </div>
           </div>
 
@@ -352,25 +365,48 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
             </select>
           </div>
 
+          {/* Height in Feet & Inches */}
           <div>
-            <label className="block text-xs font-medium text-dark-300 mb-1">Height (cm)</label>
-            <input
-              type="number"
-              value={heightCm}
-              onChange={(e) => setHeightCm(parseFloat(e.target.value) || 175)}
-              className="w-full bg-dark-900 border border-dark-750 rounded-lg px-3 py-2 text-xs font-mono text-dark-50 focus:outline-none focus:border-cyan-400"
-            />
+            <label className="block text-xs font-medium text-dark-300 mb-1">Height</label>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="flex items-center bg-dark-900 border border-dark-750 rounded-lg px-2.5 py-1.5 focus-within:border-cyan-400">
+                <input
+                  type="number"
+                  min="3"
+                  max="7"
+                  value={heightFeet}
+                  onChange={(e) => setHeightFeet(parseInt(e.target.value) || 5)}
+                  className="w-full bg-transparent text-xs font-mono text-dark-50 focus:outline-none"
+                />
+                <span className="text-[11px] font-mono text-dark-400 ml-1">ft</span>
+              </div>
+              <div className="flex items-center bg-dark-900 border border-dark-750 rounded-lg px-2.5 py-1.5 focus-within:border-cyan-400">
+                <input
+                  type="number"
+                  min="0"
+                  max="11"
+                  value={heightInches}
+                  onChange={(e) => setHeightInches(parseInt(e.target.value) || 0)}
+                  className="w-full bg-transparent text-xs font-mono text-dark-50 focus:outline-none"
+                />
+                <span className="text-[11px] font-mono text-dark-400 ml-1">in</span>
+              </div>
+            </div>
           </div>
 
+          {/* Starting & Target Weight in lbs */}
           <div>
-            <label className="block text-xs font-medium text-dark-300 mb-1">Target Weight (kg)</label>
-            <input
-              type="number"
-              step="0.1"
-              value={targetWeightKg}
-              onChange={(e) => setTargetWeightKg(parseFloat(e.target.value) || 70)}
-              className="w-full bg-dark-900 border border-dark-750 rounded-lg px-3 py-2 text-xs font-mono text-dark-50 focus:outline-none focus:border-cyan-400"
-            />
+            <label className="block text-xs font-medium text-dark-300 mb-1">Target Weight</label>
+            <div className="flex items-center bg-dark-900 border border-dark-750 rounded-lg px-2.5 py-1.5 focus-within:border-cyan-400">
+              <input
+                type="number"
+                step="0.1"
+                value={targetWeightLbs}
+                onChange={(e) => setTargetWeightLbs(parseFloat(e.target.value) || 155)}
+                className="w-full bg-transparent text-xs font-mono text-dark-50 focus:outline-none"
+              />
+              <span className="text-[11px] font-mono text-dark-400 ml-1">lbs</span>
+            </div>
           </div>
         </div>
 
@@ -401,7 +437,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
         <div className="pt-2 border-t border-dark-800 space-y-3">
           <div className="flex items-center justify-between">
             <h4 className="font-bold text-xs uppercase font-mono tracking-wider text-dark-400">
-              Macro Targets
+              Macro Targets (Grams)
             </h4>
             <button
               type="button"
@@ -409,7 +445,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
               className="flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 transition"
             >
               <Sparkles size={13} />
-              <span>Auto-Calculate from TDEE</span>
+              <span>Auto-Calculate (0.95g/lb)</span>
             </button>
           </div>
 
@@ -428,7 +464,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
               <input
                 type="number"
                 value={protein}
-                onChange={(e) => setProtein(parseInt(e.target.value) || 150)}
+                onChange={(e) => setProtein(parseInt(e.target.value) || 165)}
                 className="w-full bg-dark-900 border border-dark-750 rounded-lg px-2.5 py-1.5 text-xs font-mono font-bold text-dark-50 focus:outline-none focus:border-cyan-400"
               />
             </div>
@@ -437,7 +473,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
               <input
                 type="number"
                 value={carbs}
-                onChange={(e) => setCarbs(parseInt(e.target.value) || 200)}
+                onChange={(e) => setCarbs(parseInt(e.target.value) || 215)}
                 className="w-full bg-dark-900 border border-dark-750 rounded-lg px-2.5 py-1.5 text-xs font-mono font-bold text-dark-50 focus:outline-none focus:border-emerald-400"
               />
             </div>
@@ -446,7 +482,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
               <input
                 type="number"
                 value={fat}
-                onChange={(e) => setFat(parseInt(e.target.value) || 60)}
+                onChange={(e) => setFat(parseInt(e.target.value) || 65)}
                 className="w-full bg-dark-900 border border-dark-750 rounded-lg px-2.5 py-1.5 text-xs font-mono font-bold text-dark-50 focus:outline-none focus:border-purple-400"
               />
             </div>

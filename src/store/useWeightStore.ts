@@ -1,4 +1,4 @@
-// Weight Store: Daily Weigh-in Logger, Exponential Moving Average Trend & Smart Expenditure Sync
+// Weight Store: Daily Weigh-in Logger, Exponential Moving Average Trend & Smart Expenditure Sync (US Units: lbs)
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { WeightEntry, WeightAnalyticsPoint, ExpenditureReport } from '../types';
@@ -9,7 +9,7 @@ interface WeightState {
   entries: WeightEntry[];
 
   // Actions
-  addWeightEntry: (weightKg: number, date?: string, note?: string) => WeightEntry;
+  addWeightEntry: (weightLbs: number, date?: string, note?: string) => WeightEntry;
   deleteWeightEntry: (id: string) => void;
   getWeightTrend: () => WeightAnalyticsPoint[];
   getLatestWeight: () => { raw: number; trend: number; date: string } | null;
@@ -17,33 +17,33 @@ interface WeightState {
   replaceEntriesForSync: (entries: WeightEntry[]) => void;
 }
 
-// Initial realistic starter data for brand new accounts
+// Initial realistic starter data in lbs
 const INITIAL_ENTRIES: WeightEntry[] = [
   {
     id: 'w-init-1',
     date: new Date(Date.now() - 6 * 86400000).toISOString().split('T')[0],
-    weightKg: 75.8,
+    weightLbs: 167.2,
     note: 'Initial weigh-in',
     createdAt: new Date(Date.now() - 6 * 86400000).toISOString(),
   },
   {
     id: 'w-init-2',
     date: new Date(Date.now() - 4 * 86400000).toISOString().split('T')[0],
-    weightKg: 75.4,
+    weightLbs: 166.4,
     note: 'Fasted morning',
     createdAt: new Date(Date.now() - 4 * 86400000).toISOString(),
   },
   {
     id: 'w-init-3',
     date: new Date(Date.now() - 2 * 86400000).toISOString().split('T')[0],
-    weightKg: 75.1,
+    weightLbs: 165.8,
     note: 'Post workout',
     createdAt: new Date(Date.now() - 2 * 86400000).toISOString(),
   },
   {
     id: 'w-init-4',
     date: getTodayDateString(),
-    weightKg: 74.9,
+    weightLbs: 165.2,
     note: 'Morning weigh-in',
     createdAt: new Date().toISOString(),
   },
@@ -54,14 +54,14 @@ export const useWeightStore = create<WeightState>()(
     (set, get) => ({
       entries: INITIAL_ENTRIES,
 
-      addWeightEntry: (weightKg, targetDate, note) => {
+      addWeightEntry: (weightLbs, targetDate, note) => {
         const date = targetDate || getTodayDateString();
         const existingIndex = get().entries.findIndex((e) => e.date === date);
 
         const newEntry: WeightEntry = {
           id: existingIndex >= 0 ? get().entries[existingIndex].id : `weight-${Date.now()}`,
           date,
-          weightKg: Number(weightKg.toFixed(2)),
+          weightLbs: Number(weightLbs.toFixed(1)),
           note,
           createdAt: new Date().toISOString(),
         };

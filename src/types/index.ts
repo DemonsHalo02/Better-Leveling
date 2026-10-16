@@ -1,4 +1,4 @@
-// Core Type Definitions for Better Leveling
+// Core Type Definitions for Better Leveling (US Measurements: lbs, oz, ft/in, grams)
 
 export type CalisthenicsIntensity = 'beginner' | 'intermediate' | 'advanced' | 'expert';
 
@@ -20,9 +20,10 @@ export interface UserProfile {
   email: string;
   displayName: string;
   gender: 'male' | 'female' | 'other';
-  heightCm: number;
-  startingWeightKg: number;
-  targetWeightKg: number;
+  heightFeet: number; // e.g. 5 ft
+  heightInches: number; // e.g. 10 in
+  startingWeightLbs: number; // lbs
+  targetWeightLbs: number;   // lbs
   goal: GoalType;
   activityLevel: 'sedentary' | 'light' | 'moderate' | 'high';
   calisthenicsTier: CalisthenicsIntensity;
@@ -37,12 +38,13 @@ export interface FoodItem {
   name: string;
   brand?: string;
   servingSizeGrams: number;
-  servingUnit: string; // e.g. "100g", "1 scoop", "1 slice"
-  calories: number;    // per serving
-  protein: number;
-  carbs: number;
-  fat: number;
-  fiber?: number;
+  servingSizeOz?: number; // e.g. 3.5 oz
+  servingUnit: string;    // e.g. "100g / 3.5 oz", "1 scoop (30g / 1 oz)"
+  calories: number;       // per serving
+  protein: number;        // grams
+  carbs: number;          // grams
+  fat: number;            // grams
+  fiber?: number;         // grams
   isCustom?: boolean;
 }
 
@@ -54,6 +56,7 @@ export interface LoggedMealItem {
   mealType: MealType;
   servings: number;
   servingSizeGrams: number;
+  servingSizeOz: number;
   calories: number;
   protein: number;
   carbs: number;
@@ -77,7 +80,7 @@ export interface ExerciseSet {
   setNumber: number;
   targetReps: string; // e.g., "8-12", "30s hold", "AMRAP"
   actualReps: number;
-  loadKg?: number; // 0 for pure bodyweight, or extra resistance
+  loadLbs?: number; // extra resistance in lbs (0 for pure bodyweight)
   rpe?: number; // Rate of Perceived Exertion (1-10)
   completed: boolean;
   notes?: string;
@@ -125,21 +128,21 @@ export interface LoggedWorkoutSession {
 export interface WeightEntry {
   id: string;
   date: string; // YYYY-MM-DD
-  weightKg: number;
+  weightLbs: number; // in lbs
   note?: string;
   createdAt: string;
 }
 
 export interface WeightAnalyticsPoint {
   date: string;
-  rawWeight: number;
-  trendWeight: number; // Smoothed EMA weight
+  rawWeight: number;   // lbs
+  trendWeight: number; // Smoothed EMA weight in lbs
 }
 
 export interface ExpenditureReport {
   estimatedTDEE: number; // Estimated true calories burned
   rollingAverageIntake: number;
-  weeklyWeightRateKg: number; // -0.45 kg/week, etc.
+  weeklyWeightRateLbs: number; // e.g. -1.0 lbs/week
   confidenceScore: 'low' | 'moderate' | 'high'; // Based on number of days tracked
 }
 

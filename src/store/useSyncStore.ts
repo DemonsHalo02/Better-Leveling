@@ -53,9 +53,9 @@ export const useSyncStore = create<SyncStoreState>((set, get) => ({
         email: authUser.email,
         display_name: authUser.displayName,
         gender: authUser.gender,
-        height_cm: authUser.heightCm,
-        starting_weight_kg: authUser.startingWeightKg,
-        target_weight_kg: authUser.targetWeightKg,
+        height_cm: Math.round((authUser.heightFeet * 12 + authUser.heightInches) * 2.54),
+        starting_weight_kg: Number((authUser.startingWeightLbs / 2.20462).toFixed(1)),
+        target_weight_kg: Number((authUser.targetWeightLbs / 2.20462).toFixed(1)),
         goal: authUser.goal,
         activity_level: authUser.activityLevel,
         calisthenics_tier: authUser.calisthenicsTier,
@@ -72,7 +72,7 @@ export const useSyncStore = create<SyncStoreState>((set, get) => ({
           id: w.id,
           user_id: userId,
           date: w.date,
-          weight_kg: w.weightKg,
+          weight_kg: Number((w.weightLbs / 2.20462).toFixed(2)),
           note: w.note || null,
           created_at: w.createdAt,
         }));
@@ -89,7 +89,7 @@ export const useSyncStore = create<SyncStoreState>((set, get) => ({
         const mappedRemote: WeightEntry[] = remoteWeights.map((rw) => ({
           id: rw.id,
           date: rw.date,
-          weightKg: Number(rw.weight_kg),
+          weightLbs: rw.weight_lbs ? Number(rw.weight_lbs) : Number((Number(rw.weight_kg) * 2.20462).toFixed(1)),
           note: rw.note || undefined,
           createdAt: rw.created_at,
         }));
@@ -145,6 +145,7 @@ export const useSyncStore = create<SyncStoreState>((set, get) => ({
             mealType: rf.meal_type,
             servings: Number(rf.servings),
             servingSizeGrams: Number(rf.serving_size_grams),
+            servingSizeOz: Number((Number(rf.serving_size_grams) / 28.35).toFixed(1)),
             calories: Number(rf.calories),
             protein: Number(rf.protein),
             carbs: Number(rf.carbs),
