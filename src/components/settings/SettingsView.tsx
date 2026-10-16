@@ -268,14 +268,14 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
         </div>
 
         {/* Guest Mode vs Signed In Status Banner */}
-        {!isAuthenticated ? (
-          <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/25 text-xs text-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        {!isAuthenticated || user.id === 'local-athlete' ? (
+          <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-inner">
             <div className="flex items-start gap-2.5">
-              <Sparkles size={16} className="text-amber-400 flex-shrink-0 mt-0.5" />
+              <Sparkles size={18} className="text-amber-400 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-amber-300">You are in Guest Mode (Offline)</p>
+                <p className="font-bold text-amber-300 text-sm">Guest Mode (Offline)</p>
                 <p className="text-[11px] text-amber-200/80 mt-0.5">
-                  Your data is safely stored on this device. Sign in or register an athlete account to enable cloud auto-sync across all your phones and computers!
+                  Your profile and data are currently stored locally on this browser. Sign in or create your athlete account to activate automatic cross-device cloud sync!
                 </p>
               </div>
             </div>
@@ -283,25 +283,41 @@ export const SettingsView: React.FC<SettingsViewProps> = ({ onOpenAuthModal }) =
               <button
                 type="button"
                 onClick={onOpenAuthModal}
-                className="px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-dark-950 font-bold text-xs whitespace-nowrap self-start sm:self-auto transition shadow-sm"
+                className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-dark-950 font-bold text-xs whitespace-nowrap self-start sm:self-auto transition shadow-md shadow-amber-500/20"
               >
                 Sign In / Register
               </button>
             )}
           </div>
         ) : (
-          <div className="p-3 rounded-xl bg-emerald-950/30 border border-emerald-800/40 text-xs text-emerald-300 flex items-center justify-between gap-3">
+          <div className="p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-800/50 text-xs text-emerald-300 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-inner">
             <div className="flex items-center gap-2.5">
-              <Check size={16} className="text-emerald-400 flex-shrink-0" />
+              <Check size={18} className="text-emerald-400 flex-shrink-0" />
               <div>
-                <span className="font-semibold text-emerald-200">Cloud Sync Connected: </span>
-                <span className="text-dark-300">Signed in as </span>
-                <span className="font-mono text-emerald-300">{user.email}</span>
+                <div className="flex items-center gap-2">
+                  <span className="font-bold text-emerald-200 text-sm">Cloud Auto-Sync Connected</span>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800">
+                    Online
+                  </span>
+                </div>
+                <p className="text-[11px] text-dark-300 mt-0.5">
+                  Authenticated as <span className="font-mono text-emerald-300 font-semibold">{user.email}</span>
+                </p>
               </div>
             </div>
-            <span className="text-[11px] font-mono text-emerald-400/80 whitespace-nowrap">
-              {lastSyncedAt ? `Synced at ${lastSyncedAt}` : 'Ready to sync'}
-            </span>
+            <div className="flex items-center gap-2 self-start sm:self-auto">
+              <span className="text-[11px] font-mono text-emerald-400/80 whitespace-nowrap">
+                {lastSyncedAt ? `Synced ${lastSyncedAt}` : 'Ready to sync'}
+              </span>
+              <button
+                type="button"
+                onClick={signOut}
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-dark-800 hover:bg-dark-750 text-dark-300 hover:text-dark-100 text-[11px] border border-dark-700 transition"
+              >
+                <LogOut size={12} />
+                <span>Sign Out</span>
+              </button>
+            </div>
           </div>
         )}
 

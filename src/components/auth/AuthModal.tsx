@@ -14,13 +14,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   onClose,
   onOpenSettings,
 }) => {
-  const { login, signUp, isLoading, error, clearError, isSupabaseConfigured } = useAuthStore();
+  const { login, signUp, isLoading, error, clearError, isSupabaseConfigured, user } = useAuthStore();
   const { syncNow } = useSyncStore();
 
   const [mode, setMode] = useState<'login' | 'signup'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [displayName, setDisplayName] = useState('');
+  const [displayName, setDisplayName] = useState(user.displayName !== 'Athlete' ? user.displayName : '');
   const [feedback, setFeedback] = useState<string | null>(null);
 
   if (!isOpen) return null;
@@ -33,14 +33,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     if (mode === 'login') {
       const res = await login(email, password);
       if (res.success) {
-        setFeedback('Logged in successfully!');
+        setFeedback('Signed in successfully! Cloud Auto-Sync is now active.');
         await syncNow();
         setTimeout(() => onClose(), 800);
       }
     } else {
       const res = await signUp(email, password, displayName);
       if (res.success) {
-        setFeedback('Account created! Logging in...');
+        setFeedback('Account created! Cloud Auto-Sync is now active.');
         await syncNow();
         setTimeout(() => onClose(), 800);
       }

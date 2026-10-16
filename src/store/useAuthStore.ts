@@ -89,19 +89,36 @@ export const useAuthStore = create<AuthState>()(
               .eq('id', data.user.id)
               .single();
 
+            const currentUser = get().user;
+            let heightFeet = currentUser.heightFeet || 5;
+            let heightInches = currentUser.heightInches || 10;
+            if (profileData?.height_cm) {
+              const totalInches = Math.round(Number(profileData.height_cm) / 2.54);
+              heightFeet = Math.floor(totalInches / 12) || 5;
+              heightInches = totalInches % 12;
+            }
+
+            const startingWeightLbs = profileData?.starting_weight_kg
+              ? Number((Number(profileData.starting_weight_kg) * 2.20462).toFixed(1))
+              : currentUser.startingWeightLbs || 165.0;
+
+            const targetWeightLbs = profileData?.target_weight_kg
+              ? Number((Number(profileData.target_weight_kg) * 2.20462).toFixed(1))
+              : currentUser.targetWeightLbs || 155.0;
+
             const updatedProfile: UserProfile = {
               id: data.user.id,
               email: data.user.email || email,
-              displayName: profileData?.display_name || email.split('@')[0],
-              gender: profileData?.gender || 'other',
-              heightFeet: Number(profileData?.height_feet) || 5,
-              heightInches: Number(profileData?.height_inches) || 10,
-              startingWeightLbs: Number(profileData?.starting_weight_lbs) || (profileData?.starting_weight_kg ? Number((profileData.starting_weight_kg * 2.20462).toFixed(1)) : 165.0),
-              targetWeightLbs: Number(profileData?.target_weight_lbs) || (profileData?.target_weight_kg ? Number((profileData.target_weight_kg * 2.20462).toFixed(1)) : 155.0),
-              goal: (profileData?.goal as GoalType) || 'fat_loss',
-              activityLevel: profileData?.activity_level || 'moderate',
-              calisthenicsTier: (profileData?.calisthenics_tier as CalisthenicsIntensity) || 'beginner',
-              macroGoals: profileData?.macro_goals || get().user.macroGoals,
+              displayName: profileData?.display_name || currentUser.displayName || email.split('@')[0],
+              gender: profileData?.gender || currentUser.gender || 'other',
+              heightFeet,
+              heightInches,
+              startingWeightLbs,
+              targetWeightLbs,
+              goal: (profileData?.goal as GoalType) || currentUser.goal || 'fat_loss',
+              activityLevel: profileData?.activity_level || currentUser.activityLevel || 'moderate',
+              calisthenicsTier: (profileData?.calisthenics_tier as CalisthenicsIntensity) || currentUser.calisthenicsTier || 'beginner',
+              macroGoals: profileData?.macro_goals || currentUser.macroGoals,
               createdAt: profileData?.created_at || new Date().toISOString(),
               updatedAt: profileData?.updated_at || new Date().toISOString(),
             };
@@ -156,33 +173,41 @@ export const useAuthStore = create<AuthState>()(
           if (error) throw error;
 
           if (data.user) {
+            const current = get().user;
             const newProfile: UserProfile = {
-              ...get().user,
+              ...current,
               id: data.user.id,
               email: data.user.email || email,
-              displayName: displayName || email.split('@')[0],
+              displayName: displayName || current.displayName || email.split('@')[0],
             };
 
             // If session is null, Supabase requires email confirmation
             if (!data.session) {
               set({ isLoading: false });
               return {
-                success: true,
-                error: 'Account created! Please check your email to confirm, OR in your Supabase dashboard turn OFF "Confirm email" under Authentication -> Providers -> Email to log in immediately without confirmation.',
+                success: false,
+                error: 'Account registered! Supabase email confirmation is currently enabled. Check your inbox to confirm, OR in your Supabase dashboard turn OFF "Confirm email" (Authentication -> Providers -> Email) to sign in immediately without waiting for emails.',
               };
             }
 
-            // Save to profiles table
+            // Save to profiles table using PostgreSQL schema columns
+            const heightCm = Math.round(((newProfile.heightFeet || 5) * 12 + (newProfile.heightInches || 10)) * 2.54);
+            const startKg = Number(((newProfile.startingWeightLbs || 165) / 2.20462).toFixed(2));
+            const targetKg = Number(((newProfile.targetWeightLbs || 155) / 2.20462).toFixed(2));
+
             await supabase.from('profiles').upsert({
               id: data.user.id,
               email: data.user.email,
               display_name: newProfile.displayName,
+              gender: newProfile.gender || 'other',
+              height_cm: heightCm,
+              starting_weight_kg: startKg,
+              target_weight_kg: targetKg,
+              goal: newProfile.goal || 'fat_loss',
+              activity_level: newProfile.activityLevel || 'moderate',
+              calisthenics_tier: newProfile.calisthenicsTier || 'beginner',
               macro_goals: newProfile.macroGoals,
-              calisthenics_tier: newProfile.calisthenicsTier,
-              height_feet: newProfile.heightFeet,
-              height_inches: newProfile.heightInches,
-              starting_weight_lbs: newProfile.startingWeightLbs,
-              target_weight_lbs: newProfile.targetWeightLbs,
+              updated_at: new Date().toISOString(),
             });
 
             set({
@@ -216,8 +241,12 @@ export const useAuthStore = create<AuthState>()(
         }
         set({
           isAuthenticated: false,
-          user: DEFAULT_PROFILE,
+          user: {
+            ...get().user,
+            id: 'local-athlete',
+          },
         });
+        useSyncStore.setState({ status: 'offline', lastSyncedAt: null });
       },
 
       updateProfile: async (updates: Partial<UserProfile>) => {
@@ -232,16 +261,18 @@ export const useAuthStore = create<AuthState>()(
         const supabase = getSupabase();
         if (supabase && get().isAuthenticated && updated.id !== 'local-athlete') {
           try {
+            const heightCm = Math.round(((updated.heightFeet || 5) * 12 + (updated.heightInches || 10)) * 2.54);
+            const startKg = Number(((updated.startingWeightLbs || 165) / 2.20462).toFixed(2));
+            const targetKg = Number(((updated.targetWeightLbs || 155) / 2.20462).toFixed(2));
+
             await supabase.from('profiles').upsert({
               id: updated.id,
+              email: updated.email,
               display_name: updated.displayName,
               gender: updated.gender,
-              height_feet: updated.heightFeet,
-              height_inches: updated.heightInches,
-              starting_weight_lbs: updated.startingWeightLbs,
-              target_weight_lbs: updated.targetWeightLbs,
-              starting_weight_kg: Number((updated.startingWeightLbs / 2.20462).toFixed(1)),
-              target_weight_kg: Number((updated.targetWeightLbs / 2.20462).toFixed(1)),
+              height_cm: heightCm,
+              starting_weight_kg: startKg,
+              target_weight_kg: targetKg,
               goal: updated.goal,
               activity_level: updated.activityLevel,
               calisthenics_tier: updated.calisthenicsTier,
@@ -262,12 +293,18 @@ export const useAuthStore = create<AuthState>()(
       checkSession: async () => {
         const supabase = getSupabase();
         if (!supabase) {
-          set({ isSupabaseConfigured: false });
+          set({ isSupabaseConfigured: false, isAuthenticated: false });
           return;
         }
 
         try {
-          const { data } = await supabase.auth.getSession();
+          const { data, error } = await supabase.auth.getSession();
+          if (error) {
+            console.error('Session retrieval error:', error);
+            set({ isAuthenticated: false });
+            return;
+          }
+
           if (data.session?.user) {
             const { data: profileData } = await supabase
               .from('profiles')
@@ -275,35 +312,58 @@ export const useAuthStore = create<AuthState>()(
               .eq('id', data.session.user.id)
               .single();
 
-            if (profileData) {
-              set({
-                user: {
-                  ...get().user,
-                  id: data.session.user.id,
-                  email: data.session.user.email || get().user.email,
-                  displayName: profileData.display_name || get().user.displayName,
-                  heightFeet: Number(profileData.height_feet) || 5,
-                  heightInches: Number(profileData.height_inches) || 10,
-                  startingWeightLbs: Number(profileData.starting_weight_lbs) || (profileData.starting_weight_kg ? Number((profileData.starting_weight_kg * 2.20462).toFixed(1)) : 165.0),
-                  targetWeightLbs: Number(profileData.target_weight_lbs) || (profileData.target_weight_kg ? Number((profileData.target_weight_kg * 2.20462).toFixed(1)) : 155.0),
-                  goal: profileData.goal || get().user.goal,
-                  calisthenicsTier: profileData.calisthenics_tier || get().user.calisthenicsTier,
-                  macroGoals: profileData.macro_goals || get().user.macroGoals,
-                },
-                isAuthenticated: true,
-                isSupabaseConfigured: true,
-              });
-            } else {
-              set({
-                isAuthenticated: true,
-                isSupabaseConfigured: true,
-              });
+            const currentUser = get().user;
+            let heightFeet = currentUser.heightFeet || 5;
+            let heightInches = currentUser.heightInches || 10;
+            if (profileData?.height_cm) {
+              const totalInches = Math.round(Number(profileData.height_cm) / 2.54);
+              heightFeet = Math.floor(totalInches / 12) || 5;
+              heightInches = totalInches % 12;
             }
+
+            const startingWeightLbs = profileData?.starting_weight_kg
+              ? Number((Number(profileData.starting_weight_kg) * 2.20462).toFixed(1))
+              : currentUser.startingWeightLbs || 165.0;
+
+            const targetWeightLbs = profileData?.target_weight_kg
+              ? Number((Number(profileData.target_weight_kg) * 2.20462).toFixed(1))
+              : currentUser.targetWeightLbs || 155.0;
+
+            const updatedProfile: UserProfile = {
+              ...currentUser,
+              id: data.session.user.id,
+              email: data.session.user.email || currentUser.email,
+              displayName: profileData?.display_name || currentUser.displayName || data.session.user.email?.split('@')[0] || 'Athlete',
+              gender: profileData?.gender || currentUser.gender || 'other',
+              heightFeet,
+              heightInches,
+              startingWeightLbs,
+              targetWeightLbs,
+              goal: (profileData?.goal as GoalType) || currentUser.goal || 'fat_loss',
+              activityLevel: profileData?.activity_level || currentUser.activityLevel || 'moderate',
+              calisthenicsTier: (profileData?.calisthenics_tier as CalisthenicsIntensity) || currentUser.calisthenicsTier || 'beginner',
+              macroGoals: profileData?.macro_goals || currentUser.macroGoals,
+            };
+
+            set({
+              user: updatedProfile,
+              isAuthenticated: true,
+              isSupabaseConfigured: true,
+            });
           } else {
-            set({ isSupabaseConfigured: true });
+            // No active session in Supabase Auth
+            set({
+              isAuthenticated: false,
+              isSupabaseConfigured: true,
+              user: {
+                ...get().user,
+                id: 'local-athlete',
+              },
+            });
           }
         } catch (err) {
           console.error('Session check error:', err);
+          set({ isAuthenticated: false });
         }
       },
     }),

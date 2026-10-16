@@ -78,59 +78,75 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth, onOpenSettings }) =>
         <div className="flex items-center gap-2">
           {/* Cloud Sync Status Pill */}
           <button
-            onClick={isAuthenticated ? () => syncNow() : onOpenAuth}
+            onClick={isAuthenticated && user.id !== 'local-athlete' ? () => syncNow() : onOpenAuth}
             className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono border transition ${
-              status === 'synced'
+              status === 'synced' && isAuthenticated && user.id !== 'local-athlete'
                 ? 'bg-emerald-950/30 text-emerald-400 border-emerald-800/40 hover:bg-emerald-950/50'
                 : status === 'syncing'
                 ? 'bg-amber-950/30 text-amber-300 border-amber-800/40 animate-pulse'
                 : status === 'error'
-                ? 'bg-rose-950/30 text-rose-400 border-rose-800/40'
-                : !isAuthenticated
-                ? 'bg-amber-950/20 text-amber-300 border-amber-800/40 hover:bg-amber-950/40'
-                : 'bg-dark-850 text-dark-400 border-dark-750 hover:bg-dark-800'
+                ? 'bg-rose-950/30 text-rose-400 border-rose-800/40 hover:bg-rose-950/50'
+                : 'bg-amber-950/20 text-amber-300 border-amber-800/50 hover:bg-amber-950/40'
             }`}
             title={
-              status === 'synced'
-                ? `Auto-sync active (${lastSyncedAt || 'Synced'}). Click to force sync.`
-                : status === 'syncing'
-                ? 'Syncing to Supabase...'
-                : status === 'error'
-                ? 'Sync error. Click to retry.'
-                : isAuthenticated
-                ? 'Ready to sync / Click to sync'
-                : 'Guest mode (local storage only). Tap to Sign In and enable auto-sync!'
+              isAuthenticated && user.id !== 'local-athlete'
+                ? status === 'synced'
+                  ? `Auto-sync active (${lastSyncedAt || 'Synced'}). Click to force sync.`
+                  : status === 'syncing'
+                  ? 'Syncing to Supabase cloud...'
+                  : status === 'error'
+                  ? 'Sync error. Click to retry.'
+                  : 'Ready to sync / Click to force sync'
+                : 'Offline / Guest mode. Tap to Sign In and enable cross-device Auto-Sync!'
             }
           >
-            {status === 'synced' ? (
+            {status === 'synced' && isAuthenticated && user.id !== 'local-athlete' ? (
               <Cloud size={13} className="text-emerald-400" />
             ) : status === 'syncing' ? (
               <RefreshCw size={13} className="animate-spin text-amber-400" />
-            ) : !isAuthenticated ? (
-              <User size={13} className="text-amber-400" />
             ) : (
-              <CloudOff size={13} className="text-dark-400" />
+              <CloudOff size={13} className={status === 'error' ? 'text-rose-400' : 'text-amber-400'} />
             )}
-            <span className="capitalize hidden md:inline">
-              {status === 'synced'
-                ? 'Auto-Sync'
-                : !isAuthenticated
-                ? 'Guest Mode (Sign In)'
-                : status}
+            <span className="capitalize hidden sm:inline">
+              {isAuthenticated && user.id !== 'local-athlete'
+                ? status === 'synced'
+                  ? 'Auto-Sync'
+                  : status === 'syncing'
+                  ? 'Syncing'
+                  : status === 'error'
+                  ? 'Sync Error'
+                  : 'Ready'
+                : 'Offline (Sign In)'}
+            </span>
+            <span className="capitalize sm:hidden">
+              {isAuthenticated && user.id !== 'local-athlete' && status === 'synced' ? 'Sync' : 'Offline'}
             </span>
           </button>
 
           {/* User Profile / Auth Button */}
           <button
-            onClick={isAuthenticated ? onOpenSettings : onOpenAuth}
+            onClick={isAuthenticated && user.id !== 'local-athlete' ? onOpenSettings : onOpenAuth}
             className="flex items-center gap-1.5 p-1.5 sm:px-2.5 sm:py-1 rounded-lg bg-dark-850 hover:bg-dark-800 border border-dark-750 text-dark-200 transition"
-            title={isAuthenticated ? `Signed in as ${user.displayName}` : 'Log in / Register'}
+            title={
+              isAuthenticated && user.id !== 'local-athlete'
+                ? `Signed in as ${user.displayName} (${user.email})`
+                : `${user.displayName} (Guest - Tap to Sign In)`
+            }
           >
-            <div className="w-5 h-5 rounded-full bg-dark-750 border border-dark-600 flex items-center justify-center text-[10px] font-bold text-amber-400">
-              {user.displayName.charAt(0).toUpperCase()}
+            <div className="relative">
+              <div className="w-5 h-5 rounded-full bg-dark-750 border border-dark-600 flex items-center justify-center text-[10px] font-bold text-amber-400">
+                {user.displayName.charAt(0).toUpperCase()}
+              </div>
+              <span
+                className={`absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full border border-dark-900 ${
+                  isAuthenticated && user.id !== 'local-athlete'
+                    ? 'bg-emerald-400'
+                    : 'bg-amber-400'
+                }`}
+              />
             </div>
             <span className="text-xs font-medium hidden sm:inline truncate max-w-[90px]">
-              {isAuthenticated ? user.displayName : 'Sign In'}
+              {user.displayName}
             </span>
           </button>
         </div>

@@ -83,20 +83,21 @@ export const useSyncStore = create<SyncStoreState>()(
       // -----------------------------------------------------------
       // 1. SYNC PROFILE
       // -----------------------------------------------------------
-      await supabase.from('profiles').upsert({
+      const { error: profileErr } = await supabase.from('profiles').upsert({
         id: userId,
         email: authUser.email,
         display_name: authUser.displayName,
         gender: authUser.gender,
         height_cm: Math.round((authUser.heightFeet * 12 + authUser.heightInches) * 2.54),
-        starting_weight_kg: Number((authUser.startingWeightLbs / 2.20462).toFixed(1)),
-        target_weight_kg: Number((authUser.targetWeightLbs / 2.20462).toFixed(1)),
+        starting_weight_kg: Number((authUser.startingWeightLbs / 2.20462).toFixed(2)),
+        target_weight_kg: Number((authUser.targetWeightLbs / 2.20462).toFixed(2)),
         goal: authUser.goal,
         activity_level: authUser.activityLevel,
         calisthenics_tier: authUser.calisthenicsTier,
         macro_goals: authUser.macroGoals,
         updated_at: new Date().toISOString(),
       });
+      if (profileErr) throw profileErr;
 
       // -----------------------------------------------------------
       // 2. SYNC WEIGHT ENTRIES
@@ -111,7 +112,8 @@ export const useSyncStore = create<SyncStoreState>()(
           note: w.note || null,
           created_at: w.createdAt,
         }));
-        await supabase.from('weight_logs').upsert(payload, { onConflict: 'user_id,date' });
+        const { error: wErr } = await supabase.from('weight_logs').upsert(payload, { onConflict: 'user_id,date' });
+        if (wErr) throw wErr;
       }
 
       // Fetch all remote weights
@@ -160,7 +162,8 @@ export const useSyncStore = create<SyncStoreState>()(
           fat: item.fat,
           logged_at: item.loggedAt,
         }));
-        await supabase.from('food_logs').upsert(foodPayload, { onConflict: 'id' });
+        const { error: fErr } = await supabase.from('food_logs').upsert(foodPayload, { onConflict: 'id' });
+        if (fErr) throw fErr;
       }
 
       // Fetch remote food logs
@@ -213,7 +216,8 @@ export const useSyncStore = create<SyncStoreState>()(
           started_at: s.startedAt,
           completed_at: s.completedAt || null,
         }));
-        await supabase.from('workout_logs').upsert(workoutPayload, { onConflict: 'id' });
+        const { error: woErr } = await supabase.from('workout_logs').upsert(workoutPayload, { onConflict: 'id' });
+        if (woErr) throw woErr;
       }
 
       // Fetch remote workout logs
@@ -257,7 +261,8 @@ export const useSyncStore = create<SyncStoreState>()(
           fat: cf.fat,
           fiber: cf.fiber || null,
         }));
-        await supabase.from('custom_foods').upsert(customPayload, { onConflict: 'id' });
+        const { error: cfErr } = await supabase.from('custom_foods').upsert(customPayload, { onConflict: 'id' });
+        if (cfErr) throw cfErr;
       }
 
       const { data: remoteCustomFoods } = await supabase
