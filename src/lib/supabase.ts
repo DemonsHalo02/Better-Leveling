@@ -6,6 +6,17 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 const STORAGE_KEY_URL = 'better_leveling_supabase_url';
 const STORAGE_KEY_ANON = 'better_leveling_supabase_anon';
 
+export function sanitizeSupabaseUrl(url: string): string {
+  let clean = url.trim();
+  // Strip trailing slashes
+  clean = clean.replace(/\/+$/, '');
+  // Strip /rest/v1 if user copied the REST API endpoint
+  clean = clean.replace(/\/rest\/v1\/?$/, '');
+  // Strip trailing slash again
+  clean = clean.replace(/\/+$/, '');
+  return clean;
+}
+
 export function getSavedCredentials(): { url: string; anonKey: string } {
   const meta = import.meta as unknown as { env?: Record<string, string> };
   const envUrl = meta.env?.VITE_SUPABASE_URL || '';
@@ -14,16 +25,20 @@ export function getSavedCredentials(): { url: string; anonKey: string } {
   const localUrl = typeof window !== 'undefined' ? localStorage.getItem(STORAGE_KEY_URL) || '' : '';
   const localKey = typeof window !== 'undefined' ? localStorage.getItem(STORAGE_KEY_ANON) || '' : '';
 
+  const rawUrl = localUrl || envUrl;
   return {
-    url: localUrl || envUrl,
-    anonKey: localKey || envKey,
+    url: rawUrl ? sanitizeSupabaseUrl(rawUrl) : '',
+    anonKey: (localKey || envKey).trim(),
   };
 }
 
 export function saveCredentials(url: string, anonKey: string): void {
+  const cleanUrl = sanitizeSupabaseUrl(url);
+  const cleanKey = anonKey.trim();
+
   if (typeof window !== 'undefined') {
-    localStorage.setItem(STORAGE_KEY_URL, url.trim());
-    localStorage.setItem(STORAGE_KEY_ANON, anonKey.trim());
+    localStorage.setItem(STORAGE_KEY_URL, cleanUrl);
+    localStorage.setItem(STORAGE_KEY_ANON, cleanKey);
   }
   // Reinitialize client
   initSupabaseClient();
@@ -75,10 +90,13 @@ export function getSupabase(): SupabaseClient | null {
  */
 export async function testSupabaseConnection(url: string, anonKey: string): Promise<{ success: boolean; message: string }> {
   try {
-    if (!url.startsWith('https://')) {
+    const cleanUrl = sanitizeSupabaseUrl(url);
+    const cleanKey = anonKey.trim();
+
+    if (!cleanUrl.startsWith('https://')) {
       return { success: false, message: 'URL must begin with https://' };
     }
-    const client = createClient(url, anonKey);
+    const client = createClient(cleanUrl, cleanKey);
     const { error } = await client.from('profiles').select('id').limit(1);
 
     // If table doesn't exist yet, it's still a reachable Supabase server (PostgREST code 42P01)
