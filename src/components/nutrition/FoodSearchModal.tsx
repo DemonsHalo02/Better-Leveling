@@ -21,7 +21,7 @@ export const FoodSearchModal: React.FC<FoodSearchModalProps> = ({
   const { customFoods, recentFoods } = useNutritionStore();
   const [mealType, setMealType] = useState<MealType>(defaultMealType);
   const [query, setQuery] = useState('');
-  const [filterCategory, setFilterCategory] = useState<'all' | 'walmart' | 'protein' | 'marketside'>('all');
+  const [filterCategory, setFilterCategory] = useState<'all' | 'walmart' | 'protein' | 'marketside' | 'snacks' | 'drinks'>('all');
   const [selectedFood, setSelectedFood] = useState<FoodItem | null>(null);
   const [servings, setServings] = useState(1);
   const [onlineResults, setOnlineResults] = useState<FoodItem[]>([]);
@@ -69,10 +69,37 @@ export const FoodSearchModal: React.FC<FoodSearchModalProps> = ({
       pool = pool.filter((item) => item.protein >= 12);
     } else if (filterCategory === 'marketside') {
       pool = pool.filter((item) => item.brand?.toLowerCase().includes('marketside'));
+    } else if (filterCategory === 'snacks') {
+      pool = pool.filter(
+        (item) =>
+          item.name.toLowerCase().includes('cookie') ||
+          item.name.toLowerCase().includes('chip') ||
+          item.name.toLowerCase().includes('ice cream') ||
+          item.name.toLowerCase().includes('pop-tart') ||
+          item.name.toLowerCase().includes('pizza') ||
+          item.name.toLowerCase().includes('dorito') ||
+          item.name.toLowerCase().includes('cheeto') ||
+          item.name.toLowerCase().includes('candy') ||
+          item.name.toLowerCase().includes('oreo') ||
+          item.name.toLowerCase().includes('waffle') ||
+          item.name.toLowerCase().includes('macaroni') ||
+          item.name.toLowerCase().includes('fries') ||
+          item.name.toLowerCase().includes('zebra')
+      );
+    } else if (filterCategory === 'drinks') {
+      pool = pool.filter(
+        (item) =>
+          item.name.toLowerCase().includes('cola') ||
+          item.name.toLowerCase().includes('dew') ||
+          item.name.toLowerCase().includes('soda') ||
+          item.name.toLowerCase().includes('pepper') ||
+          item.name.toLowerCase().includes('energy') ||
+          item.name.toLowerCase().includes('shake')
+      );
     }
 
     if (!q) {
-      if (filterCategory === 'walmart' || filterCategory === 'marketside') {
+      if (filterCategory !== 'all') {
         return pool;
       }
       return [...recentFoods, ...pool.slice(0, 15)];
@@ -229,6 +256,34 @@ export const FoodSearchModal: React.FC<FoodSearchModalProps> = ({
             }`}
           >
             🍗 High Protein
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setFilterCategory('snacks');
+              setQuery('');
+            }}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium whitespace-nowrap border transition ${
+              filterCategory === 'snacks'
+                ? 'bg-rose-950/50 text-rose-300 border-rose-700/50 shadow-sm'
+                : 'bg-dark-850 text-dark-400 border-dark-750 hover:text-dark-200'
+            }`}
+          >
+            🍕 Snacks & Treats
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setFilterCategory('drinks');
+              setQuery('');
+            }}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium whitespace-nowrap border transition ${
+              filterCategory === 'drinks'
+                ? 'bg-purple-950/50 text-purple-300 border-purple-700/50 shadow-sm'
+                : 'bg-dark-850 text-dark-400 border-dark-750 hover:text-dark-200'
+            }`}
+          >
+            🥤 Drinks & Soda
           </button>
           <button
             type="button"
