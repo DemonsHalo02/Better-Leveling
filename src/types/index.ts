@@ -108,6 +108,8 @@ export interface DailyWorkoutRoutine {
   isRestDay?: boolean;
 }
 
+export type WorkoutProgramMode = 'calisthenics' | 'dumbbell_hybrid' | 'treadmill';
+
 export interface LoggedWorkoutSession {
   id: string;
   date: string; // YYYY-MM-DD
@@ -118,6 +120,7 @@ export interface LoggedWorkoutSession {
   completedAt?: string;
   isCompleted: boolean;
   notes?: string;
+  programMode?: WorkoutProgramMode | 'bladder_support';
   exerciseLogs: {
     exerciseId: string;
     exerciseName: string;

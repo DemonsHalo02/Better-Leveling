@@ -236,6 +236,7 @@ export const useSyncStore = create<SyncStoreState>()(
           isCompleted: rw.is_completed,
           exerciseLogs: rw.exercise_logs,
           notes: rw.notes || undefined,
+          programMode: rw.focus_title?.includes('Bladder') ? 'bladder_support' : undefined,
           startedAt: rw.started_at,
           completedAt: rw.completed_at || undefined,
         }));

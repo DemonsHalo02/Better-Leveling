@@ -7,12 +7,16 @@ import {
   DailyWorkoutRoutine,
   LoggedWorkoutSession,
   ExerciseSet,
+  WorkoutProgramMode,
 } from '../types';
 import { CALISTHENICS_SCHEDULE } from '../data/calisthenicsPlans';
+import { BLADDER_ROUTINE } from '../data/bladderSupportPlan';
 import { soundManager } from '../lib/sound';
 import confetti from 'canvas-confetti';
 import { getTodayDateString } from './useNutritionStore';
 import { triggerAutoSync } from './useSyncStore';
+import { getSupabase } from '../lib/supabase';
+import { useAuthStore } from './useAuthStore';
 
 export function getCurrentDayOfWeek(): DayOfWeek {
   const dayIndex = new Date().getDay(); // 0 is Sunday, 1 is Monday...
@@ -36,6 +40,7 @@ interface RestTimerState {
 interface WorkoutState {
   currentTier: CalisthenicsIntensity;
   selectedDay: DayOfWeek;
+  equipmentMode: WorkoutProgramMode;
   activeSession: {
     date: string;
     day: DayOfWeek;
@@ -51,6 +56,7 @@ interface WorkoutState {
   // Actions
   setTier: (tier: CalisthenicsIntensity) => void;
   setSelectedDay: (day: DayOfWeek) => void;
+  setEquipmentMode: (mode: WorkoutProgramMode) => void;
   startWorkout: (day?: DayOfWeek, tier?: CalisthenicsIntensity) => void;
   updateSet: (
     exerciseIndex: number,
@@ -61,6 +67,13 @@ interface WorkoutState {
   addSetToExercise: (exerciseIndex: number) => void;
   finishWorkout: () => LoggedWorkoutSession | null;
   cancelWorkout: () => void;
+
+  // Bladder Support Actions
+  logBladderSession: (customNotes?: string) => LoggedWorkoutSession;
+  isBladderCompletedToday: () => boolean;
+
+  // History & Deletion
+  deleteWorkoutSession: (sessionId: string) => void;
 
   // Rest Timer actions
   startRestTimer: (seconds: number, exerciseName?: string) => void;
@@ -77,6 +90,7 @@ export const useWorkoutStore = create<WorkoutState>()(
     (set, get) => ({
       currentTier: 'beginner',
       selectedDay: getCurrentDayOfWeek(),
+      equipmentMode: 'calisthenics',
       activeSession: null,
       restTimer: {
         isActive: false,
@@ -97,6 +111,10 @@ export const useWorkoutStore = create<WorkoutState>()(
 
       setSelectedDay: (day) => {
         set({ selectedDay: day });
+      },
+
+      setEquipmentMode: (mode) => {
+        set({ equipmentMode: mode });
       },
 
       startWorkout: (targetDay, targetTier) => {
@@ -332,11 +350,101 @@ export const useWorkoutStore = create<WorkoutState>()(
       replaceHistoryForSync: (sessions) => {
         set({ history: sessions });
       },
+
+      logBladderSession: (customNotes?: string) => {
+        const todayDate = getTodayDateString();
+        const currentDay = getCurrentDayOfWeek();
+
+        const bladderExercises = BLADDER_ROUTINE.map((ex) => {
+          let setsCount = 1;
+          if (ex.id === 'bladder-2') setsCount = 3; // 3 sets of quick flicks
+          if (ex.id === 'bladder-4') setsCount = 2; // 2 sets of bridges
+
+          const sets: ExerciseSet[] = [];
+          for (let i = 1; i <= setsCount; i++) {
+            sets.push({
+              id: `set-${ex.id}-${i}-${Date.now()}`,
+              setNumber: i,
+              targetReps: ex.durationOrReps,
+              actualReps: ex.timerSeconds ? ex.timerSeconds : 10,
+              completed: true,
+            });
+          }
+
+          return {
+            exerciseId: ex.id,
+            exerciseName: ex.name,
+            sets,
+          };
+        });
+
+        const completedSession: LoggedWorkoutSession = {
+          id: `bladder-${Date.now()}`,
+          date: todayDate,
+          day: currentDay,
+          intensity: 'beginner',
+          focusTitle: 'Daily Overactive Bladder Support',
+          startedAt: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
+          completedAt: new Date().toISOString(),
+          isCompleted: true,
+          programMode: 'bladder_support',
+          notes: customNotes || 'Daily 15-min pelvic floor & diaphragmatic breathing routine completed.',
+          exerciseLogs: bladderExercises,
+        };
+
+        soundManager.playWorkoutComplete();
+        try {
+          confetti({
+            particleCount: 70,
+            spread: 60,
+            origin: { y: 0.6 },
+            colors: ['#10B981', '#34D399', '#6EE7B7', '#F59E0B'],
+          });
+        } catch {
+          // ignore
+        }
+
+        set({
+          history: [completedSession, ...get().history],
+        });
+
+        triggerAutoSync(300);
+        return completedSession;
+      },
+
+      isBladderCompletedToday: () => {
+        const today = getTodayDateString();
+        return get().history.some(
+          (s) => s.date === today && (s.focusTitle.includes('Bladder') || s.programMode === 'bladder_support')
+        );
+      },
+
+      deleteWorkoutSession: (sessionId: string) => {
+        set({
+          history: get().history.filter((s) => s.id !== sessionId),
+        });
+
+        const supabase = getSupabase();
+        const auth = useAuthStore.getState();
+        if (supabase && auth.isAuthenticated && auth.user.id !== 'local-athlete') {
+          supabase
+            .from('workout_logs')
+            .delete()
+            .eq('id', sessionId)
+            .eq('user_id', auth.user.id)
+            .then(({ error }) => {
+              if (error) console.error('Failed to delete workout log from Supabase:', error);
+            });
+        }
+
+        triggerAutoSync(500);
+      },
     }),
     {
       name: 'better_leveling_workout',
       partialize: (state) => ({
         currentTier: state.currentTier,
+        equipmentMode: state.equipmentMode,
         history: state.history,
         activeSession: state.activeSession,
       }),
