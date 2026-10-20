@@ -203,3 +203,32 @@ DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();
+
+-- ==============================================================================
+-- TABLE PERMISSION GRANTS (Required for Supabase Data API / PostgREST)
+-- ==============================================================================
+GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
+
+-- Grant authenticated users access to read and mutate their own data (governed by RLS)
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.profiles TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.food_logs TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.weight_logs TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.workout_logs TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.custom_foods TO authenticated;
+
+-- Grant anon role read access
+GRANT SELECT ON public.profiles TO anon;
+GRANT SELECT ON public.food_logs TO anon;
+GRANT SELECT ON public.weight_logs TO anon;
+GRANT SELECT ON public.workout_logs TO anon;
+GRANT SELECT ON public.custom_foods TO anon;
+
+-- Full access for service_role admin
+GRANT ALL ON ALL TABLES IN SCHEMA public TO service_role;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO service_role;
+
+-- Ensure any future tables automatically receive grants
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO authenticated;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO service_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO anon;
+
