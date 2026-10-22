@@ -11,7 +11,7 @@ import {
 } from '../types';
 import { CALISTHENICS_SCHEDULE } from '../data/calisthenicsPlans';
 import { BLADDER_ROUTINE } from '../data/bladderSupportPlan';
-import { FUTURE_DUMBBELL_SCHEDULE } from '../data/futureEquipmentWorkouts';
+import { FUTURE_DUMBBELL_SCHEDULE, TreadmillProtocol } from '../data/futureEquipmentWorkouts';
 import { soundManager } from '../lib/sound';
 import confetti from 'canvas-confetti';
 import { getTodayDateString } from './useNutritionStore';
@@ -76,6 +76,9 @@ interface WorkoutState {
   // Bladder Support Actions
   logBladderSession: (customNotes?: string) => LoggedWorkoutSession;
   isBladderCompletedToday: () => boolean;
+
+  // Treadmill Cardio Coach
+  logTreadmillSession: (protocol: TreadmillProtocol, elapsedMinutes: number) => LoggedWorkoutSession;
 
   // Progressive Overload & PRs
   getExerciseLastPerformance: (exerciseId: string) => {
@@ -508,6 +511,59 @@ export const useWorkoutStore = create<WorkoutState>()(
         return get().history.some(
           (s) => s.date === today && (s.focusTitle.includes('Bladder') || s.programMode === 'bladder_support')
         );
+      },
+
+      logTreadmillSession: (protocol, elapsedMinutes) => {
+        const todayDate = getTodayDateString();
+        const currentDay = getCurrentDayOfWeek();
+
+        const completedSession: LoggedWorkoutSession = {
+          id: `treadmill-${Date.now()}`,
+          date: todayDate,
+          day: currentDay,
+          intensity: 'intermediate',
+          focusTitle: `Treadmill: ${protocol.title}`,
+          startedAt: new Date(Date.now() - elapsedMinutes * 60 * 1000).toISOString(),
+          completedAt: new Date().toISOString(),
+          isCompleted: true,
+          programMode: 'weighted',
+          notes: `${protocol.speedMph} at ${protocol.inclinePct} incline (${elapsedMinutes} min). ${protocol.benefits}`,
+          exerciseLogs: [
+            {
+              exerciseId: protocol.id,
+              exerciseName: protocol.title,
+              sets: [
+                {
+                  id: `set-treadmill-${Date.now()}`,
+                  setNumber: 1,
+                  targetReps: `${elapsedMinutes} min`,
+                  actualReps: elapsedMinutes,
+                  loadLbs: 0,
+                  completed: true,
+                },
+              ],
+            },
+          ],
+        };
+
+        soundManager.playWorkoutComplete();
+        try {
+          confetti({
+            particleCount: 70,
+            spread: 60,
+            origin: { y: 0.6 },
+            colors: ['#F59E0B', '#10B981', '#06B6D4'],
+          });
+        } catch {
+          // ignore
+        }
+
+        set({
+          history: [completedSession, ...get().history],
+        });
+
+        triggerAutoSync(300);
+        return completedSession;
       },
 
       getExerciseLastPerformance: (exerciseId: string) => {

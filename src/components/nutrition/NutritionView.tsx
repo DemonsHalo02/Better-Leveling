@@ -7,6 +7,7 @@ import { QuickAddModal } from './QuickAddModal';
 import { BarcodeScannerModal } from './BarcodeScannerModal';
 import { FoodSearchModal } from './FoodSearchModal';
 import { WalmartStaplesBar } from './WalmartStaplesBar';
+import { HydrationTrackerCard } from './HydrationTrackerCard';
 import {
   Plus,
   Barcode,
@@ -61,6 +62,9 @@ export const NutritionView: React.FC = () => {
     <div className="space-y-5 pb-24">
       {/* Signature Macro Rings */}
       <MacroRings goals={user.macroGoals} consumed={consumed} />
+
+      {/* Daily Hydration & Water Intake Tracker */}
+      <HydrationTrackerCard />
 
       {/* Quick Action Dock */}
       <div className="grid grid-cols-3 gap-2.5">

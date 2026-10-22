@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useWorkoutStore } from '../../store/useWorkoutStore';
 import {
   FUTURE_DUMBBELL_SCHEDULE,
@@ -20,6 +20,8 @@ import {
   Gauge,
   Check,
   Play,
+  Pause,
+  X,
   CheckCircle2,
   Circle,
   Plus,
@@ -47,10 +49,70 @@ export const WeightedWorkoutView: React.FC<WeightedWorkoutViewProps> = ({
     cancelWorkout,
     getExerciseLastPerformance,
     getExercisePR,
+    logTreadmillSession,
   } = useWorkoutStore();
 
   const [activeTab, setActiveTab] = useState<'dumbbells' | 'treadmill'>('dumbbells');
   const [expandedExerciseId, setExpandedExerciseId] = useState<string | null>(null);
+
+  // Treadmill Interactive Runner State
+  const [activeTreadmill, setActiveTreadmill] = useState<TreadmillProtocol | null>(null);
+  const [treadmillSecondsLeft, setTreadmillSecondsLeft] = useState<number>(0);
+  const [isTreadmillPaused, setIsTreadmillPaused] = useState<boolean>(false);
+  const [treadmillElapsedSeconds, setTreadmillElapsedSeconds] = useState<number>(0);
+
+  // Treadmill ticker effect
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval> | null = null;
+    if (activeTreadmill && !isTreadmillPaused && treadmillSecondsLeft > 0) {
+      interval = setInterval(() => {
+        setTreadmillSecondsLeft((prev) => {
+          if (prev <= 1) {
+            const elapsedMin = Math.max(1, Math.ceil((treadmillElapsedSeconds + 1) / 60));
+            logTreadmillSession(activeTreadmill, elapsedMin);
+            setActiveTreadmill(null);
+            return 0;
+          }
+          return prev - 1;
+        });
+        setTreadmillElapsedSeconds((prev) => prev + 1);
+      }, 1000);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [activeTreadmill, isTreadmillPaused, treadmillSecondsLeft, treadmillElapsedSeconds, logTreadmillSession]);
+
+  const handleStartTreadmill = (protocol: TreadmillProtocol) => {
+    setActiveTreadmill(protocol);
+    setTreadmillSecondsLeft(protocol.durationMinutes * 60);
+    setTreadmillElapsedSeconds(0);
+    setIsTreadmillPaused(false);
+  };
+
+  const handlePauseTreadmill = () => {
+    setIsTreadmillPaused((prev) => !prev);
+  };
+
+  const handleFinishTreadmillEarly = () => {
+    if (!activeTreadmill) return;
+    const elapsedMin = Math.max(1, Math.ceil(treadmillElapsedSeconds / 60));
+    logTreadmillSession(activeTreadmill, elapsedMin);
+    setActiveTreadmill(null);
+    setTreadmillSecondsLeft(0);
+  };
+
+  const handleCancelTreadmill = () => {
+    setActiveTreadmill(null);
+    setTreadmillSecondsLeft(0);
+    setTreadmillElapsedSeconds(0);
+  };
+
+  const formatMinutesSeconds = (totalSec: number) => {
+    const m = Math.floor(totalSec / 60);
+    const s = totalSec % 60;
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  };
 
   const days: { id: DayOfWeek; short: string; label: string }[] = [
     { id: 'monday', short: 'Mon', label: 'Push A' },
@@ -468,9 +530,96 @@ export const WeightedWorkoutView: React.FC<WeightedWorkoutViewProps> = ({
         </div>
       )}
 
-      {/* TREADMILL PROTOCOLS */}
+      {/* TREADMILL PROTOCOLS & INTERACTIVE COACH */}
       {activeTab === 'treadmill' && (
-        <div className="space-y-3 animate-fadeIn">
+        <div className="space-y-4 animate-fadeIn">
+          {/* Active Treadmill Session HUD */}
+          {activeTreadmill && (
+            <div className="bg-gradient-to-br from-amber-500/15 via-dark-850 to-dark-900 border border-amber-500/40 rounded-2xl p-4 sm:p-5 shadow-lg space-y-3.5 animate-fadeIn">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-dark-800">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-xl bg-amber-500/20 text-amber-400">
+                    <Gauge size={20} />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono uppercase text-amber-400 font-bold">
+                      Active Treadmill Session
+                    </span>
+                    <h3 className="font-extrabold text-base text-dark-50">{activeTreadmill.title}</h3>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-2xl font-bold text-amber-400">
+                    {formatMinutesSeconds(treadmillSecondsLeft)}
+                  </span>
+                  <span className="text-xs text-dark-400">remaining</span>
+                </div>
+              </div>
+
+              {/* Incline & Speed Target Prompts */}
+              <div className="grid grid-cols-2 gap-3 text-center">
+                <div className="p-3 rounded-xl bg-dark-900 border border-dark-750">
+                  <span className="text-[10px] text-dark-400 font-mono uppercase block">Target Speed</span>
+                  <span className="text-xl font-mono font-bold text-dark-50">{activeTreadmill.speedMph}</span>
+                </div>
+                <div className="p-3 rounded-xl bg-dark-900 border border-dark-750">
+                  <span className="text-[10px] text-dark-400 font-mono uppercase block">Target Incline</span>
+                  <span className="text-xl font-mono font-bold text-amber-400">{activeTreadmill.inclinePct}</span>
+                </div>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="w-full bg-dark-800 h-2 rounded-full overflow-hidden">
+                <div
+                  className="bg-amber-400 h-full rounded-full transition-all duration-300"
+                  style={{
+                    width: `${Math.min(
+                      100,
+                      Math.round(
+                        (treadmillElapsedSeconds / (activeTreadmill.durationMinutes * 60)) * 100
+                      )
+                    )}%`,
+                  }}
+                />
+              </div>
+
+              {/* Live Form Cue */}
+              <div className="p-2.5 rounded-xl bg-dark-900/80 border border-dark-800 text-[11.5px] text-dark-300 flex items-center gap-2">
+                <VolumeX size={14} className="text-emerald-400 flex-shrink-0" />
+                <span>
+                  <strong>Apartment tip:</strong> Land softly on midfoot, pump arms naturally, avoid heavy foot slapping.
+                </span>
+              </div>
+
+              {/* Controls */}
+              <div className="flex items-center justify-between pt-1">
+                <button
+                  onClick={handleCancelTreadmill}
+                  className="px-3 py-1.5 rounded-xl border border-dark-750 text-dark-400 hover:text-dark-200 text-xs transition"
+                >
+                  Cancel
+                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={handlePauseTreadmill}
+                    className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-dark-800 hover:bg-dark-750 border border-dark-700 text-dark-200 text-xs font-semibold transition"
+                  >
+                    {isTreadmillPaused ? <Play size={13} fill="currentColor" /> : <Pause size={13} fill="currentColor" />}
+                    <span>{isTreadmillPaused ? 'Resume' : 'Pause'}</span>
+                  </button>
+                  <button
+                    onClick={handleFinishTreadmillEarly}
+                    className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-dark-950 font-bold text-xs transition shadow-md shadow-emerald-500/20"
+                  >
+                    <Check size={14} />
+                    <span>Finish & Log</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="bg-dark-850 border border-dark-750 rounded-2xl p-4 sm:p-5 space-y-3">
             <div>
               <h3 className="font-bold text-sm text-dark-50">Treadmill Incline Protocols</h3>
@@ -480,40 +629,67 @@ export const WeightedWorkoutView: React.FC<WeightedWorkoutViewProps> = ({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {TREADMILL_PROTOCOLS.map((protocol: TreadmillProtocol) => (
-                <div
-                  key={protocol.id}
-                  className="p-4 rounded-xl bg-dark-900 border border-dark-750 space-y-2.5"
-                >
-                  <div className="flex items-center justify-between pb-2 border-b border-dark-800">
-                    <h4 className="font-bold text-xs sm:text-sm text-dark-100 flex items-center gap-1.5">
-                      <Gauge size={15} className="text-amber-400" />
-                      <span>{protocol.title}</span>
-                    </h4>
-                    <span className="text-[11px] font-mono text-amber-400 bg-amber-950/40 border border-amber-900/40 px-2 py-0.5 rounded-md">
-                      {protocol.durationMinutes} Min
-                    </span>
-                  </div>
+              {TREADMILL_PROTOCOLS.map((protocol: TreadmillProtocol) => {
+                const isThisRunning = activeTreadmill?.id === protocol.id;
 
-                  <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-                    <div className="p-2 rounded-lg bg-dark-850 border border-dark-800">
-                      <span className="text-[10px] text-dark-400 block">Speed</span>
-                      <span className="font-bold text-dark-100">{protocol.speedMph}</span>
+                return (
+                  <div
+                    key={protocol.id}
+                    className={`p-4 rounded-xl border transition space-y-2.5 ${
+                      isThisRunning
+                        ? 'bg-amber-950/20 border-amber-500/60 shadow-md shadow-amber-500/10'
+                        : 'bg-dark-900 border-dark-750'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between pb-2 border-b border-dark-800">
+                      <h4 className="font-bold text-xs sm:text-sm text-dark-100 flex items-center gap-1.5">
+                        <Gauge size={15} className="text-amber-400" />
+                        <span>{protocol.title}</span>
+                      </h4>
+                      <span className="text-[11px] font-mono text-amber-400 bg-amber-950/40 border border-amber-900/40 px-2 py-0.5 rounded-md">
+                        {protocol.durationMinutes} Min
+                      </span>
                     </div>
-                    <div className="p-2 rounded-lg bg-dark-850 border border-dark-800">
-                      <span className="text-[10px] text-dark-400 block">Incline</span>
-                      <span className="font-bold text-amber-400">{protocol.inclinePct}</span>
+
+                    <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+                      <div className="p-2 rounded-lg bg-dark-850 border border-dark-800">
+                        <span className="text-[10px] text-dark-400 block">Speed</span>
+                        <span className="font-bold text-dark-100">{protocol.speedMph}</span>
+                      </div>
+                      <div className="p-2 rounded-lg bg-dark-850 border border-dark-800">
+                        <span className="text-[10px] text-dark-400 block">Incline</span>
+                        <span className="font-bold text-amber-400">{protocol.inclinePct}</span>
+                      </div>
                     </div>
-                  </div>
 
-                  <p className="text-[11.5px] text-dark-300 leading-relaxed">{protocol.description}</p>
+                    <p className="text-[11.5px] text-dark-300 leading-relaxed">{protocol.description}</p>
 
-                  <div className="p-2 rounded-lg bg-dark-850/60 border border-dark-800 text-[11px] text-dark-400">
-                    <span className="font-semibold text-amber-400 block mb-0.5">Key Benefit:</span>
-                    <span>{protocol.benefits}</span>
+                    <div className="p-2 rounded-lg bg-dark-850/60 border border-dark-800 text-[11px] text-dark-400">
+                      <span className="font-semibold text-amber-400 block mb-0.5">Key Benefit:</span>
+                      <span>{protocol.benefits}</span>
+                    </div>
+
+                    <button
+                      onClick={() => handleStartTreadmill(protocol)}
+                      disabled={Boolean(activeTreadmill)}
+                      className={`w-full py-2 px-3 rounded-xl font-bold text-xs transition flex items-center justify-center gap-1.5 mt-2 ${
+                        isThisRunning
+                          ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 cursor-default'
+                          : activeTreadmill
+                          ? 'bg-dark-850 text-dark-600 border border-dark-800 cursor-not-allowed'
+                          : 'bg-amber-500 hover:bg-amber-400 text-dark-950 shadow-md shadow-amber-500/15'
+                      }`}
+                    >
+                      <Play size={13} fill="currentColor" />
+                      <span>
+                        {isThisRunning
+                          ? 'Currently Running...'
+                          : `Start ${protocol.durationMinutes}m Walk`}
+                      </span>
+                    </button>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
