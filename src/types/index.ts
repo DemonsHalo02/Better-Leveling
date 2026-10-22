@@ -108,7 +108,7 @@ export interface DailyWorkoutRoutine {
   isRestDay?: boolean;
 }
 
-export type WorkoutProgramMode = 'calisthenics' | 'dumbbell_hybrid' | 'treadmill';
+export type WorkoutProgramMode = 'calisthenics' | 'weighted' | 'dumbbell_hybrid' | 'treadmill';
 
 export interface LoggedWorkoutSession {
   id: string;

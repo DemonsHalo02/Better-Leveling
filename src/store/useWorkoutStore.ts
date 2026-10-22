@@ -11,6 +11,7 @@ import {
 } from '../types';
 import { CALISTHENICS_SCHEDULE } from '../data/calisthenicsPlans';
 import { BLADDER_ROUTINE } from '../data/bladderSupportPlan';
+import { FUTURE_DUMBBELL_SCHEDULE } from '../data/futureEquipmentWorkouts';
 import { soundManager } from '../lib/sound';
 import confetti from 'canvas-confetti';
 import { getTodayDateString } from './useNutritionStore';
@@ -40,6 +41,7 @@ interface RestTimerState {
 interface WorkoutState {
   currentTier: CalisthenicsIntensity;
   selectedDay: DayOfWeek;
+  selectedProgram: 'calisthenics' | 'weighted';
   equipmentMode: WorkoutProgramMode;
   activeSession: {
     date: string;
@@ -48,6 +50,7 @@ interface WorkoutState {
     focusTitle: string;
     startedAt: string;
     isCompleted: boolean;
+    programMode?: 'calisthenics' | 'weighted';
     exercises: ActiveSessionExercise[];
   } | null;
   restTimer: RestTimerState;
@@ -56,8 +59,10 @@ interface WorkoutState {
   // Actions
   setTier: (tier: CalisthenicsIntensity) => void;
   setSelectedDay: (day: DayOfWeek) => void;
+  setSelectedProgram: (program: 'calisthenics' | 'weighted') => void;
   setEquipmentMode: (mode: WorkoutProgramMode) => void;
   startWorkout: (day?: DayOfWeek, tier?: CalisthenicsIntensity) => void;
+  startWeightedWorkout: (day?: DayOfWeek) => void;
   updateSet: (
     exerciseIndex: number,
     setIndex: number,
@@ -71,6 +76,17 @@ interface WorkoutState {
   // Bladder Support Actions
   logBladderSession: (customNotes?: string) => LoggedWorkoutSession;
   isBladderCompletedToday: () => boolean;
+
+  // Progressive Overload & PRs
+  getExerciseLastPerformance: (exerciseId: string) => {
+    loadLbs?: number;
+    actualReps: number;
+    date: string;
+  } | null;
+  getExercisePR: (exerciseId: string) => {
+    maxLoadLbs: number;
+    maxRepsAtMaxLoad: number;
+  } | null;
 
   // History & Deletion
   deleteWorkoutSession: (sessionId: string) => void;
@@ -90,6 +106,7 @@ export const useWorkoutStore = create<WorkoutState>()(
     (set, get) => ({
       currentTier: 'beginner',
       selectedDay: getCurrentDayOfWeek(),
+      selectedProgram: 'calisthenics',
       equipmentMode: 'calisthenics',
       activeSession: null,
       restTimer: {
@@ -105,12 +122,20 @@ export const useWorkoutStore = create<WorkoutState>()(
         // If an active session exists and hasn't had sets logged, re-initialize
         const active = get().activeSession;
         if (active && !active.exercises.some((e) => e.sets.some((s) => s.completed))) {
-          get().startWorkout(active.day, tier);
+          if (active.programMode === 'weighted') {
+            get().startWeightedWorkout(active.day);
+          } else {
+            get().startWorkout(active.day, tier);
+          }
         }
       },
 
       setSelectedDay: (day) => {
         set({ selectedDay: day });
+      },
+
+      setSelectedProgram: (program) => {
+        set({ selectedProgram: program });
       },
 
       setEquipmentMode: (mode) => {
@@ -152,6 +177,60 @@ export const useWorkoutStore = create<WorkoutState>()(
             focusTitle: routine.focusTitle,
             startedAt: new Date().toISOString(),
             isCompleted: false,
+            programMode: 'calisthenics',
+            exercises: activeExercises,
+          },
+        });
+      },
+
+      startWeightedWorkout: (targetDay) => {
+        const day = targetDay || get().selectedDay;
+        const routine = FUTURE_DUMBBELL_SCHEDULE[day];
+
+        if (day === 'sunday' || !routine || routine.exercises.length === 0) {
+          return;
+        }
+
+        const activeExercises: ActiveSessionExercise[] = routine.exercises.map((ex) => {
+          const sets: ExerciseSet[] = [];
+          const lastPerf = get().getExerciseLastPerformance(ex.id);
+
+          let defaultWeight = 20;
+          if (lastPerf?.loadLbs) {
+            defaultWeight = lastPerf.loadLbs;
+          } else if (ex.suggestedWeightLbs) {
+            const match = ex.suggestedWeightLbs.match(/\d+/);
+            if (match) defaultWeight = parseInt(match[0], 10);
+          }
+
+          const defaultReps = lastPerf?.actualReps || (parseInt(ex.defaultReps.split('-')[0], 10) || 10);
+
+          for (let i = 1; i <= ex.defaultSets; i++) {
+            sets.push({
+              id: `set-${ex.id}-${i}-${Date.now()}`,
+              setNumber: i,
+              targetReps: ex.defaultReps,
+              actualReps: defaultReps,
+              loadLbs: defaultWeight,
+              completed: false,
+            });
+          }
+          return {
+            exerciseId: ex.id,
+            exerciseName: ex.name,
+            sets,
+          };
+        });
+
+        set({
+          activeSession: {
+            date: getTodayDateString(),
+            day,
+            intensity: 'intermediate',
+            focusTitle: routine.focusTitle,
+            startedAt: new Date().toISOString(),
+            isCompleted: false,
+            programMode: 'weighted',
             exercises: activeExercises,
           },
         });
@@ -193,10 +272,20 @@ export const useWorkoutStore = create<WorkoutState>()(
 
         // If completed, trigger rest timer automatically based on exercise default rest
         if (newCompleted) {
-          const routine = CALISTHENICS_SCHEDULE[active.intensity][active.day];
-          const exerciseDef = routine.exercises[exerciseIndex];
-          const restTime = exerciseDef?.restSeconds || 60;
-          get().startRestTimer(restTime, exerciseDef?.name || 'Rest Interval');
+          let restTime = 60;
+          let exerciseName = 'Rest Interval';
+          if (active.programMode === 'weighted') {
+            const routine = FUTURE_DUMBBELL_SCHEDULE[active.day];
+            const exDef = routine?.exercises[exerciseIndex];
+            restTime = exDef?.restSeconds || 75;
+            exerciseName = exDef?.name || 'Rest Interval';
+          } else {
+            const routine = CALISTHENICS_SCHEDULE[active.intensity][active.day];
+            const exerciseDef = routine?.exercises[exerciseIndex];
+            restTime = exerciseDef?.restSeconds || 60;
+            exerciseName = exerciseDef?.name || 'Rest Interval';
+          }
+          get().startRestTimer(restTime, exerciseName);
         }
 
         triggerAutoSync(3000);
@@ -218,6 +307,7 @@ export const useWorkoutStore = create<WorkoutState>()(
             setNumber: newSetNumber,
             targetReps: lastSet?.targetReps || '8-12',
             actualReps: lastSet?.actualReps || 10,
+            loadLbs: lastSet?.loadLbs || 0,
             completed: false,
           },
         ];
@@ -244,6 +334,7 @@ export const useWorkoutStore = create<WorkoutState>()(
           startedAt: active.startedAt,
           completedAt: new Date().toISOString(),
           isCompleted: true,
+          programMode: active.programMode || 'calisthenics',
           exerciseLogs: active.exercises,
         };
 
@@ -419,6 +510,50 @@ export const useWorkoutStore = create<WorkoutState>()(
         );
       },
 
+      getExerciseLastPerformance: (exerciseId: string) => {
+        const history = get().history;
+        for (const session of history) {
+          if (!session.exerciseLogs) continue;
+          const match = session.exerciseLogs.find((e) => e.exerciseId === exerciseId);
+          if (match) {
+            const completedSets = match.sets.filter((s) => s.completed);
+            if (completedSets.length > 0) {
+              const lastSet = completedSets[completedSets.length - 1];
+              return {
+                loadLbs: lastSet.loadLbs,
+                actualReps: lastSet.actualReps,
+                date: session.date,
+              };
+            }
+          }
+        }
+        return null;
+      },
+
+      getExercisePR: (exerciseId: string) => {
+        const history = get().history;
+        let maxWeight = 0;
+        let repsAtMax = 0;
+
+        for (const session of history) {
+          if (!session.exerciseLogs) continue;
+          const match = session.exerciseLogs.find((e) => e.exerciseId === exerciseId);
+          if (match) {
+            for (const set of match.sets) {
+              if (set.completed && set.loadLbs && set.loadLbs > maxWeight) {
+                maxWeight = set.loadLbs;
+                repsAtMax = set.actualReps;
+              }
+            }
+          }
+        }
+
+        if (maxWeight > 0) {
+          return { maxLoadLbs: maxWeight, maxRepsAtMaxLoad: repsAtMax };
+        }
+        return null;
+      },
+
       deleteWorkoutSession: (sessionId: string) => {
         set({
           history: get().history.filter((s) => s.id !== sessionId),
@@ -444,6 +579,7 @@ export const useWorkoutStore = create<WorkoutState>()(
       name: 'better_leveling_workout',
       partialize: (state) => ({
         currentTier: state.currentTier,
+        selectedProgram: state.selectedProgram,
         equipmentMode: state.equipmentMode,
         history: state.history,
         activeSession: state.activeSession,

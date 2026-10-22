@@ -6,6 +6,7 @@ import { MacroRings } from './MacroRings';
 import { QuickAddModal } from './QuickAddModal';
 import { BarcodeScannerModal } from './BarcodeScannerModal';
 import { FoodSearchModal } from './FoodSearchModal';
+import { WalmartStaplesBar } from './WalmartStaplesBar';
 import {
   Plus,
   Barcode,
@@ -93,6 +94,9 @@ export const NutritionView: React.FC = () => {
           <span>Quick Add</span>
         </button>
       </div>
+
+      {/* Auburn Walmart & High-Protein Quick Staples */}
+      <WalmartStaplesBar onAddFood={handleAddFoodFromSearchOrScan} />
 
       {/* 4 Meal Slots */}
       <div className="space-y-3.5">

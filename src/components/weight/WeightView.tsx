@@ -11,6 +11,7 @@ import {
   Calendar,
   Activity,
 } from 'lucide-react';
+import { WeeklyCheckInCard } from './WeeklyCheckInCard';
 
 export const WeightView: React.FC = () => {
   const { user } = useAuthStore();
@@ -194,6 +195,12 @@ export const WeightView: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* MacroFactor-Style Weekly Algorithmic Check-In */}
+      <WeeklyCheckInCard
+        expenditure={expenditure}
+        currentWeightLbs={latest?.raw || user.startingWeightLbs}
+      />
 
       {/* Exponential Moving Average Trend Chart */}
       <div className="bg-dark-850 border border-dark-750 rounded-2xl p-4 sm:p-5 shadow-sm">

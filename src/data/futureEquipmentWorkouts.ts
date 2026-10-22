@@ -364,6 +364,8 @@ export const FUTURE_DUMBBELL_SCHEDULE: Record<DayOfWeek, {
   },
 };
 
+export const WEIGHTED_WORKOUT_SCHEDULE = FUTURE_DUMBBELL_SCHEDULE;
+
 export const TREADMILL_PROTOCOLS: TreadmillProtocol[] = [
   {
     id: 'tm-warmup',

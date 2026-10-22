@@ -24,7 +24,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({
     },
     {
       id: 'workout' as ActiveTab,
-      label: 'Calisthenics',
+      label: 'Workout',
       icon: Flame,
       color: 'text-emerald-400',
       activeBg: 'bg-emerald-500/10 border-emerald-500/30',

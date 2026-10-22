@@ -27,6 +27,7 @@ import {
   Volume2,
 } from 'lucide-react';
 import { soundManager } from '../../lib/sound';
+import { BladderHydrationHabitsView } from './BladderHydrationHabitsView';
 
 export const BladderRoutineView: React.FC = () => {
   const { history, logBladderSession, isBladderCompletedToday } = useWorkoutStore();
@@ -37,6 +38,8 @@ export const BladderRoutineView: React.FC = () => {
       s.date === new Date().toISOString().split('T')[0] &&
       (s.focusTitle.includes('Bladder') || s.programMode === 'bladder_support')
   );
+
+  const [activeSubTab, setActiveSubTab] = useState<'routine' | 'habits'>('routine');
 
   // Runner state
   const [activeStepIndex, setActiveStepIndex] = useState<number | null>(null);
@@ -271,8 +274,38 @@ export const BladderRoutineView: React.FC = () => {
         </div>
       </div>
 
-      {/* Habits & Diet Drawer (Collapsible) */}
-      {showHabitsGuide && (
+      {/* Sub-Tabs: 15-Min Routine vs Hydration & Habits */}
+      <div className="flex gap-2 p-1 bg-dark-900 border border-dark-750 rounded-xl">
+        <button
+          onClick={() => setActiveSubTab('routine')}
+          className={`flex-1 py-2 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 ${
+            activeSubTab === 'routine'
+              ? 'bg-emerald-500 text-dark-950 shadow-sm'
+              : 'text-dark-400 hover:text-dark-200'
+          }`}
+        >
+          <Heart size={14} />
+          <span>15-Min Guided Routine</span>
+        </button>
+        <button
+          onClick={() => setActiveSubTab('habits')}
+          className={`flex-1 py-2 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 ${
+            activeSubTab === 'habits'
+              ? 'bg-emerald-500 text-dark-950 shadow-sm'
+              : 'text-dark-400 hover:text-dark-200'
+          }`}
+        >
+          <Droplets size={14} />
+          <span>Hydration & Irritants Tracker</span>
+        </button>
+      </div>
+
+      {activeSubTab === 'habits' && <BladderHydrationHabitsView />}
+
+      {activeSubTab === 'routine' && (
+        <div className="space-y-4">
+          {/* Habits & Diet Drawer (Collapsible) */}
+          {showHabitsGuide && (
         <div className="bg-dark-850 border border-dark-750 rounded-2xl p-4 sm:p-5 space-y-4 animate-fadeIn">
           <div>
             <h3 className="font-bold text-sm text-dark-50 flex items-center gap-2">
@@ -551,5 +584,7 @@ export const BladderRoutineView: React.FC = () => {
         </div>
       </div>
     </div>
+  )}
+</div>
   );
 };

@@ -7,7 +7,7 @@ import {
 import { CalisthenicsIntensity, DayOfWeek } from '../../types';
 import { RestTimerBar } from './RestTimerBar';
 import { BladderRoutineView } from './BladderRoutineView';
-import { FutureEquipmentView } from './FutureEquipmentView';
+import { WeightedWorkoutView } from './WeightedWorkoutView';
 import {
   Flame,
   CheckCircle2,
@@ -30,6 +30,8 @@ export const WorkoutView: React.FC = () => {
   const {
     currentTier,
     selectedDay,
+    selectedProgram,
+    setSelectedProgram,
     activeSession,
     setTier,
     setSelectedDay,
@@ -42,7 +44,9 @@ export const WorkoutView: React.FC = () => {
     isBladderCompletedToday,
   } = useWorkoutStore();
 
-  const [sectionMode, setSectionMode] = useState<'calisthenics' | 'bladder' | 'future_equipment'>('calisthenics');
+  const [sectionMode, setSectionMode] = useState<'calisthenics' | 'bladder' | 'weighted'>(
+    selectedProgram === 'weighted' ? 'weighted' : 'calisthenics'
+  );
   const [expandedExerciseId, setExpandedExerciseId] = useState<string | null>(null);
 
   const days: { id: DayOfWeek; short: string; label: string }[] = [
@@ -58,7 +62,11 @@ export const WorkoutView: React.FC = () => {
   const currentRoutine = CALISTHENICS_SCHEDULE[currentTier][selectedDay];
   const activeTierObj = CALISTHENICS_TIERS.find((t) => t.id === currentTier);
 
-  const isSessionRunning = Boolean(activeSession && activeSession.day === selectedDay);
+  const isSessionRunning = Boolean(
+    activeSession &&
+      (activeSession.programMode === 'calisthenics' || !activeSession.programMode) &&
+      activeSession.day === selectedDay
+  );
 
   const totalSets = activeSession?.exercises.reduce((sum, e) => sum + e.sets.length, 0) || 0;
   const completedSets = activeSession?.exercises.reduce(
@@ -75,7 +83,10 @@ export const WorkoutView: React.FC = () => {
       {/* Top Program & Routine Mode Selector */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
         <button
-          onClick={() => setSectionMode('calisthenics')}
+          onClick={() => {
+            setSelectedProgram('calisthenics');
+            setSectionMode('calisthenics');
+          }}
           className={`flex items-center justify-between p-3 rounded-2xl border transition text-left ${
             sectionMode === 'calisthenics'
               ? 'bg-emerald-500/15 border-emerald-500/60 text-emerald-300 shadow-md shadow-emerald-500/10'
@@ -97,8 +108,14 @@ export const WorkoutView: React.FC = () => {
               <div className="text-[10px] text-dark-400">Pure Bodyweight & Mat</div>
             </div>
           </div>
-          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-dark-900 border border-dark-750 text-emerald-400">
-            Active
+          <span
+            className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${
+              selectedProgram === 'calisthenics'
+                ? 'bg-emerald-950 text-emerald-400 border-emerald-800'
+                : 'bg-dark-900 border-dark-750 text-dark-400'
+            }`}
+          >
+            {selectedProgram === 'calisthenics' ? 'Active' : 'Switch'}
           </span>
         </button>
 
@@ -137,9 +154,12 @@ export const WorkoutView: React.FC = () => {
         </button>
 
         <button
-          onClick={() => setSectionMode('future_equipment')}
+          onClick={() => {
+            setSelectedProgram('weighted');
+            setSectionMode('weighted');
+          }}
           className={`flex items-center justify-between p-3 rounded-2xl border transition text-left ${
-            sectionMode === 'future_equipment'
+            sectionMode === 'weighted'
               ? 'bg-amber-500/15 border-amber-500/60 text-amber-300 shadow-md shadow-amber-500/10'
               : 'bg-dark-850/80 border-dark-750 text-dark-300 hover:text-dark-100 hover:bg-dark-800'
           }`}
@@ -147,7 +167,7 @@ export const WorkoutView: React.FC = () => {
           <div className="flex items-center gap-2.5">
             <div
               className={`p-1.5 rounded-lg ${
-                sectionMode === 'future_equipment'
+                sectionMode === 'weighted'
                   ? 'bg-amber-500 text-dark-950 font-bold'
                   : 'bg-dark-800 text-dark-400'
               }`}
@@ -155,12 +175,18 @@ export const WorkoutView: React.FC = () => {
               <Dumbbell size={16} />
             </div>
             <div>
-              <div className="font-bold text-xs text-dark-100">Future Equipment</div>
+              <div className="font-bold text-xs text-dark-100">6-Day Weighted Workout</div>
               <div className="text-[10px] text-dark-400">Dumbbells & Treadmill</div>
             </div>
           </div>
-          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-dark-900 border border-dark-750 text-amber-400">
-            Ready
+          <span
+            className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${
+              selectedProgram === 'weighted'
+                ? 'bg-amber-950 text-amber-300 border-amber-800'
+                : 'bg-dark-900 border-dark-750 text-dark-400'
+            }`}
+          >
+            {selectedProgram === 'weighted' ? 'Active' : 'Switch'}
           </span>
         </button>
       </div>
@@ -168,7 +194,14 @@ export const WorkoutView: React.FC = () => {
       {/* RENDER SELECTED VIEW */}
       {sectionMode === 'bladder' && <BladderRoutineView />}
 
-      {sectionMode === 'future_equipment' && <FutureEquipmentView />}
+      {sectionMode === 'weighted' && (
+        <WeightedWorkoutView
+          onSwitchToCalisthenics={() => {
+            setSelectedProgram('calisthenics');
+            setSectionMode('calisthenics');
+          }}
+        />
+      )}
 
       {sectionMode === 'calisthenics' && (
         <div className="space-y-4">
@@ -224,10 +257,26 @@ export const WorkoutView: React.FC = () => {
                 </p>
               </div>
 
-              {/* Apartment Silent Badge */}
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/40 border border-emerald-800/40 text-[11px] font-mono text-emerald-300 self-start sm:self-auto">
-                <VolumeX size={13} className="text-emerald-400" />
-                <span>Zero Jumping / Silent</span>
+              {/* Program Status & Apartment Silent Badge */}
+              <div className="flex items-center gap-2 self-start sm:self-auto">
+                {selectedProgram === 'calisthenics' ? (
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-emerald-950/50 border border-emerald-800/60 text-[11px] font-mono text-emerald-300 font-bold">
+                    <Check size={13} className="text-emerald-400" />
+                    <span>Primary Active</span>
+                  </span>
+                ) : (
+                  <button
+                    onClick={() => setSelectedProgram('calisthenics')}
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-emerald-300 font-bold text-[11px] transition"
+                  >
+                    <Sparkles size={13} />
+                    <span>Set as Active</span>
+                  </button>
+                )}
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/40 border border-emerald-800/40 text-[11px] font-mono text-emerald-300">
+                  <VolumeX size={13} className="text-emerald-400" />
+                  <span>Zero Jumping</span>
+                </div>
               </div>
             </div>
 

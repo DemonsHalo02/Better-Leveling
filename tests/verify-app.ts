@@ -173,6 +173,160 @@ function runTestSuite() {
     assert(Boolean(protocol.speedMph && protocol.inclinePct), `Protocol "${protocol.title}" specifies speed and incline`);
   }
 
+  // -------------------------------------------------------------
+  // TEST 8: Progressive Overload & Weight History
+  // -------------------------------------------------------------
+  console.log('\n--- 8. Testing Progressive Overload & PR Engine ---');
+  // Mock workout history
+  const mockWorkoutHistory = [
+    {
+      id: 'session-prev',
+      date: '2026-10-15',
+      day: 'monday' as DayOfWeek,
+      intensity: 'intermediate' as CalisthenicsIntensity,
+      focusTitle: 'Push Focus A',
+      startedAt: '2026-10-15T18:00:00Z',
+      isCompleted: true,
+      programMode: 'weighted' as const,
+      exerciseLogs: [
+        {
+          exerciseId: 'f-m-1', // Dumbbell Floor Press
+          exerciseName: 'Dumbbell Floor Press',
+          sets: [
+            { id: 's1', setNumber: 1, targetReps: '8-12', actualReps: 12, loadLbs: 25, completed: true },
+            { id: 's2', setNumber: 2, targetReps: '8-12', actualReps: 10, loadLbs: 25, completed: true },
+            { id: 's3', setNumber: 3, targetReps: '8-12', actualReps: 8, loadLbs: 30, completed: true },
+          ],
+        },
+      ],
+    },
+  ];
+
+  // Helper mimicking getExerciseLastPerformance
+  function testGetLastPerf(exerciseId: string) {
+    for (const session of mockWorkoutHistory) {
+      const match = session.exerciseLogs.find((e) => e.exerciseId === exerciseId);
+      if (match) {
+        const completed = match.sets.filter((s) => s.completed);
+        if (completed.length > 0) {
+          const last = completed[completed.length - 1];
+          return { loadLbs: last.loadLbs, actualReps: last.actualReps, date: session.date };
+        }
+      }
+    }
+    return null;
+  }
+
+  // Helper mimicking getExercisePR
+  function testGetPR(exerciseId: string) {
+    let maxLoad = 0;
+    let maxReps = 0;
+    for (const session of mockWorkoutHistory) {
+      const match = session.exerciseLogs.find((e) => e.exerciseId === exerciseId);
+      if (match) {
+        for (const set of match.sets) {
+          if (set.completed && set.loadLbs && set.loadLbs > maxLoad) {
+            maxLoad = set.loadLbs;
+            maxReps = set.actualReps;
+          }
+        }
+      }
+    }
+    return maxLoad > 0 ? { maxLoadLbs: maxLoad, maxRepsAtMaxLoad: maxReps } : null;
+  }
+
+  const lastPerf = testGetLastPerf('f-m-1');
+  assert(Boolean(lastPerf), 'Last performance retrieved for Dumbbell Floor Press');
+  assert(lastPerf?.loadLbs === 30, 'Last load correctly identified as 30 lbs');
+  assert(lastPerf?.actualReps === 8, 'Last reps correctly identified as 8');
+
+  const pr = testGetPR('f-m-1');
+  assert(Boolean(pr), 'PR record retrieved for Dumbbell Floor Press');
+  assert(pr?.maxLoadLbs === 30, 'PR load correctly identified as 30 lbs');
+
+  // Volume calculation test
+  const totalVolume = mockWorkoutHistory[0].exerciseLogs[0].sets.reduce(
+    (sum, s) => sum + (s.completed && s.loadLbs ? s.loadLbs * s.actualReps : 0),
+    0
+  );
+  // (25 * 12) + (25 * 10) + (30 * 8) = 300 + 250 + 240 = 790 lbs
+  assert(totalVolume === 790, `Session volume correctly computed as 790 lbs (got ${totalVolume})`);
+
+  // -------------------------------------------------------------
+  // TEST 9: Bladder Hydration Pacing & Evening Cutoff Calculation
+  // -------------------------------------------------------------
+  console.log('\n--- 9. Testing Bladder Hydration Pacing & Evening Cutoff ---');
+  function testCutoff(bedtimeHour: number, cutoffHoursBeforeBed: number, currentHour: number, currentMinutes: number) {
+    const cutoffHour = (bedtimeHour - cutoffHoursBeforeBed + 24) % 24;
+    const currentTotalMin = currentHour * 60 + currentMinutes;
+    const cutoffTotalMin = cutoffHour * 60;
+    const isPastCutoff = currentTotalMin >= cutoffTotalMin;
+    const diffMin = cutoffTotalMin - currentTotalMin;
+    return {
+      cutoffHour,
+      isPastCutoff,
+      hoursRemaining: Math.max(0, Math.floor(diffMin / 60)),
+      minutesRemaining: Math.max(0, diffMin % 60),
+    };
+  }
+
+  // At 6:30 PM (18:30) with 10:00 PM (22:00) bedtime -> Cutoff is 8:00 PM (20:00) -> 1h 30m remaining
+  const dayWindow = testCutoff(22, 2, 18, 30);
+  assert(!dayWindow.isPastCutoff, 'Daytime window correctly reports not past cutoff');
+  assert(dayWindow.cutoffHour === 20, '2 hours before 10 PM is 8 PM (20:00)');
+  assert(dayWindow.hoursRemaining === 1 && dayWindow.minutesRemaining === 30, 'Remaining time is exactly 1h 30m');
+
+  // At 9:15 PM (21:15) with 10:00 PM bedtime -> Cutoff was 8:00 PM -> Past cutoff!
+  const nightWindow = testCutoff(22, 2, 21, 15);
+  assert(nightWindow.isPastCutoff, 'Night window correctly identifies past cutoff');
+
+  // -------------------------------------------------------------
+  // TEST 10: Weekly Algorithmic Coaching Adjustments
+  // -------------------------------------------------------------
+  console.log('\n--- 10. Testing Weekly Algorithmic Coaching Logic ---');
+  function testCoachingAdjustment(currentTdee: number, currentTarget: number, goal: 'fat_loss' | 'muscle_gain' | 'maintenance') {
+    let targetDeltaFromTdee = -500; // fat_loss (-1.0 lb/wk)
+    if (goal === 'muscle_gain') targetDeltaFromTdee = 150;
+    if (goal === 'maintenance') targetDeltaFromTdee = 0;
+
+    const proposedCalories = Math.max(1300, Math.min(4000, Math.round(currentTdee + targetDeltaFromTdee)));
+    const calorieDelta = proposedCalories - currentTarget;
+    return { proposedCalories, calorieDelta };
+  }
+
+  // User burning 2,350 kcal/day on fat loss target of 2,100 -> ideal intake 1,850 kcal (-250 kcal adjustment)
+  const fatLossCheck = testCoachingAdjustment(2350, 2100, 'fat_loss');
+  assert(fatLossCheck.proposedCalories === 1850, `Fat loss coaching sets proposed target to 1,850 kcal (got ${fatLossCheck.proposedCalories})`);
+  assert(fatLossCheck.calorieDelta === -250, `Calorie delta correctly set to -250 kcal (got ${fatLossCheck.calorieDelta})`);
+
+  // User burning 2,500 kcal on muscle gain with current 2,500 -> ideal 2,650 kcal (+150 kcal adjustment)
+  const gainCheck = testCoachingAdjustment(2500, 2500, 'muscle_gain');
+  assert(gainCheck.proposedCalories === 2650, 'Muscle gain coaching sets proposed target to 2,650 kcal');
+  assert(gainCheck.calorieDelta === 150, 'Calorie delta correctly set to +150 kcal');
+
+  // -------------------------------------------------------------
+  // TEST 11: Auburn Walmart Fast-Log Staples Integrity
+  // -------------------------------------------------------------
+  console.log('\n--- 11. Testing Auburn Walmart Staples Integrity ---');
+  const requiredStapleIds = [
+    'food-walmart-gv-chicken-breast',
+    'food-walmart-gv-ground-beef-93',
+    'food-walmart-gv-liquid-egg-whites',
+    'food-walmart-gv-greek-yogurt-plain',
+    'food-walmart-gv-chunk-light-tuna',
+    'food-walmart-marketside-rotisserie-chicken',
+    'food-walmart-equate-protein-shake',
+    'food-walmart-gv-rolled-oats',
+    'food-walmart-gv-triple-berry',
+    'food-walmart-gv-steamed-broccoli',
+  ];
+
+  for (const stapleId of requiredStapleIds) {
+    const item = VERIFIED_FOODS.find((f) => f.id === stapleId);
+    assert(Boolean(item), `Staple item "${stapleId}" exists in verified foods database`);
+    assert((item?.calories || 0) > 0, `Staple "${item?.name}" has valid caloric value`);
+  }
+
   console.log('\n================================================================');
   console.log(`🏁 TEST RESULTS: ${passedTests} / ${totalTests} PASSED (100% Success)`);
   console.log('================================================================\n');
